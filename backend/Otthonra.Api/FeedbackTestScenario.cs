@@ -101,7 +101,10 @@ public static class FeedbackTestScenario
             throw new ApiException(409, "A tesztkönyvelés megváltozott; nem indítható újra biztonságosan.");
 
         await db.UserNotifications.Where(item => item.FeedbackPackageId.HasValue && packageIds.Contains(item.FeedbackPackageId.Value)
-            || item.DecisionId.HasValue && decisionIds.Contains(item.DecisionId.Value)).ExecuteDeleteAsync(cancellationToken);
+            || item.DecisionId.HasValue && decisionIds.Contains(item.DecisionId.Value)
+            || item.MatchId.HasValue && matchIds.Contains(item.MatchId.Value)
+            || item.PropertyId == property.Id && (item.Kind == "feedback_received" || item.Kind == "feedback_completed" || item.Kind == "feedback_expired")
+            || item.PropertyId == property.Id && item.SearchRequestId == search.Id && item.Kind == "incoming_like").ExecuteDeleteAsync(cancellationToken);
         await db.Messages.Where(item => matchIds.Contains(item.MatchId)).ExecuteDeleteAsync(cancellationToken);
         await db.Matches.Where(item => matchIds.Contains(item.Id)).ExecuteDeleteAsync(cancellationToken);
         await db.FeedbackInvitations.Where(item => packageIds.Contains(item.PackageId) || decisionIds.Contains(item.DecisionId)).ExecuteDeleteAsync(cancellationToken);

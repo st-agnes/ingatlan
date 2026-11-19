@@ -10,6 +10,7 @@ ALTER TABLE `Decisions`
   ADD INDEX `IX_Decisions_SearchRequestId_UpgradeFixture` (`SearchRequestId`),
   DROP INDEX `IX_Decisions_SearchRequestId_ActorKind_PropertyId`;
 DROP TABLE IF EXISTS `UserNotifications`;
+DROP TABLE IF EXISTS `__OtthonraNotificationBackfills`;
 DROP TABLE IF EXISTS `FeedbackInvitations`;
 DROP TABLE IF EXISTS `PropertyImpressions`;
 ALTER TABLE `CreditEntries`
@@ -45,4 +46,4 @@ ALTER TABLE `SearchRequests`
   DROP COLUMN `ConstructionAgesJson`, DROP COLUMN `ViewsJson`, DROP COLUMN `CeilingHeight`, DROP COLUMN `FloorsJson`,
   DROP COLUMN `HeatingTypesJson`;
 DELETE FROM `__OtthonraSchemaVersions`
-  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search', '20261118-postal-street-search', '20261118-idempotent-entity-creation');
+  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search', '20261118-postal-street-search', '20261118-idempotent-entity-creation', '20261119-account-activity-notifications');

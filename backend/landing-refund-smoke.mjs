@@ -82,14 +82,17 @@ if(mode==='--setup'){
   assert.equal(receipt.reason,'no_longer_current');assert.equal(Object.hasOwn(receipt,'createdAt'),false);
   const repeat=await api('/reports',{token:tokens.buyer,method:'POST',body:{entityKind,entityId,reason:'no_longer_current'}});assert.equal(repeat.id,receipt.id);assert.equal(repeat.alreadyReported,true);reports.push({id:receipt.id,entityKind,entityId});
  }
- const f={tokens,ids,properties,search,agentSearch,cases,reports,secret,displayNames,balances:{}};
+ const f={tokens,ids,properties,search,agentSearch,cases,reports,secret,displayNames,balances:{},notificationBaselines:{}};
  for(const key of Object.keys(tokens)){
   const entities=await api('/me/entities',{token:tokens[key]});
   for(const c of Object.values(cases).filter(c=>c.actor===key)){
    const row=entities.decisions.find(d=>d.propertyId===c.propertyId&&d.searchId===c.searchId&&d.actorKind===c.kind);assert.ok(row);c.decisionId=row.id;
   }
   f.balances[key]=(await api('/me',{token:tokens[key]})).credits;
-  assert.equal((await api('/notifications',{token:tokens[key]})).total,0);
+  const notes=await api('/notifications',{token:tokens[key]});
+  assert.equal(notes.items.filter(item=>item.kind==='like_refund').length,0);
+  assert.equal(notes.unreadCount,notes.total,'Existing activity starts independently unread');
+  f.notificationBaselines[key]={total:notes.total,unreadCount:notes.unreadCount};
  }
  await api('/notifications',{status:401});
  await api('/internal/refunds/run',{token:tokens.seller,method:'POST',status:[401,403,404]});
@@ -101,22 +104,23 @@ if(mode==='--setup'){
   // Simultaneous catch-up paths exercise the same durable refunds independently.
   await Promise.all(Array.from({length:12},(_,i)=>api(i%3===0?'/me':i%3===1?'/credits/ledger':'/notifications',{token:f.tokens[i%2===0?'seller':'agent']})));
   for(const [key,expectedRefund,count] of [['seller',6,3],['agent',1,1],['buyer',0,0]]){
-   const token=f.tokens[key],profile=await api('/me',{token});assert.equal(profile.credits,f.balances[key]+expectedRefund);assert.equal(profile.unreadNotificationCount,count);
-   const notifications=await api('/notifications',{token});assert.equal(notifications.total,count);assert.equal(notifications.unreadCount,count);assert.equal(notifications.items.length,count);
+   const token=f.tokens[key],profile=await api('/me',{token}),baseline=f.notificationBaselines[key];assert.equal(profile.credits,f.balances[key]+expectedRefund);assert.equal(profile.unreadNotificationCount,baseline.unreadCount+count);
+   const notifications=await api('/notifications',{token});assert.equal(notifications.total,baseline.total+count);assert.equal(notifications.unreadCount,baseline.unreadCount+count);assert.equal(notifications.items.length,notifications.total);
+   const refundItems=notifications.items.filter(item=>item.kind==='like_refund');assert.equal(refundItems.length,count);
    const expectedCases=Object.values(f.cases).filter(c=>c.actor===key&&c.expected>0);
-   assert.deepEqual(notifications.items.map(n=>n.decisionId).sort(),expectedCases.map(c=>c.decisionId).sort());
-   for(const n of notifications.items){assert.equal(n.kind,'like_refund');assert.equal(n.amount,expectedCases.find(c=>c.decisionId===n.decisionId).expected);assert.ok(n.text.includes('14'));assert.equal(n.readAt,null);assert.ok(!Object.hasOwn(n,'userId'));}
+   assert.deepEqual(refundItems.map(n=>n.decisionId).sort(),expectedCases.map(c=>c.decisionId).sort());
+   for(const n of refundItems){assert.equal(n.amount,expectedCases.find(c=>c.decisionId===n.decisionId).expected);assert.ok(n.text.includes('14'));assert.equal(n.readAt,null);assert.ok(!Object.hasOwn(n,'userId'));}
    const ledger=await api('/credits/ledger',{token}),refunds=ledger.filter(e=>e.refundedDecisionId);
    assert.equal(refunds.length,count);assert.equal(refunds.reduce((sum,e)=>sum+e.amount,0),expectedRefund);
    const entities=await api('/me/entities',{token});for(const c of Object.values(f.cases).filter(c=>c.actor===key)){const d=entities.decisions.find(d=>d.id===c.decisionId);assert.equal(Boolean(d.refundedAt),c.expected>0);}
    for(const query of ['offset=-1','limit=0','limit=101'])await api('/notifications?'+query,{token,status:400});
   }
-  const first=(await api('/notifications',{token:f.tokens.seller})).items[0];
+  const sellerNotes=await api('/notifications',{token:f.tokens.seller}),first=sellerNotes.items.find(item=>item.kind==='like_refund');assert.ok(first);
   await api('/notifications/'+first.id+'/read',{token:f.tokens.buyer,method:'PUT',status:404});
   const read=await api('/notifications/'+first.id+'/read',{token:f.tokens.seller,method:'PUT'});assert.ok(read.readAt);
   assert.equal((await api('/notifications/'+first.id+'/read',{token:f.tokens.seller,method:'PUT'})).readAt,read.readAt);
-  assert.equal((await api('/me',{token:f.tokens.seller})).unreadNotificationCount,2);
-  const pages=await Promise.all([0,1,2].map(offset=>api('/notifications?offset='+offset+'&limit=1',{token:f.tokens.seller})));
+  assert.equal((await api('/me',{token:f.tokens.seller})).unreadNotificationCount,sellerNotes.unreadCount-1);
+  const pages=await Promise.all([0,1,sellerNotes.total-1].map(offset=>api('/notifications?offset='+offset+'&limit=1',{token:f.tokens.seller})));
   assert.equal(new Set(pages.flatMap(p=>p.items.map(n=>n.id))).size,3);assert.equal(pages[0].hasMore,true);assert.equal(pages[2].hasMore,false);
   // A late reply can still match the original like without reclaiming the refund.
   const late=await decision(f.tokens.buyer,f.properties.due,f.search);assert.ok(late.matchId);assert.equal(late.charged,0);

@@ -157,7 +157,7 @@ function seed(now) {
 const publicDemoSelections=new Map();
 const publicDemoType=type=>['Lakás','Ház'].includes(type)?type:'Ingatlan';
 const publicDemoBucket=(value,limits)=>{if(value==null)return 'open';const index=limits.findIndex(limit=>Number(value)<limit);return index<0?limits.length:index;};
-// Only fictional built-in demo IDs reach this deterministic identity helper.
+// Only fictional browser-demo IDs reach this deterministic identity helper.
 // Hosted source identities are SHA256-derived by the backend, never generated from browser input.
 function demoSourceKey(kind,id) {
   const value=`otthonra:demo-source:v1:${kind}:${id}`;
@@ -225,6 +225,76 @@ export function demoLanding(region=null,random=Math.random) {
   };
 }
 
+const notificationPages = new Set(['incoming','messages','insights','credits']);
+const notificationTarget = (page,entityKind=null,entityId=null,propertyId=null,searchRequestId=null,matchId=null) => ({page,entityKind,entityId,propertyId,searchRequestId,matchId});
+function safeNotificationTarget(value,kind='') {
+  if(!value||!notificationPages.has(value.page))return ['like_refund','feedback_refund','credit_added'].includes(kind)?notificationTarget('credits'):null;
+  const reference=value=>typeof value==='string'&&value?value:null;
+  return notificationTarget(value.page,['property','search'].includes(value.entityKind)?value.entityKind:null,reference(value.entityId),reference(value.propertyId),reference(value.searchRequestId),reference(value.matchId));
+}
+function publicNotification(item) {
+  return {id:item.id,kind:item.kind,amount:Number(item.amount||0),text:String(item.text||''),decisionId:item.decisionId??null,feedbackPackageId:item.feedbackPackageId??null,createdAt:item.createdAt,readAt:item.readAt??null,target:safeNotificationTarget(item.target,item.kind)};
+}
+/** Idempotent migration/live projection of fictional source events, outside the active-profile filter. */
+function synchronizeActivityNotifications(s) {
+  s.notifications=Array.isArray(s.notifications)?s.notifications:[];
+  s.notificationLedgerOwnerId ||= s.userId;
+  const existing=new Map();
+  for(const item of s.notifications){
+    if(!item.eventKey&&item.kind==='like_refund'&&item.decisionId)item.eventKey='like_refund:'+item.decisionId;
+    if(!item.eventKey&&item.kind==='feedback_refund'&&item.feedbackPackageId)item.eventKey='feedback_refund:'+item.feedbackPackageId;
+    if(item.eventKey)existing.set(item.userId+':'+item.eventKey,item);
+    item.target=safeNotificationTarget(item.target,item.kind);
+  }
+  const propertyById=new Map(s.properties.map(item=>[item.id,item])),searchById=new Map(s.searches.map(item=>[item.id,item]));
+  const userIds=new Set(s.users.map(item=>item.id));
+  const add=(userId,kind,sourceId,createdAt,text,target,extra={})=>{
+    if(!userIds.has(userId)||!sourceId||!Number.isFinite(storedInstant(createdAt)))return;
+    const eventKey=kind+':'+sourceId,key=userId+':'+eventKey;
+    if(existing.has(key))return;
+    const item={id:demoSourceKey('notification',key),userId,eventKey,kind,amount:0,text,createdAt,readAt:null,target,...extra};
+    s.notifications.push(item);existing.set(key,item);
+  };
+  const pair=(propertyId,searchId)=>{const property=propertyById.get(propertyId),search=searchById.get(searchId);return property&&search&&property.ownerId!==search.ownerId?{property,search}:null;};
+  for(const decision of s.decisions){
+    if(decision.liked!==true||!['property','search'].includes(decision.actorKind))continue;
+    const entities=pair(decision.propertyId,decision.searchId);if(!entities)continue;
+    const {property,search}=entities;
+    if(decision.actorId!==(decision.actorKind==='property'?property.id:search.id))continue;
+    const kind=decision.actorKind==='property'?'search':'property',ownEntity=kind==='property'?property:search;
+    add(ownEntity.ownerId,'incoming_like',decision.id,decision.createdAt,`Érdeklődés érkezett a(z) „${ownEntity.title}” profilodra.`,notificationTarget('incoming',kind,ownEntity.id,property.id,search.id));
+  }
+  for(const match of s.matches){
+    const entities=pair(match.propertyId,match.searchId);if(!entities)continue;
+    const {property,search}=entities;
+    if(!['property','search'].every(kind=>s.decisions.some(item=>item.propertyId===property.id&&item.searchId===search.id&&item.actorKind===kind&&item.liked)))continue;
+    for(const [kind,ownEntity] of [['property',property],['search',search]])add(ownEntity.ownerId,'match_created',match.id,match.createdAt,`Új párosításod van a(z) „${ownEntity.title}” profilodhoz.`,notificationTarget('messages',kind,ownEntity.id,property.id,search.id,match.id));
+    for(const message of match.messages||[]){
+      const recipient=message.senderId===property.ownerId?search.ownerId:message.senderId===search.ownerId?property.ownerId:null;
+      const kind=recipient===property.ownerId?'property':'search',ownEntity=kind==='property'?property:search;
+      if(recipient)add(recipient,'message_received',message.id,message.createdAt,`Új üzenetet kaptál a(z) „${ownEntity.title}” profilodhoz.`,notificationTarget('messages',kind,ownEntity.id,property.id,search.id,match.id));
+    }
+  }
+  for(const invitation of s.feedbackInvitations||[]){
+    if(!invitation.answeredAt||!invitation.reason||invitation.reason==='decline')continue;
+    const property=propertyById.get(invitation.propertyId);if(!property)continue;
+    add(property.ownerId,'feedback_received',invitation.id,invitation.answeredAt,`Új visszajelzés érkezett a(z) „${property.title}” ingatlanodról.`,notificationTarget('insights','property',property.id,property.id),{feedbackPackageId:invitation.packageId??null});
+  }
+  for(const pkg of s.feedbackPackages||[]){
+    const property=propertyById.get(pkg.propertyId);if(!property)continue;
+    const target=notificationTarget('insights','property',property.id,property.id);
+    if(pkg.receivedCount>=pkg.size){
+      const responses=(s.feedbackInvitations||[]).filter(item=>item.packageId===pkg.id&&item.answeredAt&&item.reason&&item.reason!=='decline').sort((a,b)=>String(b.answeredAt).localeCompare(String(a.answeredAt)));
+      add(pkg.ownerId,'feedback_completed',pkg.id,responses[0]?.answeredAt||pkg.createdAt,`Összegyűlt a(z) „${property.title}” ingatlanhoz kért összes visszajelzés.`,target,{feedbackPackageId:pkg.id});
+    }
+    if(pkg.refundedAt)add(pkg.ownerId,'feedback_expired',pkg.id,pkg.refundedAt,`Lejárt a(z) „${property.title}” ingatlan visszajelzés-csomagja.`,target,{feedbackPackageId:pkg.id});
+  }
+  for(const entry of s.ledger||[]){
+    const kind=entry.kind||entry.type;
+    if(Number(entry.amount)>0&&!['like_refund','feedback_refund'].includes(kind))add(entry.userId||entry.ownerId||s.notificationLedgerOwnerId,'credit_added',entry.id,entry.createdAt,`${Number(entry.amount)} kreditet jóváírtunk a számládon.`,notificationTarget('credits'),{amount:Number(entry.amount)});
+  }
+}
+
 export function isCompatible(property,search) {
   if (!property || !search || property.archived || search.archived || property.ownerId===search.ownerId) return false;
   return evaluateMatch(property,prepareSearch(search)).isExact;
@@ -252,11 +322,13 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
   let state;
   try {const saved=JSON.parse(storage?.getItem(STORAGE_KEY)||'null');if(saved?.version===3&&Array.isArray(saved.properties)&&Array.isArray(saved.searches)&&Array.isArray(saved.decisions)&&Array.isArray(saved.matches)&&Array.isArray(saved.users)&&Number.isFinite(saved.credits))state=saved;} catch {}
   state = migrateLocations(state || seed(now));
+  synchronizeActivityNotifications(state);
   const own = (s,kind,id) => (kind==='property'?s.properties:s.searches).find(e=>e.id===id&&e.ownerId===s.userId);
   const ownersCanInteract=(s,property,search)=>canInteract(s.users.find(user=>user.id===property?.ownerId)?.accountType,s.users.find(user=>user.id===search?.ownerId)?.accountType);
   const transact = fn => {
     const draft=clone(state);
     const result=fn(draft);
+    synchronizeActivityNotifications(draft);
     try {storage?.setItem(STORAGE_KEY,JSON.stringify(draft));} catch {throw new Error('A böngésző tárhelye megtelt. A módosítás nem került mentésre.');}
     state=draft;
     return clone(result ?? null);
@@ -319,8 +391,8 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         if(previous)continue;
         s.credits+=decision.charged;
         const text=`${decision.charged} kreditet visszatérítettünk, mert a kedvelésedre 14 napon belül nem érkezett válasz.`;
-        s.ledger.unshift({id:uid('credit'),amount:decision.charged,type:'like_refund',kind:'like_refund',description:text,refundedDecisionId:decision.id,propertyId:decision.propertyId,searchId:decision.searchId,createdAt:at});
-        s.notifications.unshift({id:uid('notification'),userId:s.userId,decisionId:decision.id,kind:'like_refund',amount:decision.charged,text,createdAt:at,readAt:null});
+        s.ledger.unshift({id:uid('credit'),userId:s.userId,amount:decision.charged,type:'like_refund',kind:'like_refund',description:text,refundedDecisionId:decision.id,propertyId:decision.propertyId,searchId:decision.searchId,createdAt:at});
+        s.notifications.unshift({id:uid('notification'),userId:s.userId,eventKey:'like_refund:'+decision.id,decisionId:decision.id,kind:'like_refund',amount:decision.charged,text,createdAt:at,readAt:null});
       }
       const packages=feedbackPackageDue(s,at);
       for(const pkg of packages){
@@ -331,8 +403,8 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         if(!Number.isSafeInteger(balance))throw new Error('A kreditegyenleg nem növelhető tovább.');
         s.credits=balance;
         const text=`Visszakaptál ${pkg.refundedCredits} kreditet, mert a visszajelzés-csomagod 14 nap alatt nem telt be.`;
-        s.ledger.unshift({id:uid('credit'),amount:pkg.refundedCredits,type:'feedback_refund',kind:'feedback_refund',description:text,refundedFeedbackPackageId:pkg.id,propertyId:pkg.propertyId,createdAt:at});
-        s.notifications.unshift({id:uid('notification'),userId:s.userId,feedbackPackageId:pkg.id,kind:'feedback_refund',amount:pkg.refundedCredits,text,createdAt:at,readAt:null});
+        s.ledger.unshift({id:uid('credit'),userId:s.userId,amount:pkg.refundedCredits,type:'feedback_refund',kind:'feedback_refund',description:text,refundedFeedbackPackageId:pkg.id,propertyId:pkg.propertyId,createdAt:at});
+        s.notifications.unshift({id:uid('notification'),userId:s.userId,eventKey:'feedback_refund:'+pkg.id,feedbackPackageId:pkg.id,kind:'feedback_refund',amount:pkg.refundedCredits,text,createdAt:at,readAt:null});
       }
       return due.length+packages.length;
     });
@@ -345,6 +417,15 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     if(!reciprocal)return null;
     const partner=s.users.find(u=>u.id===(property.ownerId===s.userId?search.ownerId:property.ownerId));
     return {...clone(match),property:visibleEntity(property,s.users,undefined,s.userId),search:visibleEntity(search,s.users),partner:clone(partner)};
+  };
+  const incomingNotificationItem=(s,property,search,kind,decision)=>{
+    if(property.archived||search.archived||!ownersCanInteract(s,property,search))return null;
+    const candidate=kind==='search'?property:search,prepared=prepareSearch(search),specificity=searchSpecificity(prepared);
+    const data=visibleEntity(candidate,s.users,specificity);
+    if(kind==='search')data.address='';
+    const mine=s.decisions.find(item=>item.propertyId===property.id&&item.searchId===search.id&&item.actorKind===kind);
+    const evaluation=evaluateMatch(property,prepared),match=s.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id);
+    return {...data,kind:kind==='search'?'property':'search',pair:{propertyId:property.id,searchId:search.id},score:evaluation.score,isExact:evaluation.isExact,reasons:evaluation.reasons,matchDetails:evaluation.matchDetails,searchSpecificity:specificity,valueForMoney:valueForMoney(property),likedYou:true,likedAt:decision.createdAt,myDecision:mine?(mine.liked?'liked':'passed'):null,matchId:match&&getMatch(s,match)?match.id:null,compatible:evaluation.eligible};
   };
   const recommendationSnapshot = (s, options={}) => {
     const includeApproximate=options?.includeApproximate===true;
@@ -467,7 +548,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const charged=liked?likeCost(s.users.find(user=>user.id===s.userId)?.accountType,s.active.kind):0;
         if(s.credits<charged)throw new Error(`Nincs elegendő kredited. A kedveléshez ${charged} kredit szükséges.`);
         s.credits-=charged;
-        if(charged)s.ledger.unshift({id:uid('credit'),amount:-charged,type:s.active.kind==='property'?'seller_like':'agent_search_like',description:s.active.kind==='property'?`Ingatlan ajánlása: ${search.title}`:`Közvetítői keresés kedvelése: ${property.title}`,propertyId:property.id,searchId:search.id,createdAt:now()});
+        if(charged)s.ledger.unshift({id:uid('credit'),userId:s.userId,amount:-charged,type:s.active.kind==='property'?'seller_like':'agent_search_like',description:s.active.kind==='property'?`Ingatlan ajánlása: ${search.title}`:`Közvetítői keresés kedvelése: ${property.title}`,propertyId:property.id,searchId:search.id,createdAt:now()});
         const decision={id:uid('decision'),actorKind:s.active.kind,actorId:active.id,...pair,liked,charged,createdAt:now()};
         s.decisions.push(decision);
         const offeredFeedback=offerFeedback(s,decision,property);
@@ -521,7 +602,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const createdAt=now(),pkg={id:uid('feedback-package'),propertyId,ownerId:s.userId,requestId,size,receivedCount:0,enabled:true,
           createdAt,expiresAt:new Date(storedInstant(createdAt)+FEEDBACK_DURATION_DAYS*86400000).toISOString(),refundedAt:null,refundedCredits:0};
         s.credits-=size;s.feedbackPackages.push(pkg);
-        s.ledger.unshift({id:uid('credit'),amount:-size,type:'feedback_package',kind:'feedback_package',description:`${size} visszajelzést tartalmazó csomag: ${property.title}`,feedbackPackageId:pkg.id,propertyId,createdAt});
+        s.ledger.unshift({id:uid('credit'),userId:s.userId,amount:-size,type:'feedback_package',kind:'feedback_package',description:`${size} visszajelzést tartalmazó csomag: ${property.title}`,feedbackPackageId:pkg.id,propertyId,createdAt});
         return {package:feedbackPackageView(pkg,createdAt),charged:size,credits:s.credits};
       });
     },
@@ -552,7 +633,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       const {offset,limit}=normalizeIncomingPagination(options);
       processRefunds();
       const items=state.notifications.filter(item=>item.userId===state.userId).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt))||String(b.id).localeCompare(String(a.id)));
-      return clone({items:items.slice(offset,offset+limit).map(({userId,...item})=>item),total:items.length,unreadCount:items.filter(item=>!item.readAt).length,offset,limit,hasMore:offset+limit<items.length});
+      return clone({items:items.slice(offset,offset+limit).map(publicNotification),total:items.length,unreadCount:items.filter(item=>!item.readAt).length,offset,limit,hasMore:offset+limit<items.length});
     },
     markNotificationRead(id) {
       processRefunds();
@@ -560,10 +641,36 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const item=s.notifications.find(notification=>notification.id===id&&notification.userId===s.userId);
         if(!item)throw new Error('Az értesítés nem található.');
         item.readAt ||= now();
-        const {userId,...result}=item;
-        return result;
+        return {...publicNotification(item),unreadCount:s.notifications.filter(notification=>notification.userId===s.userId&&!notification.readAt).length};
       });
     },
+    getNotificationContext(id) {
+      const notification=state.notifications.find(item=>item.id===id&&item.userId===state.userId);
+      if(!notification)throw new Error('Az értesítés nem található.');
+      const target=safeNotificationTarget(notification.target,notification.kind);
+      const result={notification:publicNotification(notification),available:false,target,canActivate:false,item:null};
+      if(!target)return clone(result);
+      if(target.page==='credits')return clone({...result,available:true});
+      if(!['property','search'].includes(target.entityKind))return clone(result);
+      const entity=own(state,target.entityKind,target.entityId);
+      if(!entity)return clone(result);
+      const canActivate=!entity.archived;
+      if(target.page==='messages'){
+        const record=state.matches.find(item=>item.id===target.matchId&&item.propertyId===target.propertyId&&item.searchId===target.searchRequestId);
+        const belongs=target.entityKind==='property'?target.entityId===target.propertyId:target.entityId===target.searchRequestId;
+        const available=!!record&&belongs&&!!getMatch(state,record);
+        return clone({...result,available,canActivate:available&&canActivate});
+      }
+      if(!canActivate)return clone(result);
+      if(target.page==='insights')return clone({...result,available:target.entityKind==='property'&&target.propertyId===entity.id,canActivate:target.entityKind==='property'&&target.propertyId===entity.id});
+      const property=state.properties.find(item=>item.id===target.propertyId),search=state.searches.find(item=>item.id===target.searchRequestId);
+      const belongs=target.entityKind==='property'?property?.id===entity.id:search?.id===entity.id;
+      const decision=property&&search&&state.decisions.find(item=>item.propertyId===property.id&&item.searchId===search.id&&item.liked&&item.actorKind!==target.entityKind);
+      if(!belongs||!decision)return clone(result);
+      const item=incomingNotificationItem(state,property,search,target.entityKind,decision);
+      return clone({...result,available:!!item,canActivate:!!item,item});
+    },
+
     activate(kind,id) {
       if(!['property','search'].includes(kind))throw new Error('Érvénytelen profiltípus.');
       return transact(s=>{const entity=own(s,kind,id);if(!entity||entity.archived)throw new Error('Ez a profil nem aktiválható.');s.active={kind,id};return s.active;});
@@ -670,7 +777,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     },
     buyDemoCredits(amount) {
       amount=Number(amount);if(!Number.isInteger(amount)||amount<1||amount>10000)throw new Error('Érvénytelen kreditmennyiség.');
-      return transact(s=>{s.credits+=amount;s.ledger.unshift({id:uid('credit'),amount,type:'demo_topup',description:'Demófeltöltés – fizetés nem történt',createdAt:now()});return {credits:s.credits,demo:true};});
+      return transact(s=>{s.credits+=amount;s.ledger.unshift({id:uid('credit'),userId:s.userId,amount,type:'demo_topup',description:'Demófeltöltés – fizetés nem történt',createdAt:now()});return {credits:s.credits,demo:true};});
     },
     matches() {processRefunds();return state.matches.map(m=>getMatch(state,m)).filter(Boolean).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));},
     sendMessage(matchId,text) {

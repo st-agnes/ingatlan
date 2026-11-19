@@ -23,6 +23,7 @@ const purchase=(token,p,size,requestId=randomUUID(),status=200)=>api(`/propertie
 const removedToggle=(token,p,enabled)=>api(`/properties/${p.id}/feedback`,{token,method:'PUT',body:{enabled},status:[404,405]});
 const answer=(token,id,reason,status=200)=>api(`/feedback/${id}`,{token,method:'POST',body:{reason},status});
 const pending=token=>api('/feedback/pending',{token});
+async function allNotifications(token){const first=await api('/notifications?limit=100',{token}),items=[...first.items];let page=first;while(page.hasMore){page=await api(`/notifications?offset=${page.offset+page.limit}&limit=100`,{token});items.push(...page.items);}assert.equal(items.length,first.total);return{...first,items};}
 const decide=(token,p,s,liked=false,status=200)=>api('/decisions',{token,method:'POST',body:{propertyId:p.id,searchRequestId:s.id,liked},status});
 const impression=(token,p,s,status=200)=>api('/impressions',{token,method:'POST',body:{propertyId:p.id,searchRequestId:s.id},status});
 const criteria={title:'Pontos otthont keresünk a környéken',locationIds:['city:Kaszaper'],city:'Kaszaper',type:'Lakás',maxPrice:70000000,minArea:40,maxArea:90,minRooms:2,maxRooms:5,balcony:false,elevator:false};
@@ -143,6 +144,7 @@ if(mode==='--setup'){
   const attempts=await Promise.all([decide(f.tokens.buyer,f.properties.capacity,a),decide(f.tokens.other,f.properties.capacity,b)]);
   const offered=attempts.map((row,i)=>({prompt:row.feedbackPrompt,key:i===0?'buyer':'other'})).filter(row=>row.prompt);assert.equal(offered.length,1,'Only one prompt can reserve the final package slot');
   await answer(f.tokens[offered[0].key],offered[0].prompt.id,'other');const complete=await insight(f,'capacity');assert.equal(complete.feedback.total,10);assert.equal(complete.activePackage.receivedCount,10);assert.equal(complete.activePackage.remaining,0);assert.equal(complete.activePackage.status,'completed');
+  const completed=(await allNotifications(f.tokens.seller)).items.filter(row=>row.kind==='feedback_completed'&&row.target?.propertyId===f.properties.capacity.id);assert.equal(completed.length,1);assert.equal(completed[0].target.page,'insights');
   await purchase(f.tokens.seller,f.properties.capacity,10,randomUUID(),409);
   // A pending invitation is persisted for the deadline/late-answer proof.
   let prompt;for(let i=0;i<20&&!prompt;i++){const row=await passFresh(f,f.properties.pendingExpiry,`Lejárat előtt nyitott kérdés ${i}`);prompt=row.result.feedbackPrompt;}
@@ -156,17 +158,19 @@ if(mode==='--setup'){
   const full=await insight(f,'capacity'),settledFull=full.packages.find(row=>row.id===f.packages.capacity.id);assert.equal(full.activePackage,null);assert.ok(settledFull.refundedAt);assert.equal(settledFull.refundedCredits,0,'A completely delivered campaign must never create a credit refund');
   await removedToggle(f.tokens.seller,f.properties.pendingExpiry,true);
   assert.equal(main.packages.find(row=>row.id===f.packages.main.id).refundedCredits,9);assert.equal(unanswered.packages.find(row=>row.id===f.packages.pendingExpiry.id).refundedCredits,10);
-  const notes=await api('/notifications',{token:f.tokens.seller});const refundNotes=notes.items.filter(row=>row.kind==='feedback_refund');assert.equal(refundNotes.length,2);assert.deepEqual(refundNotes.map(row=>row.amount).sort((a,b)=>a-b),[9,10]);
+  const notes=await allNotifications(f.tokens.seller);const refundNotes=notes.items.filter(row=>row.kind==='feedback_refund');assert.equal(refundNotes.length,2);assert.deepEqual(refundNotes.map(row=>row.amount).sort((a,b)=>a-b),[9,10]);
+  const expired=notes.items.filter(row=>row.kind==='feedback_expired');for(const key of ['main','pendingExpiry','capacity'])assert.equal(expired.filter(row=>row.target?.propertyId===f.properties[key].id).length,1,'Every settled campaign has one expiry receipt, even with no refund');
+  const answered=notes.items.filter(row=>row.kind==='feedback_received');assert.ok(answered.length>=8);assert.ok(answered.every(row=>row.target?.page==='insights'&&!JSON.stringify(row).includes(f.emails.buyer)),'Feedback activity remains anonymous and opens seller insights');
   const replay=await purchase(f.tokens.seller,f.properties.main,10,f.requests.main);assert.equal(replay.charged,0);assert.equal(replay.package.id,f.packages.main.id);
   const fresh=await purchase(f.tokens.seller,f.properties.main,20,randomUUID());assert.equal(fresh.charged,20);assert.notEqual(fresh.package.id,f.packages.main.id);f.newMainPackage=fresh.package;
   assert.equal((await api('/me',{token:f.tokens.seller})).credits,f.beforeRefund-1);
   const expectedMain=await insight(f);assertAnonymousFeedback(expectedMain.feedback);assert.equal(expectedMain.feedback.reasonCounts.find(row=>row.reason==='insufficient_information').count,1);assert.ok(expectedMain.feedback.reasonCounts.every(row=>row.reason!=='decline'));
   const paged=await insight(f,'capacity','?offset=0&limit=3');assert.equal(paged.feedback.items.length,3);assert.equal(paged.feedback.hasMore,true);assertAnonymousFeedback(paged.feedback);
-  f.expected={main:stable(expectedMain),unanswered:stable(await insight(f,'pendingExpiry')),capacity:stable(await insight(f,'capacity')),credits:(await api('/me',{token:f.tokens.seller})).credits,notifications:await api('/notifications',{token:f.tokens.seller})};
+  f.expected={main:stable(expectedMain),unanswered:stable(await insight(f,'pendingExpiry')),capacity:stable(await insight(f,'capacity')),credits:(await api('/me',{token:f.tokens.seller})).credits,notifications:await allNotifications(f.tokens.seller)};
   await save(f);console.log('Seller feedback expiry proof passed: late responses rejected, exactly-once9+10credit refunds and private notifications, expired request replay free, next package allowed, anonymous paged feedback.');
  }else if(mode==='--preserved'){
   assert.deepEqual(stable(await insight(f)),f.expected.main);assert.deepEqual(stable(await insight(f,'pendingExpiry')),f.expected.unanswered);assert.deepEqual(stable(await insight(f,'capacity')),f.expected.capacity);
-  assert.equal((await api('/me',{token:f.tokens.seller})).credits,f.expected.credits);assert.deepEqual(await api('/notifications',{token:f.tokens.seller}),f.expected.notifications);
+  assert.equal((await api('/me',{token:f.tokens.seller})).credits,f.expected.credits);assert.deepEqual(await allNotifications(f.tokens.seller),f.expected.notifications);
   assert.equal((await answer(f.tokens.buyer,f.firstPrompt.id,reasons[0])).alreadyAnswered,true);await answer(f.tokens.buyer,f.expiredPrompt.id,'other',410);
   console.log('Seller feedback restart proof passed: impressions/statistics, anonymous answers, original package charges/refunds, notifications, current campaign and answer idempotency survive.');
  }else throw new Error('Expected --setup, --responses, --capacity, --expired or --preserved.');

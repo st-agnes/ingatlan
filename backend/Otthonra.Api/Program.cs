@@ -72,6 +72,7 @@ if (builder.Configuration.GetValue<bool>("Database:Initialize"))
         testDataVersion = TestDataSeed.CatalogVersion;
     }
     else if (development && builder.Configuration.GetValue<bool>("Database:SeedDemo")) await Seed.Run(db);
+    await ActivityNotificationBackfill.RunAsync(db, deployment.IsTest ? builder.Configuration["K_REVISION"] ?? TestDataSeed.CatalogVersion : "existing");
 }
 app.MapLikeRefunds();
 app.MapPublicLanding();
@@ -296,11 +297,18 @@ api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPr
 api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal principal, TimeProvider clock, CancellationToken cancellationToken) =>
 {
     var uid = principal.UserId();
+    var propertyOwnerId = await db.Properties.AsNoTracking().Where(p => p.Id == input.PropertyId).Select(p => (Guid?)p.OwnerId).SingleOrDefaultAsync(cancellationToken)
+        ?? throw new ApiException(404, "Az ingatlan nem található.");
+    var searchOwnerId = await db.SearchRequests.AsNoTracking().Where(s => s.Id == input.SearchRequestId).Select(s => (Guid?)s.OwnerId).SingleOrDefaultAsync(cancellationToken)
+        ?? throw new ApiException(404, "A keresés nem található.");
     await using var tx = await db.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted);
-    // Lock the actor's balance and both pair rows in the same order for every request.
-    var user = (await db.Users.FromSqlInterpolated($"SELECT * FROM `Users` WHERE `Id` = {uid} FOR UPDATE").ToListAsync()).SingleOrDefault() ?? throw new ApiException(401, "A fiók nem található.");
+    // Account locks precede pair locks, including the notification recipient's FK lock.
+    // Stable ordering also keeps reciprocal likes and feedback answers deadlock-free.
+    var pairUsers = await ActivityNotifications.LockUsersAsync(db, new[] { uid, propertyOwnerId, searchOwnerId }, cancellationToken);
+    var user = pairUsers.Single(row => row.Id == uid);
     var p = (await db.Properties.FromSqlInterpolated($"SELECT * FROM `Properties` WHERE `Id` = {input.PropertyId} FOR UPDATE").ToListAsync()).SingleOrDefault() ?? throw new ApiException(404, "Az ingatlan nem található.");
     var s = (await db.SearchRequests.FromSqlInterpolated($"SELECT * FROM `SearchRequests` WHERE `Id` = {input.SearchRequestId} FOR UPDATE").ToListAsync()).SingleOrDefault() ?? throw new ApiException(404, "A keresés nem található.");
+    if (p.OwnerId != propertyOwnerId || s.OwnerId != searchOwnerId) throw new ApiException(409, "A profil közben megváltozott. Frissítsd az oldalt.");
     var kind = user.ActiveKind;
     var ownsActive = kind == "property" && p.OwnerId == uid && user.ActiveEntityId == p.Id || kind == "search" && s.OwnerId == uid && user.ActiveEntityId == s.Id;
     if (!ownsActive) throw new ApiException(403, "A döntéshez előbb aktiváld a saját ingatlanodat vagy keresésedet.");
@@ -355,13 +363,24 @@ api.MapGet("/matches", async (AppDb db, ClaimsPrincipal principal) =>
     }
     return Results.Ok(results);
 });
-api.MapPost("/matches/{id:guid}/messages", async (Guid id, MessageInput input, AppDb db, ClaimsPrincipal principal) =>
+api.MapPost("/matches/{id:guid}/messages", async (Guid id, MessageInput input, AppDb db, ClaimsPrincipal principal, CancellationToken cancellationToken) =>
 {
     var uid = principal.UserId();
-    var allowed = await (from m in db.Matches join p in db.Properties on m.PropertyId equals p.Id join s in db.SearchRequests on m.SearchRequestId equals s.Id where m.Id == id && (p.OwnerId == uid || s.OwnerId == uid) select m.Id).AnyAsync();
-    if (!allowed) throw new ApiException(404, "A párosítás nem található.");
+    var owners = await (from m in db.Matches.AsNoTracking() join p in db.Properties.AsNoTracking() on m.PropertyId equals p.Id
+        join s in db.SearchRequests.AsNoTracking() on m.SearchRequestId equals s.Id
+        where m.Id == id && (p.OwnerId == uid || s.OwnerId == uid)
+        select new { SellerId = p.OwnerId, BuyerId = s.OwnerId }).SingleOrDefaultAsync(cancellationToken)
+        ?? throw new ApiException(404, "A párosítás nem található.");
+    await using var transaction = await db.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken);
+    _ = await ActivityNotifications.LockUsersAsync(db, new[] { owners.SellerId, owners.BuyerId }, cancellationToken);
+    // Recheck after waiting for account locks: a scoped TEST reset may have removed the match.
+    if (!await (from m in db.Matches.AsNoTracking() join p in db.Properties.AsNoTracking() on m.PropertyId equals p.Id
+        join s in db.SearchRequests.AsNoTracking() on m.SearchRequestId equals s.Id
+        where m.Id == id && p.OwnerId == owners.SellerId && s.OwnerId == owners.BuyerId select m.Id).AnyAsync(cancellationToken))
+        throw new ApiException(404, "A párosítás nem található.");
     var message = new Message { MatchId = id, SenderId = uid, Text = Rules.Required(input.Text, "üzenet", 4000) };
-    db.Messages.Add(message); await db.SaveChangesAsync(); return Results.Created($"/api/matches/{id}/messages/{message.Id}", Dto.Message(message));
+    db.Messages.Add(message); await db.SaveChangesAsync(cancellationToken); await transaction.CommitAsync(cancellationToken);
+    return Results.Created($"/api/matches/{id}/messages/{message.Id}", Dto.Message(message));
 });
 api.MapPost("/reports", async Task<IResult> (ReportInput input, AppDb db, ClaimsPrincipal principal) =>
 {
