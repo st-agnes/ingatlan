@@ -22,7 +22,7 @@ async function contextFor(browser,viewport){
 }
 async function query(page,value){await (await editorField(page,'#location-input')).fill(value);await page.locator('#location-options').waitFor({state:'visible'});await page.waitForFunction(()=>{const list=document.getElementById('location-options');return list&&!list.hidden&&list.getAttribute('aria-busy')!=='true';});}
 async function choose(page,interact,id){await interact(page.locator(`#location-options [data-location-id="${id}"]`));assert.equal(await page.locator('#location-input').inputValue(),'');}
-async function openNew(page,interact,kind){await page.goto(`${origin}/#${kind==='property'?'properties':'searches'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
+async function openNew(page,interact,kind){await page.goto(`${origin}/#${kind==='property'?'properties':'searches'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.closest('[data-editor-step]')?.dataset.editorStep==='0');await page.locator('#f-type').selectOption('Lakás');}
 async function fits(page){const box=await page.locator('.modal').evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));assert.ok(box.scrollWidth<=box.width+1,'Names and address controls must fit the modal');}
 async function closeModal(page,interact){await interact(page.locator('.modal-close'));await page.locator('.modal').waitFor({state:'detached'});}
 
@@ -52,15 +52,14 @@ async function searchFlow(browser,viewport){
   const input=page.locator('#location-input'),list=page.locator('#location-options');
   const geometry=await page.evaluate(()=>({input:document.getElementById('location-input').getBoundingClientRect().toJSON(),list:document.getElementById('location-options').getBoundingClientRect().toJSON()}));
   assert.ok(geometry.list.top>=geometry.input.bottom,'Suggestions must open below the typed query');
-  await interact(page.locator('#f-title'));assert.equal(await list.isHidden(),true);assert.equal(await input.inputValue(),'Debrecen');
+  await interact(page.locator('#editor-heading-0'));assert.equal(await list.isHidden(),true);assert.equal(await input.inputValue(),'Debrecen');
   assert.equal(await page.locator('#location-chips .location-chip').count(),3,'Outside dismissal must not select');
   await input.focus();await list.waitFor({state:'visible'});await input.press('Escape');assert.equal(await list.isHidden(),true);
   await input.fill('');
   const title=`Városrészek és település – ${viewport.name}`;
-  await page.locator('#f-title').fill(title);
-  await (await editorField(page,'#f-maxPrice')).fill('130');
+  await (await editorField(page,'#f-maxPrice')).fill('130');await (await editorField(page,'#f-minArea')).fill('40');await (await editorField(page,'#f-minRooms')).fill('1');
   await (await editorField(page,'input[name="heatingTypes"][value="Hőszivattyú"]')).check();
-  await fits(page);await editorSave(page,interact);
+  await fits(page);await (await editorField(page,'#f-title')).fill(title);await editorSave(page,interact);
   await page.getByRole('heading',{name:'Elkészült a keresési igényed.',exact:true}).waitFor();
   let saved=(await demoState(page)).searches.find(item=>item.title===title);assert.ok(saved);
   assert.deepEqual(saved.locationIds,[quarters[0].id,quarters[1].id,'city:Solymár']);
@@ -122,7 +121,6 @@ async function addressFlow(browser,viewport){
  const interact=locator=>viewport.touch?locator.tap():locator.click();
  try{
   await openNew(page,interact,'property');
-  await page.locator('#f-title').fill(`Pontos című otthon – ${viewport.name}`);
   await query(page,'Újlipótváros');assert.equal(await page.locator('[data-location-id^="neighborhood:"]').count(),0,'A property never selects a quarter');
   await query(page,'Budapest 13');await choose(page,interact,'district:Budapest:13');
   assert.equal(await page.locator('input[name="neighborhood"],input[name="latitude"],input[name="longitude"]').count(),0);
@@ -137,7 +135,7 @@ async function addressFlow(browser,viewport){
   assert.ok(Math.abs(geometry[0]-geometry[1])<=1,'Address inputs align even when mobile labels wrap');
   await (await editorField(page,'#f-price')).fill('85');await (await editorField(page,'#f-area')).fill('65');await (await editorField(page,'#f-wholeRooms')).fill('2');await (await editorField(page,'#f-halfRooms')).fill('1');
   await (await editorField(page,'#f-insulated')).selectOption('false');
-  await fits(page);await editorSave(page,interact);
+  await fits(page);await (await editorField(page,'#f-title')).fill(`Pontos című otthon – ${viewport.name}`);await editorSave(page,interact);
   await page.locator('#entity-form[aria-busy="true"]').waitFor();assert.equal(await page.locator('#editor-save').isDisabled(),true);assert.match(await page.locator('#editor-save-status').innerText(),/cím ellenőrzése/);
   assert.equal(properties.length,1,'A pending provider response must not announce a saved profile');
   releaseFailure();await page.locator('#editor-save-status.is-error').waitFor();

@@ -14,8 +14,8 @@ const viewports=[{name:'desktop',width:1280,height:900,touch:false},{name:'table
 let visit=0;
 const state=page=>page.evaluate(async()=> (await import('/model.js')).model.getState());
 async function location(page,interact){await (await editorField(page,'#location-input')).fill('Debrecen');await interact(page.locator('[data-location-id="city:Debrecen"]'));}
-async function openNew(page,interact,kind){await page.goto(`${origin}/?attributes-visit=${++visit}#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
-async function edit(page,interact,kind,id){await page.goto(`${origin}/?attributes-visit=${++visit}#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`[data-action="edit"][data-id="${id}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');}
+async function openNew(page,interact,kind){await page.goto(`${origin}/?attributes-visit=${++visit}#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.closest('[data-editor-step]')?.dataset.editorStep==='0');await page.locator('#f-type').selectOption('Lakás');}
+async function edit(page,interact,kind,id){await page.goto(`${origin}/?attributes-visit=${++visit}#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`[data-action="edit"][data-id="${id}"]`));await page.waitForFunction(()=>document.activeElement?.closest('[data-editor-step]')?.dataset.editorStep==='0');}
 async function save(page,interact,createdSearch=false){await editorSave(page,interact);if(createdSearch){await page.getByRole('heading',{name:'Elkészült a keresési igényed.',exact:true}).waitFor();await interact(page.locator('.search-created-actions [data-action="close"]'));}await page.locator('#entity-form').waitFor({state:'detached'});}
 
 async function verify(browser,viewport){
@@ -27,14 +27,14 @@ async function verify(browser,viewport){
  try{
   await openNew(page,interact,'search');await location(page,interact);
   const searchTitle=`Opcionális keresési szempontok – ${viewport.name}`;
-  await (await editorField(page,'#f-title')).fill(searchTitle);
+  await (await editorField(page,'#f-maxPrice')).fill('100');await (await editorField(page,'#f-minArea')).fill('40');await (await editorField(page,'#f-minRooms')).fill('1');
   for(const [name,values] of Object.entries({conditions:['Jó','Új/felújított'],buildings:['Tégla','Panel'],constructionAges:['10 évnél fiatalabb','10–30 év közötti'],views:['Kertre néző','Panorámás'],floors:['-1','0','11']})){
    for(const value of values)await (await editorField(page,`input[name="${name}"][value="${value}"]`)).check();
   }
   await (await editorField(page,'#f-ceilingHeight')).selectOption('3 m feletti');
   const geometry=await page.locator('.modal').evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));
   assert.ok(geometry.scrollWidth<=geometry.width+1,'Attribute choices must fit the modal without horizontal scrolling');
-  await save(page,interact,true);
+  await (await editorField(page,'#f-title')).fill(searchTitle);await save(page,interact,true);
   let saved=(await state(page)).searches.find(value=>value.title===searchTitle);assert.ok(saved);
   assert.deepEqual(saved.conditions,['Jó','Új/felújított']);assert.deepEqual(saved.buildings,['Tégla','Panel']);assert.deepEqual(saved.views,['Kertre néző','Panorámás']);assert.deepEqual(saved.floors,[-1,0,11]);assert.equal(saved.ceilingHeight,'3 m feletti');
   await edit(page,interact,'search',saved.id);
@@ -48,9 +48,9 @@ async function verify(browser,viewport){
   assert.equal(saved.ceilingHeight,'');
   await openNew(page,interact,'property');await location(page,interact);await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('12/A');
   const propertyTitle=`Opcionális ingatlanadatok – ${viewport.name}`;
-  await (await editorField(page,'#f-title')).fill(propertyTitle);await (await editorField(page,'#f-price')).fill('85');await (await editorField(page,'#f-area')).fill('65');await (await editorField(page,'#f-wholeRooms')).fill('3');await (await editorField(page,'#f-halfRooms')).fill('0');
+  await (await editorField(page,'#f-price')).fill('85');await (await editorField(page,'#f-area')).fill('65');await (await editorField(page,'#f-wholeRooms')).fill('3');await (await editorField(page,'#f-halfRooms')).fill('0');
   for(const name of ['condition','building','constructionAge','view','ceilingHeight','floor','insulated','airConditioning','solarPanels'])assert.equal(await page.locator(`#f-${name}`).inputValue(),'');
-  await save(page,interact);
+  await (await editorField(page,'#f-title')).fill(propertyTitle);await save(page,interact);
   let property=(await state(page)).properties.find(value=>value.title===propertyTitle);assert.ok(property);
   for(const name of ['floor','insulated','airConditioning','solarPanels'])assert.equal(property[name],null);
   await edit(page,interact,'property',property.id);

@@ -134,6 +134,7 @@ function setEditorValues(t,values){
   const control=t.document.getElementById(name==='images'?'property-images':'f-'+name);
   if(control&&control.type!=='checkbox')control.value=String(value??'');
  }
+ if(entries.some(([name])=>name==='title')){const title=t.document.getElementById('f-title');title?.handlers.input?.({target:title,currentTarget:title});}
  const type=t.document.getElementById('f-type');type?.handlers.change?.({target:type,currentTarget:type});
  for(const name of ['wholeRooms','halfRooms']){const control=t.document.getElementById('f-'+name);control?.handlers.input?.({target:control,currentTarget:control,inputType:'insertText'});}
 }
@@ -963,9 +964,9 @@ test('search editor exposes named stages, validates the current topic and retain
  t.ui.openEditor('search');const form=t.document.getElementById('entity-form'),html=t.document.getElementById('modal-root').innerHTML;
  for(const label of ['Helyszín és típus','Ár és méret','Ingatlanjellemzők','Kényelem és felszereltség','További elképzelések'])assert.ok(html.includes(label),label);
  assert.equal(editorStep(t),0);assert.equal(t.document.getElementById('editor-back').hidden,true);
- await editorAction(t,'editor-next');assert.equal(editorStep(t),0);assert.equal(t.document.activeElement.id,'f-title');
- assert.ok(t.document.getElementById('f-title').reportedValidity>0);assert.equal(saved.length,0);
- t.document.getElementById('f-title').value='Megőrzött keresési elképzelés';chooseLocation(t,'city:Debrecen');chooseLocation(t,'city:Hajdúszoboszló');
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),0);assert.equal(t.document.activeElement.id,'f-type');
+ assert.ok(t.document.getElementById('f-type').reportedValidity>0);assert.equal(saved.length,0);
+ const type=t.document.getElementById('f-type');type.value='Lakás';type.handlers.change({target:type,currentTarget:type});chooseLocation(t,'city:Debrecen');chooseLocation(t,'city:Hajdúszoboszló');
  await editorAction(t,'editor-next');assert.equal(editorStep(t),1);
  assert.equal(t.document.getElementById('editor-step-button-1').getAttribute('aria-current'),'step');
  assert.equal(t.document.getElementById('editor-step-button-0').getAttribute('data-editor-state'),'completed');
@@ -975,7 +976,7 @@ test('search editor exposes named stages, validates the current topic and retain
  editorChoice(t,'conditions','Jó').checked=true;editorChoice(t,'conditions','Új/felújított').checked=true;editorChoice(t,'buildings','Tégla').checked=true;
  await editorAction(t,'editor-next');assert.equal(editorStep(t),3);
  editorChoice(t,'heatingTypes','Hőszivattyú').checked=true;editorChoice(t,'floors','0').checked=true;t.document.getElementById('f-ceilingHeight').value='3 m feletti';
- await editorAction(t,'editor-next');assert.equal(editorStep(t),4);t.document.getElementById('f-description').value='Fényes, csendes otthont szeretnénk.';
+ await editorAction(t,'editor-next');assert.equal(editorStep(t),4);const title=t.document.getElementById('f-title');assert.match(title.value,/Debrecen/);assert.match(title.value,/125/);title.value='Megőrzött keresési elképzelés';title.handlers.input({target:title});t.document.getElementById('f-description').value='Fényes, csendes otthont szeretnénk.';
  await editorAction(t,'editor-back');assert.equal(editorStep(t),3);assert.equal(editorChoice(t,'heatingTypes','Hőszivattyú').checked,true);
  await editorAction(t,'editor-step-button-0');assert.equal(editorStep(t),0);
  assert.match(t.document.getElementById('location-chips').innerHTML,/Debrecen/);assert.match(t.document.getElementById('location-chips').innerHTML,/Hajdúszoboszló/);
@@ -994,7 +995,7 @@ test('seller wizard preserves required house plot, nullable amenities, image URL
  const t=await setup(),before=t.model.getState(),saved=[],save=t.model.saveEntity;t.model.saveEntity=(...args)=>{saved.push(args);return save(...args);};
  t.ui.openEditor('property');const html=t.document.getElementById('modal-root').innerHTML;
  for(const label of ['Alapadatok','Ár és méret','Ingatlanjellemzők','Felszereltség','Képek és leírás'])assert.ok(html.includes(label),label);
- t.document.getElementById('f-title').value='Lépésenként megőrzött családi ház';chooseLocation(t,'city:Solymár');t.document.getElementById('f-street').value='Teszt utca';t.document.getElementById('f-houseNumber').value='12/A';
+ chooseLocation(t,'city:Solymár');t.document.getElementById('f-street').value='Teszt utca';t.document.getElementById('f-houseNumber').value='12/A';
  const type=t.document.getElementById('f-type');type.value='Ház';type.handlers.change({target:type,currentTarget:type});
  await editorAction(t,'editor-next');assert.equal(editorStep(t),1);
  for(const [name,value] of Object.entries({price:'110.5',area:'130.5',wholeRooms:'3',halfRooms:'1'}))t.document.getElementById('f-'+name).value=value;
@@ -1005,6 +1006,7 @@ test('seller wizard preserves required house plot, nullable amenities, image URL
  for(const [name,value] of Object.entries({heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',insulated:'false',airConditioning:'true',solarPanels:'',energyRating:'A+'}))t.document.getElementById('f-'+name).value=value;
  editorChoice(t,'parkingTypes','Garázs').checked=true;editorChoice(t,'parkingTypes','Udvari beálló').checked=true;
  await editorAction(t,'editor-next');assert.equal(editorStep(t),4);
+ const title=t.document.getElementById('f-title');assert.match(title.value,/Solymár/);assert.match(title.value,/Ház/);title.value='Lépésenként megőrzött családi ház';title.handlers.input({target:title});
  t.document.getElementById('property-images').value='https://example.test/elol.jpg\nhttps://example.test/kert.jpg';t.document.getElementById('f-description').value='Az eddig bevitt részletek maradjanak meg.';
  await editorAction(t,'editor-step-button-1');assert.equal(editorStep(t),1);assert.equal(t.document.getElementById('f-lotArea').value,'720');
  await editorAction(t,'editor-step-button-3');assert.equal(t.document.getElementById('f-insulated').value,'false');assert.equal(t.document.getElementById('f-solarPanels').value,'');assert.equal(editorChoice(t,'parkingTypes','Garázs').checked,true);
@@ -1026,10 +1028,10 @@ test('final wizard submission revisits an invalid earlier topic instead of silen
 
 test('wizard range errors stay in the price and size topic and future-step clicks cannot bypass validation',async()=>{
  const t=await setup();t.ui.openEditor('search');
- await editorAction(t,'editor-step-button-4');assert.equal(editorStep(t),0,'A future topic cannot bypass missing required earlier details');assert.equal(t.document.activeElement.id,'f-title');
- t.document.getElementById('f-title').value='Ártartomány ellenőrzése';chooseLocation(t,'city:Debrecen');await editorAction(t,'editor-next');
+ await editorAction(t,'editor-step-button-4');assert.equal(editorStep(t),0,'A future topic cannot bypass missing required earlier details');assert.equal(t.document.activeElement.id,'f-type');
+ const type=t.document.getElementById('f-type');type.value='Lakás';type.handlers.change({target:type,currentTarget:type});chooseLocation(t,'city:Debrecen');await editorAction(t,'editor-next');
  t.document.getElementById('f-minPrice').value='100';t.document.getElementById('f-maxPrice').value='80';await editorAction(t,'editor-next');assert.equal(editorStep(t),1);assert.ok(t.document.activeElement.validationMessage);
- t.document.getElementById('f-minPrice').value='';await editorAction(t,'editor-next');assert.equal(editorStep(t),2);
+ t.document.getElementById('f-minPrice').value='';t.document.getElementById('f-minArea').value='40';await editorAction(t,'editor-next');assert.equal(editorStep(t),2);
  await editorAction(t,'editor-back');assert.equal(editorStep(t),1);assert.equal(t.document.getElementById('f-maxPrice').value,'80');
 });
 
@@ -1079,7 +1081,7 @@ test('editing a saved holiday-home property or search preserves its existing typ
 test('modal focus chooses the first visible enabled field before progress buttons and ignores closed or replaced modal timers',async()=>{
  const t=await setup({captureTimers:true});t.ui.openEditor('search');
  assert.equal(t.document.querySelector('.modal input,.modal select,.modal button,.modal textarea').id,'editor-step-button-0','Selector unions follow DOM order, so the original mixed query would focus a progress button');
- const before=t.document.focusEvents.length;t.runTimers();assert.equal(t.document.activeElement.id,'f-title');assert.deepEqual(t.document.focusEvents.slice(before),['f-title'],'Opening focus moves once directly to the first field');
+ const before=t.document.focusEvents.length;t.runTimers();assert.equal(t.document.activeElement.id,'location-input');assert.deepEqual(t.document.focusEvents.slice(before),['location-input'],'Opening focus moves once directly to the first field');
  t.ui.openModal('<div id="hidden-fields" hidden><input id="hidden-field"></div><input id="disabled-field" disabled><textarea id="visible-field"></textarea><button id="visible-action">Folytatás</button>');
  t.runTimers();assert.equal(t.document.activeElement.id,'visible-field','Hidden ancestors and disabled controls cannot receive opening focus');
  t.ui.openModal('<button id="disabled-action" disabled>Nem</button><button id="hidden-action" hidden>Nem</button><button id="fallback-action">Rendben</button>');
@@ -1282,7 +1284,7 @@ test('a selected teaser preserves an older draft until the user explicitly start
  assert.match(t.document.getElementById('modal-root').innerHTML,/Piszkozat folytatása/);assert.equal(JSON.parse(t.regionStorage.get(onboardingHelpers.DRAFT_STORAGE_KEY)).id,existing.id);
  await t.click({action:'onboarding-replace',id:existing.id});
  const replacement=JSON.parse(t.regionStorage.get(onboardingHelpers.DRAFT_STORAGE_KEY));assert.notEqual(replacement.id,existing.id);assert.equal(replacement.kind,'search');
- assert.equal(Number(t.document.getElementById('f-maxPrice').value),73.315);assert.equal(Number(t.document.getElementById('f-minArea').value),51.84);assert.equal(Number(t.document.getElementById('f-maxArea').value),63.36);assert.equal(t.document.getElementById('f-minRooms').value,'');
+ assert.equal(Number(t.document.getElementById('f-maxPrice').value),75);assert.equal(Number(t.document.getElementById('f-minArea').value),50);assert.equal(t.document.getElementById('f-maxArea').value,'');assert.equal(t.document.getElementById('f-minRooms').value,'2.5');assert.equal(t.document.getElementById('f-maxRooms').value,'');
  assert.equal(t.document.getElementById('f-maxPrice').checkValidity(),true);assert.equal(t.document.getElementById('f-minArea').checkValidity(),true);
  assert.match(t.document.getElementById('location-chips').innerHTML,/Debrecen/);
 });
@@ -1353,4 +1355,37 @@ test('reload completion waits for the committed workspace render before presenti
  resolveCommitted(baseline);await settle();
  assert.equal(writes,1);assert.equal(t.ctx.location.hash,'#searches');assert.equal(t.regionStorage.has(onboardingHelpers.DRAFT_STORAGE_KEY),false);
  assert.match(t.document.getElementById('modal-root').innerHTML,/data-action="discover-search" data-id="reload-confirmed"/);assert.match(t.document.getElementById('app').innerHTML,/Keresési igényeim/);
+});
+
+
+test('new guest and private forms require a chosen type and keep numeric intent blank until entered',async()=>{
+ for(const kind of ['search','property']){
+  for(const guest of [false,true]){
+   const draft=onboardingHelpers.createDraft(kind,{}, {editor:{titleGenerated:true}});
+   const t=await setup(guest?{hosted:true,hash:'#onboarding',regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(draft)}}:{});
+   if(!guest)t.ui.openEditor(kind);
+   const type=t.document.getElementById('f-type'),title=t.document.getElementById('f-title');
+   assert.equal(type.value,'');assert.equal(type.required,true);assert.equal(type.checkValidity(),false);
+   assert.equal(title.parentElement.id,'editor-step-4','The optional name belongs to the final topic');assert.equal(title.required,false);
+   for(const name of kind==='property'?['price','area','wholeRooms','halfRooms']:['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])assert.equal(t.document.getElementById('f-'+name).value,'',`${guest?'guest':'private'} ${kind} ${name}`);
+   if(kind==='property')assert.equal(t.document.getElementById('f-halfRooms').required,false,'An absent half-room count must not force a meaningless zero entry');
+  }
+ }
+});
+
+test('new private search gets a short final name and clearing a customized name restores an automatic title',async()=>{
+ const t=await setup();t.ui.openEditor('search');chooseLocation(t,'city:Debrecen');
+ const type=t.document.getElementById('f-type');type.value='Lakás';type.handlers.change({target:type});
+ const price=t.document.getElementById('f-maxPrice'),area=t.document.getElementById('f-minArea');price.value='80';area.value='50';
+ await advanceEditor(t,4);const title=t.document.getElementById('f-title');assert.match(title.value,/Lakás/);assert.match(title.value,/Debrecen/);assert.match(title.value,/80/);assert.ok(title.value.length<=70);
+ title.value='Egyéni név';title.handlers.input({target:title});await editorAction(t,'editor-step-button-1');price.value='95';price.handlers.input({target:price});await editorAction(t,'editor-step-button-4');assert.equal(title.value,'Egyéni név');
+ title.value='';title.handlers.input({target:title});submitEditor(t);await settle();
+ const created=t.model.getState().searches.find(item=>!['own-s1','own-s2'].includes(item.id)&&item.ownerId==='me');assert.ok(created);assert.match(created.title,/95/);assert.match(created.title,/Debrecen/);assert.ok(created.title.length<=70);
+});
+
+test('blank half rooms serializes as zero without pre-filling that control',async()=>{
+ const t=await setup();t.ui.openEditor('property');chooseLocation(t,'city:Debrecen');
+ const values={type:'Lakás',street:'Teszt utca',houseNumber:'12',price:'65',area:'60',wholeRooms:'2',halfRooms:'',title:'Két egész szoba'};
+ assert.equal(t.document.getElementById('f-halfRooms').value,'');submitEntity(t,values);await settle();
+ const created=t.model.getState().properties.find(item=>item.title==='Két egész szoba');assert.ok(created);assert.equal(created.wholeRooms,2);assert.equal(created.halfRooms,0);assert.equal(created.rooms,2);
 });

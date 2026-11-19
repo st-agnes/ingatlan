@@ -43,18 +43,20 @@ async function createWizard(page,interact,kind,viewport){
  await page.goto(`${origin}/?wizard-dock=${++visit}#${kind==='property'?'properties':'searches'}`,{waitUntil:'domcontentloaded'});
  const before=await state(page),title=`Lépésenként ${kind} ${viewport.name}`;
  await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));
- await page.waitForFunction(()=>document.activeElement?.id==='f-title');await verifyProgress(page,kind,0);
+ await page.locator('#entity-form').waitFor();await verifyProgress(page,kind,0);
  assert.equal(await page.locator('#location-input').getAttribute('type'),'search');assert.equal(await page.locator('#location-input').getAttribute('role'),'combobox');assert.equal(await page.locator('#location-input').getAttribute('autocomplete'),'off');assert.equal(await page.locator('.entity-wizard input[type="search"]').count(),1,'Only the location query uses search semantics');
  assert.equal(await page.locator('#editor-save').isVisible(),false,'Saving is offered only after all topic screens');
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,0);
  assert.equal((await state(page))[kind==='property'?'properties':'searches'].length,before[kind==='property'?'properties':'searches'].length,'An invalid next action must not create an entity');
- await page.locator('#f-title').fill(title);
+ assert.equal(await page.locator('#f-title').isVisible(),false);assert.equal(await page.locator('#f-type').inputValue(),'');assert.equal(await page.locator('#f-type').evaluate(element=>element.required),true);
+ await page.locator('#f-type').selectOption('Lakás');
  await page.locator('#location-input').fill('Debrecen');await interact(page.locator('[data-location-id="city:Debrecen"]'));
  if(kind==='search'){await page.locator('#location-input').fill('Hajdúszoboszló');await interact(page.locator('[data-location-id="city:Hajdúszoboszló"]'));}
  if(kind==='property'){await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('12/A');await page.locator('#f-type').selectOption('Ház');}
  await page.evaluate(()=>{globalThis.wizardOriginalTitle=document.getElementById('f-title');});
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,1);
  await alignedBounds(page,kind,viewport);
+ for(const field of kind==='property'?['price','area','wholeRooms','halfRooms']:['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])assert.equal(await page.locator(`#f-${field}`).inputValue(),'','Blank forms must wait for the user values');
  assert.equal(await page.locator('#editor-step-button-0').getAttribute('data-state'),'completed');
  if(kind==='property'){
   await page.locator('#f-price').fill('95.5');await page.locator('#f-area').fill('86.5');await page.locator('#f-wholeRooms').fill('3');await page.locator('#f-halfRooms').fill('1');
@@ -80,6 +82,7 @@ async function createWizard(page,interact,kind,viewport){
   await page.locator('input[name="heatingTypes"][value="Hőszivattyú"]').check();await page.locator('#f-ceilingHeight').selectOption('3 m feletti');await page.locator('input[name="floors"][value="0"]').check();await page.locator('#f-elevator').check();
  }
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,4);
+ const generatedTitle=await page.locator('#f-title').inputValue();assert.match(generatedTitle,/Debrecen/);assert.match(generatedTitle,kind==='property'?/Ház/:/Lakás/);assert.ok(generatedTitle.length<=70);assert.equal(await page.locator('#f-title').evaluate(element=>element.required),false);await page.locator('#f-title').fill(title);
  const description=`Megőrzött leírás – ${viewport.name} – ${kind}`;
  await page.locator('#f-description').fill(description);
  if(kind==='property')await page.locator('#property-images').fill('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');
@@ -88,12 +91,12 @@ async function createWizard(page,interact,kind,viewport){
  await editorStep(page,0,interact);await verifyProgress(page,kind,0);
  assert.equal(await page.evaluate(()=>globalThis.wizardOriginalTitle===document.getElementById('f-title')),true,'Back navigation must retain the same input nodes and their draft values');
  assert.equal(await page.locator('#f-title').inputValue(),title);assert.equal(await page.locator('#location-chips .location-chip').count(),kind==='property'?1:2);
- await page.locator('#f-title').fill(title+' módosítva');
+ assert.equal(await page.locator('#f-title').isVisible(),false);
  await editorStep(page,1,interact);await verifyProgress(page,kind,1);
  assert.equal(await page.locator(kind==='property'?'#f-price':'#f-maxPrice').inputValue(),kind==='property'?'95.5':'105.5');
  await page.locator(kind==='property'?'#f-area':'#f-minArea').fill('87.5');
  await editorStep(page,4,interact);await verifyProgress(page,kind,4);
- assert.equal(await page.locator('#f-description').inputValue(),description);
+ assert.equal(await page.locator('#f-description').inputValue(),description);assert.equal(await page.locator('#f-title').inputValue(),title,'Later parameter changes must retain a customized title');await page.locator('#f-title').fill(title+' módosítva');
  if(kind==='property'){
   assert.equal(await page.locator('#property-images').inputValue(),'https://images.unsplash.com/photo-1600585154340-be6161a56a0c');assert.equal(await page.locator('#f-insulated').inputValue(),'false');assert.equal(await page.locator('#f-airConditioning').inputValue(),'true');assert.equal(await page.locator('input[name="parkingTypes"][value="Garázs"]').isChecked(),true);
  }else{
@@ -107,7 +110,7 @@ async function createWizard(page,interact,kind,viewport){
  assert.equal(saved.description,description);
  if(kind==='property'){assert.equal(saved.area,87.5);assert.equal(saved.lotArea,520.5);assert.equal(saved.rooms,3.5);assert.equal(saved.insulated,false);assert.equal(saved.airConditioning,true);assert.equal(saved.heatingType,'Hőszivattyú');assert.deepEqual(saved.parkingTypes,['Udvari beálló','Garázs']);}
  else{assert.equal(saved.minArea,87.5);assert.equal(saved.maxPrice,105.5);for(const field of ['minPrice','maxArea','maxRooms'])assert.equal(saved[field],null);assert.deepEqual(saved.locationIds,['city:Debrecen','city:Hajdúszoboszló']);assert.equal(saved.moveIn,'3 hónapon belül');}
- await interact(page.locator(`[data-action="edit"][data-kind="${kind}"][data-id="${saved.id}"]`));await page.waitForFunction(()=>document.activeElement?.id==='f-title');await verifyProgress(page,kind,0);
+ await interact(page.locator(`[data-action="edit"][data-kind="${kind}"][data-id="${saved.id}"]`));await page.locator('#entity-form').waitFor();await verifyProgress(page,kind,0);
  assert.equal(await page.locator('#f-title').inputValue(),saved.title);await editorStep(page,4,interact);assert.equal(await page.locator('#f-description').inputValue(),description);
  await page.locator('#f-description').fill(description+' szerkesztve');await editorStep(page,0,interact);await editorStep(page,4,interact);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
  const edited=await state(page);assert.equal(edited[kind==='property'?'properties':'searches'].length,after[kind==='property'?'properties':'searches'].length);assert.equal(edited[kind==='property'?'properties':'searches'].find(item=>item.id===saved.id).description,description+' szerkesztve');assert.equal(await page.locator('.search-created-actions').count(),0,'Editing must not reopen the new-search activation prompt');
@@ -183,7 +186,7 @@ async function verifyCriteriaSummary(page,interact,kind,viewport){
  }
  await summaryIncludes(page,'description',`${kind==='property'?'Eladói':'Keresői'} összesítő <b>szöveg</b>`);assert.equal(await page.locator('.criteria-summary b,.criteria-summary script').count(),0,'Summary values must be escaped as text');
  assert.deepEqual(coreState(await state(page)),coreState(before),'Opening and scrolling an overview cannot save or bill anything');
- await interact(edit);await page.locator('#entity-form').waitFor();await page.waitForFunction(()=>document.activeElement?.id==='f-title');await verifyProgress(page,kind,0);
+ await interact(edit);await page.locator('#entity-form').waitFor();await verifyProgress(page,kind,0);
  assert.equal(await page.locator('#f-title').inputValue(),before[kind==='property'?'properties':'searches'].find(item=>item.id===id).title);
  assert.equal(await page.locator('#location-input').getAttribute('type'),'search');assert.equal(await page.locator('.entity-wizard input[type="search"]').count(),1);
  await editorStep(page,1,interact);await alignedBounds(page,kind,viewport);

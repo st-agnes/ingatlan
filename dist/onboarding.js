@@ -160,9 +160,18 @@ export function suggestEntityTitle(kind,data={}) {
   const place=places[0]?.label || '';
   const suffix=places.length>1?` +${places.length-1} helyszín`:'';
   const start=kind==='property'?`${type} eladó`:`${type} keresés`;
-  const prefix=`${start}${place?' – ':''}`,available=70-prefix.length-suffix.length;
+  const number=value=>new Intl.NumberFormat('hu-HU',{maximumFractionDigits:2}).format(value);
+  const detail=(value,unit)=>{const parsed=finite(value);return parsed!=null && parsed>0?`${number(parsed)}${unit}`:'';};
+  const price=kind==='property'?detail(data.price,' M Ft'):detail(data.maxPrice,' M Ft-ig');
+  const area=kind==='property'?detail(data.area,' m²'):detail(data.minArea,'+ m²');
+  const rooms=kind==='property'?detail(data.rooms,' szoba'):detail(data.minRooms,'+ szoba');
+  // Keep only two compact identifying figures, with room count as a fallback.
+  const figures=[price,area,rooms].filter(Boolean).filter(value=>value.length<=20).slice(0,2);
+  while (figures.length && start.length+suffix.length+figures.join(', ').length+(place?16:3)>70) figures.pop();
+  const tail=figures.length?` · ${figures.join(', ')}`:'';
+  const prefix=`${start}${place?' – ':''}`,available=70-prefix.length-suffix.length-tail.length;
   const label=place.length<=available?place:`${place.slice(0,Math.max(0,available-1)).trimEnd()}…`;
-  return `${prefix}${label}${suffix}`;
+  return `${prefix}${label}${suffix}${tail}`;
 }
 /** Public teasers are seeds, never identities or an exact address for another home. Prices use the UI's million-HUF unit. */
 export function prefillFromTeaser(targetKind,teaser,{locations}={}) {
@@ -173,7 +182,10 @@ export function prefillFromTeaser(targetKind,teaser,{locations}={}) {
   if (targetKind==='search') {
     data.locations=chosen;data.locationIds=chosen.map(location=>location.id);
     const price=finite(source.price),area=finite(source.area),rooms=finite(source.rooms);
-    Object.assign(data,{minPrice:null,maxPrice:price==null?null:Math.round(price*1.1*1000000)/1000000,minArea:area==null?null:Math.round(area*.9*100)/100,maxArea:area==null?null:Math.round(area*1.1*100)/100,minRooms:null,maxRooms:rooms});
+    // Multiply by integer ratios before rounding: 50 * 1.1 is not exactly 55 in JS.
+    const maxPrice=price!=null && price>0?Math.ceil(price*11/50)*5:null;
+    const minArea=area!=null && area>0?Math.floor(area*9/50)*5:null;
+    Object.assign(data,{minPrice:null,maxPrice,minArea:minArea>0?minArea:null,maxArea:null,minRooms:rooms,maxRooms:null});
     for (const [field,plural,options,normalize] of [['condition','conditions',CONDITION_OPTIONS,normalizeCondition],['building','buildings',BUILDING_OPTIONS,normalizeBuilding],['constructionAge','constructionAges',CONSTRUCTION_AGE_OPTIONS],['view','views',VIEW_OPTIONS],['heatingType','heatingTypes',HEATING_OPTIONS]]) {
       const choice=knownChoice(source[field],options,normalize);data[plural]=choice?[choice]:[];
     }
