@@ -1,0 +1,150 @@
+/** Responsive anonymous UI integration. Deterministic HTTP fixtures isolate the browser;
+ * backend/onboarding-smoke.mjs proves creation semantics against actual MySQL. */
+import assert from 'node:assert/strict';
+import {mkdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {getLocation} from '../dist/locations.js';
+import {neighborhoods} from '../dist/neighborhoods-data.js';
+
+const modulePath=process.env.PLAYWRIGHT_MODULE;
+const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
+const {chromium}=await import(playwrightUrl);
+const origin=new URL(process.argv[2]||'http://127.0.0.1:3000').origin;
+const viewports=[{name:'desktop',width:1280,height:900,touch:false},{name:'tablet',width:800,height:1100,touch:true},{name:'mobile',width:390,height:844,touch:true}];
+const city=getLocation('city:Debrecen'),otherCity=getLocation('city:Szeged');
+const quarter=getLocation(neighborhoods.find(item=>item.city==='Debrecen'&&item.name==='Vénkert').id);
+const draft=page=>page.evaluate(async()=>{const {loadDraft}=await import('/onboarding.js');return loadDraft();});
+const interact=(viewport,locator)=>viewport.touch?locator.tap():locator.click();
+const pause=milliseconds=>new Promise(resolve=>setTimeout(resolve,milliseconds));
+function landing(){
+ const property={locations:[quarter],type:'Lakás',price:50000000,area:60,rooms:2.5,wholeRooms:2,halfRooms:1,lotArea:null,condition:'Jó',building:'Tégla',constructionAge:null,view:null,ceilingHeight:null,floor:2,heatingType:null,balcony:true,elevator:false,address:'PRIVATE SOURCE ADDRESS',ownerId:'PRIVATE SOURCE OWNER'};
+ const search={locations:[city],type:'Lakás',minPrice:50000000,maxPrice:50000000,minArea:60,maxArea:60,minRooms:2.5,maxRooms:2.5,conditions:['Jó'],buildings:['Tégla'],constructionAges:[],views:[],ceilingHeight:null,floors:[2],heatingTypes:[],balcony:true,elevator:false,address:'PRIVATE SOURCE ADDRESS'};
+ const ranged={...search,locations:[city,otherCity],minPrice:null,maxPrice:80000000,minArea:45,maxArea:80,minRooms:2,maxRooms:4};
+ return {regions:[{id:'HU321',label:'Hajdú-Bihar'}],region:null,scope:'national',properties:[{key:'property-1',title:'A másik ember ingatlanhirdetése',type:'Lakás',location:'Debrecen',price:50000000,area:60,rooms:2.5,wholeRooms:2,halfRooms:1,ownerFirstName:'Anna',ownerAccountType:'private',prefill:property}],searches:[search,ranged].map((prefill,index)=>({key:`search-${index+1}`,title:'A másik ember keresése',type:'Lakás',locations:prefill.locations.map(item=>item.label),minPrice:prefill.minPrice,maxPrice:prefill.maxPrice,minArea:prefill.minArea,maxArea:prefill.maxArea,minRooms:prefill.minRooms,maxRooms:prefill.maxRooms,ownerFirstName:'Péter',ownerAccountType:'private',prefill}))};
+}
+async function createFixture(browser,viewport){
+ const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
+ const server={user:{id:'10000000-0000-4000-8000-000000000001',email:'onboarding-browser@example.test',name:'Saját Fiók',accountType:'private',phone:''},authRequests:[],creates:[],lookupRequests:[],rows:new Map(),failAuth:0,failSave:0,active:null,unhandled:[]};
+ await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());
+ await context.route('https://get.geojs.io/**',route=>route.fulfill({status:200,contentType:'application/json',body:'{"country_code":"XX"}'}));
+ await context.route(`${origin}/runtime-config.js`,route=>route.fulfill({status:200,contentType:'text/javascript',body:'globalThis.OTTHONRA_CONFIG=Object.freeze({mode:"api",environment:"test"});'}));
+ await context.route(`${origin}/api/**`,async route=>{
+  const request=route.request(),url=new URL(request.url()),path=url.pathname.slice(4),method=request.method();
+  const json=(data,status=200)=>route.fulfill({status,contentType:'application/json',body:JSON.stringify(data)});
+  if(path==='/public/landing')return json(landing());
+  if(path==='/locations'){server.lookupRequests.push({authorization:request.headers().authorization,query:url.searchParams.get('q')});return json({items:/Debrecen/i.test(url.searchParams.get('q')||'')?[city,quarter]:[]});}
+  if(path==='/streets')return json({items:[]});
+  if(['/auth/register','/auth/login'].includes(path)){
+   const body=request.postDataJSON();server.authRequests.push(body);
+   if(server.failAuth-->0)return json({message:'A regisztráció most nem érhető el. Próbáld újra.'},503);
+   server.user.email=body.email;return json({accessToken:'browser-session',user:server.user});
+  }
+  if(path==='/me')return json({...server.user,credits:100,unreadNotificationCount:0});
+  if(path==='/me/entities')return json({properties:[...server.rows.values()].filter(row=>row.kind==='property'),searchRequests:[...server.rows.values()].filter(row=>row.kind==='search'),active:server.active,decisions:[],reportedOwnerIds:[],reportedEntities:[]});
+  if(path==='/credits/ledger'||path==='/matches')return json({items:[]});
+  if(path==='/feedback/pending')return json({feedbackPrompt:null});
+  if(path==='/test/feedback-scenario')return json({available:false});
+  if(path==='/feed')return json({active:server.active,items:[],stage:'empty',hasApproximate:false});
+  if(path==='/me/active'&&method==='PUT'){server.active=request.postDataJSON();return json(server.active);}
+  if(['/searches','/properties'].includes(path)&&method==='POST'){
+   const body=request.postDataJSON(),kind=path==='/searches'?'search':'property';server.creates.push({kind,body});
+   assert.match(body.creationRequestId,/^[a-f0-9-]{36}$/,'The completed draft must send its stable creation key');
+   const key=kind+':'+body.creationRequestId;let row=server.rows.get(key);const created=!row;
+   if(!row){row={...body,id:kind==='search'?'20000000-0000-4000-8000-000000000001':'30000000-0000-4000-8000-000000000001',ownerId:server.user.id,kind,archived:false,createdAt:new Date().toISOString()};delete row.creationRequestId;server.rows.set(key,row);}
+   await pause(35);
+   if(server.failSave-->0)return json({message:'A mentés válasza megszakadt. Próbáld újra.'},503);
+   return json(row,created?201:200);
+  }
+  server.unhandled.push(method+' '+path);return json({message:'Unexpected browser fixture route'},404);
+ });
+ return {context,server};
+}
+async function progress(page,index){
+ await page.waitForFunction(expected=>document.querySelector('#entity-form')?.getAttribute('data-editor-current-step')===String(expected),index);
+ assert.equal(await page.locator('.editor-progress [data-action="editor-step"]').count(),5);assert.equal(await page.locator('.editor-step:visible').count(),1);
+ assert.equal(await page.locator(`#editor-step-button-${index}`).getAttribute('aria-current'),'step');
+ const fit=await page.locator('#entity-form').evaluate(element=>element.scrollWidth<=element.clientWidth+1);assert.ok(fit,'The normal five-step form must fit this viewport');
+}
+async function next(page,viewport,index){await interact(viewport,page.locator('#editor-next'));await progress(page,index);}
+async function gotoStep(page,viewport,index){await interact(viewport,page.locator(`#editor-step-button-${index}`));await progress(page,index);}
+async function assertNoSourcePrivacy(page){const saved=JSON.stringify(await draft(page));assert.doesNotMatch(saved,/PRIVATE SOURCE|A másik ember|ownerId|ownerEmail|creationRequestHash/);}
+async function screenshot(page,name){await mkdir(resolve('.local/browser-tests/screenshots'),{recursive:true});await page.screenshot({path:resolve('.local/browser-tests/screenshots',name),fullPage:true}).catch(()=>{});}
+
+async function verifyWizardAuth(browser,viewport){
+ const {context,server}=await createFixture(browser,viewport),page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));page.setDefaultTimeout(10000);
+ try{
+  await page.goto(origin+'/',{waitUntil:'domcontentloaded'});await page.locator('.landing-property-card').waitFor();
+  await page.locator('#landing-location-input').fill('Nem létező hely');await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));
+  assert.equal(await page.locator('#entity-form,#hosted-auth-form').count(),0);assert.match(await page.locator('#landing-location-error').innerText(),/Válassz/);
+  await page.locator('#landing-location-input').fill('Debrecen');await page.locator('#landing-location-options [role="option"]').first().waitFor();
+  await page.locator('#landing-location-input').press('ArrowDown');await page.locator('#landing-location-input').press('Enter');
+  await page.locator('#landing-location-chips .location-chip').waitFor();await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,0);
+  assert.equal(await page.locator('#hosted-auth-form').count(),0,'Location selection opens anonymous onboarding before registration');assert.match(await page.locator('#location-chips').innerText(),/Debrecen/);
+  let title=`Saját keresésem ${viewport.name}`;assert.ok((await page.locator('#f-title').inputValue()).trim());await page.locator('#f-title').fill(title);await next(page,viewport,1);
+  await page.locator('#f-maxPrice').fill('80');await page.locator('#f-minArea').fill('50');await page.locator('#f-maxArea').fill('70');await page.locator('#f-minRooms').fill('1');await page.locator('#f-maxRooms').fill('3');
+  await page.locator('#f-minPrice').fill('90');await interact(viewport,page.locator('#editor-next'));await progress(page,1);assert.equal(await page.locator('#f-maxPrice').evaluate(element=>element.checkValidity()),false,'Invalid ranges must block the same wizard validation');
+  await page.locator('#f-minPrice').fill('');
+  const before=await draft(page),second=await context.newPage();await second.goto(origin+'/#onboarding',{waitUntil:'domcontentloaded'});await progress(second,1);
+  assert.equal((await draft(second)).id,before.id);assert.equal(await second.locator('#f-maxPrice').inputValue(),'80');await second.close();
+  await page.reload({waitUntil:'domcontentloaded'});await progress(page,1);assert.equal(await page.locator('#f-maxPrice').inputValue(),'80');
+  await gotoStep(page,viewport,0);assert.equal(await page.locator('#f-title').inputValue(),title);await gotoStep(page,viewport,1);
+  await next(page,viewport,2);await next(page,viewport,3);await next(page,viewport,4);await page.locator('#f-description').fill('A saját igényeim.');await interact(viewport,page.locator('#editor-save'));
+  await page.locator('#hosted-auth-form').waitFor();assert.equal(new URL(page.url()).hash,'#register');assert.equal((await draft(page)).phase,'awaiting-auth');assert.equal(server.creates.length,0);
+  const initialCompleted=await draft(page);await interact(viewport,page.locator('[data-action="onboarding-edit"]'));await progress(page,4);await gotoStep(page,viewport,0);
+  title+=' módosítva';await page.locator('#f-title').fill(title);await gotoStep(page,viewport,4);await interact(viewport,page.locator('#editor-save'));await page.locator('#hosted-auth-form').waitFor();
+  const changedCompleted=await draft(page);assert.equal(changedCompleted.id,initialCompleted.id);assert.equal(changedCompleted.creationRequestId,initialCompleted.creationRequestId,'Editing the same draft must retain its lifetime creation receipt');assert.equal(changedCompleted.completedData.title,title);
+  server.failAuth=1;await page.locator('#f-name').fill('Saját Fiók');await page.locator('#f-email').fill(server.user.email);await page.locator('#f-password').fill('BrowserOnboarding2026!');await interact(viewport,page.locator('#hosted-auth-form button[type="submit"]'));
+  await page.waitForFunction(()=>document.querySelector('#auth-error')?.textContent.includes('regisztráció most'));const pending=await draft(page);assert.equal(pending.expectedEmail,server.user.email);assert.ok(pending.creationRequestId);
+  await page.reload({waitUntil:'domcontentloaded'});await page.locator('#hosted-auth-form').waitFor();assert.equal(await page.locator('#f-email').inputValue(),server.user.email);
+  await page.locator('#f-name').fill('Saját Fiók');await page.locator('#f-password').fill('BrowserOnboarding2026!');await page.locator('#f-email').fill('different-account@example.test');await interact(viewport,page.locator('#hosted-auth-form button[type="submit"]'));
+  await page.waitForFunction(()=>document.querySelector('#auth-error')?.textContent.includes('eredetileg'));assert.equal(server.authRequests.length,1,'A changed account must be rejected before registration and save');assert.equal(server.creates.length,0);
+  await page.locator('#f-email').fill(server.user.email);server.failSave=1;await interact(viewport,page.locator('#hosted-auth-form button[type="submit"]'));
+  await page.locator('#onboarding-save-error').waitFor();assert.equal((await draft(page)).phase,'saving');assert.equal(server.rows.size,1,'The accepted save with a lost response must remain retryable');
+  await page.reload({waitUntil:'domcontentloaded'});await page.locator('[data-action="discover-search"]').waitFor();assert.equal(new URL(page.url()).hash,'#searches');assert.equal(await draft(page),null);
+  assert.equal(server.rows.size,1);assert.ok(server.creates.length>=2);assert.ok(server.creates.every(request=>request.body.creationRequestId===pending.creationRequestId));assert.equal([...server.rows.values()][0].title,title);assert.equal(server.active,null,'Creation waits for the ordinary discovery choice before activation');
+  await interact(viewport,page.locator('[data-action="discover-search"]'));await page.waitForFunction(()=>location.hash==='#discover');assert.equal(server.active.kind,'search');
+  await page.reload({waitUntil:'domcontentloaded'});await page.locator('.page-heading').waitFor();assert.equal(server.rows.size,1);assert.equal(server.creates.length,2);
+  assert.ok(server.lookupRequests.length>0&&server.lookupRequests.every(request=>!request.authorization),'Anonymous picker calls use the normal canonical API without a session');assert.deepEqual(server.unhandled,[]);assert.deepEqual(errors,[]);
+  console.log(`Onboarding ${viewport.name}: canonical picker, five steps, range validation, editable title, cross-tab/reload persistence, auth failure/account guard, lost-response resume and discovery passed.`);
+ }catch(error){await screenshot(page,`onboarding-wizard-${viewport.name}-failure.png`);throw error;}finally{await context.close();}
+}
+
+async function verifyTeaserSeeds(browser,viewport){
+ const {context,server}=await createFixture(browser,viewport),page=await context.newPage();page.setDefaultTimeout(10000);
+ try{
+  await page.goto(origin+'/',{waitUntil:'domcontentloaded'});await page.locator('.landing-property-card').waitFor();
+  await interact(viewport,page.locator('.landing-property-card [data-action="onboarding-start"]'));await progress(page,0);assert.match(await page.locator('#location-chips').innerText(),/Vénkert/);assert.notEqual(await page.locator('#f-title').inputValue(),'A másik ember ingatlanhirdetése');
+  await next(page,viewport,1);
+  for(const [name,value] of Object.entries({minPrice:'',maxPrice:'55',minArea:'54',maxArea:'66',minRooms:'',maxRooms:'2.5'}))assert.equal(await page.locator(`#f-${name}`).inputValue(),value,`Property teaser ${name}`);
+  await assertNoSourcePrivacy(page);await interact(viewport,page.locator('[data-action="onboarding-abandon"]'));await page.locator('.landing-search-card').first().waitFor();
+  await interact(viewport,page.locator('.landing-search-card [data-action="onboarding-start"]').first());await progress(page,0);assert.match(await page.locator('#location-chips').innerText(),/Debrecen/);assert.equal(await page.locator('#f-street').inputValue(),'');assert.equal(await page.locator('#f-houseNumber').inputValue(),'');
+  await interact(viewport,page.locator('#editor-next'));await progress(page,0);assert.equal(await page.locator('#f-street').evaluate(element=>element.checkValidity()),false,'A teaser never supplies another property address');
+  await page.locator('#f-street').fill('OTTHONRA TEST');await page.locator('#f-houseNumber').fill('1');await next(page,viewport,1);
+  for(const [name,value] of Object.entries({price:'50',area:'60',wholeRooms:'2',halfRooms:'1'}))assert.equal(await page.locator(`#f-${name}`).inputValue(),value,`Exact search teaser ${name}`);
+  await assertNoSourcePrivacy(page);await interact(viewport,page.locator('[data-action="onboarding-abandon"]'));await page.locator('.landing-search-card').first().waitFor();
+  await interact(viewport,page.locator('.landing-search-card [data-action="onboarding-start"]').nth(1));await progress(page,0);assert.equal(await page.locator('#location-chips .location-chip').count(),0,'Multiple source towns do not invent the seller location');
+  const snapshot=await draft(page);for(const field of ['price','area','rooms','wholeRooms'])assert.ok(snapshot.data[field]==null||snapshot.data[field]==='','Ranges must not be guessed into an exact property');
+  assert.equal(server.creates.length,0);assert.equal(server.authRequests.length,0);await assertNoSourcePrivacy(page);
+  console.log(`Onboarding seeds ${viewport.name}: property tolerance bounds and finest public neighborhood, exact-only seller fields, ambiguous ranges/towns and private-address protection passed.`);
+ }catch(error){await screenshot(page,`onboarding-seeds-${viewport.name}-failure.png`);throw error;}finally{await context.close();}
+}
+
+async function verifyCrossTabAuth(browser,viewport){
+ const {context,server}=await createFixture(browser,viewport),first=await context.newPage();first.setDefaultTimeout(10000);let second;
+ try{
+  await first.goto(origin+'/',{waitUntil:'domcontentloaded'});await first.locator('.landing-property-card').waitFor();
+  await first.evaluate(async({city,email})=>{const {createDraft,saveDraft,prepareDraftForAuth}=await import('/onboarding.js');saveDraft(prepareDraftForAuth(createDraft('search',{title:'Több lapon folytatott keresés',type:'Lakás',locationIds:[city.id],locations:[city],minPrice:null,maxPrice:80,minArea:50,maxArea:null,minRooms:null,maxRooms:null,balcony:false,elevator:false},{editor:{locations:[city]}}),email));},{city,email:server.user.email});
+  await first.goto(origin+'/#register');await first.locator('#hosted-auth-form').waitFor();second=await context.newPage();await second.goto(origin+'/#register');await second.locator('#hosted-auth-form').waitFor();
+  const key=(await draft(first)).creationRequestId;
+  await second.evaluate(async()=>{const {connectApi}=await import('/api.js');await connectApi(location.origin,'onboarding-browser@example.test','BrowserOnboarding2026!');});
+  await first.waitForFunction(()=>!localStorage.getItem('otthonra.onboarding.v1'));
+  await first.locator('.page-heading').waitFor();await second.goto(origin+'/#searches',{waitUntil:'domcontentloaded'});await second.locator('.page-heading').waitFor();
+  assert.equal(server.rows.size,1);assert.ok(server.creates.length>=1);assert.ok(server.creates.every(request=>request.body.creationRequestId===key));assert.equal(server.authRequests.length,1,'A session established in another tab resumes the saved draft');
+  assert.equal(await draft(second),null);assert.deepEqual(server.unhandled,[]);
+  console.log(`Onboarding session ${viewport.name}: registration/login in another tab resumes one stable owned creation and clears the completed draft.`);
+ }catch(error){await screenshot(first,`onboarding-tabs-${viewport.name}-failure.png`);throw error;}finally{await context.close();}
+}
+const browser=await chromium.launch({headless:true});let failures=0;
+try{for(const viewport of viewports)for(const verify of [verifyWizardAuth,verifyTeaserSeeds,verifyCrossTabAuth]){try{await verify(browser,viewport);}catch(error){failures++;console.error(`${verify.name} ${viewport.name}: ${error.stack||error}`);}}}finally{await browser.close();}
+if(failures)process.exitCode=1;

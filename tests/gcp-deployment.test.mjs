@@ -19,7 +19,7 @@ const config = Object.freeze({
   deployServiceAccount: 'otthonra-deploy-dev@ingatlan-513620.iam.gserviceaccount.com',
   workloadIdentityProvider: 'projects/123456789012/locations/global/workloadIdentityPools/otthonra-dev/providers/github'
 });
-const required = ['index.html','app.js','style.css','api.js','model.js','matching.js','public-profile.js','feedback.js','locations.js','locations-data.js','agglomerations-data.js','neighborhoods-data.js','neighborhood-demo-points.js','street-demo-data.js','data/streets.json.gz','regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
+const required = ['index.html','app.js','style.css','api.js','model.js','matching.js','public-profile.js','feedback.js','onboarding.js','locations.js','locations-data.js','agglomerations-data.js','neighborhoods-data.js','neighborhood-demo-points.js','street-demo-data.js','data/streets.json.gz','regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
 
 async function fixture(run) {
   const source = await mkdtemp(join(tmpdir(), 'otthonra-hosting-source-'));
@@ -86,6 +86,7 @@ test('frontend packaging enables the real hosted test API while preserving the s
     assert.match(runtime, /mode: "api"/); assert.match(runtime, /environment: "test"/);
     assert.match(await readFile(join(source, 'runtime-config.js'), 'utf8'), /mode:"demo"/);
     assert.equal(await readFile(join(output, 'public/assets/living.jpg'), 'utf8'), 'image-fixture');
+    assert.equal(await readFile(join(output, 'public/onboarding.js'), 'utf8'), 'fixture: onboarding.js');
     assert.equal(await readFile(join(output, 'public/THIRD-PARTY-NOTICES.txt'), 'utf8'), 'fixture: THIRD-PARTY-NOTICES.txt');
     assert.deepEqual((await readdir(output)).sort(), ['firebase.json','public']);
     assert.ok(!(await readdir(join(output, 'public/data'))).includes('neighborhoods.json.gz'));
@@ -113,7 +114,7 @@ test('hidden files, unknown files and symlinks are refused before replacing a pr
 });
 
 test('an incomplete frontend cannot replace a working staged release', async () => {
-  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js','feedback.js']) await fixture(async ({source, output}) => {
+  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js','feedback.js','onboarding.js']) await fixture(async ({source, output}) => {
     await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
     await rm(join(source, missing));
     await assert.rejects(prepareSite({config, source, output}), new RegExp('Missing frontend file '+missing.replaceAll('.', '\\.')));

@@ -6,8 +6,10 @@ import {searchSpecificity} from './matching.js';
 import { getLocation, resolveLegacyLocations, isPropertyLocation, registerLocations, isStreetId, streetBelongsToLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,normalizeReportReason,normalizeIncomingPagination,REPORT_REASON_OPTIONS} from './accounts.js';
+import {sanitizeTeaserPrefill} from './onboarding.js';
 
 export const API_CONFIG_KEY = 'otthonra.api';
+export const AUTH_ATTEMPT_KEY = 'otthonra.auth.attempt';
 export const hostedMode = () => globalThis.OTTHONRA_CONFIG?.mode === 'api';
 export const deploymentEnvironment = () => globalThis.OTTHONRA_CONFIG?.environment || 'local';
 const hostedApiBase = () => apiBase(globalThis.location?.origin);
@@ -29,6 +31,23 @@ function readConfig() {
   try { config = JSON.parse(raw); } catch { throw new Error('Az API-kapcsolat beállítása sérült. A beállításoknál bontsd a kapcsolatot.'); }
   if (!config?.baseUrl || !config?.token) throw new Error('Az API-kapcsolat hiányos. Jelentkezz be újra a beállításoknál.');
   return { ...config, baseUrl: apiBase(config.baseUrl) };
+}
+// This public, credential-free nonce coordinates pending authentication across tabs.
+// Logout also starts a new generation, invalidating every older in-flight login.
+function beginAuthAttempt() {
+  const attempt=globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`;
+  const storage=globalThis.localStorage;
+  let initialConfig;
+  try { if (!storage?.setItem) throw new Error();initialConfig=storage.getItem(API_CONFIG_KEY);storage.setItem(AUTH_ATTEMPT_KEY,attempt); } catch { throw new Error('A munkamenet nem menthető a böngésző helyi tárhelyére.'); }
+  return {storage,attempt,initialConfig};
+}
+function requireCurrentAuthAttempt({storage,attempt,initialConfig}) {
+  let current,currentConfig;
+  try { current=storage.getItem(AUTH_ATTEMPT_KEY);currentConfig=storage.getItem(API_CONFIG_KEY); } catch { throw new Error('A böngésző helyi tárhelye nem érhető el.'); }
+  if (current !== attempt || currentConfig !== initialConfig) {
+    const error=new Error('A munkamenet időközben megváltozott. A legutóbbi bejelentkezést vagy kijelentkezést használjuk.');
+    error.code='AUTH_ATTEMPT_SUPERSEDED';throw error;
+  }
 }
 function errorMessage(payload, status) {
   if (status === 401) return 'A munkameneted lejárt, vagy hibásak a bejelentkezési adatok. Jelentkezz be újra.';
@@ -400,9 +419,13 @@ export class ApiModel {
     return { match, charged: Number(result.charged ?? result.creditsSpent ?? result.creditCost ?? 0), feedbackPrompt:feedbackPromptFromApi(result.feedbackPrompt) };
   }
   async activate(kind, id) { const result = await this.call('/me/active', 'PUT', { kind, id }); this.active = { kind, id }; return result; }
-  async saveEntity(kind, data, id) {
+  async saveEntity(kind, data, id, {creationRequestId}={}) {
+    if (!['property','search'].includes(kind)) throw new Error('Érvénytelen profiltípus.');
+    if (creationRequestId != null && (id || typeof creationRequestId !== 'string' || !/^[\da-f]{8}-(?:[\da-f]{4}-){3}[\da-f]{12}$/i.test(creationRequestId) || /^0{8}-(?:0{4}-){3}0{12}$/.test(creationRequestId))) throw new Error('Érvénytelen létrehozási azonosító.');
     const route = kind === 'property' ? '/properties' : '/searches';
-    const result = await this.call(`${route}${id ? `/${encodeURIComponent(id)}` : ''}`, id ? 'PUT' : 'POST', kind === 'property' ? propertyToApi(data,!!id) : searchToApi(data));
+    const payload=kind === 'property' ? propertyToApi(data,!!id) : searchToApi(data);
+    if (creationRequestId) payload.creationRequestId=creationRequestId.toLowerCase();
+    const result = await this.call(`${route}${id ? `/${encodeURIComponent(id)}` : ''}`, id ? 'PUT' : 'POST', payload);
     return kind === 'property' ? propertyFromApi(result,true) : searchFromApi(result);
   }
   async deleteEntity(kind, id) { const result = await this.call(`/${kind === 'property' ? 'properties' : 'searches'}/${encodeURIComponent(id)}`, 'DELETE'); this.active = null; return result; }
@@ -427,6 +450,16 @@ export class ApiModel {
   async reset() { throw new Error('A valódi API-adatok a demó visszaállításával nem törölhetők. A demóhoz bontsd az API-kapcsolatot.'); }
 }
 
+/** Anonymous editors use the same bounded catalogue endpoints as authenticated editors. */
+export async function findPublicLocations(query,limit=12,{kind='search'}={}) {
+  if (!hostedMode()) return demoModel.findLocations(query,limit,{kind});
+  return new ApiModel({baseUrl:hostedApiBase(),token:null}).findLocations(query,limit,{kind});
+}
+export async function findPublicStreets(query,locationId,limit=12) {
+  if (!hostedMode()) return demoModel.findStreets(query,locationId,limit);
+  return new ApiModel({baseUrl:hostedApiBase(),token:null}).findStreets(query,locationId,limit);
+}
+
 const regionById = id => regions.find(region=>region.id===id)||null;
 const nullableNumber = value => value==null||value===''?null:(Number.isFinite(Number(value))?Number(value):null);
 function landingFromApi(value) {
@@ -434,8 +467,8 @@ function landingFromApi(value) {
   const publicType=value=>['Lakás','Ház','Telek','Nyaraló','Garázs','Iroda','Üzlethelyiség','Egyéb'].includes(value)?value:'Ingatlan';
   return {
     regions:regions.map(region=>({...region})),region:clone(region),scope:region?'region':'national',
-    searches:rows(value?.searches).slice(0,8).map((item,index)=>({key:String(item.key??`search-${index+1}`),title:publicTitle(item.title,'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,50),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName)})),
-    properties:rows(value?.properties).slice(0,4).map((item,index)=>({key:String(item.key??`property-${index+1}`),title:publicTitle(item.title,'Eladó ingatlan'),type:publicType(item.type),location:String(item.location||''),price:millions(nullableNumber(item.price)),area:nullableNumber(item.area),wholeRooms:nullableNumber(item.wholeRooms),halfRooms:nullableNumber(item.halfRooms),rooms:nullableNumber(item.rooms),lotArea:nullableNumber(item.lotArea),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName)}))
+    searches:rows(value?.searches).slice(0,8).map((item,index)=>({key:String(item.key??`search-${index+1}`),title:publicTitle(item.title,'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,50),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('search',item.prefill,{pricesInHuf:true})})),
+    properties:rows(value?.properties).slice(0,4).map((item,index)=>({key:String(item.key??`property-${index+1}`),title:publicTitle(item.title,'Eladó ingatlan'),type:publicType(item.type),location:String(item.location||''),price:millions(nullableNumber(item.price)),area:nullableNumber(item.area),wholeRooms:nullableNumber(item.wholeRooms),halfRooms:nullableNumber(item.halfRooms),rooms:nullableNumber(item.rooms),lotArea:nullableNumber(item.lotArea),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('property',item.prefill,{pricesInHuf:true})}))
   };
 }
 export async function fetchLanding({region}={}) {
@@ -472,14 +505,17 @@ export async function connectApi(baseUrl, email, password, registerData) {
   const base = apiBase(baseUrl);
   if (hostedMode() && base !== hostedApiBase()) throw new Error('Ehhez a munkatérhez a saját webcímén jelentkezhetsz be.');
   const registration=registerData?{...registerData,accountType:normalizeAccountType(registerData.accountType,{strict:true})}:{};
+  const attempt=beginAuthAttempt();
   const result = await request(base, null, registerData ? '/auth/register' : '/auth/login', 'POST', { ...registration, email: String(email).trim(), password: String(password) });
+  requireCurrentAuthAttempt(attempt);
   const token = result?.token || result?.accessToken;
   if (!token) throw new Error('Az API nem küldött hitelesítési tokent.');
   const config = { baseUrl: base, token };
   const adapter = new ApiModel(config);
   await adapter.getState();
-  try { globalThis.localStorage.setItem(API_CONFIG_KEY, JSON.stringify(config)); } catch { throw new Error('A kapcsolat nem menthető a böngésző helyi tárhelyére.'); }
+  requireCurrentAuthAttempt(attempt);
+  try { attempt.storage.setItem(API_CONFIG_KEY, JSON.stringify(config)); } catch { throw new Error('A kapcsolat nem menthető a böngésző helyi tárhelyére.'); }
   return adapter;
 }
-export function disconnectApi() { try { globalThis.localStorage?.removeItem(API_CONFIG_KEY); } catch { throw new Error('A mentett API-kapcsolat nem törölhető.'); } return hostedMode() ? null : demoModel; }
+export function disconnectApi() { const attempt=beginAuthAttempt();try { attempt.storage.removeItem(API_CONFIG_KEY); } catch { throw new Error('A mentett API-kapcsolat nem törölhető.'); } return hostedMode() ? null : demoModel; }
 export function getApiConnection() { const config = readConfig(); return config ? { baseUrl: config.baseUrl } : null; }

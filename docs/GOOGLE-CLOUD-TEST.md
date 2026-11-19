@@ -352,3 +352,20 @@ A már elmentett ingatlanok utcához rendelése csak egyértelmű név/települ�
 A v6 tesztkészlet Réka és Bence két, egyértelműen szintetikus debreceni ingatlanjához két külön Posta-utcát és 99999 házszámot ad; Júlia és Márton további kereséseivel több utca, illetve utca–település kombináció próbálható. A minták nem valódi eladó ingatlanok és nem valódi házszámokra geokódolt címek. Az eredeti Vénkert–Sestakert keresési példák is megmaradnak.
 
 A forrás, mezők, lefedettség, külön kezelt budapesti postai irányítószámok és frissítés részletei: [STREET-DATA.md](STREET-DATA.md). A gyűjtő workflow csak nyilvános állományt tölt le és artifactot készít; a futó alkalmazás nem kér adatot a Posta szerverétől minden kereséskor vagy induláskor.
+
+
+## Regisztráció előtti kitöltés
+
+A kezdőoldal „Hol keresel?” mezőjében a szokásos helyszínválasztóval több település, kerület, városkörnyék, városrész vagy utca is kijelölhető. A Keresés gomb külön oldalra visz, ahol a belépett felület öt lépéses keresési űrlapja tölthető ki. Az egyes lépések között vissza lehet lépni. A név automatikusan az ingatlantípusból és a helyszínből készül, és szabadon szerkeszthető.
+
+Az „Ilyen otthont keresek” kártyagomb az ingatlan adataiból indít keresést: maximumára az ár 110%-a, minimumár és minimum szobaszám nélkül, a megadott szobaszámot felső korlátként használva. Az alapterületnél a forrásérték körüli ±10%-os tartományt ajánljuk fel. A többi ismert keresési jellemző is előre kitöltődik; minden lépés szerkeszthető. Ha az ingatlannak van szerver által megállapított, finomabb városrésztagsága, az egyik ilyen terület lesz a helyszín, egyébként a település vagy kerület.
+
+Az „Ilyen ingatlanom van” gomb eladói űrlapot indít. Csak egyértelmű értékek másolódnak át: például egy kiválasztott falazat, vagy azonos minimum és maximum esetén a konkrét méret. Többféle helyszín, ár- vagy mérettartomány alapján nem találunk ki ingatlanadatokat. A saját pontos címet és minden további kötelező adatot az eladónak kell kitöltenie. Másik hirdető pontos címe, koordinátája vagy elérhetősége nem kerül a kitöltésbe.
+
+A piszkozat a böngésző helyi tárhelyén marad, az utolsó módosítástól számított hét napig. A mezők, a kiválasztott helyszínek és az aktuális lépés frissítés vagy ugyanazon böngésző másik füle után is folytathatók. Jelszó vagy munkamenettoken nem kerül a piszkozatba. Másik böngészőre/eszközre a helyi kitöltés nem kerül át automatikusan. A meglévő piszkozat törléséig vagy sikeres mentéséig megmarad; új mintából indításkor választható a folytatás vagy az új kitöltés.
+
+A végső lépés a regisztrációra vezet, ahol meglévő fiókkal bejelentkezés is választható. A jelenlegi regisztráció azonnal beléptet; e-mailes megerősítést ez a kiadás nem vezet be. A befejezett piszkozat az eredetileg megadott e-mail-címhez, majd a hitelesített felhasználóhoz kötődik. Másik fiókba nem mentődik automatikusan. Az azonos böngészőben másik fülön létrejött belépést is észleli a felület.
+
+A sikeres létrehozás után a saját adatlapok között jelenik meg az új keresés vagy ingatlan, visszajelzéssel és külön felfedezési gombbal. E gomb aktiválja az új adatlapot. Hálózati vagy kiszolgálóhiba esetén a kitöltés megmarad, és a mentés újrapróbálható. Egy piszkozat a teljes élettartama alatt ugyanazt a létrehozási azonosítót használja: párhuzamos fülek, oldalfrissítés és elveszett HTTP-válasz sem hoz létre belőle több példányt.
+
+A normál tesztdeploy betölti az ismétlésvédelmet biztosító új, additív sémát is (`20261118-idempotent-entity-creation`). Új Google-kulcs, levélküldő szolgáltatás vagy kézi konfiguráció nem szükséges. A pontos ingatlancím koordinátáit továbbra is a meglévő szerveroldali Google-beállítás kezeli, a bejelentkezést követő mentéskor.

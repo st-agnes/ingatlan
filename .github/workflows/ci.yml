@@ -133,6 +133,79 @@ jobs:
       - name: Stop postal integration supervisor
         if: always()
         run: node scripts/dev.mjs --stop
+  onboarding-integration:
+    name: Anonymous onboarding browser and MySQL integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: otthonra_ci
+          MYSQL_USER: otthonra
+          MYSQL_PASSWORD: ci-only-password
+          MYSQL_ROOT_PASSWORD: ci-only-root-password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="MYSQL_PWD=ci-only-password mysql -h 127.0.0.1 -u otthonra otthonra_ci -e 'SELECT 1' >/dev/null 2>&1"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=30
+    env:
+      DOTNET_NOLOGO: "true"
+      DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+      ASPNETCORE_ENVIRONMENT: Production
+      Deployment__Environment: test
+      ConnectionStrings__MySql: Server=127.0.0.1;Port=3306;Database=otthonra_ci;User=otthonra;Password=ci-only-password
+      Jwt__Key: ci-only-signing-key-for-disposable-test-environment-2026
+      Database__Initialize: "true"
+      Database__SeedDemo: "false"
+      Database__SeedTestFixtures: "false"
+      Geocoding__EnableTestGeocoder: "true"
+      Credits__EnableDemoTopup: "true"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build onboarding API and verify hosted module packaging
+        run: |
+          dotnet restore backend/Otthonra.Api/Otthonra.Api.csproj
+          dotnet build backend/Otthonra.Api/Otthonra.Api.csproj --no-restore
+          node tests/onboarding.test.mjs
+          node tests/gcp-deployment.test.mjs
+      - name: Install pinned onboarding browser
+        timeout-minutes: 5
+        run: |
+          npm install --prefix .local/browser-tests --no-save --no-package-lock --no-audit --no-fund playwright@1.56.1
+          .local/browser-tests/node_modules/.bin/playwright install --only-shell chromium
+      - name: Verify anonymous drafts and authenticated creation before the legacy suite
+        run: |
+          node scripts/dev.mjs --background
+          node backend/onboarding-smoke.mjs http://127.0.0.1:3000
+          python3 backend/onboarding-store.py "${{ job.services.mysql.id }}"
+          node tests/onboarding-browser.test.mjs http://127.0.0.1:3000
+          node scripts/dev.mjs --restart
+          node backend/onboarding-smoke.mjs http://127.0.0.1:3000 --verify
+          python3 backend/onboarding-store.py "${{ job.services.mysql.id }}"
+      - name: Show onboarding startup logs on failure
+        if: failure()
+        run: tail -n 80 .local/dev.log 2>/dev/null || true
+      - name: Stop onboarding integration supervisor
+        if: always()
+        run: node scripts/dev.mjs --stop
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: onboarding-browser-failure
+          path: .local/browser-tests/screenshots/onboarding-*.png
+          if-no-files-found: ignore
   build-and-test:
     name: Build and test (MySQL ${{ matrix.mysql }})
     runs-on: ubuntu-24.04
@@ -336,11 +409,13 @@ jobs:
         run: |
           node scripts/dev.mjs --background
           node backend/upgrade-smoke.mjs http://127.0.0.1:3000
+          python3 backend/onboarding-store.py "${{ job.services.mysql.id }}" --schema-only
       - name: Verify schema upgrade is idempotent
         run: |
           node scripts/dev.mjs --stop
           node scripts/dev.mjs --background
           node backend/upgrade-smoke.mjs http://127.0.0.1:3000
+          python3 backend/onboarding-store.py "${{ job.services.mysql.id }}" --schema-only
       - name: Verify canonical search location backfill and covering indexes
         run: python3 backend/matching-store-smoke.py "${{ job.services.mysql.id }}"
       - name: Verify attributes, city areas and seller fields against MySQL and after a restart

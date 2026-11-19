@@ -38,8 +38,10 @@ async function seededLanding(){
  for(const area of areas)labelRegions.set(`${area.city} és környéke (${area.settlements.length} település)`,new Set(area.settlements.map(city=>cityRegions.get(city))));
  for(const area of neighborhoods)labelRegions.set(area.label,new Set([cityRegions.get(area.city)]));
  for(const street of streetDemoData)labelRegions.set(street.label,new Set([cityRegions.get(street.city)]));
- const searchKeys=['key','title','type','locations','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','ownerAccountType','ownerFirstName'].sort();
- const propertyKeys=['key','title','type','location','price','area','wholeRooms','halfRooms','rooms','lotArea','ownerAccountType','ownerFirstName'].sort();
+ const searchKeys=['key','title','type','locations','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','ownerAccountType','ownerFirstName','prefill'].sort();
+ const propertyKeys=['key','title','type','location','price','area','wholeRooms','halfRooms','rooms','lotArea','ownerAccountType','ownerFirstName','prefill'].sort();
+ const prefillKeys={search:['locations','type','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','conditions','buildings','constructionAges','views','ceilingHeight','floors','heatingTypes','balcony','elevator'].sort(),property:['locations','type','price','area','rooms','wholeRooms','halfRooms','lotArea','condition','building','constructionAge','view','ceilingHeight','floor','heatingType','balcony','elevator'].sort()};
+ const locationKeys=['id','label','city','district','kind','settlementCount','streetName','postalCodes'].sort();
  const publishedOwners={property:new Map(),search:new Map()};
  for(const fixture of DEMO_FIXTURES){
   const owner=DEMO_USERS.find(user=>user.key===fixture.owner),firstName=owner.name.trim().split(/\s+/).at(-1);
@@ -56,6 +58,14 @@ async function seededLanding(){
    const types=new Set(items.map(row=>row.type));assert.ok(types.has('Ház')&&types.has('Lakás'),`${region.id}: ${kind} previews must include houses and apartments`);assert.ok([...types].every(type=>['Ház','Lakás','Nyaraló'].includes(type)));
    for(const [index,row] of items.entries()){
     assert.deepEqual(Object.keys(row).sort(),keys,'Public fixtures must expose only safe teaser fields');
+    assert.deepEqual(Object.keys(row.prefill).sort(),prefillKeys[kind],'Nested onboarding seeds must retain their explicit public allowlist');
+    assert.ok(row.prefill.locations.length>0&&row.prefill.locations.length<=(kind==='property'?1:50));
+    for(const location of row.prefill.locations){
+     assert.deepEqual(Object.keys(location).sort(),locationKeys,'Only canonical public location metadata may enter onboarding seeds');
+     assert.match(location.id,/^(city|district|area|neighborhood|street):/);
+     if(kind==='property')assert.ok(['city','district','neighborhood'].includes(location.kind),'A public property seed must never disclose a street');
+     if(location.kind!=='street'){assert.equal(location.streetName,null);assert.equal(location.postalCodes,null);}
+    }
     assert.equal(row.key,`${kind}-${index+1}`);assert.ok(['private','agent'].includes(row.ownerAccountType));
     assert.ok(publishedOwners[kind].get(row.title)?.has(row.ownerFirstName),
      'The real seeded ad title and its actual owner first name must reach the anonymous card');

@@ -6,6 +6,7 @@ import {normalizeAccountType,likeCost,canInteract,normalizeReportReason,normaliz
 import {prepareSearch,evaluateMatch,valueForMoney,searchSpecificity} from './matching.js';
 import {publicFirstName,publicTitle} from './public-profile.js';
 import {FEEDBACK_OPTIONS,FEEDBACK_QUESTION,FEEDBACK_PACKAGE_SIZES,FEEDBACK_DURATION_DAYS,FEEDBACK_PROMPT_SPACING,FEEDBACK_INVITATION_MINUTES,feedbackTitle} from './feedback.js';
+import {sanitizeDraftData,sanitizeTeaserPrefill} from './onboarding.js';
 
 /** Browser-only demonstration store. Real deployments use the authenticated .NET API. */
 export const STORAGE_KEY = 'otthonra.demo.v3';
@@ -18,6 +19,7 @@ const photos = ['/assets/home.jpg','/assets/living.jpg','/assets/bedroom.jpg','/
 const numeric = (value, fallback) => value === '' || value == null ? fallback : typeof value === 'boolean' ? NaN : Number(value);
 const storedInstant = value => typeof value==='string'&&value.trim()?Date.parse(value):NaN;
 const locationError = () => new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
+const stablePayload = value => JSON.stringify(value,(_,item)=>item && typeof item==='object' && !Array.isArray(item)?Object.fromEntries(Object.keys(item).sort().map(key=>[key,item[key]])):item);
 // This tiny source-backed subset makes the fictional seed usable without downloading the nationwide catalogue.
 const demoStreets=registerLocations(streetDemoData);
 function withLocations(entity, kind, strict = false) {
@@ -208,8 +210,8 @@ export function demoLanding(region=null,random=Math.random) {
   const properties=available?samplePublicDemo([...sample.properties,...propertyExamples],4,'property',scope,random):[];
   return {
     region:clone(region),scope:region?'region':'national',
-    searches:searches.map((entity,index)=>({key:`search-${index+1}`,title:publicTitle(entity.title,'Ingatlant keresnek'),type:publicDemoType(entity.type),locations:entity.locations.map(location=>location.label),minPrice:entity.minPrice,maxPrice:entity.maxPrice,minArea:entity.minArea,maxArea:entity.maxArea,minRooms:entity.minRooms,maxRooms:entity.maxRooms,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity)})),
-    properties:properties.map((entity,index)=>({key:`property-${index+1}`,title:publicTitle(entity.title,'Eladó ingatlan'),type:publicDemoType(entity.type),location:entity.location.label,price:entity.price,area:entity.area,wholeRooms:entity.wholeRooms??null,halfRooms:entity.halfRooms??null,rooms:entity.rooms,lotArea:entity.lotArea??null,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity)}))
+    searches:searches.map((entity,index)=>({key:`search-${index+1}`,title:publicTitle(entity.title,'Ingatlant keresnek'),type:publicDemoType(entity.type),locations:entity.locations.map(location=>location.label),minPrice:entity.minPrice,maxPrice:entity.maxPrice,minArea:entity.minArea,maxArea:entity.maxArea,minRooms:entity.minRooms,maxRooms:entity.maxRooms,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity),prefill:sanitizeTeaserPrefill('search',entity)})),
+    properties:properties.map((entity,index)=>({key:`property-${index+1}`,title:publicTitle(entity.title,'Eladó ingatlan'),type:publicDemoType(entity.type),location:entity.location.label,price:entity.price,area:entity.area,wholeRooms:entity.wholeRooms??null,halfRooms:entity.halfRooms??null,rooms:entity.rooms,lotArea:entity.lotArea??null,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity),prefill:sanitizeTeaserPrefill('property',{...entity,locations:[getLocation(entity.neighborhoodIds?.[0])||entity.location]})}))
   };
 }
 
@@ -556,9 +558,25 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       if(!['property','search'].includes(kind))throw new Error('Érvénytelen profiltípus.');
       return transact(s=>{const entity=own(s,kind,id);if(!entity||entity.archived)throw new Error('Ez a profil nem aktiválható.');s.active={kind,id};return s.active;});
     },
-    saveEntity(kind,data,id) {
+    saveEntity(kind,data,id,{creationRequestId}={}) {
       if(!['property','search'].includes(kind))throw new Error('Érvénytelen profiltípus.');
+      if(creationRequestId!=null){
+        if(id||typeof creationRequestId!=='string'||!/^[\da-f]{8}-(?:[\da-f]{4}-){3}[\da-f]{12}$/i.test(creationRequestId)||/^0{8}-(?:0{4}-){3}0{12}$/.test(creationRequestId))throw new Error('Érvénytelen létrehozási azonosító.');
+        creationRequestId=creationRequestId.toLowerCase();
+        // A second tab must see the first tab's receipt before attempting the same creation.
+        try{const latest=JSON.parse(storage?.getItem(STORAGE_KEY)||'null');if(latest?.version===3&&latest.userId===state.userId&&Array.isArray(latest.properties)&&Array.isArray(latest.searches)&&Array.isArray(latest.users))state=migrateLocations(latest);}catch{}
+      }
+      const signature=creationRequestId?stablePayload(sanitizeDraftData(data,kind)):null;
       return transact(s=>{
+        if(creationRequestId){
+          s.creationRequests ||= [];
+          const previous=s.creationRequests.find(receipt=>receipt.ownerId===s.userId&&receipt.requestId===creationRequestId);
+          if(previous){
+            if(previous.kind!==kind||previous.signature!==signature)throw new Error('Ezt a létrehozási azonosítót már másik kitöltéshez használtad.');
+            const saved=own(s,kind,previous.entityId);if(!saved)throw new Error('A korábban létrehozott profil már nem érhető el.');
+            return visibleEntity(saved,s.users,undefined,s.userId);
+          }
+        }
         const existing=id?own(s,kind,id):null;
         if(id&&!existing)throw new Error('Ez a profil nem szerkeszthető.');
         const title=String(data.title??existing?.title??'').trim();
@@ -613,6 +631,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         }
         const list=kind==='property'?s.properties:s.searches;
         if(existing)list[list.findIndex(e=>e.id===id)]=entity;else list.push(entity);
+        if(creationRequestId)s.creationRequests.push({ownerId:s.userId,requestId:creationRequestId,kind,entityId:entity.id,signature});
         return visibleEntity(entity,s.users,undefined,s.userId);
       });
     },

@@ -25,6 +25,10 @@ DROP TABLE IF EXISTS `UserReports`;
 ALTER TABLE `CreditEntries` DROP FOREIGN KEY `FK_CreditEntries_Decisions_RefundedDecisionId`, DROP INDEX `IX_CreditEntries_RefundedDecisionId`, DROP COLUMN `RefundedDecisionId`;
 ALTER TABLE `Decisions` DROP INDEX `IX_Decisions_Liked_RefundedAt_CreatedAt`, DROP COLUMN `RefundedAt`;
 ALTER TABLE `Users` DROP COLUMN `AccountType`;
+ALTER TABLE `Properties` DROP INDEX `IX_Properties_OwnerId_CreationRequestId`,
+  DROP COLUMN `CreationRequestId`, DROP COLUMN `CreationRequestHash`;
+ALTER TABLE `SearchRequests` DROP INDEX `IX_SearchRequests_OwnerId_CreationRequestId`,
+  DROP COLUMN `CreationRequestId`, DROP COLUMN `CreationRequestHash`;
 ALTER TABLE `Properties`
   DROP COLUMN `Street`, DROP COLUMN `StreetId`, DROP COLUMN `HouseNumber`, DROP COLUMN `PostalCode`,
   DROP COLUMN `Latitude`, DROP COLUMN `Longitude`, DROP COLUMN `GeocodedAt`,
@@ -41,4 +45,4 @@ ALTER TABLE `SearchRequests`
   DROP COLUMN `ConstructionAgesJson`, DROP COLUMN `ViewsJson`, DROP COLUMN `CeilingHeight`, DROP COLUMN `FloorsJson`,
   DROP COLUMN `HeatingTypesJson`;
 DELETE FROM `__OtthonraSchemaVersions`
-  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search', '20261118-postal-street-search');
+  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search', '20261118-postal-street-search', '20261118-idempotent-entity-creation');

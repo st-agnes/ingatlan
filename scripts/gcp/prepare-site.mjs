@@ -8,7 +8,7 @@ const expected = {
   mysqlSecret: 'otthonra-mysql-dev', jwtSecret: 'otthonra-jwt-dev'
 };
 const assetExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.ico', '.woff', '.woff2']);
-const codeFiles = new Set(['index.html', 'app.js', 'style.css', 'api.js', 'model.js', 'matching.js', 'public-profile.js', 'feedback.js', 'locations.js', 'locations-data.js', 'agglomerations-data.js', 'neighborhoods-data.js', 'neighborhood-demo-points.js', 'street-demo-data.js', 'data/streets.json.gz', 'regions-data.js', 'attributes.js', 'accounts.js', 'runtime-config.js', 'data/settlements.json', 'data/agglomerations.json', 'THIRD-PARTY-NOTICES.txt']);
+const codeFiles = new Set(['index.html', 'app.js', 'style.css', 'api.js', 'model.js', 'matching.js', 'public-profile.js', 'feedback.js', 'onboarding.js', 'locations.js', 'locations-data.js', 'agglomerations-data.js', 'neighborhoods-data.js', 'neighborhood-demo-points.js', 'street-demo-data.js', 'data/streets.json.gz', 'regions-data.js', 'attributes.js', 'accounts.js', 'runtime-config.js', 'data/settlements.json', 'data/agglomerations.json', 'THIRD-PARTY-NOTICES.txt']);
 const configFields = new Set(['projectId', 'projectNumber', 'region', 'serviceName', 'registry', 'sqlInstance', 'connectionName', 'databaseName', 'databaseUser', 'mysqlSecret', 'jwtSecret', 'googleGeocodingSecret', 'siteId', 'runtimeServiceAccount', 'deployServiceAccount', 'workloadIdentityProvider']);
 
 /** Validate every resource selector before any cloud or filesystem mutation. */
