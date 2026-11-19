@@ -459,7 +459,7 @@ test('legacy paid decisions with no valid recorded timestamp cannot produce a sy
  }
 });
 
-const publicFingerprint=items=>items.map(({key,...item})=>JSON.stringify(item)).sort();
+const publicFingerprint=items=>items.map(({key,sourceKey,...item})=>JSON.stringify(item)).sort();
 test('public demo previews cover different budgets, sizes, room counts and districts without touching saved profiles',()=>{
  const storage=store(),m=createModel(storage,()=>REFUND_START);m.activate('property','own-p1');const before=JSON.stringify(m.getState()),saved=storage.getItem(STORAGE_KEY);
  const preview=demoLanding(null,()=>0);assert.equal(preview.searches.length,8);assert.equal(preview.properties.length,4);
@@ -618,4 +618,23 @@ test('partial demo cards and incoming likes contain fulfilled and unfulfilled co
  assert.equal(card.isExact,false);assert.ok(card.matchDetails.some(item=>item.matches));assert.ok(card.matchDetails.some(item=>!item.matches));
  assert.ok(card.matchDetails.every(item=>item.expected&&item.actual));
  assert.ok(card.matchDetails.some(item=>item.key==='price'&&item.expected.includes('M Ft')));
+});
+
+
+test('fictional landing source identities survive reordered national and regional selections without exposing demo IDs',()=>{
+ const known=new Map();let repeated=0;
+ for(let iteration=0;iteration<12;iteration++){
+  const page=demoLanding(iteration%2?{id:'HU110',label:'Budapest'}:null,()=>iteration%3/3);
+  for(const [kind,items] of [['search',page.searches],['property',page.properties]]){
+   assert.equal(new Set(items.map(item=>item.sourceKey)).size,items.length);
+   for(const {key,sourceKey,...visible} of items){
+    assert.match(sourceKey,new RegExp('^'+kind+'-[a-f0-9]{64}$'));
+    const fingerprint=kind+':'+JSON.stringify(visible);
+    if(known.has(fingerprint)){assert.equal(sourceKey,known.get(fingerprint));repeated++;}
+    else known.set(fingerprint,sourceKey);
+    assert.doesNotMatch(sourceKey,/own-|matched-|public-search|public-property/);
+   }
+  }
+ }
+ assert.ok(repeated>20,'Revisited examples must retain identity when their teaser positions change');
 });

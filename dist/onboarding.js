@@ -9,6 +9,7 @@ const uuidPattern = /^[\da-f]{8}-(?:[\da-f]{4}-){3}[\da-f]{12}$/i;
 const validUuid = value => typeof value === 'string' && uuidPattern.test(value) && !/^0{8}-(?:0{4}-){3}0{12}$/.test(value);
 const kinds = ['property','search'];
 const phases = ['editing','awaiting-auth','saving','saved'];
+const publicSourceKeyPattern = /^(property|search)-[a-f0-9]{64}$/;
 const clone = value => JSON.parse(JSON.stringify(value));
 const text = (value, limit) => typeof value === 'string' ? value.slice(0,limit) : '';
 const clock = value => { const result = typeof value === 'function' ? value() : value ?? Date.now(); const time = new Date(result).getTime(); if (!Number.isFinite(time)) throw new Error('Érvénytelen időpont.'); return time; };
@@ -31,11 +32,48 @@ function safeLocations(values) {
     return result;
   });
 }
+function canonicalLocationIds(values) {
+  if (!Array.isArray(values) || !values.length || values.length>50) return null;
+  registerLocations(values.filter(value=>value && typeof value==='object'));
+  const ids=Array.from(values,value=>typeof value==='string'?value:value?.id);
+  if (ids.some(id=>!getLocation(id))) return null;
+  return [...new Set(ids)].sort();
+}
+/** Draft origins contain only a public opaque listing key or canonical catalogue choices. */
+export function normalizeDraftOrigin(value,entityKind) {
+  if (!value || typeof value!=='object' || Array.isArray(value) || entityKind!=null && !kinds.includes(entityKind)) return null;
+  if (kinds.includes(value.kind)) {
+    if (typeof value.key!=='string' || !publicSourceKeyPattern.test(value.key) || !value.key.startsWith(value.kind+'-') || value.kind===entityKind) return null;
+    return {kind:value.kind,key:value.key};
+  }
+  if (value.kind==='locations') {
+    if (entityKind!=null && entityKind!=='search') return null;
+    const ids=canonicalLocationIds(value.locationIds);
+    return ids?{kind:'locations',locationIds:ids}:null;
+  }
+  if (value.kind==='blank' && kinds.includes(value.entityKind) && (entityKind==null || value.entityKind===entityKind)) return {kind:'blank',entityKind:value.entityKind};
+  return null;
+}
+export const originFromListing = (sourceKind,sourceKey) => normalizeDraftOrigin({kind:sourceKind,key:sourceKey});
+export const originFromLocations = values => normalizeDraftOrigin({kind:'locations',locationIds:values});
+export const originBlank = entityKind => normalizeDraftOrigin({kind:'blank',entityKind});
+/** Location starts match the edited current choices; listing starts match their original identity. */
+export function sameDraftOrigin(draft,entityKind,origin) {
+  if (!draft || draft.kind!==entityKind || !kinds.includes(entityKind)) return false;
+  const candidate=normalizeDraftOrigin(origin,entityKind);
+  if (!candidate) return false;
+  if (candidate.kind==='locations') {
+    const current=canonicalLocationIds(draft.data?.locationIds);
+    return current!=null && current.length===candidate.locationIds.length && current.every((id,index)=>id===candidate.locationIds[index]);
+  }
+  const previous=normalizeDraftOrigin(draft.origin,entityKind);
+  return previous?.kind===candidate.kind && (candidate.kind==='blank'?previous.entityKind===candidate.entityKind:previous.key===candidate.key);
+}
 const textFields = {title:150, description:6000, type:40, city:120, district:20, locationId:200, address:500, neighborhood:180, street:180, houseNumber:32, postalCode:4, streetId:64, condition:80, building:80, constructionAge:80, view:80, ceilingHeight:80, heatingType:80, secondaryHeatingType:80, energyRating:20, parkingType:200, moveIn:200, financing:300};
 const numericFields = ['price','area','rooms','wholeRooms','halfRooms','lotArea','floor','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'];
 const booleanFields = ['balcony','elevator','insulated','airConditioning','solarPanels'];
 const listFields = ['locationIds','districts','conditions','buildings','constructionAges','views','floors','heatingTypes','parkingTypes','images'];
-/** Persist only editable form fields. Authentication and source entity metadata never enter a draft. */
+/** Persist only editable form fields. Authentication and origin metadata never enter an entity payload. */
 export function sanitizeDraftData(value = {}, kind = 'search') {
   const result={};
   if (!value || typeof value !== 'object' || Array.isArray(value)) return result;
@@ -67,6 +105,7 @@ function normalizedDraft(value) {
   const createdAt=Date.parse(value.createdAt),updatedAt=Date.parse(value.updatedAt),expiresAt=Date.parse(value.expiresAt);
   if (![createdAt,updatedAt,expiresAt].every(Number.isFinite) || createdAt>updatedAt || expiresAt<=updatedAt || expiresAt>updatedAt+DRAFT_TTL_MS) return null;
   const result={version:VERSION,id:value.id.toLowerCase(),kind:value.kind,data:sanitizeDraftData(value.data,value.kind),step:Number.isInteger(value.step)?Math.min(4,Math.max(0,value.step)):0,phase:value.phase,editor:editorState(value.editor),createdAt:new Date(createdAt).toISOString(),updatedAt:new Date(updatedAt).toISOString(),expiresAt:new Date(expiresAt).toISOString()};
+  const origin=normalizeDraftOrigin(value.origin,value.kind);if (origin) result.origin=origin;
   if (typeof value.expectedEmail === 'string' && email(value.expectedEmail)) result.expectedEmail=email(value.expectedEmail);
   if (typeof value.ownerId === 'string' && value.ownerId.trim()) result.ownerId=value.ownerId.slice(0,100);
   result.creationRequestId=validUuid(value.creationRequestId)?value.creationRequestId.toLowerCase():result.id;
@@ -77,11 +116,13 @@ function normalizedDraft(value) {
 }
 function requiredDraft(draft) { const result=normalizedDraft(draft); if (!result) throw new Error('A mentett vázlat sérült. Kezdd újra a kitöltést.'); return result; }
 function touch(draft,now) { const at=Math.max(clock(now),Date.parse(draft.updatedAt));return {...draft,updatedAt:new Date(at).toISOString(),expiresAt:new Date(at+DRAFT_TTL_MS).toISOString()}; }
-export function createDraft(kind,data={}, {now,id,editor}={}) {
+export function createDraft(kind,data={}, {now,id,editor,origin}={}) {
   if (!kinds.includes(kind)) throw new Error('Érvénytelen profiltípus.');
   if (id != null && !validUuid(id)) throw new Error('Érvénytelen vázlatazonosító.');
   const at=clock(now),date=new Date(at).toISOString(),draftId=(id??newUuid()).toLowerCase();
-  return {version:VERSION,id:draftId,creationRequestId:draftId,kind,data:sanitizeDraftData(data,kind),step:0,phase:'editing',editor:editorState(editor),createdAt:date,updatedAt:date,expiresAt:new Date(at+DRAFT_TTL_MS).toISOString()};
+  const draft={version:VERSION,id:draftId,creationRequestId:draftId,kind,data:sanitizeDraftData(data,kind),step:0,phase:'editing',editor:editorState(editor),createdAt:date,updatedAt:date,expiresAt:new Date(at+DRAFT_TTL_MS).toISOString()};
+  const safeOrigin=normalizeDraftOrigin(origin,kind);if (safeOrigin) draft.origin=safeOrigin;
+  return draft;
 }
 export function updateDraft(draft,patch={}, {now}={}) {
   const current=requiredDraft(draft),result=touch(current,now);

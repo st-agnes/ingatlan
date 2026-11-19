@@ -585,3 +585,15 @@ test('public landing preserves real titles and first names while omitting contac
  globalThis.fetch=async()=>response({searches:[{title:'Hívj: +36 30 123 4567',ownerFirstName:'anna@example.test'}],properties:[{title:'Írj: peter@example.test',ownerFirstName:'+36 30 123 4567'}]});
  const unsafe=await fetchLanding();assert.equal(unsafe.searches[0].title,'Ingatlant keresnek');assert.equal(unsafe.properties[0].title,'Eladó ingatlan');assert.equal(unsafe.searches[0].ownerFirstName,'');assert.equal(unsafe.properties[0].ownerFirstName,'');
 });
+
+
+test('anonymous teaser source identities accept only opaque keys of the matching kind and never infer identity from a slot',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'api',environment:'test'};globalThis.location={origin:'https://dev.otthonra.hu'};
+ const searchKey='search-'+'a'.repeat(64),propertyKey='property-'+'b'.repeat(64);
+ globalThis.fetch=async()=>response({searches:[{key:'search-3',sourceKey:searchKey},{key:'search-1',sourceKey:propertyKey},{key:'search-2',sourceKey:'11111111-1111-1111-1111-111111111111'}],properties:[{key:'property-4',sourceKey:propertyKey},{key:'property-2',sourceKey:'private@example.hu'},{key:'property-1'}]});
+ const value=await fetchLanding();
+ assert.deepEqual(value.searches.map(item=>item.sourceKey),[searchKey,null,null]);
+ assert.deepEqual(value.properties.map(item=>item.sourceKey),[propertyKey,null,null]);
+ assert.equal(value.searches[0].key,'search-3');assert.equal(value.properties[0].key,'property-4');
+ assert.doesNotMatch(JSON.stringify(value),/11111111-1111|private@example/);
+});

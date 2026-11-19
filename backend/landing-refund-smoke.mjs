@@ -38,6 +38,7 @@ async function publicLanding(f){
   noPrivateFields(page);const raw=JSON.stringify(page);assert.ok(!raw.includes(f.secret),'Public landing exposed a private description or address');
   for(const teaser of [...page.searches,...page.properties]){
    assert.equal(typeof teaser.ownerFirstName,'string');assert.ok(teaser.title.trim());
+   assert.match(teaser.sourceKey,/^(property|search)-[a-f0-9]{64}$/);
   }
   for(const name of Object.values(f.displayNames))assert.ok(!raw.includes(name),'Anonymous cards must expose only the first name');
   for(const id of [...Object.values(f.ids),...Object.values(f.properties).map(p=>p.id),f.search.id,f.agentSearch.id])assert.ok(!raw.includes(id),'Public landing exposed source/owner IDs');

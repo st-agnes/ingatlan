@@ -11,8 +11,9 @@ import * as feedbackHelpers from '../dist/feedback.js';
 import * as onboardingHelpers from '../dist/onboarding.js';
 
 
+const publicSourceKey=(kind,character='a')=>kind+'-'+character.repeat(64);
 const landingRegions=[{id:'HU110',label:'Budapest'},{id:'HU321',label:'Hajdú-Bihar'},{id:'HU232',label:'Somogy'}];
-function landingFixture(region){const selected=landingRegions.find(item=>item.id===region)||null;return {regions:landingRegions,region:selected,scope:selected?'region':'national',searches:region==='HU232'?[]:[{key:'s-public',title:'Kertes otthont keresünk',ownerFirstName:'Anna',type:'Lakás',locations:[region==='HU321'?'Debrecen':'Budapest XIII. kerület'],minPrice:null,maxPrice:90,minArea:50,maxArea:null,minRooms:2,maxRooms:null,ownerAccountType:'private'}],properties:region==='HU232'?[]:[{key:'p-public',title:'Napfényes erkélyes otthon',ownerFirstName:'Péter',type:'Lakás',location:region==='HU321'?'Debrecen':'Budapest',price:82,area:60,wholeRooms:2,halfRooms:1,rooms:2.5,lotArea:null,ownerAccountType:'agent'}]};}
+function landingFixture(region){const selected=landingRegions.find(item=>item.id===region)||null;return {regions:landingRegions,region:selected,scope:selected?'region':'national',searches:region==='HU232'?[]:[{key:'s-public',sourceKey:publicSourceKey('search','b'),title:'Kertes otthont keresünk',ownerFirstName:'Anna',type:'Lakás',locations:[region==='HU321'?'Debrecen':'Budapest XIII. kerület'],minPrice:null,maxPrice:90,minArea:50,maxArea:null,minRooms:2,maxRooms:null,ownerAccountType:'private'}],properties:region==='HU232'?[]:[{key:'p-public',sourceKey:publicSourceKey('property','a'),title:'Napfényes erkélyes otthon',ownerFirstName:'Péter',type:'Lakás',location:region==='HU321'?'Debrecen':'Budapest',price:82,area:60,wholeRooms:2,halfRooms:1,rooms:2.5,lotArea:null,ownerAccountType:'agent'}]};}
 
 const source=await fs.readFile(new URL('../dist/app.js',import.meta.url),'utf8');
 const decodeHtmlValue=value=>String(value).replace(/&(?:amp|lt|gt|quot|apos|#(?:x[0-9a-f]+|\d+));/gi,encoded=>{
@@ -33,7 +34,7 @@ class Element {
   this.style={};this.handlers={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.reportedValidity=0;
   this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false),add:name=>this.classList.toggle(name,true),contains:name=>this.className.split(' ').includes(name)};
  }
- set innerHTML(value){this._innerHTML=value;if(['app','modal-root'].includes(this.id)){for(const id of this.doc.elements.keys())if(!['app','modal-root','toast'].includes(id))this.doc.elements.delete(id);}if(this.id==='modal-root'){const markup=value.match(/<[^>]*class="modal(?:\s[^"]*)?"[^>]*>/)?.[0];this.doc.currentModal=markup?new Element('__modal-'+(++this.doc.modalSerial),this.doc,markup):null;if(this.doc.currentModal)this.doc.currentModal.isModal=true;}}
+ set innerHTML(value){this._innerHTML=value;this.innerHTMLWasAssigned=true;if(['app','modal-root'].includes(this.id)){for(const id of this.doc.elements.keys())if(!['app','modal-root','toast'].includes(id))this.doc.elements.delete(id);}if(this.id==='modal-root'){const markup=value.match(/<[^>]*class="modal(?:\s[^"]*)?"[^>]*>/)?.[0];this.doc.currentModal=markup?new Element('__modal-'+(++this.doc.modalSerial),this.doc,markup):null;if(this.doc.currentModal)this.doc.currentModal.isModal=true;}}
  get innerHTML(){return this._innerHTML;}
  addEventListener(type,handler){const prior=this.handlers[type];this.handlers[type]=prior?event=>{prior(event);return handler(event);}:handler;}
  querySelectorAll(selector){return this.doc.selectWithin(this,selector);}
@@ -91,11 +92,11 @@ async function setup(options={}){
  const apiModel=Object.assign({...demoModel},{mode:'api'},options.apiOverrides||{});
  if(options.apiOverrides?.feed&&!options.apiOverrides?.recommendations)apiModel.recommendations=async request=>{const items=await apiModel.feed(request);return {items,stage:items.length?'exact':'empty'};};
  let selected=options.hosted?(options.authenticated?apiModel:null):demoModel;
- const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},regionStorage=new Map(Object.entries(options.regionStorage||{}));
+ const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},windowListeners=new Map(),regionStorage=new Map(Object.entries(options.regionStorage||{}));
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
   document,console,Intl,Date,Promise,URL,URLSearchParams,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
-  location:{get hash(){return currentHash;},set hash(value){const next=value?(value.startsWith('#')?value:'#'+value):'';if(next===currentHash)return;currentHash=next;if(options.dispatchHashChanges)Promise.resolve().then(()=>windowEvents.hashchange?.());},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{windowEvents[type]=handler;}},
+  location:{get hash(){return currentHash;},set hash(value){const next=value?(value.startsWith('#')?value:'#'+value):'';if(next===currentHash)return;currentHash=next;if(options.dispatchHashChanges)Promise.resolve().then(()=>windowEvents.hashchange?.());},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{const listeners=windowListeners.get(type)||[];listeners.push(handler);windowListeners.set(type,listeners);windowEvents[type]=event=>{const pending=[...(windowListeners.get(type)||[])].map(callback=>callback(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:options.environment||'test'}:{mode:'demo',environment:'local'},
   searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,...feedbackHelpers,...Object.fromEntries(Object.entries(onboardingHelpers).filter(([name])=>!['loadDraft','saveDraft','clearDraft'].includes(name))),
   loadDraft:()=>onboardingHelpers.loadDraft(ctx.localStorage),saveDraft:draft=>onboardingHelpers.saveDraft(draft,ctx.localStorage),clearDraft:id=>onboardingHelpers.clearDraft(id,ctx.localStorage),
@@ -110,7 +111,7 @@ async function setup(options={}){
   FormData:class {constructor(form){this.values=form.values===undefined?mountedFormValues(document,form):Array.isArray(form.values)?form.values:Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}
  });
  const body=source.replace(/^import[^\n]+\n/gm,'');
- await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,openEditor,openDetails,openModal,closeModal,openActivation,matchingTags,openFeedbackPackages,openFeedbackPurchase,openFeedbackPrompt,propertyInsightsPage,getFeedbackPrompt:()=>feedbackPrompt,getModelState:()=>state};})()`,ctx);
+ await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,startOnboarding,openEditor,openDetails,openModal,closeModal,openActivation,matchingTags,openFeedbackPackages,openFeedbackPurchase,openFeedbackPrompt,propertyInsightsPage,getFeedbackPrompt:()=>feedbackPrompt,getModelState:()=>state};})()`,ctx);
  const click=async(dataset)=>{const target={dataset,closest:()=>target};await document.handlers.click({target,preventDefault(){}})};
  return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents,timers,runNextTimer:()=>timers.shift()?.callback(),runTimers:()=>{for(const timer of timers.splice(0))timer.callback();}};
 }
@@ -1276,18 +1277,101 @@ test('an account change during draft save retains the bound receipt and hides th
  assert.doesNotMatch(t.document.getElementById('modal-root').innerHTML,/old-account-search/);
 });
 
-test('a selected teaser preserves an older draft until the user explicitly starts its replacement',async()=>{
+const storedOnboarding=t=>{const raw=t.regionStorage.get(onboardingHelpers.DRAFT_STORAGE_KEY);return raw?JSON.parse(raw):null;};
+const onboardingProperty=(key='chosen-property',sourceKey=publicSourceKey('property'))=>({key,sourceKey,title:'Forrás otthon',type:'Lakás',price:66.65,area:57.6,rooms:2.5,location:'Debrecen',prefill:{type:'Lakás',price:66.65,area:57.6,rooms:2.5,locations:[getLocation('city:Debrecen')]}});
+const recentSearchMarkup=t=>{const slot=t.document.getElementById('landing-recent-search-slot');return slot?.innerHTMLWasAssigned?slot.innerHTML:t.document.getElementById('app').innerHTML.match(/<div id="landing-recent-search-slot">([\s\S]*?)<\/div>/)?.[1]||'';};
+
+test('a different teaser automatically replaces the previous draft with a fresh receipt and no overwrite question',async()=>{
  const existing=onboardingHelpers.createDraft('property',{title:'Korábbi ingatlan',type:'Ház'});
- const source={key:'chosen-property',title:'Forrás otthon',type:'Lakás',price:66.65,area:57.6,rooms:2.5,location:'Debrecen',prefill:{type:'Lakás',price:66.65,area:57.6,rooms:2.5,locations:[getLocation('city:Debrecen')]}};
+ const source=onboardingProperty();
  const t=await setup({hosted:true,hash:'#landing',fetchLanding:async()=>({...landingFixture(''),properties:[source]}),regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(existing)}});
  await t.click({action:'onboarding-start',kind:'search',source:'chosen-property'});
- assert.match(t.document.getElementById('modal-root').innerHTML,/Piszkozat folytatása/);assert.equal(JSON.parse(t.regionStorage.get(onboardingHelpers.DRAFT_STORAGE_KEY)).id,existing.id);
- await t.click({action:'onboarding-replace',id:existing.id});
- const replacement=JSON.parse(t.regionStorage.get(onboardingHelpers.DRAFT_STORAGE_KEY));assert.notEqual(replacement.id,existing.id);assert.equal(replacement.kind,'search');
+ assert.equal(t.document.getElementById('modal-root').innerHTML,'');assert.ok(t.document.getElementById('entity-form'));
+ const replacement=storedOnboarding(t);assert.notEqual(replacement.id,existing.id);assert.notEqual(replacement.creationRequestId,existing.creationRequestId);assert.equal(replacement.kind,'search');assert.deepEqual(replacement.origin,{kind:'property',key:source.sourceKey});
  assert.equal(Number(t.document.getElementById('f-maxPrice').value),75);assert.equal(Number(t.document.getElementById('f-minArea').value),50);assert.equal(t.document.getElementById('f-maxArea').value,'');assert.equal(t.document.getElementById('f-minRooms').value,'2.5');assert.equal(t.document.getElementById('f-maxRooms').value,'');
  assert.equal(t.document.getElementById('f-maxPrice').checkValidity(),true);assert.equal(t.document.getElementById('f-minArea').checkValidity(),true);
- assert.match(t.document.getElementById('location-chips').innerHTML,/Debrecen/);
+ assert.match(t.document.getElementById('location-chips').innerHTML,/Debrecen/);assert.equal(replacement.data.sourceKey,undefined);
 });
+
+test('the same listing resumes edited fields and its step when its landing slot and public parameters change',async()=>{
+ let source=onboardingProperty();
+ const t=await setup({hosted:true,hash:'#landing',fetchLanding:async()=>({...landingFixture(''),properties:[source]})});
+ await t.click({action:'onboarding-start',kind:'search',source:source.key});await advanceEditor(t,4);
+ const title=t.document.getElementById('f-title');title.value='Saját megőrzött keresésem';title.handlers.input({target:title});t.document.getElementById('entity-form').handlers.input({target:title});
+ await editorAction(t,'editor-step-button-1');const price=t.document.getElementById('f-maxPrice');price.value='123';t.document.getElementById('entity-form').handlers.input({target:price});
+ await t.click({action:'landing'});const before=storedOnboarding(t);assert.equal(before.step,1);
+ source={...source,key:'property-new-slot',price:199,prefill:{...source.prefill,price:199}};
+ await t.click({action:'landing-retry'});await t.click({action:'onboarding-start',kind:'search',source:source.key});
+ const resumed=storedOnboarding(t);assert.equal(resumed.id,before.id);assert.equal(resumed.creationRequestId,before.creationRequestId);assert.equal(editorStep(t),1);assert.equal(t.document.getElementById('f-maxPrice').value,'123');assert.equal(t.document.getElementById('f-title').value,'Saját megőrzött keresésem');assert.equal(t.document.getElementById('modal-root').innerHTML,'');
+});
+
+test('identical-looking listings have separate origins and an opposite-kind teaser also replaces without a prompt',async()=>{
+ const first=onboardingProperty('first',publicSourceKey('property','a')),second=onboardingProperty('second',publicSourceKey('property','c'));
+ const sellerSource={key:'search-source',sourceKey:publicSourceKey('search','a'),title:'Ugyanilyen otthont keresünk',type:'Lakás',locations:['Debrecen'],prefill:{locations:[getLocation('city:Debrecen')],type:'Lakás',minPrice:50,maxPrice:50,minArea:60,maxArea:60,minRooms:2,maxRooms:2}};
+ const t=await setup({hosted:true,hash:'#landing',fetchLanding:async()=>({...landingFixture(''),properties:[first,second],searches:[sellerSource]})});
+ await t.click({action:'onboarding-start',kind:'search',source:first.key});const initial=storedOnboarding(t);await t.click({action:'landing'});await t.click({action:'onboarding-start',kind:'search',source:second.key});const distinct=storedOnboarding(t);
+ assert.notEqual(distinct.id,initial.id);assert.deepEqual(distinct.origin,{kind:'property',key:second.sourceKey});assert.equal(t.document.getElementById('modal-root').innerHTML,'');
+ await t.click({action:'landing'});await t.click({action:'onboarding-start',kind:'property',source:sellerSource.key});const seller=storedOnboarding(t);
+ assert.notEqual(seller.id,distinct.id);assert.equal(seller.kind,'property');assert.deepEqual(seller.origin,{kind:'search',key:sellerSource.sourceKey});assert.equal(t.document.getElementById('modal-root').innerHTML,'');assert.equal(t.document.getElementById('f-street').value,'');
+});
+
+test('the same source resumes finalized authentication and uncertain-save phases with the original receipt',async()=>{
+ const source=onboardingProperty();
+ const base=onboardingHelpers.prepareDraftForAuth(onboardingHelpers.createDraft('search',{title:'Befejezett saját keresésem',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:85,minArea:45},{origin:onboardingHelpers.originFromListing('property',source.sourceKey)}),'anna@example.hu');
+ for(const pending of [base,onboardingHelpers.prepareDraftSave(base,{id:'original-owner',email:'anna@example.hu'})]){
+  const t=await setup({hosted:true,hash:'#landing',fetchLanding:async()=>({...landingFixture(''),properties:[source]}),regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(pending)}});
+  await t.click({action:'onboarding-start',kind:'search',source:source.key});const resumed=storedOnboarding(t);
+  assert.equal(resumed.id,pending.id);assert.equal(resumed.phase,pending.phase);assert.equal(resumed.creationRequestId,pending.creationRequestId);assert.deepEqual(resumed.completedData,pending.completedData);assert.equal(resumed.expectedEmail,pending.expectedEmail);
+  assert.equal(t.document.getElementById('entity-form'),null,'Reusing a pending source cannot reopen editing and mutate an uncertain saved payload');
+  if(pending.phase==='saving')assert.match(t.document.getElementById('app').innerHTML,/onboarding-save-retry/);else{assert.equal(t.ctx.location.hash,'#register');assert.ok(t.document.getElementById('hosted-auth-form'));}
+ }
+});
+
+test('changing a pending source starts a new unbound draft without carrying the old frozen request or credentials',async()=>{
+ const first=onboardingProperty('first'),second=onboardingProperty('second',publicSourceKey('property','d'));
+ const completed=onboardingHelpers.prepareDraftForAuth(onboardingHelpers.createDraft('search',{title:'Régi lezárt keresés',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:85,minArea:45},{origin:onboardingHelpers.originFromListing('property',first.sourceKey)}),'anna@example.hu');
+ const pending=onboardingHelpers.prepareDraftSave(completed,{id:'original-owner',email:'anna@example.hu'});
+ const t=await setup({hosted:true,hash:'#landing',fetchLanding:async()=>({...landingFixture(''),properties:[first,second]}),regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(pending)}});
+ await t.click({action:'onboarding-start',kind:'search',source:second.key});const replacement=storedOnboarding(t);
+ assert.notEqual(replacement.id,pending.id);assert.notEqual(replacement.creationRequestId,pending.creationRequestId);assert.equal(replacement.phase,'editing');assert.equal(replacement.expectedEmail,undefined);assert.equal(replacement.ownerId,undefined);assert.equal(replacement.completedData,undefined);assert.deepEqual(replacement.origin,{kind:'property',key:second.sourceKey});assert.ok(t.document.getElementById('entity-form'));assert.equal(t.document.getElementById('modal-root').innerHTML,'');
+});
+
+test('location search reuses a search with exactly its current places regardless of order or original listing',async()=>{
+ let existing=onboardingHelpers.createDraft('search',{title:'Átírt saját keresés',type:'Ház',locationIds:['city:Debrecen','city:Szeged'],maxPrice:130,minArea:60,description:'A saját részleteim'},{origin:onboardingHelpers.originFromListing('property',publicSourceKey('property','e')),editor:{locations:[getLocation('city:Debrecen'),getLocation('city:Szeged')],titleGenerated:false,completedSteps:[0,1]}});
+ existing=onboardingHelpers.updateDraft(existing,{step:2});
+ const t=await setup({hosted:true,hash:'#landing',regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(existing)}});
+ t.ui.startOnboarding('search',null,[getLocation('city:Szeged'),getLocation('city:Debrecen'),getLocation('city:Szeged')]);
+ assert.equal(storedOnboarding(t).id,existing.id);assert.equal(editorStep(t),2);assert.equal(t.document.getElementById('f-title').value,existing.data.title);assert.equal(t.document.getElementById('f-description').value,existing.data.description);assert.equal(t.document.getElementById('modal-root').innerHTML,'');
+ await t.click({action:'landing'});t.ui.startOnboarding('search',null,[getLocation('city:Debrecen')]);const changed=storedOnboarding(t);
+ assert.notEqual(changed.id,existing.id);assert.deepEqual(changed.data.locationIds,['city:Debrecen']);assert.equal(changed.data.maxPrice,'');assert.equal(editorStep(t),0);assert.equal(t.document.getElementById('modal-root').innerHTML,'');
+});
+
+test('location source matching follows edits to the draft rather than its initial selected set',async()=>{
+ const oldPlaces=[getLocation('city:Debrecen')],currentPlaces=[getLocation('city:Szeged')];
+ let existing=onboardingHelpers.createDraft('search',{title:'Új helyszínnel keresek',type:'Lakás',locationIds:currentPlaces.map(x=>x.id),maxPrice:80,minArea:40},{origin:onboardingHelpers.originFromLocations(oldPlaces),editor:{locations:currentPlaces,titleGenerated:false}});
+ existing=onboardingHelpers.updateDraft(existing,{step:1});
+ const t=await setup({hosted:true,hash:'#landing',regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(existing)}});
+ t.ui.startOnboarding('search',null,currentPlaces);assert.equal(storedOnboarding(t).id,existing.id);await t.click({action:'landing'});t.ui.startOnboarding('search',null,oldPlaces);assert.notEqual(storedOnboarding(t).id,existing.id);
+});
+
+test('recent search is below the landing picker, escapes its details and resumes the stored step by its guarded id',async()=>{
+ let existing=onboardingHelpers.createDraft('search',{title:'Saját <keresés> & terv',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:80,minArea:40},{editor:{locations:[getLocation('city:Debrecen')],titleGenerated:false}});
+ existing=onboardingHelpers.updateDraft(existing,{step:3});
+ const t=await setup({hosted:true,hash:'#landing',regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(existing)}});
+ const html=t.document.getElementById('app').innerHTML,markup=recentSearchMarkup(t);assert.ok(html.indexOf('id="landing-recent-search-slot"')>html.indexOf('id="landing-search-form"'));assert.match(markup,/Legutóbbi keresésed/);assert.match(markup,/Saját &lt;keresés&gt; &amp; terv/);assert.match(markup,/Debrecen/);assert.doesNotMatch(markup,/<keresés>|property-[a-f0-9]{64}/);
+ await t.click({action:'onboarding-resume-draft',id:existing.id});assert.equal(editorStep(t),3);assert.equal(storedOnboarding(t).id,existing.id);
+ await t.click({action:'landing'});const replacement=onboardingHelpers.createDraft('property',{title:'Másik lapon készült ingatlan'});t.regionStorage.set(onboardingHelpers.DRAFT_STORAGE_KEY,JSON.stringify(replacement));await t.click({action:'onboarding-resume-draft',id:existing.id});assert.equal(t.ctx.location.hash,'#landing');assert.equal(t.document.getElementById('entity-form'),null);assert.equal(storedOnboarding(t).id,replacement.id);
+});
+
+test('recent search follows cross-tab storage, focus and pageshow without showing property, expired or consumed drafts',async()=>{
+ const t=await setup({hosted:true,hash:'#landing'});assert.equal(recentSearchMarkup(t),'');
+ const existing=onboardingHelpers.createDraft('search',{title:'Másik fül keresése',type:'Lakás',locationIds:['city:Szeged']});t.regionStorage.set(onboardingHelpers.DRAFT_STORAGE_KEY,JSON.stringify(existing));await t.windowEvents.storage({type:'storage',key:onboardingHelpers.DRAFT_STORAGE_KEY});assert.match(recentSearchMarkup(t),/Másik fül keresése/);
+ const other=onboardingHelpers.createDraft('property',{title:'Eladó ingatlan'});t.regionStorage.set(onboardingHelpers.DRAFT_STORAGE_KEY,JSON.stringify(other));await t.windowEvents.focus({type:'focus'});assert.equal(recentSearchMarkup(t),'');
+ t.regionStorage.set(onboardingHelpers.DRAFT_STORAGE_KEY,JSON.stringify(existing));await t.windowEvents.pageshow({type:'pageshow'});assert.match(recentSearchMarkup(t),/Másik fül keresése/);
+ t.regionStorage.delete(onboardingHelpers.DRAFT_STORAGE_KEY);await t.windowEvents.storage({type:'storage',key:onboardingHelpers.DRAFT_STORAGE_KEY});assert.equal(recentSearchMarkup(t),'');
+ const expired=onboardingHelpers.createDraft('search',{title:'Lejárt keresés'},{now:Date.now()-8*86400000});t.regionStorage.set(onboardingHelpers.DRAFT_STORAGE_KEY,JSON.stringify(expired));await t.windowEvents.focus({type:'focus'});assert.equal(recentSearchMarkup(t),'');assert.equal(t.regionStorage.has(onboardingHelpers.DRAFT_STORAGE_KEY),false);
+});
+
 
 test('an uncertain save result keeps the completed payload frozen when browser navigation revisits the wizard',async()=>{
  const data={title:'Bizonytalan válaszú keresés',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:90,minArea:40,minRooms:null};
@@ -1388,4 +1472,64 @@ test('blank half rooms serializes as zero without pre-filling that control',asyn
  const values={type:'Lakás',street:'Teszt utca',houseNumber:'12',price:'65',area:'60',wholeRooms:'2',halfRooms:'',title:'Két egész szoba'};
  assert.equal(t.document.getElementById('f-halfRooms').value,'');submitEntity(t,values);await settle();
  const created=t.model.getState().properties.find(item=>item.title==='Két egész szoba');assert.ok(created);assert.equal(created.wholeRooms,2);assert.equal(created.halfRooms,0);assert.equal(created.rooms,2);
+});
+
+async function finishReplacementSearch(t,source,title){
+ await t.click({action:'landing'});await t.click({action:'onboarding-start',kind:'search',source:source.key});
+ const replacement=storedOnboarding(t);await advanceEditor(t,4);
+ const name=t.document.getElementById('f-title');name.value=title;name.handlers.input({target:name});t.document.getElementById('entity-form').handlers.input({target:name});
+ await submitEditor(t);assert.equal(t.ctx.location.hash,'#register','A replacement wizard must remain usable while the abandoned request is pending');
+ const form=t.document.getElementById('hosted-auth-form');form.values={name:'Nagy Anna',email:'anna@example.hu',password:'secret-password-123',accountType:'private'};await form.handlers.submit({preventDefault(){},currentTarget:form});
+ return replacement;
+}
+
+test('an abandoned POST response cannot block, clear or navigate over a completed replacement draft',async()=>{
+ for(const outcome of ['success','failure']){
+  const first=onboardingProperty('first'),second=onboardingProperty('second',publicSourceKey('property','f'));
+  const data={title:'Régi, lecserélt keresés',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:85,minArea:45};
+  const initial=onboardingHelpers.prepareDraftForAuth(onboardingHelpers.createDraft('search',data,{origin:onboardingHelpers.originFromListing('property',first.sourceKey)}),'anna@example.hu');
+  let resolveOld,rejectOld;const writes=[];
+  const t=await setup({hosted:true,hash:'#register',fetchLanding:async()=>({...landingFixture(''),properties:[first,second]}),regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(initial)},apiOverrides:{saveEntity:async(kind,payload,id,options)=>{
+   writes.push(options.creationRequestId);if(options.creationRequestId===initial.creationRequestId)return await new Promise((resolve,reject)=>{resolveOld=resolve;rejectOld=reject;});return{id:'new-source-saved',...payload};
+  }}});
+  const form=t.document.getElementById('hosted-auth-form');form.values={name:'Nagy Anna',email:'anna@example.hu',password:'secret-password-123',accountType:'private'};const submitted=form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(typeof resolveOld,'function');
+  const replacement=await finishReplacementSearch(t,second,'Az új forráshoz mentett keresésem');
+  assert.notEqual(replacement.id,initial.id);assert.deepEqual(writes,[initial.creationRequestId,replacement.creationRequestId]);assert.equal(storedOnboarding(t),null);assert.equal(t.ctx.location.hash,'#searches');
+  const app=t.document.getElementById('app').innerHTML,confirmation=t.document.getElementById('modal-root').innerHTML;assert.match(confirmation,/Az új forráshoz mentett keresésem/);
+  if(outcome==='success')resolveOld({id:'abandoned-source-saved',...data});else rejectOld(Object.assign(new Error('A korábbi mentés hibája'),{status:503}));await submitted;await settle();
+  assert.equal(storedOnboarding(t),null);assert.equal(t.ctx.location.hash,'#searches');assert.equal(t.document.getElementById('app').innerHTML,app);assert.equal(t.document.getElementById('modal-root').innerHTML,confirmation);assert.deepEqual(writes,[initial.creationRequestId,replacement.creationRequestId]);
+ }
+});
+
+test('an abandoned account lookup cannot create or disturb the replacement saved before its result arrives',async()=>{
+ const first=onboardingProperty('first'),second=onboardingProperty('second',publicSourceKey('property','d'));
+ const data={title:'Lecserélt, még be sem küldött keresés',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:85,minArea:45};
+ const initial=onboardingHelpers.prepareDraftForAuth(onboardingHelpers.createDraft('search',data,{origin:onboardingHelpers.originFromListing('property',first.sourceKey)}),'anna@example.hu');
+ const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();let reads=0,resolveOld;const writes=[];
+ const t=await setup({hosted:true,hash:'#register',fetchLanding:async()=>({...landingFixture(''),properties:[first,second]}),regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(initial)},apiOverrides:{getState:async()=>++reads===1?await new Promise(resolve=>{resolveOld=resolve;}):baseline,saveEntity:async(kind,payload,id,options)=>{writes.push(options.creationRequestId);return{id:'replacement-after-lookup',...payload};}}});
+ const form=t.document.getElementById('hosted-auth-form');form.values={name:'Nagy Anna',email:'anna@example.hu',password:'secret-password-123',accountType:'private'};const submitted=form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(typeof resolveOld,'function');
+ const replacement=await finishReplacementSearch(t,second,'Mentés a gyorsabb új kereséshez');assert.deepEqual(writes,[replacement.creationRequestId]);assert.equal(storedOnboarding(t),null);const confirmation=t.document.getElementById('modal-root').innerHTML;assert.match(confirmation,/Mentés a gyorsabb új kereséshez/);
+ resolveOld(baseline);await submitted;await settle();assert.deepEqual(writes,[replacement.creationRequestId]);assert.equal(storedOnboarding(t),null);assert.equal(t.ctx.location.hash,'#searches');assert.equal(t.document.getElementById('modal-root').innerHTML,confirmation);
+});
+
+test('an abandoned save completion cannot unlock a replacement authentication or save that is still pending',async()=>{
+ for(const stage of ['authentication','save'])for(const outcome of ['success','failure']){
+  const first=onboardingProperty('first'),second=onboardingProperty('second',publicSourceKey('property','9'));
+  const data={title:'Lecserélt, késleltetett régi mentés',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:85,minArea:45};
+  const initial=onboardingHelpers.prepareDraftForAuth(onboardingHelpers.createDraft('search',data,{origin:onboardingHelpers.originFromListing('property',first.sourceKey)}),'anna@example.hu');
+  let resolveOld,rejectOld,releaseAuth,resolveNew,authCount=0;const writes=[];
+  const t=await setup({hosted:true,hash:'#register',fetchLanding:async()=>({...landingFixture(''),properties:[first,second]}),regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(initial)},connectApi:async()=>{authCount++;if(stage==='authentication'&&authCount===2)await new Promise(resolve=>{releaseAuth=resolve;});},apiOverrides:{saveEntity:async(kind,payload,id,options)=>{
+   writes.push(options.creationRequestId);if(options.creationRequestId===initial.creationRequestId)return await new Promise((resolve,reject)=>{resolveOld=resolve;rejectOld=reject;});return await new Promise(resolve=>{resolveNew=()=>resolve({id:'current-pending-source-saved',...payload});});
+  }}});
+  const oldForm=t.document.getElementById('hosted-auth-form');oldForm.values={name:'Nagy Anna',email:'anna@example.hu',password:'secret-password-123',accountType:'private'};const oldSubmitted=oldForm.handlers.submit({preventDefault(){},currentTarget:oldForm});await settle();assert.equal(typeof resolveOld,'function');
+  await t.click({action:'landing'});await t.click({action:'onboarding-start',kind:'search',source:second.key});const replacement=storedOnboarding(t);await advanceEditor(t,4);await submitEditor(t);assert.equal(t.ctx.location.hash,'#register');
+  const newForm=t.document.getElementById('hosted-auth-form');newForm.values={name:'Nagy Anna',email:'anna@example.hu',password:'secret-password-123',accountType:'private'};const newSubmitted=newForm.handlers.submit({preventDefault(){},currentTarget:newForm});await settle();
+  if(stage==='authentication')assert.equal(typeof releaseAuth,'function');else assert.equal(typeof resolveNew,'function');
+  if(outcome==='success')resolveOld({id:'obsolete-success',...data});else rejectOld(Object.assign(new Error('obsolete request failed'),{status:503}));await oldSubmitted;await settle();
+  assert.equal(storedOnboarding(t).id,replacement.id);assert.equal(authCount,2);assert.doesNotMatch(t.document.getElementById('app').innerHTML,/obsolete request failed|obsolete-success/);
+  await newForm.handlers.submit({preventDefault(){},currentTarget:newForm});assert.equal(authCount,2,'An old callback cannot release the busy guard of the current authentication');
+  if(stage==='authentication'){releaseAuth();await settle();assert.equal(typeof resolveNew,'function');}
+  await t.click({action:'onboarding-save-retry'});assert.deepEqual(writes,[initial.creationRequestId,replacement.creationRequestId],'An old finally block cannot release the replacement save marker or cause another POST');
+  resolveNew();await newSubmitted;await settle();assert.equal(storedOnboarding(t),null);assert.equal(t.ctx.location.hash,'#searches');assert.match(t.document.getElementById('modal-root').innerHTML,/current-pending-source-saved/);assert.deepEqual(writes,[initial.creationRequestId,replacement.creationRequestId]);
+ }
 });

@@ -157,6 +157,16 @@ function seed(now) {
 const publicDemoSelections=new Map();
 const publicDemoType=type=>['Lakás','Ház'].includes(type)?type:'Ingatlan';
 const publicDemoBucket=(value,limits)=>{if(value==null)return 'open';const index=limits.findIndex(limit=>Number(value)<limit);return index<0?limits.length:index;};
+// Only fictional built-in demo IDs reach this deterministic identity helper.
+// Hosted source identities are SHA256-derived by the backend, never generated from browser input.
+function demoSourceKey(kind,id) {
+  const value=`otthonra:demo-source:v1:${kind}:${id}`;
+  return kind+'-'+Array.from({length:8},(_,salt)=>{
+    let hash=(0x811c9dc5^Math.imul(salt+1,0x9e3779b9))>>>0;
+    for(let index=0;index<value.length;index++)hash=Math.imul(hash^value.charCodeAt(index),0x01000193)>>>0;
+    return hash.toString(16).padStart(8,'0');
+  }).join('');
+}
 function samplePublicDemo(items,limit,kind,scope,random) {
   const draw=()=>{const value=Number(random());return Number.isFinite(value)?Math.max(0,Math.min(1-Number.EPSILON,value)):0;};
   const key=kind+':'+scope,previous=publicDemoSelections.get(key)||[];
@@ -210,8 +220,8 @@ export function demoLanding(region=null,random=Math.random) {
   const properties=available?samplePublicDemo([...sample.properties,...propertyExamples],4,'property',scope,random):[];
   return {
     region:clone(region),scope:region?'region':'national',
-    searches:searches.map((entity,index)=>({key:`search-${index+1}`,title:publicTitle(entity.title,'Ingatlant keresnek'),type:publicDemoType(entity.type),locations:entity.locations.map(location=>location.label),minPrice:entity.minPrice,maxPrice:entity.maxPrice,minArea:entity.minArea,maxArea:entity.maxArea,minRooms:entity.minRooms,maxRooms:entity.maxRooms,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity),prefill:sanitizeTeaserPrefill('search',entity)})),
-    properties:properties.map((entity,index)=>({key:`property-${index+1}`,title:publicTitle(entity.title,'Eladó ingatlan'),type:publicDemoType(entity.type),location:entity.location.label,price:entity.price,area:entity.area,wholeRooms:entity.wholeRooms??null,halfRooms:entity.halfRooms??null,rooms:entity.rooms,lotArea:entity.lotArea??null,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity),prefill:sanitizeTeaserPrefill('property',{...entity,locations:[getLocation(entity.neighborhoodIds?.[0])||entity.location]})}))
+    searches:searches.map((entity,index)=>({key:`search-${index+1}`,sourceKey:demoSourceKey('search',entity.id),title:publicTitle(entity.title,'Ingatlant keresnek'),type:publicDemoType(entity.type),locations:entity.locations.map(location=>location.label),minPrice:entity.minPrice,maxPrice:entity.maxPrice,minArea:entity.minArea,maxArea:entity.maxArea,minRooms:entity.minRooms,maxRooms:entity.maxRooms,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity),prefill:sanitizeTeaserPrefill('search',entity)})),
+    properties:properties.map((entity,index)=>({key:`property-${index+1}`,sourceKey:demoSourceKey('property',entity.id),title:publicTitle(entity.title,'Eladó ingatlan'),type:publicDemoType(entity.type),location:entity.location.label,price:entity.price,area:entity.area,wholeRooms:entity.wholeRooms??null,halfRooms:entity.halfRooms??null,rooms:entity.rooms,lotArea:entity.lotArea??null,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity),prefill:sanitizeTeaserPrefill('property',{...entity,locations:[getLocation(entity.neighborhoodIds?.[0])||entity.location]})}))
   };
 }
 
