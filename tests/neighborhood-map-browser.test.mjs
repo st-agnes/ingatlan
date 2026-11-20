@@ -28,6 +28,17 @@ const searchId='20000000-0000-4000-8000-000000000001';
 const propertyId='30000000-0000-4000-8000-000000000001';
 const interact=(viewport,locator)=>viewport.touch?locator.tap():locator.click();
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function zoom(map,viewport,direction){
+ await interact(viewport,map.locator(`.leaflet-control-zoom-${direction}`));
+ // Leaflet ignores another desktop zoom click during its normal 250ms
+ // transition. Wait for that real UI transition before the next action.
+ await delay(275);const canvas=map.locator('.location-map-canvas');
+ for(let attempt=0;attempt<40;attempt++){
+  if(!await canvas.evaluate(element=>element.classList.contains('leaflet-zoom-anim')))return;
+  await delay(25);
+ }
+ assert.equal(await canvas.evaluate(element=>element.classList.contains('leaflet-zoom-anim')),false,'The normal map zoom transition must settle');
+}
 function gate(){let release;const promise=new Promise(resolve=>{release=resolve;});return {promise,release};}
 
 async function fixture(browser,viewport,{authenticated=false}={}){
@@ -115,7 +126,7 @@ async function landingSelection(browser,viewport){
   assert.equal(await pathFor(map,tocoskert.id).getAttribute('aria-pressed'),'true');await removeChip(page,viewport,sestakert.id,{landing:true});assert.equal(await pathFor(map,sestakert.id).getAttribute('aria-pressed'),'false');
   await chooseText(page,viewport,otherCity.id,'Szeged',{landing:true});await pathFor(map,szeged.id).waitFor();assert.equal(await pathFor(map,venkert.id).count(),0,'A new textual location must focus and render the new city');
   const mapBox=await map.boundingBox(),inputBox=await page.locator('#landing-location-input').boundingBox();assert.ok(mapBox.y>=inputBox.y+inputBox.height,'The map belongs below the location input');
-  for(let index=0;index<8;index++){const out=map.locator('.leaflet-control-zoom-out');if(await out.getAttribute('aria-disabled')==='true')break;await interact(viewport,out);}
+  for(let index=0;index<8;index++){const out=map.locator('.leaflet-control-zoom-out');if(await out.getAttribute('aria-disabled')==='true'||await map.locator('path.leaflet-interactive').count()===0)break;await zoom(map,viewport,'out');}
   await page.waitForFunction(()=>document.querySelectorAll('#landing-location-map path.leaflet-interactive').length===0);assert.equal(new Set(server.requests.filter(path=>path!=='/data/map/index.json')).size,2,'Only visited city files are loaded');
   console.log(`Neighborhood map landing ${viewport.name}: lazy city loading, auto focus, overlapping polygon choice, canonical chips, selected styling and zoom-out limits passed.`);
  });
@@ -158,8 +169,8 @@ async function failuresAndStaleReads(browser,viewport){
   await page.reload({waitUntil:'domcontentloaded'});await readyMap(page,'#landing-location-map');server.holdCity='Debrecen';server.hold=gate();const before=server.requests.length;
   await chooseText(page,viewport,city.id,'Debrecen',{landing:true});await page.waitForFunction(()=>document.querySelector('#landing-location-map .location-map-status')?.textContent.length>0);for(let index=0;index<40&&!server.requests.slice(before).some(path=>path.endsWith('city-aaaaaaaaaaaaaaaa.json'));index++)await delay(25);assert.ok(server.requests.slice(before).some(path=>path.endsWith('city-aaaaaaaaaaaaaaaa.json')));
   await chooseText(page,viewport,otherCity.id,'Szeged',{landing:true});await pathFor(map,szeged.id).waitFor();server.hold.release();server.hold=null;await delay(350);assert.equal(await pathFor(map,venkert.id).count(),0,'An older city response cannot paint over the newly focused map');assert.equal(await pathFor(map,szeged.id).count(),1);
-  await page.locator('#landing-location-input').fill('Debrecen');await page.locator('#landing-location-options [data-location-id]').first().waitFor();await interact(viewport,map.locator('.location-map-status'));assert.equal(await page.locator('#landing-location-options').isHidden(),true,'A visible map-area click dismisses the suggestion popup');assert.equal(await page.locator('#landing-location-input').inputValue(),'Debrecen','Dismissing suggestions must retain the typed query');await interact(viewport,map.locator('.leaflet-control-zoom-in'));
-  await f.context.route('https://tile.openstreetmap.org/**',route=>route.fulfill({status:503,contentType:'text/plain',body:'Isolated tile outage'}));await interact(viewport,map.locator('.leaflet-control-zoom-in'));
+  await page.locator('#landing-location-input').fill('Debrecen');await page.locator('#landing-location-options [data-location-id]').first().waitFor();await interact(viewport,map.locator('.location-map-status'));assert.equal(await page.locator('#landing-location-options').isHidden(),true,'A visible map-area click dismisses the suggestion popup');assert.equal(await page.locator('#landing-location-input').inputValue(),'Debrecen','Dismissing suggestions must retain the typed query');await zoom(map,viewport,'in');
+  await f.context.route('https://tile.openstreetmap.org/**',route=>route.fulfill({status:503,contentType:'text/plain',body:'Isolated tile outage'}));await zoom(map,viewport,'in');
   await page.waitForFunction(()=>document.querySelector('#landing-location-map .location-map-status')?.textContent.includes('háttértérkép'));
   await pathFor(map,szeged.id).waitFor();await pathFor(map,szeged.id).press('Enter');assert.equal(await page.locator(`#landing-location-chips [data-remove-location="${szeged.id}"]`).count(),1,'Background tile failures must not block keyboard selection of public polygons');
   console.log('Neighborhood map network desktop: failed geometry retry, preserved text search, stale city responses, outside dismissal and polygon selection during a tile outage passed.');
