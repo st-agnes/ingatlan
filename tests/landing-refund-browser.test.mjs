@@ -2,6 +2,7 @@
  * Landing HTTP/GeoJS responses are deterministic UI fixtures; API/MySQL refund
  * correctness is separately verified by backend/landing-refund-smoke.mjs.
  */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -17,7 +18,7 @@ function landingFixture(regionId,generation=0){
  const region=regionOptions.find(item=>item.id===regionId)||null,empty=regionId==='HU232';
  return {regions:regionOptions,region,scope:region?'region':'national',searches:empty?[]:Array.from({length:8},(_,index)=>({key:`search-${index}`,title:index===0?`Fényes & csendes lakást keresünk · válogatás ${generation}`:'Otthont keresnek',type:'Lakás',ownerFirstName:'Anna',locations:[regionId==='HU321'?'Debrecen':'Budapest XIII. kerület'],minPrice:null,maxPrice:90000000+index*1000000,minArea:50,maxArea:null,minRooms:2,maxRooms:null,ownerAccountType:index%2?'agent':'private',description:'hidden@example.hu',ownerName:'Titkos Név',ownerId:'secret-owner'})),properties:empty?[]:Array.from({length:4},(_,index)=>({key:`property-${index}`,title:'Világos kertes otthon',ownerFirstName:'Péter',type:'Lakás',location:regionId==='HU321'?'Debrecen':'Budapest',price:82000000+(index+generation)*1000000,area:60,wholeRooms:2,halfRooms:1,rooms:2.5,lotArea:null,ownerAccountType:index%2?'private':'agent',address:'Titkos utca 42.',images:['https://tracker.invalid/image.jpg'],ownerEmail:'hidden@example.hu'}))};
 }
-async function createContext(browser,viewport){const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());return context;}
+async function createContext(browser,viewport){const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});await mockMapTiles(context);await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());return context;}
 async function screenshot(page,name){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,name),fullPage:true}).catch(()=>{});}
 async function fit(locator){const sizes=await locator.evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));assert.ok(sizes.scrollWidth<=sizes.width+1,`Content must fit (${sizes.scrollWidth}/${sizes.width})`);}
 async function readyRegion(page,id){await page.waitForFunction(expected=>document.querySelector('#landing-region')?.value===expected&&document.querySelector('#landing-results')?.getAttribute('aria-busy')==='false',id);}
@@ -34,10 +35,16 @@ async function verifyLanding(browser,viewport){
   assert.equal(await page.locator('.landing-search-card').count(),8);assert.equal(await page.locator('.landing-property-card').count(),4);assert.equal(await page.locator('.sidebar,#hosted-auth-form').count(),0);
   const visible=await page.locator('#app').innerText();assert.match(visible,/Nézd meg, mit keresnek a vevők/);assert.match(await page.locator('.landing-hero h1').innerText(),/Unod a passzív várakozást és a kéretlen telefonokat\?\s*Érd el a vevőidet egy kattintással!/);assert.match(visible,/Tedd közzé a keresési igényed és maradj inkognitóban!/);assert.match(visible,/Fényes & csendes lakást keresünk/);assert.match(visible,/Illusztráció/);assert.match(visible,/Világos kertes otthon/);assert.equal(await page.locator('.landing-search-card .owner-first-name').first().innerText(),'Anna');assert.equal(await page.locator('.landing-property-card .owner-first-name').first().innerText(),'Péter');assert.equal(await page.locator('.landing-property-card .landing-type').count(),4);assert.equal(await page.locator('.landing-search-card .landing-card-meta').count(),0,'Search names and property types appear once in the natural heading');assert.equal(await page.locator('.landing-search-card h3').first().innerText(),'Anna lakást keres');assert.equal(await page.locator('.landing-search-card .landing-ad-title').first().evaluate(element=>element.querySelectorAll('*').length),0,'Ad title markup must remain plain escaped text');assert.doesNotMatch(visible,/hidden@example|Titkos Név|Titkos utca|secret-owner/);assert.equal(await page.locator('img[src^="https://tracker"]').count(),0);assert.equal(await page.locator('.landing a[href="https://www.geojs.io/privacy/"]').count(),1);
   assert.ok(await page.locator('#landing-demands-title').evaluate(element=>element.compareDocumentPosition(document.querySelector('#landing-properties-title'))&Node.DOCUMENT_POSITION_FOLLOWING),'Demand section must precede property teasers');
-  assert.equal(await page.evaluate(()=>scrollY),0,'The public page must open at the top without scrolling to its offers');
+  assert.equal(await page.evaluate(()=>scrollY),0,'The public page must open at the top without an automatic scroll');
+  await page.locator('#landing-location-map .leaflet-container').waitFor();
+  const mapBox=await page.locator('#landing-location-map').boundingBox(),searchBox=await page.locator('#landing-search-form').boundingBox();
+  assert.ok(mapBox&&searchBox&&mapBox.y>=searchBox.y+searchBox.height-1,'The interactive map belongs directly below the text search');
+  assert.ok(mapBox.x>=0&&mapBox.x+mapBox.width<=viewport.width+1,'The map must fit horizontally without hiding the offers');
   for(const [label,selector] of [['search','.landing-search-card'],['property','.landing-property-card']]){
-   const box=await page.locator(selector).first().boundingBox();assert.ok(box,`The first ${label} card must be visible`);
-   assert.ok(box.x>=0&&box.y>=0&&box.x+box.width<=viewport.width+1&&box.y+box.height<=viewport.height+1,`The complete first ${label} card must fit immediately in ${viewport.name}: ${JSON.stringify(box)}`);
+   const first=page.locator(selector).first();
+   await first.evaluate(element=>new Promise(resolve=>{element.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});requestAnimationFrame(()=>requestAnimationFrame(resolve));}));
+   const box=await first.boundingBox();assert.ok(box,`The first ${label} card must be visible`);
+   assert.ok(box.x>=0&&box.y>=0&&box.x+box.width<=viewport.width+1&&box.y+box.height<=viewport.height+1,`The complete first ${label} card below the map must fit when scrolled into view in ${viewport.name}: ${JSON.stringify(box)}`);
   }
   assert.equal(await page.locator('#landing-region-note,.landing-region-status').count(),0,'The county picker must not have explanatory text below it');
   assert.equal(await page.locator('#landing-region').getAttribute('aria-describedby'),null,'Removing helper text must not leave a dangling accessibility reference');

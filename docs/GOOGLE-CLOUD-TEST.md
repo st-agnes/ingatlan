@@ -391,3 +391,9 @@ A „Megtekintés” szükség esetén aktiválja az értesítéshez tartozó sa
 A kiválasztott értesítés megnyitáskor olvasottá válik, vagy külön olvasottnak jelölhető. A lista megnyitása nem jelöli olvasottnak a többi eseményt. A menüben és a fejlécben az olvasatlanok száma látható, és az olvasottság újraindítás után, illetve több böngészőfül esetén is megmarad. A visszajelzések továbbra is névtelenek; az értesítések nem fedik fel a kereső személyét.
 
 A profil eltávolításának neve „Törlés”, mivel a felületen nincs visszaállítás. A történeti párosítások, üzenetek és kreditbizonylatok megmaradnak. A normál tesztdeploy automatikusan alkalmazza az additív értesítési sémát és a történeti feltöltést; új kulcs vagy kézi cloudbeállítás nem szükséges.
+
+## Térképes keresés
+
+A normál deploy feltölti a helyben tárolt Leaflet-megjelenítőt és a külön, egyszerűsített térképes városrész-rétegeket is. Ehhez nem kell API-kulcsot, Secret Manager-értéket vagy `GCP_DEV_CONFIG` mezőt hozzáadni; a Google-geokódolás beállítása változatlan. A kezdőoldali kereső és a keresési igények űrlapja a kiválasztott helyszínre nagyít, a térképen kattintott városrészt pedig a keresésbe teszi. A teljes város kijelölését az adott város kiválasztott városrészei váltják fel.
+
+Az eredeti MySQL-határok és keresési indexek változatlanok; csak a megjelenítéshez használt, városonként betöltött fájlok újak. A telepítő hibával megáll, ha egy hivatkozott térképréteg hiányzik vagy megváltozott a tartalma. A részletes betöltési és licencinformációk a [térképes keresés dokumentációjában](MAP-SEARCH.md) szerepelnek.

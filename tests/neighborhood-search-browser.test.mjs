@@ -1,4 +1,5 @@
 /** Neighborhood search and private address UI with real modules and a mocked geocoding API. */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -16,6 +17,7 @@ const demoState=page=>page.evaluate(async()=>(await import('/model.js')).model.g
 const apiState=page=>page.evaluate(async()=>(await import('/api.js')).getModel().getState());
 async function contextFor(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
+ await mockMapTiles(context);
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());
  await context.route('https://fonts.gstatic.com/**',route=>route.abort());
  return context;

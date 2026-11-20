@@ -24,6 +24,10 @@ jobs:
           node-version: '22'
       - name: Test exact-commit deployment CI validation
         run: node tests/gcp-ci-validation.test.mjs
+      - name: Verify lazy neighborhood map assets and geometry selection
+        run: |
+          node tests/neighborhood-map.test.mjs
+          node tests/neighborhood-map-data.test.mjs
       - name: Install pinned headless browser tools
         timeout-minutes: 5
         run: |
@@ -53,6 +57,8 @@ jobs:
           node tests/street-search-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-street.log
           node tests/tab-resume-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-tab-resume.log
           node tests/activity-notifications-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-activity-notifications.log
+          node tests/neighborhood-map-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-neighborhood-map.log
+          node tests/landing-refund-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/guided-landing-refund.log
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
@@ -325,6 +331,8 @@ jobs:
           node tests/development.test.mjs
           node tests/locations.test.mjs
           node tests/neighborhood-client.test.mjs
+          node tests/neighborhood-map.test.mjs
+          node tests/neighborhood-map-data.test.mjs
           node tests/street-client.test.mjs
           node tests/street-search-browser.test.mjs --offline
           node tests/areas.test.mjs

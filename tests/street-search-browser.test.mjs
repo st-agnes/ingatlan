@@ -1,4 +1,5 @@
 /** Street picker regressions. Postal rows below are isolated mock API fixtures. */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {mkdir,readFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -76,6 +77,7 @@ async function browserTests(){
  const browser=await chromium.launch({headless:true});
  try{for(const viewport of viewports){
   const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
+  await mockMapTiles(context);
   await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());
   await context.route(`${origin}/runtime-config.js`,route=>route.fulfill({status:200,contentType:'text/javascript',body:'globalThis.OTTHONRA_CONFIG=Object.freeze({mode:"api",environment:"test"});'}));
   await context.addInitScript(({origin})=>localStorage.setItem('otthonra.api',JSON.stringify({baseUrl:origin,token:'mock-street-session'})),{origin});

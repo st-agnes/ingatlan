@@ -2,6 +2,7 @@
  * HTTP fixtures keep event identity and unread accounting deterministic; the real
  * MySQL companion smoke verifies atomic creation, privacy and restart behavior.
  */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -40,6 +41,7 @@ function initialNotices(){return [
 function match(id,ownedProperty,foreignSearch){return {id,property:ownedProperty,searchRequest:foreignSearch,contact:{id:'foreign-match-owner',name:'Teszt Eszter',email:'mutual-contact@example.test',phone:'+36 30 555 0101'},createdAt:timestamp,messages:[{id:'message-'+id,matchId:id,senderId:'foreign-match-owner',text:'Megőrzött beszélgetés törölt profilhoz.',createdAt:timestamp}],unread:1};}
 async function fixture(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
+ await mockMapTiles(context);
  const ownedSearch=search(ids.search,ids.user,'Aktív keresési igény'),foreignSearch=search(ids.foreignSearch,'foreign-search-owner','Régebbi, pontosan ezt az otthont kereső igény');
  foreignSearch.ownerFirstName='Eszter';foreignSearch.ownerAccountType='private';foreignSearch.email='PRIVATE_FOREIGN_CONTACT@example.test';foreignSearch.phone='PRIVATE_FOREIGN_PHONE';
  const server={properties:[property(ids.property,ids.user,'Első eladó ingatlan'),property(ids.inactive,ids.user,'Második, nem aktív ingatlan')],searches:[ownedSearch],foreignSearch,active:{kind:'search',id:ids.search},notifications:initialNotices(),gets:[],writes:[],reads:[],activations:[],incomingOffsets:[],decisions:[],deletions:[],unhandled:[],errors:[],markGate:null,credits:100};

@@ -1,4 +1,5 @@
 /** Browser coverage for owner labels, reporting reasons and active-profile incoming likes. */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -14,7 +15,7 @@ const current=page=>page.evaluate(async()=> (await import('/model.js')).model.ge
 const raw=page=>page.evaluate(async()=>JSON.parse(localStorage.getItem((await import('/model.js')).STORAGE_KEY)));
 const candidates=page=>page.evaluate(async()=> (await import('/model.js')).model.feed());
 async function go(page,name='discover'){await page.goto(`${origin}/?interaction-visit=${++visit}#${name}`,{waitUntil:'domcontentloaded'});await page.locator('.page-heading').waitFor();}
-async function createContext(browser,viewport){const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());return context;}
+async function createContext(browser,viewport){const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});await mockMapTiles(context);await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());return context;}
 async function configure(page,accountType='private'){
  await go(page);
  await page.evaluate(async accountType=>{

@@ -1,6 +1,7 @@
 /** Real-browser regressions for the location picker and the create-search flow.
  * Install Playwright into ignored .local/browser-tests; see the CI workflow.
  */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {editorField,editorSave} from './editor-browser-helpers.mjs';
 import { mkdir } from 'node:fs/promises';
@@ -49,6 +50,7 @@ async function verifyViewport(browser, viewport) {
     hasTouch: viewport.touch,
     reducedMotion: 'reduce'
   });
+  await mockMapTiles(context);
   // Local UI behaviour must not depend on third-party font availability.
   await context.route('https://fonts.googleapis.com/**', route => route.abort());
   await context.route('https://fonts.gstatic.com/**', route => route.abort());

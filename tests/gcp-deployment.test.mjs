@@ -5,6 +5,7 @@ import {mkdtemp, mkdir, readFile, readdir, rm, symlink, writeFile} from 'node:fs
 import {join, resolve} from 'node:path';
 import {tmpdir} from 'node:os';
 import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
 import {hostingConfig, prepareSite, validateDevConfig} from '../scripts/gcp/prepare-site.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -20,6 +21,9 @@ const config = Object.freeze({
   workloadIdentityProvider: 'projects/123456789012/locations/global/workloadIdentityPools/otthonra-dev/providers/github'
 });
 const required = ['index.html','app.js','style.css','api.js','model.js','matching.js','public-profile.js','feedback.js','onboarding.js','locations.js','locations-data.js','agglomerations-data.js','neighborhoods-data.js','neighborhood-demo-points.js','street-demo-data.js','data/streets.json.gz','regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
+required.push('location-map.js', 'location-map.css', 'data/map/index.json', 'vendor/leaflet/leaflet.js', 'vendor/leaflet/leaflet.css', 'vendor/leaflet/LICENSE');
+const mapLayer = JSON.stringify({type:'FeatureCollection', features:[]});
+const mapLayerName = `city-${createHash('sha256').update(mapLayer).digest('hex').slice(0,20)}.json`;
 
 async function fixture(run) {
   const source = await mkdtemp(join(tmpdir(), 'otthonra-hosting-source-'));
@@ -31,6 +35,8 @@ async function fixture(run) {
     await mkdir(join(source, name, '..'), {recursive: true});
     await writeFile(join(source, name), name === 'runtime-config.js' ? 'globalThis.OTTHONRA_CONFIG={mode:"demo"};' : `fixture: ${name}`);
   }
+  await writeFile(join(source, 'data/map', mapLayerName), mapLayer);
+  await writeFile(join(source, 'data/map/index.json'), JSON.stringify({schemaVersion:1, cities:[{city:'Debrecen',file:mapLayerName,count:0}]}));
   await mkdir(join(source, 'assets'));
   await writeFile(join(source, 'assets/living.jpg'), 'image-fixture');
   try { await run({source, output, workspace}); }
@@ -87,6 +93,9 @@ test('frontend packaging enables the real hosted test API while preserving the s
     assert.match(await readFile(join(source, 'runtime-config.js'), 'utf8'), /mode:"demo"/);
     assert.equal(await readFile(join(output, 'public/assets/living.jpg'), 'utf8'), 'image-fixture');
     assert.equal(await readFile(join(output, 'public/onboarding.js'), 'utf8'), 'fixture: onboarding.js');
+    assert.equal(await readFile(join(output, 'public/location-map.js'), 'utf8'), 'fixture: location-map.js');
+    assert.equal(await readFile(join(output, 'public/data/map', mapLayerName), 'utf8'), mapLayer);
+    assert.equal(await readFile(join(output, 'public/vendor/leaflet/LICENSE'), 'utf8'), 'fixture: vendor/leaflet/LICENSE');
     assert.equal(await readFile(join(output, 'public/THIRD-PARTY-NOTICES.txt'), 'utf8'), 'fixture: THIRD-PARTY-NOTICES.txt');
     assert.deepEqual((await readdir(output)).sort(), ['firebase.json','public']);
     assert.ok(!(await readdir(join(output, 'public/data'))).includes('neighborhoods.json.gz'));
@@ -114,10 +123,22 @@ test('hidden files, unknown files and symlinks are refused before replacing a pr
 });
 
 test('an incomplete frontend cannot replace a working staged release', async () => {
-  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js','feedback.js','onboarding.js']) await fixture(async ({source, output}) => {
+  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js','feedback.js','onboarding.js','location-map.js','location-map.css','vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css','vendor/leaflet/LICENSE','data/map/index.json']) await fixture(async ({source, output}) => {
     await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
     await rm(join(source, missing));
     await assert.rejects(prepareSite({config, source, output}), new RegExp('Missing frontend file '+missing.replaceAll('.', '\\.')));
+    assert.equal(await readFile(join(output, 'sentinel'), 'utf8'), 'previous-release');
+  });
+});
+
+test('map layers must be present, content-addressed and explicitly listed before replacing Hosting files', async () => {
+  for (const kind of ['missing','changed','unlisted','traversal']) await fixture(async ({source, output}) => {
+    await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
+    if (kind === 'missing') await rm(join(source, 'data/map', mapLayerName));
+    if (kind === 'changed') await writeFile(join(source, 'data/map', mapLayerName), 'unexpected layer');
+    if (kind === 'unlisted') await writeFile(join(source, 'data/map/city-00000000000000000000.json'), '{}');
+    if (kind === 'traversal') await writeFile(join(source, 'data/map/index.json'), JSON.stringify({schemaVersion:1,cities:[{file:'../credentials.json'}]}));
+    await assert.rejects(prepareSite({config, source, output}), /map layer/);
     assert.equal(await readFile(join(output, 'sentinel'), 'utf8'), 'previous-release');
   });
 });
