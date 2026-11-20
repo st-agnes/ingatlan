@@ -41,7 +41,8 @@ async function verifyLanding(browser,viewport){
   assert.ok(mapBox&&searchBox&&mapBox.y>=searchBox.y+searchBox.height-1,'The interactive map belongs directly below the text search');
   assert.ok(mapBox.x>=0&&mapBox.x+mapBox.width<=viewport.width+1,'The map must fit horizontally without hiding the offers');
   for(const [label,selector] of [['search','.landing-search-card'],['property','.landing-property-card']]){
-   const first=page.locator(selector).first();await first.scrollIntoViewIfNeeded();
+   const first=page.locator(selector).first();
+   await first.evaluate(element=>new Promise(resolve=>{element.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});requestAnimationFrame(()=>requestAnimationFrame(resolve));}));
    const box=await first.boundingBox();assert.ok(box,`The first ${label} card must be visible`);
    assert.ok(box.x>=0&&box.y>=0&&box.x+box.width<=viewport.width+1&&box.y+box.height<=viewport.height+1,`The complete first ${label} card below the map must fit when scrolled into view in ${viewport.name}: ${JSON.stringify(box)}`);
   }
