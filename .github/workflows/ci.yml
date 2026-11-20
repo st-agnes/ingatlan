@@ -22,6 +22,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Test exact-commit deployment CI validation
+        run: node tests/gcp-ci-validation.test.mjs
       - name: Install pinned headless browser tools
         timeout-minutes: 5
         run: |
@@ -330,6 +332,7 @@ jobs:
           node tests/attributes.test.mjs
           node tests/gcp-deployment.test.mjs
           node tests/gcp-verification.test.mjs
+          node tests/gcp-ci-validation.test.mjs
           node tests/gcp-run-config.test.mjs
           node tests/gcp-bootstrap.test.mjs
           node tests/gcp-mysql.test.mjs
