@@ -1,0 +1,86 @@
+name: Upload prepared neighborhood map changes
+on:
+  create:
+permissions:
+  contents: write
+jobs:
+  upload:
+    if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/neighborhood-map-objects-20261120'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify source bundle and create immutable Git objects in bounded batches
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import base64,gzip,hashlib,json,os,urllib.request
+          from pathlib import Path,PurePosixPath
+          root=Path('.codex/neighborhood-map-upload-20261120')
+          manifest=json.loads((root/'manifest.json').read_text())
+          assert manifest['version']==1 and manifest['bundleBytes']<8*1024*1024 and manifest['rawBytes']<32*1024*1024
+          chunks=[]
+          for i,part in enumerate(manifest['parts']):
+              data=(root/f'part-{i:03}.bin').read_bytes()
+              assert len(data)==part['s'] and hashlib.sha256(data).hexdigest()==part['h']
+              chunks.append(data)
+          packed=b''.join(chunks)
+          assert len(packed)==manifest['bundleBytes'] and hashlib.sha256(packed).hexdigest()==manifest['bundleSha256']
+          raw=gzip.decompress(packed)
+          assert len(raw)==manifest['rawBytes']
+          bundle=json.loads(raw)
+          assert bundle['base']==manifest['base']=='ae03dc8b30d067b7c7a92b7d516f0c612bf03817'
+          assert bundle['headTree']==manifest['headTree']=='8b084e7f09fb7a42bc8af11bf1f2478a1049c000'
+          assert len(bundle['files'])==656 and not bundle['deleted']
+          files=[];seen=set()
+          for item in bundle['files']:
+              path=PurePosixPath(item['path'])
+              assert not path.is_absolute() and '..' not in path.parts and '.git' not in path.parts
+              assert item['path'] not in seen and item['mode'] in ('100644','100755') and item['type']=='blob'
+              assert item['path'].startswith(('dist/','tests/','docs/','scripts/')) or item['path'] in ('AGENTS.md','README.md','.github/workflows/ci.yml')
+              seen.add(item['path'])
+              data=base64.b64decode(item['content'],validate=True)
+              assert hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()==item['sha']
+              files.append({**{k:v for k,v in item.items() if k!='content'},'text':data.decode('utf-8'),'bytes':len(data)})
+          def expected_tree(rows):
+              tree={}
+              for row in rows:
+                  node=tree;parts=row['path'].split('/')
+                  for part in parts[:-1]:node=node.setdefault(part,{})
+                  assert parts[-1] not in node
+                  node[parts[-1]]=(row['mode'],row['sha'])
+              def digest(node):
+                  data=b''
+                  for name,value in sorted(node.items(),key=lambda pair:pair[0]+('/' if isinstance(pair[1],dict) else '')):
+                      mode,sha=('40000',digest(value)) if isinstance(value,dict) else value
+                      data+=mode.encode()+b' '+name.encode()+b'\0'+bytes.fromhex(sha)
+                  return hashlib.sha1(b'tree '+str(len(data)).encode()+b'\0'+data).hexdigest()
+              return digest(tree)
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args,**kwargs):raise RuntimeError('Unexpected source upload redirect')
+          opener=urllib.request.build_opener(NoRedirect())
+          batches=[];batch=[];size=0
+          for row in files:
+              if batch and (len(batch)>=20 or size+row['bytes']>800000):batches.append(batch);batch=[];size=0
+              batch.append(row);size+=row['bytes']
+          if batch:batches.append(batch)
+          for i,rows in enumerate(batches):
+              body=json.dumps({'tree':[{'path':row['path'],'mode':row['mode'],'type':'blob','content':row['text']} for row in rows]},ensure_ascii=False).encode()
+              request=urllib.request.Request('https://api.github.com/repos/st-agnes/ingatlan/git/trees',data=body,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'})
+              try:
+                  with opener.open(request,timeout=60) as response:result=json.load(response)
+              except Exception as error:
+                  code=getattr(error,'code',None)
+                  raise SystemExit('Immutable source upload failed'+(' (HTTP '+str(code)+')' if code else '')) from None
+              assert result['sha']==expected_tree(rows)
+              print(f'Verified immutable batch {i+1}/{len(batches)} ({len(rows)} files).')
+          body=json.dumps({'base_tree':'fe38a57db94bf516353a58cd26c5e060e45f6b4e','tree':[{k:row[k] for k in ('path','mode','type','sha')} for row in files]}).encode()
+          request=urllib.request.Request('https://api.github.com/repos/st-agnes/ingatlan/git/trees',data=body,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'})
+          with opener.open(request,timeout=60) as response:result=json.load(response)
+          assert result['sha']==bundle['headTree']
+          print('All source objects verified; no ref or deployment changed.')
+          print('Expected final tree: '+bundle['headTree'])
+          PY
