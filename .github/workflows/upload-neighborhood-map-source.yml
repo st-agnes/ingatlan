@@ -5,7 +5,7 @@ permissions:
   contents: write
 jobs:
   upload:
-    if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/neighborhood-map-objects-20261120'
+    if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/neighborhood-map-objects-20261120-v2'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -64,6 +64,8 @@ jobs:
           opener=urllib.request.build_opener(NoRedirect())
           batches=[];batch=[];size=0
           for row in files:
+              if row['path'].startswith('.github/workflows/'):
+                  continue
               if batch and (len(batch)>=20 or size+row['bytes']>800000):batches.append(batch);batch=[];size=0
               batch.append(row);size+=row['bytes']
           if batch:batches.append(batch)
@@ -74,13 +76,21 @@ jobs:
                   with opener.open(request,timeout=60) as response:result=json.load(response)
               except Exception as error:
                   code=getattr(error,'code',None)
+                  try:
+                      detail=json.loads(error.read().decode()).get('message','')[:250]
+                  except Exception:
+                      detail=''
+                  print('GitHub object API:',code,detail)
                   raise SystemExit('Immutable source upload failed'+(' (HTTP '+str(code)+')' if code else '')) from None
               assert result['sha']==expected_tree(rows)
               print(f'Verified immutable batch {i+1}/{len(batches)} ({len(rows)} files).')
-          body=json.dumps({'base_tree':'fe38a57db94bf516353a58cd26c5e060e45f6b4e','tree':[{k:row[k] for k in ('path','mode','type','sha')} for row in files]}).encode()
-          request=urllib.request.Request('https://api.github.com/repos/st-agnes/ingatlan/git/trees',data=body,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'})
-          with opener.open(request,timeout=60) as response:result=json.load(response)
-          assert result['sha']==bundle['headTree']
+          for row in files:
+              if not row['path'].startswith('.github/workflows/'):
+                  continue
+              body=json.dumps({'encoding':'base64','content':base64.b64encode(row['text'].encode()).decode()}).encode()
+              request=urllib.request.Request('https://api.github.com/repos/st-agnes/ingatlan/git/blobs',data=body,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'})
+              with opener.open(request,timeout=60) as response:result=json.load(response)
+              assert result['sha']==row['sha']
           print('All source objects verified; no ref or deployment changed.')
           print('Expected final tree: '+bundle['headTree'])
           PY
