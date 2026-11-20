@@ -1,0 +1,32 @@
+name: Prepare pinned Leaflet source object
+on:
+  create:
+permissions:
+  contents: write
+jobs:
+  prepare:
+    if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/leaflet-vendor-20261120'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - name: Verify official Leaflet release integrity and store immutable source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, json, os, urllib.request
+          url='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
+          with urllib.request.urlopen(url,timeout=30) as response:
+              source=response.read(300000)
+          expected=base64.b64decode('20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=')
+          assert hashlib.sha256(source).digest()==expected, 'The pinned Leaflet1.9.4 integrity check failed.'
+          assert 100000<len(source)<250000
+          body=json.dumps({'encoding':'base64','content':base64.b64encode(source).decode()}).encode()
+          request=urllib.request.Request('https://api.github.com/repos/st-agnes/ingatlan/git/blobs',data=body,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'})
+          with urllib.request.urlopen(request,timeout=30) as response:
+              result=json.load(response)
+          blob=hashlib.sha1(b'blob '+str(len(source)).encode()+b'\0'+source).hexdigest()
+          assert result['sha']==blob
+          print(json.dumps({'version':'1.9.4','bytes':len(source),'sha256':hashlib.sha256(source).hexdigest(),'gitBlob':blob}))
+          print('Verified immutable public source only; no ref or deployment changed.')
+          PY
