@@ -1,6 +1,7 @@
 /** The repeatable hosted TEST feedback scenario, through the real API and MySQL.
  * No API response or authenticated state is mocked; run after startup fixture proof.
  */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -45,6 +46,7 @@ async function verify(browser, viewport) {
     viewport: {width: viewport.width, height: viewport.height},
     hasTouch: viewport.touch, reducedMotion: 'reduce'
   });
+  await mockMapTiles(context);
   await context.route('https://fonts.googleapis.com/**', route => route.abort());
   await context.route('https://fonts.gstatic.com/**', route => route.abort());
   await context.route('https://get.geojs.io/**', route => route.abort());

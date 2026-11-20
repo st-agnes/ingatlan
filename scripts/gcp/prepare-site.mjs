@@ -1,5 +1,6 @@
 import {cp, lstat, mkdir, readFile, readdir, rm, writeFile} from 'node:fs/promises';
 import {dirname, extname, join, resolve} from 'node:path';
+import {createHash} from 'node:crypto';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 
 const projectRoot = fileURLToPath(new URL('../../', import.meta.url));
@@ -9,6 +10,8 @@ const expected = {
 };
 const assetExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.ico', '.woff', '.woff2']);
 const codeFiles = new Set(['index.html', 'app.js', 'style.css', 'api.js', 'model.js', 'matching.js', 'public-profile.js', 'feedback.js', 'onboarding.js', 'locations.js', 'locations-data.js', 'agglomerations-data.js', 'neighborhoods-data.js', 'neighborhood-demo-points.js', 'street-demo-data.js', 'data/streets.json.gz', 'regions-data.js', 'attributes.js', 'accounts.js', 'runtime-config.js', 'data/settlements.json', 'data/agglomerations.json', 'THIRD-PARTY-NOTICES.txt']);
+for (const file of ['location-map.js', 'location-map.css', 'data/map/index.json', 'vendor/leaflet/leaflet.js', 'vendor/leaflet/leaflet.css', 'vendor/leaflet/LICENSE']) codeFiles.add(file);
+const mapCityFile = /^data\/map\/city-[a-f0-9]{20}\.json$/;
 const configFields = new Set(['projectId', 'projectNumber', 'region', 'serviceName', 'registry', 'sqlInstance', 'connectionName', 'databaseName', 'databaseUser', 'mysqlSecret', 'jwtSecret', 'googleGeocodingSecret', 'siteId', 'runtimeServiceAccount', 'deployServiceAccount', 'workloadIdentityProvider']);
 
 /** Validate every resource selector before any cloud or filesystem mutation. */
@@ -69,10 +72,10 @@ async function collectFiles(directory, relative = '') {
     if (name.startsWith('.')) throw new Error(`A hidden file cannot be published: ${key}`);
     if (details.isDirectory()) result.push(...await collectFiles(path, key));
     else if (details.isFile()) {
-      // The backend embeds exact boundaries. The browser needs only the compact
-      // picker catalogue and never downloads the server's geometry archive.
+      // Exact search boundaries remain server-only; map layers are separate,
+      // simplified and content-addressed city files loaded by the viewport.
       if (key === 'data/neighborhoods.json.gz') continue;
-      if (!codeFiles.has(key) && !(key.startsWith('assets/') && assetExtensions.has(extname(name).toLowerCase()))) throw new Error(`Unexpected frontend file; refusing to publish: ${key}`);
+      if (!codeFiles.has(key) && !mapCityFile.test(key) && !(key.startsWith('assets/') && assetExtensions.has(extname(name).toLowerCase()))) throw new Error(`Unexpected frontend file; refusing to publish: ${key}`);
       result.push({path, key});
     } else throw new Error(`Not a regular frontend file: ${key}`);
   }
@@ -100,6 +103,19 @@ export async function prepareSite({config, source = join(projectRoot, 'dist'), o
   await assertNoSymlinkParents(target, resolve(projectRoot));
   const files = await collectFiles(source);
   for (const required of codeFiles) if (!files.some(file => file.key === required)) throw new Error(`Missing frontend file ${required}.`);
+  const mapIndex = JSON.parse(await readFile(join(source, 'data/map/index.json'), 'utf8'));
+  if (mapIndex.schemaVersion !== 1 || !Array.isArray(mapIndex.cities) || !mapIndex.cities.length) throw new Error('Invalid neighborhood map manifest.');
+  const listed = new Set();
+  for (const city of mapIndex.cities) {
+    const key = 'data/map/' + city.file;
+    if (typeof city.file !== 'string' || !mapCityFile.test(key) || listed.has(key)) throw new Error('Invalid neighborhood map layer path.');
+    listed.add(key);
+    const file = files.find(item => item.key === key);
+    if (!file) throw new Error(`Missing neighborhood map layer ${key}.`);
+    const hash = createHash('sha256').update(await readFile(file.path)).digest('hex').slice(0, 20);
+    if (city.file !== `city-${hash}.json`) throw new Error(`Neighborhood map layer checksum mismatch: ${key}.`);
+  }
+  if (files.some(file => mapCityFile.test(file.key) && !listed.has(file.key))) throw new Error('Unlisted neighborhood map layer cannot be published.');
   // Validate the entire tree first, then replace only this ignored staging directory.
   await rm(target, {recursive: true, force: true});
   await mkdir(join(target, 'public'), {recursive: true});

@@ -1,4 +1,5 @@
 /** Real browser regression for the seller form, mobile number entry and house-specific fields. */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -32,6 +33,7 @@ async function fitsModal(page){const geometry=await page.locator('.modal').evalu
 
 async function verify(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
+ await mockMapTiles(context);
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());
  const page=await context.newPage();page.setDefaultTimeout(8000);page.setDefaultNavigationTimeout(15000);
  const errors=[];page.on('pageerror',error=>errors.push(error.message));const interact=locator=>viewport.touch?locator.tap():locator.click();

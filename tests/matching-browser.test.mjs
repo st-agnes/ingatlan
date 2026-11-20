@@ -1,4 +1,5 @@
 /** Real-browser discovery staging, consent and specialization in the shared demo model. */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {editorField,editorSave} from './editor-browser-helpers.mjs';
 import {mkdir} from 'node:fs/promises';
@@ -47,6 +48,7 @@ async function sellerCaption(page){
 }
 async function verify(browser,viewport,kind){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
+ await mockMapTiles(context);
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());
  const page=await context.newPage();page.setDefaultTimeout(10000);const errors=[];page.on('pageerror',error=>errors.push(error.message));const interact=locator=>viewport.touch?locator.tap():locator.click();
  try{

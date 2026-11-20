@@ -1,3 +1,4 @@
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import { gunzipSync } from 'node:zlib';
 import { mkdir, readFile } from 'node:fs/promises';
@@ -15,6 +16,7 @@ const browser = await chromium.launch({headless: true,
 try {
   for (const viewport of [{width: 1280, height: 900}, {width: 834, height: 1112}, {width: 390, height: 844}]) {
     const page = await browser.newPage({viewport});
+    await mockMapTiles(page.context());
     const errors = [], remoteRequests = [];
     page.on('pageerror', error => errors.push(error.message));
     page.on('request', request => {if (/^https?:/.test(request.url())) remoteRequests.push(request.url());});

@@ -1,4 +1,5 @@
 /** Real desktop/tablet/mobile wizard navigation and fixed discovery decisions. */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -249,6 +250,7 @@ async function verifyDock(page,interact,kind,viewport){
 
 async function verify(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
+ await mockMapTiles(context);
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());await context.route('https://images.unsplash.com/**',route=>route.abort());
  const page=await context.newPage();page.setDefaultTimeout(10000);page.setDefaultNavigationTimeout(20000);const errors=[];page.on('pageerror',error=>errors.push(error.message));const interact=locator=>viewport.touch?locator.tap():locator.click();
  try{

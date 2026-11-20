@@ -1,6 +1,7 @@
 /** Hosted-mode browser integration against the real Production-hosted test API.
  * Run only with a disposable test database. API responses are never mocked.
  */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {editorField,editorSave} from './editor-browser-helpers.mjs';
 import {mkdir} from 'node:fs/promises';
@@ -44,6 +45,7 @@ async function verifyViewport(browser, viewport) {
     viewport: {width: viewport.width, height: viewport.height},
     hasTouch: viewport.touch, reducedMotion: 'reduce'
   });
+  await mockMapTiles(context);
   // Match the other functional browser suites: a late third-party font swap
   // must not move the form between the touch action's hit test and its tap.
   await context.route('https://fonts.googleapis.com/**', route => route.abort());

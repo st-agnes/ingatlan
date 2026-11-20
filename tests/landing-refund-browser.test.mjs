@@ -2,6 +2,7 @@
  * Landing HTTP/GeoJS responses are deterministic UI fixtures; API/MySQL refund
  * correctness is separately verified by backend/landing-refund-smoke.mjs.
  */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -17,7 +18,7 @@ function landingFixture(regionId,generation=0){
  const region=regionOptions.find(item=>item.id===regionId)||null,empty=regionId==='HU232';
  return {regions:regionOptions,region,scope:region?'region':'national',searches:empty?[]:Array.from({length:8},(_,index)=>({key:`search-${index}`,title:index===0?`Fényes & csendes lakást keresünk · válogatás ${generation}`:'Otthont keresnek',type:'Lakás',ownerFirstName:'Anna',locations:[regionId==='HU321'?'Debrecen':'Budapest XIII. kerület'],minPrice:null,maxPrice:90000000+index*1000000,minArea:50,maxArea:null,minRooms:2,maxRooms:null,ownerAccountType:index%2?'agent':'private',description:'hidden@example.hu',ownerName:'Titkos Név',ownerId:'secret-owner'})),properties:empty?[]:Array.from({length:4},(_,index)=>({key:`property-${index}`,title:'Világos kertes otthon',ownerFirstName:'Péter',type:'Lakás',location:regionId==='HU321'?'Debrecen':'Budapest',price:82000000+(index+generation)*1000000,area:60,wholeRooms:2,halfRooms:1,rooms:2.5,lotArea:null,ownerAccountType:index%2?'private':'agent',address:'Titkos utca 42.',images:['https://tracker.invalid/image.jpg'],ownerEmail:'hidden@example.hu'}))};
 }
-async function createContext(browser,viewport){const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());return context;}
+async function createContext(browser,viewport){const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});await mockMapTiles(context);await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());return context;}
 async function screenshot(page,name){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,name),fullPage:true}).catch(()=>{});}
 async function fit(locator){const sizes=await locator.evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));assert.ok(sizes.scrollWidth<=sizes.width+1,`Content must fit (${sizes.scrollWidth}/${sizes.width})`);}
 async function readyRegion(page,id){await page.waitForFunction(expected=>document.querySelector('#landing-region')?.value===expected&&document.querySelector('#landing-results')?.getAttribute('aria-busy')==='false',id);}

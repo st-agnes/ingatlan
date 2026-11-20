@@ -1,6 +1,7 @@
 /** Foreground responsiveness under suspended/slow HTTP, using Chromium's real freeze/active lifecycle.
  * HTTP gates avoid twenty-second sleeps and isolate UI responsiveness from external services.
  */
+import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -22,6 +23,7 @@ const search=(userId=id.userA)=>({id:id.search,ownerId:userId,title:'Saját pont
 const property=(propertyId,ownerId,title)=>({id:propertyId,ownerId,title,type:'Lakás',locationId:city.id,location:city,city:city.city,price:65000000,area:60,rooms:2,wholeRooms:2,halfRooms:0,condition:'Jó',building:'Tégla',images:[],address:'',balcony:false,elevator:false});
 async function fixture(browser,viewport,{guest=false}={}){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
+ await mockMapTiles(context);
  const server={gets:[],posts:[],unhandled:[],readGate:null,decisionGate:null,decided:false,feedbackPrompt:null,errors:[],profiles:{a:{name:'OLD_ACCOUNT_A_CANARY',email:'a@example.test',phone:''},b:{name:'NEW_ACCOUNT_B_CANARY',email:'b@example.test',phone:''}}};
  await context.addInitScript(({origin,guest})=>{
   if(!guest)localStorage.setItem('otthonra.api',JSON.stringify({baseUrl:origin,token:'resume-session-a'}));
