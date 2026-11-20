@@ -53,11 +53,17 @@ jobs:
             const config = validateDevConfig(JSON.parse(process.env.GCP_DEV_CONFIG));
             const {data} = await github.rest.actions.listWorkflowRuns({
               ...context.repo, workflow_id: 'ci.yml', head_sha: context.sha,
-              event: 'push', status: 'completed', per_page: 30
+              per_page: 100
             });
-            const passed = data.workflow_runs.some(run => run.head_sha === context.sha && run.event === 'push'
-              && run.conclusion === 'success' && String(run.head_repository?.id) === '1441962351');
-            if (!passed) throw new Error('Build and integration tests have not passed for this exact commit. Wait for CI, then run this deployment again. No cloud credentials were requested.');
+            // The API status filter can omit completed push runs; verify the
+            // returned status locally, including trusted manually rerun CI.
+            const passed = data.workflow_runs.find(run => run.head_sha === context.sha
+              && ['push', 'workflow_dispatch'].includes(run.event)
+              && run.status === 'completed' && run.conclusion === 'success'
+              && run.path === '.github/workflows/ci.yml'
+              && String(run.head_repository?.id) === '1441962351');
+            if (!passed) throw new Error('No successful completed push or manually started Build and integration tests run was found for this exact commit. Run CI for this commit, wait for success, then start a new deployment. No cloud credentials were requested.');
+            core.info(`Accepted CI run ${passed.id} (${passed.event}) for this exact commit.`);
             core.setOutput('config', JSON.stringify(config));
             core.setOutput('workload_identity_provider', config.workloadIdentityProvider);
             core.setOutput('service_account', config.deployServiceAccount);

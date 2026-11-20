@@ -300,7 +300,9 @@ Ha a Cloud Shellben a GitHub CLI már telepítve és a saját GitHub-fiókoddal 
 gh variable set GCP_DEV_CONFIG --repo st-agnes/ingatlan < .local/gcp/dev-config.json
 ```
 
-A workflow neve **Deploy Google Cloud test**, fájlja `.github/workflows/deploy-dev.yml`. Csak kézzel indítható, és csak a `main` vagy `codex/google-cloud-test` ág kijelölt commitját telepíti. Előfeltétele, hogy ugyanarra a commitra sikeres push-alapú `ci.yml` futás tartozzon. A workflow a GitHub Actions felületén a default ágba kerülés után jelenik meg.
+A workflow neve **Deploy Google Cloud test**, fájlja `.github/workflows/deploy-dev.yml`. Csak kézzel indítható, és csak a `main` vagy `codex/google-cloud-test` ág kijelölt commitját telepíti. Előfeltétele, hogy pontosan ugyanarra a commitra a saját tárolóban sikeres, befejezett `ci.yml` futás tartozzon; automatikus push-futás és kézzel indított **Build and integration tests** is megfelelő. Más commit vagy PR sikeres tesztje nem helyettesíti ezt. Az elfogadott CI-futás azonosítója és indítási módja megjelenik a validáció naplójában, a Google-hitelesítés előtt. A workflow a GitHub Actions felületén a default ágba kerülés után jelenik meg.
+
+Módosítás összevonása után várd meg az új `main` commit integrációs tesztjeit, majd **új** Deploy Google Cloud test futást indíts a `main` ágon. Egy korábbi, hibás telepítés **Re-run jobs** művelete továbbra is az eredeti commitot és az abban szereplő workflow-t futtatja.
 
 A `use_google_geocoding` jelölő alapból bekapcsolja a már létrehozott `otthonra-geocoding-dev` titok használatát. A meglévő `GCP_DEV_CONFIG` értékét ehhez nem kell frissíteni. Ha még nincs Google-kulcs és futtatási hozzáférés, a jelölést a kulcs nélküli teszttelepítéshez vedd ki; a részletes beállítás a fenti Google-címkeresési szakaszban szerepel.
 
@@ -329,7 +331,7 @@ Az infrastruktúra bootstrapjét akkor kell ismét futtatni, ha az előkészít�
 | Hiányzó Google-jogosultság | A Cloud Shellben a projektet kezelő Google-fiókot használd. A bootstrapnek API-engedélyezési, infrastruktúra- és IAM-kezelési jogosultságokra van szüksége. |
 | ADC-hitelesítés hiánya | Futtasd a `gcloud auth application-default login` parancsot, majd a deployt. |
 | API- vagy adatbázis-health hiba | A Cloud Run `otthonra-api-dev` szolgáltatás naplóit nézd meg. A telepítő ilyenkor a frontend feltöltése előtt megáll. |
-| GitHub nem talál sikeres CI-t | Várd meg a kiválasztott commit teljes CI-futását; ellenőrizd, hogy push-futás és az engedélyezett ág szerepel. |
+| GitHub nem talál sikeres CI-t | A telepítéssel pontosan azonos commiton várd meg a saját tároló push- vagy kézzel indított CI-futásának sikerét. Workflow-javítás merge-elése után új deployt indíts a `main` ágon; a régi hibás futás újraindítása a régi validációt használja. |
 | Az oldal saját domainen nem érhető el | Először a telepítő által kiírt `web.app` címet ellenőrizd, majd a Firebase-ben megadott domain- és DNS-állapotot. |
 
 Az éles üzemhez szükséges megerősített fiókkezelés, fizetési ellenőrzés és üzemeltetési eljárások külön feladatok. A tesztkörnyezet telepítése ezek elkészültét nem állítja.
