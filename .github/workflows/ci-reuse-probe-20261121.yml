@@ -1,0 +1,41 @@
+name: Verify CI receipt reuse
+
+on:
+  push:
+    branches: [codex/ci-reuse-probe-20261121]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  verify:
+    name: Verify real full-tree receipt
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: da50a04946ab4c057d676305f0d3feebc22c1ebd
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/ci.yml
+            /scripts/ci/reuse-validation.mjs
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const {readCheckoutIdentity, findReusableValidation} = await import(`${process.env.GITHUB_WORKSPACE}/scripts/ci/reuse-validation.mjs`);
+            const identity = readCheckoutIdentity();
+            if (identity.tree !== 'ddab37b8b7345ee0be98c898bab0364464240f18') throw new Error('The probe checkout must preserve the fully tested tree.');
+            const simulatedMain = {repo: context.repo, payload: context.payload, eventName: 'push', ref: 'refs/heads/main', sha: identity.checkoutSha, runId: context.runId};
+            const started = Date.now();
+            const accepted = await findReusableValidation({github, context: simulatedMain, ...identity});
+            if (!accepted.reuse) throw new Error(`The real full-tree receipt was not reusable: ${accepted.reason}`);
+            const manual = await findReusableValidation({github, context: {...simulatedMain, eventName: 'workflow_dispatch'}, ...identity});
+            if (manual.reuse) throw new Error('A manual CI execution must remain a full validation.');
+            const different = await findReusableValidation({github, context: simulatedMain, ...identity, tree: '0000000000000000000000000000000000000000'});
+            if (different.reuse) throw new Error('Changed tree content must run full validation.');
+            core.info(`Real artifact reuse verified from run ${accepted.sourceRunId}, attempt ${accepted.sourceAttempt}, for unchanged tree ${identity.tree}.`);
+            core.info(`Proof download, source policy, actual jobs and Git checkout verification completed in ${Date.now() - started}ms.`);
+            core.info('Negative controls passed: manual validation and changed tree both require full tests. No cloud authentication or deployment was performed.');
