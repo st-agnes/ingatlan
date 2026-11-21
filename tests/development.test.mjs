@@ -37,6 +37,11 @@ test('development proxy always targets configured API, including absolute-form r
 test('development static server serves JavaScript with correct MIME and rejects invalid paths/methods',async()=>{
  const h=serverHarness();const script=await h.request('/app.js','HEAD');
  assert.equal(script.status,200);assert.equal(script.headers['Content-Type'],'text/javascript; charset=utf-8');assert.equal(script.body,'');
+ for(const file of ['maplibre-gl.mjs','maplibre-gl-worker.mjs']){
+  const module=await h.request('/vendor/maplibre/'+file,'HEAD');
+  assert.equal(module.status,200);assert.equal(module.headers['Content-Type'],'text/javascript; charset=utf-8');
+  assert.equal(module.headers['X-Content-Type-Options'],'nosniff');assert.equal(module.body,'');
+ }
  assert.equal((await h.request('/%00')).status,400);
  assert.equal((await h.request('/%5c..%5c.env')).status,400);
  assert.equal((await h.request('/index.html','POST')).status,405);

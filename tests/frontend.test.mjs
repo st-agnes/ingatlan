@@ -1775,3 +1775,20 @@ test('ancestor replacement succeeds at the fifty-place limit and text selection 
  const ownedMap=activeMap(owned,'search-location-map');ownedMap.select(child.id);
  chooseLocation(owned,pest.id);assert.deepEqual(ownedMap.ids,[child.id,pest.id],'The text picker must keep its ordinary multi-location OR semantics');
 });
+
+test('map town and administrative district labels work on both landing and owned search forms',async()=>{
+ const city=getLocation('city:Debrecen'),other=getLocation('city:Solymár'),ward=getLocation('district:Budapest:8');
+ const pest=getLocation('neighborhood:3c4a84155a32b95a18f2e0da'),wardArea=getLocation('neighborhood:0ab2e492e16ec4c7f9ec10f8'),child=getLocation('neighborhood:004a6fde01726bde5e318d21');
+ for(const landing of [true,false]){
+  const t=await setup(landing?{hosted:true,hash:'#landing',mockMaps:true}:{mockMaps:true});
+  if(!landing)t.ui.openEditor('search');await settle();
+  const map=activeMap(t,landing?'landing-location-map':'search-location-map');
+  assert.equal(map.select(city.id),true);assert.equal(map.select(other.id),true);
+  assert.equal(map.select(city.id),true);assert.deepEqual(map.ids,[other.id]);
+  assert.equal(map.select(pest.id),true);assert.equal(map.select(ward.id,{ancestorIds:[pest.id]}),true);
+  assert.deepEqual(map.ids,[other.id,ward.id]);
+  assert.equal(map.select(child.id,{ancestorIds:[ward.id,wardArea.id,pest.id]}),true);
+  assert.deepEqual(map.ids,[other.id,child.id],'A finer neighborhood replaces its canonical administrative district alias');
+  assert.equal(map.select(child.id),true);assert.deepEqual(map.ids,[other.id]);
+ }
+});

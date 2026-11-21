@@ -6,12 +6,20 @@ const MAX_CITIES = 8;
 const MAX_FEATURES = 650;
 const MAX_OPTIONS = 120;
 const MAX_CITY_POINTS = 200000;
+const MAX_SELECTED = 50;
+const OUTLINE_CONCURRENCY = 4;
+const MAX_SELECTED_POINTS = 2000000;
 const REQUEST_TIMEOUT = 15000;
 const assetPromises = new Map();
 const featureAreas = new WeakMap();
 const hierarchyDepths = new WeakMap();
 const EMPTY_PARENTS = Object.freeze(Object.create(null));
-let manifestPromise;
+let manifestPromise, mapLibrePromise;
+let moduleAttempt = 0;
+const LABEL_SOURCE = 'otthonra-places';
+const LABEL_LAYERS = ['otthonra-place-labels', 'otthonra-selected-labels'];
+const OUTLINE_SOURCE = 'otthonra-outlines';
+const emptyCollection = () => ({type: 'FeatureCollection', features: []});
 
 const finite = value => typeof value === 'number' && Number.isFinite(value);
 const validBounds = bounds => Array.isArray(bounds) && bounds.length === 4 && bounds.every(finite)
@@ -184,15 +192,25 @@ function loadAsset(path, type, id) {
   return promise;
 }
 
-async function loadLeaflet() {
+async function loadMapLibre() {
   await Promise.all([
     loadAsset('./location-map.css', 'style', 'otthonra-location-map-css'),
-    loadAsset('./vendor/leaflet/leaflet.css', 'style', 'otthonra-leaflet-css'),
-    window.L?.version === '1.9.4' ? Promise.resolve()
-      : loadAsset('./vendor/leaflet/leaflet.js', 'script', 'otthonra-leaflet-js')
+    loadAsset('./vendor/maplibre/maplibre-gl.css', 'style', 'otthonra-maplibre-css')
   ]);
-  if (!window.L || window.L.version !== '1.9.4') throw new Error('A térkép megjelenítője nem érhető el.');
-  return window.L;
+  if (!mapLibrePromise) {
+    const url = new URL('./vendor/maplibre/maplibre-gl.mjs', import.meta.url);
+    if (moduleAttempt++) url.searchParams.set('retry', String(moduleAttempt));
+    const module = new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => reject(new Error('A térkép megjelenítője nem érhető el.')), REQUEST_TIMEOUT);
+      import(url.href).then(value => { clearTimeout(timeout); resolve(value); }, error => { clearTimeout(timeout); reject(error); });
+    });
+    mapLibrePromise = module.then(library => {
+      if (typeof library.Map !== 'function' || typeof library.setWorkerUrl !== 'function') throw new Error('Invalid map renderer.');
+      library.setWorkerUrl(new URL('./vendor/maplibre/maplibre-gl-worker.mjs', import.meta.url).href);
+      return library;
+    }).catch(error => { mapLibrePromise = null; throw error; });
+  }
+  return mapLibrePromise;
 }
 
 async function requestJSON(url, signal) {
@@ -254,8 +272,9 @@ export function validateNeighborhoodHierarchy(value, manifest, getLocation) {
 
 function getManifest() {
   if (!manifestPromise) manifestPromise = Promise.all([
-    requestJSON(new URL('index.json', DATA_ROOT)), requestJSON(new URL('hierarchy.json', DATA_ROOT))
-  ]).then(([index, hierarchy]) => ({...validateManifest(index), hierarchy}))
+    requestJSON(new URL('index.json', DATA_ROOT)), requestJSON(new URL('hierarchy.json', DATA_ROOT)),
+    requestJSON(new URL('labels.json', DATA_ROOT)), requestJSON(new URL('style.json', DATA_ROOT))
+  ]).then(([index, hierarchy, labels, style]) => ({...validateManifest(index), hierarchy, labels, style}))
     .catch(error => { manifestPromise = null; throw error; });
   return manifestPromise;
 }
@@ -296,248 +315,409 @@ function readCityFeatures(row, value, manifest, getLocation) {
   });
 }
 
+/** A small country-wide point registry; it contains no address/search geometry. */
+export function validatePlaceLabels(value, manifest, getLocation) {
+  if (!value || value.schemaVersion !== 1 || value.type !== 'FeatureCollection'
+    || value.mapVersion !== manifest.version || value.sourceSha256 !== manifest.sourceSha256
+    || typeof value.version !== 'string' || !value.version || value.version.length > 180
+    || value.displayOnly !== true || !Array.isArray(value.features) || !value.features.length
+    || value.features.length > 10000 || !Array.isArray(value.towns)
+    || !value.districtBoundaries || typeof value.districtBoundaries !== 'object'
+    || Array.isArray(value.districtBoundaries)) throw new Error('A térképfeliratok nem érvényesek.');
+  const byId = new Map();
+  const features = value.features.map(feature => {
+    const id = feature?.id, location = getLocation(id), properties = feature?.properties, point = feature?.geometry?.coordinates;
+    const boundary = getLocation(properties?.boundaryId);
+    if (feature?.type !== 'Feature' || feature.geometry?.type !== 'Point' || !Array.isArray(point)
+      || point.length !== 2 || !point.every(finite) || point[0] < 16 || point[0] > 23.1 || point[1] < 45.5 || point[1] > 48.8
+      || !location || !['city', 'district', 'neighborhood'].includes(location.kind) || byId.has(id)
+      || properties?.id !== id || properties.city !== location.city || properties.kind !== location.kind
+      || typeof properties.name !== 'string' || !properties.name.trim() || properties.name.length > 200
+      || !finite(properties.minZoom) || properties.minZoom < 0 || properties.minZoom > 18
+      || !finite(properties.priority) || properties.priority < 0 || properties.priority > 100000
+      || !boundary || boundary.city !== location.city
+      || !['city', 'neighborhood'].includes(boundary.kind)) throw new Error('A térképfeliratok nem érvényesek.');
+    const result = {type: 'Feature', id, geometry: {type: 'Point', coordinates: [...point]},
+      properties: {id, name: properties.name, label: location.label, city: location.city, kind: location.kind,
+        minZoom: properties.minZoom, priority: properties.priority, boundaryId: boundary.id}};
+    byId.set(id, result);
+    return result;
+  });
+  const towns = new Map();
+  for (const row of value.towns) {
+    if (!row || getLocation(row.id)?.kind !== 'city' || towns.has(row.id) || !validBounds(row.bounds)
+      || !/^town-[a-f0-9]{20}\.json$/.test(row.file)) throw new Error('A településhatárok jegyzéke nem érvényes.');
+    towns.set(row.id, {id: row.id, file: row.file, bounds: row.bounds});
+  }
+  for (const [districtId, boundaryId] of Object.entries(value.districtBoundaries)) {
+    if (getLocation(districtId)?.kind !== 'district' || getLocation(boundaryId)?.kind !== 'neighborhood'
+      || byId.get(districtId)?.properties.boundaryId !== boundaryId) throw new Error('A kerülethatárok jegyzéke nem érvényes.');
+  }
+  // A small national outline only controls duplicate basemap labels, not search
+  // membership. It is deliberately distinct from the full municipal catalogue.
+  const coverage = value.coverage ?? value.countryGeometry ?? null;
+  if (coverage && (geometryPointCount(coverage) < 0 || geometryPointCount(coverage) > 20000)) throw new Error('A térkép lefedettsége nem érvényes.');
+  return {version: value.version, features, byId, towns, districtBoundaries: value.districtBoundaries, coverage};
+}
+
+/** Labels, rather than polygon areas, determine which named choices are shown. */
+export function chooseVisiblePlaceLabels(features, bounds, zoom, selectedIds = [], maxFeatures = MAX_FEATURES) {
+  if (!Array.isArray(features) || !validBounds(bounds) || !finite(zoom)) return [];
+  const selected = new Set(selectedIds), x = (bounds[0] + bounds[2]) / 2, y = (bounds[1] + bounds[3]) / 2;
+  const detailedCities = new Set(features.filter(feature => feature?.properties?.kind === 'neighborhood').map(feature => feature.properties.city));
+  const priority = feature => feature.properties.priority + (zoom >= 10 && feature.properties.kind === 'city' && detailedCities.has(feature.properties.city) ? 10000 : 0);
+  const distance = feature => (feature.geometry.coordinates[0] - x) ** 2 + (feature.geometry.coordinates[1] - y) ** 2;
+  const result = features.filter(feature => feature?.geometry?.type === 'Point'
+    && Array.isArray(feature.geometry.coordinates) && feature.geometry.coordinates.length === 2
+    && feature.geometry.coordinates.every(finite) && finite(feature.properties?.minZoom)
+    && (selected.has(feature.id) || feature.properties.minZoom <= zoom)
+    && boundsIntersect(bounds, [...feature.geometry.coordinates, ...feature.geometry.coordinates]))
+    .sort((left, right) => Number(selected.has(right.id)) - Number(selected.has(left.id))
+      || priority(left) - priority(right)
+      || Number(right.properties.kind === 'district') - Number(left.properties.kind === 'district')
+      || distance(left) - distance(right) || String(left.id).localeCompare(String(right.id)));
+  // Budapest's district and its identically named search polygon are one label;
+  // preserve the exact selected identity when it needs to be removed again.
+  const boundaries = new Set();
+  return result.filter(feature => {
+    const boundary = feature.properties.boundaryId || feature.id;
+    if (boundaries.has(boundary)) return false;
+    boundaries.add(boundary); return true;
+  }).slice(0, Math.max(1, Math.min(MAX_FEATURES, Math.trunc(maxFeatures) || MAX_FEATURES)))
+    .map(feature => priority(feature) === feature.properties.priority ? feature : {...feature, properties: {...feature.properties, priority: priority(feature)}});
+}
+
+/** Resolve only a rendered text hit; empty polygon interiors are not targets. */
+export function chooseLabelHit(features, point, project) {
+  if (!Array.isArray(features) || !point || !finite(point.x) || !finite(point.y) || typeof project !== 'function') return null;
+  const distinct = new Map();
+  for (const feature of features) {
+    const id = feature?.properties?.id;
+    if (typeof id !== 'string' || distinct.has(id) || feature.geometry?.type !== 'Point') continue;
+    const position = project(feature.geometry.coordinates);
+    if (!position || !finite(position.x) || !finite(position.y)) continue;
+    distinct.set(id, {feature, distance: (position.x - point.x) ** 2 + (position.y - point.y) ** 2});
+  }
+  return [...distinct.values()].sort((left, right) => left.distance - right.distance
+    || String(left.feature.properties.id).localeCompare(String(right.feature.properties.id)))[0]?.feature || null;
+}
+
+function expressionFilter(filter) {
+  if (!Array.isArray(filter) || !filter.length) return true;
+  const [operator, ...args] = filter;
+  const property = key => key === '$type' ? ['geometry-type'] : key === '$id' ? ['id'] : ['get', key];
+  if (['all', 'any'].includes(operator)) return [operator, ...args.map(expressionFilter)];
+  if (operator === 'none') return ['!', ['any', ...args.map(expressionFilter)]];
+  if (operator === '!has') return ['!', ['has', args[0]]];
+  if (operator === '!in' || operator === 'in' && typeof args[0] === 'string') {
+    const result = ['in', property(args[0]), ['literal', args.slice(1)]];
+    return operator === '!in' ? ['!', result] : result;
+  }
+  if (['==', '!=', '<', '<=', '>', '>='].includes(operator) && typeof args[0] === 'string') return [operator, property(args[0]), args[1]];
+  return filter;
+}
+
+function suppressDuplicatePlaceLabels(map, coverage) {
+  if (!coverage) return;
+  const localClasses = ['city', 'town', 'village', 'hamlet', 'borough', 'suburb', 'quarter', 'neighbourhood'];
+  for (const layer of map.getStyle().layers || []) {
+    if (layer['source-layer'] !== 'place' || layer.type !== 'symbol') continue;
+    map.setFilter(layer.id, ['all', expressionFilter(layer.filter), ['any',
+      ['!', ['in', ['get', 'class'], ['literal', localClasses]]], ['!', ['within', coverage]]]]);
+  }
+}
+
 /**
- * Mount independently of editor/auth/network busy state. The callback adds an
- * existing canonical neighborhood ID through the ordinary location picker.
+ * Public canonical labels are the selectable controls. Geometry is loaded only
+ * for selected outlines; no exact property address ever reaches this module.
  */
 export function createLocationMap(container, {selectedIds = [], getLocation, onSelect, onError} = {}) {
   if (!container || typeof getLocation !== 'function' || typeof onSelect !== 'function') throw new TypeError('A térképes helyszínválasztó beállításai hiányoznak.');
-  let selected = new Set(Array.isArray(selectedIds) ? selectedIds : []), disposed = false;
-  let selectionRevision = 0;
-  let map, leaflet, tileLayer, areaLayer, manifest, parents = EMPTY_PARENTS, currentFeatures = [], pendingFocus = [...selected][0] || null, focusedCity = null, pendingAreaFocus = null;
-  let viewportAbort, timer, generation = 0, booting = false, tileUnavailable = false, failed = false, focusing = false;
-  const cityCache = new Map(), pathListeners = [];
+  let selected = new Set(Array.isArray(selectedIds) ? selectedIds.slice(0, MAX_SELECTED) : []), disposed = false, selectionRevision = 0;
+  let map, library, manifest, registry, parents = EMPTY_PARENTS, ready = false, booting = false;
+  let pendingFocus = [...selected][0] || null, viewportAbort, bootAbort, timer, generation = 0;
+  let currentLabels = [], currentOutlines = [], failed = false, backgroundUnavailable = false, loading = false;
+  let lastOptions = null, lastLabelPayload = '', lastOutlinePayload = '';
+  let camera = {center: [19.5, 47.16], zoom: 7};
+  const outlineCache = new Map();
   container.classList.add('location-map');
-  container.innerHTML = '<div class="location-map-heading"><strong>Válassz a térképen is</strong><span>Kattintással kijelölheted, újra kattintva kiveheted.</span></div><div class="location-map-canvas" role="region" aria-label="Városrészek térképes kiválasztása"></div><div class="location-map-status" role="status" aria-live="polite">Térkép betöltése…</div><button type="button" class="location-map-retry" hidden>Újrapróbálom</button><details class="location-map-list" hidden><summary>Látható városrészek</summary><div class="location-map-options"></div><p class="location-map-list-note" hidden>Nagyíts közelebb a további városrészekhez.</p></details><div class="location-map-legend"><span class="location-map-legend-area">Városrész</span><span class="location-map-legend-selected">Kiválasztva</span></div>';
+  container.innerHTML = '<div class="location-map-heading"><strong>Válassz a helynevekre kattintva</strong><span>Újabb kattintással kiveheted a keresésből.</span></div><div class="location-map-canvas" role="region" aria-label="Helyszínek térképes kiválasztása"></div><div class="location-map-status" role="status" aria-live="polite">Térkép betöltése…</div><button type="button" class="location-map-retry" hidden>Újrapróbálom</button><details class="location-map-list" hidden><summary>Látható helynevek</summary><div class="location-map-options"></div><p class="location-map-list-note" hidden>Nagyíts közelebb a további helynevekhez.</p></details><div class="location-map-legend"><span class="location-map-legend-selected">A kiválasztott helyek körvonala</span></div>';
   const canvas = container.querySelector('.location-map-canvas'), status = container.querySelector('.location-map-status');
   const retry = container.querySelector('.location-map-retry'), options = container.querySelector('.location-map-options');
-  const details = container.querySelector('.location-map-list'), summary = details.querySelector('summary'), listNote = container.querySelector('.location-map-list-note');
-  const visible = () => !disposed && canvas.getBoundingClientRect().width > 0 && canvas.getBoundingClientRect().height > 0 && !document.hidden;
-  const tell = message => { if (!disposed) status.textContent = message; };
-  const style = feature => ({color: selected.has(feature.id) ? '#c6623e' : '#49756a', weight: selected.has(feature.id) ? 3 : 1.5,
-    opacity: 0.95, fill: false});
+  const details = container.querySelector('.location-map-list'), summary = details.querySelector('summary'), note = container.querySelector('.location-map-list-note');
+  const visible = () => !disposed && !document.hidden && canvas.getBoundingClientRect().width > 0 && canvas.getBoundingClientRect().height > 0;
+  const tell = message => { if (!disposed && status.textContent !== message) status.textContent = message; };
   const fail = () => {
     if (disposed) return;
-    failed = true; retry.hidden = false;
+    failed = true; loading = false; retry.hidden = false;
     tell('A térkép most nem tölthető be. A helyszíneket a keresőmezőben továbbra is kiválaszthatod.');
     try { onError?.(new Error('A térképes helyszínválasztó most nem érhető el.')); } catch {}
   };
-  function removePathListeners() { for (const dispose of pathListeners.splice(0)) dispose(); }
-  function syncSelection() {
-    if (disposed) return;
-    areaLayer?.setStyle(style);
-    for (const element of container.querySelectorAll('[data-map-neighborhood-id]')) {
-      const active = selected.has(element.dataset.mapNeighborhoodId);
-      element.setAttribute('aria-pressed', String(active)); element.classList.toggle('is-selected', active);
-      const label = getLocation(element.dataset.mapNeighborhoodId)?.label;
-      if (label) element.setAttribute('aria-label', `${label} ${active ? 'eltávolítása a keresésből' : 'hozzáadása a kereséshez'}`);
+  const bounds = () => {
+    const value = map.getBounds();
+    return [value.getWest(), value.getSouth(), value.getEast(), value.getNorth()];
+  };
+  function paintLabels() {
+    if (!ready || disposed) return;
+    const features = currentLabels.map(feature => ({...feature, properties: {...feature.properties, selected: selected.has(feature.id)}}));
+    const payload = JSON.stringify(features);
+    if (payload !== lastLabelPayload) { lastLabelPayload = payload; map.getSource(LABEL_SOURCE).setData({type: 'FeatureCollection', features}); }
+  }
+  function paintOutlines() {
+    if (!ready || disposed) return;
+    // Remove deselections synchronously, including while a previous fetch waits.
+    const features = currentOutlines.filter(feature => selected.has(feature.id));
+    const payload = JSON.stringify(features.map(feature => feature.id));
+    if (payload !== lastOutlinePayload) { lastOutlinePayload = payload; map.getSource(OUTLINE_SOURCE).setData({type: 'FeatureCollection', features}); }
+  }
+  function renderedLabels() {
+    if (!ready || disposed) return [];
+    const current = new Set(currentLabels.map(feature => feature.id)), unique = new Map();
+    for (const feature of map.queryRenderedFeatures(undefined, {layers: LABEL_LAYERS})) {
+      const id = feature.properties?.id;
+      if (current.has(id) && !unique.has(id)) unique.set(id, registry.byId.get(id));
     }
+    return [...unique.values()].filter(Boolean);
+  }
+  function refreshOptions() {
+    if (!ready || !visible()) return;
+    const features = renderedLabels().sort((left, right) => left.properties.label.localeCompare(right.properties.label, 'hu'));
+    const key = features.map(feature => `${feature.id}:${Number(selected.has(feature.id))}`).join('|');
+    if (key !== lastOptions) {
+      const focusedId = options.contains(document.activeElement) ? document.activeElement.dataset.mapLocationId : null;
+      lastOptions = key; options.replaceChildren();
+      for (const feature of features.slice(0, MAX_OPTIONS)) {
+        const button = document.createElement('button'); button.type = 'button'; button.className = 'location-map-option';
+        button.dataset.mapLocationId = feature.id;
+        if (feature.properties.kind === 'neighborhood') button.dataset.mapNeighborhoodId = feature.id;
+        button.textContent = feature.properties.label; button.classList.toggle('is-selected', selected.has(feature.id));
+        button.setAttribute('aria-pressed', String(selected.has(feature.id)));
+        button.setAttribute('aria-label', `${feature.properties.label} ${selected.has(feature.id) ? 'eltávolítása a keresésből' : 'hozzáadása a kereséshez'}`);
+        button.addEventListener('click', () => choose(feature.id)); options.append(button);
+      }
+      summary.textContent = `Látható helynevek (${features.length})`; details.hidden = !features.length;
+      note.hidden = features.length <= MAX_OPTIONS;
+      if (focusedId) [...options.children].find(button => button.dataset.mapLocationId === focusedId)?.focus({preventScroll: true});
+    }
+    if (failed || loading) return;
+    if (backgroundUnavailable) tell('A háttértérkép egy része most nem érhető el. A helynevekre továbbra is kattinthatsz.');
+    else if (!features.length) tell('Nagyíts rá egy településre a helynevek kiválasztásához.');
+    else tell(`${features.length} helynév látható. Kattints a névre a kiválasztáshoz.`);
+  }
+  function selectAncestors(id) {
+    const boundary = registry?.byId.get(id)?.properties.boundaryId || id;
+    const ancestors = neighborhoodAncestors(boundary, parents);
+    // Neighborhood selections also replace a selected administrative district
+    // whose polygon is the actual containing ancestor.
+    const aliases = Object.entries(registry?.districtBoundaries || {}).filter(([, area]) => ancestors.includes(area)).map(([district]) => district);
+    return [...ancestors, ...aliases];
   }
   function choose(id) {
-    if (disposed || !getLocation(id) || !currentFeatures.some(feature => feature.id === id)) return;
+    if (!ready || disposed || !registry?.byId.has(id)) return;
     const location = getLocation(id), wasSelected = selected.has(id), revision = selectionRevision;
-    const ancestorIds = neighborhoodAncestors(id, parents);
+    const ancestorIds = selectAncestors(id);
     try {
-      // The picker owns duplicates and the 50-choice limit. It may replace a
-      // selected whole town with this neighborhood, even at the limit.
-      if (onSelect(id, {ancestorIds}) === false) return;
-      if (disposed) return;
-      // The picker synchronizes every other selected location through
-      // setSelection. Only apply a local fallback for standalone consumers.
+      if (onSelect(id, {ancestorIds}) === false || disposed) return;
       if (selectionRevision === revision) {
         if (wasSelected) selected.delete(id);
         else { for (const ancestor of ancestorIds) selected.delete(ancestor); selected.add(id); }
       }
       syncSelection(); tell(`${location.label} ${wasSelected ? 'eltávolítva a keresésből.' : 'hozzáadva a kereséshez.'}`);
-    } catch { tell('A városrészt most nem sikerült hozzáadni. Próbáld újra, vagy válaszd ki a keresőmezőben.'); }
+    } catch { tell('A helyszínt most nem sikerült hozzáadni. Próbáld újra, vagy válaszd ki a keresőmezőben.'); }
   }
-  function option(feature) {
-    const button = document.createElement('button'); button.type = 'button'; button.className = 'location-map-option';
-    button.dataset.mapNeighborhoodId = feature.id; button.setAttribute('aria-pressed', String(selected.has(feature.id)));
-    button.textContent = feature.properties.label; button.classList.toggle('is-selected', selected.has(feature.id));
-    button.addEventListener('click', () => choose(feature.id));
-    return button;
+  function syncSelection() {
+    if (disposed) return;
+    paintLabels(); paintOutlines(); lastOptions = null; refreshOptions(); scheduleViewport();
   }
-  function clearAreas() {
-    removePathListeners(); areaLayer?.clearLayers(); currentFeatures = []; options.replaceChildren(); details.hidden = true;
-  }
-  function renderAreas(features, truncated) {
-    clearAreas(); currentFeatures = features;
-    areaLayer.addData({type: 'FeatureCollection', features});
-    areaLayer.eachLayer(layer => {
-      const feature = layer.feature, path = layer.getElement();
-      if (!path) return;
-      path.dataset.mapNeighborhoodId = feature.id; path.setAttribute('tabindex', '0'); path.setAttribute('role', 'button');
-      path.setAttribute('aria-label', `${feature.properties.label} hozzáadása a kereséshez`);
-      const keydown = event => { if (['Enter', ' '].includes(event.key)) { event.preventDefault(); event.stopPropagation(); choose(feature.id); } };
-      path.addEventListener('keydown', keydown); pathListeners.push(() => path.removeEventListener('keydown', keydown));
-    });
-    const sorted = [...features].sort((a, b) => a.properties.label.localeCompare(b.properties.label, 'hu'));
-    for (const feature of sorted.slice(0, MAX_OPTIONS)) options.append(option(feature));
-    summary.textContent = `Látható városrészek (${features.length})`; details.hidden = features.length === 0;
-    listNote.hidden = sorted.length <= MAX_OPTIONS;
-    syncSelection(); failed = false; retry.hidden = true;
-    if (truncated) tell(`${features.length} városrész látható. Nagyíts közelebb a többi terület megjelenítéséhez.`);
-    else if (!features.length) tell('Nagyíts közelebb, vagy mozdítsd el a térképet a városrészek megjelenítéséhez.');
-    else if (tileUnavailable) tell('A háttértérkép most nem érhető el. A városrészek továbbra is kiválaszthatók.');
-    else tell(`${features.length} városrész látható. Közelítve a területeken belüli kisebb városrészek is megjelennek.`);
-  }
-
-  function refineFocus(features) {
-    if (!pendingAreaFocus) return false;
-    const location = getLocation(pendingAreaFocus);
-    const feature = location?.kind === 'neighborhood' ? features.find(item => item.id === location.id)
-      : location?.kind === 'district' ? features.find(item => item.properties.city === location.city
-        && item.properties.name === `${location.district} kerület`) : null;
-    pendingAreaFocus = null;
-    if (!feature) return false;
-    const zoom = neighborhoodZoom(feature, features, parents);
-    if (map.getZoom() >= zoom) return false;
-    // Keep the natural geographic fit for an ordinary leaf neighborhood;
-    // hierarchy only requests a closer zoom when its ancestors need it.
-    focusing = true;
-    try { map.setZoom(zoom, {animate: false}); } finally { focusing = false; }
-    return true;
+  async function loadOutline(row, signal) {
+    if (outlineCache.has(row.file)) {
+      const cached = outlineCache.get(row.file); outlineCache.delete(row.file); outlineCache.set(row.file, cached); return cached;
+    }
+    const value = await requestJSON(new URL(row.file, DATA_ROOT), signal);
+    let features;
+    if (row.town) {
+      if (!value || value.type !== 'Feature' || value.version !== registry.version || value.mapVersion !== manifest.version
+        || value.id !== row.id || !validBounds(value.bbox) || geometryPointCount(value.geometry) < 0) throw new Error('A településhatár nem érvényes.');
+      features = [value];
+    } else features = readCityFeatures(row, value, manifest, getLocation);
+    if (disposed || signal.aborted) return [];
+    outlineCache.set(row.file, features);
+    while (outlineCache.size > MAX_CITIES) outlineCache.delete(outlineCache.keys().next().value);
+    return features;
   }
   async function refreshViewport() {
-    if (!map || !manifest || !visible()) return;
+    if (!ready || !visible()) return;
     const request = ++generation; viewportAbort?.abort(); viewportAbort = new AbortController();
-    const signal = viewportAbort.signal;
-    if (map.getZoom() < MIN_AREA_ZOOM) { clearAreas(); retry.hidden = true; tell('Nagyíts rá egy városra, hogy kiválaszthasd a városrészeket.'); return; }
-    const view = map.getBounds(), bounds = [view.getWest(), view.getSouth(), view.getEast(), view.getNorth()];
-    const chosen = chooseVisibleCities(manifest.cities, bounds, {preferredCity: focusedCity});
-    if (!chosen.items.length) { renderAreas([], false); return; }
-    tell('Városrészek betöltése…');
+    const signal = viewportAbort.signal, view = bounds();
+    currentLabels = chooseVisiblePlaceLabels(registry.features, view, map.getZoom(), [...selected]); paintLabels();
+    const selectedBoundaries = [...selected].map(id => ({id, label: registry.byId.get(id)})).filter(item => item.label
+      && boundsIntersect(view, manifest.focus[item.label.properties.boundaryId] || manifest.focus[item.id]));
+    const jobs = new Map();
+    for (const item of selectedBoundaries) {
+      const boundaryId = item.label.properties.boundaryId, location = getLocation(boundaryId);
+      const areaBounds = manifest.focus[boundaryId] || manifest.focus[item.id];
+      if (!boundsIntersect(view, areaBounds)) continue;
+      const row = location?.kind === 'city' ? registry.towns.get(boundaryId) : manifest.cities.find(city => city.city === location?.city);
+      if (row) jobs.set(row.file, {...row, town: location.kind === 'city'});
+    }
+    loading = jobs.size > 0; failed = false; retry.hidden = true;
+    if (loading) tell('A kiválasztott helyek körvonalának betöltése…');
+    else { currentOutlines = []; paintOutlines(); refreshOptions(); }
     try {
-      const batches = await Promise.all(chosen.items.map(async row => {
-        if (cityCache.has(row.file)) {
-          const stored = cityCache.get(row.file); cityCache.delete(row.file); cityCache.set(row.file, stored); return stored;
+      const rows = [...jobs.values()], requested = new Set(selectedBoundaries.map(item => item.label.properties.boundaryId));
+      const allFeatures = new Map();
+      let next = 0, points = 0;
+      async function worker() {
+        while (!disposed && !signal.aborted && request === generation && next < rows.length) {
+          const row = rows[next++], features = await loadOutline(row, signal);
+          if (disposed || signal.aborted || request !== generation) return;
+          // Keep at most eight whole files in the LRU. Results retain only the
+          // explicitly requested geometries, not fifty complete city layers.
+          for (const feature of features) if (requested.has(feature.id) && !allFeatures.has(feature.id)) {
+            points += geometryPointCount(feature.geometry);
+            if (points > MAX_SELECTED_POINTS) throw new Error('A kiválasztott körvonalak túl nagyok.');
+            allFeatures.set(feature.id, feature);
+          }
         }
-        const value = await requestJSON(new URL(row.file, DATA_ROOT), signal);
-        const features = readCityFeatures(row, value, manifest, getLocation);
-        if (disposed || signal.aborted || request !== generation) return [];
-        cityCache.set(row.file, features);
-        while (cityCache.size > MAX_CITIES) cityCache.delete(cityCache.keys().next().value);
-        return features;
-      }));
+      }
+      await Promise.all(Array.from({length: Math.min(OUTLINE_CONCURRENCY, rows.length)}, worker));
       if (disposed || signal.aborted || request !== generation) return;
-      const allFeatures = batches.flat();
-      if (refineFocus(allFeatures)) return;
-      const seen = new Set();
-      const features = chooseVisibleNeighborhoods(allFeatures, bounds, map.getZoom(), parents).filter(feature => !seen.has(feature.id) && seen.add(feature.id))
-        .sort((a, b) => Number(selected.has(b.id)) - Number(selected.has(a.id)) || a.properties.label.localeCompare(b.properties.label, 'hu'));
-      const visibleFeatures = features.slice(0, MAX_FEATURES).sort((a, b) => featureArea(b) - featureArea(a) || String(a.id).localeCompare(String(b.id)));
-      renderAreas(visibleFeatures, chosen.truncated || features.length > MAX_FEATURES);
-    } catch { if (!disposed && !signal.aborted && request === generation) fail(); }
+      currentOutlines = selectedBoundaries.flatMap(({id, label}) => {
+        const original = allFeatures.get(label.properties.boundaryId);
+        return original ? [{...original, id, properties: {id}}] : [];
+      });
+      loading = false; paintOutlines(); refreshOptions();
+    } catch { if (!disposed && !signal.aborted && request === generation) { viewportAbort.abort(); fail(); } }
   }
   function scheduleViewport() {
-    clearTimeout(timer); viewportAbort?.abort(); generation++;
-    timer = setTimeout(() => { timer = null; void refreshViewport(); }, 180);
+    if (!ready || disposed) return;
+    clearTimeout(timer); viewportAbort?.abort(); generation++; loading = false;
+    timer = setTimeout(() => { timer = null; void refreshViewport(); }, 140);
   }
   function focus(id) {
     if (disposed || typeof id !== 'string') return;
-    const location = getLocation(id);
-    if (!location) return;
-    pendingFocus = id; focusedCity = location.city || null;
-    pendingAreaFocus = ['neighborhood', 'district'].includes(location.kind) ? id : null;
-    if (!map || !manifest || !visible()) return;
-    let bounds = manifest.focus[id];
-    if (!bounds && location.city === 'Budapest' && location.district) {
+    const location = getLocation(id); if (!location) return;
+    pendingFocus = id;
+    if (!ready || !visible()) return;
+    let target = manifest.focus[id];
+    if (!target && location.city === 'Budapest' && location.district) {
       const roman = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII'];
-      const district = roman.indexOf(String(location.district).replace(/\./g, '').trim()) + 1;
-      if (district) bounds = manifest.focus[`district:Budapest:${district}`];
+      const number = roman.indexOf(String(location.district).replace(/\./g, '').trim()) + 1;
+      if (number) target = manifest.focus[`district:Budapest:${number}`];
     }
-    if (!bounds && location.city) bounds = manifest.focus[`city:${location.city}`];
-    if (!validBounds(bounds)) { pendingFocus = null; return; }
+    if (!target && location.city) target = manifest.focus[`city:${location.city}`];
     pendingFocus = null;
-    focusing = true;
-    try {
-      map.fitBounds([[bounds[1], bounds[0]], [bounds[3], bounds[2]]], {padding: [18, 18], maxZoom: location.kind === 'neighborhood' ? 18 : 14, animate: false});
-      if (map.getZoom() < MIN_AREA_ZOOM) map.setZoom(MIN_AREA_ZOOM, {animate: false});
-    } finally { focusing = false; }
+    if (!validBounds(target)) return;
+    map.fitBounds([[target[0], target[1]], [target[2], target[3]]], {padding: 20, maxZoom: location.kind === 'neighborhood' ? 17 : 14, duration: 0});
     scheduleViewport();
   }
   function resize() {
     if (!map || !visible()) return;
-    map.invalidateSize({animate: false, pan: false});
+    map.resize();
     if (pendingFocus) focus(pendingFocus); else scheduleViewport();
+  }
+  function click(event) {
+    if (!ready) return;
+    const point = event.point, coarse = event.originalEvent?.pointerType === 'touch' || window.matchMedia?.('(pointer: coarse)').matches;
+    const slop = coarse ? 12 : 4;
+    // Search outward from the actual drawn glyph bounds, not the geographic
+    // anchor: variable placement may move two coincident names apart on screen.
+    let hits = map.queryRenderedFeatures(point, {layers: LABEL_LAYERS});
+    for (let radius = 2; !hits.length && radius <= slop; radius += 2) {
+      hits = map.queryRenderedFeatures([[point.x - radius, point.y - radius], [point.x + radius, point.y + radius]], {layers: LABEL_LAYERS});
+    }
+    const ids = new Set(currentLabels.map(feature => feature.id));
+    const chosen = chooseLabelHit(hits.filter(feature => ids.has(feature.properties?.id)), point, position => map.project(position));
+    if (chosen) choose(chosen.properties.id);
+  }
+  function hover(event) {
+    if (!ready) return;
+    map.getCanvas().style.cursor = map.queryRenderedFeatures(event.point, {layers: LABEL_LAYERS}).length ? 'pointer' : '';
   }
   const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(resize) : null;
   observer?.observe(canvas);
   const visibility = () => {
-    if (document.hidden) { clearTimeout(timer); viewportAbort?.abort(); generation++; }
+    if (document.hidden) { clearTimeout(timer); viewportAbort?.abort(); generation++; loading = false; }
     else resize();
   };
-  document.addEventListener('visibilitychange', visibility);
-  window.addEventListener('resize', resize);
+  const focusIn = () => map?.scrollZoom.enable();
+  const focusOut = event => { if (!canvas.contains(event.relatedTarget)) map?.scrollZoom.disable(); };
+  canvas.addEventListener('focusin', focusIn); canvas.addEventListener('focusout', focusOut);
+  document.addEventListener('visibilitychange', visibility); window.addEventListener('resize', resize);
   async function boot() {
     if (disposed || booting) return;
-    booting = true; failed = false; retry.hidden = true; tell('Térkép betöltése…');
+    booting = true; ready = false; failed = false; retry.hidden = true; tell('Térkép betöltése…');
+    clearTimeout(timer); viewportAbort?.abort(); generation++; loading = false;
+    bootAbort?.abort(); bootAbort = new AbortController();
     try {
-      const [library, index] = await Promise.all([loadLeaflet(), getManifest()]);
-      if (disposed) return;
-      leaflet = library; manifest = index;
-      try { parents = validateNeighborhoodHierarchy(index.hierarchy, index, getLocation); }
-      catch (error) { manifestPromise = null; throw error; }
-      if (!map) {
-        // A repeated tap is the selection toggle, so it must not also zoom or
-        // recenter the map. Zoom controls, wheel and pinch remain available.
-        // The viewport may extend beyond Hungary at distant zooms. Restricting
-        // its bounds would push eastern-city centers west while zooming out.
-        map = leaflet.map(canvas, {minZoom: 6, maxZoom: 18, scrollWheelZoom: false, doubleClickZoom: false,
-          attributionControl: true, zoomControl: false});
-        leaflet.control.zoom({zoomInTitle: 'Nagyítás', zoomOutTitle: 'Kicsinyítés'}).addTo(map);
-        map.attributionControl.setPrefix(false);
-        tileLayer = leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>'}).addTo(map);
-        tileLayer.on('tileerror', () => { if (!disposed) { tileUnavailable = true; if (currentFeatures.length && !failed) tell('A háttértérkép most nem érhető el. A városrészek továbbra is kiválaszthatók.'); } });
-        areaLayer = leaflet.geoJSON(null, {style, onEachFeature(feature, layer) {
-          const label = document.createElement('span'); label.textContent = feature.properties.label;
-          layer.bindTooltip(label, {sticky: true, direction: 'top'});
-        }}).addTo(map);
-        map.on('moveend', scheduleViewport);
-        map.on('zoomstart', () => {
-          if (!focusing) pendingAreaFocus = null;
-          clearTimeout(timer); viewportAbort?.abort(); generation++; clearAreas();
-        });
-        map.on('dragstart', () => { pendingAreaFocus = null; });
-        map.on('focus', () => map.scrollWheelZoom.enable()); map.on('blur', () => map.scrollWheelZoom.disable());
-        map.on('click', event => {
-          const point = [event.latlng.lng, event.latlng.lat];
-          const feature = chooseSmallestFeature(currentFeatures, point);
-          if (feature) choose(feature.id);
-        });
-        map.setView([47.16, 19.5], 7);
+      if (map) {
+        const center = map.getCenter(); camera = {center: [center.lng, center.lat], zoom: map.getZoom()};
+        map.remove(); map = null;
       }
+      currentLabels = []; currentOutlines = []; options.replaceChildren(); details.hidden = true;
+      const [renderer, index] = await Promise.all([loadMapLibre(), getManifest()]);
+      if (disposed) return;
+      library = renderer; manifest = index;
+      try { parents = validateNeighborhoodHierarchy(index.hierarchy, index, getLocation); registry = validatePlaceLabels(index.labels, index, getLocation); }
+      catch (error) { manifestPromise = null; throw error; }
+      lastLabelPayload = ''; lastOutlinePayload = ''; lastOptions = null;
+      map = new library.Map({container: canvas, style: structuredClone(index.style), center: camera.center, zoom: camera.zoom,
+        minZoom: 6, maxZoom: 18, dragRotate: false, pitchWithRotate: false, scrollZoom: false, doubleClickZoom: false,
+        attributionControl: {compact: false, customAttribution: '<a href="https://openmaptiles.org/" target="_blank" rel="noopener noreferrer">© OpenMapTiles</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>'}, locale: {'NavigationControl.ZoomIn': 'Nagyítás', 'NavigationControl.ZoomOut': 'Kicsinyítés', 'AttributionControl.ToggleAttribution': 'Források'}});
+      map.touchZoomRotate.disableRotation();
+      map.addControl(new library.NavigationControl({showCompass: false}), 'top-left');
+      map.on('error', () => { if (!disposed) { backgroundUnavailable = true; if (ready && !failed) { retry.hidden = false; refreshOptions(); } } });
+      await new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => finish(false), REQUEST_TIMEOUT);
+        const loaded = () => finish(true), aborted = () => finish(false);
+        function finish(success) { clearTimeout(timeout); map.off('load', loaded); bootAbort.signal.removeEventListener('abort', aborted); success ? resolve() : reject(new Error('A térkép betöltése megszakadt.')); }
+        map.on('load', loaded); bootAbort.signal.addEventListener('abort', aborted, {once: true});
+      });
+      if (disposed) return;
+      suppressDuplicatePlaceLabels(map, registry.coverage);
+      map.addSource(OUTLINE_SOURCE, {type: 'geojson', data: emptyCollection()});
+      map.addLayer({id: 'otthonra-selected-outlines', type: 'line', source: OUTLINE_SOURCE,
+        paint: {'line-color': '#c6623e', 'line-width': 2.5, 'line-opacity': 0.95}});
+      map.addSource(LABEL_SOURCE, {type: 'geojson', data: emptyCollection()});
+      const font = ['Noto Sans Regular'];
+      const layout = {'text-field': ['get', 'name'], 'text-font': font, 'text-size': ['interpolate', ['linear'], ['zoom'], 6, 12, 11, 14, 15, 16],
+        'text-padding': 5, 'text-max-width': 13, 'text-anchor': 'center',
+        'text-variable-anchor': ['center', 'top', 'bottom', 'left', 'right'], 'text-radial-offset': 1.5, 'text-allow-overlap': false,
+        'text-ignore-placement': false, 'symbol-sort-key': ['get', 'priority']};
+      map.addLayer({id: LABEL_LAYERS[0], type: 'symbol', source: LABEL_SOURCE, filter: ['!', ['get', 'selected']], layout,
+        paint: {'text-color': '#284b41', 'text-halo-color': '#fffdf7', 'text-halo-width': 2}});
+      map.addLayer({id: LABEL_LAYERS[1], type: 'symbol', source: LABEL_SOURCE, filter: ['get', 'selected'],
+        layout: {...layout, 'text-field': ['concat', '✓ ', ['get', 'name']], 'symbol-sort-key': -1},
+        paint: {'text-color': '#a64c2c', 'text-halo-color': '#fff8ec', 'text-halo-width': 2.5}});
+      ready = true; failed = false; booting = false;
+      map.on('moveend', scheduleViewport); map.on('idle', refreshOptions); map.on('click', click); map.on('mousemove', hover);
+      map.on('movestart', () => { viewportAbort?.abort(); generation++; loading = false; });
       if (pendingFocus) focus(pendingFocus); else scheduleViewport();
       resize();
-    } catch { fail(); }
+    } catch { if (!disposed) fail(); }
     finally { booting = false; }
   }
   const retryClick = () => {
     if (disposed || booting) return;
-    retry.hidden = true; failed = false;
-    if (map && manifest) { tileLayer?.redraw(); void refreshViewport(); } else void boot();
+    clearTimeout(timer); retry.hidden = true; failed = false;
+    if (ready && !backgroundUnavailable) void refreshViewport();
+    else { backgroundUnavailable = false; manifestPromise = null; bootAbort?.abort(); void boot(); }
   };
-  retry.addEventListener('click', retryClick);
-  void boot();
+  retry.addEventListener('click', retryClick); void boot();
   return {
     setSelection(ids, {focusId} = {}) {
       if (disposed) return;
-      selectionRevision++;
-      selected = new Set(Array.isArray(ids) ? ids : []);
+      selectionRevision++; selected = new Set(Array.isArray(ids) ? ids.slice(0, MAX_SELECTED) : []);
       if (pendingFocus && !selected.has(pendingFocus)) pendingFocus = null;
-      if (pendingAreaFocus && !selected.has(pendingAreaFocus)) pendingAreaFocus = null;
-      syncSelection();
-      if (focusId) focus(focusId);
+      syncSelection(); if (focusId) focus(focusId);
     },
     focus,
     destroy() {
       if (disposed) return;
-      disposed = true; generation++; clearTimeout(timer); viewportAbort?.abort(); observer?.disconnect();
+      disposed = true; generation++; clearTimeout(timer); viewportAbort?.abort(); bootAbort?.abort(); observer?.disconnect();
+      canvas.removeEventListener('focusin', focusIn); canvas.removeEventListener('focusout', focusOut);
       document.removeEventListener('visibilitychange', visibility); window.removeEventListener('resize', resize);
-      retry.removeEventListener('click', retryClick); removePathListeners(); map?.remove();
-      cityCache.clear(); currentFeatures = []; pendingAreaFocus = null; container.replaceChildren();
+      retry.removeEventListener('click', retryClick); map?.remove(); outlineCache.clear(); currentLabels = []; currentOutlines = []; container.replaceChildren();
     }
   };
 }

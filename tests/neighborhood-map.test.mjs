@@ -2,13 +2,13 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {boundsIntersect,chooseVisibleCities,pointInGeometry,geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature,validateNeighborhoodHierarchy,neighborhoodAncestors} from '../dist/location-map.js';
+import {boundsIntersect,chooseVisibleCities,pointInGeometry,geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature,validateNeighborhoodHierarchy,neighborhoodAncestors,validatePlaceLabels,chooseVisiblePlaceLabels,chooseLabelHit} from '../dist/location-map.js';
 
 // Synthetic WGS84 rectangles exercise display picking, never address geocoding.
 const ring=(west,south,east,north)=>[[west,south],[east,south],[east,north],[west,north],[west,south]];
 const polygon={type:'Polygon',coordinates:[ring(19,47,20,48)]};
 
-test('the shipped map renderer is the pinned official Leaflet release with its license',async()=>{
+test('the preserved legacy Leaflet assets retain their verified release and license',async()=>{
  for(const [file,expected]of Object.entries({
   'leaflet.js':'db49d009c841f5ca34a888c96511ae936fd9f5533e90d8b2c4d57596f4e5641a',
   'leaflet.css':'337bfca5cabd03b39815b2700febe2b3b7edf55921c59cd49f88ecb328212303',
@@ -17,6 +17,98 @@ test('the shipped map renderer is the pinned official Leaflet release with its l
   const bytes=await readFile(new URL('../dist/vendor/leaflet/'+file,import.meta.url));
   assert.equal(createHash('sha256').update(bytes).digest('hex'),expected,file+' must match the verified upstream release');
  }
+});
+
+const labelFeature=(id,coordinates,{kind='neighborhood',city='Budapest',minZoom=10,priority=100,boundaryId=id}={})=>({
+ type:'Feature',id,geometry:{type:'Point',coordinates},properties:{id,name:id,label:id,city,kind,minZoom,priority,boundaryId}
+});
+const labelFixture=()=>{
+ const manifest={version:'map-label-fixture-v1',sourceSha256:'a'.repeat(64),count:1};
+ const features=[labelFeature('city:Budapest',[19.04,47.5],{kind:'city',minZoom:6,priority:0}),
+  labelFeature('neighborhood:ward',[19.05,47.51]),
+  labelFeature('district:Budapest:5',[19.05,47.51],{kind:'district',priority:50,boundaryId:'neighborhood:ward'})];
+ const locations=new Map(features.map(feature=>[feature.id,{id:feature.id,label:feature.id,kind:feature.properties.kind,city:feature.properties.city}]));
+ const value={schemaVersion:1,type:'FeatureCollection',version:'labels-v1',mapVersion:manifest.version,
+  sourceSha256:manifest.sourceSha256,displayOnly:true,features,towns:[{id:'city:Budapest',file:'town-aaaaaaaaaaaaaaaaaaaa.json',bounds:[18.9,47.3,19.3,47.7]}],
+  districtBoundaries:{'district:Budapest:5':'neighborhood:ward'},coverage:{type:'Polygon',coordinates:[ring(16,45.6,23,48.7)]}};
+ return {manifest,value,locations,getLocation:id=>locations.get(id)||null};
+};
+
+test('canonical label metadata binds points, district aliases and lazy town outlines without changing its source',()=>{
+ const f=labelFixture(),before=JSON.stringify(f.value),labels=validatePlaceLabels(f.value,f.manifest,f.getLocation);
+ assert.equal(labels.features.length,3);assert.equal(labels.byId.size,3);assert.equal(labels.towns.size,1);
+ assert.equal(labels.byId.get('district:Budapest:5').properties.boundaryId,'neighborhood:ward');
+ assert.equal(labels.towns.get('city:Budapest').file,'town-aaaaaaaaaaaaaaaaaaaa.json');
+ assert.equal(JSON.stringify(f.value),before);
+ labels.features[0].geometry.coordinates[0]=99;
+ assert.equal(f.value.features[0].geometry.coordinates[0],19.04,'Runtime point preparation must not rewrite the shared registry');
+});
+
+test('stale, unknown, malformed or unsafe label records fail before becoming selectable map targets',()=>{
+ for(const mutate of [
+  f=>f.value.schemaVersion=2,f=>f.value.mapVersion='stale',f=>f.value.sourceSha256='b'.repeat(64),
+  f=>f.value.displayOnly=false,f=>f.value.features=[],f=>f.value.features.push(structuredClone(f.value.features[0])),
+  f=>f.value.features[0].id='unknown',f=>f.value.features[0].properties.id='different',
+  f=>f.value.features[0].properties.city='Wrong town',f=>f.value.features[0].properties.kind='street',
+  f=>f.value.features[0].properties.boundaryId='unknown',f=>f.value.features[0].geometry.type='Polygon',
+  f=>f.value.features[0].geometry.coordinates=[NaN,47],f=>f.value.features[0].geometry.coordinates=[47,19],
+  f=>f.value.features[0].properties.minZoom=Infinity,f=>f.value.features[0].properties.minZoom=19,
+  f=>f.value.towns[0].file='../private.json',f=>f.value.towns[0].bounds=[20,48,19,47],
+  f=>f.value.districtBoundaries['district:Budapest:5']='unknown',f=>f.value.coverage={type:'Point',coordinates:[19,47]}
+ ]){
+  const f=labelFixture();mutate(f);assert.throws(()=>validatePlaceLabels(f.value,f.manifest,f.getLocation),/nem érvényes/);
+ }
+});
+
+test('labels use semantic zoom thresholds and keep adjacent peers eligible together',()=>{
+ const town=labelFeature('town',[19.1,47.1],{kind:'city',minZoom:7,priority:10});
+ const left=labelFeature('left',[19.2,47.2]),right=labelFeature('right',[19.8,47.8]);
+ const farther=labelFeature('far',[22,48]),bounds=[19,47,20,48],features=[town,left,right,farther];
+ assert.deepEqual(chooseVisiblePlaceLabels(features,bounds,7).map(f=>f.id),['town']);
+ assert.deepEqual(new Set(chooseVisiblePlaceLabels(features,bounds,10).map(f=>f.id)),new Set(['town','left','right']));
+ assert.deepEqual(chooseVisiblePlaceLabels(features,bounds,18).map(f=>f.id).sort(),['left','right','town']);
+ assert.deepEqual(features.map(f=>f.id),['town','left','right','far']);
+});
+
+test('a district and its same-boundary alias render once while preserving an exact selected identity',()=>{
+ const f=labelFixture(),bounds=[19,47,20,48];
+ assert.deepEqual(chooseVisiblePlaceLabels(f.value.features,bounds,12).map(f=>f.id),['district:Budapest:5','city:Budapest']);
+ assert.deepEqual(chooseVisiblePlaceLabels(f.value.features,bounds,12,['neighborhood:ward']).map(f=>f.id),['neighborhood:ward','city:Budapest']);
+ assert.equal(chooseVisiblePlaceLabels(f.value.features,bounds,7,['neighborhood:ward'])[0].id,'neighborhood:ward','A selected name remains eligible at a distant view');
+});
+
+test('viewport labels remain bounded and prioritize selected names ahead of unselected choices',()=>{
+ const features=Array.from({length:900},(_,i)=>labelFeature('label:'+i,[19+i*.00001,47.5],{priority:10}));
+ const bounds=[19,47,20,48],visible=chooseVisiblePlaceLabels(features,bounds,12,['label:899']);
+ assert.equal(visible.length,650);assert.equal(visible[0].id,'label:899');
+ assert.equal(chooseVisiblePlaceLabels(features,bounds,12,[],4).length,4);
+ assert.deepEqual(chooseVisiblePlaceLabels(features,[22,48,23,49],12),[]);
+ assert.deepEqual(chooseVisiblePlaceLabels(features,bounds,NaN),[]);
+});
+
+test('coincident real city and downtown anchors prioritize the quarter at close zoom without hiding selected names',async()=>{
+ const registry=JSON.parse(await readFile(new URL('../dist/data/map/labels.json',import.meta.url),'utf8'));
+ const town=registry.features.find(feature=>feature.id==='city:Debrecen');
+ const downtown=registry.features.find(feature=>feature.properties.city==='Debrecen'&&feature.properties.name==='Belváros');
+ assert.ok(town&&downtown);assert.deepEqual(town.geometry.coordinates,downtown.geometry.coordinates,'Keep this real coincident-anchor regression meaningful');
+ const bounds=[21.5,47.4,21.8,47.7],features=[town,downtown];
+ const distant=chooseVisiblePlaceLabels(features,bounds,7);assert.deepEqual(distant.map(feature=>feature.id),[town.id]);
+ const close=chooseVisiblePlaceLabels(features,bounds,12);
+ assert.equal(close[0].id,downtown.id);assert.ok(close[0].properties.priority<close[1].properties.priority,'The whole city must not permanently win the same label position');
+ assert.deepEqual(new Set(chooseVisiblePlaceLabels(features,bounds,12,[town.id]).map(feature=>feature.id)),new Set([town.id,downtown.id]));
+ assert.ok(town.properties.priority<downtown.properties.priority,'Zoom priority must not mutate the canonical source records');
+});
+
+test('rendered label hits resolve directly with a stable nearest-name choice and ignore polygon interiors',()=>{
+ const first=labelFeature('first',[19.1,47.1]),second=labelFeature('second',[19.2,47.2]);
+ const project=coordinates=>({x:coordinates[0]*100,y:coordinates[1]*100});
+ assert.equal(chooseLabelHit([first,second],{x:1910,y:4710},project),first);
+ assert.equal(chooseLabelHit([second,first,first],{x:1910,y:4710},project),first,'Tile duplicates and result order must not change a label choice');
+ const tied=labelFeature('aaa',[19.1,47.1]);
+ assert.equal(chooseLabelHit([first,tied],{x:1910,y:4710},project),tied);
+ assert.equal(chooseLabelHit([{type:'Feature',id:'polygon',properties:{id:'polygon'},geometry:polygon}],{x:1950,y:4750},project),null);
+ assert.equal(chooseLabelHit([], {x:1950,y:4750},project),null);
+ assert.equal(chooseLabelHit([first],{x:NaN,y:4700},project),null);
 });
 
 test('map picking uses longitude/latitude and includes the polygon boundary',()=>{

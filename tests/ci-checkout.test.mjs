@@ -69,7 +69,8 @@ for (const planning of [false, true]) test(planning
     'scripts/dev.mjs', 'scripts/ci/checkout-patterns.txt', 'scripts/ci/reuse-validation.mjs', 'tests/ci-checkout.test.mjs',
     'future-code/worker.js', 'data/streets/source.json', 'data/streets/coverage.json',
     'data/streets/sources/StreetNames.xml.gz', 'data/neighborhoods/search-areas.geojson.gz',
-    'data/neighborhoods/sources/country-osm/municipalities.geojson.gz'
+    'data/neighborhoods/sources/country-osm/municipalities.geojson.gz',
+    'data/neighborhoods/sources/country-osm/named-nodes.geojson.gz'
   ];
   const excluded = [
     'data/neighborhoods/catalog.geojson', 'data/neighborhoods/coverage.json',

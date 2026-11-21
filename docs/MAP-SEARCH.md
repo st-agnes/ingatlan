@@ -1,46 +1,61 @@
 # Térképes helyszínválasztás
 
-A kezdőoldali kereső és a keresési igények ötlépéses űrlapja alatt OpenStreetMap-alapú térkép jelenik meg. A szöveges találat kiválasztása a településre, budapesti kerületre vagy városrészre nagyít. Közelebbi nézetben a városrész-poligonok kattinthatók; a választás ugyanazokat a kanonikus helyszínazonosítókat használja, mint a keresőmező.
+A kezdőoldali kereső és a keresési igények ötlépéses űrlapja alatt OpenFreeMap-alaptérkép jelenik meg a helyben tárolt MapLibre megjelenítővel. A kereshető települések, budapesti kerületek és városrészek neveire kattintva vagy koppintva ugyanazokat a kanonikus helyszínazonosítókat választjuk ki, mint a szöveges keresővel.
 
-Térképes városrészválasztáskor az adott teljes város vagy a korábban kiválasztott, őt tartalmazó nagyobb terület kijelölése a választott városrészre szűkül. A többi kiválasztott helyszín megmarad. Az 50-es helyszínkorlát cserénél is érvényes. A már kijelölt terület ismételt kattintással kivehető a keresésből; a címkék törlőgombjai is megmaradnak.
+Alapállapotban helynevek és az alaptérkép látszanak. Csak a **kiválasztott** helyek körvonala jelenik meg, kitöltés nélkül. A kiválasztott név kiemelést kap. Újabb kattintás a névre kiveszi a helyet a keresésből, és eltünteti a körvonalát. Az üres területre kattintás nem jelöl ki egy esetlegesen ott fekvő, átfedő poligont.
 
-A gyors ismételt koppintás is a kijelölést váltja, nem nagyítja vagy mozgatja közben a térképet. Nagyítani a térkép gombjaival, egérgörgővel vagy két ujjal lehet.
+A szöveges találat kiválasztása a településre, kerületre, utcára vagy városrészre nagyít. Térképes városrészválasztáskor az adott teljes város vagy az őt tartalmazó, korábban kijelölt nagyobb terület helyett a kisebb terület kerül a keresésbe. A többi választás és az 50-es helyszínkorlát megmarad. A térkép nem nyitja fel a telefon billentyűzetét.
 
-A távoli nézet túlnyúlhat Magyarországon, hogy a térkép széle ne tolja el a kiválasztott települést a középpontból. Ez különösen széles képernyőn, keleti településeknél fontos. A nagyítás továbbra is a választott hely körül történik; csak a meglévő magyar katalógushoz tartozó körvonalakat töltjük le.
+A gyors ismételt koppintás a kijelölést váltja, nem nagyítja vagy mozgatja közben a térképet. A nagyítás gombokkal, egérgörgővel és két ujjal érhető el. A feliratok körül biztosított kis érintési ráhagyás segíti a mobilos választást. Több közeli felirat esetén egyértelmű, állandó sorrend dönt; nincs utólagos választóablak. A helynevek opcionális listából, billentyűzettel is kijelölhetők.
 
-A térképre kattintva közvetlenül változik a kijelölés, nincs utólagos választóablak. A városrészeknek csak a körvonala látszik; kijelölve és billentyűzetfókusszal sem kapnak kitöltést. A körvonal belsejére kattintás is működik. Ha a látható poligonok átfedik egymást, a kattintás a ténylegesen legkisebb területűt választja ki. A lyukakat levonjuk, a különálló poligonrészeket összeadjuk, nem a befoglaló téglalap mérete dönt. Az azonos méretű találatoknál a stabil helyszínazonosító ad egyértelmű sorrendet. A látható területek opcionális listából és billentyűzettel is kijelölhetők.
+A távoli nézet túlnyúlhat Magyarországon, hogy egy széles képernyő széle ne tolja el a kiválasztott települést a középpontból. A nagyítás mindig a választott hely körül történik. A térképes keresés nem kér helyhozzáférést, nem végez címgeokódolást, és nem továbbít vagy jelenít meg ingatlan-koordinátákat.
 
-A nagyítási szinteket a területek egymásba ágyazódása határozza meg. A független városrészek a 8-as szinttől látszanak, és közelítéskor is megmaradnak, mérettől függetlenül. Debrecenben például Nagyerdőalja és Szentlászlófalva együtt látható. Valóban tartalmazott területek további két nagyítási lépésenként jelennek meg: például Pest körvonalán belül később a VI. kerületé. A szülőterület körvonala is megmarad, így a hiányos részletes felosztás nem tünteti el a még fel nem osztott részeket.
+## Helynevek és keresési határok
 
-Az eladói pontos cím űrlapja változatlan. A térkép nem kér helyhozzáférést, nem hív Google-geokódolást és nem jelenít meg ingatlan-koordinátákat. A térképes kereséshez nincs szükség API-kulcsra vagy új Google Cloud-erőforrásra.
+A kereshető helyneveket az alkalmazás saját katalógusa rajzolja a vektoros alaptérkép fölé. Ez 3155 település, 23 budapesti kerület és mind a 4308 összegyűjtött városrész azonosítóját megőrzi. A szöveges és térképes választás között nincs bizonytalan, kattintásonként végzett névegyeztetés.
+
+A feliratpontokat előre készítjük el. Ahol a rögzített OSM-helynév megfeleltethető a városrésznek és a pontja az eredeti és az egyszerűsített poligonon belül is van, azt használjuk. Másutt geometriailag a terület belsejébe eső megjelenítési pontot képzünk. A budapesti kerület és az azonos területet leíró városrész felirata közös határra hivatkozhat; ugyanaz a hely nem kap egymásra írt kettős feliratot.
+
+A magyarországi település- és városrésznevek alaptérképi feliratai helyett ezeket a saját, kanonikus neveket jelenítjük meg. Az utcák, utak és a többi háttértérképi elem továbbra is az OpenFreeMap rétegeiből származik. A Magyarországon kívüli alaptérképi helynevek megmaradnak.
+
+A névsűrűséget a hely típusa, a valódi tartalmazási viszonyok, a nagyítás és a MapLibre feliratütközés-kezelése határozza meg. Az egymás mellett fekvő városrészeket nem pusztán a területük alapján osztjuk külön nagyítási sávokba. Egy adott nézetben a feliratok csak annyian jelennek meg, amennyien olvashatóan elférnek; a többi hely a közelítéssel vagy a szöveges keresővel érhető el.
+
+A térkép display-only geometriát használ. Az ingatlanok valódi városrésztagságát továbbra is a teljes felbontású MySQL-geometriák és a meglévő térbeli/tagsági indexek döntik el. Az eladói pontos cím és a szerveroldali Google-geokódolás működése változatlan.
 
 ## Adatok és betöltés
 
-- Mind a 4308 kanonikus városrész szerepel a külön megjelenítési katalógusban, 617 települési fájlban. A `dist/data/map/index.json` csak neveket, fájlazonosítókat és nagyítási határokat tartalmaz. Mind a 3155 településre, 23 budapesti kerületre és 4308 városrészre van nagyítási célterület.
-- A térkép megnyitásakor a Leaflet, a megjelenítési index és a külön `dist/data/map/hierarchy.json` metaadatfájl töltődik be. Ez utóbbi 94 KB, tömörítve körülbelül 27 KB; országos poligonkoordinátákat nem tartalmaz. A poligonokat csak 8-as vagy közelebbi nagyításnál, a látható környékhez kérjük le. Egyszerre legfeljebb nyolc települési fájl és 650 terület kerül a nézetbe. A nyolcelemű memória-gyorsítótár és a késleltetett, megszakítható lekérések korlátozzák a terhelést.
-- A tartalmazási kapcsolatokat előre, GEOS-szal számítjuk az eredeti geometriákból. A szülő a gyermek legalább 95%-át tartalmazza, és legalább 25%-kal nagyobb nála; a puszta átfedés vagy területméret nem elég. A legkisebb megfelelő szülőt választjuk. Az 5%-os határengedmény a különböző, részben becsült adatforrások eltéréseit kezeli. A bizonytalanul elhelyezett terület önálló marad, nem erőltetjük másik terület alá.
-- A jelenlegi hierarchia 1169 kapcsolatot, 3139 önálló gyökérterületet és legfeljebb négy tartalmazási szintet tartalmaz. A böngésző csak a már kiszámolt kapcsolatokat és befoglaló határokat szűri; mozgatáskor nem számol poligonmetszetet. A szöveges kiválasztás természetes nagyítását megtartjuk, és szükség esetén közelítünk a kijelölt terület megjelenési szintjéig.
-- A tényleges poligonterületeket a kattintásnál szükséges sorrendhez egyszer számítjuk ki, és a városi rétegek gyorsítótárához kapcsolva megőrizzük. Csak az éppen kirajzolt területek vehetnek részt a kiválasztásban.
-- A határokat csak a rajzoláshoz egyszerűsítjük, minden eredeti poligonrész és lyuk megtartásával. A valódi ingatlankeresés továbbra is a változatlan, teljes felbontású MySQL-geometriát és a meglévő tagsági indexeket használja.
-- A térkép betöltési hibája nem blokkolja a szöveges keresőt. Az újrapróbálás külön gombbal indítható; a háttértérkép hiányában a már betöltött városrészek továbbra is kijelölhetők.
+- A `dist/data/map/labels.json` pontokat, neveket, kanonikus azonosítókat, a rögzített források hashét és a kiválasztható határok hivatkozásait tartalmazza. Az országos feliratpontok betöltése nem tölti le az ország összes városrész-poligonját.
+- Az eredeti, 617 tartalomazonosított `city-…json` fájlban lévő 4308 megjelenítési poligon, a bounds-only `index.json` és a külön `hierarchy.json` változatlan forrásadatokra támaszkodik. A teljes keresési geometriát tartalmazó backendcsomag továbbra sem kerül a Hostingra.
+- A `town-…json` fájlok a kiválasztott települések egyszerűsített körvonalait adják. Ezek csak akkor kellenek, amikor az adott település ki van jelölve. A városrészek határait szintén csak a kijelölt helyek körvonalához töltjük le, nem a feliratok megjelenítéséhez.
+- A térképre eső összes kiválasztott hely, legfeljebb 50, körvonalat kaphat. Egyszerre legfeljebb négy fájl töltődik, az azonos fájlra mutató kérések összevonódnak. A gyorsítótár nyolc teljes települési réteget és a szükséges kiválasztott geometriákat őrzi; legfeljebb 650 felirat kerül a nézetbe. A késleltetett lekérések és a megszakított/elavult válaszok eldobása tovább korlátozza a terhelést. Mozgatáskor nincs poligonmetszet-számítás vagy külső névkeresés.
+- A térkép az űrlapoktól függetlenül töltődik be. Hiba vagy WebGL2-t nem támogató böngésző esetén a szöveges kereső működőképes marad. Újrapróbálás külön gombbal indítható; a hibás térkép nem tartja fogva a navigációt.
 
 ## Előállítás és ellenőrzés
 
-Az eredeti, rögzített források a `data/neighborhoods/search-areas.geojson.gz` és a `data/neighborhoods/sources/country-osm/municipalities.geojson.gz`. A generátor nem módosítja a keresési poligonokat vagy a backend adatait.
+Rögzített források:
+
+- `data/neighborhoods/search-areas.geojson.gz`: a 4308 keresési terület.
+- `data/neighborhoods/sources/country-osm/municipalities.geojson.gz`: településhatárok.
+- `data/neighborhoods/sources/country-osm/named-nodes.geojson.gz`: a rendelkezésre álló OSM-helynévpontok.
+
+A generátor nem módosítja a keresési poligonokat vagy a backend adatait. GEOS-szal egyszerűsíti a képernyőre szánt határokat, megtartva a különálló részeket és lyukakat, és előállítja a feliratpontokat.
 
 ```sh
 python3 scripts/build-neighborhood-map.py
 python3 scripts/build-neighborhood-map.py --check
 node tests/neighborhood-map-data.test.mjs
 node tests/neighborhood-map.test.mjs
+node tests/gcp-deployment.test.mjs
 ```
 
-A generáláshoz `libgeos_c` 3.10 vagy újabb szükséges (Ubuntu 24.04: `libgeos-c1t64`). A Node-adatteszt külön GIS-csomag nélkül ellenőrzi az összes kanonikus azonosítót, a lyukak és különálló részek megtartását, az állományméreteket, a hierarchiát és a tartalom alapján képzett fájlneveket. A telepítő ellenőrzi a hivatkozott városi rétegeket és a hozzájuk tartozó hierarchia verzióját, hivatkozásait és körmentességét; hibás adatokkal nem írja felül a korábbi Hosting-állományokat.
+A generáláshoz `libgeos_c` 3.10 vagy újabb szükséges (Ubuntu 24.04: `libgeos-c1t64`). A Node-adatteszt ellenőrzi a kanonikus azonosítókat, a forráshasheket, a feliratok és határok hivatkozásait, a geometriák épségét és a tartalomazonosított fájlneveket. A telepítő minden hivatkozott fájlt és a hozzájuk tartozó verziókat ellenőrzi, mielőtt lecserélné a korábbi Hosting-állományokat. A Chromium-tesztek helyi hálózati adatokkal ellenőrzik a valódi megjelenítőt asztali, tablet- és mobilméretben.
 
 ## Térképszolgáltató és licencek
 
-A Leaflet 1.9.4 JavaScript és CSS helyben, a `dist/vendor/leaflet/` könyvtárból töltődik; nincs külső JavaScript-CDN-függőség. A BSD 2-Clause licencet és az ellenőrzött kiadás forrását a mellékelt `LICENSE`, illetve `THIRD-PARTY-NOTICES.txt` tartalmazza.
+A MapLibre GL JS 6.19.0 modulja, workerje, CSS-e és licence a `dist/vendor/maplibre/` könyvtárból töltődik. A `provenance.json` megőrzi az npm-kiadás SRI-jét, az archívum SHA-256 hashét és az egyes fájlok hashét; a csomagoló ezek mellett külön rögzített kiadási fájlhasheket is ellenőriz, így egy átírt worker és átírt jegyzék együtt sem fogadható el. A megjelenítőhöz nincs szükség külső JavaScript-CDN-re. Az OpenFreeMap Liberty stílusának rögzített változata a `dist/data/map/style.json`; az alaptérkép vektoros csempéi, karakterkészletei és képi elemei az OpenFreeMaptől érkeznek. Csak a szokásos interaktív nézet kér adatokat, nincs tömeges vagy offline előtöltés.
 
-A landing és az onboarding keresőmezője mellett egyetlen **Források** link vezet a részletes forrás- és licencjegyzékhez. A KSH-, OSM- és Magyar Posta-hivatkozások ezen az oldalon maradnak elérhetők. A térképcsempék kötelező OpenStreetMap-jelölése közvetlenül a térképen is látszik.
+Az OpenFreeMap nyilvános szolgáltatása jelenleg ingyenes, üzleti alkalmazásban is használható, nem igényel regisztrációt vagy API-kulcsot. A közösségi szolgáltatás nem ad SLA-garanciát. Forrás: https://openfreemap.org/ és https://openfreemap.org/quick_start/.
 
-Az alaptérképet a `tile.openstreetmap.org` adja, a térképen látható OpenStreetMap-forrásjelöléssel. Csak a szokásos interaktív nézet tölt csempéket, nincs tömeges vagy offline előtöltés. A közösségi kiszolgáló [használati szabályai](https://operations.osmfoundation.org/policies/tiles/) érvényesek; ez nem garantált, korlátlan tárhely. A Chromium-tesztek helyi képpel váltják ki a csempekéréseket, nem terhelik az OSM-kiszolgálót.
+A keresőmezők mellett továbbra is egyetlen **Források** link vezet a `THIRD-PARTY-NOTICES.txt` jegyzékhez. A térképen is látszik az OpenFreeMap/OpenMapTiles/OpenStreetMap-forrásjelölés. Az alaptérkép adatainak és a saját összeállított városrészkatalógusnak a licence, eredete és korlátai külön szerepelnek a jegyzékben.
+
+A normál tesztdeployhoz nincs szükség új secretre, API-kulcsra, Google Cloud-erőforrásra vagy kézi konfigurációra.

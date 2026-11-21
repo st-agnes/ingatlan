@@ -167,7 +167,7 @@ function refreshRecentSearch(){
 const locationSourcesLink='<a href="/THIRD-PARTY-NOTICES.txt" target="_blank" rel="noopener noreferrer">Források</a>';
 function mapReplacementIds(location,ancestorIds){
  const ids=new Set([`city:${location.city}`]);
- if(Array.isArray(ancestorIds))for(const id of ancestorIds){const ancestor=getLocation(id);if(ancestor?.kind==='neighborhood'&&ancestor.city===location.city&&ancestor.id!==location.id)ids.add(ancestor.id);}
+ if(Array.isArray(ancestorIds))for(const id of ancestorIds){const ancestor=getLocation(id);if(['neighborhood','district'].includes(ancestor?.kind)&&ancestor.city===location.city&&ancestor.id!==location.id)ids.add(ancestor.id);}
  return ids;
 }
 function mountSearchLocationMap(container,{selectedIds=[],onSelect}){
@@ -235,7 +235,7 @@ function bindLandingPicker(){
  const autocomplete=editorAutocomplete({input,list,container:picker,prefix:'landing-location',asynchronous:true,lookup:query=>findPublicLocations(query,12,{kind:'search'}),filter:item=>!landingSelected.some(chosen=>chosen.id===item.id),closeAll:()=>{const open=autocomplete.isOpen();autocomplete.close();return open;},emptyMessage:'Nincs ilyen találat. Próbálj másik helyszínt.',onChoose:item=>{
   choose(item);
  },onInput:()=>{landingQuery=input.value;error.textContent='';}});
- locationMap=mountSearchLocationMap(document.getElementById('landing-location-map'),{selectedIds:landingSelected.map(item=>item.id),onSelect:(id,options)=>{const item=getLocation(id);return item?.kind==='neighborhood'?choose(item,{fromMap:true,ancestorIds:options?.ancestorIds}):false;}});
+ locationMap=mountSearchLocationMap(document.getElementById('landing-location-map'),{selectedIds:landingSelected.map(item=>item.id),onSelect:(id,options)=>{const item=getLocation(id);return ['city','district','neighborhood'].includes(item?.kind)?choose(item,{fromMap:true,ancestorIds:options?.ancestorIds}):false;}});
  const dismiss=event=>{if(!picker.contains(event.target))autocomplete.close();};
  document.addEventListener('pointerdown',dismiss,true);document.addEventListener('focusin',dismiss);
  landingPickerCleanup=()=>{locationMap.destroy();autocomplete.dispose();document.removeEventListener('pointerdown',dismiss,true);document.removeEventListener('focusin',dismiss);};
@@ -753,7 +753,7 @@ function openEditor(kind,id,options={}){
  locationAutocomplete=editorAutocomplete({input,list,container:picker,prefix:'location',asynchronous:inline||typeof model?.findLocations==='function',lookup:query=>inline?findPublicLocations(query,12,{kind:property?'property':'search'}):typeof model?.findLocations==='function'?model.findLocations(query,12,{kind:property?'property':'search'}):searchLocations(query,12,{kind:property?'property':'search'}),filter:location=>(property?['city','district']:['city','district','area','neighborhood','street']).includes(location.kind)&&!selected.some(chosen=>chosen.id===location.id),onInput:clearError,closeAll:closeOptions,emptyMessage:property?'Nincs ilyen település vagy kerület. Próbálj másik nevet.':'Nincs ilyen találat. Próbáld a település, kerület, utca vagy városrész nevét.',onChoose:location=>{
   chooseEditorLocation(location);
  }});
- if(!property)locationMap=mountSearchLocationMap(document.getElementById('search-location-map'),{selectedIds:selected.map(location=>location.id),onSelect:(id,options)=>{const location=getLocation(id);return location?.kind==='neighborhood'?chooseEditorLocation(location,{fromMap:true,ancestorIds:options?.ancestorIds}):false;}});
+ if(!property)locationMap=mountSearchLocationMap(document.getElementById('search-location-map'),{selectedIds:selected.map(location=>location.id),onSelect:(id,options)=>{const location=getLocation(id);return ['city','district','neighborhood'].includes(location?.kind)?chooseEditorLocation(location,{fromMap:true,ancestorIds:options?.ancestorIds}):false;}});
  if(property)streetAutocomplete=editorAutocomplete({input:streetInput,list:streetList,container:streetPicker,prefix:'street',asynchronous:inline||typeof model?.findStreets==='function',lookup:query=>selected[0]?(inline?findPublicStreets(query,selected[0].id,12):typeof model?.findStreets==='function'?model.findStreets(query,selected[0].id,12):[]):[],filter:street=>street.kind==='street'&&!!street.streetName&&!!selected[0]&&street.city===selected[0].city&&(!selected[0].district||street.district===selected[0].district),onInput:()=>{selectedStreet=null;},closeAll:closeOptions,emptyMessage:'Nincs utcajavaslat. A teljes utcanevet szabadon is megadhatod.',onChoose:street=>{
   if(selected[0].id==='city:Budapest'&&street.district){const district=Array.from({length:23},(_value,index)=>getLocation(`district:Budapest:${index+1}`)).find(location=>location?.district===street.district);if(district){selected=[district];drawChips();}}
   selectedStreet={id:street.id,streetName:street.streetName,locationId:selected[0].id};streetInput.value=street.streetName;
