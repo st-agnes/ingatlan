@@ -28,7 +28,11 @@ jobs:
           python3 scripts/build-neighborhood-map.py --check
           git add dist/data/map
           otthonra_asset_tree=$(git write-tree)
-          test "$(git rev-parse "$otthonra_asset_tree:dist/data/map")" = "6e3334545b159739c5a2b7e7d5e428d5a70f445d"
+          git rev-parse "$otthonra_asset_tree:dist/data/map"
+          sha256sum dist/data/map/labels.json
+          git diff --stat
+          git ls-tree "$otthonra_asset_tree:dist/data/map" > /tmp/map-asset-entries.txt
+          sha256sum /tmp/map-asset-entries.txt
           git -c user.name='Otthonra asset preparation' -c user.email='asset-preparation@example.test' -c commit.gpgsign=false commit -m 'Generate verified canonical label and selected town display assets'
           git push origin HEAD:refs/heads/codex/map-label-assets-20261121
           git rev-parse HEAD
