@@ -384,6 +384,11 @@ async function budapestZoomLevels(browser, viewport) {
     const state = await placeState(map); assert.ok(!state.rendered.includes(ward.id) && !state.rendered.includes(belvaros.id), 'Distant Budapest offers broad named halves before finer names');
     const coarseZoom = await mapZoom(map), coarseCenter = await mapCenter(map);
     await clickLabel(map, buda.id, viewport); await chip(page, buda.id, true).waitFor(); assert.equal(await chip(page, 'city:Budapest', true).count(), 0);
+    // An unfinished request may correctly be aborted by the next selection.
+    // Establish an acknowledged, validated cache entry before asserting reuse.
+    await assertOutline(map, buda.id);
+    const cachedCityReads = server.requests.filter(path => path.endsWith(cityRows[2].file)).length;
+    assert.ok(cachedCityReads >= 1, 'The cache checkpoint must follow an actual completed geometry read');
     await clickLabel(map, pest.id, viewport); await chip(page, pest.id, true).waitFor();
     assert.equal(await mapZoom(map), coarseZoom); await assertCenter(map, coarseCenter, 'Selecting named city halves retains camera');
     await assertOutline(map, buda.id); await assertOutline(map, pest.id);
@@ -394,7 +399,7 @@ async function budapestZoomLevels(browser, viewport) {
     assert.equal(await chip(page, ward.id, true).count(), 0, 'A child removes the selected district alias of its containing polygon'); assert.equal(await chip(page, buda.id, true).count(), 1);
     await assertOutline(map, belvaros.id); await assertOutline(map, ward.id, false);
     assert.equal(await map.locator('.maplibregl-popup,.location-map-overlap').count(), 0);
-    assert.equal(server.requests.filter(path => path.endsWith(cityRows[2].file)).length, 1, 'New selected Budapest details reuse one cached city chunk');
+    assert.equal(server.requests.filter(path => path.endsWith(cityRows[2].file)).length, cachedCityReads, 'After acknowledged geometry loading, new Budapest selections and zoom levels reuse the cached city chunk');
     await removeChip(page, viewport, buda.id, {landing: true}); await chooseText(page, viewport, buda.id, 'Buda (Budapest)', {landing: true}); await waitLabel(map, buda.id); await assertOutline(map, buda.id);
     await chooseText(page, viewport, ward.id, 'Budapest V. kerület', {landing: true}); await waitLabel(map, ward.id); await assertOutline(map, ward.id);
     await removeChip(page, viewport, belvaros.id, {landing: true}); await chooseText(page, viewport, belvaros.id, 'Belváros (Budapest)', {landing: true}); await waitLabel(map, belvaros.id); await assertOutline(map, belvaros.id);
