@@ -1,0 +1,31 @@
+name: Prepare canonical map label assets
+on:
+  create:
+permissions:
+  contents: write
+jobs:
+  prepare:
+    if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/map-label-assets-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/data/
+            /data/neighborhoods/search-areas.geojson.gz
+            /data/neighborhoods/sources/country-osm/municipalities.geojson.gz
+            /data/neighborhoods/sources/country-osm/named-nodes.geojson.gz
+      - name: Generate pinned public display assets and verify exact tree
+        run: |
+          python3 scripts/build-neighborhood-map.py
+          python3 scripts/build-neighborhood-map.py --check
+          git add dist/data/map
+          otthonra_asset_tree=$(git write-tree)
+          test "$(git rev-parse "$otthonra_asset_tree:dist/data/map")" = "6e3334545b159739c5a2b7e7d5e428d5a70f445d"
+          git -c user.name='Otthonra asset preparation' -c user.email='asset-preparation@example.test' -c commit.gpgsign=false commit -m 'Generate verified canonical label and selected town display assets'
+          git push origin HEAD:refs/heads/codex/map-label-assets-20261121
+          git rev-parse HEAD
+          git rev-parse HEAD:dist/data/map
