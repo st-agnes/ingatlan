@@ -1,0 +1,51 @@
+name: Prepare pinned MapLibre vector renderer
+on:
+  create:
+permissions:
+  contents: write
+jobs:
+  prepare:
+    if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/maplibre-vendor-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - name: Verify npm release integrity and store immutable public source objects
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, io, json, os, tarfile, urllib.request
+          version='6.19.0'
+          def get(url,limit):
+              with urllib.request.urlopen(url,timeout=40) as response:
+                  data=response.read(limit+1)
+              assert len(data)<=limit
+              return data
+          metadata=json.loads(get('https://registry.npmjs.org/maplibre-gl/'+version,100000))
+          assert metadata['name']=='maplibre-gl' and metadata['version']==version
+          dist=metadata['dist'];assert dist['tarball']=='https://registry.npmjs.org/maplibre-gl/-/maplibre-gl-'+version+'.tgz'
+          archive=get(dist['tarball'],12000000)
+          assert dist['integrity']=='sha512-'+base64.b64encode(hashlib.sha512(archive).digest()).decode()
+          assert hashlib.sha1(archive).hexdigest()==dist['shasum']
+          def blob(data):
+              expected=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+              body=json.dumps({'encoding':'base64','content':base64.b64encode(data).decode()}).encode()
+              request=urllib.request.Request('https://api.github.com/repos/st-agnes/ingatlan/git/blobs',data=body,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'})
+              with urllib.request.urlopen(request,timeout=40) as response:
+                  result=json.load(response)
+              assert result['sha']==expected
+              return expected
+          files={}
+          with tarfile.open(fileobj=io.BytesIO(archive),mode='r:gz') as tar:
+              for path in ['dist/maplibre-gl.mjs','dist/maplibre-gl-worker.mjs','dist/maplibre-gl.css','LICENSE.txt']:
+                  item=tar.getmember('package/'+path)
+                  assert item.isfile() and item.size<3000000
+                  source=tar.extractfile(item).read();source.decode('utf-8')
+                  name=path.removeprefix('dist/')
+                  files[name]={'bytes':len(source),'sha256':hashlib.sha256(source).hexdigest(),'gitBlob':blob(source)}
+                  print(json.dumps({'file':name,**files[name]}),flush=True)
+          provenance={'package':'maplibre-gl','version':version,'registry':'https://registry.npmjs.org/maplibre-gl/'+version,'integrity':dist['integrity'],'tarballSha256':hashlib.sha256(archive).hexdigest(),'files':files}
+          source=(json.dumps(provenance,indent=2)+'\n').encode()
+          print(json.dumps({'file':'provenance.json','bytes':len(source),'sha256':hashlib.sha256(source).hexdigest(),'gitBlob':blob(source)}),flush=True)
+          print('Verified public release assets only; application refs, deployments and credentials were not changed.')
+          PY
