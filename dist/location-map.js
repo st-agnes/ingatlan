@@ -482,8 +482,10 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       if (!map) {
         // A repeated tap is the selection toggle, so it must not also zoom or
         // recenter the map. Zoom controls, wheel and pinch remain available.
+        // The viewport may extend beyond Hungary at distant zooms. Restricting
+        // its bounds would push eastern-city centers west while zooming out.
         map = leaflet.map(canvas, {minZoom: 6, maxZoom: 18, scrollWheelZoom: false, doubleClickZoom: false,
-          maxBounds: [[44.5, 15], [49.5, 24]], maxBoundsViscosity: 0.7, attributionControl: true, zoomControl: false});
+          attributionControl: true, zoomControl: false});
         leaflet.control.zoom({zoomInTitle: 'Nagyítás', zoomOutTitle: 'Kicsinyítés'}).addTo(map);
         map.attributionControl.setPrefix(false);
         tileLayer = leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19,
