@@ -22,6 +22,8 @@ const buda = quarter('Budapest', 'Buda'), pest = quarter('Budapest', 'Pest'), bu
 const rectangle = (west, south, east, north) => [[[west, south], [east, south], [east, north], [west, north], [west, south]]];
 const makeFeature = (location, bbox) => ({type: 'Feature', id: location.id, bbox, properties: {id: location.id, name: location.name || location.label, city: location.city, label: location.label, estimated: !!location.estimated}, geometry: {type: 'Polygon', coordinates: rectangle(...bbox)}});
 const debrecenBounds = [21.59, 47.50, 21.65, 47.56], szegedBounds = [20.12, 46.23, 20.18, 46.29], budapestBounds = [18.95, 47.40, 19.25, 47.60], solymarBounds = [18.90, 47.57, 18.95, 47.60];
+// MapLibre uses a 512-pixel world: zoom13 preserves the geographic overview
+// that the old 256-pixel renderer displayed at zoom14.
 // The first two polygons overlap. A named-label tap must identify the named
 // place, including the larger region, instead of selecting the smallest shape.
 const centralFeature = makeFeature(central, [21.614, 47.522, 21.626, 47.532]);
@@ -326,7 +328,7 @@ async function landingSelection(browser, viewport) {
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await assertOutline(map, city.id);
     assert.equal(server.requests.filter(path => /\/city-/.test(path)).length, 0, 'Focusing a town does not fetch unselected quarter polygons');
     await removeChip(page, viewport, city.id, {landing: true}); await waitLabel(map, city.id); await clickLabel(map, city.id, viewport); await chip(page, city.id, true).waitFor();
-    await zoomTo(map, viewport, 14); await waitLabel(map, venkert.id); await waitLabel(map, sestakert.id);
+    await zoomTo(map, viewport, 13); await waitLabel(map, venkert.id); await waitLabel(map, sestakert.id);
     await clickLabel(map, sestakert.id, viewport); await chip(page, sestakert.id, true).waitFor();
     assert.equal(await chip(page, venkert.id, true).count(), 0, 'A named tap selects that place even when its polygon is larger and overlaps another');
     assert.equal(await chip(page, city.id, true).count(), 0, 'Selecting a named quarter narrows the town filter');
@@ -363,7 +365,7 @@ async function disjointZoomLevels(browser, viewport) {
     await zoom(map, viewport, 'out');
     assert.ok(Math.abs(await mapZoom(map) - naturalZoom) < .01, 'Opposite real zoom controls return to the original fractional fit');
     await assertCenter(map, center, 'Fractional control steps must retain the geographic center');
-    for (const level of [10, 12, 14]) {
+    for (const level of [10, 11, 13]) {
       await zoomTo(map, viewport, level); await assertCenter(map, center, `Zoom ${level} keeps the selected eastern city centered`);
       const state = await placeState(map), peers = state.candidates.filter(item => polygons.some(feature => feature.id === item.id));
       assert.deepEqual(peers.map(item => item.id).sort(), polygons.map(item => item.id).sort(), 'All adjacent peers remain eligible; text collision alone controls density');
@@ -382,6 +384,11 @@ async function budapestZoomLevels(browser, viewport) {
     const state = await placeState(map); assert.ok(!state.rendered.includes(ward.id) && !state.rendered.includes(belvaros.id), 'Distant Budapest offers broad named halves before finer names');
     const coarseZoom = await mapZoom(map), coarseCenter = await mapCenter(map);
     await clickLabel(map, buda.id, viewport); await chip(page, buda.id, true).waitFor(); assert.equal(await chip(page, 'city:Budapest', true).count(), 0);
+    // An unfinished request may correctly be aborted by the next selection.
+    // Establish an acknowledged, validated cache entry before asserting reuse.
+    await assertOutline(map, buda.id);
+    const cachedCityReads = server.requests.filter(path => path.endsWith(cityRows[2].file)).length;
+    assert.ok(cachedCityReads >= 1, 'The cache checkpoint must follow an actual completed geometry read');
     await clickLabel(map, pest.id, viewport); await chip(page, pest.id, true).waitFor();
     assert.equal(await mapZoom(map), coarseZoom); await assertCenter(map, coarseCenter, 'Selecting named city halves retains camera');
     await assertOutline(map, buda.id); await assertOutline(map, pest.id);
@@ -392,7 +399,7 @@ async function budapestZoomLevels(browser, viewport) {
     assert.equal(await chip(page, ward.id, true).count(), 0, 'A child removes the selected district alias of its containing polygon'); assert.equal(await chip(page, buda.id, true).count(), 1);
     await assertOutline(map, belvaros.id); await assertOutline(map, ward.id, false);
     assert.equal(await map.locator('.maplibregl-popup,.location-map-overlap').count(), 0);
-    assert.equal(server.requests.filter(path => path.endsWith(cityRows[2].file)).length, 1, 'New selected Budapest details reuse one cached city chunk');
+    assert.equal(server.requests.filter(path => path.endsWith(cityRows[2].file)).length, cachedCityReads, 'After acknowledged geometry loading, new Budapest selections and zoom levels reuse the cached city chunk');
     await removeChip(page, viewport, buda.id, {landing: true}); await chooseText(page, viewport, buda.id, 'Buda (Budapest)', {landing: true}); await waitLabel(map, buda.id); await assertOutline(map, buda.id);
     await chooseText(page, viewport, ward.id, 'Budapest V. kerület', {landing: true}); await waitLabel(map, ward.id); await assertOutline(map, ward.id);
     await removeChip(page, viewport, belvaros.id, {landing: true}); await chooseText(page, viewport, belvaros.id, 'Belváros (Budapest)', {landing: true}); await waitLabel(map, belvaros.id); await assertOutline(map, belvaros.id);
@@ -403,7 +410,7 @@ async function ownedWizard(browser, viewport) {
   const f = await fixture(browser, viewport, {authenticated: true}), {page, server} = f;
   await inspect(f, viewport, 'owned', async () => {
     await openEditor(page, viewport); await page.locator('#f-type').selectOption('Lakás'); const map = await readyMap(page, '#search-location-map');
-    await chooseText(page, viewport, solymar.id, 'Solymár'); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 14); await clickLabel(map, tocoskert.id, viewport); await chip(page, tocoskert.id).waitFor();
+    await chooseText(page, viewport, solymar.id, 'Solymár'); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); await clickLabel(map, tocoskert.id, viewport); await chip(page, tocoskert.id).waitFor();
     assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, solymar.id).count(), 1); assert.equal(await page.locator('#location-chips .location-chip').count(), 2);
     assert.notEqual(await page.evaluate(() => document.activeElement?.id), 'location-input', 'Map taps never summon the mobile keyboard'); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await chip(page, tocoskert.id).count(), 0); assert.equal(await chip(page, solymar.id).count(), 1); await assertOutline(map, tocoskert.id, false); await clickLabel(map, tocoskert.id, viewport);
@@ -421,7 +428,7 @@ async function anonymousDraft(browser, viewport) {
   const f = await fixture(browser, viewport), {page} = f;
   await inspect(f, viewport, 'draft', async () => {
     await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const landing = await readyMap(page, '#landing-location-map');
-    await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(landing, viewport, 14); await clickLabel(landing, tocoskert.id, viewport); assert.equal(await chip(page, city.id, true).count(), 0);
+    await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(landing, viewport, 13); await clickLabel(landing, tocoskert.id, viewport); assert.equal(await chip(page, city.id, true).count(), 0);
     await interact(viewport, page.locator('#landing-search-form button[type="submit"]')); await page.locator('#onboarding-page #entity-form').waitFor(); await page.locator('#f-type').selectOption('Lakás'); const map = await readyMap(page, '#search-location-map');
     await waitLabel(map, tocoskert.id); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await chip(page, tocoskert.id).count(), 0); await assertOutline(map, tocoskert.id, false);
@@ -436,11 +443,11 @@ async function anonymousDraft(browser, viewport) {
 async function failuresAndStaleReads(browser, viewport) {
   const f = await fixture(browser, viewport), {page, server} = f;
   await inspect(f, viewport, 'network', async () => {
-    await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map'); await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(map, viewport, 14);
+    await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map'); await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(map, viewport, 13);
     server.failCity = 'Debrecen'; await clickLabel(map, venkert.id, viewport); const retry = map.locator('.location-map-retry'); await retry.waitFor();
     assert.equal(await chip(page, venkert.id, true).count(), 1, 'Geometry failures retain the acknowledged selection'); await waitLabel(map, sestakert.id);
     await interact(viewport, retry); await assertOutline(map, venkert.id); assert.equal(await retry.isVisible(), false);
-    await page.reload({waitUntil: 'domcontentloaded'}); const newMap = await readyMap(page, '#landing-location-map'); await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(newMap, viewport, 14);
+    await page.reload({waitUntil: 'domcontentloaded'}); const newMap = await readyMap(page, '#landing-location-map'); await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(newMap, viewport, 13);
     server.holdCity = 'Debrecen'; server.hold = gate(); const before = server.requests.length; await clickLabel(newMap, venkert.id, viewport);
     for (let index = 0; index < 80 && !server.requests.slice(before).some(path => path.endsWith(cityRows[0].file)); index++) await delay(25);
     assert.ok(server.requests.slice(before).some(path => path.endsWith(cityRows[0].file)), 'The delayed selected-outline request actually began');
@@ -460,10 +467,10 @@ async function narrowingAtLimit(browser, viewport) {
   const f = await fixture(browser, viewport, {authenticated: true}), {page, server} = f;
   await inspect(f, viewport, 'limit', async () => {
     const others = extraLocations.map(item => item.id); server.searches[0].locationIds = [city.id, ...others]; server.searches[0].locations = server.searches[0].locationIds.map(getLocation);
-    await page.goto(`${origin}/#searches`, {waitUntil: 'domcontentloaded'}); await interact(viewport, page.locator(`[data-action="edit"][data-kind="search"][data-id="${searchId}"]`)); const map = await readyMap(page, '#search-location-map'); await zoomTo(map, viewport, 14); await waitLabel(map, tocoskert.id);
+    await page.goto(`${origin}/#searches`, {waitUntil: 'domcontentloaded'}); await interact(viewport, page.locator(`[data-action="edit"][data-kind="search"][data-id="${searchId}"]`)); const map = await readyMap(page, '#search-location-map'); await zoomTo(map, viewport, 13); await waitLabel(map, tocoskert.id);
     assert.equal(await page.locator('#location-chips .location-chip').count(), 50); await clickLabel(map, tocoskert.id, viewport);
     assert.equal(await page.locator('#location-chips .location-chip').count(), 50); assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, tocoskert.id).count(), 1); assert.equal(await page.locator('#location-error').innerText(), '');
-    await removeChip(page, viewport, others[0]); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 14); assert.equal(await page.locator('#location-chips .location-chip').count(), 50);
+    await removeChip(page, viewport, others[0]); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); assert.equal(await page.locator('#location-chips .location-chip').count(), 50);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await page.locator('#location-chips .location-chip').count(), 49); assert.equal(await chip(page, tocoskert.id).count(), 0); assert.equal(await chip(page, city.id).count(), 1);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await page.locator('#location-chips .location-chip').count(), 49); assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, tocoskert.id).count(), 1); assert.equal(await chip(page, others[1]).count(), 1);
     console.log('Neighborhood map limit desktop: named replacement at50, exact removal, retained offscreen choices and re-add narrowing passed.');
@@ -474,7 +481,7 @@ async function realLibertyStyle(browser, viewport) {
   const f = await fixture(browser, viewport, {realStyle: true}), {page} = f;
   await inspect(f, viewport, 'real-liberty-style', async () => {
     await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map');
-    await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(map, viewport, 14); await waitLabel(map, venkert.id);
+    await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(map, viewport, 13); await waitLabel(map, venkert.id);
     const state = await map.locator('.location-map-canvas').evaluate(element => {
       const map = element.__mapBrowserInstance, style = map.getStyle();
       return {errors: element.__mapBrowserErrors, places: style.layers.filter(layer => layer['source-layer'] === 'place'), decoded: map.querySourceFeatures('openmaptiles', {sourceLayer: 'place'}).map(feature => feature.properties.name), rendered: map.queryRenderedFeatures().map(feature => feature.properties.name)};
@@ -531,7 +538,7 @@ async function coincidentCityAndQuarter(browser, viewport) {
     await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map');
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await removeChip(page, viewport, city.id, {landing: true}); await zoomTo(map, viewport, 8);
     await waitLabel(map, city.id); assert.ok(!((await placeState(map)).rendered.includes(central.id)), 'The distant city name appears before the coincident quarter');
-    await clickLabel(map, city.id, viewport); await chip(page, city.id, true).waitFor(); await zoomTo(map, viewport, 14);
+    await clickLabel(map, city.id, viewport); await chip(page, city.id, true).waitFor(); await zoomTo(map, viewport, 13);
     await waitLabel(map, central.id); await waitLabel(map, city.id);
     // Real production priorities favor the city at far zoom; nearby variable
     // text anchors must make the selected city and exact same-point quarter
