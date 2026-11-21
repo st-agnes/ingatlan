@@ -21,7 +21,7 @@ const config = Object.freeze({
   workloadIdentityProvider: 'projects/123456789012/locations/global/workloadIdentityPools/otthonra-dev/providers/github'
 });
 const required = ['index.html','app.js','style.css','api.js','model.js','matching.js','public-profile.js','feedback.js','onboarding.js','locations.js','locations-data.js','agglomerations-data.js','neighborhoods-data.js','neighborhood-demo-points.js','street-demo-data.js','data/streets.json.gz','regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
-required.push('location-map.js', 'location-map.css', 'data/map/index.json', 'vendor/leaflet/leaflet.js', 'vendor/leaflet/leaflet.css', 'vendor/leaflet/LICENSE');
+required.push('location-map.js', 'location-map.css', 'data/map/index.json', 'data/map/hierarchy.json', 'vendor/leaflet/leaflet.js', 'vendor/leaflet/leaflet.css', 'vendor/leaflet/LICENSE');
 const mapLayer = JSON.stringify({type:'FeatureCollection', features:[]});
 const mapLayerName = `city-${createHash('sha256').update(mapLayer).digest('hex').slice(0,20)}.json`;
 
@@ -36,7 +36,8 @@ async function fixture(run) {
     await writeFile(join(source, name), name === 'runtime-config.js' ? 'globalThis.OTTHONRA_CONFIG={mode:"demo"};' : `fixture: ${name}`);
   }
   await writeFile(join(source, 'data/map', mapLayerName), mapLayer);
-  await writeFile(join(source, 'data/map/index.json'), JSON.stringify({schemaVersion:1, cities:[{city:'Debrecen',file:mapLayerName,count:0}]}));
+  await writeFile(join(source, 'data/map/index.json'), JSON.stringify({schemaVersion:1,version:'fixture-map-v1',sourceSha256:'a'.repeat(64),count:0,focus:{},cities:[{city:'Debrecen',file:mapLayerName,count:0}]}));
+  await writeFile(join(source, 'data/map/hierarchy.json'), JSON.stringify({schemaVersion:1,version:'fixture-hierarchy-v1',mapVersion:'fixture-map-v1',sourceSha256:'a'.repeat(64),count:0,parents:{}}));
   await mkdir(join(source, 'assets'));
   await writeFile(join(source, 'assets/living.jpg'), 'image-fixture');
   try { await run({source, output, workspace}); }
@@ -123,7 +124,7 @@ test('hidden files, unknown files and symlinks are refused before replacing a pr
 });
 
 test('an incomplete frontend cannot replace a working staged release', async () => {
-  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js','feedback.js','onboarding.js','location-map.js','location-map.css','vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css','vendor/leaflet/LICENSE','data/map/index.json']) await fixture(async ({source, output}) => {
+  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js','feedback.js','onboarding.js','location-map.js','location-map.css','vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css','vendor/leaflet/LICENSE','data/map/index.json','data/map/hierarchy.json']) await fixture(async ({source, output}) => {
     await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
     await rm(join(source, missing));
     await assert.rejects(prepareSite({config, source, output}), new RegExp('Missing frontend file '+missing.replaceAll('.', '\\.')));
@@ -139,6 +140,28 @@ test('map layers must be present, content-addressed and explicitly listed before
     if (kind === 'unlisted') await writeFile(join(source, 'data/map/city-00000000000000000000.json'), '{}');
     if (kind === 'traversal') await writeFile(join(source, 'data/map/index.json'), JSON.stringify({schemaVersion:1,cities:[{file:'../credentials.json'}]}));
     await assert.rejects(prepareSite({config, source, output}), /map layer/);
+    assert.equal(await readFile(join(output, 'sentinel'), 'utf8'), 'previous-release');
+  });
+});
+
+test('stale, dangling or cyclic map hierarchy cannot replace a working staged release', async () => {
+  for (const kind of ['version','source','count','unknown','cycle','self','malformed']) await fixture(async ({source, output}) => {
+    await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
+    const index = JSON.parse(await readFile(join(source, 'data/map/index.json'), 'utf8'));
+    const hierarchy = JSON.parse(await readFile(join(source, 'data/map/hierarchy.json'), 'utf8'));
+    const first = 'neighborhood:'+'1'.repeat(24), second = 'neighborhood:'+'2'.repeat(24);
+    if (kind === 'version') hierarchy.mapVersion = 'old-map';
+    if (kind === 'source') hierarchy.sourceSha256 = 'b'.repeat(64);
+    if (kind === 'count') hierarchy.count = 1;
+    if (['unknown','cycle','self'].includes(kind)) {
+      index.count = hierarchy.count = 2;
+      index.focus = {[first]:[19,47,20,48], [second]:[19,47,20,48]};
+      hierarchy.parents = kind === 'cycle' ? {[first]:second,[second]:first}
+        : kind === 'self' ? {[first]:first} : {[first]:'neighborhood:'+'3'.repeat(24)};
+    }
+    await writeFile(join(source, 'data/map/index.json'), JSON.stringify(index));
+    await writeFile(join(source, 'data/map/hierarchy.json'), kind === 'malformed' ? 'not JSON' : JSON.stringify(hierarchy));
+    await assert.rejects(prepareSite({config, source, output}), /map hierarchy/);
     assert.equal(await readFile(join(output, 'sentinel'), 'utf8'), 'previous-release');
   });
 });

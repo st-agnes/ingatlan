@@ -35,7 +35,8 @@ async function verify(browser,viewport){
  const interact=locator=>viewport.touch?locator.tap():locator.click();
  try{
   await newEntity(page,interact,'search');
-  assert.equal(await page.locator('.location-source a').getAttribute('href'),'https://www.ksh.hu/teruleti_szamjel_menu');
+  assert.equal(await page.locator('.location-source a').getAttribute('href'),'/THIRD-PARTY-NOTICES.txt');
+  assert.equal(await page.locator('.location-source').innerText(),'Források');
   await query(page,'Debrecen');
   const debrecen=page.locator('#location-options [data-location-id="area:Debrecen"]');
   assert.match(await debrecen.innerText(),/Debrecen és környéke \(13 település\)/);

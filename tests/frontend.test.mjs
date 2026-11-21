@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import fs from 'node:fs/promises';
 import {createModel} from '../dist/model.js';
-import {searchLocations,getLocation,resolveLegacyLocations} from '../dist/locations.js';
+import {searchLocations,getLocation,resolveLegacyLocations,locations} from '../dist/locations.js';
 import * as propertyAttributes from '../dist/attributes.js';
 import * as accountHelpers from '../dist/accounts.js';
 import * as feedbackHelpers from '../dist/feedback.js';
@@ -93,7 +93,7 @@ async function setup(options={}){
  const apiModel=Object.assign({...demoModel},{mode:'api'},options.apiOverrides||{});
  if(options.apiOverrides?.feed&&!options.apiOverrides?.recommendations)apiModel.recommendations=async request=>{const items=await apiModel.feed(request);return {items,stage:items.length?'exact':'empty'};};
  let selected=options.hosted?(options.authenticated?apiModel:null):demoModel;
- const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},windowListeners=new Map(),regionStorage=new Map(Object.entries(options.regionStorage||{}));
+ const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},windowListeners=new Map(),regionStorage=new Map(Object.entries(options.regionStorage||{})),maps=[];
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
   document,console,Intl,Date:options.Date||Date,Promise,URL,URLSearchParams,AbortController,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
@@ -104,6 +104,7 @@ async function setup(options={}){
   findPublicLocations:async(query,limit,options)=>searchLocations(query,limit,options),findPublicStreets:async()=>[],API_CONFIG_KEY:'otthonra.api',
   hostedMode:()=>!!options.hosted,deploymentEnvironment:()=>options.hosted?(options.environment||'test'):'local',
   getModel:()=>selected,
+  __createLocationMap:(container,{selectedIds,onSelect})=>{const map={id:container.id,ids:[...selectedIds],disposed:false,select:onSelect,setSelection(ids){this.ids=[...ids];},destroy(){this.disposed=true;}};maps.push(map);return map;},
   fetchLanding:async(input={})=>{landingCalls.push(input);if(options.fetchLanding)return options.fetchLanding(input);return landingFixture(input.region);},
   detectLandingRegion:options.detectLandingRegion||(async()=>null),
   localStorage:{getItem:key=>regionStorage.get(key)||null,setItem:(key,value)=>regionStorage.set(key,value),removeItem:key=>regionStorage.delete(key)},
@@ -111,13 +112,16 @@ async function setup(options={}){
   connectApi:async(...args)=>{connected.push(args);if(options.connectApi)await options.connectApi(...args);selected=apiModel;return apiModel;},
   FormData:class {constructor(form){this.values=form.values===undefined?mountedFormValues(document,form):Array.isArray(form.values)?form.values:Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}
  });
- const body=source.replace(/^import[^\n]+\n/gm,'');
+ const body=source.replace(/^import[^\n]+\n/gm,'').replace("import('./location-map.js')",options.mockMaps?'Promise.resolve({createLocationMap: __createLocationMap})':"import('./location-map.js')");
  options.onDocument?.(document);
  await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,startOnboarding,openEditor,openDetails,openModal,closeModal,openActivation,matchingTags,openFeedbackPackages,openFeedbackPurchase,openFeedbackPrompt,propertyInsightsPage,getFeedbackPrompt:()=>feedbackPrompt,getModelState:()=>state};})()`,ctx);
  const click=async(dataset)=>{const target={dataset,closest:()=>target};await document.handlers.click({target,preventDefault(){}})};
- return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents,timers,runNextTimer:()=>timers.shift()?.callback(),runTimers:()=>{for(const timer of timers.splice(0))timer.callback();}};
+ return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents,timers,maps,runNextTimer:()=>timers.shift()?.callback(),runTimers:()=>{for(const timer of timers.splice(0))timer.callback();}};
 }
 const settle=async()=>{for(let i=0;i<16;i++)await Promise.resolve();};
+
+const activeMap=(t,id)=>{const map=t.maps.findLast(item=>item.id===id&&!item.disposed);assert.ok(map,`Missing active map ${id}`);return map;};
+const debrecenQuarter=name=>{const location=searchLocations(name,12).find(item=>item.kind==='neighborhood'&&item.city==='Debrecen'&&item.name===name);assert.ok(location,`Missing canonical ${name}`);return location;};
 
 function chooseLocation(t,id){const input=t.document.getElementById('location-input');input.value=getLocation(id).label;input.handlers.input();const list=t.document.getElementById('location-options');assert.match(list.innerHTML,new RegExp(id.replaceAll('.','\\.')));const target={dataset:{locationId:id},closest:()=>target};list.handlers.click({target});}
 function mountedFormValues(document,form){
@@ -538,7 +542,8 @@ test('search city-region choices show settlement counts and preserve compact IDs
  const t=await setup();t.ui.openEditor('search');
  const html=t.document.getElementById('modal-root').innerHTML;
  assert.match(html,/A településszám a központot is tartalmazza/);
- assert.match(html,/Városkörnyékek: <a href="https:\/\/www\.ksh\.hu\/teruleti_szamjel_menu"/);
+ assert.match(html,/<small class="location-source"><a href="\/THIRD-PARTY-NOTICES\.txt"[^>]*>Források<\/a><\/small>/);
+ assert.doesNotMatch(html,/class="neighborhood-source"|Városkörnyékek:|Magyar Posta Partner Extra/);
  chooseLocation(t,'area:Debrecen');chooseLocation(t,'city:Solymár');
  let chips=t.document.getElementById('location-chips');
  assert.match(chips.innerHTML,/Debrecen és környéke \(13 település\)/);
@@ -1687,4 +1692,86 @@ test('queued impression writes and old impression errors cannot cross a raw sess
   if(stage==='inflight')rejectOld(Object.assign(new Error('An old impression session expired'),{status:401}));
   await settle();assert.equal(calls,stage==='queued'?0:1,'A queued old impression must recheck credentials before its POST starts');assert.equal(t.regionStorage.get('otthonra.api'),'session-b');assert.equal(t.disconnected.length,0,'An old impression 401 must not log the newer session out');assert.equal(t.document.getElementById('hosted-auth-form'),null);
  }
+});
+
+test('landing map clicks toggle the exact selected quarter and hand off only the remaining locations',async()=>{
+ const t=await setup({hosted:true,hash:'#landing',mockMaps:true});await settle();
+ const venkert=debrecenQuarter('Vénkert'),sestakert=debrecenQuarter('Sestakert'),map=activeMap(t,'landing-location-map');
+ assert.equal(map.select(venkert.id),true);assert.equal(map.select(sestakert.id),true);
+ assert.deepEqual(map.ids,[venkert.id,sestakert.id]);
+ assert.equal(map.select(venkert.id),true,'A second map click must remove the same selected quarter');
+ assert.deepEqual(map.ids,[sestakert.id]);
+ const chips=t.document.getElementById('landing-location-chips').innerHTML;
+ assert.doesNotMatch(chips,/Vénkert/);assert.match(chips,/Sestakert/);
+ const form=t.document.getElementById('landing-search-form');form.handlers.submit({preventDefault(){},currentTarget:form});await settle();
+ const draft=storedOnboarding(t);assert.deepEqual(draft.data.locationIds,[sestakert.id]);
+ assert.equal(map.disposed,true,'The old map is cleaned up when the draft editor opens');
+});
+
+test('owned search map addition narrows a city and toggling off preserves every other selected place',async()=>{
+ const t=await setup({mockMaps:true});t.ui.openEditor('search');await settle();
+ chooseLocation(t,'city:Debrecen');chooseLocation(t,'city:Solymár');
+ const venkert=debrecenQuarter('Vénkert'),map=activeMap(t,'search-location-map');
+ assert.equal(map.select(venkert.id),true);assert.deepEqual(map.ids,['city:Solymár',venkert.id]);
+ assert.equal(map.select(venkert.id),true);assert.deepEqual(map.ids,['city:Solymár']);
+ chooseLocation(t,'city:Debrecen');assert.equal(map.select(venkert.id),true);
+ chooseLocation(t,'city:Debrecen');assert.deepEqual(map.ids,['city:Solymár',venkert.id,'city:Debrecen']);
+ assert.equal(map.select(venkert.id),true);assert.deepEqual(map.ids,['city:Solymár','city:Debrecen'],'Removing a selected quarter must not silently remove a separately selected city');
+ submitEntity(t,searchValues('Térképes kijelölés visszavonása'));await settle();
+ const saved=t.model.getState().searches.find(item=>item.title==='Térképes kijelölés visszavonása');
+ assert.deepEqual([...saved.locationIds],['city:Solymár','city:Debrecen']);
+});
+
+test('guest search map removal persists to its draft and does not restore the removed quarter on reload',async()=>{
+ const t=await setup({hosted:true,hash:'#landing',mockMaps:true});
+ t.ui.startOnboarding('search',null,[getLocation('city:Solymár')]);await settle();
+ const venkert=debrecenQuarter('Vénkert'),map=activeMap(t,'search-location-map');
+ assert.equal(map.select(venkert.id),true);assert.ok(storedOnboarding(t).data.locationIds.includes(venkert.id));
+ assert.equal(map.select(venkert.id),true);assert.deepEqual(storedOnboarding(t).data.locationIds,['city:Solymár']);
+ const saved=JSON.parse(t.regionStorage.get(onboardingHelpers.DRAFT_STORAGE_KEY));
+ const reloaded=await setup({hosted:true,hash:'#onboarding',mockMaps:true,regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(saved)}});await settle();
+ assert.deepEqual(activeMap(reloaded,'search-location-map').ids,['city:Solymár']);
+ assert.doesNotMatch(reloaded.document.getElementById('location-chips').innerHTML,/Vénkert/);
+});
+
+test('landing and guest search/property pickers show one compact source link with complete notices retained',async()=>{
+ const t=await setup({hosted:true,hash:'#landing',mockMaps:true});await settle();
+ const assertCompact=html=>{assert.equal((html.match(/>Források<\/a>/g)||[]).length,1);assert.match(html,/href="\/THIRD-PARTY-NOTICES\.txt"[^>]*>Források/);assert.doesNotMatch(html,/Városkörnyékek:|Városrészek: <a|Utcák: <a|Magyar Posta Partner Extra/);};
+ assertCompact(t.document.getElementById('app').innerHTML);
+ t.ui.startOnboarding('search',null,[getLocation('city:Debrecen')]);await settle();assertCompact(t.document.getElementById('app').innerHTML);
+ await t.click({action:'landing'});t.ui.startOnboarding('property',null,[]);await settle();assertCompact(t.document.getElementById('app').innerHTML);
+ assert.ok(t.document.getElementById('street-source'),'The address input keeps its accessible source description target');
+ assert.match(t.document.getElementById('f-street').getAttribute('aria-describedby'),/street-source/);
+ const notices=await fs.readFile(new URL('../dist/THIRD-PARTY-NOTICES.txt',import.meta.url),'utf8');
+ for(const provider of ['KSH','OpenStreetMap contributors','Magyar Posta'])assert.ok(notices.includes(provider),provider+' attribution must remain available from the single source link');
+});
+
+test('map child selection replaces its selected ancestors on landing and owned search while retaining unrelated places',async()=>{
+ const pest=getLocation('neighborhood:3c4a84155a32b95a18f2e0da'),ward=getLocation('neighborhood:0ab2e492e16ec4c7f9ec10f8'),child=getLocation('neighborhood:004a6fde01726bde5e318d21'),other=debrecenQuarter('Vénkert');
+ assert.equal(pest.name,'Pest');assert.equal(ward.name,'VIII. kerület');assert.equal(child.name,'Ganznegyed');
+ for(const landing of [true,false]){
+  const t=await setup(landing?{hosted:true,hash:'#landing',mockMaps:true}:{mockMaps:true});
+  if(!landing)t.ui.openEditor('search');await settle();
+  const map=activeMap(t,landing?'landing-location-map':'search-location-map');
+  assert.equal(map.select(other.id),true);assert.equal(map.select(pest.id),true);
+  assert.equal(map.select(ward.id,{ancestorIds:[pest.id,other.id,'city:Debrecen','not-a-canonical-id']}),true);
+  assert.deepEqual(map.ids,[other.id,ward.id],'Only canonical ancestors from the target city may be replaced');
+  assert.equal(map.select(child.id,{ancestorIds:[ward.id,pest.id]}),true);
+  assert.deepEqual(map.ids,[other.id,child.id],'A finer neighborhood must narrow its whole selected ward instead of leaving broad OR criteria');
+  assert.equal(map.select(child.id,{ancestorIds:[ward.id,pest.id]}),true);
+  assert.deepEqual(map.ids,[other.id],'Toggling off still removes only the exact target');
+ }
+});
+
+test('ancestor replacement succeeds at the fifty-place limit and text selection remains additive',async()=>{
+ const pest=getLocation('neighborhood:3c4a84155a32b95a18f2e0da'),ward=getLocation('neighborhood:0ab2e492e16ec4c7f9ec10f8'),child=getLocation('neighborhood:004a6fde01726bde5e318d21');
+ const other=locations.filter(item=>item.kind==='city'&&item.city!=='Budapest').slice(0,49);
+ const t=await setup({hosted:true,hash:'#landing',mockMaps:true});t.ui.startOnboarding('search',null,[pest,...other]);await settle();
+ const map=activeMap(t,'search-location-map');assert.equal(map.ids.length,50);
+ assert.equal(map.select(ward.id,{ancestorIds:[pest.id]}),true);assert.equal(map.ids.length,50);assert.ok(!map.ids.includes(pest.id));
+ assert.equal(map.select(child.id,{ancestorIds:[ward.id,pest.id]}),true);assert.equal(map.ids.length,50);assert.ok(!map.ids.includes(ward.id));
+ assert.deepEqual(storedOnboarding(t).data.locationIds,[...other.map(item=>item.id),child.id]);
+ const owned=await setup({mockMaps:true});owned.ui.openEditor('search');await settle();
+ const ownedMap=activeMap(owned,'search-location-map');ownedMap.select(child.id);
+ chooseLocation(owned,pest.id);assert.deepEqual(ownedMap.ids,[child.id,pest.id],'The text picker must keep its ordinary multi-location OR semantics');
 });

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {boundsIntersect,chooseVisibleCities,pointInGeometry,geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature} from '../dist/location-map.js';
+import {boundsIntersect,chooseVisibleCities,pointInGeometry,geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature,validateNeighborhoodHierarchy,neighborhoodAncestors} from '../dist/location-map.js';
 
 // Synthetic WGS84 rectangles exercise display picking, never address geocoding.
 const ring=(west,south,east,north)=>[[west,south],[east,south],[east,north],[west,north],[west,south]];
@@ -118,31 +118,84 @@ test('equal-area overlapping regions have a stable canonical-ID tie break',()=>{
  for(const point of [null,[],[NaN,47],[19,Infinity]])assert.equal(chooseSmallestFeature([first],point),null);
 });
 
-test('zoom bands replace broad regions with finer areas instead of stacking every ancestor',()=>{
+test('zoom levels follow containment and add child outlines without hiding ancestors',()=>{
  const broad=feature('broad',[19,47,19.2,47.2]),middle=feature('middle',[19,47,19.05,47.05]),fine=feature('fine',[19,47,19.01,47.01]);
- const features=[fine,broad,middle],bounds=[18.9,46.9,19.3,47.3];
- assert.deepEqual(chooseVisibleNeighborhoods(features,bounds,11),[broad]);
- const middleZoom=neighborhoodZoom(middle,features),fineZoom=neighborhoodZoom(fine,features);
- assert.ok(middleZoom>11&&fineZoom>middleZoom);
- assert.deepEqual(chooseVisibleNeighborhoods(features,bounds,middleZoom),[middle]);
- assert.deepEqual(chooseVisibleNeighborhoods(features,bounds,fineZoom),[fine]);
- assert.equal(chooseVisibleNeighborhoods(features,bounds,10).length,0);
- assert.equal(chooseVisibleNeighborhoods(features,bounds,NaN).length,0);
+ const features=[broad,middle,fine],parents={middle:'broad',fine:'middle'},bounds=[18.9,46.9,19.3,47.3];
+ assert.equal(neighborhoodZoom(broad,features,parents),8);
+ assert.equal(neighborhoodZoom(middle,features,parents),10);
+ assert.equal(neighborhoodZoom(fine,features,parents),12);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,bounds,7,parents),[]);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,bounds,8,parents),[broad]);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,bounds,9.75,parents),[broad]);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,bounds,10,parents),[broad,middle]);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,bounds,12,parents),features);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,bounds,18,parents),features);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,bounds,NaN,parents),[]);
 });
 
-test('an empty finer band falls back in that viewport without revealing future fine areas',()=>{
- const broad=feature('broad',[19,47,19.2,47.2]),fine=feature('fine',[19.18,47.18,19.19,47.19]),features=[broad,fine];
- const zoom=neighborhoodZoom(fine,features);
- assert.deepEqual(chooseVisibleNeighborhoods(features,[19,47,19.1,47.1],zoom),[broad]);
- assert.deepEqual(chooseVisibleNeighborhoods(features,[19,47,19.2,47.2],zoom-1),[broad]);
- assert.deepEqual(chooseVisibleNeighborhoods(features,[19.18,47.18,19.2,47.2],zoom),[fine]);
+test('adjacent leaf neighborhoods remain visible together regardless of their different areas',()=>{
+ const large=feature('large',[19,47,19.2,47.2]),small=feature('small',[19.25,47,19.251,47.001]);
+ const child=feature('child',[19.01,47.01,19.02,47.02]),features=[large,small,child],parents={child:'large'},bounds=[18.9,46.9,19.3,47.3];
+ assert.ok(geometryArea(large.geometry)>geometryArea(small.geometry)*1000);
+ for(const zoom of [8,9,10,12,16,18]){
+  const visible=chooseVisibleNeighborhoods(features,bounds,zoom,parents);
+  assert.ok(visible.includes(large)&&visible.includes(small),'Unrelated quarters cannot disappear when another branch changes level');
+  assert.equal(visible.includes(child),zoom>=10);
+ }
+ assert.deepEqual(chooseVisibleNeighborhoods([large,small],bounds,8),[large,small],'Size alone never creates a hierarchy');
 });
 
-test('each town uses its own scale and every very tiny quarter becomes reachable by zoom18',()=>{
- const broad=feature('broad',[19,47,19.2,47.2]),tiny=feature('tiny',[19.1,47.1,19.100001,47.100001]);
- const smallTown=feature('small-town',[20,48,20.00001,48.00001],{city:'Village'}),features=[broad,tiny,smallTown],bounds=[18,46,21,49];
- assert.equal(neighborhoodZoom(tiny,features),18);
- assert.deepEqual(new Set(chooseVisibleNeighborhoods(features,bounds,11).map(item=>item.id)),new Set(['broad','small-town']));
- assert.deepEqual(new Set(chooseVisibleNeighborhoods(features,bounds,18).map(item=>item.id)),new Set(['tiny','small-town']));
- assert.deepEqual(chooseVisibleNeighborhoods(features,[22,48,23,49],18),[]);
+test('map additions receive only their full true ancestor chain, never neighboring alternatives',()=>{
+ const parents={ward:'Pest',quarter:'ward',otherQuarter:'Pest'};
+ assert.deepEqual(neighborhoodAncestors('quarter',parents),['ward','Pest']);
+ assert.deepEqual(neighborhoodAncestors('otherQuarter',parents),['Pest']);
+ assert.deepEqual(neighborhoodAncestors('Pest',parents),[]);
+ assert.deepEqual(neighborhoodAncestors('Buda',parents),[]);
+ assert.deepEqual(neighborhoodAncestors('quarter',{quarter:'ward',ward:'quarter'}),['ward'],'Malformed caller data cannot loop forever');
+});
+
+test('panning filters geography without swapping an unrelated parent out of the viewport',()=>{
+ const broad=feature('broad',[19,47,19.2,47.2]),child=feature('child',[19.18,47.18,19.19,47.19]);
+ const features=[broad,child],parents={child:'broad'};
+ assert.deepEqual(chooseVisibleNeighborhoods(features,[19,47,19.1,47.1],12,parents),[broad]);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,[19.18,47.18,19.2,47.2],12,parents),[broad,child]);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,[22,48,23,49],18,parents),[]);
+});
+
+test('all hierarchy levels remain reachable at zoom18 and unrelated tiny town areas start at8',()=>{
+ const features=Array.from({length:9},(_,index)=>feature('level:'+index,[19,47,19+.1/(index+1),47+.1/(index+1)]));
+ const parents=Object.fromEntries(features.slice(1).map((item,index)=>[item.id,features[index].id]));
+ const smallTown=feature('small-town',[20,48,20.00001,48.00001],{city:'Village'});features.push(smallTown);
+ assert.equal(neighborhoodZoom(features[8],features,parents),18);
+ assert.equal(neighborhoodZoom(smallTown,features,parents),8);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,[18,46,21,49],18,parents),features);
+ assert.deepEqual(chooseVisibleNeighborhoods(features,[18,46,21,49],8,parents),[features[0],smallTown]);
+});
+
+const hierarchyFixture=()=>{
+ const manifest={version:'map-fixture-v1',sourceSha256:'a'.repeat(64),count:3};
+ const locations=new Map(['parent','child','other'].map(id=>[id,{id,kind:'neighborhood',city:'Town'}]));
+ const value={schemaVersion:1,mapVersion:manifest.version,sourceSha256:manifest.sourceSha256,count:3,
+  policy:{minimumCoverage:.95,maximumChildAreaRatio:.8},parents:{child:'parent'}};
+ return {manifest,locations,value,getLocation:id=>locations.get(id)||null};
+};
+
+test('precomputed hierarchy metadata is pinned, immutable and uses only same-city canonical areas',()=>{
+ const f=hierarchyFixture(),parents=validateNeighborhoodHierarchy(f.value,f.manifest,f.getLocation);
+ assert.deepEqual({...parents},{child:'parent'});assert.ok(Object.isFrozen(parents));
+ assert.deepEqual(f.value.parents,{child:'parent'},'Validation must not rewrite source metadata');
+});
+
+test('malformed, stale, cyclic and cross-city hierarchy metadata fails before map selection',()=>{
+ for(const mutate of [
+  f=>f.value.schemaVersion=2,f=>f.value.mapVersion='stale',f=>f.value.sourceSha256='b'.repeat(64),
+  f=>f.value.count=4,f=>f.value.parents=[],f=>f.value.parents={unknown:'parent'},
+  f=>f.value.parents={child:'unknown'},f=>f.value.parents={child:'child'},
+  f=>f.value.parents={child:'parent',parent:'child'},f=>f.locations.get('parent').city='Different town',
+  f=>f.locations.get('parent').kind='city',f=>f.value.policy.minimumCoverage=.5,
+  f=>f.value.policy.maximumChildAreaRatio=1
+ ]){
+  const f=hierarchyFixture();mutate(f);
+  assert.throws(()=>validateNeighborhoodHierarchy(f.value,f.manifest,f.getLocation),/hierarchiája nem érvényes/);
+ }
 });

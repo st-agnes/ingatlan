@@ -8,6 +8,8 @@ import {geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestF
 
 const root=new URL('../',import.meta.url),directory=new URL('dist/data/map/',root);
 const index=JSON.parse(await readFile(new URL('index.json',directory),'utf8'));
+const hierarchyBytes=await readFile(new URL('hierarchy.json',directory));
+const hierarchy=JSON.parse(hierarchyBytes),parents=hierarchy.parents;
 const sourceBytes=await readFile(new URL('dist/data/neighborhoods.json.gz',root));
 const [header,...sourceRows]=JSON.parse(gunzipSync(sourceBytes));
 const original=new Map(sourceRows.map(row=>[row.id,row]));
@@ -41,7 +43,7 @@ test('the display manifest pins the canonical source, all4308areas and every can
 });
 
 test('content-addressed municipality files are the exact bounded lazy layer set',async()=>{
- assert.deepEqual((await readdir(directory)).sort(),['index.json',...index.cities.map(city=>city.file)].sort());
+ assert.deepEqual((await readdir(directory)).sort(),['index.json','hierarchy.json',...index.cities.map(city=>city.file)].sort());
  const names=new Set();let bytes=0,compressed=0;
  for(const {city,bytes:content,collection}of allChunks){
   assert.match(city.file,/^city-[a-f0-9]{20}\.json$/);assert.ok(!names.has(city.file));names.add(city.file);
@@ -105,49 +107,85 @@ test('a town without neighborhood boundaries still has real municipality focus b
  validBounds(index.focus[town.id]);
 });
 
-test('Budapest starts with selectable Buda/Pest and progressively replaces them with finer areas',()=>{
- const {city,collection}=allChunks.find(chunk=>chunk.city.city==='Budapest');
- const features=collection.features,coarse=chooseVisibleNeighborhoods(features,city.bounds,11);
- assert.deepEqual(coarse.map(feature=>feature.properties.name).sort(),['Buda','Pest']);
- assert.equal(coarse.find(feature=>feature.properties.name==='Buda').id,'neighborhood:1f903296a1db8657f2fdb1f4');
- assert.equal(coarse.find(feature=>feature.properties.name==='Pest').id,'neighborhood:3c4a84155a32b95a18f2e0da');
- assert.deepEqual(chooseVisibleNeighborhoods(features,city.bounds,10),[],'Country-scale views must not expose small area outlines');
- const medium=chooseVisibleNeighborhoods(features,city.bounds,12),fine=chooseVisibleNeighborhoods(features,city.bounds,15);
- assert.ok(medium.length>coarse.length&&fine.length>medium.length,'Real Budapest data should reveal more alternatives as the map is enlarged');
- assert.ok(medium.some(feature=>feature.properties.name==='II. kerület'));
- assert.ok(medium.every(feature=>!coarse.some(parent=>parent.id===feature.id)),'Coarse parents must not obscure the newly visible band');
- assert.ok(Math.max(...medium.map(feature=>geometryArea(feature.geometry)))<Math.min(...coarse.map(feature=>geometryArea(feature.geometry))));
- assert.ok(Math.max(...fine.map(feature=>geometryArea(feature.geometry)))<Math.min(...medium.map(feature=>geometryArea(feature.geometry))));
- assert.deepEqual(chooseVisibleNeighborhoods(features,city.bounds,12.75).map(feature=>feature.id),medium.map(feature=>feature.id),'Intermediate animation zooms use the current complete level');
+test('the separate containment forest is pinned, bounded and never treats mere size as a parent',()=>{
+ assert.equal(hierarchy.schemaVersion,1);assert.equal(hierarchy.mapVersion,index.version);
+ assert.equal(hierarchy.sourceSha256,index.sourceSha256);assert.equal(hierarchy.count,4308);
+ assert.equal(hierarchy.version,'20261121-neighborhood-containment-v1-367af069d58c');
+ assert.deepEqual(hierarchy.policy,{minimumCoverage:.95,maximumChildAreaRatio:.8});
+ assert.ok(hierarchyBytes.length<=128*1024,'Hierarchy metadata must remain small and contain no coordinates');
+ assert.ok(gzipSync(hierarchyBytes).length<=32*1024);
+ assert.equal(Object.keys(parents).length,1169);
+ for(const [child,parent]of Object.entries(parents)){
+  const childLocation=getLocation(child),parentLocation=getLocation(parent);
+  assert.equal(childLocation?.kind,'neighborhood');assert.equal(parentLocation?.kind,'neighborhood');
+  assert.equal(childLocation.city,parentLocation.city,'A containment edge cannot cross a town boundary');
+  assert.notEqual(child,parent);
+  const chain=new Set([child]);let current=parent;
+  while(current){assert.ok(!chain.has(current),'The hierarchy must be an acyclic forest');chain.add(current);current=parents[current];}
+  const childArea=geometryArea(original.get(child).geometry),parentArea=geometryArea(original.get(parent).geometry);
+  assert.ok(childArea/parentArea<=.81,'Near-identical alternative divisions must not become parent/child pairs');
+ }
+ assert.ok(!Object.hasOwn(hierarchy,'features')&&!Object.hasOwn(hierarchy,'coordinates'));
 });
 
-test('every canonical area has positive actual area and remains reachable at an available zoom without changing source data',()=>{
+test('Budapest reveals genuinely contained wards while keeping their parent outlines',()=>{
+ const {city,collection}=allChunks.find(chunk=>chunk.city.city==='Budapest');
+ const features=collection.features,coarse=chooseVisibleNeighborhoods(features,city.bounds,8,parents);
+ assert.equal(coarse.length,10,'Approximate source outliers remain independent instead of receiving invented parents');
+ assert.equal(coarse.find(feature=>feature.properties.name==='Buda').id,'neighborhood:1f903296a1db8657f2fdb1f4');
+ assert.equal(coarse.find(feature=>feature.properties.name==='Pest').id,'neighborhood:3c4a84155a32b95a18f2e0da');
+ const pest=features.find(feature=>feature.properties.name==='Pest'),ward=features.find(feature=>feature.properties.name==='VI. kerület');
+ assert.equal(parents[ward.id],pest.id,'The actual VI.kerület polygon is contained by Pest');
+ assert.ok(!coarse.some(feature=>feature.id===ward.id));
+ assert.deepEqual(chooseVisibleNeighborhoods(features,city.bounds,7,parents),[],'The initial country-wide view must not fetch/draw all neighborhoods');
+ const wardZoom=neighborhoodZoom(ward,features,parents),medium=chooseVisibleNeighborhoods(features,city.bounds,wardZoom,parents);
+ assert.equal(wardZoom,10);assert.ok(medium.some(feature=>feature.id===ward.id));assert.ok(medium.some(feature=>feature.id===pest.id));
+ const fine=chooseVisibleNeighborhoods(features,city.bounds,18,parents);
+ assert.equal(fine.length,463);assert.ok(coarse.every(parent=>fine.some(feature=>feature.id===parent.id)),'Outline-only parents stay available at closer zooms');
+ assert.deepEqual(chooseVisibleNeighborhoods(features,city.bounds,10.75,parents).map(feature=>feature.id),medium.map(feature=>feature.id));
+});
+
+test('the adjacent Debrecen quarters named by the user stay visible together from the distant view onwards',()=>{
+ const {city,collection}=allChunks.find(chunk=>chunk.city.city==='Debrecen'),features=collection.features;
+ const peers=['Nagyerdőalja','Szentlászlófalva','Vénkert','Sestakert'].map(name=>features.find(feature=>feature.properties.name===name));
+ assert.ok(peers.every(Boolean));
+ for(const feature of peers){assert.ok(!Object.hasOwn(parents,feature.id));assert.equal(neighborhoodZoom(feature,features,parents),8);}
+ for(const zoom of [8,9,10,12,14,16,18]){
+  const visible=new Set(chooseVisibleNeighborhoods(features,city.bounds,zoom,parents).map(feature=>feature.id));
+  for(const feature of peers)assert.ok(visible.has(feature.id),`${feature.properties.name} disappeared at zoom${zoom}`);
+ }
+});
+
+test('every canonical area has positive actual area and stays reachable without changing source geometry',()=>{
  const reached=new Set();
  for(const {city,collection}of allChunks){
   const before=JSON.stringify(collection),features=collection.features;
   for(const feature of features){
-   const area=geometryArea(feature.geometry),level=neighborhoodZoom(feature,features);
+   const area=geometryArea(feature.geometry),level=neighborhoodZoom(feature,features,parents);
    assert.ok(Number.isFinite(area)&&area>0,`Invalid actual area for ${feature.id}`);
-   assert.ok(Number.isInteger(level)&&level>=11&&level<=18,`Unreachable zoom level for ${feature.id}`);
+   assert.ok(Number.isInteger(level)&&level>=8&&level<=18,`Unreachable zoom level for ${feature.id}`);
   }
-  for(let zoom=11;zoom<=18;zoom++)for(const feature of chooseVisibleNeighborhoods(features,city.bounds,zoom)){
-   assert.ok(neighborhoodZoom(feature,features)<=zoom,`${feature.id} appeared before its minimum level`);
-   reached.add(feature.id);
+  let previous=new Set();
+  for(let zoom=8;zoom<=18;zoom++){
+   const visible=chooseVisibleNeighborhoods(features,city.bounds,zoom,parents),current=new Set(visible.map(feature=>feature.id));
+   for(const identity of previous)assert.ok(current.has(identity),'A visible outline cannot vanish merely because a smaller disjoint area appears');
+   for(const feature of visible){assert.ok(neighborhoodZoom(feature,features,parents)<=zoom,`${feature.id} appeared before its containment depth`);reached.add(feature.id);}
+   previous=current;
   }
-  assert.equal(JSON.stringify(collection),before,'Runtime area/level caches must not add fields to or rewrite the pinned display data');
+  assert.equal(JSON.stringify(collection),before,'Runtime containment/area caches cannot rewrite pinned display data');
  }
- assert.deepEqual([...reached].sort(),canonical.map(location=>location.id).sort(),'Even the smallest real polygons must be reachable by zoom18');
+ assert.deepEqual([...reached].sort(),canonical.map(location=>location.id).sort(),'All real polygons must be reachable by zoom18');
  assert.equal(reached.size,4308);
 });
 
 test('one click on a real visible Budapest overlap picks the smallest actual region independently of draw order',()=>{
  const {city,collection}=allChunks.find(chunk=>chunk.city.city==='Budapest');
- const visible=chooseVisibleNeighborhoods(collection.features,city.bounds,12),point=[18.94,47.575];
+ const visible=chooseVisibleNeighborhoods(collection.features,city.bounds,8,parents),point=[18.94,47.575];
  const hits=visible.filter(feature=>pointInGeometry(point,feature.geometry));
- assert.ok(hits.some(feature=>feature.properties.name==='II. kerület'));
+ assert.ok(hits.some(feature=>feature.properties.name==='Buda'));
  assert.ok(hits.some(feature=>feature.properties.name==='Pesthidegkút'),'This is an actual overlap, not two disjoint source areas');
  const expected='neighborhood:59a19c26acfc9057ac39a640';
  assert.equal(chooseSmallestFeature(visible,point)?.id,expected);
  assert.equal(chooseSmallestFeature([...visible].reverse(),point)?.id,expected);
- assert.ok(geometryArea(hits.find(feature=>feature.id===expected).geometry)<geometryArea(hits.find(feature=>feature.properties.name==='II. kerület').geometry));
+ assert.ok(geometryArea(hits.find(feature=>feature.id===expected).geometry)<geometryArea(hits.find(feature=>feature.properties.name==='Buda').geometry));
 });

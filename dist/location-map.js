@@ -1,7 +1,7 @@
 // Public, display-only neighborhood map. Search membership still uses the full
 // canonical boundaries in MySQL; this module never handles property addresses.
 const DATA_ROOT = new URL('./data/map/', import.meta.url);
-const MIN_AREA_ZOOM = 11;
+const MIN_AREA_ZOOM = 8;
 const MAX_CITIES = 8;
 const MAX_FEATURES = 650;
 const MAX_OPTIONS = 120;
@@ -9,6 +9,8 @@ const MAX_CITY_POINTS = 200000;
 const REQUEST_TIMEOUT = 15000;
 const assetPromises = new Map();
 const featureAreas = new WeakMap();
+const hierarchyDepths = new WeakMap();
+const EMPTY_PARENTS = Object.freeze(Object.create(null));
 let manifestPromise;
 
 const finite = value => typeof value === 'number' && Number.isFinite(value);
@@ -97,43 +99,44 @@ function featureArea(feature) {
   return featureAreas.get(feature);
 }
 
-function areaBand(area, largest) {
-  return Math.min(7, Math.max(0, Math.floor(Math.log(largest / area) / Math.log(4) + 1e-10)));
-}
-
-/** Each town has its own scale; even the tiniest quarters are available at 18. */
-export function neighborhoodZoom(feature, cityFeatures) {
-  const area = featureArea(feature);
-  if (!(area > 0) || !Array.isArray(cityFeatures)) return MIN_AREA_ZOOM;
-  const largest = cityFeatures.reduce((max, item) => item?.properties?.city === feature?.properties?.city
-    ? Math.max(max, featureArea(item)) : max, area);
-  return MIN_AREA_ZOOM + areaBand(area, largest);
-}
-
-/** One size band per visible town, falling back when that viewport has no finer areas. */
-export function chooseVisibleNeighborhoods(features, bounds, zoom) {
-  if (!Array.isArray(features) || !validBounds(bounds) || !finite(zoom) || zoom < MIN_AREA_ZOOM) return [];
-  const requested = Math.min(7, Math.floor(zoom) - MIN_AREA_ZOOM), cities = new Map();
-  for (const feature of features) {
-    const area = featureArea(feature), city = feature?.properties?.city;
-    if (!(area > 0) || typeof city !== 'string') continue;
-    if (!cities.has(city)) cities.set(city, {largest: 0, features: []});
-    const group = cities.get(city);
-    group.largest = Math.max(group.largest, area); group.features.push(feature);
+function hierarchyDepth(id, parents) {
+  if (!parents || typeof parents !== 'object' || Array.isArray(parents)) return 0;
+  if (!hierarchyDepths.has(parents)) hierarchyDepths.set(parents, new Map());
+  const depths = hierarchyDepths.get(parents), path = [], seen = new Set();
+  let current = id;
+  while (!depths.has(current) && Object.hasOwn(parents, current)) {
+    // Runtime metadata validation rejects cycles. Keep the pure selector safe
+    // with malformed caller-supplied data as well.
+    if (seen.has(current) || path.length > 4308 || typeof parents[current] !== 'string') return 0;
+    seen.add(current); path.push(current); current = parents[current];
   }
-  const result = [];
-  for (const group of cities.values()) {
-    let deepest = -1, visible = [];
-    for (const feature of group.features) {
-      if (!boundsIntersect(feature.bbox, bounds)) continue;
-      const band = areaBand(featureArea(feature), group.largest);
-      if (band > requested || band < deepest) continue;
-      if (band > deepest) { deepest = band; visible = []; }
-      visible.push(feature);
-    }
-    result.push(...visible);
+  let depth = depths.get(current) || 0;
+  if (!depths.has(current)) depths.set(current, depth);
+  for (let index = path.length - 1; index >= 0; index--) depths.set(path[index], ++depth);
+  return depths.get(id) || 0;
+}
+
+export function neighborhoodAncestors(id, parents = EMPTY_PARENTS) {
+  const result = [], seen = new Set([id]);
+  while (parents && Object.hasOwn(parents, id) && result.length < 4308) {
+    const parent = parents[id];
+    if (typeof parent !== 'string' || seen.has(parent)) break;
+    seen.add(parent); result.push(parent); id = parent;
   }
   return result;
+}
+
+/** Only genuine containment adds a zoom level; adjacent areas share a level. */
+export function neighborhoodZoom(feature, cityFeatures, parents = EMPTY_PARENTS) {
+  return MIN_AREA_ZOOM + Math.min(10, hierarchyDepth(feature?.id, parents) * 2);
+}
+
+/** Ancestor outlines stay available while contained areas appear closer in. */
+export function chooseVisibleNeighborhoods(features, bounds, zoom, parents = EMPTY_PARENTS) {
+  if (!Array.isArray(features) || !validBounds(bounds) || !finite(zoom) || zoom < MIN_AREA_ZOOM) return [];
+  return features.filter(feature => typeof feature?.properties?.city === 'string'
+    && featureArea(feature) > 0 && boundsIntersect(feature.bbox, bounds)
+    && neighborhoodZoom(feature, features, parents) <= zoom);
 }
 
 /** A map click always resolves directly to the smallest currently visible hit. */
@@ -209,7 +212,8 @@ async function requestJSON(url, signal) {
 
 function validateManifest(value) {
   if (!value || value.schemaVersion !== 1 || typeof value.version !== 'string' || !value.version || value.version.length > 128
-    || !Number.isInteger(value.count) || value.count < 1 || !Array.isArray(value.cities) || !value.focus) throw new Error('A térképadatok nem érvényesek.');
+    || !/^[a-f0-9]{64}$/.test(value.sourceSha256) || !Number.isInteger(value.count) || value.count < 1
+    || !Array.isArray(value.cities) || !value.focus) throw new Error('A térképadatok nem érvényesek.');
   const names = new Set();
   const cities = value.cities.map(row => {
     if (!row || typeof row.city !== 'string' || !row.city || names.has(row.city) || !validBounds(row.bounds)
@@ -219,11 +223,39 @@ function validateManifest(value) {
   });
   const focus = Object.create(null);
   for (const [id, bounds] of Object.entries(value.focus)) if (validBounds(bounds)) focus[id] = bounds;
-  return {version: value.version, count: value.count, cities, focus};
+  return {version: value.version, sourceSha256: value.sourceSha256, count: value.count, cities, focus};
+}
+
+/** Parent edges are precomputed from polygons, never guessed from screen size. */
+export function validateNeighborhoodHierarchy(value, manifest, getLocation) {
+  if (!value || value.schemaVersion !== 1 || value.mapVersion !== manifest.version
+    || value.sourceSha256 !== manifest.sourceSha256 || value.count !== manifest.count
+    || !value.parents || typeof value.parents !== 'object' || Array.isArray(value.parents)
+    || !finite(value.policy?.minimumCoverage) || value.policy.minimumCoverage < 0.9 || value.policy.minimumCoverage > 1
+    || !finite(value.policy?.maximumChildAreaRatio) || value.policy.maximumChildAreaRatio <= 0 || value.policy.maximumChildAreaRatio >= 1
+    || Object.keys(value.parents).length > manifest.count) throw new Error('A városrészek területi hierarchiája nem érvényes.');
+  const parents = Object.create(null);
+  for (const [childId, parentId] of Object.entries(value.parents)) {
+    const child = getLocation(childId), parent = getLocation(parentId);
+    if (typeof parentId !== 'string' || childId === parentId || child?.kind !== 'neighborhood'
+      || parent?.kind !== 'neighborhood' || child.city !== parent.city) throw new Error('A városrészek területi hierarchiája nem érvényes.');
+    parents[childId] = parentId;
+  }
+  for (const child of Object.keys(parents)) {
+    const seen = new Set();
+    let current = child;
+    while (Object.hasOwn(parents, current)) {
+      if (seen.has(current)) throw new Error('A városrészek területi hierarchiája nem érvényes.');
+      seen.add(current); current = parents[current];
+    }
+  }
+  return Object.freeze(parents);
 }
 
 function getManifest() {
-  if (!manifestPromise) manifestPromise = requestJSON(new URL('index.json', DATA_ROOT)).then(validateManifest)
+  if (!manifestPromise) manifestPromise = Promise.all([
+    requestJSON(new URL('index.json', DATA_ROOT)), requestJSON(new URL('hierarchy.json', DATA_ROOT))
+  ]).then(([index, hierarchy]) => ({...validateManifest(index), hierarchy}))
     .catch(error => { manifestPromise = null; throw error; });
   return manifestPromise;
 }
@@ -271,18 +303,19 @@ function readCityFeatures(row, value, manifest, getLocation) {
 export function createLocationMap(container, {selectedIds = [], getLocation, onSelect, onError} = {}) {
   if (!container || typeof getLocation !== 'function' || typeof onSelect !== 'function') throw new TypeError('A térképes helyszínválasztó beállításai hiányoznak.');
   let selected = new Set(Array.isArray(selectedIds) ? selectedIds : []), disposed = false;
-  let map, leaflet, tileLayer, areaLayer, manifest, currentFeatures = [], pendingFocus = [...selected][0] || null, focusedCity = null, pendingAreaFocus = null;
+  let selectionRevision = 0;
+  let map, leaflet, tileLayer, areaLayer, manifest, parents = EMPTY_PARENTS, currentFeatures = [], pendingFocus = [...selected][0] || null, focusedCity = null, pendingAreaFocus = null;
   let viewportAbort, timer, generation = 0, booting = false, tileUnavailable = false, failed = false, focusing = false;
   const cityCache = new Map(), pathListeners = [];
   container.classList.add('location-map');
-  container.innerHTML = '<div class="location-map-heading"><strong>Válassz a térképen is</strong><span>Közelíts a kisebb városrészekhez.</span></div><div class="location-map-canvas" role="region" aria-label="Városrészek térképes kiválasztása"></div><div class="location-map-status" role="status" aria-live="polite">Térkép betöltése…</div><button type="button" class="location-map-retry" hidden>Újrapróbálom</button><details class="location-map-list" hidden><summary>Látható városrészek</summary><div class="location-map-options"></div><p class="location-map-list-note" hidden>Nagyíts közelebb a további városrészekhez.</p></details><div class="location-map-legend"><span class="location-map-legend-area">Városrész</span><span class="location-map-legend-selected">Kiválasztva</span><a href="/THIRD-PARTY-NOTICES.txt" target="_blank" rel="noopener noreferrer">Területhatárok forrásai</a></div>';
+  container.innerHTML = '<div class="location-map-heading"><strong>Válassz a térképen is</strong><span>Kattintással kijelölheted, újra kattintva kiveheted.</span></div><div class="location-map-canvas" role="region" aria-label="Városrészek térképes kiválasztása"></div><div class="location-map-status" role="status" aria-live="polite">Térkép betöltése…</div><button type="button" class="location-map-retry" hidden>Újrapróbálom</button><details class="location-map-list" hidden><summary>Látható városrészek</summary><div class="location-map-options"></div><p class="location-map-list-note" hidden>Nagyíts közelebb a további városrészekhez.</p></details><div class="location-map-legend"><span class="location-map-legend-area">Városrész</span><span class="location-map-legend-selected">Kiválasztva</span></div>';
   const canvas = container.querySelector('.location-map-canvas'), status = container.querySelector('.location-map-status');
   const retry = container.querySelector('.location-map-retry'), options = container.querySelector('.location-map-options');
   const details = container.querySelector('.location-map-list'), summary = details.querySelector('summary'), listNote = container.querySelector('.location-map-list-note');
   const visible = () => !disposed && canvas.getBoundingClientRect().width > 0 && canvas.getBoundingClientRect().height > 0 && !document.hidden;
   const tell = message => { if (!disposed) status.textContent = message; };
   const style = feature => ({color: selected.has(feature.id) ? '#c6623e' : '#49756a', weight: selected.has(feature.id) ? 3 : 1.5,
-    opacity: 0.95, fillColor: selected.has(feature.id) ? '#e7855e' : '#7ba793', fillOpacity: selected.has(feature.id) ? 0.34 : 0.13});
+    opacity: 0.95, fill: false});
   const fail = () => {
     if (disposed) return;
     failed = true; retry.hidden = false;
@@ -296,17 +329,26 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     for (const element of container.querySelectorAll('[data-map-neighborhood-id]')) {
       const active = selected.has(element.dataset.mapNeighborhoodId);
       element.setAttribute('aria-pressed', String(active)); element.classList.toggle('is-selected', active);
+      const label = getLocation(element.dataset.mapNeighborhoodId)?.label;
+      if (label) element.setAttribute('aria-label', `${label} ${active ? 'eltávolítása a keresésből' : 'hozzáadása a kereséshez'}`);
     }
   }
   function choose(id) {
     if (disposed || !getLocation(id) || !currentFeatures.some(feature => feature.id === id)) return;
-    const location = getLocation(id);
+    const location = getLocation(id), wasSelected = selected.has(id), revision = selectionRevision;
+    const ancestorIds = neighborhoodAncestors(id, parents);
     try {
       // The picker owns duplicates and the 50-choice limit. It may replace a
       // selected whole town with this neighborhood, even at the limit.
-      if (onSelect(id) === false) return;
+      if (onSelect(id, {ancestorIds}) === false) return;
       if (disposed) return;
-      selected.add(id); syncSelection(); tell(`${location.label} hozzáadva a kereséshez.`);
+      // The picker synchronizes every other selected location through
+      // setSelection. Only apply a local fallback for standalone consumers.
+      if (selectionRevision === revision) {
+        if (wasSelected) selected.delete(id);
+        else { for (const ancestor of ancestorIds) selected.delete(ancestor); selected.add(id); }
+      }
+      syncSelection(); tell(`${location.label} ${wasSelected ? 'eltávolítva a keresésből.' : 'hozzáadva a kereséshez.'}`);
     } catch { tell('A városrészt most nem sikerült hozzáadni. Próbáld újra, vagy válaszd ki a keresőmezőben.'); }
   }
   function option(feature) {
@@ -338,7 +380,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     if (truncated) tell(`${features.length} városrész látható. Nagyíts közelebb a többi terület megjelenítéséhez.`);
     else if (!features.length) tell('Nagyíts közelebb, vagy mozdítsd el a térképet a városrészek megjelenítéséhez.');
     else if (tileUnavailable) tell('A háttértérkép most nem érhető el. A városrészek továbbra is kiválaszthatók.');
-    else tell(`${features.length} városrész látható. Egy kattintással kiválaszthatod; közelítve kisebb területek jelennek meg.`);
+    else tell(`${features.length} városrész látható. Közelítve a területeken belüli kisebb városrészek is megjelennek.`);
   }
 
   function refineFocus(features) {
@@ -349,10 +391,10 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
         && item.properties.name === `${location.district} kerület`) : null;
     pendingAreaFocus = null;
     if (!feature) return false;
-    const zoom = neighborhoodZoom(feature, features);
-    if (map.getZoom() === zoom) return false;
-    // A named quarter or ward must be shown at its own band, including tiny
-    // areas above the old zoom16 ceiling. Further user zooming is unrestricted.
+    const zoom = neighborhoodZoom(feature, features, parents);
+    if (map.getZoom() >= zoom) return false;
+    // Keep the natural geographic fit for an ordinary leaf neighborhood;
+    // hierarchy only requests a closer zoom when its ancestors need it.
     focusing = true;
     try { map.setZoom(zoom, {animate: false}); } finally { focusing = false; }
     return true;
@@ -382,7 +424,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       const allFeatures = batches.flat();
       if (refineFocus(allFeatures)) return;
       const seen = new Set();
-      const features = chooseVisibleNeighborhoods(allFeatures, bounds, map.getZoom()).filter(feature => !seen.has(feature.id) && seen.add(feature.id))
+      const features = chooseVisibleNeighborhoods(allFeatures, bounds, map.getZoom(), parents).filter(feature => !seen.has(feature.id) && seen.add(feature.id))
         .sort((a, b) => Number(selected.has(b.id)) - Number(selected.has(a.id)) || a.properties.label.localeCompare(b.properties.label, 'hu'));
       const visibleFeatures = features.slice(0, MAX_FEATURES).sort((a, b) => featureArea(b) - featureArea(a) || String(a.id).localeCompare(String(b.id)));
       renderAreas(visibleFeatures, chosen.truncated || features.length > MAX_FEATURES);
@@ -435,6 +477,8 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       const [library, index] = await Promise.all([loadLeaflet(), getManifest()]);
       if (disposed) return;
       leaflet = library; manifest = index;
+      try { parents = validateNeighborhoodHierarchy(index.hierarchy, index, getLocation); }
+      catch (error) { manifestPromise = null; throw error; }
       if (!map) {
         map = leaflet.map(canvas, {minZoom: 6, maxZoom: 18, scrollWheelZoom: false,
           maxBounds: [[44.5, 15], [49.5, 24]], maxBoundsViscosity: 0.7, attributionControl: true, zoomControl: false});
@@ -476,6 +520,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
   return {
     setSelection(ids, {focusId} = {}) {
       if (disposed) return;
+      selectionRevision++;
       selected = new Set(Array.isArray(ids) ? ids : []);
       if (pendingFocus && !selected.has(pendingFocus)) pendingFocus = null;
       if (pendingAreaFocus && !selected.has(pendingAreaFocus)) pendingAreaFocus = null;
