@@ -1,0 +1,58 @@
+name: Check clickable map rendering
+on:
+  create:
+  push:
+    branches: [codex/map-label-check-20261121]
+permissions:
+  contents: write
+jobs:
+  browser:
+    if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/map-label-check-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/map-clickable-labels-20261121
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/data/
+      - uses: ./.github/actions/ci-node
+        with:
+          browser: 'true'
+      - name: Exercise real map labels and stop at the first diagnostic failure
+        run: |
+          set -o pipefail
+          mkdir -p .local/browser-tests
+          git rev-parse HEAD
+          python3 -m http.server 3000 --directory dist --bind 127.0.0.1 > .local/browser-tests/map-server.log 2>&1 &
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('tests/neighborhood-map-browser.test.mjs')
+          text=p.read_text()
+          text=text.replace('failed++; console.error', 'throw error; console.error')
+          p.write_text(text)
+          PY
+          node tests/neighborhood-map-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/map-diagnostic.log
+      - name: Preserve bounded public diagnostic output
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import base64,hashlib,json,os,urllib.request
+          from pathlib import Path
+          paths=[Path('.local/browser-tests/map-diagnostic.log')]+sorted(Path('.local/browser-tests/screenshots').glob('neighborhood-map-*.png'))[:3]
+          for path in paths:
+              if not path.is_file():continue
+              raw=path.read_bytes()
+              if len(raw)>3000000:continue
+              content=base64.b64encode(raw) if path.suffix=='.png' else raw
+              payload=json.dumps({'encoding':'base64','content':base64.b64encode(content).decode()}).encode()
+              request=urllib.request.Request('https://api.github.com/repos/st-agnes/ingatlan/git/blobs',data=payload,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'})
+              with urllib.request.urlopen(request,timeout=30) as response:result=json.load(response)
+              expected=hashlib.sha1(b'blob '+str(len(content)).encode()+b'\0'+content).hexdigest();assert result['sha']==expected
+              print(json.dumps({'file':path.name,'sha':expected,'bytes':len(raw),'encoding':'base64-text' if path.suffix=='.png' else 'utf8'}))
+          PY
