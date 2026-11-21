@@ -17,12 +17,17 @@ const viewports=[{name:'desktop',width:1280,height:900,touch:false},{name:'table
 const version='a'.repeat(64),city=getLocation('city:Debrecen'),otherCity=getLocation('city:Szeged');
 const quarter=(city,name)=>getLocation(neighborhoods.find(item=>item.city===city&&item.name===name).id);
 const venkert=quarter('Debrecen','Vénkert'),sestakert=quarter('Debrecen','Sestakert'),tocoskert=quarter('Debrecen','Tócóskert'),szeged=quarter('Szeged','Belváros');
+const buda=quarter('Budapest','Buda'),pest=quarter('Budapest','Pest'),budapestWard=quarter('Budapest','V. kerület'),belvaros=quarter('Budapest','Belváros');
 const rectangle=(west,south,east,north)=>[[[west,south],[east,south],[east,north],[west,north],[west,south]]];
 const makeFeature=(location,bbox)=>({type:'Feature',id:location.id,bbox,properties:{id:location.id,name:location.name,city:location.city,label:location.label,estimated:location.estimated},geometry:{type:'Polygon',coordinates:rectangle(...bbox)}});
 const debrecenBounds=[21.59,47.50,21.65,47.56],szegedBounds=[20.12,46.23,20.18,46.29];
-const polygons=[makeFeature(venkert,[21.60,47.535,21.625,47.55]),makeFeature(sestakert,[21.60,47.535,21.625,47.55]),makeFeature(tocoskert,[21.63,47.505,21.645,47.52])];
+const polygons=[makeFeature(venkert,[21.601,47.536,21.624,47.549]),makeFeature(sestakert,[21.60,47.535,21.625,47.55]),makeFeature(tocoskert,[21.63,47.505,21.645,47.52])];
 const szegedFeature=makeFeature(szeged,[20.135,46.245,20.155,46.265]);
-const manifest={schemaVersion:1,version,count:4,cities:[{city:'Debrecen',bounds:debrecenBounds,file:'city-aaaaaaaaaaaaaaaa.json',count:3},{city:'Szeged',bounds:szegedBounds,file:'city-bbbbbbbbbbbbbbbb.json',count:1}],focus:{'city:Debrecen':debrecenBounds,'city:Szeged':szegedBounds,...Object.fromEntries([...polygons,szegedFeature].map(item=>[item.id,item.bbox]))},attribution:['Isolated synthetic map display fixture; not address/search data.']};
+const budapestBounds=[18.95,47.40,19.25,47.60];
+// A deliberately simple hierarchy with real catalogue identities: the two
+// city halves are broad, the ward is smaller and its neighborhood smaller yet.
+const budapestPolygons=[makeFeature(buda,[18.95,47.40,19.10,47.60]),makeFeature(pest,[19.10,47.40,19.25,47.60]),makeFeature(budapestWard,[19.08,47.48,19.12,47.52]),makeFeature(belvaros,[19.09,47.49,19.11,47.51])];
+const manifest={schemaVersion:1,version,count:8,cities:[{city:'Debrecen',bounds:debrecenBounds,file:'city-aaaaaaaaaaaaaaaa.json',count:3},{city:'Szeged',bounds:szegedBounds,file:'city-bbbbbbbbbbbbbbbb.json',count:1},{city:'Budapest',bounds:budapestBounds,file:'city-cccccccccccccccc.json',count:4}],focus:{'city:Debrecen':debrecenBounds,'city:Szeged':szegedBounds,'city:Budapest':budapestBounds,'district:Budapest:5':budapestPolygons[2].bbox,...Object.fromEntries([...polygons,szegedFeature,...budapestPolygons].map(item=>[item.id,item.bbox]))},attribution:['Isolated synthetic map display fixture; not address/search data.']};
 const owner={id:'10000000-0000-4000-8000-000000000001',name:'Térképes Anna',email:'map-browser@example.test',phone:'',accountType:'private'};
 const searchId='20000000-0000-4000-8000-000000000001';
 const propertyId='30000000-0000-4000-8000-000000000001';
@@ -31,13 +36,14 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function zoom(map,viewport,direction){
  await interact(viewport,map.locator(`.leaflet-control-zoom-${direction}`));
  // Leaflet ignores another desktop zoom click during its normal 250ms
- // transition. Wait for that real UI transition before the next action.
+ // transition. Also let the debounced viewport render settle before observing
+ // layer visibility or starting another zoom action.
  await delay(275);const canvas=map.locator('.location-map-canvas');
  for(let attempt=0;attempt<40;attempt++){
-  if(!await canvas.evaluate(element=>element.classList.contains('leaflet-zoom-anim')))return;
+  if(!await canvas.evaluate(element=>element.classList.contains('leaflet-zoom-anim')||!!element.querySelector('.leaflet-zoom-anim'))){await delay(225);return;}
   await delay(25);
  }
- assert.equal(await canvas.evaluate(element=>element.classList.contains('leaflet-zoom-anim')),false,'The normal map zoom transition must settle');
+ assert.equal(await canvas.evaluate(element=>element.classList.contains('leaflet-zoom-anim')||!!element.querySelector('.leaflet-zoom-anim')),false,'The normal map zoom transition must settle');
 }
 function gate(){let release;const promise=new Promise(resolve=>{release=resolve;});return {promise,release};}
 
@@ -53,11 +59,11 @@ async function fixture(browser,viewport,{authenticated=false}={}){
   const path=new URL(route.request().url()).pathname;server.requests.push(path);
   const reply=async(value,status=200)=>{try{await route.fulfill({status,contentType:'application/json',body:JSON.stringify(value)});}catch(error){if(!/closed|handled|abort|intercept|disposed/i.test(String(error)))throw error;}};
   if(path==='/data/map/index.json')return reply(manifest);
-  const selected=path.endsWith('city-aaaaaaaaaaaaaaaa.json')?'Debrecen':path.endsWith('city-bbbbbbbbbbbbbbbb.json')?'Szeged':null;
+  const selected=path.endsWith('city-aaaaaaaaaaaaaaaa.json')?'Debrecen':path.endsWith('city-bbbbbbbbbbbbbbbb.json')?'Szeged':path.endsWith('city-cccccccccccccccc.json')?'Budapest':null;
   if(!selected){server.unhandled.push(path);return reply({message:'Unknown map fixture'},404);}
   if(server.holdCity===selected&&server.hold)await server.hold.promise;
   if(server.failCity===selected){server.failCity=null;return reply({message:'Temporary map fixture failure'},503);}
-  return reply({type:'FeatureCollection',version,city:selected,features:selected==='Debrecen'?polygons:[szegedFeature]});
+  return reply({type:'FeatureCollection',version,city:selected,features:selected==='Debrecen'?polygons:selected==='Budapest'?budapestPolygons:[szegedFeature]});
  });
  await context.route(`${origin}/api/**`,async route=>{
   const request=route.request(),url=new URL(request.url()),path=url.pathname.slice(4),method=request.method();
@@ -112,23 +118,48 @@ async function landingSelection(browser,viewport){
   assert.equal(server.requests.filter(path=>path!=='/data/map/index.json').length,0,'A country-level view must not download every city polygon');
   assert.match(await map.locator('.leaflet-control-attribution').innerText(),/OpenStreetMap/);
   await chooseText(page,viewport,city.id,'Debrecen',{landing:true});await pathFor(map,venkert.id).waitFor();assert.equal(await map.locator('path.leaflet-interactive').count(),3);
-  await clickPolygon(map,venkert.id,viewport);const choices=map.locator('.leaflet-popup-content');await choices.waitFor();
-  // This northwest overlap opens close to the viewport edge. Leaflet pans to
-  // keep the choices visible; the ensuing viewport redraw must retain them.
-  await delay(450);await choices.waitFor();assert.equal(await choices.locator('[data-map-neighborhood-id]').count(),2,'Overlap choices must survive the popup auto-pan and debounced viewport redraw');
-  assert.ok((await choices.innerText()).includes('Vénkert'));assert.ok((await choices.innerText()).includes('Sestakert'));
-  await interact(viewport,choices.locator(`[data-map-neighborhood-id="${sestakert.id}"]`));
-  assert.equal(await page.locator(`#landing-location-chips [data-remove-location="${sestakert.id}"]`).count(),1);assert.equal(await page.locator(`#landing-location-chips [data-remove-location="${venkert.id}"]`).count(),0,'Overlapping areas must be chosen explicitly');assert.equal(await page.locator(`#landing-location-chips [data-remove-location="${city.id}"]`).count(),0,'A map quarter narrows and replaces its covering whole-city filter');
-  // A popup may normally pan the map to keep its choices visible. Selecting
-  // the city again restores a full-city view before testing another polygon.
+  await clickPolygon(map,venkert.id,viewport);
+  await page.locator(`#landing-location-chips [data-remove-location="${venkert.id}"]`).waitFor();
+  assert.equal(await page.locator(`#landing-location-chips [data-remove-location="${sestakert.id}"]`).count(),0,'One map tap must immediately select the smaller of the two visible overlapping polygons');
+  assert.equal(await map.locator('.leaflet-popup-content,.location-map-overlap').count(),0,'Overlap selection must not require a second choice from a popup');
+  assert.equal(await page.locator(`#landing-location-chips [data-remove-location="${city.id}"]`).count(),0,'A map quarter narrows and replaces its covering whole-city filter');
   await chooseText(page,viewport,city.id,'Debrecen',{landing:true});await pathFor(map,tocoskert.id).waitFor();
   await clickPolygon(map,tocoskert.id,viewport);await clickPolygon(map,tocoskert.id,viewport);assert.equal(await page.locator(`#landing-location-chips [data-remove-location="${tocoskert.id}"]`).count(),1,'Repeated map selection must not create duplicate locations');
-  assert.equal(await pathFor(map,tocoskert.id).getAttribute('aria-pressed'),'true');await removeChip(page,viewport,sestakert.id,{landing:true});assert.equal(await pathFor(map,sestakert.id).getAttribute('aria-pressed'),'false');
+  assert.equal(await pathFor(map,tocoskert.id).getAttribute('aria-pressed'),'true');await removeChip(page,viewport,venkert.id,{landing:true});assert.equal(await pathFor(map,venkert.id).getAttribute('aria-pressed'),'false');
   await chooseText(page,viewport,otherCity.id,'Szeged',{landing:true});await pathFor(map,szeged.id).waitFor();assert.equal(await pathFor(map,venkert.id).count(),0,'A new textual location must focus and render the new city');
   const mapBox=await map.boundingBox(),inputBox=await page.locator('#landing-location-input').boundingBox();assert.ok(mapBox.y>=inputBox.y+inputBox.height,'The map belongs below the location input');
   for(let index=0;index<8;index++){const out=map.locator('.leaflet-control-zoom-out');if(await out.getAttribute('aria-disabled')==='true'||await map.locator('path.leaflet-interactive').count()===0)break;await zoom(map,viewport,'out');}
   await page.waitForFunction(()=>document.querySelectorAll('#landing-location-map path.leaflet-interactive').length===0);assert.equal(new Set(server.requests.filter(path=>path!=='/data/map/index.json')).size,2,'Only visited city files are loaded');
-  console.log(`Neighborhood map landing ${viewport.name}: lazy city loading, auto focus, overlapping polygon choice, canonical chips, selected styling and zoom-out limits passed.`);
+  console.log(`Neighborhood map landing ${viewport.name}: lazy city loading, auto focus, one-tap smallest overlapping polygon, canonical chips, selected styling and zoom-out limits passed.`);
+ });
+}
+
+async function budapestZoomLevels(browser,viewport){
+ const f=await fixture(browser,viewport),{page,server}=f;
+ await inspect(f,viewport,'budapest-levels',async()=>{
+  await page.goto(`${origin}/#landing`,{waitUntil:'domcontentloaded'});const map=await readyMap(page,'#landing-location-map');
+  await chooseText(page,viewport,'city:Budapest','Budapest',{landing:true});await pathFor(map,buda.id).waitFor();await pathFor(map,pest.id).waitFor();
+  const visibleIds=()=>map.locator('path.leaflet-interactive').evaluateAll(paths=>paths.map(path=>path.dataset.mapNeighborhoodId).sort());
+  assert.deepEqual(await visibleIds(),[buda.id,pest.id].sort(),'A distant Budapest view must show only Buda and Pest, without smaller overlapping regions');
+  await clickPolygon(map,buda.id,viewport);await page.locator(`#landing-location-chips [data-remove-location="${buda.id}"]`).waitFor();
+  assert.equal(await page.locator('#landing-location-chips [data-remove-location="city:Budapest"]').count(),0,'A broad city half must also narrow the whole-city search in one tap');
+  assert.equal(await map.locator('.leaflet-popup-content').count(),0);
+  for(let step=0;step<6&&!await pathFor(map,budapestWard.id).count();step++)await zoom(map,viewport,'in');
+  await pathFor(map,budapestWard.id).waitFor();assert.deepEqual(await visibleIds(),[budapestWard.id],'Closer zoom must replace broad city halves with the smaller ward level');
+  await clickPolygon(map,budapestWard.id,viewport);await page.locator(`#landing-location-chips [data-remove-location="${budapestWard.id}"]`).waitFor();
+  for(let step=0;step<6&&!await pathFor(map,belvaros.id).count();step++)await zoom(map,viewport,'in');
+  await pathFor(map,belvaros.id).waitFor();assert.deepEqual(await visibleIds(),[belvaros.id],'The finest zoom must expose the small neighborhood without rendering its broader parent on top');
+  await clickPolygon(map,belvaros.id,viewport);await page.locator(`#landing-location-chips [data-remove-location="${belvaros.id}"]`).waitFor();
+  assert.equal(await map.locator('.leaflet-popup-content,.location-map-overlap').count(),0,'Each zoom level must select directly without an overlap chooser');
+  assert.equal(new Set(server.requests.filter(path=>path!=='/data/map/index.json')).size,1,'Changing detail levels must reuse the one cached city chunk');
+  await removeChip(page,viewport,buda.id,{landing:true});await chooseText(page,viewport,buda.id,'Buda (Budapest)',{landing:true});await pathFor(map,buda.id).waitFor();
+  assert.deepEqual(await visibleIds(),[buda.id,pest.id].sort(),'Text focus on a broad area must return to its own selectable zoom level');
+  await chooseText(page,viewport,'district:Budapest:5','Budapest V. kerület',{landing:true});await pathFor(map,budapestWard.id).waitFor();
+  assert.deepEqual(await visibleIds(),[budapestWard.id],'A Budapest district alias must focus the matching canonical ward detail level');
+  await removeChip(page,viewport,belvaros.id,{landing:true});await chooseText(page,viewport,belvaros.id,'Belváros (Budapest)',{landing:true});await pathFor(map,belvaros.id).waitFor();
+  assert.deepEqual(await visibleIds(),[belvaros.id],'Text focus on a fine neighborhood must show its detail level immediately');
+  assert.equal(await pathFor(map,belvaros.id).getAttribute('aria-pressed'),'true');
+  console.log(`Neighborhood map Budapest ${viewport.name}: Buda/Pest, progressively smaller levels, direct selection, cached geometry and textual focus passed.`);
  });
 }
 
@@ -190,5 +221,5 @@ async function narrowingAtLimit(browser,viewport){
 }
 
 const browser=await chromium.launch({headless:true});let failed=0;
-try{for(const viewport of viewports)for(const test of [landingSelection,ownedWizard,anonymousDraft])try{await test(browser,viewport);}catch(error){failed++;console.error(`${test.name} ${viewport.name}: ${error.stack||error}`);}for(const test of [failuresAndStaleReads,narrowingAtLimit])try{await test(browser,viewports[0]);}catch(error){failed++;console.error(`${test.name} desktop: ${error.stack||error}`);}}finally{await browser.close();}
+try{for(const viewport of viewports)for(const test of [landingSelection,budapestZoomLevels,ownedWizard,anonymousDraft])try{await test(browser,viewport);}catch(error){failed++;console.error(`${test.name} ${viewport.name}: ${error.stack||error}`);}for(const test of [failuresAndStaleReads,narrowingAtLimit])try{await test(browser,viewports[0]);}catch(error){failed++;console.error(`${test.name} desktop: ${error.stack||error}`);}}finally{await browser.close();}
 if(failed)process.exitCode=1;
