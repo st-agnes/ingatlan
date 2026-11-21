@@ -1,0 +1,14 @@
+name: CI .NET tools
+description: Install .NET 8 and reuse downloaded packages without caching build output.
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-${{ runner.arch }}-nuget-8-${{ hashFiles('backend/**/*.csproj') }}-v1
+        restore-keys: |
+          ${{ runner.os }}-${{ runner.arch }}-nuget-8-

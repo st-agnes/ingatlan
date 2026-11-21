@@ -1,0 +1,24 @@
+name: CI Node and browser tools
+description: Install the pinned Node runtime and optional cached Playwright browser.
+inputs:
+  browser:
+    description: Install the pinned Chromium regression tools.
+    required: false
+    default: 'false'
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+    - uses: actions/cache@v4
+      if: inputs.browser == 'true'
+      with:
+        path: ~/.cache/ms-playwright
+        key: ${{ runner.os }}-${{ runner.arch }}-playwright-1.56.1-headless-v1
+    - name: Install pinned browser tools
+      if: inputs.browser == 'true'
+      shell: bash
+      run: |
+        npm install --prefix .local/browser-tests --no-save --no-package-lock --no-audit --no-fund playwright@1.56.1
+        .local/browser-tests/node_modules/.bin/playwright install --only-shell chromium
