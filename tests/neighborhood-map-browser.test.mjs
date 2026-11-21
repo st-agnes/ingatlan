@@ -85,9 +85,18 @@ async function waitMapPaint(map, expectedZoom) {
 async function zoom(map, viewport, direction) {
   await waitMapPaint(map); const before = await mapZoom(map);
   await interact(viewport, map.locator(`.maplibregl-ctrl-zoom-${direction}`));
-  await waitMapPaint(map, direction === 'in' ? Math.floor(before) + 1 : Math.ceil(before) - 1);
+  await waitMapPaint(map, before + (direction === 'in' ? 1 : -1));
 }
 async function zoomTo(map, viewport, level) {
+  // Geographic fit intentionally produces fractional zoom. Arrange this
+  // synthetic fixture at an exact starting level through the public camera
+  // API, retaining its center; subsequent steps exercise the actual controls.
+  // This keeps target labels inside the same fixture viewport on every device.
+  const startingZoom = await mapZoom(map), arrangedZoom = Math.round(startingZoom);
+  if (Math.abs(startingZoom - arrangedZoom) > 1e-8) {
+    await map.locator('.location-map-canvas').evaluate((element, zoom) => element.__mapBrowserInstance.jumpTo({zoom}), arrangedZoom);
+    await waitMapPaint(map, arrangedZoom);
+  }
   for (let step = 0; step < 16; step++) {
     const current = await mapZoom(map);
     if (Math.abs(current - level) < .01) {await waitMapPaint(map, level); return;}
@@ -347,6 +356,13 @@ async function disjointZoomLevels(browser, viewport) {
   await inspect(f, viewport, 'disjoint-levels', async () => {
     await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map');
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await waitMapPaint(map); const center = await mapCenter(map);
+    const naturalZoom = await mapZoom(map);
+    assert.ok(Math.abs(naturalZoom - Math.round(naturalZoom)) > .01, 'Natural geographic fit supplies a genuine fractional-zoom regression fixture');
+    await zoom(map, viewport, 'in');
+    assert.ok(Math.abs(await mapZoom(map) - (naturalZoom + 1)) < .01, 'A real zoom button preserves the natural fractional component');
+    await zoom(map, viewport, 'out');
+    assert.ok(Math.abs(await mapZoom(map) - naturalZoom) < .01, 'Opposite real zoom controls return to the original fractional fit');
+    await assertCenter(map, center, 'Fractional control steps must retain the geographic center');
     for (const level of [10, 12, 14]) {
       await zoomTo(map, viewport, level); await assertCenter(map, center, `Zoom ${level} keeps the selected eastern city centered`);
       const state = await placeState(map), peers = state.candidates.filter(item => polygons.some(feature => feature.id === item.id));
