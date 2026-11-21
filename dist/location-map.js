@@ -8,6 +8,7 @@ const MAX_OPTIONS = 120;
 const MAX_CITY_POINTS = 200000;
 const REQUEST_TIMEOUT = 15000;
 const assetPromises = new Map();
+const featureAreas = new WeakMap();
 let manifestPromise;
 
 const finite = value => typeof value === 'number' && Number.isFinite(value);
@@ -55,6 +56,97 @@ export function pointInGeometry(point, geometry) {
     }
     return true;
   });
+}
+
+/** Spherical square metres, subtracting holes and summing every polygon part. */
+export function geometryArea(geometry) {
+  const polygons = geometry?.type === 'Polygon' ? [geometry.coordinates]
+    : geometry?.type === 'MultiPolygon' ? geometry.coordinates : [];
+  if (!Array.isArray(polygons) || !polygons.length) return 0;
+  const radians = Math.PI / 180, radius = 6371008.8;
+  function ringArea(ring) {
+    if (!Array.isArray(ring) || ring.length < 4) return NaN;
+    const origin = ring[0];
+    if (!Array.isArray(origin) || !finite(origin[0]) || !finite(origin[1])) return NaN;
+    const baseline = Math.sin(origin[1] * radians);
+    let sum = 0;
+    for (let i = 1; i < ring.length; i++) {
+      const left = ring[i - 1], right = ring[i];
+      if (!Array.isArray(right) || !finite(right[0]) || !finite(right[1])) return NaN;
+      // Removing the constant latitude term avoids cancellation in tiny areas.
+      sum += (right[0] - left[0]) * radians
+        * (Math.sin(left[1] * radians) + Math.sin(right[1] * radians) - 2 * baseline);
+    }
+    if (origin[0] !== ring.at(-1)[0] || origin[1] !== ring.at(-1)[1]) return NaN;
+    return Math.abs(sum) * radius * radius / 2;
+  }
+  let total = 0;
+  for (const polygon of polygons) {
+    if (!Array.isArray(polygon) || !polygon.length) return 0;
+    const outer = ringArea(polygon[0]);
+    const holes = polygon.slice(1).reduce((sum, ring) => sum + ringArea(ring), 0);
+    if (!finite(outer) || !finite(holes)) return 0;
+    total += Math.max(0, outer - holes);
+  }
+  return total;
+}
+
+function featureArea(feature) {
+  if (!feature || typeof feature !== 'object') return 0;
+  if (!featureAreas.has(feature)) featureAreas.set(feature, geometryArea(feature.geometry));
+  return featureAreas.get(feature);
+}
+
+function areaBand(area, largest) {
+  return Math.min(7, Math.max(0, Math.floor(Math.log(largest / area) / Math.log(4) + 1e-10)));
+}
+
+/** Each town has its own scale; even the tiniest quarters are available at 18. */
+export function neighborhoodZoom(feature, cityFeatures) {
+  const area = featureArea(feature);
+  if (!(area > 0) || !Array.isArray(cityFeatures)) return MIN_AREA_ZOOM;
+  const largest = cityFeatures.reduce((max, item) => item?.properties?.city === feature?.properties?.city
+    ? Math.max(max, featureArea(item)) : max, area);
+  return MIN_AREA_ZOOM + areaBand(area, largest);
+}
+
+/** One size band per visible town, falling back when that viewport has no finer areas. */
+export function chooseVisibleNeighborhoods(features, bounds, zoom) {
+  if (!Array.isArray(features) || !validBounds(bounds) || !finite(zoom) || zoom < MIN_AREA_ZOOM) return [];
+  const requested = Math.min(7, Math.floor(zoom) - MIN_AREA_ZOOM), cities = new Map();
+  for (const feature of features) {
+    const area = featureArea(feature), city = feature?.properties?.city;
+    if (!(area > 0) || typeof city !== 'string') continue;
+    if (!cities.has(city)) cities.set(city, {largest: 0, features: []});
+    const group = cities.get(city);
+    group.largest = Math.max(group.largest, area); group.features.push(feature);
+  }
+  const result = [];
+  for (const group of cities.values()) {
+    let deepest = -1, visible = [];
+    for (const feature of group.features) {
+      if (!boundsIntersect(feature.bbox, bounds)) continue;
+      const band = areaBand(featureArea(feature), group.largest);
+      if (band > requested || band < deepest) continue;
+      if (band > deepest) { deepest = band; visible = []; }
+      visible.push(feature);
+    }
+    result.push(...visible);
+  }
+  return result;
+}
+
+/** A map click always resolves directly to the smallest currently visible hit. */
+export function chooseSmallestFeature(features, point) {
+  if (!Array.isArray(features) || !Array.isArray(point) || !finite(point[0]) || !finite(point[1])) return null;
+  let chosen = null, smallest = Infinity;
+  for (const feature of features) {
+    const area = featureArea(feature);
+    if (!(area > 0) || area > smallest || !boundsIntersect(feature?.bbox, [...point, ...point])
+      || !pointInGeometry(point, feature.geometry)) continue;
+    if (area < smallest || !chosen || String(feature.id) < String(chosen.id)) { chosen = feature; smallest = area; }
+  }
+  return chosen;
 }
 
 /** Bounded viewport selection; no country-wide geometry request is needed. */
@@ -179,11 +271,11 @@ function readCityFeatures(row, value, manifest, getLocation) {
 export function createLocationMap(container, {selectedIds = [], getLocation, onSelect, onError} = {}) {
   if (!container || typeof getLocation !== 'function' || typeof onSelect !== 'function') throw new TypeError('A térképes helyszínválasztó beállításai hiányoznak.');
   let selected = new Set(Array.isArray(selectedIds) ? selectedIds : []), disposed = false;
-  let map, leaflet, tileLayer, areaLayer, manifest, currentFeatures = [], pendingFocus = [...selected][0] || null, focusedCity = null, chooser = null;
-  let viewportAbort, timer, generation = 0, booting = false, tileUnavailable = false, failed = false;
+  let map, leaflet, tileLayer, areaLayer, manifest, currentFeatures = [], pendingFocus = [...selected][0] || null, focusedCity = null, pendingAreaFocus = null;
+  let viewportAbort, timer, generation = 0, booting = false, tileUnavailable = false, failed = false, focusing = false;
   const cityCache = new Map(), pathListeners = [];
   container.classList.add('location-map');
-  container.innerHTML = '<div class="location-map-heading"><strong>Válassz a térképen is</strong><span>Kattints a keresett városrészre.</span></div><div class="location-map-canvas" role="region" aria-label="Városrészek térképes kiválasztása"></div><div class="location-map-status" role="status" aria-live="polite">Térkép betöltése…</div><button type="button" class="location-map-retry" hidden>Újrapróbálom</button><details class="location-map-list" hidden><summary>Látható városrészek</summary><div class="location-map-options"></div><p class="location-map-list-note" hidden>Nagyíts közelebb a további városrészekhez.</p></details><div class="location-map-legend"><span class="location-map-legend-area">Városrész</span><span class="location-map-legend-selected">Kiválasztva</span><a href="/THIRD-PARTY-NOTICES.txt" target="_blank" rel="noopener noreferrer">Területhatárok forrásai</a></div>';
+  container.innerHTML = '<div class="location-map-heading"><strong>Válassz a térképen is</strong><span>Közelíts a kisebb városrészekhez.</span></div><div class="location-map-canvas" role="region" aria-label="Városrészek térképes kiválasztása"></div><div class="location-map-status" role="status" aria-live="polite">Térkép betöltése…</div><button type="button" class="location-map-retry" hidden>Újrapróbálom</button><details class="location-map-list" hidden><summary>Látható városrészek</summary><div class="location-map-options"></div><p class="location-map-list-note" hidden>Nagyíts közelebb a további városrészekhez.</p></details><div class="location-map-legend"><span class="location-map-legend-area">Városrész</span><span class="location-map-legend-selected">Kiválasztva</span><a href="/THIRD-PARTY-NOTICES.txt" target="_blank" rel="noopener noreferrer">Területhatárok forrásai</a></div>';
   const canvas = container.querySelector('.location-map-canvas'), status = container.querySelector('.location-map-status');
   const retry = container.querySelector('.location-map-retry'), options = container.querySelector('.location-map-options');
   const details = container.querySelector('.location-map-list'), summary = details.querySelector('summary'), listNote = container.querySelector('.location-map-list-note');
@@ -214,7 +306,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       // selected whole town with this neighborhood, even at the limit.
       if (onSelect(id) === false) return;
       if (disposed) return;
-      selected.add(id); syncSelection(); map?.closePopup(); tell(`${location.label} hozzáadva a kereséshez.`);
+      selected.add(id); syncSelection(); tell(`${location.label} hozzáadva a kereséshez.`);
     } catch { tell('A városrészt most nem sikerült hozzáadni. Próbáld újra, vagy válaszd ki a keresőmezőben.'); }
   }
   function option(feature) {
@@ -224,36 +316,11 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     button.addEventListener('click', () => choose(feature.id));
     return button;
   }
-  function choiceContent(features) {
-    const content = document.createElement('div'); content.className = 'location-map-overlap';
-    const title = document.createElement('strong'); title.textContent = 'Itt több városrész is található'; content.append(title);
-    const choices = document.createElement('div'); choices.className = 'location-map-overlap-options';
-    for (const feature of features) choices.append(option(feature));
-    content.append(choices);
-    return content;
-  }
-  function showChoices(features, latlng) {
-    const popup = leaflet.popup({maxWidth: 300, maxHeight: 270, className: 'location-map-choice-popup', autoPanPadding: [12, 12]});
-    chooser = {popup, ids: features.map(feature => feature.id), latlng};
-    popup.setLatLng(latlng).setContent(choiceContent(features)).openOn(map);
-  }
-  function refreshChooser() {
-    if (!chooser) return;
-    if (map.getZoom() < MIN_AREA_ZOOM || !map.getBounds().contains(chooser.latlng)) { map.closePopup(); return; }
-    const available = chooser.ids.map(id => currentFeatures.find(feature => feature.id === id)).filter(Boolean);
-    if (!available.length) { map.closePopup(); return; }
-    // The popup's own auto-pan triggers a viewport redraw. Retain unchanged
-    // choice buttons so that a touch in progress is not discarded mid-gesture.
-    if (available.length !== chooser.ids.length) {
-      chooser.ids = available.map(feature => feature.id);
-      chooser.popup.setContent(choiceContent(available));
-    }
-  }
-  function clearAreas({closeChooser = true} = {}) {
-    removePathListeners(); if (closeChooser) map?.closePopup(); areaLayer?.clearLayers(); currentFeatures = []; options.replaceChildren(); details.hidden = true;
+  function clearAreas() {
+    removePathListeners(); areaLayer?.clearLayers(); currentFeatures = []; options.replaceChildren(); details.hidden = true;
   }
   function renderAreas(features, truncated) {
-    clearAreas({closeChooser: false}); currentFeatures = features;
+    clearAreas(); currentFeatures = features;
     areaLayer.addData({type: 'FeatureCollection', features});
     areaLayer.eachLayer(layer => {
       const feature = layer.feature, path = layer.getElement();
@@ -267,11 +334,28 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     for (const feature of sorted.slice(0, MAX_OPTIONS)) options.append(option(feature));
     summary.textContent = `Látható városrészek (${features.length})`; details.hidden = features.length === 0;
     listNote.hidden = sorted.length <= MAX_OPTIONS;
-    syncSelection(); refreshChooser(); failed = false; retry.hidden = true;
+    syncSelection(); failed = false; retry.hidden = true;
     if (truncated) tell(`${features.length} városrész látható. Nagyíts közelebb a többi terület megjelenítéséhez.`);
-    else if (!features.length) tell('Ezen a nézeten nincs megjeleníthető városrész. Válassz másik települést, vagy mozdítsd el a térképet.');
+    else if (!features.length) tell('Nagyíts közelebb, vagy mozdítsd el a térképet a városrészek megjelenítéséhez.');
     else if (tileUnavailable) tell('A háttértérkép most nem érhető el. A városrészek továbbra is kiválaszthatók.');
-    else tell(`${features.length} városrész látható. Kattints egy területre a hozzáadáshoz.`);
+    else tell(`${features.length} városrész látható. Egy kattintással kiválaszthatod; közelítve kisebb területek jelennek meg.`);
+  }
+
+  function refineFocus(features) {
+    if (!pendingAreaFocus) return false;
+    const location = getLocation(pendingAreaFocus);
+    const feature = location?.kind === 'neighborhood' ? features.find(item => item.id === location.id)
+      : location?.kind === 'district' ? features.find(item => item.properties.city === location.city
+        && item.properties.name === `${location.district} kerület`) : null;
+    pendingAreaFocus = null;
+    if (!feature) return false;
+    const zoom = neighborhoodZoom(feature, features);
+    if (map.getZoom() === zoom) return false;
+    // A named quarter or ward must be shown at its own band, including tiny
+    // areas above the old zoom16 ceiling. Further user zooming is unrestricted.
+    focusing = true;
+    try { map.setZoom(zoom, {animate: false}); } finally { focusing = false; }
+    return true;
   }
   async function refreshViewport() {
     if (!map || !manifest || !visible()) return;
@@ -295,11 +379,12 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
         return features;
       }));
       if (disposed || signal.aborted || request !== generation) return;
+      const allFeatures = batches.flat();
+      if (refineFocus(allFeatures)) return;
       const seen = new Set();
-      const features = batches.flat().filter(feature => boundsIntersect(feature.bbox, bounds) && !seen.has(feature.id) && seen.add(feature.id))
+      const features = chooseVisibleNeighborhoods(allFeatures, bounds, map.getZoom()).filter(feature => !seen.has(feature.id) && seen.add(feature.id))
         .sort((a, b) => Number(selected.has(b.id)) - Number(selected.has(a.id)) || a.properties.label.localeCompare(b.properties.label, 'hu'));
-      const visibleFeatures = features.slice(0, MAX_FEATURES).sort((a, b) =>
-        (b.bbox[2] - b.bbox[0]) * (b.bbox[3] - b.bbox[1]) - (a.bbox[2] - a.bbox[0]) * (a.bbox[3] - a.bbox[1]));
+      const visibleFeatures = features.slice(0, MAX_FEATURES).sort((a, b) => featureArea(b) - featureArea(a) || String(a.id).localeCompare(String(b.id)));
       renderAreas(visibleFeatures, chosen.truncated || features.length > MAX_FEATURES);
     } catch { if (!disposed && !signal.aborted && request === generation) fail(); }
   }
@@ -312,6 +397,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     const location = getLocation(id);
     if (!location) return;
     pendingFocus = id; focusedCity = location.city || null;
+    pendingAreaFocus = ['neighborhood', 'district'].includes(location.kind) ? id : null;
     if (!map || !manifest || !visible()) return;
     let bounds = manifest.focus[id];
     if (!bounds && location.city === 'Budapest' && location.district) {
@@ -322,8 +408,11 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     if (!bounds && location.city) bounds = manifest.focus[`city:${location.city}`];
     if (!validBounds(bounds)) { pendingFocus = null; return; }
     pendingFocus = null;
-    map.fitBounds([[bounds[1], bounds[0]], [bounds[3], bounds[2]]], {padding: [18, 18], maxZoom: location.kind === 'neighborhood' ? 16 : 14, animate: false});
-    if (map.getZoom() < MIN_AREA_ZOOM) map.setZoom(MIN_AREA_ZOOM, {animate: false});
+    focusing = true;
+    try {
+      map.fitBounds([[bounds[1], bounds[0]], [bounds[3], bounds[2]]], {padding: [18, 18], maxZoom: location.kind === 'neighborhood' ? 18 : 14, animate: false});
+      if (map.getZoom() < MIN_AREA_ZOOM) map.setZoom(MIN_AREA_ZOOM, {animate: false});
+    } finally { focusing = false; }
     scheduleViewport();
   }
   function resize() {
@@ -359,13 +448,16 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
           layer.bindTooltip(label, {sticky: true, direction: 'top'});
         }}).addTo(map);
         map.on('moveend', scheduleViewport);
-        map.on('popupclose', event => { if (chooser?.popup === event.popup) chooser = null; });
+        map.on('zoomstart', () => {
+          if (!focusing) pendingAreaFocus = null;
+          clearTimeout(timer); viewportAbort?.abort(); generation++; clearAreas();
+        });
+        map.on('dragstart', () => { pendingAreaFocus = null; });
         map.on('focus', () => map.scrollWheelZoom.enable()); map.on('blur', () => map.scrollWheelZoom.disable());
         map.on('click', event => {
           const point = [event.latlng.lng, event.latlng.lat];
-          const hits = currentFeatures.filter(feature => boundsIntersect(feature.bbox, [...point, ...point]) && pointInGeometry(point, feature.geometry))
-            .sort((a, b) => a.properties.label.localeCompare(b.properties.label, 'hu'));
-          if (hits.length === 1) choose(hits[0].id); else if (hits.length > 1) showChoices(hits, event.latlng);
+          const feature = chooseSmallestFeature(currentFeatures, point);
+          if (feature) choose(feature.id);
         });
         map.setView([47.16, 19.5], 7);
       }
@@ -386,6 +478,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       if (disposed) return;
       selected = new Set(Array.isArray(ids) ? ids : []);
       if (pendingFocus && !selected.has(pendingFocus)) pendingFocus = null;
+      if (pendingAreaFocus && !selected.has(pendingAreaFocus)) pendingAreaFocus = null;
       syncSelection();
       if (focusId) focus(focusId);
     },
@@ -395,7 +488,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       disposed = true; generation++; clearTimeout(timer); viewportAbort?.abort(); observer?.disconnect();
       document.removeEventListener('visibilitychange', visibility); window.removeEventListener('resize', resize);
       retry.removeEventListener('click', retryClick); removePathListeners(); map?.remove();
-      cityCache.clear(); currentFeatures = []; chooser = null; container.replaceChildren();
+      cityCache.clear(); currentFeatures = []; pendingAreaFocus = null; container.replaceChildren();
     }
   };
 }

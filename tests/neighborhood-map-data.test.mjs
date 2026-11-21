@@ -4,6 +4,7 @@ import {readFile,readdir} from 'node:fs/promises';
 import {gunzipSync,gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {getLocation,locations} from '../dist/locations.js';
+import {geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature,pointInGeometry} from '../dist/location-map.js';
 
 const root=new URL('../',import.meta.url),directory=new URL('dist/data/map/',root);
 const index=JSON.parse(await readFile(new URL('index.json',directory),'utf8'));
@@ -102,4 +103,51 @@ test('a town without neighborhood boundaries still has real municipality focus b
  const citiesWithAreas=new Set(index.cities.map(item=>item.city));
  const town=locations.find(item=>item.kind==='city'&&!citiesWithAreas.has(item.city));assert.ok(town);
  validBounds(index.focus[town.id]);
+});
+
+test('Budapest starts with selectable Buda/Pest and progressively replaces them with finer areas',()=>{
+ const {city,collection}=allChunks.find(chunk=>chunk.city.city==='Budapest');
+ const features=collection.features,coarse=chooseVisibleNeighborhoods(features,city.bounds,11);
+ assert.deepEqual(coarse.map(feature=>feature.properties.name).sort(),['Buda','Pest']);
+ assert.equal(coarse.find(feature=>feature.properties.name==='Buda').id,'neighborhood:1f903296a1db8657f2fdb1f4');
+ assert.equal(coarse.find(feature=>feature.properties.name==='Pest').id,'neighborhood:3c4a84155a32b95a18f2e0da');
+ assert.deepEqual(chooseVisibleNeighborhoods(features,city.bounds,10),[],'Country-scale views must not expose small area outlines');
+ const medium=chooseVisibleNeighborhoods(features,city.bounds,12),fine=chooseVisibleNeighborhoods(features,city.bounds,15);
+ assert.ok(medium.length>coarse.length&&fine.length>medium.length,'Real Budapest data should reveal more alternatives as the map is enlarged');
+ assert.ok(medium.some(feature=>feature.properties.name==='II. kerület'));
+ assert.ok(medium.every(feature=>!coarse.some(parent=>parent.id===feature.id)),'Coarse parents must not obscure the newly visible band');
+ assert.ok(Math.max(...medium.map(feature=>geometryArea(feature.geometry)))<Math.min(...coarse.map(feature=>geometryArea(feature.geometry))));
+ assert.ok(Math.max(...fine.map(feature=>geometryArea(feature.geometry)))<Math.min(...medium.map(feature=>geometryArea(feature.geometry))));
+ assert.deepEqual(chooseVisibleNeighborhoods(features,city.bounds,12.75).map(feature=>feature.id),medium.map(feature=>feature.id),'Intermediate animation zooms use the current complete level');
+});
+
+test('every canonical area has positive actual area and remains reachable at an available zoom without changing source data',()=>{
+ const reached=new Set();
+ for(const {city,collection}of allChunks){
+  const before=JSON.stringify(collection),features=collection.features;
+  for(const feature of features){
+   const area=geometryArea(feature.geometry),level=neighborhoodZoom(feature,features);
+   assert.ok(Number.isFinite(area)&&area>0,`Invalid actual area for ${feature.id}`);
+   assert.ok(Number.isInteger(level)&&level>=11&&level<=18,`Unreachable zoom level for ${feature.id}`);
+  }
+  for(let zoom=11;zoom<=18;zoom++)for(const feature of chooseVisibleNeighborhoods(features,city.bounds,zoom)){
+   assert.ok(neighborhoodZoom(feature,features)<=zoom,`${feature.id} appeared before its minimum level`);
+   reached.add(feature.id);
+  }
+  assert.equal(JSON.stringify(collection),before,'Runtime area/level caches must not add fields to or rewrite the pinned display data');
+ }
+ assert.deepEqual([...reached].sort(),canonical.map(location=>location.id).sort(),'Even the smallest real polygons must be reachable by zoom18');
+ assert.equal(reached.size,4308);
+});
+
+test('one click on a real visible Budapest overlap picks the smallest actual region independently of draw order',()=>{
+ const {city,collection}=allChunks.find(chunk=>chunk.city.city==='Budapest');
+ const visible=chooseVisibleNeighborhoods(collection.features,city.bounds,12),point=[18.94,47.575];
+ const hits=visible.filter(feature=>pointInGeometry(point,feature.geometry));
+ assert.ok(hits.some(feature=>feature.properties.name==='II. kerület'));
+ assert.ok(hits.some(feature=>feature.properties.name==='Pesthidegkút'),'This is an actual overlap, not two disjoint source areas');
+ const expected='neighborhood:59a19c26acfc9057ac39a640';
+ assert.equal(chooseSmallestFeature(visible,point)?.id,expected);
+ assert.equal(chooseSmallestFeature([...visible].reverse(),point)?.id,expected);
+ assert.ok(geometryArea(hits.find(feature=>feature.id===expected).geometry)<geometryArea(hits.find(feature=>feature.properties.name==='II. kerület').geometry));
 });
