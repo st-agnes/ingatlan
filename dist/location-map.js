@@ -480,7 +480,9 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       try { parents = validateNeighborhoodHierarchy(index.hierarchy, index, getLocation); }
       catch (error) { manifestPromise = null; throw error; }
       if (!map) {
-        map = leaflet.map(canvas, {minZoom: 6, maxZoom: 18, scrollWheelZoom: false,
+        // A repeated tap is the selection toggle, so it must not also zoom or
+        // recenter the map. Zoom controls, wheel and pinch remain available.
+        map = leaflet.map(canvas, {minZoom: 6, maxZoom: 18, scrollWheelZoom: false, doubleClickZoom: false,
           maxBounds: [[44.5, 15], [49.5, 24]], maxBoundsViscosity: 0.7, attributionControl: true, zoomControl: false});
         leaflet.control.zoom({zoomInTitle: 'Nagyítás', zoomOutTitle: 'Kicsinyítés'}).addTo(map);
         map.attributionControl.setPrefix(false);

@@ -38,30 +38,42 @@ const interact=(viewport,locator)=>viewport.touch?locator.tap():locator.click();
 const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function zoom(map,viewport,direction){
  await interact(viewport,map.locator(`.leaflet-control-zoom-${direction}`));
- // Leaflet ignores another desktop zoom click during its normal 250ms
- // transition. Also let the debounced viewport render settle before observing
- // layer visibility or starting another zoom action.
- await delay(275);const canvas=map.locator('.location-map-canvas');
- for(let attempt=0;attempt<40;attempt++){
-  if(!await canvas.evaluate(element=>element.classList.contains('leaflet-zoom-anim')||!!element.querySelector('.leaflet-zoom-anim'))){await delay(225);return;}
-  await delay(25);
- }
- assert.equal(await canvas.evaluate(element=>element.classList.contains('leaflet-zoom-anim')||!!element.querySelector('.leaflet-zoom-anim')),false,'The normal map zoom transition must settle');
+ await waitMapPaint(map);
 }
 const mapZoom=map=>map.locator('.location-map-canvas').evaluate(element=>element.__mapBrowserInstance.getZoom());
+async function waitMapPaint(map){
+ await map.locator('.location-map-canvas').evaluate(element=>new Promise((resolve,reject)=>{
+  const deadline=performance.now()+10000;
+  function check(){
+   const status=element.closest('.location-map').querySelector('.location-map-status')?.textContent||'';
+   // A non-loading status written after the last completed move proves that
+   // this move's debounced viewport renderer finished. Merely waiting for the
+   // zoom animation can observe the intentionally empty intermediate layer.
+   if(!element.__mapBrowserMoving&&element.__mapBrowserStatusAt>=element.__mapBrowserMovedAt&&!status.includes('betöltése')){resolve();return;}
+   if(performance.now()>deadline){reject(new Error('The current map viewport did not finish painting: '+JSON.stringify({zoom:element.__mapBrowserInstance.getZoom(),status,movedAt:element.__mapBrowserMovedAt,statusAt:element.__mapBrowserStatusAt})));return;}
+   requestAnimationFrame(check);
+  }
+  check();
+ }));
+}
 async function zoomTo(map,viewport,level){
  for(let step=0;step<14;step++){
-  const current=await mapZoom(map);if(current===level)return;
+  const current=await mapZoom(map);if(current===level){await waitMapPaint(map);return;}
   await zoom(map,viewport,current<level?'in':'out');
  }
  assert.equal(await mapZoom(map),level,'The real map controls must reach the requested zoom');
 }
 async function assertOutline(map,id){
- const path=pathFor(map,id);await path.waitFor();
- assert.equal(await path.evaluate(element=>getComputedStyle(element).fill),'none','Normal, hovered and selected areas must show their outline without painting over the map');
- assert.notEqual(await path.evaluate(element=>getComputedStyle(element).stroke),'none');
- await path.focus();
- assert.equal(await path.evaluate(element=>getComputedStyle(element).fill),'none','Keyboard focus must not restore the polygon fill');
+ await waitMapPaint(map);const path=pathFor(map,id);await path.waitFor();
+ const state=await path.evaluate(element=>{
+  const normal=getComputedStyle(element);const before={connected:element.isConnected,fill:normal.fill,stroke:normal.stroke};
+  element.focus({preventScroll:true});
+  return {...before,focused:document.activeElement===element,focusedFill:getComputedStyle(element).fill};
+ });
+ assert.equal(state.connected,true,'Outline checks must observe a connected path in the current viewport');
+ assert.equal(state.fill,'none','Normal, hovered and selected areas must show their outline without painting over the map');
+ assert.notEqual(state.stroke,'none');assert.equal(state.focused,true);
+ assert.equal(state.focusedFill,'none','Keyboard focus must not restore the polygon fill');
 }
 async function assertSourceLink(page,{landing=false}={}){
  const wrapper=page.locator(landing?'.landing-location-source':'#location-picker .location-source');
@@ -78,7 +90,14 @@ async function fixture(browser,viewport,{authenticated=false}={}){
  await context.addInitScript(()=>{
   let library;
   Object.defineProperty(window,'L',{configurable:true,get:()=>library,set:value=>{
-   library=value;value?.Map?.addInitHook(function(){this.getContainer().__mapBrowserInstance=this;});
+   library=value;value?.Map?.addInitHook(function(){
+    const canvas=this.getContainer(),status=canvas.closest('.location-map').querySelector('.location-map-status');
+    canvas.__mapBrowserInstance=this;canvas.__mapBrowserMoving=false;canvas.__mapBrowserMovedAt=0;canvas.__mapBrowserStatusAt=-1;
+    this.on('movestart zoomstart',()=>{canvas.__mapBrowserMoving=true;});
+    this.on('moveend',()=>{canvas.__mapBrowserMoving=false;canvas.__mapBrowserMovedAt=performance.now();});
+    const observer=new MutationObserver(()=>{canvas.__mapBrowserStatusAt=performance.now();});
+    observer.observe(status,{childList:true,characterData:true,subtree:true});this.on('unload',()=>observer.disconnect());
+   });
   }});
  });
  await mockMapTiles(context);
@@ -121,7 +140,13 @@ async function fixture(browser,viewport,{authenticated=false}={}){
  page.on('request',request=>{const path=new URL(request.url()).pathname;if(path.endsWith('neighborhoods.json.gz'))server.errors.push('The map requested the complete search geometry dataset.');});
  return {context,page,server};
 }
-async function inspect(f,viewport,name,run){try{await run();assert.deepEqual(f.server.unhandled,[]);assert.deepEqual(f.server.errors,[]);}catch(error){await mkdir(resolve('.local/browser-tests/screenshots'),{recursive:true});await f.page.screenshot({path:resolve('.local/browser-tests/screenshots',`neighborhood-map-${name}-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;}finally{f.server.hold?.release();await f.context.close();}}
+async function inspect(f,viewport,name,run){try{await run();assert.deepEqual(f.server.unhandled,[]);assert.deepEqual(f.server.errors,[]);}catch(error){
+ const diagnostic=await f.page.locator('.location-map-canvas').evaluateAll(canvases=>canvases.map(canvas=>{
+  const map=canvas.__mapBrowserInstance,center=map?.getCenter(),bounds=map?.getBounds();
+  return {zoom:map?.getZoom(),center:center&&[center.lng,center.lat],bounds:bounds&&[bounds.getWest(),bounds.getSouth(),bounds.getEast(),bounds.getNorth()],status:canvas.closest('.location-map').querySelector('.location-map-status')?.textContent,moving:canvas.__mapBrowserMoving,paths:[...canvas.querySelectorAll('path.leaflet-interactive')].map(path=>({id:path.dataset.mapNeighborhoodId,connected:path.isConnected,fill:getComputedStyle(path).fill,selected:path.getAttribute('aria-pressed')}))};
+ })).catch(()=>[]);console.error(`Map failure diagnostics ${name} ${viewport.name}: ${JSON.stringify(diagnostic)}`);
+ await mkdir(resolve('.local/browser-tests/screenshots'),{recursive:true});await f.page.screenshot({path:resolve('.local/browser-tests/screenshots',`neighborhood-map-${name}-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;
+ }finally{f.server.hold?.release();await f.context.close();}}
 async function assertOverlay(map){
  const svg=map.locator('.leaflet-overlay-pane > svg');await svg.waitFor();const box=await svg.boundingBox();
  assert.ok(box&&box.width>100&&box.height>100,'The real Leaflet SVG overlay must retain its viewport size instead of the global 20px icon size');
@@ -159,10 +184,12 @@ async function landingSelection(browser,viewport){
   assert.equal(await page.locator(`#landing-location-chips [data-remove-location="${city.id}"]`).count(),0,'A map quarter narrows and replaces its covering whole-city filter');
   await assertOutline(map,venkert.id);
   await chooseText(page,viewport,city.id,'Debrecen',{landing:true});await pathFor(map,tocoskert.id).waitFor();
+  const toggleZoom=await mapZoom(map);
   await clickPolygon(map,tocoskert.id,viewport);await assertOutline(map,tocoskert.id);
   await clickPolygon(map,tocoskert.id,viewport);assert.equal(await page.locator(`#landing-location-chips [data-remove-location="${tocoskert.id}"]`).count(),0,'A second tap on the same area must remove it immediately');
   assert.equal(await pathFor(map,tocoskert.id).getAttribute('aria-pressed'),'false');await assertOutline(map,tocoskert.id);
   await clickPolygon(map,tocoskert.id,viewport);assert.equal(await page.locator(`#landing-location-chips [data-remove-location="${tocoskert.id}"]`).count(),1,'A subsequent tap must add the same area again without duplicates');
+  assert.equal(await mapZoom(map),toggleZoom,'Rapid selection toggles must not also trigger double-tap zoom');
   assert.equal(await pathFor(map,tocoskert.id).getAttribute('aria-pressed'),'true');await removeChip(page,viewport,venkert.id,{landing:true});assert.equal(await pathFor(map,venkert.id).getAttribute('aria-pressed'),'false');
   await chooseText(page,viewport,otherCity.id,'Szeged',{landing:true});await pathFor(map,szeged.id).waitFor();assert.equal(await pathFor(map,venkert.id).count(),0,'A new textual location must focus and render the new city');
   const mapBox=await map.boundingBox(),inputBox=await page.locator('#landing-location-input').boundingBox();assert.ok(mapBox.y>=inputBox.y+inputBox.height,'The map belongs below the location input');
@@ -195,9 +222,11 @@ async function budapestZoomLevels(browser,viewport){
   await chooseText(page,viewport,'city:Budapest','Budapest',{landing:true});await zoomTo(map,viewport,8);await pathFor(map,buda.id).waitFor();await pathFor(map,pest.id).waitFor();
   const visibleIds=()=>map.locator('path.leaflet-interactive').evaluateAll((paths,ids)=>paths.map(path=>path.dataset.mapNeighborhoodId).filter(id=>ids.includes(id)).sort(),budapestPolygons.map(feature=>feature.id));
   assert.deepEqual(await visibleIds(),[buda.id,pest.id].sort(),'A distant Budapest view must show only Buda and Pest, without smaller overlapping regions');
+  const coarseZoom=await mapZoom(map);
   await clickPolygon(map,buda.id,viewport);await page.locator(`#landing-location-chips [data-remove-location="${buda.id}"]`).waitFor();
   assert.equal(await page.locator('#landing-location-chips [data-remove-location="city:Budapest"]').count(),0,'A broad city half must also narrow the whole-city search in one tap');
   await clickPolygon(map,pest.id,viewport);await page.locator(`#landing-location-chips [data-remove-location="${pest.id}"]`).waitFor();
+  assert.equal(await mapZoom(map),coarseZoom,'Selecting neighboring coarse areas must not double-tap zoom or move to another detail level');
   assert.equal(await map.locator('.leaflet-popup-content').count(),0);
   await zoomTo(map,viewport,10);
   await pathFor(map,budapestWard.id).waitFor();assert.deepEqual(await visibleIds(),[buda.id,pest.id,budapestWard.id].sort(),'Closer zoom adds the contained ward while retaining broad outlines and uncovered parts');

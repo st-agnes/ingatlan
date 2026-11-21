@@ -4,6 +4,8 @@ A kezdőoldali kereső és a keresési igények ötlépéses űrlapja alatt Open
 
 Térképes városrészválasztáskor az adott teljes város vagy a korábban kiválasztott, őt tartalmazó nagyobb terület kijelölése a választott városrészre szűkül. A többi kiválasztott helyszín megmarad. Az 50-es helyszínkorlát cserénél is érvényes. A már kijelölt terület ismételt kattintással kivehető a keresésből; a címkék törlőgombjai is megmaradnak.
 
+A gyors ismételt koppintás is a kijelölést váltja, nem nagyítja vagy mozgatja közben a térképet. Nagyítani a térkép gombjaival, egérgörgővel vagy két ujjal lehet.
+
 A térképre kattintva közvetlenül változik a kijelölés, nincs utólagos választóablak. A városrészeknek csak a körvonala látszik; kijelölve és billentyűzetfókusszal sem kapnak kitöltést. A körvonal belsejére kattintás is működik. Ha a látható poligonok átfedik egymást, a kattintás a ténylegesen legkisebb területűt választja ki. A lyukakat levonjuk, a különálló poligonrészeket összeadjuk, nem a befoglaló téglalap mérete dönt. Az azonos méretű találatoknál a stabil helyszínazonosító ad egyértelmű sorrendet. A látható területek opcionális listából és billentyűzettel is kijelölhetők.
 
 A nagyítási szinteket a területek egymásba ágyazódása határozza meg. A független városrészek a 8-as szinttől látszanak, és közelítéskor is megmaradnak, mérettől függetlenül. Debrecenben például Nagyerdőalja és Szentlászlófalva együtt látható. Valóban tartalmazott területek további két nagyítási lépésenként jelennek meg: például Pest körvonalán belül később a VI. kerületé. A szülőterület körvonala is megmarad, így a hiányos részletes felosztás nem tünteti el a még fel nem osztott részeket.
