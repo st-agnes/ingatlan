@@ -1,6 +1,5 @@
 name: Check clickable map rendering
 on:
-  create:
   push:
     branches: [codex/map-label-check-20261121]
 permissions:
@@ -13,7 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: codex/map-clickable-labels-20261121
           persist-credentials: false
           sparse-checkout-cone-mode: false
           sparse-checkout: |

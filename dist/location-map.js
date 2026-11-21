@@ -663,9 +663,31 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       lastLabelPayload = ''; lastOutlinePayload = ''; lastOptions = null;
       map = new library.Map({container: canvas, style: structuredClone(index.style), center: camera.center, zoom: camera.zoom,
         minZoom: 6, maxZoom: 18, dragRotate: false, pitchWithRotate: false, scrollZoom: false, doubleClickZoom: false,
-        attributionControl: {compact: false, customAttribution: '<a href="https://openmaptiles.org/" target="_blank" rel="noopener noreferrer">© OpenMapTiles</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>'}, locale: {'NavigationControl.ZoomIn': 'Nagyítás', 'NavigationControl.ZoomOut': 'Kicsinyítés', 'AttributionControl.ToggleAttribution': 'Források'}});
+        attributionControl: false, locale: {'NavigationControl.ZoomIn': 'Nagyítás', 'NavigationControl.ZoomOut': 'Kicsinyítés', 'AttributionControl.ToggleAttribution': 'Források'}});
       map.touchZoomRotate.disableRotation();
       map.addControl(new library.NavigationControl({showCompass: false}), 'top-left');
+      // Fixed credits remain visible when remote TileJSON cannot load. A custom
+      // control avoids duplicate provider/source attribution strings.
+      let attribution;
+      map.addControl({
+        onAdd() {
+          attribution = document.createElement('div');
+          attribution.className = 'maplibregl-ctrl maplibregl-ctrl-attrib';
+          attribution.setAttribute('aria-label', 'Térkép forrásai');
+          const inner = document.createElement('div'); inner.className = 'maplibregl-ctrl-attrib-inner';
+          for (const [label, href] of [
+            ['OpenFreeMap', 'https://openfreemap.org/'],
+            ['© OpenMapTiles', 'https://openmaptiles.org/'],
+            ['© OpenStreetMap contributors', 'https://www.openstreetmap.org/copyright']
+          ]) {
+            if (inner.childNodes.length) inner.append(document.createTextNode(' · '));
+            const link = document.createElement('a'); link.textContent = label; link.href = href;
+            link.target = '_blank'; link.rel = 'noopener noreferrer'; inner.append(link);
+          }
+          attribution.append(inner); return attribution;
+        },
+        onRemove() { attribution?.remove(); }
+      }, 'bottom-right');
       map.on('error', () => { if (!disposed) { backgroundUnavailable = true; if (ready && !failed) { retry.hidden = false; refreshOptions(); } } });
       await new Promise((resolve, reject) => {
         const timeout = setTimeout(() => finish(false), REQUEST_TIMEOUT);
