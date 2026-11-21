@@ -6,6 +6,8 @@ topology-preserving simplification for screen rendering; every polygon part and
 hole is retained. Requires libgeos_c (Ubuntu: libgeos-c1t64), no Python packages or
 network requests. The manifest has bounds only; actual layers are separate,
 content-addressed municipality files loaded as the viewport reaches a city.
+Containment is computed offline from the original geometry into a separate
+small metadata file, never from polygon size or viewport position alone.
 """
 import argparse
 import ctypes
@@ -28,6 +30,9 @@ POLICY = '20261120-neighborhood-display-v1'
 VERSION = POLICY + '-' + SOURCE_SHA[:12] + '-' + MUNICIPALITIES_SHA[:12]
 EXPECTED_COUNT = 4308
 TOLERANCE = 12 / 111_320  # approximately twelve metres in latitude, screen use only
+HIERARCHY_POLICY = '20261121-neighborhood-containment-v1'
+MINIMUM_COVERAGE = 0.95
+MAXIMUM_CHILD_AREA_RATIO = 0.8
 ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII',
          'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI', 'XXII', 'XXIII']
 
@@ -113,6 +118,8 @@ class Geos:
             'GEOSGeoJSONWriter_writeGeometry_r': (pointer, [pointer, pointer, pointer, integer]),
             'GEOSTopologyPreserveSimplify_r': (pointer, [pointer, pointer, double]),
             'GEOSisValid_r': (ctypes.c_char, [pointer, pointer]),
+            'GEOSIntersection_r': (pointer, [pointer, pointer, pointer]),
+            'GEOSArea_r': (integer, [pointer, pointer, ctypes.POINTER(double)]),
             'GEOSGeom_destroy_r': (None, [pointer, pointer]), 'GEOSFree_r': (None, [pointer, pointer]),
         }
         for name, (result, args) in definitions.items():
@@ -136,6 +143,20 @@ class Geos:
             return self.lib.GEOSisValid_r(self.context, handle) == b'\x01'
         finally:
             self.lib.GEOSGeom_destroy_r(self.context, handle)
+
+    def handle_area(self, handle):
+        result = ctypes.c_double()
+        if not handle or not self.lib.GEOSArea_r(self.context, handle, ctypes.byref(result)):
+            raise ValueError('Could not measure a hierarchy geometry.')
+        return result.value
+
+    def overlap_area(self, left, right):
+        handle = self.lib.GEOSIntersection_r(self.context, left, right)
+        try:
+            return self.handle_area(handle)
+        finally:
+            if handle:
+                self.lib.GEOSGeom_destroy_r(self.context, handle)
 
     def simplify(self, geometry):
         source = self.read(geometry)
@@ -171,6 +192,54 @@ class Geos:
         self.lib.GEOS_finish_r(self.context)
 
 
+def build_hierarchy(source, geos):
+    """Derive containment once, without changing any search/display outline.
+
+    A proper parent covers at least 95% of the child's original geometry and
+    must be at least 25% larger. The small boundary allowance accommodates the
+    mixed estimated sources; mere overlap or a larger area is insufficient.
+    Picking the smallest qualifying parent yields an acyclic containment forest.
+    Unrelated city quarters remain roots, regardless of their relative sizes.
+    """
+    groups, parents = defaultdict(list), {}
+    for feature in source['features']:
+        groups[feature['properties']['municipality']].append(feature)
+    for features in groups.values():
+        handles = {}
+        try:
+            for feature in features:
+                handles[feature['id']] = geos.read(feature['geometry'])
+            sizes = {identity: geos.handle_area(handle) for identity, handle in handles.items()}
+            if any(not math.isfinite(size) or size <= 0 for size in sizes.values()):
+                raise ValueError('Every hierarchy geometry must have positive area.')
+            boxes = {feature['id']: bounds(feature['geometry']) for feature in features}
+            ordered = sorted(handles, key=lambda identity: (sizes[identity], identity))
+            for child in ordered:
+                child_box, child_area = boxes[child], sizes[child]
+                for parent in ordered:
+                    if child_area > sizes[parent] * MAXIMUM_CHILD_AREA_RATIO:
+                        continue
+                    parent_box = boxes[parent]
+                    width = min(child_box[2], parent_box[2]) - max(child_box[0], parent_box[0])
+                    height = min(child_box[3], parent_box[3]) - max(child_box[1], parent_box[1])
+                    # A bounding intersection can disprove containment cheaply,
+                    # but never proves it: the actual polygon intersection does.
+                    if width <= 0 or height <= 0 or width * height < child_area * MINIMUM_COVERAGE:
+                        continue
+                    coverage = geos.overlap_area(handles[child], handles[parent]) / child_area
+                    if coverage >= MINIMUM_COVERAGE:
+                        parents[child] = parent
+                        break
+        finally:
+            for handle in handles.values():
+                geos.lib.GEOSGeom_destroy_r(geos.context, handle)
+    return {'schemaVersion': 1, 'version': HIERARCHY_POLICY + '-' + SOURCE_SHA[:12],
+            'mapVersion': VERSION, 'sourceSha256': SOURCE_SHA, 'count': EXPECTED_COUNT,
+            'policy': {'minimumCoverage': MINIMUM_COVERAGE,
+                       'maximumChildAreaRatio': MAXIMUM_CHILD_AREA_RATIO},
+            'parents': dict(sorted(parents.items()))}
+
+
 def build():
     source = pinned(SOURCE, SOURCE_SHA)
     municipal = pinned(MUNICIPALITIES, MUNICIPALITIES_SHA)
@@ -192,6 +261,7 @@ def build():
         focus['city:' + city] = municipal_selected[city][1]
     geos = Geos()
     try:
+        hierarchy = build_hierarchy(source, geos)
         for feature in sorted(source['features'], key=lambda item: item['id']):
             p, original = feature['properties'], feature['geometry']
             identity, city = p['id'], p['municipality']
@@ -228,6 +298,7 @@ def build():
                                     'attribution': ['© OpenStreetMap contributors (ODbL-1.0)',
                                                     'Az összeállított városrészek forrásai: THIRD-PARTY-NOTICES.txt.'],
                                     'sourceNotice': 'Display layers only; property matching uses the unchanged full MySQL boundaries.'})
+    output['hierarchy.json'] = encoded(hierarchy)
     return output
 
 
@@ -254,6 +325,9 @@ def main():
     print(f"Verified {index['count']} display areas in {len(index['cities'])} lazy municipality layers; "
           f"{len(index['focus'])} focus bounds, {sum(map(len, output.values())):,} total bytes, "
           f"{max(map(len, output.values())):,} maximum asset bytes.")
+    parents = json.loads(output['hierarchy.json'])['parents']
+    print(f"Containment hierarchy: {len(parents)} parent links, "
+          f"{EXPECTED_COUNT - len(parents)} independent roots.")
 
 
 if __name__ == '__main__':

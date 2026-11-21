@@ -10,7 +10,7 @@ const expected = {
 };
 const assetExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.ico', '.woff', '.woff2']);
 const codeFiles = new Set(['index.html', 'app.js', 'style.css', 'api.js', 'model.js', 'matching.js', 'public-profile.js', 'feedback.js', 'onboarding.js', 'locations.js', 'locations-data.js', 'agglomerations-data.js', 'neighborhoods-data.js', 'neighborhood-demo-points.js', 'street-demo-data.js', 'data/streets.json.gz', 'regions-data.js', 'attributes.js', 'accounts.js', 'runtime-config.js', 'data/settlements.json', 'data/agglomerations.json', 'THIRD-PARTY-NOTICES.txt']);
-for (const file of ['location-map.js', 'location-map.css', 'data/map/index.json', 'vendor/leaflet/leaflet.js', 'vendor/leaflet/leaflet.css', 'vendor/leaflet/LICENSE']) codeFiles.add(file);
+for (const file of ['location-map.js', 'location-map.css', 'data/map/index.json', 'data/map/hierarchy.json', 'vendor/leaflet/leaflet.js', 'vendor/leaflet/leaflet.css', 'vendor/leaflet/LICENSE']) codeFiles.add(file);
 const mapCityFile = /^data\/map\/city-[a-f0-9]{20}\.json$/;
 const configFields = new Set(['projectId', 'projectNumber', 'region', 'serviceName', 'registry', 'sqlInstance', 'connectionName', 'databaseName', 'databaseUser', 'mysqlSecret', 'jwtSecret', 'googleGeocodingSecret', 'siteId', 'runtimeServiceAccount', 'deployServiceAccount', 'workloadIdentityProvider']);
 
@@ -116,6 +116,24 @@ export async function prepareSite({config, source = join(projectRoot, 'dist'), o
     if (city.file !== `city-${hash}.json`) throw new Error(`Neighborhood map layer checksum mismatch: ${key}.`);
   }
   if (files.some(file => mapCityFile.test(file.key) && !listed.has(file.key))) throw new Error('Unlisted neighborhood map layer cannot be published.');
+  let hierarchy;
+  try { hierarchy = JSON.parse(await readFile(join(source, 'data/map/hierarchy.json'), 'utf8')); }
+  catch { throw new Error('Invalid neighborhood map hierarchy.'); }
+  if (!hierarchy || hierarchy.schemaVersion !== 1 || typeof hierarchy.version !== 'string' || !hierarchy.version
+    || hierarchy.mapVersion !== mapIndex.version || hierarchy.sourceSha256 !== mapIndex.sourceSha256
+    || !Number.isInteger(hierarchy.count) || hierarchy.count < 0 || hierarchy.count !== mapIndex.count
+    || !hierarchy.parents || typeof hierarchy.parents !== 'object' || Array.isArray(hierarchy.parents)
+    || Object.keys(hierarchy.parents).length > hierarchy.count) throw new Error('Invalid neighborhood map hierarchy.');
+  const areaId = /^neighborhood:[a-f0-9]{24}$/;
+  for (const [child, parent] of Object.entries(hierarchy.parents)) {
+    if (!areaId.test(child) || typeof parent !== 'string' || !areaId.test(parent)
+      || !Object.hasOwn(mapIndex.focus ?? {}, child) || !Object.hasOwn(mapIndex.focus ?? {}, parent)) throw new Error('Unknown neighborhood map hierarchy reference.');
+    const ancestors = new Set([child]);
+    for (let id = parent; id !== undefined; id = hierarchy.parents[id]) {
+      if (ancestors.has(id)) throw new Error('Cyclic neighborhood map hierarchy.');
+      ancestors.add(id);
+    }
+  }
   // Validate the entire tree first, then replace only this ignored staging directory.
   await rm(target, {recursive: true, force: true});
   await mkdir(join(target, 'public'), {recursive: true});
