@@ -1,6 +1,8 @@
 name: Prepare canonical map label assets
 on:
   create:
+  push:
+    branches: [codex/map-label-assets-20261121]
 permissions:
   contents: write
 jobs:
@@ -9,6 +11,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
+      - name: Install native geometry runtime
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends libgeos-c1t64
       - uses: actions/checkout@v4
         with:
           sparse-checkout-cone-mode: false
