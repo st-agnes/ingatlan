@@ -106,6 +106,12 @@ async function zoomTo(map, viewport, level) {
   }
   assert.ok(Math.abs(await mapZoom(map) - level) < .01, 'Real zoom controls must reach the requested level');
 }
+async function centerTarget(map, id) {
+  // Arrange the isolated fixture before interacting, keeping the named glyph
+  // away from real attribution controls and the wizard's sticky navigation.
+  await map.locator('.location-map-canvas').evaluate((element, center) => element.__mapBrowserInstance.jumpTo({center}), labelPoints.get(id));
+  await waitMapPaint(map); await waitLabel(map, id);
+}
 async function assertCenter(map, expected, message) {
   const actual = await mapCenter(map);
   assert.ok(actual.every((value, index) => Math.abs(value - expected[index]) < .005), message + ': ' + JSON.stringify({actual, expected}));
@@ -136,10 +142,12 @@ async function clickLabel(map, id, viewport, {slop = false} = {}) {
     const map = element.__mapBrowserInstance, available = layers.filter(layer => map.getLayer(layer));
     const feature = map.queryRenderedFeatures(undefined, {layers: available}).find(feature => (feature.properties.id || feature.id) === id);
     const anchor = map.project(feature.geometry.coordinates), width = element.clientWidth, height = element.clientHeight;
+    const canvas = map.getCanvas(), rectangle = canvas.getBoundingClientRect();
+    const unobscured = point => document.elementFromPoint(rectangle.left + point[0], rectangle.top + point[1]) === canvas;
     const xs = [0, -4, 4, -8, 8, -12, 12, -20, 20, -32, 32, -48, 48, -64, 64, -96, 96, -128, 128], ys = [0, -4, 4, -8, 8, -12, 12, -18, 18, -24, 24, -32, 32, -40, 40];
     for (const dy of ys) for (const dx of xs) {
       const point = [anchor.x + dx, anchor.y + dy];
-      if (point[0] < 4 || point[1] < 4 || point[0] > width - 4 || point[1] > height - 4) continue;
+      if (point[0] < 4 || point[1] < 4 || point[0] > width - 4 || point[1] > height - 4 || !unobscured(point)) continue;
       const hits = map.queryRenderedFeatures(point, {layers: available});
       if (hits.length && hits.every(hit => (hit.properties.id || hit.id) === id)) {
         if (!slop) return {x: point[0], y: point[1]};
@@ -147,7 +155,7 @@ async function clickLabel(map, id, viewport, {slop = false} = {}) {
         // tolerance, to verify the actual screen-space forgiving hit logic.
         for (const delta of [[0, -6], [0, 6], [-6, 0], [6, 0]]) {
           const outside = [point[0] + delta[0], point[1] + delta[1]];
-          if (!map.queryRenderedFeatures(outside, {layers: available}).length) return {x: outside[0], y: outside[1]};
+          if (unobscured(outside) && !map.queryRenderedFeatures(outside, {layers: available}).length) return {x: outside[0], y: outside[1]};
         }
       }
     }
@@ -399,10 +407,7 @@ async function landingSelection(browser, viewport) {
     assert.equal(await map.locator('.maplibregl-popup,.location-map-overlap').count(), 0, 'A label tap needs no secondary choice');
     const before = await page.locator('#landing-location-chips').innerText(); await clickEmptyInterior(map, viewport);
     assert.equal(await page.locator('#landing-location-chips').innerText(), before, 'Empty polygon interiors do not select arbitrary overlapping regions');
-    // Arrange the isolated target at the center so it stays within even the
-    // smallest viewport during the following real zoom-in/out controls.
-    await map.locator('.location-map-canvas').evaluate((element, center) => element.__mapBrowserInstance.jumpTo({center}), labelPoints.get(tocoskert.id));
-    await waitMapPaint(map);
+    await centerTarget(map, tocoskert.id);
     const toggleZoom = await mapZoom(map), toggleCenter = await mapCenter(map);
     const unselectedBox = await renderedLabelBox(map, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport, {slop: viewport.touch}); await chip(page, tocoskert.id, true).waitFor({state: 'attached'}); await assertOutline(map, tocoskert.id);
@@ -489,7 +494,7 @@ async function ownedWizard(browser, viewport) {
   await inspect(f, viewport, 'owned', async () => {
     await openEditor(page, viewport); await page.locator('#f-type').selectOption('Lakás'); const map = await readyMap(page, '#search-location-map');
     await assertPickerLayout(page, viewport);
-    await chooseText(page, viewport, solymar.id, 'Solymár'); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); await clickLabel(map, tocoskert.id, viewport); await chip(page, tocoskert.id).waitFor({state: 'attached'});
+    await chooseText(page, viewport, solymar.id, 'Solymár'); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); await centerTarget(map, tocoskert.id); await clickLabel(map, tocoskert.id, viewport); await chip(page, tocoskert.id).waitFor({state: 'attached'});
     assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, solymar.id).count(), 1); assert.equal(await page.locator('#location-chips .location-chip').count(), 2);
     assert.notEqual(await page.evaluate(() => document.activeElement?.id), 'location-input', 'Map taps never summon the mobile keyboard'); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await chip(page, tocoskert.id).count(), 0); assert.equal(await chip(page, solymar.id).count(), 1); await assertOutline(map, tocoskert.id, false); await clickLabel(map, tocoskert.id, viewport);
@@ -507,9 +512,9 @@ async function anonymousDraft(browser, viewport) {
   const f = await fixture(browser, viewport), {page} = f;
   await inspect(f, viewport, 'draft', async () => {
     await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const landing = await readyMap(page, '#landing-location-map');
-    await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(landing, viewport, 13); await clickLabel(landing, tocoskert.id, viewport); assert.equal(await chip(page, city.id, true).count(), 0);
+    await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(landing, viewport, 13); await centerTarget(landing, tocoskert.id); await clickLabel(landing, tocoskert.id, viewport); assert.equal(await chip(page, city.id, true).count(), 0);
     await interact(viewport, page.locator('#landing-search-form button[type="submit"]')); await page.locator('#onboarding-page #entity-form').waitFor(); await page.locator('#f-type').selectOption('Lakás'); const map = await readyMap(page, '#search-location-map');
-    await waitLabel(map, tocoskert.id); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
+    await centerTarget(map, tocoskert.id); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await chip(page, tocoskert.id).count(), 0); await assertOutline(map, tocoskert.id, false);
     await page.waitForFunction(async id => {const draft = (await import('/onboarding.js')).loadDraft(); return draft && !draft.data.locationIds.includes(id);}, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport); await chooseText(page, viewport, sestakert.id, 'Sestakert'); await waitLabel(map, sestakert.id); await assertOutline(map, sestakert.id);
@@ -546,10 +551,10 @@ async function narrowingAtLimit(browser, viewport) {
   const f = await fixture(browser, viewport, {authenticated: true}), {page, server} = f;
   await inspect(f, viewport, 'limit', async () => {
     const others = extraLocations.map(item => item.id); server.searches[0].locationIds = [city.id, ...others]; server.searches[0].locations = server.searches[0].locationIds.map(getLocation);
-    await page.goto(`${origin}/#searches`, {waitUntil: 'domcontentloaded'}); await interact(viewport, page.locator(`[data-action="edit"][data-kind="search"][data-id="${searchId}"]`)); const map = await readyMap(page, '#search-location-map'); await zoomTo(map, viewport, 13); await waitLabel(map, tocoskert.id);
+    await page.goto(`${origin}/#searches`, {waitUntil: 'domcontentloaded'}); await interact(viewport, page.locator(`[data-action="edit"][data-kind="search"][data-id="${searchId}"]`)); const map = await readyMap(page, '#search-location-map'); await zoomTo(map, viewport, 13); await centerTarget(map, tocoskert.id);
     assert.equal(await page.locator('#location-chips .location-chip').count(), 50); await clickLabel(map, tocoskert.id, viewport);
     assert.equal(await page.locator('#location-chips .location-chip').count(), 50); assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, tocoskert.id).count(), 1); assert.equal(await page.locator('#location-error').innerText(), '');
-    await removeChip(page, viewport, others[0]); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); assert.equal(await page.locator('#location-chips .location-chip').count(), 50);
+    await removeChip(page, viewport, others[0]); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); await centerTarget(map, tocoskert.id); assert.equal(await page.locator('#location-chips .location-chip').count(), 50);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await page.locator('#location-chips .location-chip').count(), 49); assert.equal(await chip(page, tocoskert.id).count(), 0); assert.equal(await chip(page, city.id).count(), 1);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await page.locator('#location-chips .location-chip').count(), 49); assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, tocoskert.id).count(), 1); assert.equal(await chip(page, others[1]).count(), 1);
     console.log('Neighborhood map limit desktop: named replacement at50, exact removal, retained offscreen choices and re-add narrowing passed.');
