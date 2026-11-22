@@ -64,7 +64,7 @@ const labels = {schemaVersion: 1, version: labelVersion, mapVersion: version, so
 labels.count = labels.features.length;
 const owner = {id: '10000000-0000-4000-8000-000000000001', name: 'Térképes Anna', email: 'map-browser@example.test', phone: '', accountType: 'private'};
 const searchId = '20000000-0000-4000-8000-000000000001', propertyId = '30000000-0000-4000-8000-000000000001';
-const labelLayers = ['otthonra-place-labels', 'otthonra-selected-labels'];
+const labelLayers = ['otthonra-place-labels'];
 const interact = (viewport, locator) => viewport.touch ? locator.tap() : locator.click();
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const mapZoom = map => map.locator('.location-map-canvas').evaluate(element => element.__mapBrowserInstance.getZoom());
@@ -155,6 +155,64 @@ async function clickLabel(map, id, viewport, {slop = false} = {}) {
   }, {id, layers: labelLayers, slop});
   await (viewport.touch ? canvas.tap({position}) : canvas.click({position}));
 }
+async function renderedLabelBox(map, id) {
+  await waitMapPaint(map); await waitLabel(map, id);
+  return map.locator('.location-map-canvas').evaluate((element, {id, layers}) => {
+    const map = element.__mapBrowserInstance, available = layers.filter(layer => map.getLayer(layer));
+    const feature = map.queryRenderedFeatures(undefined, {layers: available}).find(feature => (feature.properties.id || feature.id) === id);
+    // Rendered features have passed through MapLibre's vector-tile grid, whose
+    // harmless subpixel coordinate quantization varies with source zoom. The
+    // canonical GeoJSON remains the exact geographic anchor we must preserve.
+    const source = map.getStyle().sources['otthonra-places'].data;
+    const canonical = typeof source === 'object' && source.features.find(item => (item.properties.id || item.id) === id);
+    if (!canonical) throw new Error('The rendered place lost its canonical source point: ' + id);
+    const anchor = map.project(canonical.geometry.coordinates), renderedAnchor = map.project(feature.geometry.coordinates);
+    if (Math.hypot(anchor.x - renderedAnchor.x, anchor.y - renderedAnchor.y) > 1) throw new Error('Rendered place differs from its canonical geographic anchor: ' + id);
+    const hasLabel = (x, y) => map.queryRenderedFeatures([x, y], {layers: available}).some(hit => (hit.properties.id || hit.id) === id);
+    let seed;
+    for (const dy of [0, -4, 4, -8, 8, -16, 16, -24, 24, -32, 32]) {
+      for (const dx of [0, -8, 8, -16, 16, -32, 32, -64, 64]) if (hasLabel(anchor.x + dx, anchor.y + dy)) {seed = [anchor.x + dx, anchor.y + dy]; break;}
+      if (seed) break;
+    }
+    if (!seed) throw new Error('Cannot measure the real rendered symbol: ' + id);
+    function edge(x, y, dx, dy) {
+      let inside = 0, outside = 1;
+      while (outside < 512 && hasLabel(x + outside * dx, y + outside * dy)) {inside = outside; outside *= 2;}
+      for (let step = 0; step < 12; step++) {
+        const middle = (inside + outside) / 2;
+        if (hasLabel(x + middle * dx, y + middle * dy)) inside = middle; else outside = middle;
+      }
+      return [x + inside * dx, y + inside * dy];
+    }
+    const left = edge(...seed, -1, 0)[0], right = edge(...seed, 1, 0)[0], middleX = (left + right) / 2;
+    const top = edge(middleX, seed[1], 0, -1)[1], bottom = edge(middleX, seed[1], 0, 1)[1];
+    return {coordinates: canonical.geometry.coordinates, offset: [middleX - anchor.x, (top + bottom) / 2 - anchor.y], width: right - left, height: bottom - top, selected: map.getFeatureState({source: 'otthonra-places', id}).selected === true, zoom: map.getZoom()};
+  }, {id, layers: labelLayers});
+}
+function assertSameLabelBox(actual, expected, message) {
+  assert.deepEqual(actual.coordinates, expected.coordinates, message + ': geographic point');
+  for (const key of ['width', 'height']) assert.ok(Math.abs(actual[key] - expected[key]) <= 1.25, `${message}: ${key} changed ${expected[key]} -> ${actual[key]}`);
+  assert.ok(actual.offset.every((value, index) => Math.abs(value - expected.offset[index]) <= 1.25), message + ': symbol moved relative to its geographic point ' + JSON.stringify({actual: actual.offset, expected: expected.offset}));
+}
+async function pickerGeometry(page, {landing = false} = {}) {
+  return page.locator(landing ? '.landing-location-layout' : '#location-picker.location-search-layout').evaluate(layout => {
+    const map = layout.querySelector('.search-location-map').getBoundingClientRect(), input = layout.querySelector('input[role="combobox"]').getBoundingClientRect(), chips = layout.querySelector('.location-chips').getBoundingClientRect(), outer = layout.getBoundingClientRect();
+    return {map: {left: map.left, top: map.top, right: map.right, width: map.width}, input: {left: input.left, top: input.top, right: input.right, bottom: input.bottom}, mapTop: map.top - outer.top, chipHeight: chips.height, chipWidth: chips.width, outerRight: outer.right};
+  });
+}
+async function assertPickerLayout(page, viewport, options = {}) {
+  const geometry = await pickerGeometry(page, options);
+  if (viewport.width >= 768) {
+    assert.ok(geometry.map.left >= geometry.input.right + 8, 'Tablet/desktop search controls sit to the left of the map');
+    assert.ok(geometry.map.top <= geometry.input.bottom, 'The map starts beside the text controls, rather than below the selected places');
+    assert.ok(geometry.map.width >= 200, 'The side-by-side map retains a usable viewport');
+  } else {
+    assert.ok(geometry.map.top >= geometry.input.bottom, 'Mobile keeps its map below the text search');
+    assert.ok(geometry.chipHeight <= 34, 'Mobile selections occupy at most one compact row');
+  }
+  assert.ok(geometry.map.right <= geometry.outerRight + 1, 'The responsive picker does not overflow horizontally');
+  return geometry;
+}
 async function outlineIds(map) {
   return map.locator('.location-map-canvas').evaluate(element => {
     const source = element.__mapBrowserInstance.getStyle().sources['otthonra-outlines']?.data;
@@ -220,7 +278,12 @@ async function chooseText(page, viewport, id, value, {landing = false} = {}) {
   const prefix = landing ? 'landing-location' : 'location'; await page.locator(`#${prefix}-input`).fill(value);
   const item = page.locator(`#${prefix}-options [data-location-id="${id}"]`); await item.waitFor(); await interact(viewport, item);
 }
-async function removeChip(page, viewport, id, {landing = false} = {}) {await interact(viewport, chip(page, id, landing));}
+async function removeChip(page, viewport, id, {landing = false} = {}) {
+  const remove = chip(page, id, landing), chips = page.locator(inputChips(landing)), toggle = chips.locator('[data-location-selection-toggle]');
+  if (!await remove.isVisible() && await toggle.isVisible()) await interact(viewport, toggle);
+  await interact(viewport, remove);
+  if (await toggle.isVisible() && await toggle.getAttribute('aria-expanded') === 'true') await toggle.press('Escape');
+}
 async function openEditor(page, viewport, kind = 'search') {
   await page.goto(`${origin}/#${kind === 'property' ? 'properties' : 'searches'}`, {waitUntil: 'domcontentloaded'});
   await interact(viewport, page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`)); await page.locator('#entity-form').waitFor();
@@ -310,7 +373,7 @@ async function inspect(f, viewport, name, run) {
   try {await run(); assert.deepEqual(f.server.unhandled, []); assert.deepEqual(f.server.errors, []);} catch (error) {
     const diagnostic = await f.page.locator('.location-map-canvas').evaluateAll(canvases => canvases.map(canvas => {
       const map = canvas.__mapBrowserInstance, style = map?.getStyle();
-      return {zoom: map?.getZoom(), center: map?.getCenter(), status: canvas.closest('.location-map').querySelector('.location-map-status')?.textContent, sources: Object.keys(style?.sources || {}), rendered: map && ['otthonra-place-labels', 'otthonra-selected-labels'].filter(id => map.getLayer(id)).flatMap(id => map.queryRenderedFeatures(undefined, {layers: [id]}).map(feature => ({id: feature.properties.id || feature.id, layer: id}))), outlines: style?.sources['otthonra-outlines']?.data};
+      return {zoom: map?.getZoom(), center: map?.getCenter(), status: canvas.closest('.location-map').querySelector('.location-map-status')?.textContent, sources: Object.keys(style?.sources || {}), rendered: map && ['otthonra-place-labels'].filter(id => map.getLayer(id)).flatMap(id => map.queryRenderedFeatures(undefined, {layers: [id]}).map(feature => ({id: feature.properties.id || feature.id, layer: id}))), outlines: style?.sources['otthonra-outlines']?.data};
     })).catch(() => []);
     console.error(`Map failure diagnostics ${name} ${viewport.name}: ${JSON.stringify(diagnostic)}`);
     await mkdir(resolve('.local/browser-tests/screenshots'), {recursive: true});
@@ -327,26 +390,41 @@ async function landingSelection(browser, viewport) {
     assert.match(await map.locator('.maplibregl-ctrl-attrib').innerText(), /OpenStreetMap/); await assertSourceLink(page, {landing: true});
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await assertOutline(map, city.id);
     assert.equal(server.requests.filter(path => /\/city-/.test(path)).length, 0, 'Focusing a town does not fetch unselected quarter polygons');
-    await removeChip(page, viewport, city.id, {landing: true}); await waitLabel(map, city.id); await clickLabel(map, city.id, viewport); await chip(page, city.id, true).waitFor();
+    await removeChip(page, viewport, city.id, {landing: true}); await waitLabel(map, city.id); await clickLabel(map, city.id, viewport); await chip(page, city.id, true).waitFor({state: 'attached'});
     await zoomTo(map, viewport, 13); await waitLabel(map, venkert.id); await waitLabel(map, sestakert.id);
-    await clickLabel(map, sestakert.id, viewport); await chip(page, sestakert.id, true).waitFor();
+    await clickLabel(map, sestakert.id, viewport); await chip(page, sestakert.id, true).waitFor({state: 'attached'});
     assert.equal(await chip(page, venkert.id, true).count(), 0, 'A named tap selects that place even when its polygon is larger and overlaps another');
     assert.equal(await chip(page, city.id, true).count(), 0, 'Selecting a named quarter narrows the town filter');
     await assertOutline(map, sestakert.id); await assertOutline(map, venkert.id, false);
     assert.equal(await map.locator('.maplibregl-popup,.location-map-overlap').count(), 0, 'A label tap needs no secondary choice');
     const before = await page.locator('#landing-location-chips').innerText(); await clickEmptyInterior(map, viewport);
     assert.equal(await page.locator('#landing-location-chips').innerText(), before, 'Empty polygon interiors do not select arbitrary overlapping regions');
+    // Arrange the isolated target at the center so it stays within even the
+    // smallest viewport during the following real zoom-in/out controls.
+    await map.locator('.location-map-canvas').evaluate((element, center) => element.__mapBrowserInstance.jumpTo({center}), labelPoints.get(tocoskert.id));
+    await waitMapPaint(map);
     const toggleZoom = await mapZoom(map), toggleCenter = await mapCenter(map);
-    await clickLabel(map, tocoskert.id, viewport, {slop: viewport.touch}); await chip(page, tocoskert.id, true).waitFor(); await assertOutline(map, tocoskert.id);
+    const unselectedBox = await renderedLabelBox(map, tocoskert.id);
+    await clickLabel(map, tocoskert.id, viewport, {slop: viewport.touch}); await chip(page, tocoskert.id, true).waitFor({state: 'attached'}); await assertOutline(map, tocoskert.id);
+    const selectedBox = await renderedLabelBox(map, tocoskert.id);
+    assert.equal(selectedBox.selected, true, 'A real glyph tap updates selected paint state');
+    assertSameLabelBox(selectedBox, unselectedBox, 'Selecting a label cannot move or resize its glyph hit box');
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await chip(page, tocoskert.id, true).count(), 0); await assertOutline(map, tocoskert.id, false);
-    await clickLabel(map, tocoskert.id, viewport); await chip(page, tocoskert.id, true).waitFor();
+    const deselectedBox = await renderedLabelBox(map, tocoskert.id);
+    assert.equal(deselectedBox.selected, false);
+    assertSameLabelBox(deselectedBox, unselectedBox, 'Deselecting restores the original label at its original point');
+    await clickLabel(map, tocoskert.id, viewport); await chip(page, tocoskert.id, true).waitFor({state: 'attached'});
+    await zoom(map, viewport, 'in'); const zoomedBox = await renderedLabelBox(map, tocoskert.id);
+    assert.deepEqual(zoomedBox.coordinates, unselectedBox.coordinates, 'Zooming never replaces the named place anchor');
+    assert.ok(Math.abs(zoomedBox.offset[0] - unselectedBox.offset[0]) < 1.5 && Math.sign(zoomedBox.offset[1]) === Math.sign(unselectedBox.offset[1]) && Math.abs(zoomedBox.offset[1] - unselectedBox.offset[1]) < 3, 'Zoom may grow the text gently but never choose another side of its anchor');
+    await zoom(map, viewport, 'out'); assertSameLabelBox(await renderedLabelBox(map, tocoskert.id), unselectedBox, 'Returning to a zoom level restores the same label placement');
     assert.equal(await mapZoom(map), toggleZoom, 'Repeated label taps cannot double-tap zoom'); await assertCenter(map, toggleCenter, 'Label toggles retain the camera');
     await mkdir(resolve('.local/browser-tests/screenshots'), {recursive: true});
-    await map.screenshot({path: resolve('.local/browser-tests/screenshots', `neighborhood-map-labels-${viewport.name}.png`)});
+    await page.locator('.landing-location-layout').screenshot({path: resolve('.local/browser-tests/screenshots', `neighborhood-map-labels-${viewport.name}.png`)});
     await removeChip(page, viewport, sestakert.id, {landing: true}); await assertOutline(map, sestakert.id, false);
-    await chooseText(page, viewport, otherCity.id, 'Szeged', {landing: true}); await waitLabel(map, szeged.id); await clickLabel(map, szeged.id, viewport); await chip(page, szeged.id, true).waitFor();
+    await chooseText(page, viewport, otherCity.id, 'Szeged', {landing: true}); await waitLabel(map, szeged.id); await clickLabel(map, szeged.id, viewport); await chip(page, szeged.id, true).waitFor({state: 'attached'});
     await assertOutline(map, szeged.id); await assertOutline(map, tocoskert.id, false);
-    const mapBox = await map.boundingBox(), inputBox = await page.locator('#landing-location-input').boundingBox(); assert.ok(mapBox.y >= inputBox.y + inputBox.height);
+    await assertPickerLayout(page, viewport, {landing: true});
     await zoomTo(map, viewport, 7); await waitMapPaint(map);
     assert.ok(!((await placeState(map)).rendered.includes(venkert.id)), 'Distant views do not display every small label');
     assert.equal(new Set(server.requests.filter(path => /\/city-/.test(path))).size, 2, 'Only selected quarter cities have geometry loaded');
@@ -383,19 +461,19 @@ async function budapestZoomLevels(browser, viewport) {
     await chooseText(page, viewport, 'city:Budapest', 'Budapest', {landing: true}); await zoomTo(map, viewport, 8); await waitLabel(map, buda.id); await waitLabel(map, pest.id);
     const state = await placeState(map); assert.ok(!state.rendered.includes(ward.id) && !state.rendered.includes(belvaros.id), 'Distant Budapest offers broad named halves before finer names');
     const coarseZoom = await mapZoom(map), coarseCenter = await mapCenter(map);
-    await clickLabel(map, buda.id, viewport); await chip(page, buda.id, true).waitFor(); assert.equal(await chip(page, 'city:Budapest', true).count(), 0);
+    await clickLabel(map, buda.id, viewport); await chip(page, buda.id, true).waitFor({state: 'attached'}); assert.equal(await chip(page, 'city:Budapest', true).count(), 0);
     // An unfinished request may correctly be aborted by the next selection.
     // Establish an acknowledged, validated cache entry before asserting reuse.
     await assertOutline(map, buda.id);
     const cachedCityReads = server.requests.filter(path => path.endsWith(cityRows[2].file)).length;
     assert.ok(cachedCityReads >= 1, 'The cache checkpoint must follow an actual completed geometry read');
-    await clickLabel(map, pest.id, viewport); await chip(page, pest.id, true).waitFor();
+    await clickLabel(map, pest.id, viewport); await chip(page, pest.id, true).waitFor({state: 'attached'});
     assert.equal(await mapZoom(map), coarseZoom); await assertCenter(map, coarseCenter, 'Selecting named city halves retains camera');
     await assertOutline(map, buda.id); await assertOutline(map, pest.id);
-    await zoomTo(map, viewport, 10); await waitLabel(map, ward.id); await clickLabel(map, ward.id, viewport); await chip(page, ward.id, true).waitFor();
+    await zoomTo(map, viewport, 10); await waitLabel(map, ward.id); await clickLabel(map, ward.id, viewport); await chip(page, ward.id, true).waitFor({state: 'attached'});
     assert.equal(await chip(page, pest.id, true).count(), 0, 'A district name narrows the selected containing Pest area'); assert.equal(await chip(page, buda.id, true).count(), 1);
     await assertOutline(map, ward.id); await assertOutline(map, pest.id, false);
-    await zoomTo(map, viewport, 12); await waitLabel(map, belvaros.id); await clickLabel(map, belvaros.id, viewport); await chip(page, belvaros.id, true).waitFor();
+    await zoomTo(map, viewport, 12); await waitLabel(map, belvaros.id); await clickLabel(map, belvaros.id, viewport); await chip(page, belvaros.id, true).waitFor({state: 'attached'});
     assert.equal(await chip(page, ward.id, true).count(), 0, 'A child removes the selected district alias of its containing polygon'); assert.equal(await chip(page, buda.id, true).count(), 1);
     await assertOutline(map, belvaros.id); await assertOutline(map, ward.id, false);
     assert.equal(await map.locator('.maplibregl-popup,.location-map-overlap').count(), 0);
@@ -410,7 +488,8 @@ async function ownedWizard(browser, viewport) {
   const f = await fixture(browser, viewport, {authenticated: true}), {page, server} = f;
   await inspect(f, viewport, 'owned', async () => {
     await openEditor(page, viewport); await page.locator('#f-type').selectOption('Lakás'); const map = await readyMap(page, '#search-location-map');
-    await chooseText(page, viewport, solymar.id, 'Solymár'); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); await clickLabel(map, tocoskert.id, viewport); await chip(page, tocoskert.id).waitFor();
+    await assertPickerLayout(page, viewport);
+    await chooseText(page, viewport, solymar.id, 'Solymár'); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); await clickLabel(map, tocoskert.id, viewport); await chip(page, tocoskert.id).waitFor({state: 'attached'});
     assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, solymar.id).count(), 1); assert.equal(await page.locator('#location-chips .location-chip').count(), 2);
     assert.notEqual(await page.evaluate(() => document.activeElement?.id), 'location-input', 'Map taps never summon the mobile keyboard'); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await chip(page, tocoskert.id).count(), 0); assert.equal(await chip(page, solymar.id).count(), 1); await assertOutline(map, tocoskert.id, false); await clickLabel(map, tocoskert.id, viewport);
@@ -458,7 +537,7 @@ async function failuresAndStaleReads(browser, viewport) {
     assert.equal(await page.locator('#landing-location-options').isHidden(), true); assert.equal(await page.locator('#landing-location-input').inputValue(), 'Debrecen');
     await f.context.route('https://tiles.openfreemap.org/test-map-tiles/**', route => route.fulfill({status: 503, contentType: 'text/plain', body: 'Isolated background tile outage'})); await zoom(newMap, viewport, 'in');
     await page.waitForFunction(() => document.querySelector('#landing-location-map .location-map-status')?.textContent.includes('háttértérkép'));
-    await newMap.locator('.location-map-list > summary').click(); const option = newMap.locator(`[data-map-neighborhood-id="${szeged.id}"]`); await option.waitFor(); await option.press('Enter'); await chip(page, szeged.id, true).waitFor();
+    await newMap.locator('.location-map-list > summary').click(); const option = newMap.locator(`[data-map-neighborhood-id="${szeged.id}"]`); await option.waitFor(); await option.press('Enter'); await chip(page, szeged.id, true).waitFor({state: 'attached'});
     await option.press('Enter'); assert.equal(await chip(page, szeged.id, true).count(), 0, 'Keyboard selection also removes the chosen place during a background outage');
     console.log('Neighborhood map network desktop: failed outline retry, retained labels/text, stale response fences, outside dismissal, keyboard toggles and background outage passed.');
   });
@@ -511,7 +590,7 @@ async function realLibertyStyle(browser, viewport) {
       for (const id of layers) map.setLayoutProperty(id, 'visibility', 'visible');
     }, {filter: state.places.find(layer => layer.id === 'label_other').filter, layers: labelLayers});
     await waitMapPaint(map); await waitLabel(map, venkert.id);
-    await clickLabel(map, venkert.id, viewport); await chip(page, venkert.id, true).waitFor(); await assertOutline(map, venkert.id);
+    await clickLabel(map, venkert.id, viewport); await chip(page, venkert.id, true).waitFor({state: 'attached'}); await assertOutline(map, venkert.id);
     assert.deepEqual(await map.locator('.location-map-canvas').evaluate(element => element.__mapBrowserErrors), []);
     console.log('Neighborhood map real Liberty desktop: actual vector-layer filters, MVT decoding, within suppression and canonical label click passed.');
   });
@@ -538,12 +617,11 @@ async function coincidentCityAndQuarter(browser, viewport) {
     await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map');
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await removeChip(page, viewport, city.id, {landing: true}); await zoomTo(map, viewport, 8);
     await waitLabel(map, city.id); assert.ok(!((await placeState(map)).rendered.includes(central.id)), 'The distant city name appears before the coincident quarter');
-    await clickLabel(map, city.id, viewport); await chip(page, city.id, true).waitFor(); await zoomTo(map, viewport, 13);
+    await clickLabel(map, city.id, viewport); await chip(page, city.id, true).waitFor({state: 'attached'}); await zoomTo(map, viewport, 13);
     await waitLabel(map, central.id); await waitLabel(map, city.id);
-    // Real production priorities favor the city at far zoom; nearby variable
-    // text anchors must make the selected city and exact same-point quarter
-    // individually visible and clickable at detailed zoom.
-    await clickLabel(map, central.id, viewport); await chip(page, central.id, true).waitFor();
+    // Fixed opposite-side anchors keep a city and exact same-point quarter
+    // independently visible/clickable, without selection-dependent placement.
+    await clickLabel(map, central.id, viewport); await chip(page, central.id, true).waitFor({state: 'attached'});
     assert.equal(await chip(page, city.id, true).count(), 0, 'The actual quarter glyph narrows the selected whole city even with identical point coordinates');
     await assertOutline(map, central.id); await assertOutline(map, city.id, false);
     await clickLabel(map, central.id, viewport); assert.equal(await chip(page, central.id, true).count(), 0); await assertOutline(map, central.id, false);
@@ -551,9 +629,56 @@ async function coincidentCityAndQuarter(browser, viewport) {
   });
 }
 
+async function responsiveSelections(browser, viewport) {
+  for (const landing of [true, false]) {
+    const f = await fixture(browser, viewport, {authenticated: !landing}), {page, server} = f;
+    await inspect(f, viewport, landing ? 'responsive-landing' : 'responsive-wizard', async () => {
+      const ids = [city.id, solymar.id, otherCity.id, 'city:Budapest', bulkTownBounds[0].location.id, bulkTownBounds[1].location.id];
+      if (landing) await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'});
+      else {
+        server.searches[0].locationIds = [city.id]; server.searches[0].locations = [city];
+        await page.goto(`${origin}/#searches`, {waitUntil: 'domcontentloaded'});
+        await interact(viewport, page.locator(`[data-action="edit"][data-kind="search"][data-id="${searchId}"]`));
+      }
+      const map = await readyMap(page, landing ? '#landing-location-map' : '#search-location-map');
+      if (landing) await chooseText(page, viewport, city.id, 'Debrecen', {landing});
+      const initial = await assertPickerLayout(page, viewport, {landing});
+      for (const id of ids.slice(1)) await chooseText(page, viewport, id, getLocation(id).city, {landing});
+      await waitMapPaint(map);
+      const filled = await assertPickerLayout(page, viewport, {landing}), chips = page.locator(inputChips(landing));
+      assert.equal(await chips.locator('[data-remove-location]').count(), ids.length, 'The summary retains every canonical selected place');
+      if (viewport.width < 768) {
+        assert.ok(Math.abs(initial.mapTop - filled.mapTop) <= 1, 'Adding many mobile places never pushes the working map downward');
+        const toggle = chips.locator('[data-location-selection-toggle]'), more = chips.locator('.location-selection-more');
+        assert.equal(await toggle.isVisible(), true); assert.equal(await more.isVisible(), true); assert.match(await more.innerText(), /\+\s*\d+\s+helyszín/);
+        const names = chips.locator('.location-selection-names');
+        assert.equal(await names.evaluate(element => getComputedStyle(element).whiteSpace), 'nowrap', 'Selected names never wrap onto a second mobile row');
+        assert.ok(await names.evaluate(element => parseFloat(getComputedStyle(element).fontSize)) <= 12, 'The mobile selection summary uses compact text');
+        await interact(viewport, toggle); assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+        const list = chips.locator('.location-selection-list'); assert.equal(await list.isVisible(), true);
+        assert.equal(await list.locator('[data-remove-location]').count(), ids.length, 'The expanded accessible list exposes all selected places');
+        assert.ok(Math.abs((await pickerGeometry(page, {landing})).mapTop - filled.mapTop) <= 1, 'Opening the bounded selection popup does not reflow the map');
+        await interact(viewport, chip(page, solymar.id, landing));
+        assert.equal(await chip(page, solymar.id, landing).count(), 0); assert.equal(await toggle.getAttribute('aria-expanded'), 'true', 'Removing a place keeps the other removal controls available');
+        assert.notEqual(await page.evaluate(() => document.activeElement?.id), landing ? 'landing-location-input' : 'location-input', 'Removing from the compact list does not summon the mobile keyboard');
+        await toggle.press('Escape'); assert.equal(await list.isHidden(), true);
+        await interact(viewport, toggle); await interact(viewport, map.locator('.location-map-status')); assert.equal(await list.isHidden(), true, 'An outside map tap closes the selection popup');
+        await page.setViewportSize({width: 800, height: 1100}); await assertPickerLayout(page, {width: 800}, {landing});
+        assert.equal(await chips.locator('[data-remove-location]').count(), ids.length - 1, 'Responsive layout changes preserve all remaining choices');
+        await page.setViewportSize({width: viewport.width, height: viewport.height}); await assertPickerLayout(page, viewport, {landing});
+        assert.equal(await toggle.isVisible(), true);
+      } else {
+        assert.equal(await chips.locator('[data-location-selection-toggle]').isVisible(), false, 'Wider screens expose the full compact selected list below the text field');
+        assert.equal(await chip(page, ids.at(-1), landing).isVisible(), true);
+      }
+      console.log(`Neighborhood map responsive ${landing ? 'landing' : 'wizard'} ${viewport.name}: compact selections, retained canonical IDs, popup removal/resize and side-by-side layout passed.`);
+    });
+  }
+}
+
 const browser = await chromium.launch({headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE ? {executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE} : {}), args: ['--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader']}); let failed = 0;
 try {
-  for (const viewport of viewports) for (const test of [landingSelection, disjointZoomLevels, budapestZoomLevels, ownedWizard, anonymousDraft]) try {await test(browser, viewport);} catch (error) {failed++; console.error(`${test.name} ${viewport.name}: ${error.stack || error}`);}
+  for (const viewport of viewports) for (const test of [landingSelection, disjointZoomLevels, budapestZoomLevels, ownedWizard, anonymousDraft, responsiveSelections]) try {await test(browser, viewport);} catch (error) {failed++; console.error(`${test.name} ${viewport.name}: ${error.stack || error}`);}
   for (const test of [failuresAndStaleReads, narrowingAtLimit, realLibertyStyle, allSelectedTownOutlines, coincidentCityAndQuarter]) try {await test(browser, viewports[0]);} catch (error) {failed++; console.error(`${test.name} desktop: ${error.stack || error}`);}
 } finally {await browser.close();}
 if (failed) process.exitCode = 1;

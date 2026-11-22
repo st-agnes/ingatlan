@@ -74,16 +74,29 @@ test('a district and its same-boundary alias render once while preserving an exa
  const f=labelFixture(),bounds=[19,47,20,48];
  assert.deepEqual(chooseVisiblePlaceLabels(f.value.features,bounds,12).map(f=>f.id),['district:Budapest:5','city:Budapest']);
  assert.deepEqual(chooseVisiblePlaceLabels(f.value.features,bounds,12,['neighborhood:ward']).map(f=>f.id),['neighborhood:ward','city:Budapest']);
- assert.equal(chooseVisiblePlaceLabels(f.value.features,bounds,7,['neighborhood:ward'])[0].id,'neighborhood:ward','A selected name remains eligible at a distant view');
+ assert.ok(chooseVisiblePlaceLabels(f.value.features,bounds,7,['neighborhood:ward']).some(feature=>feature.id==='neighborhood:ward'),'A selected name remains eligible at a distant view');
 });
 
-test('viewport labels remain bounded and prioritize selected names ahead of unselected choices',()=>{
+test('viewport labels remain bounded and retain selected names without reordering their peers',()=>{
  const features=Array.from({length:900},(_,i)=>labelFeature('label:'+i,[19+i*.00001,47.5],{priority:10}));
  const bounds=[19,47,20,48],visible=chooseVisiblePlaceLabels(features,bounds,12,['label:899']);
- assert.equal(visible.length,650);assert.equal(visible[0].id,'label:899');
+ const ordinary=chooseVisiblePlaceLabels(features,bounds,12);
+ assert.equal(visible.length,650);assert.ok(visible.some(feature=>feature.id==='label:899'));
+ const shared=new Set(ordinary.filter(feature=>visible.some(other=>other.id===feature.id)).map(feature=>feature.id));
+ assert.deepEqual(visible.filter(feature=>shared.has(feature.id)).map(feature=>feature.id),ordinary.filter(feature=>shared.has(feature.id)).map(feature=>feature.id));
  assert.equal(chooseVisiblePlaceLabels(features,bounds,12,[],4).length,4);
  assert.deepEqual(chooseVisiblePlaceLabels(features,[22,48,23,49],12),[]);
  assert.deepEqual(chooseVisiblePlaceLabels(features,bounds,NaN),[]);
+});
+
+test('selection does not change ordinary labels, their geometry or their placement priority',()=>{
+ const features=[labelFeature('town',[19.1,47.1],{kind:'city',minZoom:7,priority:10}),labelFeature('first',[19.2,47.2]),labelFeature('second',[19.3,47.3])];
+ const before=JSON.stringify(features),bounds=[19,47,20,48];
+ for(const zoom of [10,12,15]){
+  const ordinary=chooseVisiblePlaceLabels(features,bounds,zoom);
+  for(const id of ['town','first','second'])assert.deepEqual(chooseVisiblePlaceLabels(features,bounds,zoom,[id]),ordinary);
+ }
+ assert.equal(JSON.stringify(features),before);
 });
 
 test('coincident real city and downtown anchors prioritize the quarter at close zoom without hiding selected names',async()=>{

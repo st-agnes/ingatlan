@@ -30,3 +30,25 @@ export async function editorSave(page, interact) {
   await editorStep(page, 4, interact);
   await press(page, page.locator('#entity-form button[type="submit"]'), interact);
 }
+
+/** Use the same compact selected-place disclosure as mobile visitors. */
+async function revealSelection(page, interact, landing) {
+  const chips = page.locator(landing ? '#landing-location-chips' : '#location-chips');
+  const toggle = chips.locator('[data-location-selection-toggle]');
+  const opened = await toggle.isVisible() && await toggle.getAttribute('aria-expanded') !== 'true';
+  if (opened) await press(page, toggle, interact);
+  return {chips, toggle, opened};
+}
+
+export async function selectedLocationText(page, interact, {landing = false} = {}) {
+  const {chips, toggle, opened} = await revealSelection(page, interact, landing);
+  const text = await chips.innerText();
+  if (opened) await toggle.press('Escape');
+  return text;
+}
+
+export async function removeSelectedLocation(page, id, interact, {landing = false} = {}) {
+  const {chips, toggle, opened} = await revealSelection(page, interact, landing);
+  await press(page, chips.locator(`[data-remove-location="${id}"]`), interact);
+  if (opened && await toggle.isVisible()) await toggle.press('Escape');
+}
