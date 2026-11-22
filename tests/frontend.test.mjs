@@ -97,7 +97,7 @@ async function setup(options={}){
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
   document,console,Intl,Date:options.Date||Date,Promise,URL,URLSearchParams,AbortController,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
-  location:{get hash(){return currentHash;},set hash(value){const next=value?(value.startsWith('#')?value:'#'+value):'';if(next===currentHash)return;currentHash=next;if(options.dispatchHashChanges)Promise.resolve().then(()=>windowEvents.hashchange?.());},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},addEventListener:(type,handler)=>{const listeners=windowListeners.get(type)||[];listeners.push(handler);windowListeners.set(type,listeners);windowEvents[type]=event=>{const pending=[...(windowListeners.get(type)||[])].map(callback=>callback(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};}},
+  location:{get hash(){return currentHash;},set hash(value){const next=value?(value.startsWith('#')?value:'#'+value):'';if(next===currentHash)return;currentHash=next;if(options.dispatchHashChanges)Promise.resolve().then(()=>windowEvents.hashchange?.());},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},matchMedia:()=>({matches:!!options.mobile}),addEventListener:(type,handler)=>{const listeners=windowListeners.get(type)||[];listeners.push(handler);windowListeners.set(type,listeners);windowEvents[type]=event=>{const pending=[...(windowListeners.get(type)||[])].map(callback=>callback(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:options.environment||'test'}:{mode:'demo',environment:'local'},
   searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,...feedbackHelpers,...Object.fromEntries(Object.entries(onboardingHelpers).filter(([name])=>!['loadDraft','saveDraft','clearDraft'].includes(name))),
   loadDraft:()=>onboardingHelpers.loadDraft(ctx.localStorage),saveDraft:draft=>onboardingHelpers.saveDraft(draft,ctx.localStorage),clearDraft:id=>onboardingHelpers.clearDraft(id,ctx.localStorage),
@@ -1791,4 +1791,65 @@ test('map town and administrative district labels work on both landing and owned
   assert.deepEqual(map.ids,[other.id,child.id],'A finer neighborhood replaces its canonical administrative district alias');
   assert.equal(map.select(child.id),true);assert.deepEqual(map.ids,[other.id]);
  }
+});
+
+
+function toggleSelectedPlaces(t,chips){
+ const target={dataset:{locationSelectionToggle:''},closest:selector=>selector==='[data-location-selection-toggle]'?target:null};
+ chips.handlers.click({target});
+}
+function removeSelectedPlace(chips,id){
+ const target={dataset:{removeLocation:id},closest:selector=>selector==='[data-remove-location]'?target:null};
+ chips.handlers.click({target});
+}
+
+test('mobile landing selections keep all removable IDs behind a truthful compact summary',async()=>{
+ const t=await setup({hosted:true,hash:'#landing',mockMaps:true,mobile:true});await settle();
+ const chips=t.document.getElementById('landing-location-chips'),map=activeMap(t,'landing-location-map');
+ assert.ok(chips.classList.contains('compact-location-chips'));assert.equal(chips.innerHTML,'');
+ const ids=['city:Debrecen','city:Solymár','city:Szeged','city:Pilisvörösvár'];
+ for(const id of ids)assert.equal(map.select(id),true);
+ assert.match(chips.innerHTML,/<span class="location-selection-names">Debrecen<\/span>/);
+ assert.match(chips.innerHTML,/>\+ 3 helyszín<\/span>/);
+ assert.equal((chips.innerHTML.match(/data-remove-location=/g)||[]).length,4,'Overflow does not discard hidden canonical selections');
+ const toggle=t.document.getElementById('landing-location-chips-toggle');
+ assert.equal(toggle.getAttribute('aria-expanded'),'false');toggleSelectedPlaces(t,chips);
+ assert.equal(toggle.getAttribute('aria-expanded'),'true');assert.ok(chips.classList.contains('is-expanded'));
+ const escape=key(chips,'Escape');assert.equal(escape.defaultPrevented,true);
+ assert.equal(toggle.getAttribute('aria-expanded'),'false');assert.equal(t.document.activeElement,toggle);
+ toggleSelectedPlaces(t,chips);removeSelectedPlace(chips,'city:Solymár');
+ assert.deepEqual(map.ids,['city:Debrecen','city:Szeged','city:Pilisvörösvár']);
+ assert.match(chips.innerHTML,/>\+ 2 helyszín<\/span>/);assert.ok(chips.classList.contains('is-expanded'));
+ assert.equal(t.document.activeElement.id,'landing-location-chips-toggle','Removing an overflow item must not open the mobile keyboard');
+ const outside=t.document.getElementById('landing-location-map');outside.closest=()=>null;await t.document.handlers.pointerdown({target:outside});
+ assert.equal(t.document.getElementById('landing-location-chips-toggle').getAttribute('aria-expanded'),'false');
+ for(const id of [...map.ids])removeSelectedPlace(chips,id);
+ assert.equal(chips.innerHTML,'');assert.equal(t.document.activeElement,chips);
+});
+
+test('mobile owned and guest search summaries preserve draft selections and local editor state',async()=>{
+ for(const guest of [false,true]){
+  const t=await setup({hosted:guest,hash:guest?'#landing':'',mockMaps:true,mobile:true});await settle();
+  if(guest)t.ui.startOnboarding('search',null,[]);else t.ui.openEditor('search');await settle();
+  const chips=t.document.getElementById('location-chips'),map=activeMap(t,'search-location-map'),input=t.document.getElementById('location-input');
+  assert.ok(chips.classList.contains('compact-location-chips'));
+  for(const id of ['city:Debrecen','city:Solymár','city:Szeged'])assert.equal(map.select(id),true);
+  input.value='megőrzött lekérdezés';toggleSelectedPlaces(t,chips);removeSelectedPlace(chips,'city:Debrecen');
+  assert.equal(input.value,'megőrzött lekérdezés');assert.deepEqual(map.ids,['city:Solymár','city:Szeged']);
+  assert.equal(t.document.activeElement.id,'location-chips-toggle');assert.ok(chips.classList.contains('is-expanded'));
+  if(guest)assert.deepEqual(storedOnboarding(t).data.locationIds,['city:Solymár','city:Szeged']);
+  const escaped=key(chips,'Escape');assert.equal(escaped.defaultPrevented,true);assert.equal(chips.classList.contains('is-expanded'),false);
+  assert.ok(t.document.getElementById('entity-form'),'Closing selected places must not close the wizard');
+ }
+});
+
+test('responsive search workspaces retain the exact property location form unchanged',async()=>{
+ const t=await setup({mockMaps:true});t.ui.openEditor('search');await settle();
+ assert.ok(t.document.getElementById('location-picker').classList.contains('location-search-layout'));
+ assert.match(t.document.getElementById('modal-root').innerHTML,/class="location-search-controls"/);
+ t.ui.openEditor('property');await settle();
+ assert.equal(t.document.getElementById('location-picker').classList.contains('location-search-layout'),false);
+ assert.equal(t.document.getElementById('location-chips').classList.contains('compact-location-chips'),false);
+ assert.equal(t.document.getElementById('search-location-map'),null);
+ assert.ok(t.document.getElementById('f-street'));assert.ok(t.document.getElementById('f-houseNumber'));
 });

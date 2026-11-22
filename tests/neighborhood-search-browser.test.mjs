@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorSave,editorStep} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,editorStep,removeSelectedLocation} from './editor-browser-helpers.mjs';
 import {searchLocations} from '../dist/locations.js';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
@@ -72,7 +72,7 @@ async function searchFlow(browser,viewport){
   await interact(page.locator(`[data-action="edit"][data-kind="search"][data-id="${saved.id}"]`));
   assert.equal(await page.locator('#location-chips .location-kind-badge').count(),2);
   assert.equal(await (await editorField(page,'input[name="heatingTypes"][value="Hőszivattyú"]')).isChecked(),true);
-  await editorStep(page,0,interact);await interact(page.locator(`[data-remove-location="${quarters[1].id}"]`));
+  await editorStep(page,0,interact);await removeSelectedLocation(page,quarters[1].id,interact);
   await query(page,'Budapest 13');await choose(page,interact,'district:Budapest:13');
   await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
   assert.equal(await page.locator('.search-created-actions').count(),0,'Editing must not reopen creation confirmation');

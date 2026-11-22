@@ -1,12 +1,14 @@
 # Térképes helyszínválasztás
 
-A kezdőoldali kereső és a keresési igények ötlépéses űrlapja alatt OpenFreeMap-alaptérkép jelenik meg a helyben tárolt MapLibre megjelenítővel. A kereshető települések, budapesti kerületek és városrészek neveire kattintva vagy koppintva ugyanazokat a kanonikus helyszínazonosítókat választjuk ki, mint a szöveges keresővel.
+A kezdőoldali kereső és a keresési igények ötlépéses űrlapja OpenFreeMap-alaptérképet használ a helyben tárolt MapLibre megjelenítővel. Mobilon a térkép a szöveges választó alatt, tablettől a választó mellett jelenik meg. A kereshető települések, budapesti kerületek és városrészek neveire kattintva vagy koppintva ugyanazokat a kanonikus helyszínazonosítókat választjuk ki, mint a szöveges keresővel.
 
 Alapállapotban helynevek és az alaptérkép látszanak. Csak a **kiválasztott** helyek körvonala jelenik meg, kitöltés nélkül. A kiválasztott név kiemelést kap. Újabb kattintás a névre kiveszi a helyet a keresésből, és eltünteti a körvonalát. Az üres területre kattintás nem jelöl ki egy esetlegesen ott fekvő, átfedő poligont.
 
 A szöveges találat kiválasztása a településre, kerületre, utcára vagy városrészre nagyít. Térképes városrészválasztáskor az adott teljes város vagy az őt tartalmazó, korábban kijelölt nagyobb terület helyett a kisebb terület kerül a keresésbe. A többi választás és az 50-es helyszínkorlát megmarad. A térkép nem nyitja fel a telefon billentyűzetét.
 
 A gyors ismételt koppintás a kijelölést váltja, nem nagyítja vagy mozgatja közben a térképet. A nagyítás gombokkal, egérgörgővel és két ujjal érhető el. A feliratok körül biztosított kis érintési ráhagyás segíti a mobilos választást. Több közeli felirat esetén egyértelmű, állandó sorrend dönt; nincs utólagos választóablak. A helynevek opcionális listából, billentyűzettel is kijelölhetők.
+
+A kiválasztott helyek kisebb címkéken jelennek meg. Mobilon az összesítés legfeljebb egy sor magas; a további helyek számát jelző gombbal a teljes lista külön megnyitható, és bármelyik hely eltávolítható. A lista bővülése nem tolja lefelé a térképet. Nagyobb képernyőn a címkék a szöveges kereső alatti oszlopban több sorba rendeződhetnek.
 
 A távoli nézet túlnyúlhat Magyarországon, hogy egy széles képernyő széle ne tolja el a kiválasztott települést a középpontból. A nagyítás mindig a választott hely körül történik. A térképes keresés nem kér helyhozzáférést, nem végez címgeokódolást, és nem továbbít vagy jelenít meg ingatlan-koordinátákat.
 
@@ -15,6 +17,8 @@ A távoli nézet túlnyúlhat Magyarországon, hogy egy széles képernyő szél
 A kereshető helyneveket az alkalmazás saját katalógusa rajzolja a vektoros alaptérkép fölé. Ez 3155 település, 23 budapesti kerület és mind a 4308 összegyűjtött városrész azonosítóját megőrzi. A szöveges és térképes választás között nincs bizonytalan, kattintásonként végzett névegyeztetés.
 
 A feliratpontokat előre készítjük el. Ahol a rögzített OSM-helynév megfeleltethető a városrésznek és a pontja az eredeti és az egyszerűsített poligonon belül is van, azt használjuk. Másutt geometriailag a terület belsejébe eső megjelenítési pontot képzünk. A budapesti kerület és az azonos területet leíró városrész felirata közös határra hivatkozhat; ugyanaz a hely nem kap egymásra írt kettős feliratot.
+
+A nevek elhelyezése a rögzített földrajzi ponthoz és helytípushoz kötött. A megjelenítő nem keres másik szabad pozíciót a feliratnak. Kijelöléskor csak a színe és kiemelése változik, a szöveg mérete, helye és ütközési sorrendje nem. Az azonos pontra eső település és városrész neve külön, állandó oldalon helyezkedik el. Nagyításkor a térkép vetülete természetesen változik, de a név nem vándorol a hely földrajzi pontjához képest.
 
 A magyarországi település- és városrésznevek alaptérképi feliratai helyett ezeket a saját, kanonikus neveket jelenítjük meg. Az utcák, utak és a többi háttértérképi elem továbbra is az OpenFreeMap rétegeiből származik. A Magyarországon kívüli alaptérképi helynevek megmaradnak.
 

@@ -17,7 +17,7 @@ const EMPTY_PARENTS = Object.freeze(Object.create(null));
 let manifestPromise, mapLibrePromise;
 let moduleAttempt = 0;
 const LABEL_SOURCE = 'otthonra-places';
-const LABEL_LAYERS = ['otthonra-place-labels', 'otthonra-selected-labels'];
+const LABEL_LAYERS = ['otthonra-place-labels'];
 const OUTLINE_SOURCE = 'otthonra-outlines';
 const emptyCollection = () => ({type: 'FeatureCollection', features: []});
 
@@ -372,18 +372,23 @@ export function chooseVisiblePlaceLabels(features, bounds, zoom, selectedIds = [
     && feature.geometry.coordinates.every(finite) && finite(feature.properties?.minZoom)
     && (selected.has(feature.id) || feature.properties.minZoom <= zoom)
     && boundsIntersect(bounds, [...feature.geometry.coordinates, ...feature.geometry.coordinates]))
-    .sort((left, right) => Number(selected.has(right.id)) - Number(selected.has(left.id))
-      || priority(left) - priority(right)
+    .sort((left, right) => priority(left) - priority(right)
       || Number(right.properties.kind === 'district') - Number(left.properties.kind === 'district')
       || distance(left) - distance(right) || String(left.id).localeCompare(String(right.id)));
   // Budapest's district and its identically named search polygon are one label;
   // preserve the exact selected identity when it needs to be removed again.
-  const boundaries = new Set();
-  return result.filter(feature => {
+  const boundaries = new Map();
+  for (const feature of result) {
     const boundary = feature.properties.boundaryId || feature.id;
-    if (boundaries.has(boundary)) return false;
-    boundaries.add(boundary); return true;
-  }).slice(0, Math.max(1, Math.min(MAX_FEATURES, Math.trunc(maxFeatures) || MAX_FEATURES)))
+    const previous = boundaries.get(boundary);
+    if (!previous || selected.has(feature.id) && !selected.has(previous.id)) boundaries.set(boundary, feature);
+  }
+  const limit = Math.max(1, Math.min(MAX_FEATURES, Math.trunc(maxFeatures) || MAX_FEATURES));
+  const choices = [...boundaries.values()], pinned = choices.filter(feature => selected.has(feature.id));
+  const retained = new Set([...pinned.slice(0, limit), ...choices.filter(feature => !selected.has(feature.id)).slice(0, Math.max(0, limit - pinned.length))]);
+  // Selection may retain a label outside the normal viewport cap, but it must
+  // not reorder existing symbols or change their collision-placement priority.
+  return result.filter(feature => retained.has(feature))
     .map(feature => priority(feature) === feature.properties.priority ? feature : {...feature, properties: {...feature.properties, priority: priority(feature)}});
 }
 
@@ -440,6 +445,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
   let lastOptions = null, lastLabelPayload = '', lastOutlinePayload = '';
   let camera = {center: [19.5, 47.16], zoom: 7};
   const outlineCache = new Map();
+  const labelSelection = new Map();
   container.classList.add('location-map');
   container.innerHTML = '<div class="location-map-heading"><strong>Válassz a helynevekre kattintva</strong><span>Újabb kattintással kiveheted a keresésből.</span></div><div class="location-map-canvas" role="region" aria-label="Helyszínek térképes kiválasztása"></div><div class="location-map-status" role="status" aria-live="polite">Térkép betöltése…</div><button type="button" class="location-map-retry" hidden>Újrapróbálom</button><details class="location-map-list" hidden><summary>Látható helynevek</summary><div class="location-map-options"></div><p class="location-map-list-note" hidden>Nagyíts közelebb a további helynevekhez.</p></details><div class="location-map-legend"><span class="location-map-legend-selected">A kiválasztott helyek körvonala</span></div>';
   const canvas = container.querySelector('.location-map-canvas'), status = container.querySelector('.location-map-status');
@@ -459,9 +465,15 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
   };
   function paintLabels() {
     if (!ready || disposed) return;
-    const features = currentLabels.map(feature => ({...feature, properties: {...feature.properties, selected: selected.has(feature.id)}}));
+    const features = currentLabels;
     const payload = JSON.stringify(features);
     if (payload !== lastLabelPayload) { lastLabelPayload = payload; map.getSource(LABEL_SOURCE).setData({type: 'FeatureCollection', features}); }
+    for (const feature of features) {
+      const value = selected.has(feature.id);
+      if (labelSelection.get(feature.id) === value) continue;
+      map.setFeatureState({source: LABEL_SOURCE, id: feature.id}, {selected: value});
+      labelSelection.set(feature.id, value);
+    }
   }
   function paintOutlines() {
     if (!ready || disposed) return;
@@ -620,8 +632,8 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     if (!ready) return;
     const point = event.point, coarse = event.originalEvent?.pointerType === 'touch' || window.matchMedia?.('(pointer: coarse)').matches;
     const slop = coarse ? 12 : 4;
-    // Search outward from the actual drawn glyph bounds, not the geographic
-    // anchor: variable placement may move two coincident names apart on screen.
+    // Search outward from the actual drawn glyph bounds. Town and quarter names
+    // have fixed opposite offsets even when they share a geographic anchor.
     let hits = map.queryRenderedFeatures(point, {layers: LABEL_LAYERS});
     for (let radius = 2; !hits.length && radius <= slop; radius += 2) {
       hits = map.queryRenderedFeatures([[point.x - radius, point.y - radius], [point.x + radius, point.y + radius]], {layers: LABEL_LAYERS});
@@ -660,7 +672,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       library = renderer; manifest = index;
       try { parents = validateNeighborhoodHierarchy(index.hierarchy, index, getLocation); registry = validatePlaceLabels(index.labels, index, getLocation); }
       catch (error) { manifestPromise = null; throw error; }
-      lastLabelPayload = ''; lastOutlinePayload = ''; lastOptions = null;
+      lastLabelPayload = ''; lastOutlinePayload = ''; lastOptions = null; labelSelection.clear();
       map = new library.Map({container: canvas, style: structuredClone(index.style), center: camera.center, zoom: camera.zoom,
         minZoom: 6, maxZoom: 18, dragRotate: false, pitchWithRotate: false, scrollZoom: false, doubleClickZoom: false,
         attributionControl: false, locale: {'NavigationControl.ZoomIn': 'Nagyítás', 'NavigationControl.ZoomOut': 'Kicsinyítés', 'AttributionControl.ToggleAttribution': 'Források'}});
@@ -700,17 +712,21 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       map.addSource(OUTLINE_SOURCE, {type: 'geojson', data: emptyCollection()});
       map.addLayer({id: 'otthonra-selected-outlines', type: 'line', source: OUTLINE_SOURCE,
         paint: {'line-color': '#c6623e', 'line-width': 2.5, 'line-opacity': 0.95}});
-      map.addSource(LABEL_SOURCE, {type: 'geojson', data: emptyCollection()});
+      map.addSource(LABEL_SOURCE, {type: 'geojson', data: emptyCollection(), promoteId: 'id'});
       const font = ['Noto Sans Regular'];
       const layout = {'text-field': ['get', 'name'], 'text-font': font, 'text-size': ['interpolate', ['linear'], ['zoom'], 6, 12, 11, 14, 15, 16],
-        'text-padding': 5, 'text-max-width': 13, 'text-anchor': 'center',
-        'text-variable-anchor': ['center', 'top', 'bottom', 'left', 'right'], 'text-radial-offset': 1.5, 'text-allow-overlap': false,
+        'text-padding': 5, 'text-max-width': 13,
+        // Fixed, selection-independent positions keep names at the same place.
+        // Opposite sides of the anchor keep a city and its central quarter
+        // individually clickable when the source gives them the same point.
+        'text-anchor': ['case', ['==', ['get', 'kind'], 'city'], 'bottom', 'top'],
+        'text-offset': ['case', ['==', ['get', 'kind'], 'city'], ['literal', [0, -0.65]], ['literal', [0, 0.65]]],
+        'text-allow-overlap': false,
         'text-ignore-placement': false, 'symbol-sort-key': ['get', 'priority']};
-      map.addLayer({id: LABEL_LAYERS[0], type: 'symbol', source: LABEL_SOURCE, filter: ['!', ['get', 'selected']], layout,
-        paint: {'text-color': '#284b41', 'text-halo-color': '#fffdf7', 'text-halo-width': 2}});
-      map.addLayer({id: LABEL_LAYERS[1], type: 'symbol', source: LABEL_SOURCE, filter: ['get', 'selected'],
-        layout: {...layout, 'text-field': ['concat', '✓ ', ['get', 'name']], 'symbol-sort-key': -1},
-        paint: {'text-color': '#a64c2c', 'text-halo-color': '#fff8ec', 'text-halo-width': 2.5}});
+      const selectedStyle = ['boolean', ['feature-state', 'selected'], false];
+      map.addLayer({id: LABEL_LAYERS[0], type: 'symbol', source: LABEL_SOURCE, layout,
+        paint: {'text-color': ['case', selectedStyle, '#a64c2c', '#284b41'],
+          'text-halo-color': ['case', selectedStyle, '#fff8ec', '#fffdf7'], 'text-halo-width': 2.5}});
       ready = true; failed = false; booting = false;
       map.on('moveend', scheduleViewport); map.on('idle', refreshOptions); map.on('click', click); map.on('mousemove', hover);
       map.on('movestart', () => { viewportAbort?.abort(); generation++; loading = false; });
