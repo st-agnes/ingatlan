@@ -160,7 +160,14 @@ async function renderedLabelBox(map, id) {
   return map.locator('.location-map-canvas').evaluate((element, {id, layers}) => {
     const map = element.__mapBrowserInstance, available = layers.filter(layer => map.getLayer(layer));
     const feature = map.queryRenderedFeatures(undefined, {layers: available}).find(feature => (feature.properties.id || feature.id) === id);
-    const anchor = map.project(feature.geometry.coordinates);
+    // Rendered features have passed through MapLibre's vector-tile grid, whose
+    // harmless subpixel coordinate quantization varies with source zoom. The
+    // canonical GeoJSON remains the exact geographic anchor we must preserve.
+    const source = map.getStyle().sources['otthonra-places'].data;
+    const canonical = typeof source === 'object' && source.features.find(item => (item.properties.id || item.id) === id);
+    if (!canonical) throw new Error('The rendered place lost its canonical source point: ' + id);
+    const anchor = map.project(canonical.geometry.coordinates), renderedAnchor = map.project(feature.geometry.coordinates);
+    if (Math.hypot(anchor.x - renderedAnchor.x, anchor.y - renderedAnchor.y) > 1) throw new Error('Rendered place differs from its canonical geographic anchor: ' + id);
     const hasLabel = (x, y) => map.queryRenderedFeatures([x, y], {layers: available}).some(hit => (hit.properties.id || hit.id) === id);
     let seed;
     for (const dy of [0, -4, 4, -8, 8, -16, 16, -24, 24, -32, 32]) {
@@ -179,7 +186,7 @@ async function renderedLabelBox(map, id) {
     }
     const left = edge(...seed, -1, 0)[0], right = edge(...seed, 1, 0)[0], middleX = (left + right) / 2;
     const top = edge(middleX, seed[1], 0, -1)[1], bottom = edge(middleX, seed[1], 0, 1)[1];
-    return {coordinates: feature.geometry.coordinates, offset: [middleX - anchor.x, (top + bottom) / 2 - anchor.y], width: right - left, height: bottom - top, selected: map.getFeatureState({source: 'otthonra-places', id}).selected === true, zoom: map.getZoom()};
+    return {coordinates: canonical.geometry.coordinates, offset: [middleX - anchor.x, (top + bottom) / 2 - anchor.y], width: right - left, height: bottom - top, selected: map.getFeatureState({source: 'otthonra-places', id}).selected === true, zoom: map.getZoom()};
   }, {id, layers: labelLayers});
 }
 function assertSameLabelBox(actual, expected, message) {
@@ -413,7 +420,7 @@ async function landingSelection(browser, viewport) {
     await zoom(map, viewport, 'out'); assertSameLabelBox(await renderedLabelBox(map, tocoskert.id), unselectedBox, 'Returning to a zoom level restores the same label placement');
     assert.equal(await mapZoom(map), toggleZoom, 'Repeated label taps cannot double-tap zoom'); await assertCenter(map, toggleCenter, 'Label toggles retain the camera');
     await mkdir(resolve('.local/browser-tests/screenshots'), {recursive: true});
-    await map.screenshot({path: resolve('.local/browser-tests/screenshots', `neighborhood-map-labels-${viewport.name}.png`)});
+    await page.locator('.landing-location-layout').screenshot({path: resolve('.local/browser-tests/screenshots', `neighborhood-map-labels-${viewport.name}.png`)});
     await removeChip(page, viewport, sestakert.id, {landing: true}); await assertOutline(map, sestakert.id, false);
     await chooseText(page, viewport, otherCity.id, 'Szeged', {landing: true}); await waitLabel(map, szeged.id); await clickLabel(map, szeged.id, viewport); await chip(page, szeged.id, true).waitFor({state: 'attached'});
     await assertOutline(map, szeged.id); await assertOutline(map, tocoskert.id, false);
