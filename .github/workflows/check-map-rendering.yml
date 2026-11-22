@@ -31,10 +31,9 @@ jobs:
           p=Path('tests/neighborhood-map-browser.test.mjs')
           text=p.read_text()
           text=text.replace('failed++; console.error', 'throw error; console.error')
-          text=text.replace('for (const viewport of viewports) for (const test of [landingSelection', "for (const viewport of viewports.filter(item => item.name == 'mobile')) for (const test of [landingSelection")
           p.write_text(text)
           PY
-          node tests/neighborhood-map-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/map-diagnostic.log
+          node tests/landing-refund-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/map-diagnostic.log
       - name: Preserve bounded public diagnostic output
         if: always()
         env:
