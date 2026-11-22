@@ -364,8 +364,12 @@ export function validatePlaceLabels(value, manifest, getLocation) {
 export function chooseVisiblePlaceLabels(features, bounds, zoom, selectedIds = [], maxFeatures = MAX_FEATURES) {
   if (!Array.isArray(features) || !validBounds(bounds) || !finite(zoom)) return [];
   const selected = new Set(selectedIds), x = (bounds[0] + bounds[2]) / 2, y = (bounds[1] + bounds[3]) / 2;
-  const detailedCities = new Set(features.filter(feature => feature?.properties?.kind === 'neighborhood').map(feature => feature.properties.city));
-  const priority = feature => feature.properties.priority + (zoom >= 10 && feature.properties.kind === 'city' && detailedCities.has(feature.properties.city) ? 10000 : 0);
+  // Let the city's eligible named parts win ordinary collisions as soon as
+  // they appear (Budapest's Buda/Pest start at 8, most quarters at 10). This is a
+  // zoom rule, never a consequence of selecting a name or moving its anchor.
+  const detailedCities = new Set(features.filter(feature => ['neighborhood', 'district'].includes(feature?.properties?.kind)
+    && finite(feature.properties.minZoom) && feature.properties.minZoom <= zoom).map(feature => feature.properties.city));
+  const priority = feature => feature.properties.priority + (feature.properties.kind === 'city' && detailedCities.has(feature.properties.city) ? 10000 : 0);
   const distance = feature => (feature.geometry.coordinates[0] - x) ** 2 + (feature.geometry.coordinates[1] - y) ** 2;
   const result = features.filter(feature => feature?.geometry?.type === 'Point'
     && Array.isArray(feature.geometry.coordinates) && feature.geometry.coordinates.length === 2
