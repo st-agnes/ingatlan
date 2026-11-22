@@ -99,6 +99,21 @@ test('selection does not change ordinary labels, their geometry or their placeme
  assert.equal(JSON.stringify(features),before);
 });
 
+test('whole-city labels yield collision priority when that city\'s first quarters become eligible',()=>{
+ const town=labelFeature('city:Budapest',[19.1,47.5],{kind:'city',minZoom:6,priority:0});
+ const buda=labelFeature('neighborhood:Buda',[19.0,47.5],{minZoom:8,priority:100});
+ const pest=labelFeature('neighborhood:Pest',[19.2,47.5],{minZoom:8,priority:100});
+ const distantTown=labelFeature('city:Another',[19.5,47.6],{kind:'city',city:'Another',minZoom:7,priority:10});
+ const laterQuarter=labelFeature('neighborhood:Later',[19.5,47.6],{city:'Another',minZoom:10,priority:100});
+ const features=[town,buda,pest,distantTown,laterQuarter],bounds=[18.9,47.3,19.7,47.8];
+ assert.equal(chooseVisiblePlaceLabels(features,bounds,7).find(feature=>feature.id===town.id).properties.priority,0);
+ const visible=chooseVisiblePlaceLabels(features,bounds,8),whole=visible.find(feature=>feature.id===town.id);
+ for(const quarter of [buda,pest])assert.ok(visible.find(feature=>feature.id===quarter.id).properties.priority<whole.properties.priority);
+ assert.equal(visible.find(feature=>feature.id===distantTown.id).properties.priority,10,'A different city keeps its distance priority until its own quarters appear');
+ assert.deepEqual(chooseVisiblePlaceLabels(features,bounds,8,[town.id]),visible,'Selection must never change placement priority');
+ assert.equal(town.properties.priority,0,'The registry remains immutable');
+});
+
 test('coincident real city and downtown anchors prioritize the quarter at close zoom without hiding selected names',async()=>{
  const registry=JSON.parse(await readFile(new URL('../dist/data/map/labels.json',import.meta.url),'utf8'));
  const town=registry.features.find(feature=>feature.id==='city:Debrecen');
