@@ -1,6 +1,7 @@
 /** Responsive anonymous UI integration. Deterministic HTTP fixtures isolate the browser;
  * backend/onboarding-smoke.mjs proves creation semantics against actual MySQL. */
 import {mockMapTiles} from './map-browser-network.mjs';
+import {removeSelectedLocation} from './editor-browser-helpers.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -89,7 +90,7 @@ async function verifyWizardAuth(browser,viewport){
   assert.equal(await page.locator('#entity-form,#hosted-auth-form').count(),0);assert.match(await page.locator('#landing-location-error').innerText(),/Válassz/);
   await page.locator('#landing-location-input').fill('Debrecen');await page.locator('#landing-location-options [role="option"]').first().waitFor();
   await page.locator('#landing-location-input').press('ArrowDown');await page.locator('#landing-location-input').press('Enter');
-  await page.locator('#landing-location-chips .location-chip').waitFor();
+  await page.locator('#landing-location-chips .location-chip').waitFor({state:'attached'});
   for(let selected=1;selected<=2;selected++){const geometry=await landingGeometry(page);assert.ok(geometry.chipsTop>=geometry.inputBottom-1,'Selected locations belong below the query');assert.ok(Math.abs(geometry.offset-initialGeometry.offset)<=1,'Adding location chips must not move the button relative to the input');if(selected===1){await page.locator('#landing-location-input').fill('Debrecen');await page.locator('#landing-location-options [role="option"]').first().waitFor();await page.locator('#landing-location-input').press('ArrowDown');await page.locator('#landing-location-input').press('Enter');await page.waitForFunction(()=>document.querySelectorAll('#landing-location-chips .location-chip').length===2);}}
   await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,0);
   assert.equal((await draft(page)).data.locationIds.length,2,'Handoff copies every choice into the new draft');
@@ -204,7 +205,7 @@ async function verifyDraftOrigins(browser,viewport){
   assert.equal((await draft(page)).id,seller.id);assert.equal(await page.locator('#f-price').inputValue(),'123','A repeated search teaser preserves the owner-entered property fields');
   await showLanding(page);await pickLocation(page,viewport,'landing-location','Debrecen',city.id);await pickLocation(page,viewport,'landing-location','Szeged',otherCity.id);await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,0);await assertNoReplacementPrompt(page);
   const locationsDraft=await draft(page);assert.notEqual(locationsDraft.id,seller.id);assert.equal(await page.locator('#f-type').inputValue(),'');await page.locator('#f-type').selectOption('Lakás');
-  await pickLocation(page,viewport,'location','Vénkert',quarter.id);await interact(viewport,page.locator(`#location-chips [data-remove-location="${otherCity.id}"]`));await next(page,viewport,1);await page.locator('#f-maxPrice').fill('111');await page.locator('#f-minArea').fill('50');await next(page,viewport,2);
+  await pickLocation(page,viewport,'location','Vénkert',quarter.id);await removeSelectedLocation(page,otherCity.id,locator=>interact(viewport,locator));await next(page,viewport,1);await page.locator('#f-maxPrice').fill('111');await page.locator('#f-minArea').fill('50');await next(page,viewport,2);
   await showLanding(page);await pickLocation(page,viewport,'landing-location','Vénkert',quarter.id);await pickLocation(page,viewport,'landing-location','Debrecen',city.id);await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,2);
   assert.equal((await draft(page)).id,locationsDraft.id,'Exact current locations resume even when reordered or edited since the original seed');assert.equal(await page.locator('#f-maxPrice').inputValue(),'111');
   await showLanding(page);await pickLocation(page,viewport,'landing-location','Debrecen',city.id);await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,0);await assertNoReplacementPrompt(page);

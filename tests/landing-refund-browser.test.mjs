@@ -38,7 +38,11 @@ async function verifyLanding(browser,viewport){
   assert.equal(await page.evaluate(()=>scrollY),0,'The public page must open at the top without an automatic scroll');
   await page.locator('#landing-location-map .maplibregl-map').waitFor();
   const mapBox=await page.locator('#landing-location-map').boundingBox(),searchBox=await page.locator('#landing-search-form').boundingBox();
-  assert.ok(mapBox&&searchBox&&mapBox.y>=searchBox.y+searchBox.height-1,'The interactive map belongs directly below the text search');
+  assert.ok(mapBox&&searchBox,'The text search and interactive map must be visible');
+  if(viewport.width>=768){
+   assert.ok(mapBox.x>=searchBox.x+searchBox.width+8,'Tablet and desktop place the map beside the text search');
+   assert.ok(Math.abs(mapBox.y-searchBox.y)<=1,'The map and search controls start on the same row');
+  }else assert.ok(mapBox.y>=searchBox.y+searchBox.height-1,'Mobile keeps the interactive map directly below the text search');
   assert.ok(mapBox.x>=0&&mapBox.x+mapBox.width<=viewport.width+1,'The map must fit horizontally without hiding the offers');
   for(const [label,selector] of [['search','.landing-search-card'],['property','.landing-property-card']]){
    const first=page.locator(selector).first();

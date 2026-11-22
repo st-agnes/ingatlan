@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorSave,editorStep} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,editorStep,selectedLocationText,removeSelectedLocation} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -46,10 +46,10 @@ async function verify(browser,viewport){
   assert.match(await budapest.innerText(),/Budapest és környéke \(81 település\)/);
   await choose(page,interact,'area:Budapest');
   await query(page,'Solymár');await choose(page,interact,'city:Solymár');
-  const chips=page.locator('#location-chips');
-  assert.match(await chips.innerText(),/Debrecen és környéke \(13 település\)/);
-  assert.match(await chips.innerText(),/Budapest és környéke \(81 település\)/);
-  assert.match(await chips.innerText(),/Solymár/);
+  const selectedText=await selectedLocationText(page,interact);
+  assert.match(selectedText,/Debrecen és környéke \(13 település\)/);
+  assert.match(selectedText,/Budapest és környéke \(81 település\)/);
+  assert.match(selectedText,/Solymár/);
   const geometry=await page.locator('.modal').evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));
   assert.ok(geometry.scrollWidth<=geometry.width+1,'Region names and counts must fit the modal without horizontal scrolling');
   const title=`Városkörnyékek és település – ${viewport.name}`;
@@ -61,9 +61,9 @@ async function verify(browser,viewport){
   assert.match(await card.innerText(),/Debrecen és környéke \(13 település\)/);
   assert.match(await card.innerText(),/Budapest és környéke \(81 település\)/);
   await editEntity(page,interact,'search',search.id);
-  assert.match(await page.locator('#location-chips').innerText(),/Debrecen és környéke \(13 település\)/);
-  await interact(page.locator('[data-remove-location="area:Debrecen"]'));
-  assert.doesNotMatch(await page.locator('#location-chips').innerText(),/Debrecen/);
+  assert.match(await selectedLocationText(page,interact),/Debrecen és környéke \(13 település\)/);
+  await removeSelectedLocation(page,'area:Debrecen',interact);
+  assert.doesNotMatch(await selectedLocationText(page,interact),/Debrecen/);
   await save(page,interact);
   search=(await readState(page)).searches.find(item=>item.id===search.id);
   assert.deepEqual(search.locationIds,['area:Budapest','city:Solymár']);
