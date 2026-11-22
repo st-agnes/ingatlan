@@ -72,6 +72,7 @@ jobs:
             /data/streets/
             /data/neighborhoods/search-areas.geojson.gz
             /data/neighborhoods/sources/country-osm/municipalities.geojson.gz
+            /data/neighborhoods/sources/country-osm/named-nodes.geojson.gz
       - uses: ./.github/actions/ci-node
       - name: Install the pinned workflow parser without lifecycle scripts
         run: npm install --prefix .local/ci-tools --no-save --no-package-lock --ignore-scripts --no-audit --no-fund yaml@2.8.2
@@ -150,6 +151,7 @@ jobs:
             /data/streets/
             /data/neighborhoods/search-areas.geojson.gz
             /data/neighborhoods/sources/country-osm/municipalities.geojson.gz
+            /data/neighborhoods/sources/country-osm/named-nodes.geojson.gz
       - uses: docker/setup-buildx-action@v3
       - name: Build Docker API with embedded location catalogue
         uses: docker/build-push-action@v6
@@ -203,6 +205,7 @@ jobs:
             /data/streets/
             /data/neighborhoods/search-areas.geojson.gz
             /data/neighborhoods/sources/country-osm/municipalities.geojson.gz
+            /data/neighborhoods/sources/country-osm/named-nodes.geojson.gz
       - uses: ./.github/actions/ci-node
         with:
           browser: 'true'
@@ -309,6 +312,7 @@ jobs:
             /data/streets/
             /data/neighborhoods/search-areas.geojson.gz
             /data/neighborhoods/sources/country-osm/municipalities.geojson.gz
+            /data/neighborhoods/sources/country-osm/named-nodes.geojson.gz
       - uses: ./.github/actions/ci-dotnet
       - uses: ./.github/actions/ci-node
       - name: Build the actual API and verify packaged fixtures
@@ -392,6 +396,7 @@ jobs:
             /data/streets/
             /data/neighborhoods/search-areas.geojson.gz
             /data/neighborhoods/sources/country-osm/municipalities.geojson.gz
+            /data/neighborhoods/sources/country-osm/named-nodes.geojson.gz
       - uses: ./.github/actions/ci-dotnet
       - uses: ./.github/actions/ci-node
       - name: Build onboarding API and verify hosted module packaging
@@ -489,6 +494,7 @@ jobs:
             /data/streets/
             /data/neighborhoods/search-areas.geojson.gz
             /data/neighborhoods/sources/country-osm/municipalities.geojson.gz
+            /data/neighborhoods/sources/country-osm/named-nodes.geojson.gz
       - uses: ./.github/actions/ci-dotnet
       - uses: ./.github/actions/ci-node
         with:
@@ -727,6 +733,7 @@ jobs:
             /data/streets/
             /data/neighborhoods/search-areas.geojson.gz
             /data/neighborhoods/sources/country-osm/municipalities.geojson.gz
+            /data/neighborhoods/sources/country-osm/named-nodes.geojson.gz
       - uses: ./.github/actions/ci-dotnet
       - uses: ./.github/actions/ci-node
       - name: Build the actual API for the importer

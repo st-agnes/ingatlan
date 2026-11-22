@@ -10,6 +10,8 @@ const root=new URL('../',import.meta.url),directory=new URL('dist/data/map/',roo
 const index=JSON.parse(await readFile(new URL('index.json',directory),'utf8'));
 const hierarchyBytes=await readFile(new URL('hierarchy.json',directory));
 const hierarchy=JSON.parse(hierarchyBytes),parents=hierarchy.parents;
+const labelBytes=await readFile(new URL('labels.json',directory));
+const labels=JSON.parse(labelBytes);
 const sourceBytes=await readFile(new URL('dist/data/neighborhoods.json.gz',root));
 const [header,...sourceRows]=JSON.parse(gunzipSync(sourceBytes));
 const original=new Map(sourceRows.map(row=>[row.id,row]));
@@ -43,7 +45,7 @@ test('the display manifest pins the canonical source, all4308areas and every can
 });
 
 test('content-addressed municipality files are the exact bounded lazy layer set',async()=>{
- assert.deepEqual((await readdir(directory)).sort(),['index.json','hierarchy.json',...index.cities.map(city=>city.file)].sort());
+ assert.deepEqual((await readdir(directory)).filter(name=>name!=='style.json').sort(),['index.json','hierarchy.json','labels.json',...index.cities.map(city=>city.file),...labels.towns.map(town=>town.file)].sort());
  const names=new Set();let bytes=0,compressed=0;
  for(const {city,bytes:content,collection}of allChunks){
   assert.match(city.file,/^city-[a-f0-9]{20}\.json$/);assert.ok(!names.has(city.file));names.add(city.file);
@@ -188,4 +190,128 @@ test('one click on a real visible Budapest overlap picks the smallest actual reg
  assert.equal(chooseSmallestFeature(visible,point)?.id,expected);
  assert.equal(chooseSmallestFeature([...visible].reverse(),point)?.id,expected);
  assert.ok(geometryArea(hits.find(feature=>feature.id===expected).geometry)<geometryArea(hits.find(feature=>feature.properties.name==='Buda').geometry));
+});
+
+
+test('canonical clickable labels cover every town, district and neighborhood without country polygon downloads',()=>{
+ assert.equal(labels.schemaVersion,1);assert.equal(labels.type,'FeatureCollection');assert.equal(labels.displayOnly,true);
+ assert.equal(labels.mapVersion,index.version);assert.equal(labels.sourceSha256,index.sourceSha256);
+ assert.equal(labels.municipalitiesSha256,index.municipalitiesSha256);
+ assert.equal(labels.namedNodesSha256,'5c9193a72d4327e133f86d9c2625a4caeae3d21ec71d2575a3128b1d97931ecc');
+ assert.equal(labels.version,'20261121-map-labels-v1-367af069d58c-5c9193a72d43');
+ assert.equal(labels.count,7486);assert.deepEqual(labels.counts,{city:3155,district:23,neighborhood:4308});
+ assert.equal(labels.features.length,7486);assert.equal(labels.towns.length,3155);
+ const expected=locations.filter(location=>['city','district','neighborhood'].includes(location.kind)).map(location=>location.id).sort();
+ assert.deepEqual(labels.features.map(feature=>feature.id),expected);
+ const identifiers=new Set();
+ for(const feature of labels.features){
+  const location=getLocation(feature.id);assert.ok(location);assert.ok(!identifiers.has(feature.id));identifiers.add(feature.id);
+  assert.equal(feature.type,'Feature');assert.equal(feature.geometry.type,'Point');assert.equal(feature.geometry.coordinates.length,2);
+  assert.ok(feature.geometry.coordinates.every(Number.isFinite));
+  assert.deepEqual(feature.properties.id,feature.id);assert.equal(feature.properties.city,location.city);
+  assert.equal(feature.properties.kind,location.kind);assert.equal(feature.properties.name,location.kind==='city'?location.city:location.kind==='district'?location.district+' kerület':location.name);
+  assert.ok(Number.isInteger(feature.properties.minZoom)&&feature.properties.minZoom>=6&&feature.properties.minZoom<=18);
+  assert.ok(Number.isInteger(feature.properties.priority)&&feature.properties.priority>=0);
+  assert.ok(['osm_name_point','verified_interior','verified_central_neighborhood'].includes(feature.properties.anchorSource));
+  assert.ok(!Object.hasOwn(feature,'bbox')&&!Object.hasOwn(feature.properties,'geometry'));
+ }
+ assert.ok(labelBytes.length<=4*1024*1024,'A point-only label registry is bounded independently of country polygon size');
+ assert.ok(gzipSync(labelBytes).length<=640*1024,'The initial public labels compress below640KiB');
+ assert.match(labels.sourceNotice,/not a live OpenFreeMap inventory/);
+ assert.match(labels.sourceNotice,/unchanged full MySQL boundaries/);
+});
+
+test('each canonical neighborhood label lies inside both its original and displayed outline',()=>{
+ const display=new Map(allChunks.flatMap(chunk=>chunk.collection.features.map(feature=>[feature.id,feature])));
+ let sourcePoints=0,interiorPoints=0;
+ for(const feature of labels.features.filter(feature=>feature.properties.kind==='neighborhood')){
+  const point=feature.geometry.coordinates;
+  assert.equal(feature.properties.boundaryId,feature.id);
+  assert.ok(pointInGeometry(point,original.get(feature.id).geometry),feature.id+' label escaped the original boundary');
+  assert.ok(pointInGeometry(point,display.get(feature.id).geometry),feature.id+' label escaped the simplified boundary');
+  if(feature.properties.anchorSource==='osm_name_point')sourcePoints++;else interiorPoints++;
+ }
+ assert.ok(sourcePoints>1000,'The registry must meaningfully reuse the pinned real OSM locality name points');
+ assert.ok(interiorPoints>0,'Missing/unsuitable name points must still get safe canonical labels');
+});
+
+test('Budapest district aliases share a single boundary and point while preserving both canonical IDs',()=>{
+ const points=new Map(labels.features.map(feature=>[feature.id,feature]));
+ assert.equal(Object.keys(labels.districtBoundaries).length,23);
+ for(let number=1;number<=23;number++){
+  const districtId=`district:Budapest:${number}`,boundaryId=labels.districtBoundaries[districtId];
+  const district=points.get(districtId),neighborhood=points.get(boundaryId);
+  assert.equal(district.properties.kind,'district');assert.equal(neighborhood.properties.kind,'neighborhood');
+  assert.equal(neighborhood.properties.city,'Budapest');assert.equal(district.properties.boundaryId,boundaryId);
+  assert.deepEqual(district.geometry,neighborhood.geometry,'Equivalent names must not create duplicated displaced labels');
+ }
+});
+
+test('semantic label priorities keep major cities and equal-level adjacent quarters available together',()=>{
+ const points=new Map(labels.features.map(feature=>[feature.id,feature]));
+ assert.equal(points.get('city:Budapest').properties.minZoom,6);
+ for(const city of ['Debrecen','Szeged','Győr','Miskolc','Pécs','Sopron','Érd']){
+  assert.equal(points.get('city:'+city).properties.minZoom,7);
+  assert.ok(points.get('city:'+city).properties.priority<points.get('city:Aba').properties.priority);
+ }
+ for(const city of ['Debrecen','Szeged']){
+  const peers=labels.features.filter(feature=>feature.properties.kind==='neighborhood'&&feature.properties.city===city);
+  assert.ok(peers.length>1);assert.ok(peers.every(feature=>feature.properties.minZoom===10),'Adjacent quarters are not split by relative surface size');
+ }
+ for(const name of ['Buda','Pest']){
+  const feature=labels.features.find(item=>item.properties.city==='Budapest'&&item.properties.name===name);
+  assert.equal(feature.properties.minZoom,8);
+ }
+});
+
+test('all selected-town outlines are independently lazy, content-addressed, and retain source topology',async()=>{
+ const municipal=JSON.parse(gunzipSync(await readFile(new URL('data/neighborhoods/sources/country-osm/municipalities.geojson.gz',root))));
+ const sources=new Map();
+ for(const feature of municipal.features){
+  const city=feature.properties.name,previous=sources.get(city);
+  if(!previous||geometryArea(feature.geometry)>geometryArea(previous.geometry))sources.set(city,feature);
+ }
+ const points=new Map(labels.features.filter(feature=>feature.properties.kind==='city').map(feature=>[feature.id,feature]));
+ let bytes=0,compressed=0;
+ for(const town of labels.towns){
+  assert.match(town.id,/^city:/);assert.match(town.file,/^town-[a-f0-9]{20}\.json$/);
+  const content=await readFile(new URL(town.file,directory)),feature=JSON.parse(content),location=getLocation(town.id);
+  assert.equal(town.file,`town-${createHash('sha256').update(content).digest('hex').slice(0,20)}.json`);
+  assert.equal(location.kind,'city');assert.equal(feature.type,'Feature');assert.equal(feature.id,town.id);
+  assert.equal(feature.version,labels.version);assert.equal(feature.mapVersion,index.version);
+  assert.deepEqual(town.bounds,index.focus[town.id]);assert.deepEqual(feature.bbox,town.bounds);
+  assert.deepEqual(feature.properties,{id:town.id,city:location.city,name:location.city,label:location.city});
+  assert.deepEqual(topology(feature.geometry),topology(sources.get(location.city).geometry));
+  assert.ok(content.length<=2*1024*1024);
+  const point=points.get(town.id).geometry.coordinates;
+  assert.ok(pointInGeometry(point,feature.geometry),town.id+' label escaped its displayed municipality');
+  assert.ok(pointInGeometry(point,sources.get(location.city).geometry),town.id+' label escaped its original municipality');
+  bytes+=content.length;compressed+=gzipSync(content).length;
+ }
+ assert.ok(bytes<16*1024*1024,'Selected-town geometry stays bounded and is never requested countrywide');
+ assert.ok(compressed<6*1024*1024);
+});
+
+test('coarse national coverage only scopes duplicate base labels and has a small explicit vertex budget',()=>{
+ assert.ok(['Polygon','MultiPolygon'].includes(labels.coverage.type));
+ const coordinates=parts(labels.coverage).flatMap(polygon=>polygon.flat());
+ assert.ok(coordinates.length>100&&coordinates.length<=10000);
+ for(const city of ['Budapest','Debrecen','Szeged','Győr','Pécs']){
+  const point=labels.features.find(feature=>feature.id==='city:'+city).geometry.coordinates;
+  assert.ok(pointInGeometry(point,labels.coverage));
+ }
+ assert.ok(JSON.stringify(labels.coverage).length<250000);
+});
+
+
+test('OSM-labelled anchors retain the pinned name, municipality and exact public point evidence',async()=>{
+ const bytes=await readFile(new URL('data/neighborhoods/sources/country-osm/named-nodes.geojson.gz',root));
+ assert.equal(createHash('sha256').update(bytes).digest('hex'),labels.namedNodesSha256);
+ const collection=JSON.parse(gunzipSync(bytes));
+ const key=value=>String(value).toLowerCase().normalize('NFKD').replace(/\p{M}/gu,'').replace(/[^\p{L}\p{N}]/gu,'');
+ const evidence=new Set(collection.features.map(feature=>[feature.properties.municipality,key(feature.properties.name),JSON.stringify(feature.geometry.coordinates)].join('|')));
+ for(const feature of labels.features.filter(feature=>feature.properties.kind==='neighborhood'&&feature.properties.anchorSource==='osm_name_point')){
+  const p=feature.properties,point=JSON.stringify(feature.geometry.coordinates);
+  assert.ok([p.name,...p.aliases||[]].some(name=>evidence.has([p.city,key(name),point].join('|'))),feature.id+' claims a source name point without exact same-city/name evidence');
+ }
 });

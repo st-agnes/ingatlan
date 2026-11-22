@@ -10,8 +10,26 @@ const expected = {
 };
 const assetExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg', '.ico', '.woff', '.woff2']);
 const codeFiles = new Set(['index.html', 'app.js', 'style.css', 'api.js', 'model.js', 'matching.js', 'public-profile.js', 'feedback.js', 'onboarding.js', 'locations.js', 'locations-data.js', 'agglomerations-data.js', 'neighborhoods-data.js', 'neighborhood-demo-points.js', 'street-demo-data.js', 'data/streets.json.gz', 'regions-data.js', 'attributes.js', 'accounts.js', 'runtime-config.js', 'data/settlements.json', 'data/agglomerations.json', 'THIRD-PARTY-NOTICES.txt']);
-for (const file of ['location-map.js', 'location-map.css', 'data/map/index.json', 'data/map/hierarchy.json', 'vendor/leaflet/leaflet.js', 'vendor/leaflet/leaflet.css', 'vendor/leaflet/LICENSE']) codeFiles.add(file);
+for (const file of ['location-map.js', 'location-map.css', 'data/map/index.json', 'data/map/hierarchy.json', 'data/map/labels.json', 'data/map/style.json', 'vendor/maplibre/maplibre-gl.mjs', 'vendor/maplibre/maplibre-gl-worker.mjs', 'vendor/maplibre/maplibre-gl.css', 'vendor/maplibre/LICENSE.txt', 'vendor/maplibre/provenance.json']) codeFiles.add(file);
+// Old vendored assets may remain during the renderer transition, but the new
+// map cannot be published with a missing module, worker, stylesheet or licence.
+const optionalCodeFiles = new Set(['vendor/leaflet/leaflet.js', 'vendor/leaflet/leaflet.css', 'vendor/leaflet/LICENSE']);
 const mapCityFile = /^data\/map\/city-[a-f0-9]{20}\.json$/;
+const mapTownFile = /^data\/map\/town-[a-f0-9]{20}\.json$/;
+// Verified from the integrity-checked public npm 6.19.0 archive. Pin the bytes
+// independently of provenance.json so editing a module and its manifest together
+// cannot accidentally publish an unreviewed renderer/worker combination.
+const mapLibreRelease = Object.freeze({
+  package: 'maplibre-gl', version: '6.19.0', registry: 'https://registry.npmjs.org/maplibre-gl/6.19.0',
+  integrity: 'sha512-3bOrnfddggUYudLGJFsYFvqulUyvSxy4iQzd/uURI7ZhgYEZifdSrECujRSghaCpc+v/ZsFI0Y6ZsGSilEtE+w==',
+  tarballSha256: '8a0648e7a1f3baf757f3a9d994c3fdc7383ea0ebfc52ce1e90f3e7264dc9a20f',
+  files: {
+    'maplibre-gl.mjs': {bytes:1106041,sha256:'01590c9875ea5bb0e8cdc534479f607f7d1695ca5debbccaf730edf5fa5f39e5'},
+    'maplibre-gl-worker.mjs': {bytes:550754,sha256:'c8564c4a4147326a587c9cc4c2a871c4b02a6c37c3f1ea51da55be3220d4b112'},
+    'maplibre-gl.css': {bytes:71596,sha256:'a90798a1953017790e590f7e1bd35ff103a8a4263972cb47290b78adf86f8c20'},
+    'LICENSE.txt': {bytes:5984,sha256:'ee5fc05a0677eaf69601d2c7db0d9ecd6cc27c3abc1d0733bc9ed34707cf8ef2'}
+  }
+});
 const configFields = new Set(['projectId', 'projectNumber', 'region', 'serviceName', 'registry', 'sqlInstance', 'connectionName', 'databaseName', 'databaseUser', 'mysqlSecret', 'jwtSecret', 'googleGeocodingSecret', 'siteId', 'runtimeServiceAccount', 'deployServiceAccount', 'workloadIdentityProvider']);
 
 /** Validate every resource selector before any cloud or filesystem mutation. */
@@ -53,6 +71,8 @@ export function hostingConfig(config) {
       {key: 'X-Content-Type-Options', value: 'nosniff'},
       {key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin'},
       {key: 'X-Robots-Tag', value: 'noindex, nofollow'}
+    ]}, {source: '**/*.mjs', headers: [
+      {key: 'Content-Type', value: 'text/javascript; charset=utf-8'}
     ]}],
     // Firebase CLI 14.17.0 pins each rewrite independently and updates duplicate
     // services concurrently. One regex covers both /api and its descendants,
@@ -75,7 +95,7 @@ async function collectFiles(directory, relative = '') {
       // Exact search boundaries remain server-only; map layers are separate,
       // simplified and content-addressed city files loaded by the viewport.
       if (key === 'data/neighborhoods.json.gz') continue;
-      if (!codeFiles.has(key) && !mapCityFile.test(key) && !(key.startsWith('assets/') && assetExtensions.has(extname(name).toLowerCase()))) throw new Error(`Unexpected frontend file; refusing to publish: ${key}`);
+      if (!codeFiles.has(key) && !optionalCodeFiles.has(key) && !mapCityFile.test(key) && !mapTownFile.test(key) && !(key.startsWith('assets/') && assetExtensions.has(extname(name).toLowerCase()))) throw new Error(`Unexpected frontend file; refusing to publish: ${key}`);
       result.push({path, key});
     } else throw new Error(`Not a regular frontend file: ${key}`);
   }
@@ -93,6 +113,128 @@ async function assertNoSymlinkParents(target, stopAt) {
   }
 }
 
+const validBounds = value => Array.isArray(value) && value.length === 4 && value.every(Number.isFinite)
+  && value[0] >= -180 && value[2] <= 180 && value[1] >= -90 && value[3] <= 90
+  && value[0] <= value[2] && value[1] <= value[3];
+const hashPattern = /^[a-f0-9]{64}$/;
+const mapLocationKind = id => typeof id !== 'string' ? null : /^neighborhood:[a-f0-9]{24}$/.test(id) ? 'neighborhood'
+  : /^district:Budapest:(?:[1-9]|1[0-9]|2[0-3])$/.test(id) ? 'district'
+    : /^city:[^\u0000-\u001f]{1,100}$/.test(id) ? 'city' : null;
+
+function validPolygon(geometry, maximumPoints = 200000) {
+  const polygons = geometry?.type === 'Polygon' ? [geometry.coordinates]
+    : geometry?.type === 'MultiPolygon' ? geometry.coordinates : null;
+  if (!Array.isArray(polygons) || !polygons.length) return false;
+  let count = 0;
+  return polygons.every(polygon => Array.isArray(polygon) && polygon.length > 0 && polygon.every(ring => {
+    if (!Array.isArray(ring) || ring.length < 4) return false;
+    for (const point of ring) {
+      if (!Array.isArray(point) || point.length !== 2 || !point.every(Number.isFinite)
+        || Math.abs(point[0]) > 180 || Math.abs(point[1]) > 90 || ++count > maximumPoints) return false;
+    }
+    return ring[0][0] === ring.at(-1)[0] && ring[0][1] === ring.at(-1)[1];
+  }));
+}
+
+async function validateMapLibre(source) {
+  let provenance;
+  try { provenance = JSON.parse(await readFile(join(source, 'vendor/maplibre/provenance.json'), 'utf8')); }
+  catch { throw new Error('Invalid MapLibre release provenance.'); }
+  if (!provenance || ['package','version','registry','integrity','tarballSha256'].some(key => provenance[key] !== mapLibreRelease[key])
+    || !provenance.files || Object.keys(provenance.files).length !== Object.keys(mapLibreRelease.files).length) {
+    throw new Error('MapLibre release provenance does not match the pinned release.');
+  }
+  for (const [name, expected] of Object.entries(mapLibreRelease.files)) {
+    const declared = provenance.files[name];
+    const content = await readFile(join(source, 'vendor/maplibre', name));
+    const digest = createHash('sha256').update(content).digest('hex');
+    const gitBlob = createHash('sha1').update(Buffer.from(`blob ${content.length}\0`)).update(content).digest('hex');
+    if (!declared || content.length !== expected.bytes || declared.bytes !== expected.bytes
+      || digest !== expected.sha256 || declared.sha256 !== expected.sha256 || declared.gitBlob !== gitBlob) {
+      throw new Error(`MapLibre asset does not match the pinned release: ${name}.`);
+    }
+  }
+}
+
+/** Validate local display data completely before touching a staged release. */
+async function validateMapLabels(source, filesByKey, mapIndex) {
+  let labels, style;
+  try {
+    labels = JSON.parse(await readFile(join(source, 'data/map/labels.json'), 'utf8'));
+    style = JSON.parse(await readFile(join(source, 'data/map/style.json'), 'utf8'));
+  } catch { throw new Error('Invalid map labels or basemap style.'); }
+  if (style?.version !== 8 || !Array.isArray(style.layers) || style.sources?.openmaptiles?.type !== 'vector'
+    || style.sources.openmaptiles.url !== 'https://tiles.openfreemap.org/planet'
+    || typeof style.glyphs !== 'string' || !style.glyphs.startsWith('https://tiles.openfreemap.org/fonts/')) {
+    throw new Error('Invalid map basemap style.');
+  }
+  if (!labels || labels.schemaVersion !== 1 || labels.type !== 'FeatureCollection' || labels.displayOnly !== true
+    || typeof labels.version !== 'string' || !labels.version || labels.version.length > 160
+    || labels.mapVersion !== mapIndex.version || labels.sourceSha256 !== mapIndex.sourceSha256
+    || labels.municipalitiesSha256 !== mapIndex.municipalitiesSha256
+    || !hashPattern.test(labels.namedNodesSha256 ?? '') || !hashPattern.test(labels.sourceSha256 ?? '')
+    || !hashPattern.test(labels.municipalitiesSha256 ?? '') || !Array.isArray(labels.features)
+    || labels.features.length > 8000 || labels.count !== labels.features.length
+    || !Array.isArray(labels.towns) || !labels.districtBoundaries || typeof labels.districtBoundaries !== 'object'
+    || Array.isArray(labels.districtBoundaries) || !validPolygon(labels.coverage, 50000)) {
+    throw new Error('Invalid map labels manifest.');
+  }
+  const features = new Map(), counts = {city: 0, district: 0, neighborhood: 0};
+  for (const feature of labels.features) {
+    const id = feature?.id, kind = mapLocationKind(id), properties = feature?.properties;
+    const point = feature?.geometry?.coordinates;
+    if (feature?.type !== 'Feature' || !kind || !Object.hasOwn(mapIndex.focus ?? {}, id) || features.has(id)
+      || properties?.id !== id || properties.kind !== kind
+      || typeof properties.name !== 'string' || !properties.name || properties.name.length > 512
+      || typeof properties.label !== 'string' || !properties.label || properties.label.length > 512
+      || typeof properties.city !== 'string' || !properties.city || properties.city.length > 100
+      || !Number.isFinite(properties.minZoom) || properties.minZoom < 0 || properties.minZoom > 22
+      || !Number.isFinite(properties.priority) || properties.priority < 0 || properties.priority > 100000
+      || !Object.hasOwn(mapIndex.focus, properties.boundaryId)
+      || feature.geometry?.type !== 'Point' || !Array.isArray(point) || point.length !== 2
+      || !point.every(Number.isFinite) || Math.abs(point[0]) > 180 || Math.abs(point[1]) > 90) {
+      throw new Error('Invalid or duplicate map label.');
+    }
+    if (kind === 'city' && (id !== 'city:' + properties.city || properties.boundaryId !== id)
+      || kind === 'neighborhood' && properties.boundaryId !== id
+      || kind === 'district' && !/^neighborhood:[a-f0-9]{24}$/.test(properties.boundaryId)) {
+      throw new Error('Invalid map label boundary reference.');
+    }
+    counts[kind]++; features.set(id, feature);
+  }
+  for (const id of Object.keys(mapIndex.focus ?? {})) {
+    if (mapLocationKind(id) && !features.has(id)) throw new Error('Missing canonical map label.');
+  }
+  if (counts.neighborhood !== mapIndex.count || Object.keys(counts).some(kind => labels.counts?.[kind] !== counts[kind])
+    || labels.towns.length !== counts.city || Object.keys(labels.districtBoundaries).length !== counts.district) {
+    throw new Error('Map label counts do not match the map manifest.');
+  }
+  for (const [id, boundaryId] of Object.entries(labels.districtBoundaries)) {
+    if (features.get(id)?.properties.kind !== 'district' || features.get(id).properties.boundaryId !== boundaryId
+      || features.get(boundaryId)?.properties.kind !== 'neighborhood'
+      || features.get(boundaryId).properties.city !== 'Budapest') throw new Error('Unknown map district boundary reference.');
+  }
+  const townIds = new Set(), listed = new Set();
+  for (const town of labels.towns) {
+    const key = 'data/map/' + town?.file;
+    if (features.get(town?.id)?.properties.kind !== 'city' || townIds.has(town.id)
+      || !mapTownFile.test(key) || listed.has(key) || !validBounds(town.bounds)) throw new Error('Invalid map town layer reference.');
+    const file = filesByKey.get(key);
+    if (!file) throw new Error(`Missing map town layer ${key}.`);
+    const content = await readFile(file.path);
+    const digest = createHash('sha256').update(content).digest('hex').slice(0, 20);
+    if (town.file !== `town-${digest}.json`) throw new Error(`Map town layer checksum mismatch: ${key}.`);
+    let value;
+    try { value = JSON.parse(content.toString('utf8')); } catch { throw new Error('Invalid map town layer.'); }
+    if (value?.type !== 'Feature' || value.id !== town.id || value.properties?.id !== town.id
+      || value.version !== labels.version || value.mapVersion !== mapIndex.version
+      || !validBounds(value.bbox) || !value.bbox.every((number, index) => number === town.bounds[index])
+      || !validPolygon(value.geometry)) throw new Error('Invalid map town layer.');
+    townIds.add(town.id); listed.add(key);
+  }
+  if ([...filesByKey.keys()].some(key => mapTownFile.test(key) && !listed.has(key))) throw new Error('Unlisted map town layer cannot be published.');
+}
+
 export async function prepareSite({config, source = join(projectRoot, 'dist'), output = join(projectRoot, '.local/gcp/site')}) {
   config = validateDevConfig(config);
   const target = resolve(output), allowedRoot = resolve(projectRoot, '.local/gcp');
@@ -102,7 +244,9 @@ export async function prepareSite({config, source = join(projectRoot, 'dist'), o
   if (sourceRoot === target || sourceRoot.startsWith(target + '/') || target.startsWith(sourceRoot + '/')) throw new Error('Frontend source and staging output must not overlap.');
   await assertNoSymlinkParents(target, resolve(projectRoot));
   const files = await collectFiles(source);
+  const filesByKey = new Map(files.map(file => [file.key, file]));
   for (const required of codeFiles) if (!files.some(file => file.key === required)) throw new Error(`Missing frontend file ${required}.`);
+  await validateMapLibre(source);
   const mapIndex = JSON.parse(await readFile(join(source, 'data/map/index.json'), 'utf8'));
   if (mapIndex.schemaVersion !== 1 || !Array.isArray(mapIndex.cities) || !mapIndex.cities.length) throw new Error('Invalid neighborhood map manifest.');
   const listed = new Set();
@@ -110,7 +254,7 @@ export async function prepareSite({config, source = join(projectRoot, 'dist'), o
     const key = 'data/map/' + city.file;
     if (typeof city.file !== 'string' || !mapCityFile.test(key) || listed.has(key)) throw new Error('Invalid neighborhood map layer path.');
     listed.add(key);
-    const file = files.find(item => item.key === key);
+    const file = filesByKey.get(key);
     if (!file) throw new Error(`Missing neighborhood map layer ${key}.`);
     const hash = createHash('sha256').update(await readFile(file.path)).digest('hex').slice(0, 20);
     if (city.file !== `city-${hash}.json`) throw new Error(`Neighborhood map layer checksum mismatch: ${key}.`);
@@ -134,6 +278,7 @@ export async function prepareSite({config, source = join(projectRoot, 'dist'), o
       ancestors.add(id);
     }
   }
+  await validateMapLabels(source, filesByKey, mapIndex);
   // Validate the entire tree first, then replace only this ignored staging directory.
   await rm(target, {recursive: true, force: true});
   await mkdir(join(target, 'public'), {recursive: true});

@@ -21,9 +21,23 @@ const config = Object.freeze({
   workloadIdentityProvider: 'projects/123456789012/locations/global/workloadIdentityPools/otthonra-dev/providers/github'
 });
 const required = ['index.html','app.js','style.css','api.js','model.js','matching.js','public-profile.js','feedback.js','onboarding.js','locations.js','locations-data.js','agglomerations-data.js','neighborhoods-data.js','neighborhood-demo-points.js','street-demo-data.js','data/streets.json.gz','regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
-required.push('location-map.js', 'location-map.css', 'data/map/index.json', 'data/map/hierarchy.json', 'vendor/leaflet/leaflet.js', 'vendor/leaflet/leaflet.css', 'vendor/leaflet/LICENSE');
+required.push('location-map.js', 'location-map.css', 'data/map/index.json', 'data/map/hierarchy.json', 'data/map/labels.json', 'data/map/style.json', 'vendor/maplibre/maplibre-gl.mjs', 'vendor/maplibre/maplibre-gl-worker.mjs', 'vendor/maplibre/maplibre-gl.css', 'vendor/maplibre/LICENSE.txt', 'vendor/maplibre/provenance.json');
+const vendorAssets = new Map(await Promise.all(required.filter(name => name.startsWith('vendor/maplibre/')).map(async name => [name, await readFile(join(root, 'dist', name))])));
 const mapLayer = JSON.stringify({type:'FeatureCollection', features:[]});
 const mapLayerName = `city-${createHash('sha256').update(mapLayer).digest('hex').slice(0,20)}.json`;
+const mapVersion = 'fixture-map-v1', labelVersion = 'fixture-labels-v1';
+const areaId = 'neighborhood:' + '1'.repeat(24), townId = 'city:Debrecen';
+const bounds = [21.5,47.4,21.7,47.6];
+const geometry = {type:'Polygon',coordinates:[[[21.5,47.4],[21.7,47.4],[21.7,47.6],[21.5,47.6],[21.5,47.4]]]};
+const townLayer = JSON.stringify({type:'Feature',version:labelVersion,mapVersion,id:townId,bbox:bounds,properties:{id:townId,city:'Debrecen',name:'Debrecen',label:'Debrecen'},geometry});
+const townLayerName = `town-${createHash('sha256').update(townLayer).digest('hex').slice(0,20)}.json`;
+const labelsFixture = () => ({schemaVersion:1,type:'FeatureCollection',version:labelVersion,mapVersion,
+  sourceSha256:'a'.repeat(64),municipalitiesSha256:'b'.repeat(64),namedNodesSha256:'c'.repeat(64),displayOnly:true,
+  count:2,counts:{city:1,district:0,neighborhood:1},coverage:geometry,districtBoundaries:{},
+  features:[{type:'Feature',id:townId,geometry:{type:'Point',coordinates:[21.6,47.5]},properties:{id:townId,name:'Debrecen',label:'Debrecen',city:'Debrecen',kind:'city',minZoom:6,priority:1,boundaryId:townId}},
+    {type:'Feature',id:areaId,geometry:{type:'Point',coordinates:[21.6,47.5]},properties:{id:areaId,name:'Vénkert',label:'Vénkert (Debrecen)',city:'Debrecen',kind:'neighborhood',minZoom:10,priority:10,boundaryId:areaId}}],
+  towns:[{id:townId,file:townLayerName,bounds}]});
+const styleFixture = () => ({version:8,sources:{openmaptiles:{type:'vector',url:'https://tiles.openfreemap.org/planet'}},glyphs:'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf',layers:[]});
 
 async function fixture(run) {
   const source = await mkdtemp(join(tmpdir(), 'otthonra-hosting-source-'));
@@ -33,11 +47,14 @@ async function fixture(run) {
   const output = join(workspace, 'site');
   for (const name of required) {
     await mkdir(join(source, name, '..'), {recursive: true});
-    await writeFile(join(source, name), name === 'runtime-config.js' ? 'globalThis.OTTHONRA_CONFIG={mode:"demo"};' : `fixture: ${name}`);
+    await writeFile(join(source, name), vendorAssets.get(name) ?? (name === 'runtime-config.js' ? 'globalThis.OTTHONRA_CONFIG={mode:"demo"};' : `fixture: ${name}`));
   }
   await writeFile(join(source, 'data/map', mapLayerName), mapLayer);
-  await writeFile(join(source, 'data/map/index.json'), JSON.stringify({schemaVersion:1,version:'fixture-map-v1',sourceSha256:'a'.repeat(64),count:0,focus:{},cities:[{city:'Debrecen',file:mapLayerName,count:0}]}));
-  await writeFile(join(source, 'data/map/hierarchy.json'), JSON.stringify({schemaVersion:1,version:'fixture-hierarchy-v1',mapVersion:'fixture-map-v1',sourceSha256:'a'.repeat(64),count:0,parents:{}}));
+  await writeFile(join(source, 'data/map/index.json'), JSON.stringify({schemaVersion:1,version:mapVersion,sourceSha256:'a'.repeat(64),municipalitiesSha256:'b'.repeat(64),count:1,focus:{[areaId]:bounds,[townId]:bounds},cities:[{city:'Debrecen',file:mapLayerName,count:1}]}));
+  await writeFile(join(source, 'data/map/hierarchy.json'), JSON.stringify({schemaVersion:1,version:'fixture-hierarchy-v1',mapVersion,sourceSha256:'a'.repeat(64),count:1,parents:{}}));
+  await writeFile(join(source, 'data/map', townLayerName), townLayer);
+  await writeFile(join(source, 'data/map/labels.json'), JSON.stringify(labelsFixture()));
+  await writeFile(join(source, 'data/map/style.json'), JSON.stringify(styleFixture()));
   await mkdir(join(source, 'assets'));
   await writeFile(join(source, 'assets/living.jpg'), 'image-fixture');
   try { await run({source, output, workspace}); }
@@ -82,6 +99,9 @@ test('one pinned rewrite covers exactly the API namespace without concurrent upd
   const headers = Object.fromEntries(value.headers[0].headers.map(header => [header.key, header.value]));
   assert.equal(headers['Cache-Control'], 'no-store');
   assert.equal(headers['X-Robots-Tag'], 'noindex, nofollow');
+  const moduleHeaders = value.headers.find(rule => rule.source === '**/*.mjs');
+  assert.ok(moduleHeaders, 'MapLibre modules and its worker need an explicit JavaScript MIME type with nosniff');
+  assert.equal(moduleHeaders.headers.find(header => header.key === 'Content-Type')?.value, 'text/javascript; charset=utf-8');
 });
 
 test('frontend packaging enables the real hosted test API while preserving the source demo and excluding deployment metadata', async () => {
@@ -96,7 +116,10 @@ test('frontend packaging enables the real hosted test API while preserving the s
     assert.equal(await readFile(join(output, 'public/onboarding.js'), 'utf8'), 'fixture: onboarding.js');
     assert.equal(await readFile(join(output, 'public/location-map.js'), 'utf8'), 'fixture: location-map.js');
     assert.equal(await readFile(join(output, 'public/data/map', mapLayerName), 'utf8'), mapLayer);
-    assert.equal(await readFile(join(output, 'public/vendor/leaflet/LICENSE'), 'utf8'), 'fixture: vendor/leaflet/LICENSE');
+    assert.deepEqual(await readFile(join(output, 'public/vendor/maplibre/LICENSE.txt')), vendorAssets.get('vendor/maplibre/LICENSE.txt'));
+    assert.deepEqual(await readFile(join(output, 'public/vendor/maplibre/maplibre-gl-worker.mjs')), vendorAssets.get('vendor/maplibre/maplibre-gl-worker.mjs'));
+    assert.equal(await readFile(join(output, 'public/data/map', townLayerName), 'utf8'), townLayer);
+    assert.deepEqual(JSON.parse(await readFile(join(output, 'public/data/map/labels.json'), 'utf8')), labelsFixture());
     assert.equal(await readFile(join(output, 'public/THIRD-PARTY-NOTICES.txt'), 'utf8'), 'fixture: THIRD-PARTY-NOTICES.txt');
     assert.deepEqual((await readdir(output)).sort(), ['firebase.json','public']);
     assert.ok(!(await readdir(join(output, 'public/data'))).includes('neighborhoods.json.gz'));
@@ -124,10 +147,34 @@ test('hidden files, unknown files and symlinks are refused before replacing a pr
 });
 
 test('an incomplete frontend cannot replace a working staged release', async () => {
-  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js','feedback.js','onboarding.js','location-map.js','location-map.css','vendor/leaflet/leaflet.js','vendor/leaflet/leaflet.css','vendor/leaflet/LICENSE','data/map/index.json','data/map/hierarchy.json']) await fixture(async ({source, output}) => {
+  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js','feedback.js','onboarding.js','location-map.js','location-map.css','vendor/maplibre/maplibre-gl.mjs','vendor/maplibre/maplibre-gl-worker.mjs','vendor/maplibre/maplibre-gl.css','vendor/maplibre/LICENSE.txt','vendor/maplibre/provenance.json','data/map/index.json','data/map/hierarchy.json','data/map/labels.json','data/map/style.json']) await fixture(async ({source, output}) => {
     await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
     await rm(join(source, missing));
     await assert.rejects(prepareSite({config, source, output}), new RegExp('Missing frontend file '+missing.replaceAll('.', '\\.')));
+    assert.equal(await readFile(join(output, 'sentinel'), 'utf8'), 'previous-release');
+  });
+});
+
+test('the renderer, worker and release provenance must all match the independently pinned npm package', async () => {
+  for (const kind of ['version','integrity','archive','changed','rewritten','bytes','extra','missing','malformed']) await fixture(async ({source, output}) => {
+    await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
+    const provenance = JSON.parse(vendorAssets.get('vendor/maplibre/provenance.json').toString('utf8'));
+    if (kind === 'version') provenance.version = '6.20.0';
+    if (kind === 'integrity') provenance.integrity = 'sha512-unverified';
+    if (kind === 'archive') provenance.tarballSha256 = 'f'.repeat(64);
+    if (kind === 'bytes') provenance.files['maplibre-gl-worker.mjs'].bytes--;
+    if (kind === 'extra') provenance.files['unexpected.mjs'] = {...provenance.files['maplibre-gl.mjs']};
+    if (kind === 'missing') delete provenance.files['maplibre-gl-worker.mjs'];
+    if (['changed','rewritten'].includes(kind)) {
+      const content = Buffer.concat([vendorAssets.get('vendor/maplibre/maplibre-gl-worker.mjs'), Buffer.from('\n/* changed worker */\n')]);
+      await writeFile(join(source, 'vendor/maplibre/maplibre-gl-worker.mjs'), content);
+      if (kind === 'rewritten') provenance.files['maplibre-gl-worker.mjs'] = {
+        bytes:content.length,sha256:createHash('sha256').update(content).digest('hex'),
+        gitBlob:createHash('sha1').update(Buffer.from(`blob ${content.length}\0`)).update(content).digest('hex')
+      };
+    }
+    await writeFile(join(source, 'vendor/maplibre/provenance.json'), kind === 'malformed' ? 'not JSON' : JSON.stringify(provenance));
+    await assert.rejects(prepareSite({config, source, output}), /MapLibre/);
     assert.equal(await readFile(join(output, 'sentinel'), 'utf8'), 'previous-release');
   });
 });
@@ -152,7 +199,7 @@ test('stale, dangling or cyclic map hierarchy cannot replace a working staged re
     const first = 'neighborhood:'+'1'.repeat(24), second = 'neighborhood:'+'2'.repeat(24);
     if (kind === 'version') hierarchy.mapVersion = 'old-map';
     if (kind === 'source') hierarchy.sourceSha256 = 'b'.repeat(64);
-    if (kind === 'count') hierarchy.count = 1;
+    if (kind === 'count') hierarchy.count++;
     if (['unknown','cycle','self'].includes(kind)) {
       index.count = hierarchy.count = 2;
       index.focus = {[first]:[19,47,20,48], [second]:[19,47,20,48]};
@@ -162,6 +209,63 @@ test('stale, dangling or cyclic map hierarchy cannot replace a working staged re
     await writeFile(join(source, 'data/map/index.json'), JSON.stringify(index));
     await writeFile(join(source, 'data/map/hierarchy.json'), kind === 'malformed' ? 'not JSON' : JSON.stringify(hierarchy));
     await assert.rejects(prepareSite({config, source, output}), /map hierarchy/);
+    assert.equal(await readFile(join(output, 'sentinel'), 'utf8'), 'previous-release');
+  });
+});
+
+test('the canonical label registry must be complete, unique and tied to the same display sources', async () => {
+  for (const kind of ['version','source','municipalities','count','duplicate','unknown','missing','point','boundary','coverage','malformed']) await fixture(async ({source, output}) => {
+    await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
+    const labels = labelsFixture();
+    if (kind === 'version') labels.mapVersion = 'old-map';
+    if (kind === 'source') labels.sourceSha256 = 'd'.repeat(64);
+    if (kind === 'municipalities') labels.municipalitiesSha256 = 'd'.repeat(64);
+    if (kind === 'count') labels.counts.neighborhood++;
+    if (kind === 'duplicate') { labels.features.push(structuredClone(labels.features[0])); labels.count++; }
+    if (kind === 'unknown') { labels.features[0].id = 'city:Unknown'; labels.features[0].properties.id = 'city:Unknown'; }
+    if (kind === 'missing') { labels.features.pop(); labels.count--; labels.counts.neighborhood--; }
+    if (kind === 'point') labels.features[0].geometry.coordinates = [21.6,999];
+    if (kind === 'boundary') labels.features[1].properties.boundaryId = townId;
+    if (kind === 'coverage') labels.coverage = {type:'Point',coordinates:[21.6,47.5]};
+    await writeFile(join(source, 'data/map/labels.json'), kind === 'malformed' ? 'not JSON' : JSON.stringify(labels));
+    await assert.rejects(prepareSite({config, source, output}), /map label/i);
+    assert.equal(await readFile(join(output, 'sentinel'), 'utf8'), 'previous-release');
+  });
+});
+
+test('selected-town outlines must be listed, content-addressed, current and valid before publication', async () => {
+  for (const kind of ['missing','changed','unlisted','traversal','duplicate','version','identity','geometry']) await fixture(async ({source, output}) => {
+    await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
+    const labels = labelsFixture();
+    if (kind === 'missing') await rm(join(source, 'data/map', townLayerName));
+    if (kind === 'changed') await writeFile(join(source, 'data/map', townLayerName), 'unexpected outline');
+    if (kind === 'unlisted') await writeFile(join(source, 'data/map/town-00000000000000000000.json'), '{}');
+    if (kind === 'traversal') labels.towns[0].file = '../credentials.json';
+    if (kind === 'duplicate') labels.towns.push(structuredClone(labels.towns[0]));
+    if (['version','identity','geometry'].includes(kind)) {
+      const value = JSON.parse(townLayer);
+      if (kind === 'version') value.version = 'old-labels';
+      if (kind === 'identity') value.id = 'city:Another';
+      if (kind === 'geometry') value.geometry.coordinates[0].pop();
+      const content = JSON.stringify(value), file = `town-${createHash('sha256').update(content).digest('hex').slice(0,20)}.json`;
+      await rm(join(source, 'data/map', townLayerName));
+      await writeFile(join(source, 'data/map', file), content); labels.towns[0].file = file;
+    }
+    await writeFile(join(source, 'data/map/labels.json'), JSON.stringify(labels));
+    await assert.rejects(prepareSite({config, source, output}), /map (?:town|label)/i);
+    assert.equal(await readFile(join(output, 'sentinel'), 'utf8'), 'previous-release');
+  });
+});
+
+test('an invalid or unexpectedly redirected vector basemap style preserves the previous staged release', async () => {
+  for (const kind of ['malformed','version','source','glyphs']) await fixture(async ({source, output}) => {
+    await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
+    const style = styleFixture();
+    if (kind === 'version') style.version = 7;
+    if (kind === 'source') style.sources.openmaptiles.url = 'https://other-provider.example/planet';
+    if (kind === 'glyphs') style.glyphs = 'https://other-provider.example/fonts/{fontstack}/{range}.pbf';
+    await writeFile(join(source, 'data/map/style.json'), kind === 'malformed' ? 'not JSON' : JSON.stringify(style));
+    await assert.rejects(prepareSite({config, source, output}), /map labels or basemap style|map basemap style/);
     assert.equal(await readFile(join(output, 'sentinel'), 'utf8'), 'previous-release');
   });
 });
