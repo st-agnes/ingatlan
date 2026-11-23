@@ -1,7 +1,7 @@
 /** Responsive anonymous UI integration. Deterministic HTTP fixtures isolate the browser;
  * backend/onboarding-smoke.mjs proves creation semantics against actual MySQL. */
 import {mockMapTiles} from './map-browser-network.mjs';
-import {removeSelectedLocation} from './editor-browser-helpers.mjs';
+import {removeSelectedLocation,choosePropertyType} from './editor-browser-helpers.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -70,9 +70,9 @@ async function createFixture(browser,viewport){
 }
 async function progress(page,index){
  await page.waitForFunction(expected=>document.querySelector('#entity-form')?.getAttribute('data-editor-current-step')===String(expected),index);
- assert.equal(await page.locator('.editor-progress [data-action="editor-step"]').count(),5);assert.equal(await page.locator('.editor-step:visible').count(),1);
+ assert.equal(await page.locator('.editor-progress [data-action="editor-step"]').count(),6);assert.equal(await page.locator('.editor-step:visible').count(),1);
  assert.equal(await page.locator(`#editor-step-button-${index}`).getAttribute('aria-current'),'step');
- const fit=await page.locator('#entity-form').evaluate(element=>element.scrollWidth<=element.clientWidth+1);assert.ok(fit,'The normal five-step form must fit this viewport');
+ const fit=await page.locator('#entity-form').evaluate(element=>element.scrollWidth<=element.clientWidth+1);assert.ok(fit,'The normal six-step form must fit this viewport');
 }
 async function next(page,viewport,index){await interact(viewport,page.locator('#editor-next'));await progress(page,index);}
 async function gotoStep(page,viewport,index){await interact(viewport,page.locator(`#editor-step-button-${index}`));await progress(page,index);}
@@ -97,20 +97,20 @@ async function verifyWizardAuth(browser,viewport){
   await interact(viewport,page.locator('[data-action="landing"]').first());await assertFreshLanding(page);
   await page.goto(origin+'/#onboarding');await progress(page,0);
   assert.equal(await page.locator('#hosted-auth-form').count(),0,'Location selection opens anonymous onboarding before registration');assert.match(await page.locator('#location-chips').innerText(),/Debrecen/);
-  let title=`Saját keresésem ${viewport.name}`;assert.equal(await page.locator('#f-title').isVisible(),false,'Name is offered only at the final topic');assert.equal(await page.locator('#f-type').inputValue(),'');await interact(viewport,page.locator('#editor-next'));await progress(page,0);assert.equal(await page.locator('#f-type').evaluate(element=>element.validity.valueMissing),true,'Choosing a type is mandatory');await page.locator('#f-type').selectOption('Lakás');await next(page,viewport,1);
+  let title=`Saját keresésem ${viewport.name}`;assert.equal(await page.locator('#f-title').isVisible(),false,'Name is offered only at the final topic');assert.equal(await page.locator('#f-type').inputValue(),'');await interact(viewport,page.locator('#editor-next'));await progress(page,1);await interact(viewport,page.locator('#editor-next'));await progress(page,1);assert.ok((await page.locator('#property-type-error').innerText()).trim(),'Choosing a type must show a visible validation message');await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await progress(page,2);
   for(const field of ['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])assert.equal(await page.locator(`#f-${field}`).inputValue(),'','A new search must not invent numeric preferences');
   await page.locator('#f-maxPrice').fill('80');await page.locator('#f-minArea').fill('50');await page.locator('#f-maxArea').fill('70');await page.locator('#f-minRooms').fill('1');await page.locator('#f-maxRooms').fill('3');
-  await page.locator('#f-minPrice').fill('90');await interact(viewport,page.locator('#editor-next'));await progress(page,1);assert.equal(await page.locator('#f-maxPrice').evaluate(element=>element.checkValidity()),false,'Invalid ranges must block the same wizard validation');
+  await page.locator('#f-minPrice').fill('90');await interact(viewport,page.locator('#editor-next'));await progress(page,2);assert.equal(await page.locator('#f-maxPrice').evaluate(element=>element.checkValidity()),false,'Invalid ranges must block the same wizard validation');
   await page.locator('#f-minPrice').fill('');
-  const before=await draft(page),second=await context.newPage();await second.goto(origin+'/#onboarding',{waitUntil:'domcontentloaded'});await progress(second,1);
+  const before=await draft(page),second=await context.newPage();await second.goto(origin+'/#onboarding',{waitUntil:'domcontentloaded'});await progress(second,2);
   assert.equal((await draft(second)).id,before.id);assert.equal(await second.locator('#f-maxPrice').inputValue(),'80');await second.close();
-  await page.reload({waitUntil:'domcontentloaded'});await progress(page,1);assert.equal(await page.locator('#f-maxPrice').inputValue(),'80');
-  await gotoStep(page,viewport,0);assert.equal(await page.locator('#f-title').isVisible(),false);await gotoStep(page,viewport,1);
-  await next(page,viewport,2);await next(page,viewport,3);await next(page,viewport,4);const generated=await page.locator('#f-title').inputValue();assert.match(generated,/Lakás/);assert.match(generated,/Debrecen/);assert.ok(generated.length<=70);await page.locator('#f-title').fill(title);await page.locator('#f-description').fill('A saját igényeim.');await interact(viewport,page.locator('#editor-save'));
+  await page.reload({waitUntil:'domcontentloaded'});await progress(page,2);assert.equal(await page.locator('#f-maxPrice').inputValue(),'80');
+  await gotoStep(page,viewport,0);assert.equal(await page.locator('#f-title').isVisible(),false);await gotoStep(page,viewport,2);
+  await next(page,viewport,3);await next(page,viewport,4);await next(page,viewport,5);const generated=await page.locator('#f-title').inputValue();assert.match(generated,/Lakás/);assert.match(generated,/Debrecen/);assert.ok(generated.length<=70);await page.locator('#f-title').fill(title);await page.locator('#f-description').fill('A saját igényeim.');await interact(viewport,page.locator('#editor-save'));
   await page.locator('#hosted-auth-form').waitFor();assert.equal(new URL(page.url()).hash,'#register');assert.equal((await draft(page)).phase,'awaiting-auth');assert.equal(server.creates.length,0);
   const initialCompleted=await draft(page);await showLanding(page);await page.locator('#landing-recent-search').waitFor();await interact(viewport,page.locator('#landing-recent-search-resume'));await page.locator('#hosted-auth-form').waitFor();assert.equal((await draft(page)).phase,'awaiting-auth','A recent finalized draft resumes registration without reopening its immutable data');assert.equal((await draft(page)).creationRequestId,initialCompleted.creationRequestId);
-  await interact(viewport,page.locator('[data-action="onboarding-edit"]'));await progress(page,4);
-  title+=' módosítva';await page.locator('#f-title').fill(title);await gotoStep(page,viewport,0);await gotoStep(page,viewport,4);assert.equal(await page.locator('#f-title').inputValue(),title);await interact(viewport,page.locator('#editor-save'));await page.locator('#hosted-auth-form').waitFor();
+  await interact(viewport,page.locator('[data-action="onboarding-edit"]'));await progress(page,5);
+  title+=' módosítva';await page.locator('#f-title').fill(title);await gotoStep(page,viewport,0);await gotoStep(page,viewport,5);assert.equal(await page.locator('#f-title').inputValue(),title);await interact(viewport,page.locator('#editor-save'));await page.locator('#hosted-auth-form').waitFor();
   const changedCompleted=await draft(page);assert.equal(changedCompleted.id,initialCompleted.id);assert.equal(changedCompleted.creationRequestId,initialCompleted.creationRequestId,'Editing the same draft must retain its lifetime creation receipt');assert.equal(changedCompleted.completedData.title,title);
   server.failAuth=1;await page.locator('#f-name').fill('Saját Fiók');await page.locator('#f-email').fill(server.user.email);await page.locator('#f-password').fill('BrowserOnboarding2026!');await interact(viewport,page.locator('#hosted-auth-form button[type="submit"]'));
   await page.waitForFunction(()=>document.querySelector('#auth-error')?.textContent.includes('regisztráció most'));const pending=await draft(page);assert.equal(pending.expectedEmail,server.user.email);assert.ok(pending.creationRequestId);
@@ -127,7 +127,7 @@ async function verifyWizardAuth(browser,viewport){
   await page.goto(origin+'/#settings');await page.locator('#profile-form').waitFor();await interact(viewport,page.locator('[data-action="disconnect"]').first());await assertFreshLanding(page);
   await page.reload({waitUntil:'domcontentloaded'});await assertFreshLanding(page);assert.equal(await page.locator('#landing-recent-search').count(),0);assert.equal(await rawDraft(page),null,'Leaving the workspace and page lifecycle cannot resurrect a saved draft');
   assert.ok(server.lookupRequests.length>0&&server.lookupRequests.every(request=>!request.authorization),'Anonymous picker calls use the normal canonical API without a session');assert.deepEqual(server.unhandled,[]);assert.deepEqual(errors,[]);
-  console.log(`Onboarding ${viewport.name}: canonical picker, five steps, range validation, editable title, cross-tab/reload persistence, auth failure/account guard, lost-response resume and discovery passed.`);
+  console.log(`Onboarding ${viewport.name}: canonical picker, six steps, range validation, editable title, cross-tab/reload persistence, auth failure/account guard, lost-response resume and discovery passed.`);
  }catch(error){await screenshot(page,`onboarding-wizard-${viewport.name}-failure.png`);throw error;}finally{await context.close();}
 }
 
@@ -136,12 +136,12 @@ async function verifyTeaserSeeds(browser,viewport){
  try{
   await page.goto(origin+'/',{waitUntil:'domcontentloaded'});await page.locator('.landing-property-card').waitFor();
   await interact(viewport,page.locator('.landing-property-card [data-action="onboarding-start"]'));await progress(page,0);assert.match(await page.locator('#location-chips').innerText(),/Vénkert/);assert.notEqual(await page.locator('#f-title').inputValue(),'A másik ember ingatlanhirdetése');
-  await next(page,viewport,1);
+  await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await progress(page,2);
   for(const [name,value] of Object.entries({minPrice:'',maxPrice:'55',minArea:'50',maxArea:'',minRooms:'2.5',maxRooms:''}))assert.equal(await page.locator(`#f-${name}`).inputValue(),value,`Property teaser ${name}`);
   await assertNoSourcePrivacy(page);await interact(viewport,page.locator('[data-action="onboarding-abandon"]'));await page.locator('.landing-search-card').first().waitFor();
   await interact(viewport,page.locator('.landing-search-card [data-action="onboarding-start"]').first());await progress(page,0);assert.match(await page.locator('#location-chips').innerText(),/Debrecen/);assert.equal(await page.locator('#f-street').inputValue(),'');assert.equal(await page.locator('#f-houseNumber').inputValue(),'');
   await interact(viewport,page.locator('#editor-next'));await progress(page,0);assert.equal(await page.locator('#f-street').evaluate(element=>element.checkValidity()),false,'A teaser never supplies another property address');
-  await page.locator('#f-street').fill('OTTHONRA TEST');await page.locator('#f-houseNumber').fill('1');await next(page,viewport,1);
+  await page.locator('#f-street').fill('OTTHONRA TEST');await page.locator('#f-houseNumber').fill('1');await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await progress(page,2);
   for(const [name,value] of Object.entries({price:'50',area:'60',wholeRooms:'2',halfRooms:'1'}))assert.equal(await page.locator(`#f-${name}`).inputValue(),value,`Exact search teaser ${name}`);
   await assertNoSourcePrivacy(page);await interact(viewport,page.locator('[data-action="onboarding-abandon"]'));await page.locator('.landing-search-card').first().waitFor();
   await interact(viewport,page.locator('.landing-search-card [data-action="onboarding-start"]').nth(1));await progress(page,0);assert.equal(await page.locator('#location-chips .location-chip').count(),0,'Multiple source towns do not invent the seller location');
@@ -179,34 +179,34 @@ async function verifyDraftOrigins(browser,viewport){
  const {context,server}=await createFixture(browser,viewport),page=await context.newPage(),errors=[];page.setDefaultTimeout(10000);page.on('pageerror',error=>errors.push(error.message));
  try{
   await page.goto(origin+'/',{waitUntil:'domcontentloaded'});await page.locator('.landing-property-card').waitFor();
-  await interact(viewport,page.locator('.landing-property-card [data-action="onboarding-start"]'));await progress(page,0);await next(page,viewport,1);
-  await page.locator('#f-maxPrice').fill('97');await gotoStep(page,viewport,4);await page.locator('#f-title').fill('Saját megőrzött keresésem');await gotoStep(page,viewport,2);
+  await interact(viewport,page.locator('.landing-property-card [data-action="onboarding-start"]'));await progress(page,0);await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await progress(page,2);
+  await page.locator('#f-maxPrice').fill('97');await gotoStep(page,viewport,5);await page.locator('#f-title').fill('Saját megőrzött keresésem');await gotoStep(page,viewport,3);
   const original=await draft(page);assert.equal(original.origin.key,propertySource);
   await showLanding(page);await page.locator('#landing-recent-search').waitFor();assert.match(await page.locator('#landing-recent-search').innerText(),/Legutóbbi keresésed/);
   assert.match(await page.locator('#landing-recent-search').innerText(),/Saját megőrzött keresésem/);
   const recentGeometry=await page.evaluate(()=>({form:document.getElementById('landing-search-form').getBoundingClientRect().bottom,recent:document.getElementById('landing-recent-search').getBoundingClientRect().top}));
   assert.ok(recentGeometry.recent>=recentGeometry.form-1,'The recent search is directly below the landing search');
-  await interact(viewport,page.locator('#landing-recent-search-resume'));await progress(page,2);assert.equal((await draft(page)).id,original.id);assert.equal(await page.locator('#f-maxPrice').inputValue(),'97');
+  await interact(viewport,page.locator('#landing-recent-search-resume'));await progress(page,3);assert.equal((await draft(page)).id,original.id);assert.equal(await page.locator('#f-maxPrice').inputValue(),'97');
   await showLanding(page);
   // A different entity occupies the old first slot; the original moves and changes price.
   const same=server.landing.properties[0],other={...structuredClone(same),sourceKey:publicSourceKey('property','d'),key:'property-1'};
   same.key='property-2';same.price=80000000;same.prefill.price=80000000;server.landing.properties=[other,same];
   await page.reload({waitUntil:'domcontentloaded'});await page.locator('.landing-property-card').first().waitFor();
-  await interact(viewport,page.locator(`.landing-property-card [data-source="${propertySource}"]`));await progress(page,2);await assertNoReplacementPrompt(page);
+  await interact(viewport,page.locator(`.landing-property-card [data-source="${propertySource}"]`));await progress(page,3);await assertNoReplacementPrompt(page);
   assert.equal((await draft(page)).id,original.id,'Stable entity identity, not card position or changed price, resumes the draft');assert.equal(await page.locator('#f-maxPrice').inputValue(),'97');assert.equal(await page.locator('#f-title').inputValue(),'Saját megőrzött keresésem');
   await showLanding(page);await interact(viewport,page.locator(`.landing-property-card [data-source="${other.sourceKey}"]`));await progress(page,0);await assertNoReplacementPrompt(page);
   const replacement=await draft(page);assert.notEqual(replacement.id,original.id,'A different, otherwise identical listing starts a new draft');assert.equal(replacement.origin.key,other.sourceKey);assert.equal(await page.locator('#f-maxPrice').inputValue(),'55');
   await showLanding(page);await interact(viewport,page.locator(`.landing-search-card [data-source="${searchSource}"]`));await progress(page,0);await assertNoReplacementPrompt(page);
   const seller=await draft(page);assert.equal(seller.kind,'property');assert.notEqual(seller.id,replacement.id);assert.equal(seller.origin.key,searchSource);
-  await page.locator('#f-street').fill('OTTHONRA TEST');await page.locator('#f-houseNumber').fill('1');await next(page,viewport,1);await page.locator('#f-price').fill('123');await next(page,viewport,2);
+  await page.locator('#f-street').fill('OTTHONRA TEST');await page.locator('#f-houseNumber').fill('1');await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await progress(page,2);await page.locator('#f-price').fill('123');await next(page,viewport,3);
   await showLanding(page);assert.equal(await page.locator('#landing-recent-search').count(),0,'An unfinished seller property is not presented as a recent search');
   server.landing.searches.reverse();server.landing.searches.forEach((item,index)=>item.key=`search-${index+1}`);
-  await page.reload({waitUntil:'domcontentloaded'});await page.locator('.landing-search-card').first().waitFor();await interact(viewport,page.locator(`.landing-search-card [data-source="${searchSource}"]`));await progress(page,2);
+  await page.reload({waitUntil:'domcontentloaded'});await page.locator('.landing-search-card').first().waitFor();await interact(viewport,page.locator(`.landing-search-card [data-source="${searchSource}"]`));await progress(page,3);
   assert.equal((await draft(page)).id,seller.id);assert.equal(await page.locator('#f-price').inputValue(),'123','A repeated search teaser preserves the owner-entered property fields');
   await showLanding(page);await pickLocation(page,viewport,'landing-location','Debrecen',city.id);await pickLocation(page,viewport,'landing-location','Szeged',otherCity.id);await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,0);await assertNoReplacementPrompt(page);
-  const locationsDraft=await draft(page);assert.notEqual(locationsDraft.id,seller.id);assert.equal(await page.locator('#f-type').inputValue(),'');await page.locator('#f-type').selectOption('Lakás');
-  await pickLocation(page,viewport,'location','Vénkert',quarter.id);await removeSelectedLocation(page,otherCity.id,locator=>interact(viewport,locator));await next(page,viewport,1);await page.locator('#f-maxPrice').fill('111');await page.locator('#f-minArea').fill('50');await next(page,viewport,2);
-  await showLanding(page);await pickLocation(page,viewport,'landing-location','Vénkert',quarter.id);await pickLocation(page,viewport,'landing-location','Debrecen',city.id);await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,2);
+  const locationsDraft=await draft(page);assert.notEqual(locationsDraft.id,seller.id);assert.equal(await page.locator('#f-type').inputValue(),'');
+  await pickLocation(page,viewport,'location','Vénkert',quarter.id);await removeSelectedLocation(page,otherCity.id,locator=>interact(viewport,locator));await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await progress(page,2);await page.locator('#f-maxPrice').fill('111');await page.locator('#f-minArea').fill('50');await next(page,viewport,3);
+  await showLanding(page);await pickLocation(page,viewport,'landing-location','Vénkert',quarter.id);await pickLocation(page,viewport,'landing-location','Debrecen',city.id);await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,3);
   assert.equal((await draft(page)).id,locationsDraft.id,'Exact current locations resume even when reordered or edited since the original seed');assert.equal(await page.locator('#f-maxPrice').inputValue(),'111');
   await showLanding(page);await pickLocation(page,viewport,'landing-location','Debrecen',city.id);await interact(viewport,page.locator('#landing-search-form button[type="submit"]'));await progress(page,0);await assertNoReplacementPrompt(page);
   const changed=await draft(page);assert.notEqual(changed.id,locationsDraft.id);assert.deepEqual(changed.data.locationIds,[city.id]);assert.equal(await page.locator('#f-type').inputValue(),'');

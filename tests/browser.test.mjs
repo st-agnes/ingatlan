@@ -3,7 +3,7 @@
  */
 import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
-import {editorField,editorSave} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,choosePropertyType} from './editor-browser-helpers.mjs';
 import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -33,7 +33,6 @@ async function openSearch(page, interact) {
   await page.locator('#entity-form').waitFor();
   // Wait for the dialog's automatic focus before typing into another field.
   await page.waitForFunction(() => document.activeElement?.closest('[data-editor-step]')?.dataset.editorStep === '0');
-  await page.locator('#f-type').selectOption('Lakás');
 }
 
 async function choose(page, interact, id, query) {
@@ -117,6 +116,7 @@ async function verifyViewport(browser, viewport) {
     await input.press('Enter');
     assert.equal(await list.isHidden(), true);
     assert.equal(await page.locator('#location-chips .location-chip').count(), 2);
+    await choosePropertyType(page, 'Lakás', interact);
     const title = `Böngészős próba – ${viewport.name}`;
     await (await editorField(page, '#f-maxPrice')).fill('90');
     await (await editorField(page, '#f-minArea')).fill('40');
@@ -140,6 +140,7 @@ async function verifyViewport(browser, viewport) {
     // Choosing "later" must retain the new search without replacing the active one.
     await openSearch(page, interact);
     await choose(page, interact, 'city:Debrecen', 'Debrecen');
+    await choosePropertyType(page, 'Lakás', interact);
     const laterTitle = `Később folytatom – ${viewport.name}`;
     await (await editorField(page, '#f-maxPrice')).fill('90');
     await (await editorField(page, '#f-minArea')).fill('40');
