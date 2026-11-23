@@ -3,7 +3,9 @@ import {CONDITION_OPTIONS, BUILDING_OPTIONS, CONSTRUCTION_AGE_OPTIONS, VIEW_OPTI
 
 export const DRAFT_STORAGE_KEY = 'otthonra.onboarding.v1';
 export const DRAFT_TTL_MS = 7 * 86400000;
+export const DRAFT_EDITOR_LAYOUT_VERSION = 2;
 const VERSION = 1;
+const LAST_EDITOR_STEP = 5;
 const MAX_BYTES = 100000;
 const uuidPattern = /^[\da-f]{8}-(?:[\da-f]{4}-){3}[\da-f]{12}$/i;
 const validUuid = value => typeof value === 'string' && uuidPattern.test(value) && !/^0{8}-(?:0{4}-){3}0{12}$/.test(value);
@@ -98,13 +100,22 @@ export function sanitizeDraftData(value = {}, kind = 'search') {
   return result;
 }
 function editorState(value = {}) {
-  return {query:text(value?.query,120),streetQuery:text(value?.streetQuery,180),titleGenerated:value?.titleGenerated===true,completedSteps:[...new Set((Array.isArray(value?.completedSteps)?value.completedSteps:[]).filter(step=>Number.isInteger(step)&&step>=0&&step<5))].sort(),locations:safeLocations(value?.locations)};
+  return {layoutVersion:DRAFT_EDITOR_LAYOUT_VERSION,query:text(value?.query,120),streetQuery:text(value?.streetQuery,180),titleGenerated:value?.titleGenerated===true,completedSteps:[...new Set((Array.isArray(value?.completedSteps)?value.completedSteps:[]).filter(step=>Number.isInteger(step)&&step>=0&&step<=LAST_EDITOR_STEP))].sort(),locations:safeLocations(value?.locations)};
 }
 function normalizedDraft(value) {
   if (!value || typeof value !== 'object' || value.version !== VERSION || !validUuid(value.id) || !kinds.includes(value.kind) || !phases.includes(value.phase)) return null;
+  const layoutVersion=value.editor?.layoutVersion;
+  if (layoutVersion!=null && layoutVersion!==1 && layoutVersion!==DRAFT_EDITOR_LAYOUT_VERSION) return null;
   const createdAt=Date.parse(value.createdAt),updatedAt=Date.parse(value.updatedAt),expiresAt=Date.parse(value.expiresAt);
   if (![createdAt,updatedAt,expiresAt].every(Number.isFinite) || createdAt>updatedAt || expiresAt<=updatedAt || expiresAt>updatedAt+DRAFT_TTL_MS) return null;
-  const result={version:VERSION,id:value.id.toLowerCase(),kind:value.kind,data:sanitizeDraftData(value.data,value.kind),step:Number.isInteger(value.step)?Math.min(4,Math.max(0,value.step)):0,phase:value.phase,editor:editorState(value.editor),createdAt:new Date(createdAt).toISOString(),updatedAt:new Date(updatedAt).toISOString(),expiresAt:new Date(expiresAt).toISOString()};
+  // The old first topic combined location and property type. Split only its
+  // navigation metadata; completed inputs and pending creation receipts stay put.
+  const legacy=layoutVersion!==DRAFT_EDITOR_LAYOUT_VERSION;
+  const storedStep=Number.isInteger(value.step)?Math.min(legacy?4:LAST_EDITOR_STEP,Math.max(0,value.step)):0;
+  const step=legacy&&storedStep>0?storedStep+1:storedStep;
+  const editor=legacy?{...value.editor,completedSteps:(Array.isArray(value.editor?.completedSteps)?value.editor.completedSteps:[])
+    .filter(index=>Number.isInteger(index)&&index>=0&&index<=4).flatMap(index=>index===0?[0,1]:[index+1])}:value.editor;
+  const result={version:VERSION,id:value.id.toLowerCase(),kind:value.kind,data:sanitizeDraftData(value.data,value.kind),step,phase:value.phase,editor:editorState(editor),createdAt:new Date(createdAt).toISOString(),updatedAt:new Date(updatedAt).toISOString(),expiresAt:new Date(expiresAt).toISOString()};
   const origin=normalizeDraftOrigin(value.origin,value.kind);if (origin) result.origin=origin;
   if (typeof value.expectedEmail === 'string' && email(value.expectedEmail)) result.expectedEmail=email(value.expectedEmail);
   if (typeof value.ownerId === 'string' && value.ownerId.trim()) result.ownerId=value.ownerId.slice(0,100);
@@ -131,7 +142,7 @@ export function updateDraft(draft,patch={}, {now}={}) {
   if (patch.phase === 'editing') { delete result.completedData;delete result.savedEntityId; }
   if (patch.data) result.data=sanitizeDraftData({...current.data,...patch.data},current.kind);
   if (patch.editor) result.editor=editorState({...current.editor,...patch.editor});
-  if (Number.isInteger(patch.step)) result.step=Math.min(4,Math.max(0,patch.step));
+  if (Number.isInteger(patch.step)) result.step=Math.min(LAST_EDITOR_STEP,Math.max(0,patch.step));
   if (patch.phase) result.phase=patch.phase;
   return requiredDraft(result);
 }

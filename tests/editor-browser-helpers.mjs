@@ -16,6 +16,19 @@ export async function editorStep(page, index, interact) {
   assert.equal(await target.getAttribute('aria-current'), 'step');
 }
 
+/** Select the illustrated card through the same pointer/keyboard click users use. */
+export async function choosePropertyType(page, value, interact) {
+  await editorStep(page, 1, interact);
+  const card = page.locator(`[data-property-type="${value}"]`);
+  await press(page, card, interact);
+  await page.waitForFunction(expected => {
+    const step = document.getElementById('editor-step-2');
+    return step && !step.hidden && document.getElementById('f-type')?.value === expected;
+  }, value);
+  assert.equal(await card.getAttribute('aria-pressed'), 'true');
+  assert.equal(await page.locator('#editor-step-button-2').getAttribute('aria-current'), 'step');
+}
+
 export async function editorField(page, selector, interact) {
   const locator = page.locator(selector);
   const step = await locator.first().evaluate(element => {
@@ -27,7 +40,7 @@ export async function editorField(page, selector, interact) {
 }
 
 export async function editorSave(page, interact) {
-  await editorStep(page, 4, interact);
+  await editorStep(page, 5, interact);
   await press(page, page.locator('#entity-form button[type="submit"]'), interact);
 }
 

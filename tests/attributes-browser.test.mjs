@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorSave,editorStep} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,editorStep,choosePropertyType} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -15,7 +15,7 @@ const viewports=[{name:'desktop',width:1280,height:900,touch:false},{name:'table
 let visit=0;
 const state=page=>page.evaluate(async()=> (await import('/model.js')).model.getState());
 async function location(page,interact){await (await editorField(page,'#location-input')).fill('Debrecen');await interact(page.locator('[data-location-id="city:Debrecen"]'));}
-async function openNew(page,interact,kind){await page.goto(`${origin}/?attributes-visit=${++visit}#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.closest('[data-editor-step]')?.dataset.editorStep==='0');await page.locator('#f-type').selectOption('Lakás');}
+async function openNew(page,interact,kind){await page.goto(`${origin}/?attributes-visit=${++visit}#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));await page.waitForFunction(()=>document.activeElement?.closest('[data-editor-step]')?.dataset.editorStep==='0');}
 async function edit(page,interact,kind,id){await page.goto(`${origin}/?attributes-visit=${++visit}#${kind==='search'?'searches':'properties'}`,{waitUntil:'domcontentloaded'});await interact(page.locator(`[data-action="edit"][data-id="${id}"]`));await page.waitForFunction(()=>document.activeElement?.closest('[data-editor-step]')?.dataset.editorStep==='0');}
 async function save(page,interact,createdSearch=false){await editorSave(page,interact);if(createdSearch){await page.getByRole('heading',{name:'Elkészült a keresési igényed.',exact:true}).waitFor();await interact(page.locator('.search-created-actions [data-action="close"]'));}await page.locator('#entity-form').waitFor({state:'detached'});}
 
@@ -28,7 +28,7 @@ async function verify(browser,viewport){
  const interact=locator=>viewport.touch?locator.tap():locator.click();
  try{
   await openNew(page,interact,'search');await location(page,interact);
-  const searchTitle=`Opcionális keresési szempontok – ${viewport.name}`;
+  const searchTitle=`Opcionális keresési szempontok – ${viewport.name}`;await choosePropertyType(page,'Lakás',interact);
   await (await editorField(page,'#f-maxPrice')).fill('100');await (await editorField(page,'#f-minArea')).fill('40');await (await editorField(page,'#f-minRooms')).fill('1');
   for(const [name,values] of Object.entries({conditions:['Jó','Új/felújított'],buildings:['Tégla','Panel'],constructionAges:['10 évnél fiatalabb','10–30 év közötti'],views:['Kertre néző','Panorámás'],floors:['-1','0','11']})){
    for(const value of values)await (await editorField(page,`input[name="${name}"][value="${value}"]`)).check();
@@ -49,7 +49,7 @@ async function verify(browser,viewport){
   for(const name of ['conditions','buildings','constructionAges','views','floors'])assert.deepEqual(saved[name],[]);
   assert.equal(saved.ceilingHeight,'');
   await openNew(page,interact,'property');await location(page,interact);await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('12/A');
-  const propertyTitle=`Opcionális ingatlanadatok – ${viewport.name}`;
+  const propertyTitle=`Opcionális ingatlanadatok – ${viewport.name}`;await choosePropertyType(page,'Lakás',interact);
   await (await editorField(page,'#f-price')).fill('85');await (await editorField(page,'#f-area')).fill('65');await (await editorField(page,'#f-wholeRooms')).fill('3');await (await editorField(page,'#f-halfRooms')).fill('0');
   for(const name of ['condition','building','constructionAge','view','ceilingHeight','floor','insulated','airConditioning','solarPanels'])assert.equal(await page.locator(`#f-${name}`).inputValue(),'');
   await (await editorField(page,'#f-title')).fill(propertyTitle);await save(page,interact);

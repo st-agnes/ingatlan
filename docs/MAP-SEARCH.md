@@ -1,6 +1,6 @@
 # Térképes helyszínválasztás
 
-A kezdőoldali kereső és a keresési igények ötlépéses űrlapja OpenFreeMap-alaptérképet használ a helyben tárolt MapLibre megjelenítővel. Mobilon a térkép a szöveges választó alatt, tablettől a választó mellett jelenik meg. A kereshető települések, budapesti kerületek és városrészek neveire kattintva vagy koppintva ugyanazokat a kanonikus helyszínazonosítókat választjuk ki, mint a szöveges keresővel.
+A kezdőoldali kereső és a keresési igények hatlépéses űrlapja OpenFreeMap-alaptérképet használ a helyben tárolt MapLibre megjelenítővel. Mobilon a térkép a szöveges választó alatt, tablettől a választó mellett jelenik meg. A kereshető települések, budapesti kerületek és városrészek neveire kattintva vagy koppintva ugyanazokat a kanonikus helyszínazonosítókat választjuk ki, mint a szöveges keresővel.
 
 Alapállapotban helynevek és az alaptérkép látszanak. Csak a **kiválasztott** helyek körvonala jelenik meg, kitöltés nélkül. A kiválasztott név kiemelést kap. Újabb kattintás a névre kiveszi a helyet a keresésből, és eltünteti a körvonalát. Az üres területre kattintás nem jelöl ki egy esetlegesen ott fekvő, átfedő poligont.
 

@@ -3,7 +3,7 @@
  */
 import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
-import {editorField,editorSave} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,choosePropertyType} from './editor-browser-helpers.mjs';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -102,9 +102,9 @@ async function verifyViewport(browser, viewport) {
     await interact(page.locator('.choose-type [data-action="new"][data-kind="search"]'));
     await page.locator('#entity-form').waitFor();
     await page.waitForFunction(() => document.activeElement?.closest('[data-editor-step]')?.dataset.editorStep === '0');
-    await page.locator('#f-type').selectOption('Lakás');
     await chooseLocation(page, interact, 'Debrecen', 'city:Debrecen');
     await chooseLocation(page, interact, 'Budapest V. kerület', 'district:Budapest:5');
+    await choosePropertyType(page, 'Lakás', interact);
     await (await editorField(page, '#f-maxPrice')).fill('90');
     await (await editorField(page, '#f-minArea')).fill('40');
     await (await editorField(page, '#f-minRooms')).fill('1');
