@@ -110,7 +110,7 @@ async function setup(options={}){
  const apiModel=Object.assign({...demoModel},{mode:'api'},options.apiOverrides||{});
  if(options.apiOverrides?.feed&&!options.apiOverrides?.recommendations)apiModel.recommendations=async request=>{const items=await apiModel.feed(request);return {items,stage:items.length?'exact':'empty'};};
  let selected=options.hosted?(options.authenticated?apiModel:null):demoModel;
- const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},windowListeners=new Map(),regionStorage=new Map(Object.entries(options.regionStorage||{})),maps=[];
+ const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},windowListeners=new Map(),regionStorage=options.regionStorage instanceof Map?options.regionStorage:new Map(Object.entries(options.regionStorage||{})),maps=[];
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
   document,console,Intl,Date:options.Date||Date,Promise,URL,URLSearchParams,AbortController,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
@@ -130,7 +130,7 @@ async function setup(options={}){
   FormData:class {constructor(form){this.values=form.values===undefined?mountedFormValues(document,form):Array.isArray(form.values)?form.values:Object.entries(form.values||{});}get(k){return this.values.find(([key])=>key===k)?.[1]}has(k){return this.values.some(([key])=>key===k)}[Symbol.iterator](){return this.values[Symbol.iterator]()}}
  });
  const body=source.replace(/^import[^\n]+\n/gm,'').replace("import('./location-map.js')",options.mockMaps?'Promise.resolve({createLocationMap: __createLocationMap})':"import('./location-map.js')");
- options.onDocument?.(document);
+ options.onDocument?.(document,windowEvents);
  await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,startOnboarding,openEditor,openDetails,openModal,closeModal,openActivation,matchingTags,openFeedbackPackages,openFeedbackPurchase,openFeedbackPrompt,propertyInsightsPage,getFeedbackPrompt:()=>feedbackPrompt,getModelState:()=>state};})()`,ctx);
  const click=async(dataset)=>{const target={dataset,closest:()=>target};await document.handlers.click({target,preventDefault(){}})};
  return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents,timers,maps,runNextTimer:()=>timers.shift()?.callback(),runTimers:()=>{for(const timer of timers.splice(0))timer.callback();}};
@@ -2019,5 +2019,47 @@ test('garden controls apply only to flats while air conditioning remains availab
   for(const name of ['privateGarden','sharedGarden'])assert.equal(t.document.getElementById('f-'+name).disabled,!applicable);
   if(kind==='search')assert.equal(t.document.getElementById('f-airConditioning').disabled,false);
   if(type==='Ház'){await advanceEditor(t,5);submitEditor(t);await settle();const saved=t.model.getState()[kind==='property'?'properties':'searches'].find(item=>item.id===(kind==='property'?'own-p1':'own-s1'));for(const name of ['privateGarden','sharedGarden'])assert.equal(saved[name],kind==='property'?null:false,'Hidden flat-specific intent cannot leak into a saved house');}
+ }
+});
+
+
+test('a late same-session save receipt leaves the saving screen after another tab has cleared their shared draft',async()=>{
+ for(const deliverStorageEvent of [false,true]){
+  const data={title:'Két fülből ugyanazzal a nyugtával mentett keresés',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:90,minArea:40,minRooms:null};
+  const account=createModel({getItem:()=>null,setItem:()=>{}}).getState().user;
+  const draft=onboardingHelpers.prepareDraftSave(onboardingHelpers.prepareDraftForAuth(onboardingHelpers.createDraft('search',data),account.email),account);
+  const sharedStorage=new Map([[onboardingHelpers.DRAFT_STORAGE_KEY,JSON.stringify(draft)],['otthonra.api','same-auth-session']]),requests=[];
+  let releaseFirst,releaseSecond,secondDocument,secondWindowEvents;
+  const secondPending=setup({hosted:true,authenticated:true,hash:'#register',regionStorage:sharedStorage,onDocument:(document,events)=>{secondDocument=document;secondWindowEvents=events;},apiOverrides:{saveEntity:async(kind,payload,id,options)=>{requests.push({tab:'second',receipt:options.creationRequestId});return await new Promise(resolve=>{releaseSecond=()=>resolve({id:'shared-receipt-search',...payload});});}}});
+  await settle();assert.equal(typeof releaseSecond,'function','The second tab has its keyed POST in flight before the first tab finishes');
+  const firstPending=setup({hosted:true,authenticated:true,hash:'#register',regionStorage:sharedStorage,apiOverrides:{saveEntity:async(kind,payload,id,options)=>{requests.push({tab:'first',receipt:options.creationRequestId});return await new Promise(resolve=>{releaseFirst=()=>resolve({id:'shared-receipt-search',...payload});});}}});
+  await settle();assert.equal(typeof releaseFirst,'function');assert.deepEqual(requests.map(request=>request.receipt),[draft.creationRequestId,draft.creationRequestId]);
+  releaseFirst();const first=await firstPending;await settle();assert.equal(first.ctx.location.hash,'#searches');assert.equal(sharedStorage.has(onboardingHelpers.DRAFT_STORAGE_KEY),false,'The first successful tab clears the shared completed draft');
+  if(deliverStorageEvent){await secondWindowEvents.storage({type:'storage',key:onboardingHelpers.DRAFT_STORAGE_KEY,newValue:null});await settle();}
+  assert.equal(secondDocument.getElementById('entity-form'),null,'A cleared in-flight draft must never be recreated as a fresh editor');
+  releaseSecond();const second=await secondPending;await settle();
+  assert.equal(second.ctx.location.hash,'#searches',`${deliverStorageEvent?'Delivered':'Undelivered'} storage event: a valid late receipt returns to the owned workspace`);
+  assert.match(second.document.getElementById('app').innerHTML,/class="sidebar"/);assert.doesNotMatch(second.document.getElementById('app').innerHTML,/onboarding-save-panel|id="entity-form"|id="hosted-auth-form"/);
+  assert.equal(sharedStorage.has(onboardingHelpers.DRAFT_STORAGE_KEY),false);assert.equal(sharedStorage.get('otthonra.api'),'same-auth-session');assert.ok(second.getSelectedModel());
+  assert.deepEqual(requests.map(request=>request.receipt),[draft.creationRequestId,draft.creationRequestId],'Each tab uses its original idempotency receipt and completion triggers no extra POST');
+ }
+});
+
+
+test('a same-session account lookup completing after another tab saved the draft opens the workspace without a new POST',async()=>{
+ for(const deliverStorageEvent of [false,true]){
+  const data={title:'Másik fülön már elmentett keresés',type:'Lakás',locationIds:['city:Debrecen'],maxPrice:90,minArea:40,minRooms:null};
+  const baseline=createModel({getItem:()=>null,setItem:()=>{}}).getState(),draft=onboardingHelpers.prepareDraftSave(onboardingHelpers.prepareDraftForAuth(onboardingHelpers.createDraft('search',data),baseline.user.email),baseline.user);
+  const sharedStorage=new Map([[onboardingHelpers.DRAFT_STORAGE_KEY,JSON.stringify(draft)],['otthonra.api','same-auth-session']]),requests=[];
+  let releaseLookup,reads=0,secondDocument,secondWindowEvents;
+  const secondPending=setup({hosted:true,authenticated:true,hash:'#register',regionStorage:sharedStorage,onDocument:(document,events)=>{secondDocument=document;secondWindowEvents=events;},apiOverrides:{getState:async()=>++reads===1?await new Promise(resolve=>{releaseLookup=()=>resolve(baseline);}):baseline,saveEntity:async()=>{requests.push('unexpected-second-post');throw new Error('The cleared draft must never be posted again');}}});
+  await settle();assert.equal(typeof releaseLookup,'function');
+  const first=await setup({hosted:true,authenticated:true,hash:'#register',regionStorage:sharedStorage,apiOverrides:{saveEntity:async(kind,payload,id,options)=>{requests.push(options.creationRequestId);return{id:'already-saved-in-first-tab',...payload};}}});
+  assert.equal(first.ctx.location.hash,'#searches');assert.equal(sharedStorage.has(onboardingHelpers.DRAFT_STORAGE_KEY),false);
+  if(deliverStorageEvent){await secondWindowEvents.storage({type:'storage',key:onboardingHelpers.DRAFT_STORAGE_KEY,newValue:null});await settle();}
+  assert.equal(secondDocument.getElementById('entity-form'),null);
+  releaseLookup();const second=await secondPending;await settle();
+  assert.equal(second.ctx.location.hash,'#searches');assert.match(second.document.getElementById('app').innerHTML,/class="sidebar"/);assert.doesNotMatch(second.document.getElementById('app').innerHTML,/onboarding-save-panel|id="entity-form"|id="hosted-auth-form"/);
+  assert.equal(sharedStorage.has(onboardingHelpers.DRAFT_STORAGE_KEY),false);assert.equal(sharedStorage.get('otthonra.api'),'same-auth-session');assert.deepEqual(requests,[draft.creationRequestId],'Only the first tab posts; the late read cannot resurrect a cleared request');
  }
 });

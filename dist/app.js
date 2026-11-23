@@ -321,7 +321,7 @@ function onboardingAuthNotice(draft){
 }
 function onboardingSavePage(draft,user,error='',allowEdit=false){
  cleanupPublicEditor();closeModal(true);document.title='Piszkozat mentése · Otthonra';
- document.getElementById('app').innerHTML=`<main class="auth-main"><a class="brand" href="#landing" data-action="landing">otthonra.</a><section class="panel settings-panel onboarding-save-panel"><h1>${error?'A piszkozat mentése nem sikerült.':'Elmentjük a piszkozatodat…'}</h1><p class="detail-copy">${esc(draft.data.title)}</p><p>${esc(user?.email||'')}</p>${error?`<p id="onboarding-save-error" class="error-box" role="alert">${esc(error)}</p><p>A megadott adatok megmaradtak. Újra megpróbálhatod a mentést.</p><button class="btn btn-dark" data-action="onboarding-save-retry">Mentés újra</button>${allowEdit?'<button class="btn btn-outline" data-action="onboarding-edit">Adatok szerkesztése</button>':''}`:'<p role="status">Mentés folyamatban…</p>'}</section></main>`;
+ document.getElementById('app').innerHTML=`<main class="auth-main"><a class="brand" href="#landing" data-action="landing">otthonra.</a><section id="onboarding-save-panel" class="panel settings-panel onboarding-save-panel" data-onboarding-draft="${esc(draft.id)}"><h1>${error?'A piszkozat mentése nem sikerült.':'Elmentjük a piszkozatodat…'}</h1><p class="detail-copy">${esc(draft.data.title)}</p><p>${esc(user?.email||'')}</p>${error?`<p id="onboarding-save-error" class="error-box" role="alert">${esc(error)}</p><p>A megadott adatok megmaradtak. Újra megpróbálhatod a mentést.</p><button class="btn btn-dark" data-action="onboarding-save-retry">Mentés újra</button>${allowEdit?'<button class="btn btn-outline" data-action="onboarding-edit">Adatok szerkesztése</button>':''}`:'<p role="status">Mentés folyamatban…</p>'}</section></main>`;
 }
 function onboardingSessionKey(){try{return globalThis.localStorage?.getItem(API_CONFIG_KEY)||'';}catch{return '';}}
 async function completeOnboardingDraft(){
@@ -331,23 +331,34 @@ async function completeOnboardingDraft(){
  const attempt={draftId:draft.id};onboardingSaveAttempt=attempt;
  const currentAttempt=()=>onboardingSaveAttempt===attempt&&readOnboardingDraft()?.id===draft.id;
  const sessionModel=model,sessionKey=onboardingSessionKey();
- const sameSession=()=>currentAttempt()&&model===sessionModel&&onboardingSessionKey()===sessionKey;
+ const sameAuthenticatedSession=()=>model===sessionModel&&onboardingSessionKey()===sessionKey;
+ const sameSession=()=>currentAttempt()&&sameAuthenticatedSession();
+ const route=location.hash,viewVersion=renderVersion,appRoot=document.getElementById('app'),authForm=document.getElementById('hosted-auth-form'),initialPanel=document.getElementById('onboarding-save-panel'),initialNode=appRoot.firstElementChild||appRoot.firstChild,initiallyEmpty=appRoot.innerHTML==='';let savePanel=null;
+ const resumeClearedDraft=async()=>{
+  // A sibling may remove the shared draft after the same keyed save succeeds.
+  // That removal invalidates draft ownership, not this authenticated receipt.
+  if(readOnboardingDraft()||!sameAuthenticatedSession()||location.hash!==route||renderVersion!==viewVersion)return false;
+  const sameView=savePanel?document.getElementById('onboarding-save-panel')===savePanel:authForm?document.getElementById('hosted-auth-form')===authForm:initialPanel?document.getElementById('onboarding-save-panel')===initialPanel:initialNode?(appRoot.firstElementChild||appRoot.firstChild)===initialNode:initiallyEmpty&&appRoot.innerHTML==='';
+  if(!sameView)return false;
+  onboardingSaveError='';onboardingValidationError=false;page=draft.kind==='search'?'searches':'properties';location.hash=page;await render();return true;
+ };
  const preserveChangedDraft=()=>{if(!currentAttempt())return true;const current=readOnboardingDraft();onboardingSaveError='A piszkozat időközben másik lapon megváltozott. A legutóbb mentett adatokat megtartottuk.';if(current?.phase==='editing'){location.hash='onboarding';onboardingPage();}else{authMessage=onboardingSaveError;authPage();}return true;};
  const resumeChangedSession=()=>{if(!currentAttempt())return;try{model=getModel();}catch{model=null;}authMode='login';authMessage='A munkamenet időközben megváltozott. A piszkozat megmaradt; jelentkezz be a mentéshez használt e-mail-címmel.';authPage();};
  try{
   const next=await sessionModel.getState();
-  if(!sameSession()){resumeChangedSession();return true;}
-  const latest=readOnboardingDraft();if(!latest||JSON.stringify(latest)!==JSON.stringify(draft))return preserveChangedDraft();
+  if(!sameSession()){if(!await resumeClearedDraft())resumeChangedSession();return true;}
+  const latest=readOnboardingDraft();if(!latest){await resumeClearedDraft();return true;}if(JSON.stringify(latest)!==JSON.stringify(draft))return preserveChangedDraft();
   let bound;
   try{bound=bindDraft(latest,next.user);}catch{bound=null;}
   if(!bound){onboardingSaveError='A piszkozat másik fiókhoz tartozik. Jelentkezz be azzal az e-mail-címmel, amellyel a mentést elkezdted.';authMode='login';authMessage=onboardingSaveError;authPage();return true;}
   const saving=saveDraft(prepareDraftSave(bound,next.user));
   onboardingSavePage(saving,next.user);
+  savePanel=document.getElementById('onboarding-save-panel');
   let saved;
   try{saved=await sessionModel.saveEntity(saving.kind,saving.completedData,undefined,{creationRequestId:saving.creationRequestId});}
   catch(error){if(!sameSession()){resumeChangedSession();return true;}if(error.status===401){onboardingSaveError='';await expireSession(error.message);return true;}const current=readOnboardingDraft();if(!current||current.id!==saving.id||current.creationRequestId!==saving.creationRequestId||current.phase!=='saving'||JSON.stringify(current.completedData)!==JSON.stringify(saving.completedData))return preserveChangedDraft();onboardingSaveError=error.message||'Próbáld újra.';onboardingValidationError=error.status===400;onboardingSavePage(saving,next.user,onboardingSaveError,onboardingValidationError);return true;}
-  if(!sameSession()){resumeChangedSession();return true;}
-  const current=readOnboardingDraft();if(!current||current.id!==saving.id||current.creationRequestId!==saving.creationRequestId||current.ownerId!==next.user.id||current.phase!=='saving'||JSON.stringify(current.completedData)!==JSON.stringify(saving.completedData))return preserveChangedDraft();
+  if(!sameSession()){if(!await resumeClearedDraft())resumeChangedSession();return true;}
+  const current=readOnboardingDraft();if(!current){await resumeClearedDraft();return true;}if(current.id!==saving.id||current.creationRequestId!==saving.creationRequestId||current.ownerId!==next.user.id||current.phase!=='saving'||JSON.stringify(current.completedData)!==JSON.stringify(saving.completedData))return preserveChangedDraft();
   clearDraft(saving.id);onboardingSaveError='';onboardingValidationError=false;
   pendingOnboardingCreated={kind:saving.kind,entity:saved,ownerId:next.user.id,model:sessionModel,sessionKey};
   page=saving.kind==='search'?'searches':'properties';location.hash=page;

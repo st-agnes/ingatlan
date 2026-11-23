@@ -91,6 +91,27 @@ export async function assertKeyboardNavigation(page) {
   }
 }
 
+// A storage/focus refresh may replace the form between locator resolution and
+// evaluation. Query the current document atomically and retry only that brief gap.
+async function liveEditorNavigation(page) {
+  let proof = null;
+  for (let attempt = 0; attempt < 20; attempt++) {
+    proof = await page.evaluate(() => {
+      const form = document.getElementById('entity-form'), element = document.getElementById('editor-navigation');
+      if (!form?.isConnected || !element?.isConnected || !form.contains(element)) return null;
+      const box = element.getBoundingClientRect();
+      const buttons = [...element.querySelectorAll('button')].filter(button => button.offsetParent !== null && !button.disabled);
+      return {position: getComputedStyle(element).position, left: box.left, right: box.right, top: box.top, bottom: box.bottom,
+        width: (visualViewport?.offsetLeft || 0) + (visualViewport?.width || innerWidth), height: (visualViewport?.offsetTop || 0) + (visualViewport?.height || innerHeight),
+        buttons: buttons.map(button => {const b=button.getBoundingClientRect(),top=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);return {id:button.id,top:b.top,bottom:b.bottom,hit:button===top||button.contains(top)};})};
+    });
+    if (proof && proof.position !== '') return proof;
+    if (attempt < 19) await page.waitForTimeout(50);
+  }
+  assert.ok(proof && proof.position !== '', 'The current mounted editor navigation must be measurable within one second');
+  return proof;
+}
+
 /** Prove that the fixed topic bar and actions remain usable through real scrolling. */
 export async function assertEditorNavigation(page, {scroll = false, lastField = false} = {}) {
   const original = await page.evaluate(() => {
@@ -104,12 +125,7 @@ export async function assertEditorNavigation(page, {scroll = false, lastField = 
       element.scrollTo({top: (element.scrollHeight - element.clientHeight) * fraction, behavior: 'instant'});
       await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     }, fraction);
-    const proof = await page.locator('#editor-navigation').evaluate(element => {
-      const box = element.getBoundingClientRect();
-      const buttons = [...element.querySelectorAll('button')].filter(button => button.offsetParent !== null && !button.disabled);
-      return {position: getComputedStyle(element).position, left: box.left, right: box.right, top: box.top, bottom: box.bottom, width: (visualViewport?.offsetLeft || 0) + (visualViewport?.width || innerWidth), height: (visualViewport?.offsetTop || 0) + (visualViewport?.height || innerHeight),
-        buttons: buttons.map(button => {const b=button.getBoundingClientRect(), top=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);return {id:button.id,top:b.top,bottom:b.bottom,hit:button===top||button.contains(top)};})};
-    });
+    const proof = await liveEditorNavigation(page);
     assert.equal(proof.position, 'fixed');
     assert.ok(proof.left >= -1 && proof.right <= proof.width + 1 && proof.top >= 0 && proof.bottom <= proof.height + 1, 'The bottom topic/action bar must fit inside the visible viewport');
     assert.ok(proof.buttons.length >= 7, 'Every named topic and the current action must remain available');

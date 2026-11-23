@@ -38,7 +38,7 @@ async function verifyProgress(page,kind,index){
  assert.doesNotMatch(await page.locator('.editor-progress').innerText(),/Kitöltve|Aktuális|Hátravan/);
  const geometry=await page.locator('.entity-wizard').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));
  assert.ok(geometry.scroll<=geometry.width+1,'Named progress and fields must fit without horizontal scrolling');
- const tabs=await page.locator('.editor-progress').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth,rows:[...new Set([...element.querySelectorAll('button')].map(button=>Math.round(button.getBoundingClientRect().top)))]}));assert.ok(tabs.scroll<=tabs.width+1,'All six topic tabs must wrap without horizontal scrolling');if(await page.evaluate(()=>innerWidth<=390))assert.ok(tabs.rows.length>=2,'Six mobile topic tabs must wrap onto multiple rows rather than force horizontal scrolling');
+ const tabs=await page.locator('.editor-progress').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth,rows:[...new Set([...element.querySelectorAll('button')].map(button=>Math.round(button.getBoundingClientRect().top)))],dockHeight:document.getElementById('editor-navigation').getBoundingClientRect().height}));assert.ok(tabs.scroll<=tabs.width+1,'All six bottom topic tabs must fit without horizontal scrolling');if(await page.evaluate(()=>innerWidth<=390)){assert.equal(tabs.rows.length,1,'The compact bottom navigator keeps all six mobile topics on one visible row');assert.ok(tabs.dockHeight<=160,'The compact topic/action bar must leave most of the mobile screen for the form');}
 }
 
 async function verifyTypeSelection(page,interact,kind,viewport){
