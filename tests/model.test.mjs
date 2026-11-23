@@ -720,3 +720,33 @@ test('fictional landing source identities survive reordered national and regiona
  }
  assert.ok(repeated>20,'Revisited examples must retain identity when their teaser positions change');
 });
+
+test('new building and garden fields persist across demo reload and clear only when inapplicable',()=>{
+ const storage=store(),m=createModel(storage);
+ const p=m.saveEntity('property',{...exactAddress,title:'Emeleti kerti lakás',locationId:'city:Debrecen',type:'Lakás',price:60,area:60,rooms:3,floor:'2',buildingFloors:'4',privateGarden:false,sharedGarden:true,airConditioning:true});
+ const q=m.saveEntity('search',{title:'Kerti lakás keresése',locationIds:['city:Debrecen'],type:'Lakás',excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true,sharedGarden:false});
+ let again=createModel(storage),state=again.getState();
+ const saved=state.properties.find(x=>x.id===p.id),search=state.searches.find(x=>x.id===q.id);
+ assert.deepEqual([saved.floor,saved.buildingFloors,saved.privateGarden,saved.sharedGarden,saved.airConditioning],[2,4,false,true,true]);
+ assert.deepEqual([search.excludeTopFloor,search.excludeGroundFloorAndBelow,search.airConditioning,search.privateGarden,search.sharedGarden],[true,true,true,true,false]);
+ const before=again.getState();assert.throws(()=>again.saveEntity('property',{...exactAddress,...saved,buildingFloors:1},p.id),/magasabb/);assert.deepEqual(again.getState(),before);
+ const house=again.saveEntity('property',{...exactAddress,...saved,type:'Ház',lotArea:400},p.id);
+ assert.deepEqual([house.floor,house.buildingFloors,house.privateGarden,house.sharedGarden],[null,null,null,null]);
+ const houseSearch=again.saveEntity('search',{...search,type:'Ház'},q.id);
+ assert.deepEqual([houseSearch.excludeTopFloor,houseSearch.excludeGroundFloorAndBelow,houseSearch.airConditioning,houseSearch.privateGarden,houseSearch.sharedGarden],[false,false,true,false,false]);
+});
+
+test('new demo floor and amenity requirements govern exact feeds and retain the existing partial-consent gate',()=>{
+ const storage=store(),m=createModel(storage);
+ const q=m.saveEntity('search',{title:'Emeleti lakás kell',locationIds:['district:Budapest:13'],type:'Lakás',excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true});m.activate('search',q.id);
+ let raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ for(const p of raw.properties){if(p.id==='p1')Object.assign(p,{floor:2,buildingFloors:3,airConditioning:true,privateGarden:true,sharedGarden:false});else if(p.ownerId!==raw.userId)p.archived=true;}
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));let model=createModel(storage);
+ assert.ok(model.feed().some(p=>p.id==='p1'));
+ raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.properties.find(p=>p.id==='p1').buildingFloors=2;storage.setItem(STORAGE_KEY,JSON.stringify(raw));model=createModel(storage);
+ assert.equal(model.feed().some(p=>p.id==='p1'),false);
+ const partial=model.feed({includeApproximate:true}).find(p=>p.id==='p1');assert.ok(partial);assert.equal(partial.isExact,false);assert.ok(partial.score<100);
+ const before=model.getState();assert.throws(()=>model.decide(partial,true));assert.deepEqual(model.getState(),before);
+ model.saveEntity('search',{...q,excludeTopFloor:false,excludeGroundFloorAndBelow:false,airConditioning:false,privateGarden:false},q.id);
+ assert.ok(model.feed().some(p=>p.id==='p1'));
+});

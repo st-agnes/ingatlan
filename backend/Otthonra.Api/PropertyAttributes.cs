@@ -79,14 +79,20 @@ public static class PropertyAttributes
         var conditions = Dto.Strings(search.ConditionsJson).Select(NormalizeCondition).ToArray();
         var buildings = Dto.Strings(search.BuildingsJson).Select(NormalizeBuilding).ToArray();
         var floors = Floors(search.FloorsJson);
+        var type = Rules.Normalize(search.Type);
         return Selected(conditions, NormalizeCondition(property.Condition))
             && Selected(buildings, NormalizeBuilding(property.Building))
             && Selected(Dto.Strings(search.ConstructionAgesJson), property.ConstructionAge)
             && Selected(Dto.Strings(search.ViewsJson), property.View)
             && (string.IsNullOrEmpty(search.CeilingHeight) || search.CeilingHeight == property.CeilingHeight)
             && Selected(Dto.Strings(search.HeatingTypesJson), NormalizeHeating(property.HeatingType))
-            && (Rules.Normalize(search.Type) == "HAZ" || floors.Length == 0 || property.Floor.HasValue
-                && floors.Any(floor => floor == 11 ? property.Floor.Value >= 11 : floor == property.Floor.Value));
+            && (!search.AirConditioning || property.AirConditioning == true)
+            && (type != "LAKAS" || (!search.PrivateGarden || property.PrivateGarden == true)
+                && (!search.SharedGarden || property.SharedGarden == true))
+            && (type == "HAZ" || (floors.Length == 0 || property.Floor.HasValue
+                && floors.Any(floor => floor == 11 ? property.Floor.Value >= 11 : floor == property.Floor.Value))
+                && (!search.ExcludeTopFloor || property.Floor is >= -5 and <= 200 && property.BuildingFloors is >= 0 and <= 200 && property.Floor < property.BuildingFloors)
+                && (!search.ExcludeGroundFloorAndBelow || property.Floor is > 0 and <= 200));
     }
 
     public static void Apply(Property property, PropertyInput input)

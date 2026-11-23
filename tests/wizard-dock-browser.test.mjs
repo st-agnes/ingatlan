@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorStep,editorSave,choosePropertyType} from './editor-browser-helpers.mjs';
+import {editorField,editorStep,editorSave,choosePropertyType,setAttributeChoice,assertEditorNavigation,installEditorViewportMock,assertKeyboardNavigation} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -33,12 +33,12 @@ async function verifyProgress(page,kind,index){
  for(let step=0;step<6;step++)assert.ok((await buttons.nth(step).innerText()).includes(labels[kind][step]),`Step ${step+1} must have its topic name`);
  assert.equal(await page.locator(`#editor-step-button-${index}`).getAttribute('aria-current'),'step');
  assert.equal(await page.locator('.editor-step:visible').count(),1,'Only one topic is displayed at a time');
- assert.equal(await page.locator(`#editor-step-${index}`).isVisible(),true);
+ assert.equal(await page.locator(`#editor-step-${index}`).isVisible(),true);await assertEditorNavigation(page);
  assert.equal(await page.locator('.editor-progress small,[id^="editor-state-"]').count(),0,'Topic names must not have redundant current/completed/upcoming captions');
  assert.doesNotMatch(await page.locator('.editor-progress').innerText(),/Kitöltve|Aktuális|Hátravan/);
  const geometry=await page.locator('.entity-wizard').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));
  assert.ok(geometry.scroll<=geometry.width+1,'Named progress and fields must fit without horizontal scrolling');
- const tabs=await page.locator('.editor-progress').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth,rows:[...new Set([...element.querySelectorAll('button')].map(button=>Math.round(button.getBoundingClientRect().top)))]}));assert.ok(tabs.scroll<=tabs.width+1,'All six topic tabs must wrap without horizontal scrolling');if(await page.evaluate(()=>innerWidth<=390))assert.ok(tabs.rows.length>=2,'Six mobile topic tabs must wrap onto multiple rows rather than force horizontal scrolling');
+ const tabs=await page.locator('.editor-progress').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth,rows:[...new Set([...element.querySelectorAll('button')].map(button=>Math.round(button.getBoundingClientRect().top)))],dockHeight:document.getElementById('editor-navigation').getBoundingClientRect().height}));assert.ok(tabs.scroll<=tabs.width+1,'All six bottom topic tabs must fit without horizontal scrolling');if(await page.evaluate(()=>innerWidth<=390)){assert.equal(tabs.rows.length,1,'The compact bottom navigator keeps all six mobile topics on one visible row');assert.ok(tabs.dockHeight<=160,'The compact topic/action bar must leave most of the mobile screen for the form');}
 }
 
 async function verifyTypeSelection(page,interact,kind,viewport){
@@ -48,22 +48,34 @@ async function verifyTypeSelection(page,interact,kind,viewport){
  assert.deepEqual(await cards.evaluateAll(elements=>elements.map(element=>element.dataset.propertyType)),types);
  assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),0,'A new form must wait for an explicit type choice');
  const geometry=await page.locator('#property-type-options').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));assert.ok(geometry.scroll<=geometry.width+1,'The illustrated choices must fit the viewport');
- if(kind==='property'){await mkdir(screenshots,{recursive:true});await page.locator('.modal').screenshot({path:resolve(screenshots,`visual-type-${viewport.name}.png`)});}
- for(const [index,type]of types.entries()){
-  if(index)await editorStep(page,1,interact);
-  const card=page.locator(`[data-property-type="${type}"]`);assert.ok((await card.innerText()).includes(type));
-  await interact(card);await page.waitForFunction(()=>document.getElementById('entity-form').dataset.editorCurrentStep==='2');
-  assert.equal(await page.locator('#f-type').inputValue(),type);assert.equal(await card.getAttribute('aria-pressed'),'true');assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),1);
+ if(kind==='property'){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`visual-type-${viewport.name}.png`)});}
+ for(const type of types){
+  const card=page.locator(`[data-property-type="${type}"]`);assert.ok((await card.innerText()).includes(type));await interact(card);
+  await verifyProgress(page,kind,1);assert.equal(await page.locator('#f-type').inputValue(),type);assert.equal(await card.getAttribute('aria-pressed'),'true');assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),1);
  }
  const desired=kind==='property'?'Ház':'Lakás';await choosePropertyType(page,desired,interact);
- // Revisiting an already selected card still advances, using both native keys.
+ // Pointer and native keys choose a value; only Next may leave the topic.
  for(const key of ['Enter','Space']){
-  await editorStep(page,1,interact);await verifyProgress(page,kind,1);
-  const card=page.locator(`[data-property-type="${desired}"]`);assert.equal(await card.getAttribute('aria-pressed'),'true');await card.focus();await card.press(key);
-  await page.waitForFunction(()=>document.getElementById('entity-form').dataset.editorCurrentStep==='2');assert.equal(await page.locator('#f-type').inputValue(),desired);
+  await editorStep(page,1,interact);const card=page.locator(`[data-property-type="${desired}"]`);assert.equal(await card.getAttribute('aria-pressed'),'true');await card.focus();await card.press(key);
+  await verifyProgress(page,kind,1);assert.equal(await page.locator('#f-type').inputValue(),desired);await interact(page.locator('#editor-next'));await verifyProgress(page,kind,2);
  }
- await editorStep(page,1,interact);await interact(page.locator(`[data-property-type="${desired}"]`));await page.waitForFunction(()=>document.getElementById('entity-form').dataset.editorCurrentStep==='2');
- console.log(`Visual type ${kind} ${viewport.name}: four illustrated choices, direct pointer selection, unique pressed state, automatic next step and repeat-choice keyboard activation passed.`);
+ await choosePropertyType(page,desired,interact);
+ console.log(`Visual type ${kind} ${viewport.name}: four illustrated choices, direct pointer/keyboard selection, unique pressed state and explicit Next without automatic navigation passed.`);
+}
+
+async function optionalChoices(page,interact,kind){
+ if(kind==='property'){
+  for(const [name,value]of Object.entries({condition:'Jó',view:'Kertre néző',building:'Tégla',ceilingHeight:'3 m alatti'})){
+   await setAttributeChoice(page,name,value,interact);const card=page.locator(`[data-attribute-name="${name}"][data-attribute-value="${value}"]`);assert.ok(await card.locator('svg').count());
+   await interact(card);assert.equal(await page.locator(`#f-${name}`).inputValue(),'','Clicking a selected optional card must clear the field');assert.equal(await card.getAttribute('aria-pressed'),'false');await verifyProgress(page,kind,3);await setAttributeChoice(page,name,value,interact);
+  }
+ }
+ const valueBefore=kind==='property'?await page.locator('#f-building').inputValue():await page.locator('input[name="buildings"][value="Panel"]').isChecked();
+ const info=page.locator(`#building-help-${kind==='property'?'property':'search'}-1`);
+ await interact(info);await page.locator('#building-help-panel').waitFor();assert.equal(await page.locator('#building-help-panel').getAttribute('role'),'dialog');assert.ok((await page.locator('#building-help-content').innerText()).length>15);
+ assert.equal(kind==='property'?await page.locator('#f-building').inputValue():await page.locator('input[name="buildings"][value="Panel"]').isChecked(),valueBefore,'Opening wall information must not select or clear a material');
+ await interact(page.locator('#building-help-close'));await page.locator('#building-help-panel').waitFor({state:'hidden'});
+ await interact(info);await page.locator('#building-help-panel').waitFor();await page.locator('#building-help-close').press('Escape');await page.locator('#building-help-panel').waitFor({state:'hidden'});assert.equal(await page.locator('#entity-form').count(),1,'Escape closes the explanation rather than the editor');
 }
 
 async function createWizard(page,interact,kind,viewport){
@@ -93,20 +105,23 @@ async function createWizard(page,interact,kind,viewport){
  }else{
   await page.locator('#f-minPrice').fill('');await page.locator('#f-maxPrice').fill('105.5');await page.locator('#f-minArea').fill('65');await page.locator('#f-maxArea').fill('');await page.locator('#f-minRooms').fill('2.5');await page.locator('#f-maxRooms').fill('');
  }
+ if(viewport.name==='mobile'&&kind==='property')await assertKeyboardNavigation(page);
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,3);
  if(kind==='property'){
-  await page.locator('#f-condition').selectOption('Jó');await page.locator('#f-building').selectOption('Tégla');await page.locator('#f-view').selectOption('Kertre néző');
+  await setAttributeChoice(page,'condition','Jó',interact);await setAttributeChoice(page,'building','Tégla',interact);await setAttributeChoice(page,'view','Kertre néző',interact);
   assert.equal(await page.locator('#property-floor-field').isVisible(),false);
  }else{
   await page.locator('input[name="conditions"][value="Jó"]').check();await page.locator('input[name="conditions"][value="Új/felújított"]').check();await page.locator('input[name="buildings"][value="Tégla"]').check();
  }
+ await optionalChoices(page,interact,kind);await assertEditorNavigation(page,{scroll:true,lastField:true});
+ if(kind==='property'){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`form-details-${viewport.name}.png`)});}
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,4);
  if(kind==='property'){
   await page.locator('#f-heatingType').selectOption('Hőszivattyú');await page.locator('#f-insulated').selectOption('false');await page.locator('#f-airConditioning').selectOption('true');
   await page.locator('input[name="parkingTypes"][value="Garázs"]').check();await page.locator('input[name="parkingTypes"][value="Udvari beálló"]').check();
   assert.equal(await page.locator('#entity-amenities').isVisible(),false);
  }else{
-  await page.locator('input[name="heatingTypes"][value="Hőszivattyú"]').check();await page.locator('#f-ceilingHeight').selectOption('3 m feletti');await page.locator('input[name="floors"][value="0"]').check();await page.locator('#f-elevator').check();
+  await page.locator('input[name="heatingTypes"][value="Hőszivattyú"]').check();await setAttributeChoice(page,'ceilingHeight','3 m feletti',interact);await (await editorField(page,'input[name="floors"][value="0"]',interact)).check();await page.locator('#f-elevator').check();await editorStep(page,4,interact);
  }
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,5);
  const generatedTitle=await page.locator('#f-title').inputValue();assert.match(generatedTitle,/Debrecen/);assert.match(generatedTitle,kind==='property'?/Ház/:/Lakás/);assert.ok(generatedTitle.length<=70);assert.equal(await page.locator('#f-title').evaluate(element=>element.required),false);await page.locator('#f-title').fill(title);
@@ -276,6 +291,7 @@ async function verifyDock(page,interact,kind,viewport){
 
 async function verify(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
+ if(viewport.name==='mobile')await installEditorViewportMock(context);
  await mockMapTiles(context);
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());await context.route('https://images.unsplash.com/**',route=>route.abort());
  const page=await context.newPage();page.setDefaultTimeout(10000);page.setDefaultNavigationTimeout(20000);const errors=[];page.on('pageerror',error=>errors.push(error.message));const interact=locator=>viewport.touch?locator.tap():locator.click();

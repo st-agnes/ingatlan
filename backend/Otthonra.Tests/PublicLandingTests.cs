@@ -132,9 +132,9 @@ public class PublicLandingTests
             s.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
         Assert.Equal(new[] { "area", "halfRooms", "key", "location", "lotArea", "ownerAccountType", "ownerFirstName", "prefill", "price", "rooms", "sourceKey", "title", "type", "wholeRooms" },
             p.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
-        Assert.Equal(new[] { "balcony", "buildings", "ceilingHeight", "conditions", "constructionAges", "elevator", "floors", "heatingTypes", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "type", "views" },
+        Assert.Equal(new[] { "airConditioning", "balcony", "buildings", "ceilingHeight", "conditions", "constructionAges", "elevator", "excludeGroundFloorAndBelow", "excludeTopFloor", "floors", "heatingTypes", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "privateGarden", "sharedGarden", "type", "views" },
             s.GetProperty("prefill").EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
-        Assert.Equal(new[] { "area", "balcony", "building", "ceilingHeight", "condition", "constructionAge", "elevator", "floor", "halfRooms", "heatingType", "locations", "lotArea", "price", "rooms", "type", "view", "wholeRooms" },
+        Assert.Equal(new[] { "airConditioning", "area", "balcony", "building", "buildingFloors", "ceilingHeight", "condition", "constructionAge", "elevator", "floor", "halfRooms", "heatingType", "locations", "lotArea", "price", "privateGarden", "rooms", "sharedGarden", "type", "view", "wholeRooms" },
             p.GetProperty("prefill").EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
         Assert.DoesNotContain("47.5123456789", json); Assert.DoesNotContain("19.123456789", json);
         Assert.Equal("Ingatlant keres", response.Searches[0].Title);

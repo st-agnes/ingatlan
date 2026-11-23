@@ -36,6 +36,7 @@ public static class RecommendationFeed
         City = property.City, District = property.District, Type = property.Type, NeighborhoodIdsJson = property.NeighborhoodIdsJson,
         Price = property.Price, Area = property.Area, LotArea = property.LotArea, Rooms = property.Rooms,
         WholeRooms = property.WholeRooms, HalfRooms = property.HalfRooms, Floor = property.Floor,
+        BuildingFloors = property.BuildingFloors, PrivateGarden = property.PrivateGarden, SharedGarden = property.SharedGarden,
         Condition = property.Condition, Building = property.Building, ConstructionAge = property.ConstructionAge,
         View = property.View, CeilingHeight = property.CeilingHeight, HeatingType = property.HeatingType,
         SecondaryHeatingType = property.SecondaryHeatingType, Insulated = property.Insulated,
@@ -51,6 +52,8 @@ public static class RecommendationFeed
         BuildingsJson = search.BuildingsJson, ConstructionAgesJson = search.ConstructionAgesJson,
         ViewsJson = search.ViewsJson, CeilingHeight = search.CeilingHeight, FloorsJson = search.FloorsJson,
         HeatingTypesJson = search.HeatingTypesJson, Balcony = search.Balcony, Elevator = search.Elevator,
+        ExcludeTopFloor = search.ExcludeTopFloor, ExcludeGroundFloorAndBelow = search.ExcludeGroundFloorAndBelow,
+        AirConditioning = search.AirConditioning, PrivateGarden = search.PrivateGarden, SharedGarden = search.SharedGarden,
         Archived = search.Archived
     };
 

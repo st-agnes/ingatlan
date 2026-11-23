@@ -736,3 +736,40 @@ test('an acknowledged mutual like can return before optional match hydration wit
  const emptyCalls=routes({'/api/decisions':{matchId:null,charged:0}});
  assert.equal((await api.decide(candidate,false,{resolveMatch:false})).matchId,null);assert.equal(emptyCalls.length,1);
 });
+
+test('apartment building height and nullable independent gardens round-trip without leaking derived top-floor state',async()=>{
+ const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201)});
+ const input={...exactAddress,title:'Kerti lakás',city:'Debrecen',type:'Lakás',price:60,area:60,rooms:3,floor:'0',buildingFloors:'0',privateGarden:'false',sharedGarden:'true',airConditioning:false,isTopFloor:true};
+ const saved=await adapter().saveEntity('property',input),body=JSON.parse(calls[0].body);
+ assert.deepEqual([body.floor,body.buildingFloors,body.privateGarden,body.sharedGarden,body.airConditioning],[0,0,false,true,false]);
+ assert.deepEqual([saved.floor,saved.buildingFloors,saved.privateGarden,saved.sharedGarden],[0,0,false,true]);
+ assert.equal('isTopFloor' in body,false);
+ await assert.rejects(adapter().saveEntity('property',{...input,floor:2,buildingFloors:1}),/magasabb/);
+ await assert.rejects(adapter().saveEntity('property',{...input,buildingFloors:true}),/épület/);
+ assert.equal(calls.length,1);
+});
+
+test('new search requirements serialize as opt-in booleans and old responses keep absent amenities unrestricted',async()=>{
+ const calls=routes({'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
+ const saved=await adapter().saveEntity('search',{title:'Emeleti kerti lakás',city:'Debrecen',type:'Lakás',excludeTopFloor:true,excludeGroundFloorAndBelow:'false',airConditioning:'true',privateGarden:true,sharedGarden:false});
+ const body=JSON.parse(calls[0].body);
+ assert.deepEqual([body.excludeTopFloor,body.excludeGroundFloorAndBelow,body.airConditioning,body.privateGarden,body.sharedGarden],[true,false,true,true,false]);
+ assert.deepEqual([saved.excludeTopFloor,saved.excludeGroundFloorAndBelow,saved.airConditioning,saved.privateGarden,saved.sharedGarden],[true,false,true,true,false]);
+ const calls2=routes(accountRoutes());const old=(await adapter().getState()).searches[0];
+ assert.ok(calls2.length);for(const key of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'])assert.equal(old[key],false,key);
+});
+
+test('house saves clear building height and apartment gardens while retaining an all-type aircon requirement',async()=>{
+ const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201),'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
+ await adapter().saveEntity('property',{...exactAddress,title:'Kertes ház',city:'Debrecen',type:'Ház',price:60,area:80,rooms:3,lotArea:400,floor:5,buildingFloors:2,privateGarden:true,sharedGarden:true,airConditioning:true});
+ const p=JSON.parse(calls[0].body);assert.deepEqual([p.floor,p.buildingFloors,p.privateGarden,p.sharedGarden,p.airConditioning],[null,null,null,null,true]);
+ await adapter().saveEntity('search',{title:'Ház',city:'Debrecen',type:'Ház',excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true,sharedGarden:true});
+ const q=JSON.parse(calls[1].body);assert.deepEqual([q.excludeTopFloor,q.excludeGroundFloorAndBelow,q.airConditioning,q.privateGarden,q.sharedGarden],[false,false,true,false,false]);
+});
+
+test('new public match detail keys preserve server facts and discard unrelated or private metadata',async()=>{
+ const keys=['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'];
+ routes({'/api/feed':{items:[{property:{...property,buildingFloors:3,privateGarden:false,sharedGarden:true},searchRequest:search,matchDetails:[...keys.map(key=>({key,label:key,expected:'Van',actual:'Nincs',matches:false})),{key:'addressDetails',label:'private',expected:'private',actual:'private',matches:false}]}]}});
+ const api=adapter();api.active={kind:'search',id:ids.search};const feed=await api.feed();
+ assert.deepEqual(feed[0].matchDetails.map(x=>x.key),keys);assert.equal(feed[0].privateGarden,false);assert.equal(feed[0].sharedGarden,true);assert.equal(feed[0].buildingFloors,3);
+});

@@ -40,10 +40,12 @@ ALTER TABLE `Properties`
   DROP COLUMN `HeatingType`, DROP COLUMN `Insulated`, DROP COLUMN `EnergyRating`,
   DROP COLUMN `AirConditioning`, DROP COLUMN `SolarPanels`, DROP COLUMN `ParkingType`,
   DROP COLUMN `WholeRooms`, DROP COLUMN `HalfRooms`,
-  DROP COLUMN `SecondaryHeatingType`, DROP COLUMN `ParkingTypesJson`;
+  DROP COLUMN `SecondaryHeatingType`, DROP COLUMN `ParkingTypesJson`,
+  DROP COLUMN `BuildingFloors`, DROP COLUMN `PrivateGarden`, DROP COLUMN `SharedGarden`;
 ALTER TABLE `SearchRequests`
   DROP COLUMN `LocationIdsJson`, DROP COLUMN `ConditionsJson`, DROP COLUMN `BuildingsJson`,
   DROP COLUMN `ConstructionAgesJson`, DROP COLUMN `ViewsJson`, DROP COLUMN `CeilingHeight`, DROP COLUMN `FloorsJson`,
-  DROP COLUMN `HeatingTypesJson`;
+  DROP COLUMN `HeatingTypesJson`, DROP COLUMN `ExcludeTopFloor`, DROP COLUMN `ExcludeGroundFloorAndBelow`,
+  DROP COLUMN `AirConditioning`, DROP COLUMN `PrivateGarden`, DROP COLUMN `SharedGarden`;
 DELETE FROM `__OtthonraSchemaVersions`
-  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search', '20261118-postal-street-search', '20261118-idempotent-entity-creation', '20261119-account-activity-notifications');
+  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search', '20261118-postal-street-search', '20261118-idempotent-entity-creation', '20261119-account-activity-notifications', '20261123-floor-and-garden-amenities');

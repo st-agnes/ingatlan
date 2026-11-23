@@ -7,10 +7,12 @@ namespace Otthonra.Api;
 public sealed record LandingSearchPrefill(Location[] Locations, string Type, decimal? MinPrice, decimal? MaxPrice,
     decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, string[] Conditions,
     string[] Buildings, string[] ConstructionAges, string[] Views, string CeilingHeight, int[] Floors,
-    string[] HeatingTypes, bool Balcony, bool Elevator);
+    string[] HeatingTypes, bool Balcony, bool Elevator, bool ExcludeTopFloor = false,
+    bool ExcludeGroundFloorAndBelow = false, bool AirConditioning = false, bool PrivateGarden = false, bool SharedGarden = false);
 public sealed record LandingPropertyPrefill(Location[] Locations, string Type, decimal Price, decimal Area, decimal Rooms,
     int? WholeRooms, int? HalfRooms, decimal? LotArea, string Condition, string Building, string ConstructionAge,
-    string View, string CeilingHeight, int? Floor, string HeatingType, bool Balcony, bool Elevator);
+    string View, string CeilingHeight, int? Floor, string HeatingType, bool Balcony, bool Elevator,
+    int? BuildingFloors = null, bool? AirConditioning = null, bool? PrivateGarden = null, bool? SharedGarden = null);
 
 internal static class LandingPrefill
 {
@@ -60,7 +62,9 @@ internal static class LandingPrefill
             Choices(search.ConstructionAgesJson, PropertyAttributes.ConstructionAges),
             Choices(search.ViewsJson, PropertyAttributes.Views), Choice(search.CeilingHeight, PropertyAttributes.CeilingHeights),
             house ? [] : Floors(search.FloorsJson), Choices(search.HeatingTypesJson, PropertyAttributes.HeatingTypes),
-            !house && search.Balcony, !house && search.Elevator);
+            !house && search.Balcony, !house && search.Elevator, !house && search.ExcludeTopFloor,
+            !house && search.ExcludeGroundFloorAndBelow, search.AirConditioning,
+            type == "Lakás" && search.PrivateGarden, type == "Lakás" && search.SharedGarden);
     }
 
     public static LandingPropertyPrefill Property(Property property, Location location)
@@ -75,7 +79,9 @@ internal static class LandingPrefill
             Choice(property.Building, PropertyAttributes.Buildings), Choice(property.ConstructionAge, PropertyAttributes.ConstructionAges),
             Choice(property.View, PropertyAttributes.Views), Choice(property.CeilingHeight, PropertyAttributes.CeilingHeights),
             !house && property.Floor is >= -5 and <= 200 ? property.Floor : null,
-            Choice(property.HeatingType, PropertyAttributes.HeatingTypes), !house && property.Balcony, !house && property.Elevator);
+            Choice(property.HeatingType, PropertyAttributes.HeatingTypes), !house && property.Balcony, !house && property.Elevator,
+            !house && property.BuildingFloors is >= 0 and <= 200 ? property.BuildingFloors : null,
+            property.AirConditioning, type == "Lakás" ? property.PrivateGarden : null, type == "Lakás" ? property.SharedGarden : null);
     }
 
     private static Location PropertyLocation(Property property, Location fallback)

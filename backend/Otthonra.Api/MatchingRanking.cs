@@ -21,6 +21,7 @@ public sealed class CompiledSearch
     public IReadOnlySet<string> StreetIds { get; }
     public int Specificity { get; internal set; }
     internal bool House => NormalizedType == "HAZ";
+    internal bool Flat => NormalizedType == "LAKAS";
     internal HashSet<string> Conditions { get; }
     internal HashSet<string> Buildings { get; }
     internal HashSet<string> Heating { get; }
@@ -32,6 +33,7 @@ public sealed class CompiledSearch
     internal CompiledSearch(SearchRequest input, HashSet<string> cities, HashSet<string> districtIds, HashSet<string> neighborhoodIds,
         HashSet<string> streetIds)
     {
+        NormalizedType = Rules.Normalize(input.Type);
         Source = new SearchRequest {
             Id = input.Id, OwnerId = input.OwnerId, Type = input.Type, Archived = input.Archived,
             City = input.City, DistrictsJson = input.DistrictsJson, LocationIdsJson = input.LocationIdsJson,
@@ -39,9 +41,13 @@ public sealed class CompiledSearch
             MinRooms = input.MinRooms, MaxRooms = input.MaxRooms, Balcony = input.Balcony, Elevator = input.Elevator,
             CeilingHeight = MatchingRanking.Canonical(input.CeilingHeight, PropertyAttributes.CeilingHeights), ConditionsJson = input.ConditionsJson, BuildingsJson = input.BuildingsJson,
             ConstructionAgesJson = input.ConstructionAgesJson, ViewsJson = input.ViewsJson,
-            FloorsJson = input.FloorsJson, HeatingTypesJson = input.HeatingTypesJson
+            FloorsJson = input.FloorsJson, HeatingTypesJson = input.HeatingTypesJson,
+            ExcludeTopFloor = !House && input.ExcludeTopFloor,
+            ExcludeGroundFloorAndBelow = !House && input.ExcludeGroundFloorAndBelow,
+            AirConditioning = input.AirConditioning,
+            PrivateGarden = Flat && input.PrivateGarden,
+            SharedGarden = Flat && input.SharedGarden
         };
-        NormalizedType = Rules.Normalize(input.Type);
         Cities = cities; DistrictIds = districtIds; NeighborhoodIds = neighborhoodIds; StreetIds = streetIds;
         Conditions = Dto.Strings(input.ConditionsJson).Select(PropertyAttributes.NormalizeCondition).ToHashSet(StringComparer.Ordinal);
         Buildings = Dto.Strings(input.BuildingsJson).Select(PropertyAttributes.NormalizeBuilding).ToHashSet(StringComparer.Ordinal);
@@ -60,7 +66,8 @@ public static class MatchingRanking
     private const decimal MaxPriceWeight = 32m, MinRoomsWeight = 22m, MinAreaWeight = 16m,
         ConditionWeight = 10m, FloorWeight = 7m, ElevatorWeight = 5m, BalconyWeight = 4m,
         BuildingWeight = 3m, HeatingWeight = 2.5m, AgeWeight = 2m, CeilingWeight = 1.5m,
-        MaxAreaWeight = 1.25m, MaxRoomsWeight = 1m, MinPriceWeight = .75m, ViewWeight = .5m;
+        MaxAreaWeight = 1.25m, MaxRoomsWeight = 1m, MinPriceWeight = .75m, ViewWeight = .5m,
+        AirConditioningWeight = 3m, PrivateGardenWeight = 3m, SharedGardenWeight = 2m;
     private static readonly Lazy<Dictionary<string, string[]>> AreaMembers = new(() => {
         using var stream = typeof(LocationCatalog).Assembly.GetManifestResourceStream("Otthonra.Api.Agglomerations.json")
             ?? throw new InvalidOperationException("The embedded city-area catalogue is missing.");
@@ -88,6 +95,11 @@ public static class MatchingRanking
     private static decimal Unit(decimal value) => Math.Clamp(value, 0m, 1m);
     private static decimal CategoryLoss(string? value, HashSet<string> selected, string[] options) =>
         selected.Count == 0 ? 0m : options.Contains(value) && selected.Contains(value!) ? 0m : 1m;
+    private static bool KnownFloor(Property property) => property.Floor is >= -5 and <= 200;
+    private static bool KnownTopFloor(Property property) => KnownFloor(property)
+        && property.BuildingFloors is >= 0 and <= 200 && property.Floor <= property.BuildingFloors;
+    private static bool BelowTopFloor(Property property) => KnownTopFloor(property) && property.Floor < property.BuildingFloors;
+    private static bool AboveGroundFloor(Property property) => KnownFloor(property) && property.Floor > 0;
 
     public static CompiledSearch Prepare(SearchRequest search)
     {
@@ -165,11 +177,16 @@ public static class MatchingRanking
         var condition = ConditionIndex(property.Condition);
         Add(ConditionWeight, search.Conditions.Count > 0, condition < 0 || search.ConditionMinimum < 0 ? 1m
             : ((search.ConditionMinimum ?? 0) - condition) / 3m, "Állapot");
-        var floorLoss = property.Floor.HasValue && search.Floors.Length > 0
+        var floorLoss = search.Floors.Length == 0 ? 0m : property.Floor.HasValue
             ? search.Floors.Min(wanted => wanted == 11 && property.Floor.Value >= 11 ? 0m : Math.Abs(wanted - property.Floor.Value) / 5m) : 1m;
-        Add(FloorWeight, !search.House && search.Floors.Length > 0, floorLoss, "Emelet");
+        if (s.ExcludeTopFloor && !BelowTopFloor(property)) floorLoss = Math.Max(floorLoss, 1m);
+        if (s.ExcludeGroundFloorAndBelow && !AboveGroundFloor(property)) floorLoss = Math.Max(floorLoss, 1m);
+        Add(FloorWeight, !search.House && (search.Floors.Length > 0 || s.ExcludeTopFloor || s.ExcludeGroundFloorAndBelow), floorLoss, "Emelet");
         Add(ElevatorWeight, !search.House && s.Elevator, property.Elevator ? 0 : 1, "Lift");
         Add(BalconyWeight, !search.House && s.Balcony, property.Balcony ? 0 : 1, "Erkély");
+        Add(AirConditioningWeight, s.AirConditioning, property.AirConditioning == true ? 0 : 1, "Légkondi");
+        Add(PrivateGardenWeight, search.Flat && s.PrivateGarden, property.PrivateGarden == true ? 0 : 1, "Saját kert");
+        Add(SharedGardenWeight, search.Flat && s.SharedGarden, property.SharedGarden == true ? 0 : 1, "Közös kert");
         Add(BuildingWeight, search.Buildings.Count > 0, CategoryLoss(Canonical(property.Building, PropertyAttributes.Buildings), search.Buildings, PropertyAttributes.Buildings), "Falazat");
         Add(HeatingWeight, search.Heating.Count > 0, CategoryLoss(Canonical(property.HeatingType, PropertyAttributes.HeatingTypes), search.Heating, PropertyAttributes.HeatingTypes), "Fűtés típusa");
         var age = Array.IndexOf(PropertyAttributes.ConstructionAges, Canonical(property.ConstructionAge, PropertyAttributes.ConstructionAges));
@@ -238,6 +255,16 @@ public static class MatchingRanking
                 p.Floor.HasValue && q.Floors.Any(value => value == p.Floor.Value || value == 11 && p.Floor.Value >= 11));
         if (!q.House && s.Elevator) Add("elevator", "Lift", "Van lift", p.Elevator ? "Van lift" : "Nincs lift", p.Elevator);
         if (!q.House && s.Balcony) Add("balcony", "Erkély", "Van erkély", p.Balcony ? "Van erkély" : "Nincs erkély", p.Balcony);
+        if (!q.House && s.ExcludeTopFloor) Add("excludeTopFloor", "Legfelső emelet", "Nem legfelső emelet",
+            !KnownTopFloor(p) ? "Nincs megadva" : BelowTopFloor(p) ? "Nem legfelső emelet" : "Legfelső emelet", BelowTopFloor(p));
+        if (!q.House && s.ExcludeGroundFloorAndBelow) Add("excludeGroundFloorAndBelow", "Földszint és szuterén", "Földszint felett",
+            KnownFloor(p) ? Floor(p.Floor!.Value) : "Nincs megadva", AboveGroundFloor(p));
+        if (s.AirConditioning) Add("airConditioning", "Légkondi", "Van légkondi",
+            p.AirConditioning is null ? "Nincs megadva" : p.AirConditioning == true ? "Van légkondi" : "Nincs légkondi", p.AirConditioning == true);
+        if (q.Flat && s.PrivateGarden) Add("privateGarden", "Saját kert", "Van saját kert",
+            p.PrivateGarden is null ? "Nincs megadva" : p.PrivateGarden == true ? "Van saját kert" : "Nincs saját kert", p.PrivateGarden == true);
+        if (q.Flat && s.SharedGarden) Add("sharedGarden", "Közös kert", "Van közös kert",
+            p.SharedGarden is null ? "Nincs megadva" : p.SharedGarden == true ? "Van közös kert" : "Nincs közös kert", p.SharedGarden == true);
         Category("building", "Falazat", Canonical(p.Building, PropertyAttributes.Buildings), q.Buildings, PropertyAttributes.Buildings);
         Category("heatingType", "Fűtés típusa", Canonical(p.HeatingType, PropertyAttributes.HeatingTypes), q.Heating, PropertyAttributes.HeatingTypes);
         Category("constructionAge", "Építési kor", Canonical(p.ConstructionAge, PropertyAttributes.ConstructionAges), q.Ages, PropertyAttributes.ConstructionAges);
@@ -270,6 +297,9 @@ public static class MatchingRanking
         var energy = Rules.Normalize(p.EnergyRating);
         quality += TopEnergy.IsMatch(energy) ? .02m : GoodEnergy.IsMatch(energy) ? .015m : AverageEnergy.IsMatch(energy) ? .005m : 0m;
         quality += p.AirConditioning == true ? .01m : 0m;
+        var flat = Rules.Normalize(p.Type) == "LAKAS";
+        quality += flat && p.PrivateGarden == true ? .015m : 0m;
+        quality += flat && p.SharedGarden == true ? .005m : 0m;
         quality += p.SolarPanels == true ? .015m : 0m;
         var parking = PropertyAttributes.Parking(p);
         quality += parking.Any(value => value is "Garázs" or "Mélygarázs" or "Teremgarázs") ? .015m
@@ -308,9 +338,15 @@ public static class MatchingRanking
         Add(AgeWeight, Category(search.Ages.Count, PropertyAttributes.ConstructionAges.Length));
         Add(ViewWeight, Category(search.Views.Count, PropertyAttributes.Views.Length));
         Add(CeilingWeight, string.IsNullOrEmpty(s.CeilingHeight) ? 0m : 1m);
+        Add(AirConditioningWeight, s.AirConditioning ? 1m : 0m);
+        if (search.Flat)
+        {
+            Add(PrivateGardenWeight, s.PrivateGarden ? 1m : 0m);
+            Add(SharedGardenWeight, s.SharedGarden ? 1m : 0m);
+        }
         if (!search.House)
         {
-            Add(FloorWeight, Category(search.Floors.Length, 13));
+            Add(FloorWeight, Math.Max(Category(search.Floors.Length, 13), s.ExcludeTopFloor || s.ExcludeGroundFloorAndBelow ? 1m : 0m));
             Add(ElevatorWeight, s.Elevator ? 1m : 0m); Add(BalconyWeight, s.Balcony ? 1m : 0m);
         }
         return Math.Clamp((int)Math.Round(100m * selected / total, MidpointRounding.AwayFromZero), 0, 100);

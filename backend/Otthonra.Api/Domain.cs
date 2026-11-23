@@ -75,7 +75,8 @@ public static class Rules
         if (i.Price <= 0 || i.Price > 1_000_000_000_000m || i.Area <= 0 || i.Area > 1_000_000 || rooms <= 0 || rooms > 1000
             || wholeRooms < 0 || wholeRooms > 1000 || halfRooms < 0 || halfRooms > 1000
             || i.Rooms < 0 || explicitRoomCounts && i.Rooms > 0 && i.Rooms != rooms
-            || !house && (i.Floor < -5 || i.Floor > 200 || (i.Floor < -1 && i.Floor != p.Floor)))
+            || !house && (i.Floor < -5 || i.Floor > 200 || (i.Floor < -1 && i.Floor != p.Floor)
+                || i.BuildingFloors < 0 || i.BuildingFloors > 200 || i.Floor > i.BuildingFloors))
             throw new ApiException(400, "Az ár, alapterület, szobaszám vagy emelet érvénytelen.");
         if (house && (!i.LotArea.HasValue || i.LotArea <= 0 || i.LotArea > 10_000_000))
             throw new ApiException(400, "Ház esetén a telekméret kötelező, pozitív szám legyen, legfeljebb 10 000 000 m².");
@@ -83,6 +84,10 @@ public static class Rules
             : rooms == p.Rooms && (p.WholeRooms.HasValue || p.HalfRooms.HasValue) ? RoomCounts(p)
             : LegacyRoomCounts(rooms);
         p.Price = i.Price; p.Area = i.Area; p.Rooms = rooms; p.Floor = house ? null : i.Floor;
+        p.BuildingFloors = house ? null : i.BuildingFloors;
+        var flat = Normalize(p.Type) == "LAKAS";
+        p.PrivateGarden = flat ? i.PrivateGarden : null;
+        p.SharedGarden = flat ? i.SharedGarden : null;
         p.WholeRooms = savedCounts.WholeRooms;
         p.HalfRooms = savedCounts.HalfRooms;
         p.LotArea = house ? i.LotArea : null;
@@ -128,6 +133,13 @@ public static class Rules
         var sameCity = locations.Where(x => x.City == s.City).ToArray();
         s.DistrictsJson = System.Text.Json.JsonSerializer.Serialize(sameCity.Any(x => x.District is null) ? Array.Empty<string>() : sameCity.Select(x => x.District!).Distinct());
         PropertyAttributes.Apply(s, i);
+        var house = Normalize(s.Type) == "HAZ";
+        var flat = Normalize(s.Type) == "LAKAS";
+        s.ExcludeTopFloor = !house && i.ExcludeTopFloor;
+        s.ExcludeGroundFloorAndBelow = !house && i.ExcludeGroundFloorAndBelow;
+        s.AirConditioning = i.AirConditioning;
+        s.PrivateGarden = flat && i.PrivateGarden;
+        s.SharedGarden = flat && i.SharedGarden;
         s.Description = PublicText(i.Description); s.MoveIn = PublicText(i.MoveIn, 100); s.Financing = PublicText(i.Financing, 255); s.Balcony = Normalize(s.Type) != "HAZ" && i.Balcony; s.Elevator = Normalize(s.Type) != "HAZ" && i.Elevator; s.Archived = i.Archived;
     }
 }
