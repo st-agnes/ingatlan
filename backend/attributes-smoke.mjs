@@ -13,7 +13,9 @@ async function call(path, {token, method='GET', body, status=200}={}) {
     headers:{...(token?{Authorization:`Bearer ${token}`} : {}), ...(body === undefined ? {} : {'Content-Type':'application/json'})},
     ...(body === undefined ? {} : {body:JSON.stringify(body)})});
   assert.equal(response.status,status,`${method} ${path}: HTTP ${response.status}`);
-  return response.status === 204 ? null : response.json();
+  // Invalid JSON numeric types are rejected by ASP.NET before the endpoint,
+  // whose Development 400 response is plain text rather than a JSON payload.
+  return response.status === 204 || status >= 400 ? null : response.json();
 }
 const propertyFields = ['condition','building','constructionAge','view','ceilingHeight','floor','buildingFloors','heatingType','insulated','energyRating','airConditioning','privateGarden','sharedGarden','solarPanels','parkingType'];
 const searchFields = ['conditions','buildings','constructionAges','views','ceilingHeight','floors','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'];
