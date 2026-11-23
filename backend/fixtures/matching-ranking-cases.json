@@ -254,7 +254,7 @@
       "balcony": true,
       "elevator": true
     },
-    "specificity": 80
+    "specificity": 82
   },
   {
     "name": "legacy-property-empty-id",
@@ -438,7 +438,7 @@
     "score": 91
   },
   {
-    "name": "shared-garden-missing-weighted",
+    "name": "retired-shared-garden-does-not-penalize",
     "property": {
       "sharedGarden": false
     },
@@ -447,10 +447,10 @@
       "sharedGarden": true
     },
     "eligible": true,
-    "score": 94
+    "score": 100
   },
   {
-    "name": "private-garden-does-not-substitute-shared",
+    "name": "private-garden-ignores-retired-shared-request",
     "property": {
       "privateGarden": true,
       "sharedGarden": false
@@ -459,7 +459,7 @@
       "sharedGarden": true
     },
     "eligible": true,
-    "score": 0
+    "score": 100
   },
   {
     "name": "house-ignores-apartment-gardens-and-floor-flags",
@@ -517,8 +517,8 @@
       "sharedGarden": true
     },
     "eligible": true,
-    "score": 67,
-    "specificity": 15,
+    "score": 77,
+    "specificity": 14,
     "matchDetails": [
       {
         "key": "location",
@@ -561,14 +561,20 @@
         "expected": "Van saját kert",
         "actual": "Van saját kert",
         "matches": true
-      },
-      {
-        "key": "sharedGarden",
-        "label": "Közös kert",
-        "expected": "Van közös kert",
-        "actual": "Nincs megadva",
-        "matches": false
       }
     ]
+  },
+  {
+    "name": "retired-shared-garden-has-no-value-or-specificity",
+    "property": {
+      "sharedGarden": true
+    },
+    "search": {
+      "sharedGarden": true
+    },
+    "eligible": true,
+    "score": 100,
+    "specificity": 3,
+    "valueForMoney": 0.75375
   }
 ]

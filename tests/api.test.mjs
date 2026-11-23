@@ -737,12 +737,12 @@ test('an acknowledged mutual like can return before optional match hydration wit
  assert.equal((await api.decide(candidate,false,{resolveMatch:false})).matchId,null);assert.equal(emptyCalls.length,1);
 });
 
-test('apartment building height and nullable independent gardens round-trip without leaking derived top-floor state',async()=>{
+test('apartment height and private garden round-trip while the retired shared garden and derived floor state stay inactive',async()=>{
  const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201)});
  const input={...exactAddress,title:'Kerti lakás',city:'Debrecen',type:'Lakás',price:60,area:60,rooms:3,floor:'0',buildingFloors:'0',privateGarden:'false',sharedGarden:'true',airConditioning:false,isTopFloor:true};
  const saved=await adapter().saveEntity('property',input),body=JSON.parse(calls[0].body);
- assert.deepEqual([body.floor,body.buildingFloors,body.privateGarden,body.sharedGarden,body.airConditioning],[0,0,false,true,false]);
- assert.deepEqual([saved.floor,saved.buildingFloors,saved.privateGarden,saved.sharedGarden],[0,0,false,true]);
+ assert.deepEqual([body.floor,body.buildingFloors,body.privateGarden,body.sharedGarden,body.airConditioning],[0,0,false,null,false]);
+ assert.deepEqual([saved.floor,saved.buildingFloors,saved.privateGarden,saved.sharedGarden],[0,0,false,null]);
  assert.equal('isTopFloor' in body,false);
  await assert.rejects(adapter().saveEntity('property',{...input,floor:2,buildingFloors:1}),/magasabb/);
  await assert.rejects(adapter().saveEntity('property',{...input,buildingFloors:true}),/épület/);
@@ -771,5 +771,20 @@ test('new public match detail keys preserve server facts and discard unrelated o
  const keys=['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'];
  routes({'/api/feed':{items:[{property:{...property,buildingFloors:3,privateGarden:false,sharedGarden:true},searchRequest:search,matchDetails:[...keys.map(key=>({key,label:key,expected:'Van',actual:'Nincs',matches:false})),{key:'addressDetails',label:'private',expected:'private',actual:'private',matches:false}]}]}});
  const api=adapter();api.active={kind:'search',id:ids.search};const feed=await api.feed();
- assert.deepEqual(feed[0].matchDetails.map(x=>x.key),keys);assert.equal(feed[0].privateGarden,false);assert.equal(feed[0].sharedGarden,true);assert.equal(feed[0].buildingFloors,3);
+ assert.deepEqual(feed[0].matchDetails.map(x=>x.key),keys.filter(key=>key!=='sharedGarden'));assert.equal(feed[0].privateGarden,false);assert.equal(feed[0].sharedGarden,null);assert.equal(feed[0].buildingFloors,3);
+});
+
+
+test('old keyed creation payloads preserve retired garden bytes while returned facts remain inactive',async()=>{
+ const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201),'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
+ const creationRequestId='1252f520-aefe-4a9c-b1b6-932ef64fe38a';
+ const p={...exactAddress,title:'Korábbi lezárt kerti lakás',city:'Debrecen',type:'Lakás',price:60,area:60,rooms:3,sharedGarden:'true'};
+ const saved=await adapter().saveEntity('property',p,undefined,{creationRequestId});
+ assert.equal(JSON.parse(calls[0].body).sharedGarden,true,'The original keyed request must retain its hashed boolean');assert.equal(saved.sharedGarden,null);
+ const q={title:'Korábbi lezárt keresés',city:'Debrecen',type:'Lakás',sharedGarden:true};
+ const search=await adapter().saveEntity('search',q,undefined,{creationRequestId});
+ assert.equal(JSON.parse(calls[1].body).sharedGarden,true);assert.equal(search.sharedGarden,false);
+ await adapter().saveEntity('search',{...q,type:'Ház'},undefined,{creationRequestId});assert.equal(JSON.parse(calls[2].body).sharedGarden,false,'The old house serialization also ignored shared garden');
+ await adapter().saveEntity('property',p);assert.equal(JSON.parse(calls[3].body).sharedGarden,null,'Ordinary creates have no retired preference');
+ await adapter().saveEntity('search',q);assert.equal(JSON.parse(calls[4].body).sharedGarden,false);
 });

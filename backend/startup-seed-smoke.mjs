@@ -40,7 +40,10 @@ async function seededLanding(){
  for(const street of streetDemoData)labelRegions.set(street.label,new Set([cityRegions.get(street.city)]));
  const searchKeys=['key','sourceKey','title','type','locations','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','ownerAccountType','ownerFirstName','prefill'].sort();
  const propertyKeys=['key','sourceKey','title','type','location','price','area','wholeRooms','halfRooms','rooms','lotArea','ownerAccountType','ownerFirstName','prefill'].sort();
- const prefillKeys={search:['locations','type','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','conditions','buildings','constructionAges','views','ceilingHeight','floors','heatingTypes','balcony','elevator'].sort(),property:['locations','type','price','area','rooms','wholeRooms','halfRooms','lotArea','condition','building','constructionAge','view','ceilingHeight','floor','heatingType','balcony','elevator'].sort()};
+ const prefillKeys={
+  search:['locations','type','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','conditions','buildings','constructionAges','views','ceilingHeight','floors','heatingTypes','balcony','elevator','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'].sort(),
+  property:['locations','type','price','area','rooms','wholeRooms','halfRooms','lotArea','condition','building','constructionAge','view','ceilingHeight','floor','heatingType','balcony','elevator','buildingFloors','airConditioning','privateGarden','sharedGarden'].sort()
+ };
  const locationKeys=['id','label','city','district','kind','settlementCount','streetName','postalCodes'].sort();
  const publishedOwners={property:new Map(),search:new Map()};
  for(const fixture of DEMO_FIXTURES){
@@ -59,6 +62,18 @@ async function seededLanding(){
    for(const [index,row] of items.entries()){
     assert.deepEqual(Object.keys(row).sort(),keys,'Public fixtures must expose only safe teaser fields');
     assert.deepEqual(Object.keys(row.prefill).sort(),prefillKeys[kind],'Nested onboarding seeds must retain their explicit public allowlist');
+    if(kind==='search'){
+     assert.equal(row.prefill.sharedGarden,false,'The removed shared-garden criterion must never be advertised');
+     for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'])assert.equal(typeof row.prefill[field],'boolean',`Public search ${field} must be a boolean`);
+     if(row.type==='Ház')for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow'])assert.equal(row.prefill[field],false,'House seeds must not include apartment floor restrictions');
+     if(row.type!=='Lakás')for(const field of ['privateGarden','sharedGarden'])assert.equal(row.prefill[field],false,'Garden criteria belong only to apartment seeds');
+    }else{
+     assert.equal(row.prefill.sharedGarden,null,'The removed shared-garden metadata must stay neutral');
+     assert.ok(row.prefill.buildingFloors===null||Number.isInteger(row.prefill.buildingFloors)&&row.prefill.buildingFloors>=0&&row.prefill.buildingFloors<=200,'Public building floor count must be null or a bounded integer');
+     for(const field of ['airConditioning','privateGarden','sharedGarden'])assert.ok(row.prefill[field]===null||typeof row.prefill[field]==='boolean',`Public property ${field} must preserve boolean versus unknown`);
+     if(row.type==='Ház')assert.equal(row.prefill.buildingFloors,null,'House seeds must not include an apartment building floor count');
+     if(row.type!=='Lakás')for(const field of ['privateGarden','sharedGarden'])assert.equal(row.prefill[field],null,'Garden metadata belongs only to apartment seeds');
+    }
     assert.ok(row.prefill.locations.length>0&&row.prefill.locations.length<=(kind==='property'?1:50));
     for(const location of row.prefill.locations){
      assert.deepEqual(Object.keys(location).sort(),locationKeys,'Only canonical public location metadata may enter onboarding seeds');

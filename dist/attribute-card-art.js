@@ -63,7 +63,7 @@ const materialHelp = Object.freeze({
  'Kő és tégla':'A fal teherhordó részeiben kő és tégla egyaránt jelen van, például eltérő falszakaszokban vagy egymás fölötti rétegekben. Fedetlen részen kődarabok és szabályos téglák látszhatnak. A kőhatású burkolat nem elegendő ehhez a besoroláshoz; a valódi falszerkezetet kell ellenőrizni.',
  'Rönkház':'Tömör, egymásra fektetett rönkökből vagy megmunkált gerendaelemekből épülő fal. Jellegzetesek lehetnek a vízszintes fasorok és az egymásba kapcsolódó sarokvégek. A rönkhatású burkolat más szerkezetet is fedhet, ezért a dokumentációból érdemes meggyőződni róla.',
  'Passzívház':'Nem falazóanyag, hanem nagyon alacsony energiaigényre vonatkozó épületkövetelmény: többféle falszerkezettel is elérhető. A vastag szigetelés vagy a korszerű ablak önmagában nem igazolja. Energetikai számítás, műszaki dokumentáció vagy passzívház-minősítés támaszthatja alá.',
- 'Egyéb':'A felsorolt kategóriákba nem illő vagy különleges falszerkezet. Érdemes a leírásban pontosítani az anyagát és rendszerét. A kész felületből többnyire nem azonosítható biztosan; az építési dokumentáció és szakember adhat megbízható információt.'
+ 'Egyéb':'A felsorolt kategóriákba nem illő vagy különleges falszerkezet. A pontos anyag és rendszer a hirdetés leírásából vagy az építési dokumentációból derülhet ki. A kész felületből többnyire nem azonosítható biztosan; az építési dokumentáció és szakember adhat megbízható információt.'
 });
 
 /** Plain text: callers must escape it when placing it into HTML. */

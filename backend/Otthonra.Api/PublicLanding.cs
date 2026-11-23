@@ -170,7 +170,7 @@ public sealed class PublicLandingCache
                     search.MinPrice, search.MaxPrice, search.MinArea, search.MaxArea, search.MinRooms, search.MaxRooms,
                     search.ConditionsJson, search.BuildingsJson, search.ConstructionAgesJson, search.ViewsJson, search.CeilingHeight,
                     search.FloorsJson, search.HeatingTypesJson, search.Balcony, search.Elevator,
-                    search.ExcludeTopFloor, search.ExcludeGroundFloorAndBelow, search.AirConditioning, search.PrivateGarden, search.SharedGarden,
+                    search.ExcludeTopFloor, search.ExcludeGroundFloorAndBelow, search.AirConditioning, search.PrivateGarden,
                     search.Title, owner.Name, owner.AccountType };
             await foreach (var row in searches.AsAsyncEnumerable().WithCancellation(cancellationToken))
                 snapshot.Add(new SearchRequest { Id = row.Id, Title = row.Title, City = row.City, DistrictsJson = row.DistrictsJson,
@@ -180,7 +180,7 @@ public sealed class PublicLandingCache
                     ViewsJson = row.ViewsJson, CeilingHeight = row.CeilingHeight, FloorsJson = row.FloorsJson,
                     HeatingTypesJson = row.HeatingTypesJson, Balcony = row.Balcony, Elevator = row.Elevator,
                     ExcludeTopFloor = row.ExcludeTopFloor, ExcludeGroundFloorAndBelow = row.ExcludeGroundFloorAndBelow,
-                    AirConditioning = row.AirConditioning, PrivateGarden = row.PrivateGarden, SharedGarden = row.SharedGarden }, row.AccountType, row.Name);
+                    AirConditioning = row.AirConditioning, PrivateGarden = row.PrivateGarden, SharedGarden = false }, row.AccountType, row.Name);
             var properties = from property in db.Properties.AsNoTracking()
                 join owner in db.Users.AsNoTracking() on property.OwnerId equals owner.Id
                 where !property.Archived
@@ -188,7 +188,7 @@ public sealed class PublicLandingCache
                 select new { property.Id, property.City, property.District, property.LocationId, property.Type, property.Price,
                     property.Area, property.Rooms, property.WholeRooms, property.HalfRooms, property.LotArea, property.NeighborhoodIdsJson,
                     property.Condition, property.Building, property.ConstructionAge, property.View, property.CeilingHeight,
-                    property.Floor, property.BuildingFloors, property.AirConditioning, property.PrivateGarden, property.SharedGarden,
+                    property.Floor, property.BuildingFloors, property.AirConditioning, property.PrivateGarden,
                     property.HeatingType, property.Balcony, property.Elevator, property.Title, owner.Name, owner.AccountType };
             await foreach (var row in properties.AsAsyncEnumerable().WithCancellation(cancellationToken))
                 snapshot.Add(new Property { Id = row.Id, Title = row.Title, City = row.City, District = row.District, LocationId = row.LocationId,
@@ -196,7 +196,7 @@ public sealed class PublicLandingCache
                     HalfRooms = row.HalfRooms, LotArea = row.LotArea, NeighborhoodIdsJson = row.NeighborhoodIdsJson,
                     Condition = row.Condition, Building = row.Building, ConstructionAge = row.ConstructionAge, View = row.View,
                     CeilingHeight = row.CeilingHeight, Floor = row.Floor, BuildingFloors = row.BuildingFloors,
-                    AirConditioning = row.AirConditioning, PrivateGarden = row.PrivateGarden, SharedGarden = row.SharedGarden, HeatingType = row.HeatingType,
+                    AirConditioning = row.AirConditioning, PrivateGarden = row.PrivateGarden, SharedGarden = null, HeatingType = row.HeatingType,
                     Balcony = row.Balcony, Elevator = row.Elevator }, row.AccountType, row.Name);
             Volatile.Write(ref cached, new Cached(DateTime.UtcNow.AddSeconds(60), snapshot));
             return snapshot;

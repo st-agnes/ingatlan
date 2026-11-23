@@ -87,8 +87,7 @@ public static class PropertyAttributes
             && (string.IsNullOrEmpty(search.CeilingHeight) || search.CeilingHeight == property.CeilingHeight)
             && Selected(Dto.Strings(search.HeatingTypesJson), NormalizeHeating(property.HeatingType))
             && (!search.AirConditioning || property.AirConditioning == true)
-            && (type != "LAKAS" || (!search.PrivateGarden || property.PrivateGarden == true)
-                && (!search.SharedGarden || property.SharedGarden == true))
+            && (type != "LAKAS" || !search.PrivateGarden || property.PrivateGarden == true)
             && (type == "HAZ" || (floors.Length == 0 || property.Floor.HasValue
                 && floors.Any(floor => floor == 11 ? property.Floor.Value >= 11 : floor == property.Floor.Value))
                 && (!search.ExcludeTopFloor || property.Floor is >= -5 and <= 200 && property.BuildingFloors is >= 0 and <= 200 && property.Floor < property.BuildingFloors)

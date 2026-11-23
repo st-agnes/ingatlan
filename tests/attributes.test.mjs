@@ -177,7 +177,7 @@ test('house saves clear irrelevant floor constraints while old rows remain reada
 
 test('building height is optional, bounded and consistent with a known property floor',()=>{
  const p=normalizePropertyAttributes({type:'Lakás',floor:'0',buildingFloors:'0',privateGarden:false,sharedGarden:'true'},{strict:true});
- assert.equal(p.floor,0);assert.equal(p.buildingFloors,0);assert.equal(p.privateGarden,false);assert.equal(p.sharedGarden,true);
+ assert.equal(p.floor,0);assert.equal(p.buildingFloors,0);assert.equal(p.privateGarden,false);assert.equal(p.sharedGarden,null);
  for(const buildingFloors of [true,-1,1.5,201,'invalid'])assert.throws(()=>normalizePropertyAttributes({type:'Lakás',buildingFloors},{strict:true}),/épület/);
  assert.throws(()=>normalizePropertyAttributes({type:'Lakás',floor:3,buildingFloors:2},{strict:true}),/magasabb/);
  assert.equal(normalizePropertyAttributes({type:'Lakás',floor:3},{strict:true}).buildingFloors,null);
@@ -185,12 +185,14 @@ test('building height is optional, bounded and consistent with a known property 
  assert.equal(normalizePropertyAttributes({type:'Ház',floor:8,buildingFloors:3,privateGarden:true,sharedGarden:true},{strict:true}).buildingFloors,null);
 });
 
-test('search amenities default to no requirement and apartment gardens remain independent nullable property facts',()=>{
+test('search amenities retain a private garden and ignore the retired shared garden option',()=>{
  const empty=normalizeSearchAttributes({type:'Lakás'});
  for(const key of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'])assert.equal(empty[key],false,key);
  const p=normalizePropertyAttributes({type:'Lakás',privateGarden:true,sharedGarden:false});
  assert.equal(attributesCompatible(p,{type:'Lakás',privateGarden:true}),true);
- assert.equal(attributesCompatible(p,{type:'Lakás',sharedGarden:true}),false);
+ assert.equal(attributesCompatible(p,{type:'Lakás',sharedGarden:true}),true);
+ assert.equal(normalizeSearchAttributes({type:'Lakás',sharedGarden:true},{strict:true}).sharedGarden,false);
+ assert.equal(normalizePropertyAttributes({type:'Lakás',sharedGarden:true},{strict:true}).sharedGarden,null);
  assert.equal(attributesCompatible({type:'Lakás'},{type:'Lakás',privateGarden:true}),false);
  for(const type of ['Ház','Telek','Iroda']){
   const property=normalizePropertyAttributes({type,privateGarden:true,sharedGarden:false});
