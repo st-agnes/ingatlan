@@ -15,8 +15,8 @@ async function call(path, {token, method='GET', body, status=200}={}) {
   assert.equal(response.status,status,`${method} ${path}: HTTP ${response.status}`);
   return response.status === 204 ? null : response.json();
 }
-const propertyFields = ['condition','building','constructionAge','view','ceilingHeight','floor','heatingType','insulated','energyRating','airConditioning','solarPanels','parkingType'];
-const searchFields = ['conditions','buildings','constructionAges','views','ceilingHeight','floors'];
+const propertyFields = ['condition','building','constructionAge','view','ceilingHeight','floor','buildingFloors','heatingType','insulated','energyRating','airConditioning','privateGarden','sharedGarden','solarPanels','parkingType'];
+const searchFields = ['conditions','buildings','constructionAges','views','ceilingHeight','floors','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'];
 async function verify(fixture) {
   const [seller,buyer] = await Promise.all([call('/me/entities',{token:fixture.seller}),call('/me/entities',{token:fixture.buyer})]);
   const property = seller.properties.find(x=>x.id === fixture.propertyId);
@@ -26,6 +26,8 @@ async function verify(fixture) {
   for(const field of searchFields)assert.deepEqual(search[field],fixture.search[field],`Search ${field} was not preserved`);
   assert.equal(property.insulated,false); assert.equal(property.solarPanels,false); assert.equal(property.airConditioning,true);
   assert.equal(property.floor,12, 'An existing floor above 11 must retain its actual value');
+  assert.equal(property.buildingFloors,14);assert.equal(property.privateGarden,true);assert.equal(property.sharedGarden,true);
+  for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'])assert.equal(search[field],true,field+' must survive a restart');
 }
 if (process.argv[3] === '--verify') {
   await verify(JSON.parse(await readFile(fixturePath,'utf8')));
@@ -35,12 +37,12 @@ if (process.argv[3] === '--verify') {
   const account=async name=>(await call('/auth/register',{method:'POST',body:{name:'Attributes '+name,email:`attrs-${name}-${suffix}@example.test`,password:'AttributeSmoke2026!'}})).accessToken;
   const buyer=await account('buyer'),seller=await account('seller');
   const baseProperty={title:'Opcionális adatok API-próbája',city:'Budapest',locationId:'district:Budapest:13',district:'XIII.',type:'Lakás',price:80000000,area:70,rooms:3,balcony:false,elevator:false,images:[]};
-  const propertyBody={...baseProperty,condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:12,heatingType:'Hőszivattyú',insulated:false,energyRating:'A+',airConditioning:true,solarPanels:false,parkingType:'Udvari beálló'};
-  const searchBody={title:'Több opcionális választás API-próbája',city:'Budapest',locationIds:['district:Budapest:13'],type:'Lakás',minPrice:null,maxPrice:100000000,minArea:40,maxArea:null,minRooms:2,maxRooms:null,balcony:false,elevator:false,conditions:['Átlagos','Jó'],buildings:['Tégla','Panel'],constructionAges:['10–30 év közötti','31–40 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',floors:[11]};
+  const propertyBody={...baseProperty,condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:12,buildingFloors:14,heatingType:'Hőszivattyú',insulated:false,energyRating:'A+',airConditioning:true,privateGarden:true,sharedGarden:true,solarPanels:false,parkingType:'Udvari beálló'};
+  const searchBody={title:'Több opcionális választás API-próbája',city:'Budapest',locationIds:['district:Budapest:13'],type:'Lakás',minPrice:null,maxPrice:100000000,minArea:40,maxArea:null,minRooms:2,maxRooms:null,balcony:false,elevator:false,conditions:['Átlagos','Jó'],buildings:['Tégla','Panel'],constructionAges:['10–30 év közötti','31–40 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',floors:[11],excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true,sharedGarden:true};
   const property=await call('/properties',{token:seller,method:'POST',body:propertyBody,status:201});
   const search=await call('/searches',{token:buyer,method:'POST',body:searchBody,status:201});
   const excluded=[];
-  for(const change of [{condition:'Felújítandó'},{building:'Vályog'},{constructionAge:'Több mint 50 éves'},{view:'Udvari'},{ceilingHeight:'3 m alatti'},{floor:3}]) {
+  for(const change of [{condition:'Felújítandó'},{building:'Vályog'},{constructionAge:'Több mint 50 éves'},{view:'Udvari'},{ceilingHeight:'3 m alatti'},{floor:3},{buildingFloors:12},{buildingFloors:null},{airConditioning:false},{privateGarden:false},{sharedGarden:null}]) {
     excluded.push(await call('/properties',{token:seller,method:'POST',body:{...propertyBody,...change},status:201}));
   }
   const unknown=await call('/properties',{token:seller,method:'POST',body:baseProperty,status:201});
@@ -52,20 +54,29 @@ if (process.argv[3] === '--verify') {
   for(const field of propertyFields)assert.deepEqual(card[field],property[field],`Feed lost property ${field}`);
   for(const candidate of [...excluded,unknown]) await call('/decisions',{token:buyer,method:'POST',body:{propertyId:candidate.id,searchRequestId:search.id,liked:true},status:400});
   await call('/decisions',{token:buyer,method:'POST',body:{propertyId:property.id,searchRequestId:search.id,liked:true}});
-  const cleared={...searchBody,conditions:[],buildings:[],constructionAges:[],views:[],ceilingHeight:'',floors:[]};
+  const cleared={...searchBody,conditions:[],buildings:[],constructionAges:[],views:[],ceilingHeight:'',floors:[],excludeTopFloor:false,excludeGroundFloorAndBelow:false,airConditioning:false,privateGarden:false,sharedGarden:false};
   await call('/searches/'+search.id,{token:buyer,method:'PUT',body:cleared});
   assert.ok((await call('/feed',{token:buyer})).items.some(x=>x.propertyId===unknown.id),'Empty optional filters must include an unannotated property');
+  const upperOnly=await call('/searches',{token:buyer,method:'POST',body:{...searchBody,title:'Földszint és szuterén kizárása',minPrice:propertyBody.price,maxPrice:propertyBody.price,minArea:propertyBody.area,maxArea:propertyBody.area,minRooms:propertyBody.rooms,maxRooms:propertyBody.rooms,floors:[],excludeTopFloor:false,excludeGroundFloorAndBelow:true},status:201});
+  const lower=[];
+  for(const floor of [0,-1])lower.push(await call('/properties',{token:seller,method:'POST',body:{...propertyBody,floor},status:201}));
+  await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:upperOnly.id}});
+  const upperFeed=await call('/feed',{token:buyer});
+  assert.ok(upperFeed.items.some(item=>item.propertyId===property.id),'An upper-floor home satisfies an otherwise unrestricted floor exclusion');
+  assert.ok(upperFeed.items.every(item=>![unknown,...lower].some(home=>home.id===item.propertyId)),'Unknown, ground and basement floors cannot be perfect matches for the exclusion');
+  await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:search.id}});
   const duplicate=await call('/searches/'+search.id,{token:buyer,method:'PUT',body:{...searchBody,conditions:['Jó','Jó'],floors:[11,11]}});
   assert.deepEqual(duplicate.conditions,['Jó']);assert.deepEqual(duplicate.floors,[11]);
   await call('/searches/'+search.id,{token:buyer,method:'PUT',body:searchBody});
   for(const field of ['condition','building','constructionAge','view','ceilingHeight']) await call('/properties',{token:seller,method:'POST',body:{...propertyBody,[field]:'Ismeretlen opció'},status:400});
+  for(const buildingFloors of [-1,201,1.5,11])await call('/properties',{token:seller,method:'POST',body:{...propertyBody,buildingFloors},status:400});
   for(const [field,value] of [['conditions',['Ismeretlen']],['buildings',['Ismeretlen']],['constructionAges',['Ismeretlen']],['views',['Ismeretlen']],['floors',[12]],['conditions',[null]],['ceilingHeight','Ismeretlen']]) {
     await call('/searches',{token:buyer,method:'POST',body:{...searchBody,[field]:value},status:400});
   }
-  const blank={...baseProperty,floor:null,condition:null,building:null,constructionAge:null,view:null,ceilingHeight:null,heatingType:null,insulated:null,energyRating:null,airConditioning:null,solarPanels:null,parkingType:null};
+  const blank={...baseProperty,floor:null,buildingFloors:null,condition:null,building:null,constructionAge:null,view:null,ceilingHeight:null,heatingType:null,insulated:null,energyRating:null,airConditioning:null,privateGarden:null,sharedGarden:null,solarPanels:null,parkingType:null};
   const reset=await call('/properties/'+property.id,{token:seller,method:'PUT',body:blank});
   for(const field of ['condition','building','constructionAge','view','ceilingHeight','heatingType','energyRating','parkingType'])assert.equal(reset[field],'');
-  for(const field of ['floor','insulated','airConditioning','solarPanels'])assert.equal(reset[field],null);
+  for(const field of ['floor','buildingFloors','insulated','airConditioning','privateGarden','sharedGarden','solarPanels'])assert.equal(reset[field],null);
   const restored=await call('/properties/'+property.id,{token:seller,method:'PUT',body:propertyBody});
   const fixture={buyer,seller,propertyId:property.id,searchId:search.id,property:restored,search};
   await verify(fixture);

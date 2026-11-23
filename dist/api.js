@@ -156,11 +156,11 @@ function propertyFromApi(value, own = false) {
     ...(own ? {addressDetails:privateAddressFromApi(value.addressDetails)} : {}),
     type: value.type || value.propertyType || 'Lakás',
     price: millions(value.priceHuf ?? value.price), area: numeric(value.area ?? value.areaSqm ?? value.sizeSqm), rooms: numeric(value.rooms ?? value.roomCount), wholeRooms:value.wholeRooms, halfRooms:value.halfRooms,
-    lotArea: numeric(value.lotArea ?? value.lotAreaSqm ?? null), floor: numeric(value.floor), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
+    lotArea: numeric(value.lotArea ?? value.lotAreaSqm ?? null), floor: numeric(value.floor), buildingFloors:numeric(value.buildingFloors), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
     balcony: !!(value.balcony ?? value.hasBalcony), elevator: !!(value.elevator ?? value.hasElevator),
     constructionAge:value.constructionAge, view:value.view, ceilingHeight:value.ceilingHeight,
     heatingType:value.heatingType, secondaryHeatingType:value.secondaryHeatingType, insulated:value.insulated, energyRating:value.energyRating,
-    airConditioning:value.airConditioning, solarPanels:value.solarPanels, parkingType:value.parkingType, parkingTypes:value.parkingTypes,
+    airConditioning:value.airConditioning, privateGarden:value.privateGarden, sharedGarden:value.sharedGarden, solarPanels:value.solarPanels, parkingType:value.parkingType, parkingTypes:value.parkingTypes,
     images: clone(value.images || value.imageUrls || []), archived: !!(value.archived ?? value.isArchived)
   });
 }
@@ -183,6 +183,8 @@ function searchFromApi(value) {
     conditions:value.conditions ?? (value.condition ? [value.condition] : []),
     buildings:value.buildings ?? (value.building ? [value.building] : []),
     constructionAges:value.constructionAges, views:value.views, ceilingHeight:value.ceilingHeight, floors:value.floors, heatingTypes:value.heatingTypes,
+    excludeTopFloor:value.excludeTopFloor, excludeGroundFloorAndBelow:value.excludeGroundFloorAndBelow,
+    airConditioning:value.airConditioning, privateGarden:value.privateGarden, sharedGarden:value.sharedGarden,
     archived: !!(value.archived ?? value.isArchived)
   });
   search.searchSpecificity = Number(value.searchSpecificity ?? searchSpecificity(search));
@@ -201,8 +203,8 @@ const inputBoolean = value => value === true || value === 1 || ['true', '1', 'on
 const inputText = value => value == null ? '' : String(value).trim();
 const inputStrings = value => Array.isArray(value) ? value.map(inputText).filter(Boolean) : inputText(value).split(/[,\n]/).map(inputText).filter(Boolean);
 function propertyToApi(value, updating = false) {
-  const attributes = normalizePropertyAttributes(value,{strict:true,allowLegacyUnknown:updating});
   const type = inputText(value.type) || 'Lakás';
+  const attributes = normalizePropertyAttributes({...value,type},{strict:true,allowLegacyUnknown:updating});
   const countsSupplied = [value.wholeRooms,value.halfRooms].some(count=>count != null && String(count).trim() !== '');
   const floor = type === 'Ház' ? null : attributes.floor;
   if (floor != null && !Number.isInteger(floor)) throw new Error('Az emelet egész szám legyen.');
@@ -224,16 +226,18 @@ function propertyToApi(value, updating = false) {
   return {
     title: inputText(value.title), locationId:location.id, city:location.city, district:location.district || '', street, houseNumber, postalCode,
     ...(streetId ? {streetId} : {}), address: inputText(value.address), description: inputText(value.description),
-    type, price: Math.round(price * MILLION), area, rooms, wholeRooms:countsSupplied ? attributes.wholeRooms : null, halfRooms:countsSupplied ? attributes.halfRooms : null, lotArea, floor,
+    type, price: Math.round(price * MILLION), area, rooms, wholeRooms:countsSupplied ? attributes.wholeRooms : null, halfRooms:countsSupplied ? attributes.halfRooms : null, lotArea, floor, buildingFloors:attributes.buildingFloors,
     condition:attributes.condition, building:attributes.building,
     constructionAge:attributes.constructionAge, view:attributes.view, ceilingHeight:attributes.ceilingHeight,
     heatingType:attributes.heatingType, secondaryHeatingType:attributes.secondaryHeatingType, insulated:attributes.insulated, energyRating:attributes.energyRating,
-    airConditioning:attributes.airConditioning, solarPanels:attributes.solarPanels, parkingType:attributes.parkingType, parkingTypes:attributes.parkingTypes,
+    airConditioning:attributes.airConditioning, privateGarden:attributes.privateGarden, sharedGarden:attributes.sharedGarden,
+    solarPanels:attributes.solarPanels, parkingType:attributes.parkingType, parkingTypes:attributes.parkingTypes,
     balcony: type === 'Ház' ? false : inputBoolean(value.balcony), elevator: type === 'Ház' ? false : inputBoolean(value.elevator), images, archived: inputBoolean(value.archived)
   };
 }
 function searchToApi(value) {
-  const attributes = normalizeSearchAttributes(value,{strict:true});
+  const type = inputText(value.type) || 'Lakás';
+  const attributes = normalizeSearchAttributes({...value,type},{strict:true});
   const minPrice = inputNumber(value.minPrice, 'minimumár', true), maxPrice = inputNumber(value.maxPrice, 'maximumár', true);
   const locations = entityLocations(value, 'search', true);
   const minArea = inputNumber(value.minArea, 'minimum alapterület', true), maxArea = inputNumber(value.maxArea, 'maximum alapterület', true);
@@ -247,6 +251,8 @@ function searchToApi(value) {
     minArea, maxArea, minRooms, maxRooms,
     conditions:attributes.conditions, buildings:attributes.buildings, constructionAges:attributes.constructionAges,
     views:attributes.views, ceilingHeight:attributes.ceilingHeight, floors:attributes.floors, heatingTypes:attributes.heatingTypes,
+    excludeTopFloor:attributes.excludeTopFloor, excludeGroundFloorAndBelow:attributes.excludeGroundFloorAndBelow,
+    airConditioning:attributes.airConditioning, privateGarden:attributes.privateGarden, sharedGarden:attributes.sharedGarden,
     balcony: value.type === 'Ház' ? false : inputBoolean(value.balcony), elevator: value.type === 'Ház' ? false : inputBoolean(value.elevator), moveIn: inputText(value.moveIn), financing: inputText(value.financing), archived: inputBoolean(value.archived)
   };
 }
@@ -259,7 +265,7 @@ function reportSummaries(values) {
   }
   return [...unique.values()];
 }
-const matchDetailKeys=new Set(['location','type','price','rooms','area','condition','floor','elevator','balcony','building','heatingType','constructionAge','ceilingHeight','view']);
+const matchDetailKeys=new Set(['location','type','price','rooms','area','condition','floor','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden','elevator','balcony','building','heatingType','constructionAge','ceilingHeight','view']);
 function matchDetailsFromApi(value) {
   if(!Array.isArray(value))return [];
   return value.filter(item=>item&&matchDetailKeys.has(item.key)&&typeof item.matches==='boolean'

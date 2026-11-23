@@ -254,7 +254,7 @@
       "balcony": true,
       "elevator": true
     },
-    "specificity": 86
+    "specificity": 80
   },
   {
     "name": "legacy-property-empty-id",
@@ -355,6 +355,219 @@
         "expected": "legalább 50 m²",
         "actual": "60 m²",
         "matches": true
+      }
+    ]
+  },
+  {
+    "name": "top-floor-unknown-weighted",
+    "property": {
+      "floor": 2
+    },
+    "search": {
+      "maxPrice": 100,
+      "excludeTopFloor": true
+    },
+    "eligible": true,
+    "score": 82
+  },
+  {
+    "name": "three-floor-failures-share-one-weight",
+    "property": {
+      "floor": 0,
+      "buildingFloors": 0
+    },
+    "search": {
+      "maxPrice": 100,
+      "floors": [
+        2
+      ],
+      "excludeTopFloor": true,
+      "excludeGroundFloorAndBelow": true
+    },
+    "eligible": true,
+    "score": 82
+  },
+  {
+    "name": "floor-twelve-below-top-and-above-ground",
+    "property": {
+      "floor": 12,
+      "buildingFloors": 13
+    },
+    "search": {
+      "floors": [
+        11
+      ],
+      "excludeTopFloor": true,
+      "excludeGroundFloorAndBelow": true
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "basement-known-below-building-top",
+    "property": {
+      "floor": -1,
+      "buildingFloors": 0
+    },
+    "search": {
+      "excludeTopFloor": true
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "aircon-missing-weighted",
+    "property": {},
+    "search": {
+      "maxPrice": 100,
+      "airConditioning": true
+    },
+    "eligible": true,
+    "score": 91
+  },
+  {
+    "name": "private-garden-missing-weighted",
+    "property": {
+      "privateGarden": false
+    },
+    "search": {
+      "maxPrice": 100,
+      "privateGarden": true
+    },
+    "eligible": true,
+    "score": 91
+  },
+  {
+    "name": "shared-garden-missing-weighted",
+    "property": {
+      "sharedGarden": false
+    },
+    "search": {
+      "maxPrice": 100,
+      "sharedGarden": true
+    },
+    "eligible": true,
+    "score": 94
+  },
+  {
+    "name": "private-garden-does-not-substitute-shared",
+    "property": {
+      "privateGarden": true,
+      "sharedGarden": false
+    },
+    "search": {
+      "sharedGarden": true
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "house-ignores-apartment-gardens-and-floor-flags",
+    "property": {
+      "type": "Ház",
+      "airConditioning": true
+    },
+    "search": {
+      "type": "Ház",
+      "airConditioning": true,
+      "privateGarden": true,
+      "sharedGarden": true,
+      "excludeTopFloor": true,
+      "excludeGroundFloorAndBelow": true
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "house-still-requires-aircon",
+    "property": {
+      "type": "Ház"
+    },
+    "search": {
+      "type": "Ház",
+      "airConditioning": true
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "private-garden-limited-value-bonus",
+    "property": {
+      "privateGarden": true
+    },
+    "search": {},
+    "eligible": true,
+    "score": 100,
+    "valueForMoney": 0.765
+  },
+  {
+    "name": "new-amenity-explanations-and-specificity",
+    "property": {
+      "floor": 2,
+      "buildingFloors": 3,
+      "airConditioning": false,
+      "privateGarden": true,
+      "sharedGarden": null
+    },
+    "search": {
+      "excludeTopFloor": true,
+      "excludeGroundFloorAndBelow": true,
+      "airConditioning": true,
+      "privateGarden": true,
+      "sharedGarden": true
+    },
+    "eligible": true,
+    "score": 67,
+    "specificity": 15,
+    "matchDetails": [
+      {
+        "key": "location",
+        "label": "Helyszín",
+        "expected": "Debrecen",
+        "actual": "Debrecen",
+        "matches": true
+      },
+      {
+        "key": "type",
+        "label": "Ingatlantípus",
+        "expected": "Lakás",
+        "actual": "Lakás",
+        "matches": true
+      },
+      {
+        "key": "excludeTopFloor",
+        "label": "Legfelső emelet",
+        "expected": "Nem legfelső emelet",
+        "actual": "Nem legfelső emelet",
+        "matches": true
+      },
+      {
+        "key": "excludeGroundFloorAndBelow",
+        "label": "Földszint és szuterén",
+        "expected": "Földszint felett",
+        "actual": "2. emelet",
+        "matches": true
+      },
+      {
+        "key": "airConditioning",
+        "label": "Légkondi",
+        "expected": "Van légkondi",
+        "actual": "Nincs légkondi",
+        "matches": false
+      },
+      {
+        "key": "privateGarden",
+        "label": "Saját kert",
+        "expected": "Van saját kert",
+        "actual": "Van saját kert",
+        "matches": true
+      },
+      {
+        "key": "sharedGarden",
+        "label": "Közös kert",
+        "expected": "Van közös kert",
+        "actual": "Nincs megadva",
+        "matches": false
       }
     ]
   }

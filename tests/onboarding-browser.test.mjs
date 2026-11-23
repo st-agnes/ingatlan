@@ -1,7 +1,7 @@
 /** Responsive anonymous UI integration. Deterministic HTTP fixtures isolate the browser;
  * backend/onboarding-smoke.mjs proves creation semantics against actual MySQL. */
 import {mockMapTiles} from './map-browser-network.mjs';
-import {removeSelectedLocation,choosePropertyType} from './editor-browser-helpers.mjs';
+import {removeSelectedLocation,choosePropertyType,assertEditorNavigation,installEditorViewportMock,assertKeyboardNavigation} from './editor-browser-helpers.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -32,6 +32,7 @@ function landing(){
 }
 async function createFixture(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
+ if(viewport.name==='mobile')await installEditorViewportMock(context);
  await mockMapTiles(context);
  const server={user:{id:'10000000-0000-4000-8000-000000000001',email:'onboarding-browser@example.test',name:'Saját Fiók',accountType:'private',phone:''},authRequests:[],creates:[],lookupRequests:[],rows:new Map(),failAuth:0,failSave:0,active:null,unhandled:[],landing:landing()};
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());
@@ -72,7 +73,7 @@ async function progress(page,index){
  await page.waitForFunction(expected=>document.querySelector('#entity-form')?.getAttribute('data-editor-current-step')===String(expected),index);
  assert.equal(await page.locator('.editor-progress [data-action="editor-step"]').count(),6);assert.equal(await page.locator('.editor-step:visible').count(),1);
  assert.equal(await page.locator(`#editor-step-button-${index}`).getAttribute('aria-current'),'step');
- const fit=await page.locator('#entity-form').evaluate(element=>element.scrollWidth<=element.clientWidth+1);assert.ok(fit,'The normal six-step form must fit this viewport');
+ const fit=await page.locator('#entity-form').evaluate(element=>element.scrollWidth<=element.clientWidth+1);assert.ok(fit,'The normal six-step form must fit this viewport');await assertEditorNavigation(page);
 }
 async function next(page,viewport,index){await interact(viewport,page.locator('#editor-next'));await progress(page,index);}
 async function gotoStep(page,viewport,index){await interact(viewport,page.locator(`#editor-step-button-${index}`));await progress(page,index);}
@@ -106,7 +107,8 @@ async function verifyWizardAuth(browser,viewport){
   assert.equal((await draft(second)).id,before.id);assert.equal(await second.locator('#f-maxPrice').inputValue(),'80');await second.close();
   await page.reload({waitUntil:'domcontentloaded'});await progress(page,2);assert.equal(await page.locator('#f-maxPrice').inputValue(),'80');
   await gotoStep(page,viewport,0);assert.equal(await page.locator('#f-title').isVisible(),false);await gotoStep(page,viewport,2);
-  await next(page,viewport,3);await next(page,viewport,4);await next(page,viewport,5);const generated=await page.locator('#f-title').inputValue();assert.match(generated,/Lakás/);assert.match(generated,/Debrecen/);assert.ok(generated.length<=70);await page.locator('#f-title').fill(title);await page.locator('#f-description').fill('A saját igényeim.');await interact(viewport,page.locator('#editor-save'));
+  if(viewport.name==='mobile')await assertKeyboardNavigation(page);
+  await next(page,viewport,3);await assertEditorNavigation(page,{scroll:true,lastField:true});await next(page,viewport,4);await next(page,viewport,5);const generated=await page.locator('#f-title').inputValue();assert.match(generated,/Lakás/);assert.match(generated,/Debrecen/);assert.ok(generated.length<=70);await page.locator('#f-title').fill(title);await page.locator('#f-description').fill('A saját igényeim.');await interact(viewport,page.locator('#editor-save'));
   await page.locator('#hosted-auth-form').waitFor();assert.equal(new URL(page.url()).hash,'#register');assert.equal((await draft(page)).phase,'awaiting-auth');assert.equal(server.creates.length,0);
   const initialCompleted=await draft(page);await showLanding(page);await page.locator('#landing-recent-search').waitFor();await interact(viewport,page.locator('#landing-recent-search-resume'));await page.locator('#hosted-auth-form').waitFor();assert.equal((await draft(page)).phase,'awaiting-auth','A recent finalized draft resumes registration without reopening its immutable data');assert.equal((await draft(page)).creationRequestId,initialCompleted.creationRequestId);
   await interact(viewport,page.locator('[data-action="onboarding-edit"]'));await progress(page,5);

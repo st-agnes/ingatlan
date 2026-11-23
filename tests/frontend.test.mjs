@@ -6,6 +6,7 @@ import fs from 'node:fs/promises';
 import {createModel} from '../dist/model.js';
 import {searchLocations,getLocation,resolveLegacyLocations,locations} from '../dist/locations.js';
 import * as propertyAttributes from '../dist/attributes.js';
+import * as attributeCardArt from '../dist/attribute-card-art.js';
 import * as accountHelpers from '../dist/accounts.js';
 import * as feedbackHelpers from '../dist/feedback.js';
 import * as onboardingHelpers from '../dist/onboarding.js';
@@ -80,7 +81,23 @@ class Document {
   return selected;
  }
 
- parentOf(id){const stack=[],voidTags=new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);for(const token of this.html.matchAll(/<\/?([a-z][\w-]*)\b[^>]*>/gi)){const tag=token[1].toLowerCase(),markup=token[0];if(markup.startsWith('</')){const index=stack.findLastIndex(item=>item.tag===tag);if(index>=0)stack.length=index;continue;}const currentId=markup.match(/\bid=["']([^"']+)["']/)?.[1];if(currentId===id){const parent=stack.findLast(item=>item.id);return parent?this.getElementById(parent.id):null;}if(!voidTags.has(tag)&&!markup.endsWith('/>'))stack.push({tag,id:currentId});}return null;}
+ parentOf(id){
+  // SVG-rich choice cards reuse the parsed structure until markup changes.
+  // Always resolve the current node; values, focus and visibility stay live.
+  const markup=this.html;
+  if(this.parentMarkup!==markup){
+   const stack=[],parents=new Map(),voidTags=new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
+   for(const token of markup.matchAll(/<\/?([a-z][\w-]*)\b[^>]*>/gi)){
+    const tag=token[1].toLowerCase(),opening=token[0];
+    if(opening.startsWith('</')){const index=stack.findLastIndex(item=>item.tag===tag);if(index>=0)stack.length=index;continue;}
+    const currentId=opening.match(/\bid=["']([^"']+)["']/)?.[1];if(currentId)parents.set(currentId,stack.findLast(item=>item.id)?.id||null);
+    if(!voidTags.has(tag)&&!opening.endsWith('/>'))stack.push({tag,id:currentId});
+   }
+   this.parentMarkup=markup;this.parentIds=parents;
+  }
+  const parent=this.parentIds.get(id);return parent?this.getElementById(parent):null;
+ }
+
  addEventListener(type,handler,options){const capture=typeof options==='boolean'?options:!!options?.capture,list=this.listeners.get(type)||[];if(!list.some(item=>item.handler===handler&&item.capture===capture))list.push({handler,capture});this.listeners.set(type,list);this.handlers[type]=event=>{const pending=[...(this.listeners.get(type)||[])].sort((a,b)=>Number(b.capture)-Number(a.capture)).map(item=>item.handler(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};}
  removeEventListener(type,handler,options){const capture=typeof options==='boolean'?options:!!options?.capture;this.listeners.set(type,(this.listeners.get(type)||[]).filter(item=>item.handler!==handler||item.capture!==capture));}
  listenerCount(type){return(this.listeners.get(type)||[]).length;}
@@ -99,7 +116,7 @@ async function setup(options={}){
   document,console,Intl,Date:options.Date||Date,Promise,URL,URLSearchParams,AbortController,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
   location:{get hash(){return currentHash;},set hash(value){const next=value?(value.startsWith('#')?value:'#'+value):'';if(next===currentHash)return;currentHash=next;if(options.dispatchHashChanges)Promise.resolve().then(()=>windowEvents.hashchange?.());},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},matchMedia:()=>({matches:!!options.mobile}),addEventListener:(type,handler)=>{const listeners=windowListeners.get(type)||[];listeners.push(handler);windowListeners.set(type,listeners);windowEvents[type]=event=>{const pending=[...(windowListeners.get(type)||[])].map(callback=>callback(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:options.environment||'test'}:{mode:'demo',environment:'local'},
-  searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...accountHelpers,...feedbackHelpers,...Object.fromEntries(Object.entries(onboardingHelpers).filter(([name])=>!['loadDraft','saveDraft','clearDraft'].includes(name))),
+  searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...attributeCardArt,...accountHelpers,...feedbackHelpers,...Object.fromEntries(Object.entries(onboardingHelpers).filter(([name])=>!['loadDraft','saveDraft','clearDraft'].includes(name))),
   loadDraft:()=>onboardingHelpers.loadDraft(ctx.localStorage),saveDraft:draft=>onboardingHelpers.saveDraft(draft,ctx.localStorage),clearDraft:id=>onboardingHelpers.clearDraft(id,ctx.localStorage),
   findPublicLocations:async(query,limit,options)=>searchLocations(query,limit,options),findPublicStreets:async()=>[],API_CONFIG_KEY:'otthonra.api',
   hostedMode:()=>!!options.hosted,deploymentEnvironment:()=>options.hosted?(options.environment||'test'):'local',
@@ -151,11 +168,15 @@ function propertyTypeCard(t,value){
  const cards=[...t.document.html.matchAll(/<button\b[^>]*\bid="([^"]+)"[^>]*\bdata-property-type="([^"]+)"[^>]*>/g)];
  const match=cards.find(match=>decodeHtmlValue(match[2])===value);assert.ok(match,`Missing illustrated property type ${value}`);return t.document.getElementById(match[1]);
 }
-function chooseEditorType(t,value){
+function selectEditorType(t,value){
  if(editorStep(t)!==1)editorAction(t,'editor-step-button-1');
  assert.equal(editorStep(t),1,'A property type can only be chosen after validating the location topic');
- const button=propertyTypeCard(t,value);return button.handlers.click({target:button,currentTarget:button,preventDefault(){}});
+ const button=propertyTypeCard(t,value);button.handlers.click({target:button,currentTarget:button,preventDefault(){}});
+ assert.equal(editorStep(t),1,'Selecting a property type must not navigate before an explicit Next action');
+ return button;
 }
+function chooseEditorType(t,value){selectEditorType(t,value);return editorAction(t,'editor-next');}
+
 function submitEditor(t){const form=t.document.getElementById('entity-form');return form.handlers.submit({preventDefault(){},currentTarget:form});}
 function submitEntity(t,values){
  const form=t.document.getElementById('entity-form');form.values=values;setEditorValues(t,values);
@@ -314,16 +335,14 @@ test('moving focus outside a property picker dismisses suggestions and preserves
 });
 
 test('closing or replacing the editor removes its outside-picker document listeners',async()=>{
- const t=await setup(),pointerListeners=t.document.listenerCount('pointerdown'),focusListeners=t.document.listenerCount('focusin');
+ const t=await setup(),before=Object.fromEntries(['pointerdown','focusin','keydown'].map(type=>[type,t.document.listenerCount(type)]));
  t.ui.openEditor('search');
- assert.equal(t.document.listenerCount('pointerdown'),pointerListeners+1);
- assert.equal(t.document.listenerCount('focusin'),focusListeners+1);
+ const mounted=Object.fromEntries(Object.keys(before).map(type=>[type,t.document.listenerCount(type)]));
+ for(const type of ['pointerdown','focusin'])assert.ok(mounted[type]>before[type],`${type} dismissal is mounted for the editor`);
  t.ui.openEditor('property');
- assert.equal(t.document.listenerCount('pointerdown'),pointerListeners+1);
- assert.equal(t.document.listenerCount('focusin'),focusListeners+1);
+ for(const [type,count] of Object.entries(mounted))assert.equal(t.document.listenerCount(type),count,`${type} listeners do not accumulate when replacing the editor`);
  t.ui.closeModal();
- assert.equal(t.document.listenerCount('pointerdown'),pointerListeners);
- assert.equal(t.document.listenerCount('focusin'),focusListeners);
+ for(const [type,count] of Object.entries(before))assert.equal(t.document.listenerCount(type),count,`${type} listeners are removed when the editor closes`);
 });
 
 function submitHostedAuth(t,values){
@@ -490,11 +509,12 @@ test('a rejected hosted test-credit grant preserves the balance and confirmation
 test('new property attributes are optional and unknown floor or amenities do not become false defaults',async()=>{
  const t=await setup();t.ui.openEditor('property');
  const html=t.document.getElementById('modal-root').innerHTML;
- for(const name of ['condition','building','constructionAge','view','ceilingHeight','floor','insulated','airConditioning','solarPanels']){
+ for(const name of ['constructionAge','floor','insulated','airConditioning','solarPanels','privateGarden','sharedGarden']){
   const select=html.match(new RegExp(`<select id="f-${name}"[^>]*>([\\s\\S]*?)</select>`))?.[1];
   assert.ok(select,`${name} select must be present`);
   assert.match(select,/<option value="" selected>Nincs megadva<\/option>/);
  }
+ for(const name of ['condition','building','view','ceilingHeight']){const input=t.document.getElementById('f-'+name);assert.equal(input.type,'hidden');assert.equal(input.value,'');assert.equal(input.required,false);}
  assert.match(html,/<select id="f-heatingType"/);assert.match(html,/<select id="f-secondaryHeatingType"/);assert.match(html,/>Nincs fűtés<\/option>/);assert.equal((html.match(/name="parkingTypes"/g)||[]).length,propertyAttributes.PARKING_OPTIONS.length);
  chooseLocation(t,'city:Solymár');
  submitEntity(t,{street:'Teszt utca',houseNumber:'12/A',title:'Opcionális jellemzők',type:'Lakás',price:'82',area:'64',wholeRooms:'3',halfRooms:'0',floor:'',condition:'',building:'',constructionAge:'',view:'',ceilingHeight:'',insulated:'',airConditioning:'',solarPanels:'',images:''});
@@ -508,9 +528,9 @@ test('new property attributes are optional and unknown floor or amenities do not
 test('search checkboxes serialize several choices per category and can all be cleared',async()=>{
  const t=await setup();t.ui.openEditor('search');chooseLocation(t,'district:Budapest:13');
  const html=t.document.getElementById('modal-root').innerHTML;
- assert.match(html,/<fieldset id="conditions-group" class="attribute-group"><legend>Állapot/);
+ assert.match(html,/<fieldset id="conditions-group" class="[^"]*attribute-group[^"]*"[^>]*><legend>Állapot/);
  assert.match(html,/Többet is megjelölhetsz/);
- assert.equal((html.match(/name="buildings"/g)||[]).length,12);
+ assert.equal(t.document.getElementById('entity-form').querySelectorAll('input').filter(input=>input.name==='buildings').length,12);
  submitEntity(t,[...Object.entries(searchValues('Részletes keresés')),['conditions','Jó'],['conditions','Új/felújított'],['buildings','Tégla'],['buildings','Panel'],['constructionAges','10 évnél fiatalabb'],['constructionAges','10–30 év közötti'],['views','Kertre néző'],['views','Panorámás'],['ceilingHeight','3 m feletti'],['floors','-1'],['floors','0'],['floors','11']]);
  await settle();
  let saved=t.model.getState().searches.find(item=>item.title==='Részletes keresés');assert.ok(saved);
@@ -534,7 +554,7 @@ test('seller inputs preserve explicit no, unknown amenities and existing higher 
  assert.equal(saved.building,'Csúsztatott zsalu');assert.equal(saved.energyRating,'A+');
  t.ui.openEditor('property',saved.id);
  const html=t.document.getElementById('modal-root').innerHTML;
- assert.match(html,/<option value="12" selected>12\. emelet<\/option>/);
+ assert.match(html,/<option value="12" selected>12(?:\. emelet)?<\/option>/);
  assert.match(html,/<option value="false" selected>Nem<\/option>/);
  assert.match(html,/value="Hőszivattyú" selected/);
 });
@@ -1128,7 +1148,7 @@ test('editing a saved holiday-home property or search preserves its existing typ
 
 test('modal focus chooses the first visible enabled field before progress buttons and ignores closed or replaced modal timers',async()=>{
  const t=await setup({captureTimers:true});t.ui.openEditor('search');
- assert.equal(t.document.querySelector('.modal input,.modal select,.modal button,.modal textarea').id,'editor-step-button-0','Selector unions follow DOM order, so the original mixed query would focus a progress button');
+ assert.equal(t.document.querySelector('.modal input,.modal select,.modal button,.modal textarea').id,'location-input','The footer progress controls follow the first location field in DOM order');
  const before=t.document.focusEvents.length;t.runTimers();assert.equal(t.document.activeElement.id,'location-input');assert.deepEqual(t.document.focusEvents.slice(before),['location-input'],'Opening focus moves once directly to the first field');
  t.ui.openModal('<div id="hidden-fields" hidden><input id="hidden-field"></div><input id="disabled-field" disabled><textarea id="visible-field"></textarea><button id="visible-action">Folytatás</button>');
  t.runTimers();assert.equal(t.document.activeElement.id,'visible-field','Hidden ancestors and disabled controls cannot receive opening focus');
@@ -1866,7 +1886,7 @@ test('responsive search workspaces retain the exact property location form uncha
 });
 
 
-test('location-only first steps require an explicit illustrated type choice and one click advances without saving',async()=>{
+test('location-only first steps require an illustrated type choice and explicit Next without saving',async()=>{
  for(const kind of ['search','property'])for(const guest of [false,true]){
   const draft=onboardingHelpers.createDraft(kind,{}, {editor:{titleGenerated:true}});
   const t=await setup(guest?{hosted:true,captureTimers:true,hash:'#onboarding',regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(draft)}}:{});
@@ -1886,9 +1906,9 @@ test('location-only first steps require an explicit illustrated type choice and 
   }
   assert.equal((t.document.html.match(/class="property-type-illustration"/g)||[]).length,4,'Each type has its own illustrated choice');
   await editorAction(t,'editor-next');assert.equal(editorStep(t),1,'The type step cannot be bypassed without a choice');assert.equal(t.document.getElementById('property-type-error').hidden,false);assert.equal(t.document.activeElement,propertyTypeCard(t,'Lakás'));
-  chooseEditorType(t,'Lakás');assert.equal(editorStep(t),2,'A single type-card click advances directly to price and size');assert.equal(t.document.getElementById('f-type').value,'Lakás');assert.equal(propertyTypeCard(t,'Lakás').getAttribute('aria-pressed'),'true');assert.equal(writes,0);
+  selectEditorType(t,'Lakás');assert.equal(editorStep(t),1,'A type-card click only selects its value');await editorAction(t,'editor-next');assert.equal(editorStep(t),2,'Explicit Next advances to price and size');assert.equal(t.document.getElementById('f-type').value,'Lakás');assert.equal(propertyTypeCard(t,'Lakás').getAttribute('aria-pressed'),'true');assert.equal(writes,0);
   const price=t.document.getElementById(kind==='property'?'f-price':'f-maxPrice');price.value='83';
-  await editorAction(t,'editor-back');assert.equal(editorStep(t),1);chooseEditorType(t,'Lakás');assert.equal(editorStep(t),2,'Clicking the already selected card still advances after returning');assert.equal(price.value,'83');assert.equal(t.document.getElementById('entity-form'),form);assert.equal(writes,0);
+  await editorAction(t,'editor-back');assert.equal(editorStep(t),1);selectEditorType(t,'Lakás');assert.equal(editorStep(t),1,'Clicking the already selected required type preserves it without navigating');await editorAction(t,'editor-next');assert.equal(editorStep(t),2);assert.equal(price.value,'83');assert.equal(t.document.getElementById('entity-form'),form);assert.equal(writes,0);
   await editorAction(t,'editor-back');chooseEditorType(t,'Ház');assert.equal(editorStep(t),2);assert.equal(t.document.getElementById('f-type').value,'Ház');assert.equal(propertyTypeCard(t,'Lakás').getAttribute('aria-pressed'),'false');
   if(kind==='property')assert.equal(t.document.getElementById('f-lotArea').required,true);else assert.equal(t.document.getElementById('floors-group').disabled,true);
   assert.equal(price.value,'83');assert.equal(writes,0);
@@ -1896,11 +1916,11 @@ test('location-only first steps require an explicit illustrated type choice and 
  }
 });
 
-test('restored and owned preselected types do not auto-advance until the visitor clicks their illustrated choice',async()=>{
+test('restored and owned preselected types remain on their topic until explicit Next',async()=>{
  for(const kind of ['search','property']){
   const draft=onboardingHelpers.updateDraft(onboardingHelpers.createDraft(kind,{type:'Ház',locationIds:['city:Debrecen'],locationId:'city:Debrecen',street:'Teszt utca',houseNumber:'12'},{editor:{locations:[getLocation('city:Debrecen')],titleGenerated:true}}),{step:1});
   const guest=await setup({hosted:true,hash:'#onboarding',regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(draft)}});
-  assert.equal(editorStep(guest),1);assert.equal(propertyTypeCard(guest,'Ház').getAttribute('aria-pressed'),'true');assert.equal(storedOnboarding(guest).step,1);chooseEditorType(guest,'Ház');assert.equal(editorStep(guest),2);
+  assert.equal(editorStep(guest),1);assert.equal(propertyTypeCard(guest,'Ház').getAttribute('aria-pressed'),'true');assert.equal(storedOnboarding(guest).step,1);selectEditorType(guest,'Ház');assert.equal(storedOnboarding(guest).step,1);await editorAction(guest,'editor-next');assert.equal(editorStep(guest),2);
   const owned=await setup();owned.ui.openEditor(kind,kind==='property'?'own-p1':'own-s1');assert.equal(editorStep(owned),0);await editorAction(owned,'editor-next');assert.equal(editorStep(owned),1,'Opening or restoring a selected type is never an implicit navigation');
   const savedType=owned.document.getElementById('f-type').value;assert.equal(propertyTypeCard(owned,savedType).getAttribute('aria-pressed'),'true');chooseEditorType(owned,savedType);assert.equal(editorStep(owned),2);
  }
@@ -1916,4 +1936,88 @@ test('the mounted guest editor migrates legacy five-step storage once and persis
  const saved=storedOnboarding(t);assert.equal(saved.id,legacy.id);assert.equal(saved.creationRequestId,legacy.creationRequestId);assert.deepEqual(saved.origin,origin);assert.equal(saved.editor.layoutVersion,2);assert.equal(saved.step,5);assert.equal(saved.editor.query,'Csapó');assert.equal(saved.data.description,field.value);assert.equal(saved.data.maxPrice,'89.5');assert.equal(saved.data.title,'Régi, saját keresésem');
  assert.deepEqual(saved.editor.completedSteps,[0,1,2,3,4]);
  await t.click({action:'landing'});t.ctx.location.hash='#onboarding';await t.ui.render();assert.equal(editorStep(t),5);assert.equal(t.document.getElementById('f-description').value,field.value);assert.equal(storedOnboarding(t).editor.layoutVersion,2);
+});
+
+
+function illustratedAttribute(t,name,index){const button=t.document.getElementById(`attribute-${name}-${index}`);assert.ok(button,`Missing illustrated ${name} option ${index}`);return button;}
+function clickIllustrated(t,name,index){const button=illustratedAttribute(t,name,index);button.handlers.click({target:button,currentTarget:button,preventDefault(){}});return button;}
+function changeChoice(t,input,checked){input.checked=checked;const event={target:input,currentTarget:input};input.handlers.change?.(event);t.document.getElementById('entity-form').handlers.change?.(event);}
+
+test('optional illustrated seller attributes toggle off, retain other fields and keep help separate from selection',async()=>{
+ const t=await setup(),listeners=Object.fromEntries(['pointerdown','focusin','keydown'].map(type=>[type,t.document.listenerCount(type)]));t.ui.openEditor('property','own-p1');await advanceEditor(t,3);
+ const form=t.document.getElementById('entity-form'),title=t.document.getElementById('f-title'),originalTitle=title.value;let writes=0;t.model.saveEntity=()=>{writes++;};
+ for(const name of ['condition','view','building','ceilingHeight']){
+  const input=t.document.getElementById('f-'+name);assert.equal(input.type,'hidden');
+  if(input.value){const matching=[0,1,2,3,4,5,6,7,8,9,10,11].map(index=>t.document.getElementById(`attribute-${name}-${index}`)).find(button=>button?.getAttribute('data-attribute-value')===input.value);assert.ok(matching);matching.handlers.click({target:matching,currentTarget:matching,preventDefault(){}});assert.equal(input.value,'');}
+  const button=clickIllustrated(t,name,0),value=button.getAttribute('data-attribute-value');assert.equal(input.value,value);assert.equal(button.getAttribute('aria-pressed'),'true');assert.equal(editorStep(t),3);
+  clickIllustrated(t,name,0);assert.equal(input.value,'','Clicking a selected optional single choice removes it');assert.equal(button.getAttribute('aria-pressed'),'false');assert.equal(editorStep(t),3);
+  clickIllustrated(t,name,1);assert.equal(input.value,illustratedAttribute(t,name,1).getAttribute('data-attribute-value'));
+ }
+ const building=t.document.getElementById('f-building'),before=building.value,help=t.document.getElementById('building-help-property-0');assert.ok(help);help.handlers.click({target:help,currentTarget:help,preventDefault(){},stopPropagation(){}});
+ assert.equal(t.document.getElementById('building-help-panel').hidden,false);assert.equal(help.getAttribute('aria-expanded'),'true');assert.equal(building.value,before);assert.equal(t.document.getElementById('entity-form'),form);assert.equal(editorStep(t),3);assert.equal(writes,0);
+ await editorAction(t,'building-help-close');assert.equal(t.document.getElementById('building-help-panel').hidden,true);assert.equal(building.value,before);assert.equal(title.value,originalTitle);
+ await editorAction(t,'editor-step-button-2');await editorAction(t,'editor-step-button-3');assert.equal(building.value,before);assert.equal(writes,0);
+ await t.click({action:'close'});for(const [type,count] of Object.entries(listeners))assert.equal(t.document.listenerCount(type),count,`${type} help listeners are cleaned up when the editor closes`);
+ const legacy=onboardingHelpers.updateDraft(onboardingHelpers.createDraft('property',{type:'Lakás',locationId:'city:Debrecen',street:'Teszt utca',houseNumber:'12',price:'85',area:'60',wholeRooms:'2',condition:'Felújított',building:'Vert fal'},{editor:{locations:[getLocation('city:Debrecen')],titleGenerated:true}}),{step:3});
+ const guest=await setup({hosted:true,hash:'#onboarding',regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(legacy)}}),condition=guest.document.getElementById('f-condition'),unknownBuilding=illustratedAttribute(guest,'building',propertyAttributes.BUILDING_OPTIONS.length);
+ assert.equal(condition.value,'Felújított','Restoring a raw legacy draft keeps its saved text until an explicit edit');
+ assert.equal(illustratedAttribute(guest,'condition',3).getAttribute('aria-pressed'),'true','The known legacy alias highlights its canonical illustrated option');
+ assert.equal(unknownBuilding.getAttribute('data-attribute-value'),'Vert fal');assert.equal(unknownBuilding.getAttribute('aria-pressed'),'true','An unknown legacy wall value stays selected on its extra choice');
+ clickIllustrated(guest,'condition',3);assert.equal(condition.value,'','One click clears an already-selected known alias');assert.equal(illustratedAttribute(guest,'condition',3).getAttribute('aria-pressed'),'false');assert.equal(storedOnboarding(guest).data.condition,'');assert.equal(storedOnboarding(guest).data.building,'Vert fal');assert.equal(editorStep(guest),3);
+ await guest.click({action:'landing'});guest.ctx.location.hash='#onboarding';await guest.ui.render();assert.equal(guest.document.getElementById('f-condition').value,'');assert.equal(guest.document.getElementById('f-building').value,'Vert fal');assert.equal(illustratedAttribute(guest,'building',propertyAttributes.BUILDING_OPTIONS.length).getAttribute('aria-pressed'),'true');
+});
+
+test('guest illustrated search choices remain independent and persist explicit clearing without advancing',async()=>{
+ const draft=onboardingHelpers.updateDraft(onboardingHelpers.createDraft('search',{type:'Lakás',locationIds:['city:Debrecen'],maxPrice:90,minArea:40},{editor:{locations:[getLocation('city:Debrecen')],titleGenerated:true}}),{step:3});
+ const t=await setup({hosted:true,hash:'#onboarding',regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(draft)}}),form=t.document.getElementById('entity-form');
+ for(const [name,values] of [['conditions',propertyAttributes.CONDITION_OPTIONS],['views',propertyAttributes.VIEW_OPTIONS],['buildings',propertyAttributes.BUILDING_OPTIONS]]){
+  const first=editorChoice(t,name,values[0]),second=editorChoice(t,name,values[1]);changeChoice(t,first,true);changeChoice(t,second,true);changeChoice(t,first,false);
+  assert.deepEqual(storedOnboarding(t).data[name],[values[1]]);assert.equal(second.checked,true);assert.equal(editorStep(t),3);assert.equal(t.document.getElementById('entity-form'),form);
+ }
+ const ceiling=t.document.getElementById('f-ceilingHeight');clickIllustrated(t,'ceilingHeight',0);assert.ok(ceiling.value);clickIllustrated(t,'ceilingHeight',0);assert.equal(ceiling.value,'');assert.equal(storedOnboarding(t).data.ceilingHeight,'');
+ const selected=storedOnboarding(t).data.buildings,help=t.document.getElementById('building-help-search-0');help.handlers.click({target:help,currentTarget:help,preventDefault(){},stopPropagation(){}});assert.equal(t.document.getElementById('building-help-panel').hidden,false);assert.deepEqual(storedOnboarding(t).data.buildings,selected);await editorAction(t,'building-help-close');
+ await t.click({action:'landing'});t.ctx.location.hash='#onboarding';await t.ui.render();assert.equal(editorStep(t),3);assert.equal(editorChoice(t,'buildings',propertyAttributes.BUILDING_OPTIONS[1]).checked,true);assert.equal(editorChoice(t,'buildings',propertyAttributes.BUILDING_OPTIONS[0]).checked,false);assert.equal(t.document.getElementById('f-ceilingHeight').value,'');
+});
+
+test('the footer owns every progress control and the reordered attributes keep floor and lift together',async()=>{
+ for(const kind of ['property','search']){
+  const t=await setup();t.ui.openEditor(kind,kind==='property'?'own-p1':'own-s1');const nav=t.document.getElementById('editor-navigation'),form=t.document.getElementById('entity-form');assert.ok(nav);
+  for(const id of ['editor-next','editor-back','editor-save',...Array.from({length:6},(_unused,index)=>`editor-step-button-${index}`)])assert.equal(nav.contains(t.document.getElementById(id)),true,`${id} must belong to the common footer`);
+  assert.equal(form.contains(nav),true);assert.ok(t.document.html.indexOf('id="editor-navigation"')>t.document.html.indexOf('id="editor-step-5"'),'Progress is in the footer rather than above the topic');
+  const ids=kind==='property'?['f-condition','f-floor','f-elevator','f-constructionAge','f-view','f-building','f-ceilingHeight']:['conditions-group','floors-group','f-elevator','constructionAges-group','views-group','buildings-group','f-ceilingHeight'];
+  const section=t.document.getElementById('editor-step-3');for(const id of ids)assert.equal(section.contains(t.document.getElementById(id)),true,`${id} belongs to the attribute topic`);
+  const positions=ids.map(id=>t.document.html.indexOf(`id="${id}"`));assert.deepEqual(positions,[...positions].sort((left,right)=>left-right),'The attributes follow condition, floor/lift, age, view, wall and ceiling order');
+  const floorGroup=t.document.getElementById(kind==='property'?'property-floor-field':'floors-group');assert.equal(floorGroup.contains(t.document.getElementById('f-elevator')),true);
+ }
+});
+
+test('floor exclusions, building height and garden requirements survive actual owner saves with zero, false and unknown intact',async()=>{
+ const t=await setup();t.ui.openEditor('property','own-p1');const form=t.document.getElementById('entity-form');
+ const floor=t.document.getElementById('f-floor'),floorOptions=floor.markup;
+ assert.match(floorOptions,/<option value="12"[^>]*>12(?:\. emelet)?<\/option>/,'Seller choices include the actual twelfth floor even before a legacy value is loaded');
+ const eleventh=floorOptions.match(/<option value="11"[^>]*>([^<]+)<\/option>/)?.[1];assert.ok(eleventh);assert.match(eleventh,/^11(?:\. emelet)?$/,'A seller floor11 is an exact floor, not the search-only11+ bucket');
+ const buildingFloors=t.document.getElementById('f-buildingFloors');assert.equal(buildingFloors.type,'number');assert.equal(buildingFloors.getAttribute('min'),'0');assert.equal(buildingFloors.getAttribute('max'),'200');assert.equal(buildingFloors.step,'1');assert.equal(buildingFloors.required,false);
+ buildingFloors.value='0';t.document.getElementById('f-floor').value='0';t.document.getElementById('f-privateGarden').value='false';t.document.getElementById('f-sharedGarden').value='true';
+ await advanceEditor(t,5);submitEditor(t);await settle();let property=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(property.buildingFloors,0);assert.equal(property.privateGarden,false);assert.equal(property.sharedGarden,true);
+ t.ui.openEditor('property','own-p1');assert.equal(t.document.getElementById('f-buildingFloors').value,'0');assert.equal(t.document.getElementById('f-privateGarden').value,'false');assert.equal(t.document.getElementById('f-sharedGarden').value,'true');
+ t.document.getElementById('f-floor').value='12';t.document.getElementById('f-buildingFloors').value='12';await advanceEditor(t,5);submitEditor(t);await settle();property=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(property.floor,12);assert.equal(property.buildingFloors,12,'The highest building floor and actual property floor keep their exact shared value');
+ t.ui.openEditor('property','own-p1');assert.equal(t.document.getElementById('f-floor').value,'12');assert.equal(t.document.getElementById('f-buildingFloors').value,'12');
+ t.document.getElementById('f-buildingFloors').value='';t.document.getElementById('f-privateGarden').value='';t.document.getElementById('f-sharedGarden').value='';await advanceEditor(t,5);submitEditor(t);await settle();property=t.model.getState().properties.find(item=>item.id==='own-p1');for(const key of ['buildingFloors','privateGarden','sharedGarden'])assert.equal(property[key],null,`${key} remains unknown when cleared`);
+ t.ui.openEditor('search','own-s1');for(const id of ['f-excludeTopFloor','f-excludeGroundFloorAndBelow','f-airConditioning','f-privateGarden','f-sharedGarden'])changeChoice(t,t.document.getElementById(id),true);
+ await advanceEditor(t,5);submitEditor(t);await settle();let search=t.model.getState().searches.find(item=>item.id==='own-s1');for(const key of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'])assert.equal(search[key],true,key);
+ t.ui.openEditor('search','own-s1');for(const id of ['f-excludeTopFloor','f-excludeGroundFloorAndBelow','f-airConditioning','f-privateGarden','f-sharedGarden']){assert.equal(t.document.getElementById(id).checked,true);changeChoice(t,t.document.getElementById(id),false);}
+ await advanceEditor(t,5);submitEditor(t);await settle();search=t.model.getState().searches.find(item=>item.id==='own-s1');for(const key of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'])assert.equal(search[key],false,key);
+ assert.notEqual(t.document.getElementById('entity-form'),form);
+});
+
+test('garden controls apply only to flats while air conditioning remains available on other search types',async()=>{
+ for(const kind of ['property','search'])for(const type of ['Lakás','Ház','Telek','Üzlethelyiség']){
+  const t=await setup();t.ui.openEditor(kind,kind==='property'?'own-p1':'own-s1');
+  if(kind==='property'){t.document.getElementById('f-privateGarden').value='true';t.document.getElementById('f-sharedGarden').value='true';}else for(const name of ['privateGarden','sharedGarden'])changeChoice(t,t.document.getElementById('f-'+name),true);
+  chooseEditorType(t,type);if(kind==='property'&&type==='Ház')t.document.getElementById('f-lotArea').value='650';await advanceEditor(t,4);
+  const applicable=type==='Lakás',group=t.document.getElementById('entity-gardens');assert.equal(group.offsetParent!==null,applicable);
+  for(const name of ['privateGarden','sharedGarden'])assert.equal(t.document.getElementById('f-'+name).disabled,!applicable);
+  if(kind==='search')assert.equal(t.document.getElementById('f-airConditioning').disabled,false);
+  if(type==='Ház'){await advanceEditor(t,5);submitEditor(t);await settle();const saved=t.model.getState()[kind==='property'?'properties':'searches'].find(item=>item.id===(kind==='property'?'own-p1':'own-s1'));for(const name of ['privateGarden','sharedGarden'])assert.equal(saved[name],kind==='property'?null:false,'Hidden flat-specific intent cannot leak into a saved house');}
+ }
 });
