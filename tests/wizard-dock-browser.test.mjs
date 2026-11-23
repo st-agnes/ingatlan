@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorStep,editorSave} from './editor-browser-helpers.mjs';
+import {editorField,editorStep,editorSave,choosePropertyType} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -13,7 +13,7 @@ const origin=new URL(process.argv[2]||'http://127.0.0.1:3000').origin;
 const screenshots=resolve('.local/browser-tests/screenshots');
 const viewports=[{name:'desktop',width:1280,height:900,touch:false},{name:'tablet',width:800,height:1100,touch:true},{name:'mobile',width:390,height:844,touch:true}];
 const state=page=>page.evaluate(async()=>(await import('/model.js')).model.getState());
-const labels={property:['Alapadatok','Ár és méret','Ingatlanjellemzők','Felszereltség','Képek és leírás'],search:['Helyszín és típus','Ár és méret','Ingatlanjellemzők','Kényelem és felszereltség','További elképzelések']};
+const labels={property:['Helyszín és cím','Ingatlan típusa','Ár és méret','Ingatlanjellemzők','Felszereltség','Képek és leírás'],search:['Helyszín','Ingatlan típusa','Ár és méret','Ingatlanjellemzők','Kényelem és felszereltség','További elképzelések']};
 let visit=0;
 
 async function fresh(page,kind='search',long=false){
@@ -29,8 +29,8 @@ async function fresh(page,kind='search',long=false){
 }
 
 async function verifyProgress(page,kind,index){
- const buttons=page.locator('.editor-progress [data-action="editor-step"]');assert.equal(await buttons.count(),5);
- for(let step=0;step<5;step++)assert.ok((await buttons.nth(step).innerText()).includes(labels[kind][step]),`Step ${step+1} must have its topic name`);
+ const buttons=page.locator('.editor-progress [data-action="editor-step"]');assert.equal(await buttons.count(),6);
+ for(let step=0;step<6;step++)assert.ok((await buttons.nth(step).innerText()).includes(labels[kind][step]),`Step ${step+1} must have its topic name`);
  assert.equal(await page.locator(`#editor-step-button-${index}`).getAttribute('aria-current'),'step');
  assert.equal(await page.locator('.editor-step:visible').count(),1,'Only one topic is displayed at a time');
  assert.equal(await page.locator(`#editor-step-${index}`).isVisible(),true);
@@ -38,6 +38,32 @@ async function verifyProgress(page,kind,index){
  assert.doesNotMatch(await page.locator('.editor-progress').innerText(),/Kitöltve|Aktuális|Hátravan/);
  const geometry=await page.locator('.entity-wizard').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));
  assert.ok(geometry.scroll<=geometry.width+1,'Named progress and fields must fit without horizontal scrolling');
+ const tabs=await page.locator('.editor-progress').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth,rows:[...new Set([...element.querySelectorAll('button')].map(button=>Math.round(button.getBoundingClientRect().top)))]}));assert.ok(tabs.scroll<=tabs.width+1,'All six topic tabs must wrap without horizontal scrolling');if(await page.evaluate(()=>innerWidth<=390))assert.ok(tabs.rows.length>=2,'Six mobile topic tabs must wrap onto multiple rows rather than force horizontal scrolling');
+}
+
+async function verifyTypeSelection(page,interact,kind,viewport){
+ const types=['Lakás','Ház','Telek','Üzlethelyiség'],cards=page.locator('#property-type-options [data-property-type]');
+ assert.equal(await cards.count(),4);assert.equal(await page.locator('#property-type-options select').count(),0);
+ assert.equal(await cards.locator('.property-type-illustration svg').count(),4,'Each property type has an actual illustration');
+ assert.deepEqual(await cards.evaluateAll(elements=>elements.map(element=>element.dataset.propertyType)),types);
+ assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),0,'A new form must wait for an explicit type choice');
+ const geometry=await page.locator('#property-type-options').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));assert.ok(geometry.scroll<=geometry.width+1,'The illustrated choices must fit the viewport');
+ if(kind==='property'){await mkdir(screenshots,{recursive:true});await page.locator('.modal').screenshot({path:resolve(screenshots,`visual-type-${viewport.name}.png`)});}
+ for(const [index,type]of types.entries()){
+  if(index)await editorStep(page,1,interact);
+  const card=page.locator(`[data-property-type="${type}"]`);assert.ok((await card.innerText()).includes(type));
+  await interact(card);await page.waitForFunction(()=>document.getElementById('entity-form').dataset.editorCurrentStep==='2');
+  assert.equal(await page.locator('#f-type').inputValue(),type);assert.equal(await card.getAttribute('aria-pressed'),'true');assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),1);
+ }
+ const desired=kind==='property'?'Ház':'Lakás';await choosePropertyType(page,desired,interact);
+ // Revisiting an already selected card still advances, using both native keys.
+ for(const key of ['Enter','Space']){
+  await editorStep(page,1,interact);await verifyProgress(page,kind,1);
+  const card=page.locator(`[data-property-type="${desired}"]`);assert.equal(await card.getAttribute('aria-pressed'),'true');await card.focus();await card.press(key);
+  await page.waitForFunction(()=>document.getElementById('entity-form').dataset.editorCurrentStep==='2');assert.equal(await page.locator('#f-type').inputValue(),desired);
+ }
+ await editorStep(page,1,interact);await interact(page.locator(`[data-property-type="${desired}"]`));await page.waitForFunction(()=>document.getElementById('entity-form').dataset.editorCurrentStep==='2');
+ console.log(`Visual type ${kind} ${viewport.name}: four illustrated choices, direct pointer selection, unique pressed state, automatic next step and repeat-choice keyboard activation passed.`);
 }
 
 async function createWizard(page,interact,kind,viewport){
@@ -49,32 +75,32 @@ async function createWizard(page,interact,kind,viewport){
  assert.equal(await page.locator('#editor-save').isVisible(),false,'Saving is offered only after all topic screens');
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,0);
  assert.equal((await state(page))[kind==='property'?'properties':'searches'].length,before[kind==='property'?'properties':'searches'].length,'An invalid next action must not create an entity');
- assert.equal(await page.locator('#f-title').isVisible(),false);assert.equal(await page.locator('#f-type').inputValue(),'');assert.equal(await page.locator('#f-type').evaluate(element=>element.required),true);
- await page.locator('#f-type').selectOption('Lakás');
+ assert.equal(await page.locator('#f-title').isVisible(),false);assert.equal(await page.locator('#f-type').inputValue(),'');assert.equal(await page.locator('#f-type').getAttribute('type'),'hidden');assert.equal(await page.locator('select#f-type').count(),0);
  await page.locator('#location-input').fill('Debrecen');await interact(page.locator('[data-location-id="city:Debrecen"]'));
  if(kind==='search'){await page.locator('#location-input').fill('Hajdúszoboszló');await interact(page.locator('[data-location-id="city:Hajdúszoboszló"]'));}
- if(kind==='property'){await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('12/A');await page.locator('#f-type').selectOption('Ház');}
+ if(kind==='property'){await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('12/A');}
  await page.evaluate(()=>{globalThis.wizardOriginalTitle=document.getElementById('f-title');});
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,1);
+ await verifyTypeSelection(page,interact,kind,viewport);await verifyProgress(page,kind,2);
  await alignedBounds(page,kind,viewport);
  for(const field of kind==='property'?['price','area','wholeRooms','halfRooms']:['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])assert.equal(await page.locator(`#f-${field}`).inputValue(),'','Blank forms must wait for the user values');
  assert.equal(await page.locator('#editor-step-button-0').getAttribute('data-state'),'completed');
  if(kind==='property'){
   await page.locator('#f-price').fill('95.5');await page.locator('#f-area').fill('86.5');await page.locator('#f-wholeRooms').fill('3');await page.locator('#f-halfRooms').fill('1');
-  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,1);
+  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,2);
   assert.equal(await page.locator('#f-lotArea').evaluate(element=>element.validity.valueMissing),true,'House plot is required on the size screen');
   await page.locator('#f-lotArea').fill('520.5');
  }else{
   await page.locator('#f-minPrice').fill('');await page.locator('#f-maxPrice').fill('105.5');await page.locator('#f-minArea').fill('65');await page.locator('#f-maxArea').fill('');await page.locator('#f-minRooms').fill('2.5');await page.locator('#f-maxRooms').fill('');
  }
- await interact(page.locator('#editor-next'));await verifyProgress(page,kind,2);
+ await interact(page.locator('#editor-next'));await verifyProgress(page,kind,3);
  if(kind==='property'){
   await page.locator('#f-condition').selectOption('Jó');await page.locator('#f-building').selectOption('Tégla');await page.locator('#f-view').selectOption('Kertre néző');
   assert.equal(await page.locator('#property-floor-field').isVisible(),false);
  }else{
   await page.locator('input[name="conditions"][value="Jó"]').check();await page.locator('input[name="conditions"][value="Új/felújított"]').check();await page.locator('input[name="buildings"][value="Tégla"]').check();
  }
- await interact(page.locator('#editor-next'));await verifyProgress(page,kind,3);
+ await interact(page.locator('#editor-next'));await verifyProgress(page,kind,4);
  if(kind==='property'){
   await page.locator('#f-heatingType').selectOption('Hőszivattyú');await page.locator('#f-insulated').selectOption('false');await page.locator('#f-airConditioning').selectOption('true');
   await page.locator('input[name="parkingTypes"][value="Garázs"]').check();await page.locator('input[name="parkingTypes"][value="Udvari beálló"]').check();
@@ -82,21 +108,21 @@ async function createWizard(page,interact,kind,viewport){
  }else{
   await page.locator('input[name="heatingTypes"][value="Hőszivattyú"]').check();await page.locator('#f-ceilingHeight').selectOption('3 m feletti');await page.locator('input[name="floors"][value="0"]').check();await page.locator('#f-elevator').check();
  }
- await interact(page.locator('#editor-next'));await verifyProgress(page,kind,4);
+ await interact(page.locator('#editor-next'));await verifyProgress(page,kind,5);
  const generatedTitle=await page.locator('#f-title').inputValue();assert.match(generatedTitle,/Debrecen/);assert.match(generatedTitle,kind==='property'?/Ház/:/Lakás/);assert.ok(generatedTitle.length<=70);assert.equal(await page.locator('#f-title').evaluate(element=>element.required),false);await page.locator('#f-title').fill(title);
  const description=`Megőrzött leírás – ${viewport.name} – ${kind}`;
  await page.locator('#f-description').fill(description);
  if(kind==='property')await page.locator('#property-images').fill('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');
  else await page.locator('#f-moveIn').selectOption('3 hónapon belül');
- await interact(page.locator('#editor-back'));await verifyProgress(page,kind,3);
+ await interact(page.locator('#editor-back'));await verifyProgress(page,kind,4);
  await editorStep(page,0,interact);await verifyProgress(page,kind,0);
  assert.equal(await page.evaluate(()=>globalThis.wizardOriginalTitle===document.getElementById('f-title')),true,'Back navigation must retain the same input nodes and their draft values');
  assert.equal(await page.locator('#f-title').inputValue(),title);assert.equal(await page.locator('#location-chips .location-chip').count(),kind==='property'?1:2);
  assert.equal(await page.locator('#f-title').isVisible(),false);
- await editorStep(page,1,interact);await verifyProgress(page,kind,1);
+ await editorStep(page,2,interact);await verifyProgress(page,kind,2);
  assert.equal(await page.locator(kind==='property'?'#f-price':'#f-maxPrice').inputValue(),kind==='property'?'95.5':'105.5');
  await page.locator(kind==='property'?'#f-area':'#f-minArea').fill('87.5');
- await editorStep(page,4,interact);await verifyProgress(page,kind,4);
+ await editorStep(page,5,interact);await verifyProgress(page,kind,5);
  assert.equal(await page.locator('#f-description').inputValue(),description);assert.equal(await page.locator('#f-title').inputValue(),title,'Later parameter changes must retain a customized title');await page.locator('#f-title').fill(title+' módosítva');
  if(kind==='property'){
   assert.equal(await page.locator('#property-images').inputValue(),'https://images.unsplash.com/photo-1600585154340-be6161a56a0c');assert.equal(await page.locator('#f-insulated').inputValue(),'false');assert.equal(await page.locator('#f-airConditioning').inputValue(),'true');assert.equal(await page.locator('input[name="parkingTypes"][value="Garázs"]').isChecked(),true);
@@ -112,14 +138,14 @@ async function createWizard(page,interact,kind,viewport){
  if(kind==='property'){assert.equal(saved.area,87.5);assert.equal(saved.lotArea,520.5);assert.equal(saved.rooms,3.5);assert.equal(saved.insulated,false);assert.equal(saved.airConditioning,true);assert.equal(saved.heatingType,'Hőszivattyú');assert.deepEqual(saved.parkingTypes,['Udvari beálló','Garázs']);}
  else{assert.equal(saved.minArea,87.5);assert.equal(saved.maxPrice,105.5);for(const field of ['minPrice','maxArea','maxRooms'])assert.equal(saved[field],null);assert.deepEqual(saved.locationIds,['city:Debrecen','city:Hajdúszoboszló']);assert.equal(saved.moveIn,'3 hónapon belül');}
  await interact(page.locator(`[data-action="edit"][data-kind="${kind}"][data-id="${saved.id}"]`));await page.locator('#entity-form').waitFor();await verifyProgress(page,kind,0);
- assert.equal(await page.locator('#f-title').inputValue(),saved.title);await editorStep(page,4,interact);assert.equal(await page.locator('#f-description').inputValue(),description);
- await page.locator('#f-description').fill(description+' szerkesztve');await editorStep(page,0,interact);await editorStep(page,4,interact);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
+ assert.equal(await page.locator('#f-title').inputValue(),saved.title);await editorStep(page,1,interact);await verifyProgress(page,kind,1);assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),1);await editorStep(page,5,interact);assert.equal(await page.locator('#f-description').inputValue(),description);
+ await page.locator('#f-description').fill(description+' szerkesztve');await editorStep(page,0,interact);await editorStep(page,5,interact);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
  const edited=await state(page);assert.equal(edited[kind==='property'?'properties':'searches'].length,after[kind==='property'?'properties':'searches'].length);assert.equal(edited[kind==='property'?'properties':'searches'].find(item=>item.id===saved.id).description,description+' szerkesztve');assert.equal(await page.locator('.search-created-actions').count(),0,'Editing must not reopen the new-search activation prompt');
 }
 
 
 async function boundGeometry(page){
- return page.locator('#editor-step-1 .form-row').evaluateAll(rows=>rows.map(row=>[...row.querySelectorAll('.field')].map(field=>{
+ return page.locator('#editor-step-2 .form-row').evaluateAll(rows=>rows.map(row=>[...row.querySelectorAll('.field')].map(field=>{
   const input=field.querySelector('input,select,textarea'),label=field.querySelector('label');
   if(!input||!label)return null;const box=input.getBoundingClientRect(),caption=label.getBoundingClientRect();
   return{id:input.id,left:box.left,right:box.right,top:box.top,bottom:box.bottom,labelHeight:caption.height};
@@ -190,8 +216,8 @@ async function verifyCriteriaSummary(page,interact,kind,viewport){
  await interact(edit);await page.locator('#entity-form').waitFor();await verifyProgress(page,kind,0);
  assert.equal(await page.locator('#f-title').inputValue(),before[kind==='property'?'properties':'searches'].find(item=>item.id===id).title);
  assert.equal(await page.locator('#location-input').getAttribute('type'),'search');assert.equal(await page.locator('.entity-wizard input[type="search"]').count(),1);
- await editorStep(page,1,interact);await alignedBounds(page,kind,viewport);
- await editorStep(page,4,interact);await page.locator('#f-description').fill(`Összesítőből szerkesztve ${kind} ${viewport.name}`);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
+ await editorStep(page,2,interact);await alignedBounds(page,kind,viewport);
+ await editorStep(page,5,interact);await page.locator('#f-description').fill(`Összesítőből szerkesztve ${kind} ${viewport.name}`);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
  const after=await state(page),saved=after[kind==='property'?'properties':'searches'].find(item=>item.id===id);assert.equal(saved.description,`Összesítőből szerkesztve ${kind} ${viewport.name}`);assert.deepEqual(after.active,before.active);assert.equal(after.credits,before.credits);
  assert.equal(kind==='property'?saved.address:saved.financing,kind==='property'?'Teszt utca 12.':'Teszt saját forrás és hitel','Uneditable legacy values shown in the overview must survive unrelated edits');
  if(kind==='search'){
@@ -258,7 +284,7 @@ async function verify(browser,viewport){
   for(const kind of ['property','search'])await verifyCriteriaSummary(page,interact,kind,viewport);
   for(const kind of ['property','search'])await createWizard(page,interact,kind,viewport);
   for(const kind of ['search','property'])await verifyDock(page,interact,kind,viewport);
-  assert.deepEqual(errors,[]);console.log(`Wizard ${viewport.name}: all five named topics, validation, backward edits without draft loss, nullable bounds, optional choices, one final save and edits passed.`);
+  assert.deepEqual(errors,[]);console.log(`Wizard ${viewport.name}: all six named topics with visual type cards, validation, backward edits without draft loss, nullable bounds, optional choices, one final save and edits passed.`);
  }catch(error){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`wizard-dock-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;}
  finally{await context.close();}
 }

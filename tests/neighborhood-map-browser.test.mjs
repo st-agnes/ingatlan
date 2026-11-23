@@ -6,7 +6,7 @@ import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {getLocation, searchLocations} from '../dist/locations.js';
 import {neighborhoods} from '../dist/neighborhoods-data.js';
-import {editorField, editorSave, editorStep} from './editor-browser-helpers.mjs';
+import {editorField, editorSave, editorStep, choosePropertyType} from './editor-browser-helpers.mjs';
 import {mockMapTiles} from './map-browser-network.mjs';
 
 const modulePath = process.env.PLAYWRIGHT_MODULE;
@@ -492,14 +492,14 @@ async function budapestZoomLevels(browser, viewport) {
 async function ownedWizard(browser, viewport) {
   const f = await fixture(browser, viewport, {authenticated: true}), {page, server} = f;
   await inspect(f, viewport, 'owned', async () => {
-    await openEditor(page, viewport); await page.locator('#f-type').selectOption('Lakás'); const map = await readyMap(page, '#search-location-map');
+    await openEditor(page, viewport);  const map = await readyMap(page, '#search-location-map');
     await assertPickerLayout(page, viewport);
     await chooseText(page, viewport, solymar.id, 'Solymár'); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); await centerTarget(map, tocoskert.id); await clickLabel(map, tocoskert.id, viewport); await chip(page, tocoskert.id).waitFor({state: 'attached'});
     assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, solymar.id).count(), 1); assert.equal(await page.locator('#location-chips .location-chip').count(), 2);
     assert.notEqual(await page.evaluate(() => document.activeElement?.id), 'location-input', 'Map taps never summon the mobile keyboard'); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await chip(page, tocoskert.id).count(), 0); assert.equal(await chip(page, solymar.id).count(), 1); await assertOutline(map, tocoskert.id, false); await clickLabel(map, tocoskert.id, viewport);
     await page.evaluate(() => {globalThis.__mapEditorNode = document.getElementById('search-location-map');});
-    await (await editorField(page, '#f-maxPrice')).fill('90'); await (await editorField(page, '#f-minArea')).fill('40'); await (await editorField(page, '#f-minRooms')).fill('1'); await editorStep(page, 0);
+    await choosePropertyType(page, 'Lakás', locator => interact(viewport, locator));await (await editorField(page, '#f-maxPrice')).fill('90'); await (await editorField(page, '#f-minArea')).fill('40'); await (await editorField(page, '#f-minRooms')).fill('1'); await editorStep(page, 0);
     assert.equal(await page.evaluate(() => globalThis.__mapEditorNode === document.getElementById('search-location-map')), true); await assertOutline(map, tocoskert.id);
     await editorSave(page, locator => interact(viewport, locator)); await page.getByRole('heading', {name: 'Elkészült a keresési igényed.', exact: true}).waitFor();
     assert.deepEqual(server.writes[0].locationIds, [solymar.id, tocoskert.id]); assert.equal(server.writes[0].maxPrice, 90000000); assert.equal(server.writes.length, 1); assert.deepEqual(server.active, {kind: 'search', id: searchId});
@@ -513,7 +513,7 @@ async function anonymousDraft(browser, viewport) {
   await inspect(f, viewport, 'draft', async () => {
     await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const landing = await readyMap(page, '#landing-location-map');
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(landing, viewport, 13); await centerTarget(landing, tocoskert.id); await clickLabel(landing, tocoskert.id, viewport); assert.equal(await chip(page, city.id, true).count(), 0);
-    await interact(viewport, page.locator('#landing-search-form button[type="submit"]')); await page.locator('#onboarding-page #entity-form').waitFor(); await page.locator('#f-type').selectOption('Lakás'); const map = await readyMap(page, '#search-location-map');
+    await interact(viewport, page.locator('#landing-search-form button[type="submit"]')); await page.locator('#onboarding-page #entity-form').waitFor(); await choosePropertyType(page, 'Lakás', locator => interact(viewport, locator)); await editorStep(page, 0, locator => interact(viewport, locator)); const map = await readyMap(page, '#search-location-map');
     await centerTarget(map, tocoskert.id); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await chip(page, tocoskert.id).count(), 0); await assertOutline(map, tocoskert.id, false);
     await page.waitForFunction(async id => {const draft = (await import('/onboarding.js')).loadDraft(); return draft && !draft.data.locationIds.includes(id);}, tocoskert.id);

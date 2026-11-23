@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createDraft,updateDraft,saveDraft,loadDraft,clearDraft,prepareDraftForAuth,bindDraft,prepareDraftSave,markDraftSaved,prefillFromTeaser,suggestEntityTitle,sanitizeTeaserPrefill,normalizeDraftOrigin,originFromListing,originFromLocations,originBlank,sameDraftOrigin,DRAFT_STORAGE_KEY,DRAFT_TTL_MS} from '../dist/onboarding.js';
+import {createDraft,updateDraft,saveDraft,loadDraft,clearDraft,prepareDraftForAuth,bindDraft,prepareDraftSave,markDraftSaved,prefillFromTeaser,suggestEntityTitle,sanitizeTeaserPrefill,normalizeDraftOrigin,originFromListing,originFromLocations,originBlank,sameDraftOrigin,DRAFT_STORAGE_KEY,DRAFT_TTL_MS,DRAFT_EDITOR_LAYOUT_VERSION} from '../dist/onboarding.js';
 import {getLocation,locations} from '../dist/locations.js';
 import {createModel,STORAGE_KEY,demoLanding} from '../dist/model.js';
 import {ApiModel,findPublicLocations,findPublicStreets,fetchLanding,getModel,connectApi,disconnectApi,API_CONFIG_KEY,AUTH_ATTEMPT_KEY} from '../dist/api.js';
@@ -32,8 +32,55 @@ test('draft reload preserves incomplete form, exact owner-entered address, selec
   const reloaded=loadDraft(storage,{now:NOW});
   assert.equal(reloaded.id,draft.id);assert.equal(reloaded.version,1);assert.equal(reloaded.phase,'editing');assert.equal(reloaded.step,2);
   assert.deepEqual(reloaded.data,draft.data);assert.equal(reloaded.data.price,'-');assert.equal(reloaded.data.insulated,false);
-  assert.deepEqual(reloaded.editor,{query:'Debre',streetQuery:'Kossuth',titleGenerated:false,completedSteps:[0,1],locations:[{id:city.id,label:city.label,city:city.city,district:null,kind:'city',settlementCount:null}]});
+  assert.deepEqual(reloaded.editor,{layoutVersion:DRAFT_EDITOR_LAYOUT_VERSION,query:'Debre',streetQuery:'Kossuth',titleGenerated:false,completedSteps:[0,1],locations:[{id:city.id,label:city.label,city:city.city,district:null,kind:'city',settlementCount:null}]});
   assert.equal(Date.parse(reloaded.expiresAt)-Date.parse(reloaded.updatedAt),DRAFT_TTL_MS);
+});
+
+test('legacy five-topic drafts migrate only navigation and stay stable across tabs and repeated reloads',()=>{
+  for(const kind of ['property','search'])for(let step=0;step<5;step++){
+    const storage=store(),data=kind==='property'?{title:'Saját címem',locationId:city.id,type:'Ház',street:'Saját utca',houseNumber:'12/A',postalCode:'4024',price:'-',lotArea:'123',images:'https://images.example.hu/home.jpg'}:{title:'Pontos keresésem',locationIds:[city.id,district.id],type:'Lakás',maxPrice:'',minRooms:'2.5',conditions:['Jó','Átlagos']};
+    const original=createDraft(kind,data,{now:NOW,origin:originBlank(kind),editor:{query:'Debre',streetQuery:'Saját',locations:[city],titleGenerated:false}});
+    const legacy=structuredClone(original);delete legacy.editor.layoutVersion;legacy.step=step;legacy.editor.completedSteps=[-1,0,2,4,'3',5,2];
+    storage.setItem(DRAFT_STORAGE_KEY,JSON.stringify(legacy));const before=storage.getItem(DRAFT_STORAGE_KEY);
+    const firstTab=loadDraft(storage,{now:NOW}),otherTab=loadDraft(storage,{now:NOW});
+    assert.deepEqual(firstTab,otherTab,'Tabs must agree before the first migrated save');
+    assert.equal(firstTab.step,step===0?0:step+1);assert.equal(firstTab.editor.layoutVersion,DRAFT_EDITOR_LAYOUT_VERSION);
+    assert.deepEqual(firstTab.editor.completedSteps,[0,1,3,5]);
+    for(const field of ['id','creationRequestId','kind','data','origin','phase','createdAt','updatedAt','expiresAt'])assert.deepEqual(firstTab[field],legacy[field],field+' must survive a navigation migration');
+    assert.equal(firstTab.editor.query,'Debre');assert.equal(firstTab.editor.streetQuery,'Saját');assert.equal(firstTab.editor.titleGenerated,false);assert.deepEqual(firstTab.editor.locations,original.editor.locations);
+    assert.equal(storage.getItem(DRAFT_STORAGE_KEY),before,'Reading a legacy draft must not mutate storage or extend its lifetime');
+    saveDraft(firstTab,storage);assert.deepEqual(loadDraft(storage,{now:NOW}),firstTab,'A saved migration must not shift topics again');
+  }
+});
+
+test('the new type topic and final sixth topic preserve their exact positions and completion state',()=>{
+  const storage=store();let draft=createDraft('search',{locationIds:[city.id],type:'Ház'},{now:NOW});
+  assert.equal(draft.editor.layoutVersion,DRAFT_EDITOR_LAYOUT_VERSION);
+  draft=updateDraft(draft,{step:1,editor:{completedSteps:[0]}},{now:NOW});saveDraft(draft,storage);
+  assert.equal(loadDraft(storage,{now:NOW}).step,1,'The new type topic must never become the price topic on reload');
+  draft=updateDraft(draft,{step:5,editor:{completedSteps:[0,1,2,3,4,5]}},{now:NOW});saveDraft(draft,storage);
+  assert.equal(loadDraft(storage,{now:NOW}).step,5);assert.deepEqual(loadDraft(storage,{now:NOW}).editor.completedSteps,[0,1,2,3,4,5]);
+  const identity=draft.creationRequestId;
+  draft=updateDraft(draft,{step:1,data:{type:'Lakás'}},{now:NOW});saveDraft(draft,storage);draft=loadDraft(storage,{now:NOW});
+  assert.equal(draft.step,1);assert.equal(draft.data.type,'Lakás');assert.equal(draft.creationRequestId,identity);
+  assert.equal(updateDraft(draft,{step:99},{now:NOW}).step,5);
+});
+
+test('legacy completed and pending drafts keep frozen input, account binding and creation receipts through migration',()=>{
+  const data={title:'Mentésre váró keresés',type:'Lakás',locationIds:[city.id],maxPrice:'80',minRooms:'2'};
+  const origin=originFromListing('property','property-'+'a'.repeat(64));
+  const editing=updateDraft(createDraft('search',data,{now:NOW,origin}),{step:5,editor:{completedSteps:[0,1,2,3,4,5]}},{now:NOW});
+  const authenticating=prepareDraftForAuth(editing,USER.email,{now:NOW}),saving=prepareDraftSave(authenticating,USER,{now:NOW}),saved=markDraftSaved(saving,'existing-search',{now:NOW});
+  for(const original of [authenticating,saving,saved]){
+    const storage=store(),legacy=structuredClone(original);delete legacy.editor.layoutVersion;legacy.step=4;legacy.editor.completedSteps=[0,1,2,3,4];
+    storage.setItem(DRAFT_STORAGE_KEY,JSON.stringify(legacy));const restored=loadDraft(storage,{now:NOW});
+    assert.equal(restored.step,5);assert.deepEqual(restored.editor.completedSteps,[0,1,2,3,4,5]);
+    for(const field of ['id','creationRequestId','phase','expectedEmail','ownerId','savedEntityId','origin','data','completedData','createdAt','updatedAt','expiresAt'])assert.deepEqual(restored[field],original[field],field+' must not change for '+original.phase);
+    assert.equal(Object.isFrozen(restored.completedData),true);
+    assert.throws(()=>prepareDraftSave(restored,{id:'other',email:'other@example.hu'},{now:NOW}),/másik fiók/);
+    const retry=prepareDraftSave(restored,USER,{now:NOW});assert.equal(retry.creationRequestId,original.creationRequestId);assert.deepEqual(retry.completedData,original.completedData);
+    saveDraft(restored,storage);assert.deepEqual(loadDraft(storage,{now:NOW}),restored);
+  }
 });
 
 test('draft allowlist excludes credentials, source identity and all geocoding metadata',()=>{

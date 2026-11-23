@@ -2,6 +2,7 @@
  * HTTP gates avoid twenty-second sleeps and isolate UI responsiveness from external services.
  */
 import {mockMapTiles} from './map-browser-network.mjs';
+import {choosePropertyType} from './editor-browser-helpers.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -110,7 +111,7 @@ async function readResponsiveness(browser,viewport){
   server.readGate=gate();await freezeResume(page,{advanceClock:true});
   await navigate(page,viewport,'properties');await page.locator('.page-heading [data-action="new"]').waitFor({timeout:1500});
   await interact(viewport,page.locator('.page-heading [data-action="new"]'));await page.locator('#entity-form').waitFor({timeout:1500});
-  await page.locator('#f-type').selectOption('Lakás');await page.locator('#location-input').fill('Debrecen');await interact(viewport,page.locator('[data-location-id="city:Debrecen"]'));
+  await page.locator('#location-input').fill('Debrecen');await interact(viewport,page.locator('[data-location-id="city:Debrecen"]'));
   await page.locator('#f-street').fill('Megőrzendő utca');await page.locator('#f-houseNumber').fill('12/A');
   await page.evaluate(()=>{globalThis.editorNode=document.getElementById('entity-form');});
   await freezeResume(page);server.readGate.release();server.readGate=null;
@@ -118,7 +119,7 @@ async function readResponsiveness(browser,viewport){
   await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
   assert.equal(await page.evaluate(()=>globalThis.editorNode===document.getElementById('entity-form')),true);
   assert.equal(await page.locator('#f-street').inputValue(),'Megőrzendő utca');assert.equal(await page.locator('#f-houseNumber').inputValue(),'12/A');
-  await interact(viewport,page.locator('#editor-next'));await page.waitForFunction(()=>document.getElementById('entity-form')?.getAttribute('data-editor-current-step')==='1',null,{timeout:1500});
+  await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await page.waitForFunction(()=>document.getElementById('entity-form')?.getAttribute('data-editor-current-step')==='2',null,{timeout:1500});
   assert.equal(server.posts.filter(item=>['/properties','/searches'].includes(item.path)).length,0,'Readonly resume cannot submit an unfinished wizard');assert.equal(server.posts.filter(item=>item.path==='/me').length,1,'Foregrounding cannot resubmit the explicitly saved profile');
   await interact(viewport,page.locator('.modal-close'));
   server.feedbackPrompt={id:'40000000-0000-4000-8000-000000000001',propertyId:id.candidate,sellerFirstName:'Péter',expiresAt:new Date(Date.now()+15*60000).toISOString()};
@@ -140,14 +141,14 @@ async function mutationOwnership(browser,viewport){
   assert.equal(server.posts.filter(item=>item.path==='/decisions').length,1,'A suspended write keeps its duplicate guard after foregrounding');
   server.readGate=gate();
   await navigate(page,viewport,'properties');await page.locator('.page-heading [data-action="new"]').waitFor({timeout:1500});await interact(viewport,page.locator('.page-heading [data-action="new"]'));await page.locator('#entity-form').waitFor({timeout:1500});
-  await page.locator('#f-type').selectOption('Lakás');await page.locator('#location-input').fill('Debrecen');await interact(viewport,page.locator('[data-location-id="city:Debrecen"]'));await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('9');
-  await interact(viewport,page.locator('#editor-next'));await page.waitForFunction(()=>document.getElementById('entity-form')?.getAttribute('data-editor-current-step')==='1',null,{timeout:1500});
-  await interact(viewport,page.locator('#editor-back'));await page.waitForFunction(()=>document.getElementById('entity-form')?.getAttribute('data-editor-current-step')==='0',null,{timeout:1500});
+  await page.locator('#location-input').fill('Debrecen');await interact(viewport,page.locator('[data-location-id="city:Debrecen"]'));await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('9');
+  await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await page.waitForFunction(()=>document.getElementById('entity-form')?.getAttribute('data-editor-current-step')==='2',null,{timeout:1500});
+  await interact(viewport,page.locator('#editor-step-button-0'));await page.waitForFunction(()=>document.getElementById('entity-form')?.getAttribute('data-editor-current-step')==='0',null,{timeout:1500});
   await page.evaluate(()=>{globalThis.pendingWriteEditor=document.getElementById('entity-form');});
   const acknowledged=page.waitForResponse(response=>new URL(response.url()).pathname==='/api/decisions');server.decisionGate.release();server.decisionGate=null;await acknowledged;
   await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
   assert.equal(await page.evaluate(()=>globalThis.pendingWriteEditor===document.getElementById('entity-form')),true,'A late decision acknowledgement must not close a newer local editor');assert.equal(await page.locator('#f-street').inputValue(),'Teszt utca');assert.equal(await page.locator('#f-houseNumber').inputValue(),'9');
-  await interact(viewport,page.locator('#editor-next'));await page.waitForFunction(()=>document.getElementById('entity-form')?.getAttribute('data-editor-current-step')==='1',null,{timeout:1500});
+  await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await page.waitForFunction(()=>document.getElementById('entity-form')?.getAttribute('data-editor-current-step')==='2',null,{timeout:1500});
   assert.equal(server.posts.filter(item=>item.path==='/decisions').length,1,'Neither return events nor post-ack readonly refresh may replay the decision');
   console.log(`Tab resume writes ${viewport.name}: pending write stays single, local Next/Back stay usable before acknowledgement, a newer editor survives its response, and no automatic replay passed.`);
  },`writes-${viewport.name}`);
@@ -173,16 +174,16 @@ async function guestDraftPreservation(browser,viewport){
   await page.goto(origin+'/#landing',{waitUntil:'domcontentloaded'});
   await page.evaluate(async city=>{
    const {createDraft,updateDraft,saveDraft,originFromLocations}=await import('/onboarding.js');
-   saveDraft(updateDraft(createDraft('search',{type:'Lakás',locationIds:[city.id],maxPrice:90,minArea:40},{origin:originFromLocations([city.id]),editor:{locations:[city],titleGenerated:true}}),{step:1}));
+   saveDraft(updateDraft(createDraft('search',{type:'Lakás',locationIds:[city.id],maxPrice:90,minArea:40},{origin:originFromLocations([city.id]),editor:{locations:[city],titleGenerated:true}}),{step:2}));
   },city);
   await page.goto(origin+'/#onboarding');await page.locator('#entity-form').waitFor();await page.locator('#f-maxPrice').fill('123.5');await page.locator('#f-maxArea').fill('');
-  await interact(viewport,page.locator('#editor-back'));await page.locator('#location-input').fill('Hajdú');
+  await interact(viewport,page.locator('#editor-step-button-0'));await page.locator('#location-input').fill('Hajdú');
   await page.evaluate(()=>{globalThis.guestForm=document.getElementById('entity-form');});
   await freezeResume(page,{advanceClock:true});
   assert.equal(await page.evaluate(()=>globalThis.guestForm===document.getElementById('entity-form')),true,'A resumed guest wizard keeps its original nodes');
   assert.equal(await page.locator('#f-maxPrice').inputValue(),'123.5');assert.equal(await page.locator('#f-maxArea').inputValue(),'');assert.equal(await page.locator('#location-input').inputValue(),'Hajdú','A partial location query is not lost on return');
-  await page.locator('#location-input').fill('');await interact(viewport,page.locator('#editor-next'));await interact(viewport,page.locator('#editor-next'));await page.waitForFunction(()=>document.getElementById('entity-form')?.getAttribute('data-editor-current-step')==='2',null,{timeout:1500});
-  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('otthonra.onboarding.v1')));assert.equal(saved.data.maxPrice,'123.5');assert.equal(saved.step,2);
+  await page.locator('#location-input').fill('');await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await interact(viewport,page.locator('#editor-next'));await page.waitForFunction(()=>document.getElementById('entity-form')?.getAttribute('data-editor-current-step')==='3',null,{timeout:1500});
+  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('otthonra.onboarding.v1')));assert.equal(saved.data.maxPrice,'123.5');assert.equal(saved.step,3);
   assert.ok(server.gets.every(item=>!item.token),'A guest draft must not start authenticated workspace reads');assert.equal(server.posts.length,0);
   console.log(`Tab resume guest ${viewport.name}: frozen/active lifecycle preserves raw draft fields, mounted wizard, step navigation and anonymous scope.`);
  },`guest-${viewport.name}`);
