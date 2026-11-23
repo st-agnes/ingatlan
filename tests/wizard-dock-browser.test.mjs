@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorStep,editorSave,choosePropertyType,setAttributeChoice,assertEditorNavigation,installEditorViewportMock,assertKeyboardNavigation} from './editor-browser-helpers.mjs';
+import {editorField,editorStep,editorSave,choosePropertyType,setAttributeChoice,assertEditorNavigation,assertKeyboardNavigation,assertRoomSteppers} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -38,7 +38,7 @@ async function verifyProgress(page,kind,index){
  assert.doesNotMatch(await page.locator('.editor-progress').innerText(),/Kitöltve|Aktuális|Hátravan/);
  const geometry=await page.locator('.entity-wizard').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));
  assert.ok(geometry.scroll<=geometry.width+1,'Named progress and fields must fit without horizontal scrolling');
- const tabs=await page.locator('.editor-progress').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth,rows:[...new Set([...element.querySelectorAll('button')].map(button=>Math.round(button.getBoundingClientRect().top)))],dockHeight:document.getElementById('editor-navigation').getBoundingClientRect().height}));assert.ok(tabs.scroll<=tabs.width+1,'All six bottom topic tabs must fit without horizontal scrolling');if(await page.evaluate(()=>innerWidth<=390)){assert.equal(tabs.rows.length,1,'The compact bottom navigator keeps all six mobile topics on one visible row');assert.ok(tabs.dockHeight<=160,'The compact topic/action bar must leave most of the mobile screen for the form');}
+ const tabs=await page.locator('.editor-progress').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth,rows:[...new Set([...element.querySelectorAll('button')].map(button=>Math.round(button.getBoundingClientRect().top)))]}));assert.ok(tabs.scroll<=tabs.width+1,'Vertical topic names must fit their left column');assert.equal(tabs.rows.length,6,'All six topic names occupy distinct vertical rows');
 }
 
 async function verifyTypeSelection(page,interact,kind,viewport){
@@ -57,7 +57,7 @@ async function verifyTypeSelection(page,interact,kind,viewport){
  // Pointer and native keys choose a value; only Next may leave the topic.
  for(const key of ['Enter','Space']){
   await editorStep(page,1,interact);const card=page.locator(`[data-property-type="${desired}"]`);assert.equal(await card.getAttribute('aria-pressed'),'true');await card.focus();await card.press(key);
-  await verifyProgress(page,kind,1);assert.equal(await page.locator('#f-type').inputValue(),desired);await interact(page.locator('#editor-next'));await verifyProgress(page,kind,2);
+  await verifyProgress(page,kind,1);assert.equal(await page.locator('#f-type').inputValue(),desired);await interact(page.locator(key==='Enter'?'#editor-next-top':'#editor-next'));await verifyProgress(page,kind,2);
  }
  await choosePropertyType(page,desired,interact);
  console.log(`Visual type ${kind} ${viewport.name}: four illustrated choices, direct pointer/keyboard selection, unique pressed state and explicit Next without automatic navigation passed.`);
@@ -83,9 +83,10 @@ async function createWizard(page,interact,kind,viewport){
  const before=await state(page),title=`Lépésenként ${kind} ${viewport.name}`;
  await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));
  await page.locator('#entity-form').waitFor();await verifyProgress(page,kind,0);
+ if(kind==='search')assert.equal(await page.locator('.modal-description').innerText(),'Először a feltételeidnek mindenben megfelelő ingatlanokat mutatjuk. Ha ezek elfogynak, az igényeidhez legközelebb állókat nézheted meg.');
  assert.equal(await page.locator('#location-input').getAttribute('type'),'search');assert.equal(await page.locator('#location-input').getAttribute('role'),'combobox');assert.equal(await page.locator('#location-input').getAttribute('autocomplete'),'off');assert.equal(await page.locator('.entity-wizard input[type="search"]').count(),1,'Only the location query uses search semantics');
  assert.equal(await page.locator('#editor-save').isVisible(),false,'Saving is offered only after all topic screens');
- await interact(page.locator('#editor-next'));await verifyProgress(page,kind,0);
+ await interact(page.locator('#editor-next-top'));await verifyProgress(page,kind,0);
  assert.equal((await state(page))[kind==='property'?'properties':'searches'].length,before[kind==='property'?'properties':'searches'].length,'An invalid next action must not create an entity');
  assert.equal(await page.locator('#f-title').isVisible(),false);assert.equal(await page.locator('#f-type').inputValue(),'');assert.equal(await page.locator('#f-type').getAttribute('type'),'hidden');assert.equal(await page.locator('select#f-type').count(),0);
  await page.locator('#location-input').fill('Debrecen');await interact(page.locator('[data-location-id="city:Debrecen"]'));
@@ -105,6 +106,7 @@ async function createWizard(page,interact,kind,viewport){
  }else{
   await page.locator('#f-minPrice').fill('');await page.locator('#f-maxPrice').fill('105.5');await page.locator('#f-minArea').fill('65');await page.locator('#f-maxArea').fill('');await page.locator('#f-minRooms').fill('2.5');await page.locator('#f-maxRooms').fill('');
  }
+ if(kind==='search')await assertRoomSteppers(page,interact);
  if(viewport.name==='mobile'&&kind==='property')await assertKeyboardNavigation(page);
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,3);
  if(kind==='property'){
@@ -114,7 +116,7 @@ async function createWizard(page,interact,kind,viewport){
   await page.locator('input[name="conditions"][value="Jó"]').check();await page.locator('input[name="conditions"][value="Új/felújított"]').check();await page.locator('input[name="buildings"][value="Tégla"]').check();
  }
  await optionalChoices(page,interact,kind);await assertEditorNavigation(page,{scroll:true,lastField:true});
- if(kind==='property'){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`form-details-${viewport.name}.png`)});}
+ if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`vertical-form-${viewport.name}.png`)});}
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,4);
  if(kind==='property'){
   await page.locator('#f-heatingType').selectOption('Hőszivattyú');await page.locator('#f-insulated').selectOption('false');await page.locator('#f-airConditioning').selectOption('true');
@@ -129,7 +131,7 @@ async function createWizard(page,interact,kind,viewport){
  await page.locator('#f-description').fill(description);
  if(kind==='property')await page.locator('#property-images').fill('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');
  else await page.locator('#f-moveIn').selectOption('3 hónapon belül');
- await interact(page.locator('#editor-back'));await verifyProgress(page,kind,4);
+ await interact(page.locator('#editor-back-top'));await verifyProgress(page,kind,4);
  await editorStep(page,0,interact);await verifyProgress(page,kind,0);
  assert.equal(await page.evaluate(()=>globalThis.wizardOriginalTitle===document.getElementById('f-title')),true,'Back navigation must retain the same input nodes and their draft values');
  assert.equal(await page.locator('#f-title').inputValue(),title);assert.equal(await page.locator('#location-chips .location-chip').count(),kind==='property'?1:2);
@@ -145,7 +147,7 @@ async function createWizard(page,interact,kind,viewport){
   for(const field of ['minPrice','maxArea','maxRooms'])assert.equal(await page.locator(`#f-${field}`).inputValue(),'');assert.equal(await page.locator('input[name="conditions"][value="Új/felújított"]').isChecked(),true);assert.equal(await page.locator('#f-moveIn').inputValue(),'3 hónapon belül');
  }
  const draft=await state(page);assert.equal(draft[kind==='property'?'properties':'searches'].length,before[kind==='property'?'properties':'searches'].length,'No topic change or backward edit may save the draft early');
- await editorSave(page,interact);
+ await editorSave(page,interact,{top:kind==='property'});
  if(kind==='search'){await page.getByRole('heading',{name:'Elkészült a keresési igényed.',exact:true}).waitFor();await interact(page.locator('.search-created-actions [data-action="close"]'));}
  await page.locator('#entity-form').waitFor({state:'detached'});
  const after=await state(page),saved=after[kind==='property'?'properties':'searches'].find(item=>item.title===title+' módosítva');assert.ok(saved);assert.equal(after[kind==='property'?'properties':'searches'].length,before[kind==='property'?'properties':'searches'].length+1,'Only the final save creates one entity');assert.deepEqual(after.active,before.active);
@@ -167,18 +169,14 @@ async function boundGeometry(page){
  }).filter(Boolean)));
 }
 async function alignedBounds(page,kind,viewport){
- const prove=rows=>{let pairs=0;for(const row of rows){if(row.length!==2||row[0].right>row[1].left+1)continue;pairs++;assert.ok(Math.abs(row[0].top-row[1].top)<=1,`${kind}: paired ${row[0].id}/${row[1].id} input tops must align when labels wrap`);assert.ok(Math.abs(row[0].bottom-row[1].bottom)<=1,'Paired input bottoms must stay aligned');}assert.ok(pairs>0,'The fixture must retain actual side-by-side inputs');};
- let rows=await boundGeometry(page);prove(rows);
- if(kind==='search'&&viewport.name==='mobile'){
-  let pair=rows.find(row=>row.some(field=>field.id==='f-minPrice'));
-  if(Math.abs(pair[0].labelHeight-pair[1].labelHeight)<=1){
-   // A narrow, real viewport makes the existing optional-label wording wrap.
-   await page.setViewportSize({width:320,height:viewport.height});rows=await boundGeometry(page);prove(rows);pair=rows.find(row=>row.some(field=>field.id==='f-minPrice'));
-  }
-  assert.ok(Math.abs(pair[0].labelHeight-pair[1].labelHeight)>1,'The regression must exercise naturally unequal label heights, without changing the labels or CSS');
-  await page.setViewportSize({width:viewport.width,height:viewport.height});prove(await boundGeometry(page));
- }
+ const prove=rows=>{let checked=0;for(const row of rows){if(row.length!==2)continue;checked++;
+  if(row[0].right<=row[1].left+1){assert.ok(Math.abs(row[0].top-row[1].top)<=1,`${kind}: paired ${row[0].id}/${row[1].id} input tops must align when labels wrap`);assert.ok(Math.abs(row[0].bottom-row[1].bottom)<=1,'Paired input bottoms must stay aligned');}
+  else{assert.ok(row[1].top>=row[0].bottom,`${kind}: narrow form rows must stack with usable spacing`);assert.ok(Math.abs(row[0].left-row[1].left)<=1&&Math.abs(row[0].right-row[1].right)<=1,'Stacked inputs must share the same full column width');}
+ }assert.ok(checked>0,'The price/size topic must contain actual paired or stacked field rows');};
+ prove(await boundGeometry(page));
+ if(kind==='search'&&viewport.name==='mobile'){await page.setViewportSize({width:320,height:viewport.height});prove(await boundGeometry(page));await assertEditorNavigation(page);await page.setViewportSize({width:viewport.width,height:viewport.height});prove(await boundGeometry(page));}
 }
+
 const coreState=value=>({active:value.active,credits:value.credits,properties:value.properties,searches:value.searches,decisions:value.decisions});
 async function summaryValue(page,key){const row=page.locator(`.criteria-summary-row[data-summary-field="${key}"]`);assert.equal(await row.count(),1,`Configured ${key} must appear once in the summary`);return row.locator('dd').innerText();}
 async function summaryIncludes(page,key,...values){const text=await summaryValue(page,key);for(const value of values){if(value instanceof RegExp)assert.match(text,value,`${key}: ${text}`);else assert.ok(text.includes(value),`${key} must contain ${value}; received ${text}`);}}
@@ -291,7 +289,6 @@ async function verifyDock(page,interact,kind,viewport){
 
 async function verify(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
- if(viewport.name==='mobile')await installEditorViewportMock(context);
  await mockMapTiles(context);
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());await context.route('https://images.unsplash.com/**',route=>route.abort());
  const page=await context.newPage();page.setDefaultTimeout(10000);page.setDefaultNavigationTimeout(20000);const errors=[];page.on('pageerror',error=>errors.push(error.message));const interact=locator=>viewport.touch?locator.tap():locator.click();

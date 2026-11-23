@@ -28,8 +28,10 @@ async function verify(fixture) {
   for(const field of searchFields)assert.deepEqual(search[field],fixture.search[field],`Search ${field} was not preserved`);
   assert.equal(property.insulated,false); assert.equal(property.solarPanels,false); assert.equal(property.airConditioning,true);
   assert.equal(property.floor,12, 'An existing floor above 11 must retain its actual value');
-  assert.equal(property.buildingFloors,14);assert.equal(property.privateGarden,true);assert.equal(property.sharedGarden,true);
-  for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'])assert.equal(search[field],true,field+' must survive a restart');
+  assert.equal(property.buildingFloors,14);assert.equal(property.privateGarden,true);assert.equal(property.sharedGarden,null, 'The removed shared-garden option stays neutral');
+  for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])assert.equal(search[field],true,field+' must survive a restart');
+  assert.equal(search.sharedGarden,false, 'An old shared-garden request cannot remain a hidden criterion');
+  assert.equal(search.minRooms,2.5,'Half-room bounds must retain their exact value after a restart');
 }
 if (process.argv[3] === '--verify') {
   await verify(JSON.parse(await readFile(fixturePath,'utf8')));
@@ -40,11 +42,12 @@ if (process.argv[3] === '--verify') {
   const buyer=await account('buyer'),seller=await account('seller');
   const baseProperty={title:'Opcionális adatok API-próbája',city:'Budapest',locationId:'district:Budapest:13',district:'XIII.',type:'Lakás',price:80000000,area:70,rooms:3,balcony:false,elevator:false,images:[]};
   const propertyBody={...baseProperty,condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:12,buildingFloors:14,heatingType:'Hőszivattyú',insulated:false,energyRating:'A+',airConditioning:true,privateGarden:true,sharedGarden:true,solarPanels:false,parkingType:'Udvari beálló'};
-  const searchBody={title:'Több opcionális választás API-próbája',city:'Budapest',locationIds:['district:Budapest:13'],type:'Lakás',minPrice:null,maxPrice:100000000,minArea:40,maxArea:null,minRooms:2,maxRooms:null,balcony:false,elevator:false,conditions:['Átlagos','Jó'],buildings:['Tégla','Panel'],constructionAges:['10–30 év közötti','31–40 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',floors:[11],excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true,sharedGarden:true};
+  const searchBody={title:'Több opcionális választás API-próbája',city:'Budapest',locationIds:['district:Budapest:13'],type:'Lakás',minPrice:null,maxPrice:100000000,minArea:40,maxArea:null,minRooms:2.5,maxRooms:null,balcony:false,elevator:false,conditions:['Átlagos','Jó'],buildings:['Tégla','Panel'],constructionAges:['10–30 év közötti','31–40 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',floors:[11],excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true,sharedGarden:true};
   const property=await call('/properties',{token:seller,method:'POST',body:propertyBody,status:201});
   const search=await call('/searches',{token:buyer,method:'POST',body:searchBody,status:201});
+  assert.equal(property.sharedGarden,null);assert.equal(search.sharedGarden,false,'Legacy clients may send the removed field without restricting the search');
   const excluded=[];
-  for(const change of [{condition:'Felújítandó'},{building:'Vályog'},{constructionAge:'Több mint 50 éves'},{view:'Udvari'},{ceilingHeight:'3 m alatti'},{floor:3},{buildingFloors:12},{buildingFloors:null},{airConditioning:false},{privateGarden:false},{sharedGarden:null}]) {
+  for(const change of [{condition:'Felújítandó'},{building:'Vályog'},{constructionAge:'Több mint 50 éves'},{view:'Udvari'},{ceilingHeight:'3 m alatti'},{floor:3},{buildingFloors:12},{buildingFloors:null},{airConditioning:false},{privateGarden:false}]) {
     excluded.push(await call('/properties',{token:seller,method:'POST',body:{...propertyBody,...change},status:201}));
   }
   const unknown=await call('/properties',{token:seller,method:'POST',body:baseProperty,status:201});

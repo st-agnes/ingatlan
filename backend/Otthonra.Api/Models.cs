@@ -55,6 +55,7 @@ public sealed class Property
     public int? Floor { get; set; }
     public int? BuildingFloors { get; set; }
     public bool? PrivateGarden { get; set; }
+    // Deprecated; keep the mapped column and old input shape without exposing an active option.
     public bool? SharedGarden { get; set; }
     public string Condition { get; set; } = "";
     public string Building { get; set; } = "";
@@ -107,6 +108,7 @@ public sealed class SearchRequest
     public bool ExcludeGroundFloorAndBelow { get; set; }
     public bool AirConditioning { get; set; }
     public bool PrivateGarden { get; set; }
+    // Deprecated; legacy true values must not affect recommendations.
     public bool SharedGarden { get; set; }
     public string Financing { get; set; } = "";
     public bool Archived { get; set; }
@@ -309,7 +311,7 @@ public static class Dto
                 geocodingStatus = p.Latitude.HasValue && p.Longitude.HasValue ? "located" : "missing" } : null,
             neighborhoodIds = Strings(p.NeighborhoodIdsJson),
             neighborhoods = Strings(p.NeighborhoodIdsJson).Select(NeighborhoodCatalog.Get).Where(x => x is not null).ToArray(),
-            p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, wholeRooms = rooms.WholeRooms, halfRooms = rooms.HalfRooms, p.Floor, p.BuildingFloors, p.PrivateGarden, p.SharedGarden, condition = PropertyAttributes.NormalizeCondition(p.Condition), building = PropertyAttributes.NormalizeBuilding(p.Building), p.ConstructionAge, p.View, p.CeilingHeight, heatingType = PropertyAttributes.NormalizeHeating(p.HeatingType), p.SecondaryHeatingType, p.Insulated, p.EnergyRating, p.AirConditioning, p.SolarPanels, p.ParkingType, parkingTypes = PropertyAttributes.Parking(p), p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
+            p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, wholeRooms = rooms.WholeRooms, halfRooms = rooms.HalfRooms, p.Floor, p.BuildingFloors, p.PrivateGarden, SharedGarden = (bool?)null, condition = PropertyAttributes.NormalizeCondition(p.Condition), building = PropertyAttributes.NormalizeBuilding(p.Building), p.ConstructionAge, p.View, p.CeilingHeight, heatingType = PropertyAttributes.NormalizeHeating(p.HeatingType), p.SecondaryHeatingType, p.Insulated, p.EnergyRating, p.AirConditioning, p.SolarPanels, p.ParkingType, parkingTypes = PropertyAttributes.Parking(p), p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
     }
     public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private, string? ownerName = null)
     {
@@ -318,7 +320,7 @@ public static class Dto
         // Keep invalid explicit choices visible to clients. Replacing them with []
         // would make an old client's legitimate empty-selection city fallback broaden this search.
         var locationIds = declaredIds.Length > 0 && locations.Length == 0 ? declaredIds : locations.Select(x => x.Id).ToArray();
-        return new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Specificity(s), ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds, locations, s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson), s.Balcony, s.Elevator, s.ExcludeTopFloor, s.ExcludeGroundFloorAndBelow, s.AirConditioning, s.PrivateGarden, s.SharedGarden, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
+        return new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Specificity(s), ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds, locations, s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson), s.Balcony, s.Elevator, s.ExcludeTopFloor, s.ExcludeGroundFloorAndBelow, s.AirConditioning, s.PrivateGarden, SharedGarden = false, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
     }
     public static object Message(Message m) => new { m.Id, m.MatchId, m.SenderId, m.Text, m.CreatedAt };
 }

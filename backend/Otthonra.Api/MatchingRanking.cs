@@ -46,7 +46,7 @@ public sealed class CompiledSearch
             ExcludeGroundFloorAndBelow = !House && input.ExcludeGroundFloorAndBelow,
             AirConditioning = input.AirConditioning,
             PrivateGarden = Flat && input.PrivateGarden,
-            SharedGarden = Flat && input.SharedGarden
+            SharedGarden = false
         };
         Cities = cities; DistrictIds = districtIds; NeighborhoodIds = neighborhoodIds; StreetIds = streetIds;
         Conditions = Dto.Strings(input.ConditionsJson).Select(PropertyAttributes.NormalizeCondition).ToHashSet(StringComparer.Ordinal);
@@ -67,7 +67,7 @@ public static class MatchingRanking
         ConditionWeight = 10m, FloorWeight = 7m, ElevatorWeight = 5m, BalconyWeight = 4m,
         BuildingWeight = 3m, HeatingWeight = 2.5m, AgeWeight = 2m, CeilingWeight = 1.5m,
         MaxAreaWeight = 1.25m, MaxRoomsWeight = 1m, MinPriceWeight = .75m, ViewWeight = .5m,
-        AirConditioningWeight = 3m, PrivateGardenWeight = 3m, SharedGardenWeight = 2m;
+        AirConditioningWeight = 3m, PrivateGardenWeight = 3m;
     private static readonly Lazy<Dictionary<string, string[]>> AreaMembers = new(() => {
         using var stream = typeof(LocationCatalog).Assembly.GetManifestResourceStream("Otthonra.Api.Agglomerations.json")
             ?? throw new InvalidOperationException("The embedded city-area catalogue is missing.");
@@ -186,7 +186,6 @@ public static class MatchingRanking
         Add(BalconyWeight, !search.House && s.Balcony, property.Balcony ? 0 : 1, "Erkély");
         Add(AirConditioningWeight, s.AirConditioning, property.AirConditioning == true ? 0 : 1, "Légkondi");
         Add(PrivateGardenWeight, search.Flat && s.PrivateGarden, property.PrivateGarden == true ? 0 : 1, "Saját kert");
-        Add(SharedGardenWeight, search.Flat && s.SharedGarden, property.SharedGarden == true ? 0 : 1, "Közös kert");
         Add(BuildingWeight, search.Buildings.Count > 0, CategoryLoss(Canonical(property.Building, PropertyAttributes.Buildings), search.Buildings, PropertyAttributes.Buildings), "Falazat");
         Add(HeatingWeight, search.Heating.Count > 0, CategoryLoss(Canonical(property.HeatingType, PropertyAttributes.HeatingTypes), search.Heating, PropertyAttributes.HeatingTypes), "Fűtés típusa");
         var age = Array.IndexOf(PropertyAttributes.ConstructionAges, Canonical(property.ConstructionAge, PropertyAttributes.ConstructionAges));
@@ -263,8 +262,6 @@ public static class MatchingRanking
             p.AirConditioning is null ? "Nincs megadva" : p.AirConditioning == true ? "Van légkondi" : "Nincs légkondi", p.AirConditioning == true);
         if (q.Flat && s.PrivateGarden) Add("privateGarden", "Saját kert", "Van saját kert",
             p.PrivateGarden is null ? "Nincs megadva" : p.PrivateGarden == true ? "Van saját kert" : "Nincs saját kert", p.PrivateGarden == true);
-        if (q.Flat && s.SharedGarden) Add("sharedGarden", "Közös kert", "Van közös kert",
-            p.SharedGarden is null ? "Nincs megadva" : p.SharedGarden == true ? "Van közös kert" : "Nincs közös kert", p.SharedGarden == true);
         Category("building", "Falazat", Canonical(p.Building, PropertyAttributes.Buildings), q.Buildings, PropertyAttributes.Buildings);
         Category("heatingType", "Fűtés típusa", Canonical(p.HeatingType, PropertyAttributes.HeatingTypes), q.Heating, PropertyAttributes.HeatingTypes);
         Category("constructionAge", "Építési kor", Canonical(p.ConstructionAge, PropertyAttributes.ConstructionAges), q.Ages, PropertyAttributes.ConstructionAges);
@@ -299,7 +296,6 @@ public static class MatchingRanking
         quality += p.AirConditioning == true ? .01m : 0m;
         var flat = Rules.Normalize(p.Type) == "LAKAS";
         quality += flat && p.PrivateGarden == true ? .015m : 0m;
-        quality += flat && p.SharedGarden == true ? .005m : 0m;
         quality += p.SolarPanels == true ? .015m : 0m;
         var parking = PropertyAttributes.Parking(p);
         quality += parking.Any(value => value is "Garázs" or "Mélygarázs" or "Teremgarázs") ? .015m
@@ -342,7 +338,6 @@ public static class MatchingRanking
         if (search.Flat)
         {
             Add(PrivateGardenWeight, s.PrivateGarden ? 1m : 0m);
-            Add(SharedGardenWeight, s.SharedGarden ? 1m : 0m);
         }
         if (!search.House)
         {

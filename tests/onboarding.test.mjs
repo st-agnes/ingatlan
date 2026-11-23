@@ -353,7 +353,7 @@ test('new floor and garden fields survive draft reload and completed payload fre
  const restored=loadDraft(storage,{now:NOW});
  assert.deepEqual([restored.data.buildingFloors,restored.data.privateGarden,restored.data.sharedGarden],['5',false,true]);
  assert.equal('ownerId' in restored.data,false);assert.equal('accessToken' in restored.data,false);
- const pending=prepareDraftForAuth(restored,'new@example.test',{now:NOW});assert.equal(pending.completedData.buildingFloors,'5');assert.equal(pending.completedData.privateGarden,false);
+ const pending=prepareDraftForAuth(restored,'new@example.test',{now:NOW});assert.equal(pending.completedData.buildingFloors,'5');assert.equal(pending.completedData.privateGarden,false);assert.equal(pending.completedData.sharedGarden,true,'Retain retired fields in an old frozen creation receipt without using them as an active criterion');
  const search=createDraft('search',data,{now:NOW});saveDraft(search,storage);const q=loadDraft(storage,{now:NOW});
  assert.deepEqual([q.data.excludeTopFloor,q.data.excludeGroundFloorAndBelow,q.data.airConditioning,q.data.privateGarden,q.data.sharedGarden],[true,false,true,false,true]);
 });
@@ -361,7 +361,7 @@ test('new floor and garden fields survive draft reload and completed payload fre
 test('teaser amenities seed only known positive requirements and never infer a building height or exclusion preference',()=>{
  const property={prefill:{type:'Lakás',locations:[city],floor:2,buildingFloors:5,airConditioning:true,privateGarden:false,sharedGarden:true,excludeTopFloor:true}};
  const q=prefillFromTeaser('search',property);
- assert.deepEqual([q.excludeTopFloor,q.excludeGroundFloorAndBelow,q.airConditioning,q.privateGarden,q.sharedGarden],[false,false,true,false,true]);
+ assert.deepEqual([q.excludeTopFloor,q.excludeGroundFloorAndBelow,q.airConditioning,q.privateGarden,q.sharedGarden],[false,false,true,false,false]);
  assert.equal('buildingFloors' in q,false);assert.deepEqual(q.floors,[2]);
  const p=prefillFromTeaser('property',{prefill:{type:'Lakás',locations:[city],excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true,sharedGarden:false}});
  assert.equal(p.airConditioning,true);assert.equal(p.privateGarden,true);assert.equal('sharedGarden' in p,false);assert.equal('buildingFloors' in p,false);assert.equal('floor' in p,false);
@@ -369,7 +369,7 @@ test('teaser amenities seed only known positive requirements and never infer a b
 
 test('public prefills bound building heights, keep false distinct from unknown and discard inapplicable gardens',()=>{
  const p=sanitizeTeaserPrefill('property',{type:'Lakás',locations:[city],floor:0,buildingFloors:0,privateGarden:false,sharedGarden:true,airConditioning:null,addressDetails:{street:'private'}});
- assert.deepEqual([p.buildingFloors,p.privateGarden,p.sharedGarden,p.airConditioning],[0,false,true,null]);assert.equal('addressDetails' in p,false);
+ assert.deepEqual([p.buildingFloors,p.privateGarden,p.sharedGarden,p.airConditioning],[0,false,null,null]);assert.equal('addressDetails' in p,false);
  for(const buildingFloors of [-1,1.5,201,true])assert.equal(sanitizeTeaserPrefill('property',{type:'Lakás',buildingFloors}).buildingFloors,null);
  assert.equal(sanitizeTeaserPrefill('property',{type:'Lakás',floor:3,buildingFloors:2}).buildingFloors,null);
  const house=sanitizeTeaserPrefill('property',{type:'Ház',floor:2,buildingFloors:3,privateGarden:true,sharedGarden:true,airConditioning:true});

@@ -136,7 +136,7 @@ export function normalizePropertyAttributes(value = {}, {strict = false, previou
     ceilingHeight:choice(value.ceilingHeight,CEILING_HEIGHT_OPTIONS,{strict}),
     floor, buildingFloors,
     privateGarden:apartment ? nullableBoolean(value.privateGarden,strict) : null,
-    sharedGarden:apartment ? nullableBoolean(value.sharedGarden,strict) : null,
+    sharedGarden:null, // Retained wire field; the shared-garden option is retired.
     heatingType:choice(optionalText(value.heatingType,80,strict),HEATING_OPTIONS,legacyOptions('heatingType')),
     secondaryHeatingType:choice(optionalText(value.secondaryHeatingType,80,strict),HEATING_OPTIONS,{strict}),
     energyRating:optionalText(value.energyRating,20,strict),
@@ -165,7 +165,7 @@ export function normalizeSearchAttributes(value = {}, {strict = false} = {}) {
     excludeGroundFloorAndBelow:normalized(value.type) === 'haz' ? false : nullableBoolean(value.excludeGroundFloorAndBelow,strict) === true,
     airConditioning:nullableBoolean(value.airConditioning,strict) === true,
     privateGarden:normalized(value.type) === 'lakas' && nullableBoolean(value.privateGarden,strict) === true,
-    sharedGarden:normalized(value.type) === 'lakas' && nullableBoolean(value.sharedGarden,strict) === true,
+    sharedGarden:false,
     ...(strict && value.type === 'Ház' ? {balcony:false,elevator:false} : {})
   };
 }
@@ -188,6 +188,5 @@ export function attributesCompatible(property, search) {
   if (s.type !== 'Ház' && s.excludeGroundFloorAndBelow && (p.floor == null || p.floor <= 0)) return false;
   if (s.airConditioning && p.airConditioning !== true) return false;
   if (s.privateGarden && p.privateGarden !== true) return false;
-  if (s.sharedGarden && p.sharedGarden !== true) return false;
   return true;
 }

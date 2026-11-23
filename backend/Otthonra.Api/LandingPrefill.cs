@@ -64,7 +64,7 @@ internal static class LandingPrefill
             house ? [] : Floors(search.FloorsJson), Choices(search.HeatingTypesJson, PropertyAttributes.HeatingTypes),
             !house && search.Balcony, !house && search.Elevator, !house && search.ExcludeTopFloor,
             !house && search.ExcludeGroundFloorAndBelow, search.AirConditioning,
-            type == "Lakás" && search.PrivateGarden, type == "Lakás" && search.SharedGarden);
+            type == "Lakás" && search.PrivateGarden, false);
     }
 
     public static LandingPropertyPrefill Property(Property property, Location location)
@@ -81,7 +81,7 @@ internal static class LandingPrefill
             !house && property.Floor is >= -5 and <= 200 ? property.Floor : null,
             Choice(property.HeatingType, PropertyAttributes.HeatingTypes), !house && property.Balcony, !house && property.Elevator,
             !house && property.BuildingFloors is >= 0 and <= 200 ? property.BuildingFloors : null,
-            property.AirConditioning, type == "Lakás" ? property.PrivateGarden : null, type == "Lakás" ? property.SharedGarden : null);
+            property.AirConditioning, type == "Lakás" ? property.PrivateGarden : null, null);
     }
 
     private static Location PropertyLocation(Property property, Location fallback)

@@ -63,10 +63,12 @@ async function seededLanding(){
     assert.deepEqual(Object.keys(row).sort(),keys,'Public fixtures must expose only safe teaser fields');
     assert.deepEqual(Object.keys(row.prefill).sort(),prefillKeys[kind],'Nested onboarding seeds must retain their explicit public allowlist');
     if(kind==='search'){
+     assert.equal(row.prefill.sharedGarden,false,'The removed shared-garden criterion must never be advertised');
      for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'])assert.equal(typeof row.prefill[field],'boolean',`Public search ${field} must be a boolean`);
      if(row.type==='Ház')for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow'])assert.equal(row.prefill[field],false,'House seeds must not include apartment floor restrictions');
      if(row.type!=='Lakás')for(const field of ['privateGarden','sharedGarden'])assert.equal(row.prefill[field],false,'Garden criteria belong only to apartment seeds');
     }else{
+     assert.equal(row.prefill.sharedGarden,null,'The removed shared-garden metadata must stay neutral');
      assert.ok(row.prefill.buildingFloors===null||Number.isInteger(row.prefill.buildingFloors)&&row.prefill.buildingFloors>=0&&row.prefill.buildingFloors<=200,'Public building floor count must be null or a bounded integer');
      for(const field of ['airConditioning','privateGarden','sharedGarden'])assert.ok(row.prefill[field]===null||typeof row.prefill[field]==='boolean',`Public property ${field} must preserve boolean versus unknown`);
      if(row.type==='Ház')assert.equal(row.prefill.buildingFloors,null,'House seeds must not include an apartment building floor count');

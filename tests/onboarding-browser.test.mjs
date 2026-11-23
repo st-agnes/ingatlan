@@ -1,7 +1,7 @@
 /** Responsive anonymous UI integration. Deterministic HTTP fixtures isolate the browser;
  * backend/onboarding-smoke.mjs proves creation semantics against actual MySQL. */
 import {mockMapTiles} from './map-browser-network.mjs';
-import {removeSelectedLocation,choosePropertyType,assertEditorNavigation,installEditorViewportMock,assertKeyboardNavigation} from './editor-browser-helpers.mjs';
+import {removeSelectedLocation,choosePropertyType,assertEditorNavigation,assertKeyboardNavigation,assertRoomSteppers} from './editor-browser-helpers.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -32,7 +32,6 @@ function landing(){
 }
 async function createFixture(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
- if(viewport.name==='mobile')await installEditorViewportMock(context);
  await mockMapTiles(context);
  const server={user:{id:'10000000-0000-4000-8000-000000000001',email:'onboarding-browser@example.test',name:'Saját Fiók',accountType:'private',phone:''},authRequests:[],creates:[],lookupRequests:[],rows:new Map(),failAuth:0,failSave:0,active:null,unhandled:[],landing:landing()};
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());
@@ -75,7 +74,7 @@ async function progress(page,index){
  assert.equal(await page.locator(`#editor-step-button-${index}`).getAttribute('aria-current'),'step');
  const fit=await page.locator('#entity-form').evaluate(element=>element.scrollWidth<=element.clientWidth+1);assert.ok(fit,'The normal six-step form must fit this viewport');await assertEditorNavigation(page);
 }
-async function next(page,viewport,index){await interact(viewport,page.locator('#editor-next'));await progress(page,index);}
+async function next(page,viewport,index){await interact(viewport,page.locator(index%2?'#editor-next-top':'#editor-next'));await progress(page,index);}
 async function gotoStep(page,viewport,index){await interact(viewport,page.locator(`#editor-step-button-${index}`));await progress(page,index);}
 async function assertNoSourcePrivacy(page){const saved=JSON.stringify(await draft(page));assert.doesNotMatch(saved,/PRIVATE SOURCE|A másik ember|ownerId|ownerEmail|creationRequestHash/);}
 async function screenshot(page,name){await mkdir(resolve('.local/browser-tests/screenshots'),{recursive:true});await page.screenshot({path:resolve('.local/browser-tests/screenshots',name),fullPage:true}).catch(()=>{});}
@@ -100,6 +99,7 @@ async function verifyWizardAuth(browser,viewport){
   assert.equal(await page.locator('#hosted-auth-form').count(),0,'Location selection opens anonymous onboarding before registration');assert.match(await page.locator('#location-chips').innerText(),/Debrecen/);
   let title=`Saját keresésem ${viewport.name}`;assert.equal(await page.locator('#f-title').isVisible(),false,'Name is offered only at the final topic');assert.equal(await page.locator('#f-type').inputValue(),'');await interact(viewport,page.locator('#editor-next'));await progress(page,1);await interact(viewport,page.locator('#editor-next'));await progress(page,1);assert.ok((await page.locator('#property-type-error').innerText()).trim(),'Choosing a type must show a visible validation message');await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await progress(page,2);
   for(const field of ['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])assert.equal(await page.locator(`#f-${field}`).inputValue(),'','A new search must not invent numeric preferences');
+  await assertRoomSteppers(page,locator=>interact(viewport,locator));
   await page.locator('#f-maxPrice').fill('80');await page.locator('#f-minArea').fill('50');await page.locator('#f-maxArea').fill('70');await page.locator('#f-minRooms').fill('1');await page.locator('#f-maxRooms').fill('3');
   await page.locator('#f-minPrice').fill('90');await interact(viewport,page.locator('#editor-next'));await progress(page,2);assert.equal(await page.locator('#f-maxPrice').evaluate(element=>element.checkValidity()),false,'Invalid ranges must block the same wizard validation');
   await page.locator('#f-minPrice').fill('');
@@ -108,7 +108,7 @@ async function verifyWizardAuth(browser,viewport){
   await page.reload({waitUntil:'domcontentloaded'});await progress(page,2);assert.equal(await page.locator('#f-maxPrice').inputValue(),'80');
   await gotoStep(page,viewport,0);assert.equal(await page.locator('#f-title').isVisible(),false);await gotoStep(page,viewport,2);
   if(viewport.name==='mobile')await assertKeyboardNavigation(page);
-  await next(page,viewport,3);await assertEditorNavigation(page,{scroll:true,lastField:true});await next(page,viewport,4);await next(page,viewport,5);const generated=await page.locator('#f-title').inputValue();assert.match(generated,/Lakás/);assert.match(generated,/Debrecen/);assert.ok(generated.length<=70);await page.locator('#f-title').fill(title);await page.locator('#f-description').fill('A saját igényeim.');await interact(viewport,page.locator('#editor-save'));
+  await next(page,viewport,3);await assertEditorNavigation(page,{scroll:true,lastField:true});await next(page,viewport,4);await next(page,viewport,5);const generated=await page.locator('#f-title').inputValue();assert.match(generated,/Lakás/);assert.match(generated,/Debrecen/);assert.ok(generated.length<=70);await page.locator('#f-title').fill(title);await page.locator('#f-description').fill('A saját igényeim.');await interact(viewport,page.locator('#editor-save-top'));
   await page.locator('#hosted-auth-form').waitFor();assert.equal(new URL(page.url()).hash,'#register');assert.equal((await draft(page)).phase,'awaiting-auth');assert.equal(server.creates.length,0);
   const initialCompleted=await draft(page);await showLanding(page);await page.locator('#landing-recent-search').waitFor();await interact(viewport,page.locator('#landing-recent-search-resume'));await page.locator('#hosted-auth-form').waitFor();assert.equal((await draft(page)).phase,'awaiting-auth','A recent finalized draft resumes registration without reopening its immutable data');assert.equal((await draft(page)).creationRequestId,initialCompleted.creationRequestId);
   await interact(viewport,page.locator('[data-action="onboarding-edit"]'));await progress(page,5);

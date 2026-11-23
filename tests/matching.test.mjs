@@ -186,14 +186,19 @@ test('top-floor and ground exclusions require known facts and share one floor pe
  assert.equal(evaluateMatch(home({floor:201,buildingFloors:200}),wanted({excludeTopFloor:true})).matchDetails.find(x=>x.key==='excludeTopFloor').actual,'Nincs megadva');
 });
 
-test('air conditioning and separate apartment garden requests contribute their agreed weighted losses',()=>{
- for(const [key,score] of [['airConditioning',91],['privateGarden',91],['sharedGarden',94]]){
+test('air conditioning and private garden requests retain weighted losses while shared garden input is retired',()=>{
+ for(const [key,score] of [['airConditioning',91],['privateGarden',91]]){
   const q=wanted({maxPrice:100,[key]:true});
   assert.equal(evaluateMatch(home({[key]:true}),q).score,100,key);
   assert.equal(evaluateMatch(home({[key]:false}),q).score,score,key);
   assert.equal(evaluateMatch(home({[key]:null}),q).score,score,key);
  }
- assert.equal(evaluateMatch(home({privateGarden:true,sharedGarden:false}),wanted({sharedGarden:true})).score,0);
+ assert.equal(evaluateMatch(home({privateGarden:true,sharedGarden:false}),wanted({sharedGarden:true})).score,100);
+ for(const value of [true,false,null]){
+  assert.equal(evaluateMatch(home({sharedGarden:value}),wanted({sharedGarden:true})).score,100);
+  assert.equal(searchSpecificity(wanted({sharedGarden:value})),searchSpecificity(wanted()));
+  assert.equal(valueForMoney(home({sharedGarden:value})),valueForMoney(home()));
+ }
  assert.equal(evaluateMatch(home({type:'Ház',airConditioning:true}),wanted({type:'Ház',airConditioning:true,privateGarden:true,sharedGarden:true,excludeTopFloor:true,excludeGroundFloorAndBelow:true})).score,100);
  assert.equal(evaluateMatch(home({type:'Ház'}),wanted({type:'Ház',airConditioning:true})).score,0,'aircon also applies to houses');
 });
@@ -205,7 +210,7 @@ test('new match explanations expose requested and actual facts while lean scans 
  assert.deepEqual(details.excludeTopFloor,{key:'excludeTopFloor',label:'Legfelső emelet',expected:'Nem legfelső emelet',actual:'Nem legfelső emelet',matches:true});
  assert.equal(details.excludeGroundFloorAndBelow.actual,'2. emelet');assert.equal(details.excludeGroundFloorAndBelow.matches,true);
  assert.equal(details.airConditioning.actual,'Nincs légkondi');assert.equal(details.airConditioning.matches,false);
- assert.equal(details.privateGarden.actual,'Van saját kert');assert.equal(details.sharedGarden.actual,'Nincs megadva');
+ assert.equal(details.privateGarden.actual,'Van saját kert');assert.equal('sharedGarden' in details,false);
  assert.deepEqual(evaluateMatch(p,q,{includeReasons:false}).matchDetails,[]);
  assert.ok(searchSpecificity(q)>searchSpecificity(wanted()));
  assert.equal(searchSpecificity(wanted({type:'Ház',privateGarden:true,sharedGarden:true,excludeTopFloor:true,excludeGroundFloorAndBelow:true})),searchSpecificity(wanted({type:'Ház'})));
