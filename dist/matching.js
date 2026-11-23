@@ -5,7 +5,7 @@ import {CONDITION_OPTIONS,BUILDING_OPTIONS,CONSTRUCTION_AGE_OPTIONS,VIEW_OPTIONS
   normalizeCondition,normalizeBuilding,normalizeSearchAttributes} from './attributes.js';
 
 export const MATCH_WEIGHTS=Object.freeze({maxPrice:32,minRooms:22,minArea:16,condition:10,floor:7,elevator:5,balcony:4,
-  building:3,heatingType:2.5,constructionAge:2,ceilingHeight:1.5,maxArea:1.25,maxRooms:1,minPrice:.75,view:.5,airConditioning:3,privateGarden:3,sharedGarden:2});
+  building:3,heatingType:2.5,constructionAge:2,ceilingHeight:1.5,maxArea:1.25,maxRooms:1,minPrice:.75,view:.5,airConditioning:3,privateGarden:3});
 const norm=value=>String(value??'').normalize('NFD').replace(/\p{M}/gu,'').trim().toUpperCase();
 const clamp=value=>Math.min(1,Math.max(0,value));
 const members=new Map(agglomerations.map(area=>[area.id,area.settlements]));
@@ -95,7 +95,6 @@ export function evaluateMatch(property,input,{includeReasons=true}={}){
   add('balcony',!q.house&&s.balcony,p.balcony?0:1,'Erkély');
   add('airConditioning',s.airConditioning,p.airConditioning===true?0:1,'Légkondi');
   add('privateGarden',q.flat&&s.privateGarden,p.privateGarden===true?0:1,'Saját kert');
-  add('sharedGarden',q.flat&&s.sharedGarden,p.sharedGarden===true?0:1,'Közös kert');
   add('building',q.buildings.size,categoryLoss(normalizeBuilding(p.building),q.buildings,BUILDING_OPTIONS),'Falazat');
   add('heatingType',q.heating.size,categoryLoss(canon(p.heatingType,HEATING_OPTIONS),q.heating,HEATING_OPTIONS),'Fűtés típusa');
   const age=CONSTRUCTION_AGE_OPTIONS.indexOf(canon(p.constructionAge,CONSTRUCTION_AGE_OPTIONS));
@@ -150,7 +149,6 @@ function explainMatch(p,q,place){
   if(!q.house&&s.excludeGroundFloorAndBelow)add('excludeGroundFloorAndBelow','Földszint és szuterén','Földszint felett',knownFloor(p)?detailFloor(Number(p.floor)):'Nincs megadva',aboveGroundFloor(p));
   if(s.airConditioning)add('airConditioning','Légkondi','Van légkondi',p.airConditioning==null?'Nincs megadva':p.airConditioning===true?'Van légkondi':'Nincs légkondi',p.airConditioning===true);
   if(q.flat&&s.privateGarden)add('privateGarden','Saját kert','Van saját kert',p.privateGarden==null?'Nincs megadva':p.privateGarden===true?'Van saját kert':'Nincs saját kert',p.privateGarden===true);
-  if(q.flat&&s.sharedGarden)add('sharedGarden','Közös kert','Van közös kert',p.sharedGarden==null?'Nincs megadva':p.sharedGarden===true?'Van közös kert':'Nincs közös kert',p.sharedGarden===true);
   category('building','Falazat',normalizeBuilding(p.building),q.buildings,BUILDING_OPTIONS);
   category('heatingType','Fűtés típusa',canon(p.heatingType,HEATING_OPTIONS),q.heating,HEATING_OPTIONS);
   category('constructionAge','Építési kor',canon(p.constructionAge,CONSTRUCTION_AGE_OPTIONS),q.ages,CONSTRUCTION_AGE_OPTIONS);
@@ -176,7 +174,7 @@ export function valueForMoney(p={}){
   quality+=p.insulated===true?.015:0;
   const energy=norm(p.energyRating);quality+=/^(AA?|A[1-4])\+{0,3}$/.test(energy)?.02:/^BB?\+{0,3}$/.test(energy)?.015:/^CC?\+{0,3}$/.test(energy)?.005:0;
   quality+=p.airConditioning===true?.01:0;quality+=p.solarPanels===true?.015:0;
-  quality+=norm(p.type)==='LAKAS'&&p.privateGarden===true?.015:0;quality+=norm(p.type)==='LAKAS'&&p.sharedGarden===true?.005:0;
+  quality+=norm(p.type)==='LAKAS'&&p.privateGarden===true?.015:0;
   const parking=(Array.isArray(p.parkingTypes)?p.parkingTypes:[p.parkingType]).map(value=>canon(value,parkingOptions));
   quality+=parking.some(value=>garageTypes.has(value))?.015:parking.some(value=>drivewayTypes.has(value))?.01:0;
   quality+=canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS)==='3 m feletti'?.005:0;
@@ -204,7 +202,7 @@ function specificityOf(q){
   add(MATCH_WEIGHTS.view,category(q.views.size,VIEW_OPTIONS.length));
   add(MATCH_WEIGHTS.ceilingHeight,s.ceilingHeight?1:0);
   add(MATCH_WEIGHTS.airConditioning,s.airConditioning?1:0);
-  if(q.flat){add(MATCH_WEIGHTS.privateGarden,s.privateGarden?1:0);add(MATCH_WEIGHTS.sharedGarden,s.sharedGarden?1:0);}
+  if(q.flat)add(MATCH_WEIGHTS.privateGarden,s.privateGarden?1:0);
   if(!q.house){add(MATCH_WEIGHTS.floor,Math.max(category(q.floors.length,13),s.excludeTopFloor||s.excludeGroundFloorAndBelow?1:0));add(MATCH_WEIGHTS.elevator,s.elevator?1:0);add(MATCH_WEIGHTS.balcony,s.balcony?1:0);}
   return Math.max(0,Math.min(100,Math.round(100*selected/total)));
 }

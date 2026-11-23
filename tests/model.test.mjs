@@ -727,7 +727,7 @@ test('new building and garden fields persist across demo reload and clear only w
  const q=m.saveEntity('search',{title:'Kerti lakás keresése',locationIds:['city:Debrecen'],type:'Lakás',excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true,sharedGarden:false});
  let again=createModel(storage),state=again.getState();
  const saved=state.properties.find(x=>x.id===p.id),search=state.searches.find(x=>x.id===q.id);
- assert.deepEqual([saved.floor,saved.buildingFloors,saved.privateGarden,saved.sharedGarden,saved.airConditioning],[2,4,false,true,true]);
+ assert.deepEqual([saved.floor,saved.buildingFloors,saved.privateGarden,saved.sharedGarden,saved.airConditioning],[2,4,false,null,true]);
  assert.deepEqual([search.excludeTopFloor,search.excludeGroundFloorAndBelow,search.airConditioning,search.privateGarden,search.sharedGarden],[true,true,true,true,false]);
  const before=again.getState();assert.throws(()=>again.saveEntity('property',{...exactAddress,...saved,buildingFloors:1},p.id),/magasabb/);assert.deepEqual(again.getState(),before);
  const house=again.saveEntity('property',{...exactAddress,...saved,type:'Ház',lotArea:400},p.id);

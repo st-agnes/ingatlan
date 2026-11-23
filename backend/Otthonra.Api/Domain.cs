@@ -87,7 +87,8 @@ public static class Rules
         p.BuildingFloors = house ? null : i.BuildingFloors;
         var flat = Normalize(p.Type) == "LAKAS";
         p.PrivateGarden = flat ? i.PrivateGarden : null;
-        p.SharedGarden = flat ? i.SharedGarden : null;
+        // Retired option: retain its wire/storage fields for old creation receipts only.
+        p.SharedGarden = null;
         p.WholeRooms = savedCounts.WholeRooms;
         p.HalfRooms = savedCounts.HalfRooms;
         p.LotArea = house ? i.LotArea : null;
@@ -139,7 +140,7 @@ public static class Rules
         s.ExcludeGroundFloorAndBelow = !house && i.ExcludeGroundFloorAndBelow;
         s.AirConditioning = i.AirConditioning;
         s.PrivateGarden = flat && i.PrivateGarden;
-        s.SharedGarden = flat && i.SharedGarden;
+        s.SharedGarden = false;
         s.Description = PublicText(i.Description); s.MoveIn = PublicText(i.MoveIn, 100); s.Financing = PublicText(i.Financing, 255); s.Balcony = Normalize(s.Type) != "HAZ" && i.Balcony; s.Elevator = Normalize(s.Type) != "HAZ" && i.Elevator; s.Archived = i.Archived;
     }
 }

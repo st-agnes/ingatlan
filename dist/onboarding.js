@@ -73,6 +73,7 @@ export function sameDraftOrigin(draft,entityKind,origin) {
 }
 const textFields = {title:150, description:6000, type:40, city:120, district:20, locationId:200, address:500, neighborhood:180, street:180, houseNumber:32, postalCode:4, streetId:64, condition:80, building:80, constructionAge:80, view:80, ceilingHeight:80, heatingType:80, secondaryHeatingType:80, energyRating:20, parkingType:200, moveIn:200, financing:300};
 const numericFields = ['price','area','rooms','wholeRooms','halfRooms','lotArea','floor','buildingFloors','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'];
+// sharedGarden is retained here only so old frozen creation payloads keep their receipt hash.
 const booleanFields = ['balcony','elevator','insulated','airConditioning','solarPanels','privateGarden','sharedGarden','excludeTopFloor','excludeGroundFloorAndBelow'];
 const listFields = ['locationIds','districts','conditions','buildings','constructionAges','views','floors','heatingTypes','parkingTypes','images'];
 /** Persist only editable form fields. Authentication and origin metadata never enter an entity payload. */
@@ -205,13 +206,13 @@ export function sanitizeTeaserPrefill(kind,value={}, {pricesInHuf=false}={}) {
     if (!Number.isInteger(data.buildingFloors) || data.buildingFloors<0 || data.buildingFloors>200 || data.floor!=null && data.floor>data.buildingFloors) data.buildingFloors=null;
     data.airConditioning=typeof source.airConditioning==='boolean'?source.airConditioning:null;
     data.privateGarden=data.type==='Lakás' && typeof source.privateGarden==='boolean'?source.privateGarden:null;
-    data.sharedGarden=data.type==='Lakás' && typeof source.sharedGarden==='boolean'?source.sharedGarden:null;
+    data.sharedGarden=null;
   } else {
     data.excludeTopFloor=data.type!=='Ház' && source.excludeTopFloor===true;
     data.excludeGroundFloorAndBelow=data.type!=='Ház' && source.excludeGroundFloorAndBelow===true;
     data.airConditioning=source.airConditioning===true;
     data.privateGarden=data.type==='Lakás' && source.privateGarden===true;
-    data.sharedGarden=data.type==='Lakás' && source.sharedGarden===true;
+    data.sharedGarden=false;
   }
   if (data.type==='Ház') {data.balcony=false;data.elevator=false;if (kind==='search') data.floors=[];else {data.floor=null;data.buildingFloors=null;}}
   return data;
@@ -259,7 +260,7 @@ export function prefillFromTeaser(targetKind,teaser,{locations}={}) {
     data.excludeTopFloor=false;data.excludeGroundFloorAndBelow=false;
     data.airConditioning=source.airConditioning===true;
     data.privateGarden=data.type==='Lakás' && source.privateGarden===true;
-    data.sharedGarden=data.type==='Lakás' && source.sharedGarden===true;
+    data.sharedGarden=false;
   } else {
     if (chosen.length===1 && isPropertyLocation(chosen[0])) {data.locationId=chosen[0].id;data.locations=chosen;}
     for (const [min,max,target] of [['minPrice','maxPrice','price'],['minArea','maxArea','area'],['minRooms','maxRooms','rooms']]) {
@@ -271,7 +272,6 @@ export function prefillFromTeaser(targetKind,teaser,{locations}={}) {
     if (source.balcony===true) data.balcony=true;if (source.elevator===true) data.elevator=true;
     if (source.airConditioning===true) data.airConditioning=true;
     if (data.type==='Lakás' && source.privateGarden===true) data.privateGarden=true;
-    if (data.type==='Lakás' && source.sharedGarden===true) data.sharedGarden=true;
   }
   if (data.type==='Ház') {data.balcony=false;data.elevator=false;if (targetKind==='search') {data.floors=[];data.excludeTopFloor=false;data.excludeGroundFloorAndBelow=false;}else {delete data.floor;delete data.buildingFloors;}}
   data.title=suggestEntityTitle(targetKind,data);

@@ -265,7 +265,7 @@ function reportSummaries(values) {
   }
   return [...unique.values()];
 }
-const matchDetailKeys=new Set(['location','type','price','rooms','area','condition','floor','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden','elevator','balcony','building','heatingType','constructionAge','ceilingHeight','view']);
+const matchDetailKeys=new Set(['location','type','price','rooms','area','condition','floor','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','elevator','balcony','building','heatingType','constructionAge','ceilingHeight','view']);
 function matchDetailsFromApi(value) {
   if(!Array.isArray(value))return [];
   return value.filter(item=>item&&matchDetailKeys.has(item.key)&&typeof item.matches==='boolean'
@@ -491,7 +491,14 @@ export class ApiModel {
     if (creationRequestId != null && (id || typeof creationRequestId !== 'string' || !/^[\da-f]{8}-(?:[\da-f]{4}-){3}[\da-f]{12}$/i.test(creationRequestId) || /^0{8}-(?:0{4}-){3}0{12}$/.test(creationRequestId))) throw new Error('Érvénytelen létrehozási azonosító.');
     const route = kind === 'property' ? '/properties' : '/searches';
     const payload=kind === 'property' ? propertyToApi(data,!!id) : searchToApi(data);
-    if (creationRequestId) payload.creationRequestId=creationRequestId.toLowerCase();
+    if (creationRequestId) {
+      payload.creationRequestId=creationRequestId.toLowerCase();
+      // An old frozen draft must retry its original request hash. The server
+      // ignores this retired field for persistence and matching.
+      const legacyGarden=data.sharedGarden, legacyGardenText=String(legacyGarden).trim().toLowerCase();
+      if (Object.hasOwn(data,'sharedGarden') && ([true,false,1,0].includes(legacyGarden) || ['true','false'].includes(legacyGardenText)))
+        payload.sharedGarden=(inputText(data.type)||'Lakás')==='Lakás' ? legacyGarden===true || legacyGarden===1 || legacyGardenText==='true' : kind==='property' ? null : false;
+    }
     const result = await this.call(`${route}${id ? `/${encodeURIComponent(id)}` : ''}`, id ? 'PUT' : 'POST', payload);
     return kind === 'property' ? propertyFromApi(result,true) : searchFromApi(result);
   }

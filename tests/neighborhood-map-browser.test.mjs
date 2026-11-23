@@ -210,17 +210,22 @@ async function pickerGeometry(page, {landing = false} = {}) {
 }
 async function assertPickerLayout(page, viewport, options = {}) {
   const geometry = await pickerGeometry(page, options);
-  if (viewport.width >= 768) {
-    assert.ok(geometry.map.left >= geometry.input.right + 8, 'Tablet/desktop search controls sit to the left of the map');
+  // The editor's vertical topic menu takes its own column: tablet editors
+  // intentionally stack the map, while the full-width landing stays beside it.
+  const sideBySide = options.landing ? viewport.width >= 768 : viewport.width >= 941;
+  if (sideBySide) {
+    assert.ok(geometry.map.left >= geometry.input.right + 8, 'Wide search controls sit to the left of the map');
     assert.ok(geometry.map.top <= geometry.input.bottom, 'The map starts beside the text controls, rather than below the selected places');
     assert.ok(geometry.map.width >= 200, 'The side-by-side map retains a usable viewport');
   } else {
-    assert.ok(geometry.map.top >= geometry.input.bottom, 'Mobile keeps its map below the text search');
-    assert.ok(geometry.chipHeight <= 34, 'Mobile selections occupy at most one compact row');
+    assert.ok(geometry.map.top >= geometry.input.bottom, 'Narrow editor columns and mobile keep their map below the text search');
+    if (viewport.width < 768) assert.ok(geometry.chipHeight <= 34, 'Mobile selections occupy at most one compact row');
+    else assert.ok(geometry.map.width >= 200, 'The stacked tablet editor map retains a usable viewport');
   }
   assert.ok(geometry.map.right <= geometry.outerRight + 1, 'The responsive picker does not overflow horizontally');
   return geometry;
 }
+
 async function outlineIds(map) {
   return map.locator('.location-map-canvas').evaluate(element => {
     const source = element.__mapBrowserInstance.getStyle().sources['otthonra-outlines']?.data;
@@ -676,7 +681,7 @@ async function responsiveSelections(browser, viewport) {
         assert.equal(await chips.locator('[data-location-selection-toggle]').isVisible(), false, 'Wider screens expose the full compact selected list below the text field');
         assert.equal(await chip(page, ids.at(-1), landing).isVisible(), true);
       }
-      console.log(`Neighborhood map responsive ${landing ? 'landing' : 'wizard'} ${viewport.name}: compact selections, retained canonical IDs, popup removal/resize and side-by-side layout passed.`);
+      console.log(`Neighborhood map responsive ${landing ? 'landing' : 'wizard'} ${viewport.name}: compact selections, retained canonical IDs, popup removal/resize and context-specific map layout passed.`);
     });
   }
 }

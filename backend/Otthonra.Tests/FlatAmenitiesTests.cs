@@ -53,20 +53,21 @@ public class FlatAmenitiesTests
     }
 
     [Fact]
-    public void SellerGardenUnknownFalseAndTrueRoundTripWithoutBeingConflated()
+    public void SellerPrivateGardenRoundTripsWhileRetiredSharedGardenInputIsNeutralized()
     {
         var p = new Property();
         foreach (bool? value in new bool?[] { null, false, true })
         {
             Rules.Apply(p, PropertyInput() with { BuildingFloors = 5, PrivateGarden = value, SharedGarden = value });
-            Assert.Equal(value, p.PrivateGarden); Assert.Equal(value, p.SharedGarden);
+            Assert.Equal(value, p.PrivateGarden); Assert.Null(p.SharedGarden);
             Assert.Equal(5, Field(Dto.Property(p), "buildingFloors").GetInt32());
-            foreach (var name in new[] { "privateGarden", "sharedGarden" })
+            foreach (var name in new[] { "privateGarden" })
             {
                 var field = Field(Dto.Property(p), name);
                 if (value.HasValue) Assert.Equal(value.Value, field.GetBoolean());
                 else Assert.Equal(JsonValueKind.Null, field.ValueKind);
             }
+            Assert.Equal(JsonValueKind.Null, Field(Dto.Property(p), "sharedGarden").ValueKind);
         }
     }
 
@@ -142,15 +143,11 @@ public class FlatAmenitiesTests
     [InlineData("privateGarden", null)]
     [InlineData("privateGarden", false)]
     [InlineData("privateGarden", true)]
-    [InlineData("sharedGarden", null)]
-    [InlineData("sharedGarden", false)]
-    [InlineData("sharedGarden", true)]
     public void RequiredAmenitiesNeedTrueAndMissingOrExplicitlyAbsentDetailsRemainPartial(string key, bool? available)
     {
         var p = Home(); var q = Wanted();
         if (key == "airConditioning") { p.AirConditioning = available; q.AirConditioning = true; }
-        else if (key == "privateGarden") { p.PrivateGarden = available; q.PrivateGarden = true; }
-        else { p.SharedGarden = available; q.SharedGarden = true; }
+        else { p.PrivateGarden = available; q.PrivateGarden = true; }
         var result = Match(p, q);
         Assert.True(result.Eligible); Assert.Equal(available == true, result.IsExact);
         Assert.Equal(available == true ? 100 : 0, result.Score);
@@ -161,15 +158,15 @@ public class FlatAmenitiesTests
     }
 
     [Fact]
-    public void AmenityWeightsRemainSmallAndGardensAreSeparateAndRequirements()
+    public void ActiveAmenityWeightsRemainSmallAndRetiredSharedGardenAddsNoRequirement()
     {
         var p = Home(); var q = Wanted(); q.MaxPrice = 100_000_000m;
         q.AirConditioning = true; Assert.Equal(91, Match(p, q).Score); // 32/(32+3).
         q.AirConditioning = false; q.PrivateGarden = true; Assert.Equal(91, Match(p, q).Score);
-        q.PrivateGarden = false; q.SharedGarden = true; Assert.Equal(94, Match(p, q).Score); // 32/(32+2).
+        q.PrivateGarden = false; q.SharedGarden = true; Assert.Equal(100, Match(p, q).Score);
         q.AirConditioning = q.PrivateGarden = true;
         p.AirConditioning = p.PrivateGarden = true;
-        Assert.False(Match(p, q).IsExact);
+        Assert.True(Match(p, q).IsExact);
         p.SharedGarden = true; Assert.True(Match(p, q).IsExact);
     }
 
@@ -202,6 +199,33 @@ public class FlatAmenitiesTests
         Assert.False(MatchingRanking.Evaluate(p, compiled).IsExact);
     }
 
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void LegacySharedGardenMetadataCannotAffectCompatibilityRankingSpecificityOrPublicDtos(bool? available)
+    {
+        var p = Home(); p.SharedGarden = available;
+        var q = Wanted(); q.SharedGarden = true;
+        var clean = Wanted();
+        Assert.True(PropertyAttributes.Compatible(p, q));
+        Assert.True(Match(p, q).IsExact); Assert.Equal(100, Match(p, q).Score);
+        Assert.Equal(MatchingRanking.Specificity(clean), MatchingRanking.Specificity(q));
+        Assert.False(MatchingRanking.Prepare(q).Source.SharedGarden);
+        Assert.DoesNotContain(Match(p, q).MatchDetails, detail => detail.Key == "sharedGarden");
+        Assert.DoesNotContain(Match(p, q).Reasons, reason => reason.Contains("Közös kert", StringComparison.Ordinal));
+        var value = MatchingRanking.ValueForMoney(p);
+        p.SharedGarden = available == true ? false : true;
+        Assert.Equal(value, MatchingRanking.ValueForMoney(p));
+        Assert.Equal(JsonValueKind.Null, Field(Dto.Property(p), "sharedGarden").ValueKind);
+        Assert.Equal(JsonValueKind.Null, Field(Dto.Property(p, own: true), "sharedGarden").ValueKind);
+        Assert.False(Field(Dto.Search(q), "sharedGarden").GetBoolean());
+        Assert.True(q.SharedGarden); // Reading old rows never performs a destructive data rewrite.
+        Rules.Apply(q, SearchInput() with { SharedGarden = true });
+        Assert.False(q.SharedGarden);
+    }
+
     [Fact]
     public void RequestFingerprintsPreserveOldDefaultPayloadsButBindEveryNewNondefaultChoice()
     {
@@ -216,6 +240,27 @@ public class FlatAmenitiesTests
             q with { AirConditioning = true }, q with { PrivateGarden = true }, q with { SharedGarden = true } })
             Assert.NotEqual(EntityCreation.RequestHash(q), EntityCreation.RequestHash(changed));
         Assert.NotEqual(EntityCreation.RequestHash(p with { PrivateGarden = false }), EntityCreation.RequestHash(p with { PrivateGarden = true }));
+    }
+
+    [Fact]
+    public void FrozenSharedGardenCreationReceiptsKeepTheirOriginalHashWhileTheSavedOptionIsRetired()
+    {
+        // Canonical fingerprints of the same pre-retirement input record payloads.
+        // Keep the raw legacy field until creation replay has been authenticated.
+        var p = PropertyInput() with { SharedGarden = true, CreationRequestId = Guid.NewGuid() };
+        var q = SearchInput() with { SharedGarden = true, CreationRequestId = Guid.NewGuid() };
+        const string propertyHash = "60ABEBA3EA46EF43B97D09874FBB099016FA6806232A09C3682BE1933928F72F";
+        const string searchHash = "C01F6A17B6A1C1E65FC83052C16A39116A5E703F531499D3EEA70EF4B8D1C39D";
+        Assert.Equal(propertyHash, EntityCreation.RequestHash(p));
+        Assert.Equal(searchHash, EntityCreation.RequestHash(q));
+        Assert.Equal("53CCF6905B225D8C090B4CDDC2EC96A8B697FFDF515A4D978EAB251B7BAF0654",
+            EntityCreation.RequestHash(p with { SharedGarden = false }));
+        var home = new Property(); var wanted = new SearchRequest();
+        Rules.Apply(home, p); Rules.Apply(wanted, q);
+        Assert.Null(home.SharedGarden); Assert.False(wanted.SharedGarden);
+        Assert.True(p.SharedGarden); Assert.True(q.SharedGarden);
+        EntityCreation.VerifyReplay(propertyHash, EntityCreation.RequestHash(p));
+        EntityCreation.VerifyReplay(searchHash, EntityCreation.RequestHash(q));
     }
 
     [Fact]
@@ -235,8 +280,9 @@ public class FlatAmenitiesTests
         Assert.False(q.AirConditioning); Assert.False(q.PrivateGarden); Assert.False(q.SharedGarden);
         Rules.Apply(q, SearchInput() with { ExcludeTopFloor = true, ExcludeGroundFloorAndBelow = true,
             AirConditioning = true, PrivateGarden = true, SharedGarden = true });
-        foreach (var name in new[] { "excludeTopFloor", "excludeGroundFloorAndBelow", "airConditioning", "privateGarden", "sharedGarden" })
+        foreach (var name in new[] { "excludeTopFloor", "excludeGroundFloorAndBelow", "airConditioning", "privateGarden" })
             Assert.True(Field(Dto.Search(q), name).GetBoolean());
+        Assert.False(q.SharedGarden); Assert.False(Field(Dto.Search(q), "sharedGarden").GetBoolean());
     }
 
     [Fact]
@@ -246,12 +292,12 @@ public class FlatAmenitiesTests
         p.PrivateGarden = false; p.SharedGarden = true;
         var propertySeed = PublicLanding.PropertyTeaser(p, AccountTypes.Private)!.Value.Teaser.Prefill!;
         Assert.Equal(5, propertySeed.BuildingFloors); Assert.True(propertySeed.AirConditioning);
-        Assert.False(propertySeed.PrivateGarden); Assert.True(propertySeed.SharedGarden);
+        Assert.False(propertySeed.PrivateGarden); Assert.Null(propertySeed.SharedGarden);
         var q = Wanted(); q.ExcludeTopFloor = q.ExcludeGroundFloorAndBelow = true;
         q.AirConditioning = q.PrivateGarden = q.SharedGarden = true;
         var searchSeed = PublicLanding.SearchTeaser(q, AccountTypes.Private)!.Value.Teaser.Prefill!;
         Assert.True(searchSeed.ExcludeTopFloor); Assert.True(searchSeed.ExcludeGroundFloorAndBelow);
-        Assert.True(searchSeed.AirConditioning); Assert.True(searchSeed.PrivateGarden); Assert.True(searchSeed.SharedGarden);
+        Assert.True(searchSeed.AirConditioning); Assert.True(searchSeed.PrivateGarden); Assert.False(searchSeed.SharedGarden);
         p.Type = q.Type = "Ház";
         propertySeed = PublicLanding.PropertyTeaser(p, AccountTypes.Private)!.Value.Teaser.Prefill!;
         searchSeed = PublicLanding.SearchTeaser(q, AccountTypes.Private)!.Value.Teaser.Prefill!;

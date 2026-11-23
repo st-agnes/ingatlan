@@ -133,8 +133,15 @@ async function addressFlow(browser,viewport){
   await postal.fill('113');await interact(page.locator('#editor-next'));assert.equal(await page.locator('#editor-step-0').isVisible(),true);assert.equal(await postal.evaluate(element=>element.validity.valid),false);
   await postal.fill('');await interact(page.locator('#editor-next'));assert.equal(await page.locator('#editor-step-1').isVisible(),true,'Postal code stays optional');
   await editorStep(page,0,interact);await postal.fill('1137');
-  const geometry=await page.locator('.property-address-row').evaluate(row=>[...row.querySelectorAll('input')].map(input=>input.getBoundingClientRect().top));
-  assert.ok(Math.abs(geometry[0]-geometry[1])<=1,'Address inputs align even when mobile labels wrap');
+  const geometry=await page.locator('.property-address-row').evaluate(row=>[...row.querySelectorAll('input')].map(input=>{const box=input.getBoundingClientRect();return{left:box.left,right:box.right,top:box.top,bottom:box.bottom};}));
+  assert.equal(geometry.length,2,'The address row contains the house-number and optional postal-code inputs');
+  if(viewport.width<=720){
+   assert.ok(geometry[1].top>=geometry[0].bottom,'The narrow editor intentionally stacks address inputs with usable vertical spacing');
+   assert.ok(Math.abs(geometry[0].left-geometry[1].left)<=1&&Math.abs(geometry[0].right-geometry[1].right)<=1,'Stacked address inputs share the full form-column width');
+  }else{
+   assert.ok(geometry[0].right<=geometry[1].left+1,'Wider editors retain side-by-side address inputs');
+   assert.ok(Math.abs(geometry[0].top-geometry[1].top)<=1&&Math.abs(geometry[0].bottom-geometry[1].bottom)<=1,'Side-by-side address inputs align even when their labels wrap');
+  }
   await choosePropertyType(page,'Lakás',interact);await (await editorField(page,'#f-price')).fill('85');await (await editorField(page,'#f-area')).fill('65');await (await editorField(page,'#f-wholeRooms')).fill('2');await (await editorField(page,'#f-halfRooms')).fill('1');
   await (await editorField(page,'#f-insulated')).selectOption('false');
   await fits(page);await (await editorField(page,'#f-title')).fill(`Pontos című otthon – ${viewport.name}`);await editorSave(page,interact);
