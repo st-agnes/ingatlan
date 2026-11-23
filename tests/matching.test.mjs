@@ -172,3 +172,43 @@ test('lean ranking omits presentation details while snapshots retain the origina
   const lean=evaluateMatch(home({price:120}),prepared,{includeReasons:false});
   assert.equal(lean.score,80);assert.deepEqual(lean.matchDetails,[]);assert.deepEqual(lean.reasons,[]);
 });
+
+test('top-floor and ground exclusions require known facts and share one floor penalty budget',()=>{
+ const q=wanted({maxPrice:100,excludeTopFloor:true,excludeGroundFloorAndBelow:true});
+ assert.equal(evaluateMatch(home({floor:2,buildingFloors:3}),q).score,100);
+ for(const p of [{floor:3,buildingFloors:3},{floor:0,buildingFloors:3},{floor:-1,buildingFloors:3},{floor:2},{buildingFloors:3}]){
+  const result=evaluateMatch(home(p),q);assert.equal(result.eligible,true);assert.equal(result.isExact,false);assert.equal(result.score,82,JSON.stringify(p));
+ }
+ const all=wanted({maxPrice:100,floors:[2],excludeTopFloor:true,excludeGroundFloorAndBelow:true});
+ assert.equal(evaluateMatch(home({floor:0,buildingFloors:0}),all).score,82,'three failed floor predicates still use only weight7');
+ assert.equal(evaluateMatch(home({floor:12,buildingFloors:13}),wanted({floors:[11],excludeTopFloor:true,excludeGroundFloorAndBelow:true})).score,100);
+ assert.equal(evaluateMatch(home({floor:-1,buildingFloors:0}),wanted({excludeTopFloor:true})).score,100);
+ assert.equal(evaluateMatch(home({floor:201,buildingFloors:200}),wanted({excludeTopFloor:true})).matchDetails.find(x=>x.key==='excludeTopFloor').actual,'Nincs megadva');
+});
+
+test('air conditioning and separate apartment garden requests contribute their agreed weighted losses',()=>{
+ for(const [key,score] of [['airConditioning',91],['privateGarden',91],['sharedGarden',94]]){
+  const q=wanted({maxPrice:100,[key]:true});
+  assert.equal(evaluateMatch(home({[key]:true}),q).score,100,key);
+  assert.equal(evaluateMatch(home({[key]:false}),q).score,score,key);
+  assert.equal(evaluateMatch(home({[key]:null}),q).score,score,key);
+ }
+ assert.equal(evaluateMatch(home({privateGarden:true,sharedGarden:false}),wanted({sharedGarden:true})).score,0);
+ assert.equal(evaluateMatch(home({type:'Ház',airConditioning:true}),wanted({type:'Ház',airConditioning:true,privateGarden:true,sharedGarden:true,excludeTopFloor:true,excludeGroundFloorAndBelow:true})).score,100);
+ assert.equal(evaluateMatch(home({type:'Ház'}),wanted({type:'Ház',airConditioning:true})).score,0,'aircon also applies to houses');
+});
+
+test('new match explanations expose requested and actual facts while lean scans stay presentation free',()=>{
+ const p=home({floor:2,buildingFloors:3,airConditioning:false,privateGarden:true,sharedGarden:null});
+ const q=wanted({excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true,sharedGarden:true});
+ const details=Object.fromEntries(evaluateMatch(p,q).matchDetails.map(x=>[x.key,x]));
+ assert.deepEqual(details.excludeTopFloor,{key:'excludeTopFloor',label:'Legfelső emelet',expected:'Nem legfelső emelet',actual:'Nem legfelső emelet',matches:true});
+ assert.equal(details.excludeGroundFloorAndBelow.actual,'2. emelet');assert.equal(details.excludeGroundFloorAndBelow.matches,true);
+ assert.equal(details.airConditioning.actual,'Nincs légkondi');assert.equal(details.airConditioning.matches,false);
+ assert.equal(details.privateGarden.actual,'Van saját kert');assert.equal(details.sharedGarden.actual,'Nincs megadva');
+ assert.deepEqual(evaluateMatch(p,q,{includeReasons:false}).matchDetails,[]);
+ assert.ok(searchSpecificity(q)>searchSpecificity(wanted()));
+ assert.equal(searchSpecificity(wanted({type:'Ház',privateGarden:true,sharedGarden:true,excludeTopFloor:true,excludeGroundFloorAndBelow:true})),searchSpecificity(wanted({type:'Ház'})));
+ assert.ok(valueForMoney(home({privateGarden:true}))>valueForMoney(home()));
+ assert.equal(valueForMoney(home({type:'Ház',privateGarden:true})),valueForMoney(home({type:'Ház'})));
+});

@@ -20,7 +20,7 @@ const config = Object.freeze({
   deployServiceAccount: 'otthonra-deploy-dev@ingatlan-513620.iam.gserviceaccount.com',
   workloadIdentityProvider: 'projects/123456789012/locations/global/workloadIdentityPools/otthonra-dev/providers/github'
 });
-const required = ['index.html','app.js','style.css','api.js','model.js','matching.js','public-profile.js','feedback.js','onboarding.js','locations.js','locations-data.js','agglomerations-data.js','neighborhoods-data.js','neighborhood-demo-points.js','street-demo-data.js','data/streets.json.gz','regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
+const required = ['index.html','app.js','attribute-card-art.js','style.css','api.js','model.js','matching.js','public-profile.js','feedback.js','onboarding.js','locations.js','locations-data.js','agglomerations-data.js','neighborhoods-data.js','neighborhood-demo-points.js','street-demo-data.js','data/streets.json.gz','regions-data.js','attributes.js','accounts.js','runtime-config.js','data/settlements.json','data/agglomerations.json','THIRD-PARTY-NOTICES.txt'];
 required.push('location-map.js', 'location-map.css', 'data/map/index.json', 'data/map/hierarchy.json', 'data/map/labels.json', 'data/map/style.json', 'vendor/maplibre/maplibre-gl.mjs', 'vendor/maplibre/maplibre-gl-worker.mjs', 'vendor/maplibre/maplibre-gl.css', 'vendor/maplibre/LICENSE.txt', 'vendor/maplibre/provenance.json');
 const vendorAssets = new Map(await Promise.all(required.filter(name => name.startsWith('vendor/maplibre/')).map(async name => [name, await readFile(join(root, 'dist', name))])));
 const mapLayer = JSON.stringify({type:'FeatureCollection', features:[]});
@@ -114,6 +114,7 @@ test('frontend packaging enables the real hosted test API while preserving the s
     assert.match(await readFile(join(source, 'runtime-config.js'), 'utf8'), /mode:"demo"/);
     assert.equal(await readFile(join(output, 'public/assets/living.jpg'), 'utf8'), 'image-fixture');
     assert.equal(await readFile(join(output, 'public/onboarding.js'), 'utf8'), 'fixture: onboarding.js');
+    assert.equal(await readFile(join(output, 'public/attribute-card-art.js'), 'utf8'), 'fixture: attribute-card-art.js');
     assert.equal(await readFile(join(output, 'public/location-map.js'), 'utf8'), 'fixture: location-map.js');
     assert.equal(await readFile(join(output, 'public/data/map', mapLayerName), 'utf8'), mapLayer);
     assert.deepEqual(await readFile(join(output, 'public/vendor/maplibre/LICENSE.txt')), vendorAssets.get('vendor/maplibre/LICENSE.txt'));
@@ -147,7 +148,7 @@ test('hidden files, unknown files and symlinks are refused before replacing a pr
 });
 
 test('an incomplete frontend cannot replace a working staged release', async () => {
-  for (const missing of ['locations.js','accounts.js','matching.js','public-profile.js','feedback.js','onboarding.js','location-map.js','location-map.css','vendor/maplibre/maplibre-gl.mjs','vendor/maplibre/maplibre-gl-worker.mjs','vendor/maplibre/maplibre-gl.css','vendor/maplibre/LICENSE.txt','vendor/maplibre/provenance.json','data/map/index.json','data/map/hierarchy.json','data/map/labels.json','data/map/style.json']) await fixture(async ({source, output}) => {
+  for (const missing of ['attribute-card-art.js','locations.js','accounts.js','matching.js','public-profile.js','feedback.js','onboarding.js','location-map.js','location-map.css','vendor/maplibre/maplibre-gl.mjs','vendor/maplibre/maplibre-gl-worker.mjs','vendor/maplibre/maplibre-gl.css','vendor/maplibre/LICENSE.txt','vendor/maplibre/provenance.json','data/map/index.json','data/map/hierarchy.json','data/map/labels.json','data/map/style.json']) await fixture(async ({source, output}) => {
     await mkdir(output); await writeFile(join(output, 'sentinel'), 'previous-release');
     await rm(join(source, missing));
     await assert.rejects(prepareSite({config, source, output}), new RegExp('Missing frontend file '+missing.replaceAll('.', '\\.')));

@@ -25,6 +25,7 @@ public static class SchemaUpgrade
     public const string StreetsVersion = "20261118-postal-street-search";
     public const string EntityCreationVersion = "20261118-idempotent-entity-creation";
     public const string AccountActivityVersion = ActivityNotifications.Version;
+    public const string FlatAmenitiesVersion = "20261123-floor-and-garden-amenities";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -71,7 +72,15 @@ public static class SchemaUpgrade
         ("Properties", "CreationRequestId", "char(36) COLLATE ascii_general_ci NULL"),
         ("Properties", "CreationRequestHash", "varchar(64) CHARACTER SET ascii COLLATE ascii_bin NULL"),
         ("SearchRequests", "CreationRequestId", "char(36) COLLATE ascii_general_ci NULL"),
-        ("SearchRequests", "CreationRequestHash", "varchar(64) CHARACTER SET ascii COLLATE ascii_bin NULL")
+        ("SearchRequests", "CreationRequestHash", "varchar(64) CHARACTER SET ascii COLLATE ascii_bin NULL"),
+        ("Properties", "BuildingFloors", "int NULL"),
+        ("Properties", "PrivateGarden", "tinyint(1) NULL"),
+        ("Properties", "SharedGarden", "tinyint(1) NULL"),
+        ("SearchRequests", "ExcludeTopFloor", "tinyint(1) NOT NULL DEFAULT FALSE"),
+        ("SearchRequests", "ExcludeGroundFloorAndBelow", "tinyint(1) NOT NULL DEFAULT FALSE"),
+        ("SearchRequests", "AirConditioning", "tinyint(1) NOT NULL DEFAULT FALSE"),
+        ("SearchRequests", "PrivateGarden", "tinyint(1) NOT NULL DEFAULT FALSE"),
+        ("SearchRequests", "SharedGarden", "tinyint(1) NOT NULL DEFAULT FALSE")
     ];
 
     public static async Task ApplyAsync(AppDb db, CancellationToken cancellationToken = default)
@@ -240,6 +249,7 @@ public static class SchemaUpgrade
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", StreetsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", EntityCreationVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", AccountActivityVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", FlatAmenitiesVersion));
             if (Convert.ToInt32(await Scalar(connection,
                     "SELECT COUNT(*) FROM `__OtthonraSchemaVersions` WHERE `Version` = @version",
                     cancellationToken, ("version", ContinuousFeedbackVersion))) == 0)

@@ -174,3 +174,36 @@ test('house saves clear irrelevant floor constraints while old rows remain reada
  assert.deepEqual([saved.floors,saved.balcony,saved.elevator],[[],false,false]);
  assert.equal(attributesCompatible({type:'Ház',floor:null},search),true);
 });
+
+test('building height is optional, bounded and consistent with a known property floor',()=>{
+ const p=normalizePropertyAttributes({type:'Lakás',floor:'0',buildingFloors:'0',privateGarden:false,sharedGarden:'true'},{strict:true});
+ assert.equal(p.floor,0);assert.equal(p.buildingFloors,0);assert.equal(p.privateGarden,false);assert.equal(p.sharedGarden,true);
+ for(const buildingFloors of [true,-1,1.5,201,'invalid'])assert.throws(()=>normalizePropertyAttributes({type:'Lakás',buildingFloors},{strict:true}),/épület/);
+ assert.throws(()=>normalizePropertyAttributes({type:'Lakás',floor:3,buildingFloors:2},{strict:true}),/magasabb/);
+ assert.equal(normalizePropertyAttributes({type:'Lakás',floor:3},{strict:true}).buildingFloors,null);
+ assert.equal(normalizePropertyAttributes({type:'Lakás',floor:-1,buildingFloors:0},{strict:true}).buildingFloors,0);
+ assert.equal(normalizePropertyAttributes({type:'Ház',floor:8,buildingFloors:3,privateGarden:true,sharedGarden:true},{strict:true}).buildingFloors,null);
+});
+
+test('search amenities default to no requirement and apartment gardens remain independent nullable property facts',()=>{
+ const empty=normalizeSearchAttributes({type:'Lakás'});
+ for(const key of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'])assert.equal(empty[key],false,key);
+ const p=normalizePropertyAttributes({type:'Lakás',privateGarden:true,sharedGarden:false});
+ assert.equal(attributesCompatible(p,{type:'Lakás',privateGarden:true}),true);
+ assert.equal(attributesCompatible(p,{type:'Lakás',sharedGarden:true}),false);
+ assert.equal(attributesCompatible({type:'Lakás'},{type:'Lakás',privateGarden:true}),false);
+ for(const type of ['Ház','Telek','Iroda']){
+  const property=normalizePropertyAttributes({type,privateGarden:true,sharedGarden:false});
+  assert.deepEqual([property.privateGarden,property.sharedGarden],[null,null]);
+  const search=normalizeSearchAttributes({type,privateGarden:true,sharedGarden:true,airConditioning:true,excludeTopFloor:true,excludeGroundFloorAndBelow:true});
+  assert.deepEqual([search.privateGarden,search.sharedGarden],[false,false]);assert.equal(search.airConditioning,true);
+  if(type==='Ház')assert.deepEqual([search.excludeTopFloor,search.excludeGroundFloorAndBelow],[false,false]);
+ }
+});
+
+test('exact attribute compatibility requires known non-top and above-ground facts when requested',()=>{
+ const search={type:'Lakás',excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true};
+ assert.equal(attributesCompatible({type:'Lakás',floor:2,buildingFloors:3,airConditioning:true},search),true);
+ for(const p of [{floor:3,buildingFloors:3},{floor:0,buildingFloors:3},{floor:-1,buildingFloors:3},{floor:2},{buildingFloors:3}])assert.equal(attributesCompatible({type:'Lakás',airConditioning:true,...p},search),false,JSON.stringify(p));
+ assert.equal(attributesCompatible({type:'Lakás',floor:2,buildingFloors:3,airConditioning:null},search),false);
+});

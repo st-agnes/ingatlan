@@ -64,6 +64,13 @@ function floorNumber(value, strict, allowLegacy = false) {
   if (strict) throw new Error('Az emelet -1 és 200 közötti egész szám legyen.');
   return null;
 }
+function buildingFloorNumber(value, strict) {
+  if (value == null || (typeof value === 'string' && !value.trim())) return null;
+  const number = typeof value === 'boolean' ? NaN : Number(value);
+  if (Number.isInteger(number) && number >= 0 && number <= 200) return number;
+  if (strict) throw new Error('Az épület legfelső emelete 0 és 200 közötti egész szám legyen.');
+  return null;
+}
 /** Keep explicit whole/half counts; derive them only for exact legacy half-room totals. */
 export function normalizePropertyRooms(value = {}, {strict = false, previous} = {}) {
   const supplied = (object, field) => object[field] != null && object[field] !== '' && !(typeof object[field] === 'string' && !object[field].trim());
@@ -116,6 +123,10 @@ function parkingSelections(value, {strict, previous, allowLegacyUnknown}) {
 export function normalizePropertyAttributes(value = {}, {strict = false, previous, allowLegacyUnknown = false} = {}) {
   const legacyOptions = field => ({strict,allowUnknown:allowLegacyUnknown || (!!previous && text(value[field]) === text(previous[field]))});
   const parkingTypes = parkingSelections(value,{strict,previous,allowLegacyUnknown});
+  const house = normalized(value.type) === 'haz', apartment = normalized(value.type) === 'lakas';
+  const floor = strict && house ? null : floorNumber(value.floor,strict,allowLegacyUnknown || (!!previous && value.floor != null && Number(value.floor) === Number(previous.floor)));
+  const buildingFloors = house ? null : buildingFloorNumber(value.buildingFloors,strict);
+  if (strict && floor != null && buildingFloors != null && floor > buildingFloors) throw new Error('Az ingatlan emelete nem lehet magasabb az épület legfelső emeleténél.');
   return {
     ...normalizePropertyRooms(value,{strict,previous}),
     condition:normalizeCondition(value.condition,legacyOptions('condition')),
@@ -123,7 +134,9 @@ export function normalizePropertyAttributes(value = {}, {strict = false, previou
     constructionAge:choice(value.constructionAge,CONSTRUCTION_AGE_OPTIONS,{strict}),
     view:choice(value.view,VIEW_OPTIONS,{strict}),
     ceilingHeight:choice(value.ceilingHeight,CEILING_HEIGHT_OPTIONS,{strict}),
-    floor:strict && value.type === 'Ház' ? null : floorNumber(value.floor,strict,allowLegacyUnknown || (!!previous && value.floor != null && Number(value.floor) === Number(previous.floor))),
+    floor, buildingFloors,
+    privateGarden:apartment ? nullableBoolean(value.privateGarden,strict) : null,
+    sharedGarden:apartment ? nullableBoolean(value.sharedGarden,strict) : null,
     heatingType:choice(optionalText(value.heatingType,80,strict),HEATING_OPTIONS,legacyOptions('heatingType')),
     secondaryHeatingType:choice(optionalText(value.secondaryHeatingType,80,strict),HEATING_OPTIONS,{strict}),
     energyRating:optionalText(value.energyRating,20,strict),
@@ -148,6 +161,11 @@ export function normalizeSearchAttributes(value = {}, {strict = false} = {}) {
     ceilingHeight:choice(value.ceilingHeight,CEILING_HEIGHT_OPTIONS,{strict}),
     floors:normalizedFloors,
     heatingTypes:choices(value.heatingTypes,HEATING_OPTIONS,(item,options)=>choice(item,HEATING_OPTIONS,options),strict),
+    excludeTopFloor:normalized(value.type) === 'haz' ? false : nullableBoolean(value.excludeTopFloor,strict) === true,
+    excludeGroundFloorAndBelow:normalized(value.type) === 'haz' ? false : nullableBoolean(value.excludeGroundFloorAndBelow,strict) === true,
+    airConditioning:nullableBoolean(value.airConditioning,strict) === true,
+    privateGarden:normalized(value.type) === 'lakas' && nullableBoolean(value.privateGarden,strict) === true,
+    sharedGarden:normalized(value.type) === 'lakas' && nullableBoolean(value.sharedGarden,strict) === true,
     ...(strict && value.type === 'Ház' ? {balcony:false,elevator:false} : {})
   };
 }
@@ -166,5 +184,10 @@ export function attributesCompatible(property, search) {
     const bucket = p.floor == null ? null : p.floor >= 11 ? 11 : p.floor;
     if (bucket == null || !FLOOR_OPTIONS.some(option=>option.value === bucket) || !s.floors.includes(bucket)) return false;
   }
+  if (s.type !== 'Ház' && s.excludeTopFloor && (p.floor == null || p.buildingFloors == null || p.floor >= p.buildingFloors)) return false;
+  if (s.type !== 'Ház' && s.excludeGroundFloorAndBelow && (p.floor == null || p.floor <= 0)) return false;
+  if (s.airConditioning && p.airConditioning !== true) return false;
+  if (s.privateGarden && p.privateGarden !== true) return false;
+  if (s.sharedGarden && p.sharedGarden !== true) return false;
   return true;
 }
