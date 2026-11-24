@@ -187,7 +187,11 @@ export async function assertRequiredFieldLabels(page){
 /** Single-select move-in illustrations can each be cleared by a repeated click. */
 export async function assertMoveInChoices(page,interact){
  const input=await editorField(page,'#f-moveIn',interact),before=await input.inputValue(),cards=page.locator('[data-attribute-name="moveIn"]');
- assert.equal(await input.getAttribute('type'),'hidden');assert.equal(await cards.count(),4);assert.equal(await cards.locator('svg').count(),4);
+ assert.equal(await input.getAttribute('type'),'hidden');assert.equal(await cards.count(),4);
+ // Each card also contains a separate selection-check SVG; count its illustration only.
+ const illustrations=cards.locator('.attribute-card-illustration > svg');assert.equal(await illustrations.count(),4);
+ assert.equal(new Set(await illustrations.evaluateAll(elements=>elements.map(element=>element.innerHTML))).size,4,'Every moving option has its own distinct illustration');
+ for(const card of await cards.all())assert.equal(await card.locator('.attribute-card-illustration > svg').count(),1,'Each of the four choices owns exactly one illustration');
  assert.deepEqual(await cards.evaluateAll(elements=>elements.map(element=>element.dataset.attributeValue)),['Rugalmas','Azonnal','3 hónapon belül','6 hónapon belül']);
  for(const value of ['Rugalmas','Azonnal','3 hónapon belül','6 hónapon belül']){
   await setAttributeChoice(page,'moveIn',value,interact);const card=page.locator('[data-attribute-name="moveIn"][data-attribute-value="'+value+'"]');

@@ -228,3 +228,5 @@ body:has(.modal) .discovery-decision-dock{visibility:hidden;pointer-events:none}
 
 /* Nested location captions need the same readable size as direct field labels. */
 form label[for],.entity-wizard .location-search-controls>label{font-size:14px}
+/* The legacy #entity-form number rule must not shrink mobile price/size text. */
+@media(max-width:720px){#entity-form input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),#entity-form select,#entity-form textarea{font-size:17px}}

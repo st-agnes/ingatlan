@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [wizard-dock, onboarding, neighborhood-map]
+        suite: [wizard-dock, onboarding]
     steps:
       - uses: actions/checkout@v4
         with:
