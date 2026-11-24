@@ -148,7 +148,7 @@ async function verifyTeaserSeeds(browser,viewport){
   await page.locator('#f-street').fill('OTTHONRA TEST');await page.locator('#f-houseNumber').fill('1');await choosePropertyType(page,'Lakás',locator=>interact(viewport,locator));await progress(page,2);
   for(const [name,value] of Object.entries({price:'50',area:'60',wholeRooms:'2',halfRooms:'1'}))assert.equal(await page.locator(`#f-${name}`).inputValue(),value,`Exact search teaser ${name}`);
   await assertNoSourcePrivacy(page);await interact(viewport,page.locator('[data-action="onboarding-abandon"]'));await page.locator('.landing-search-card').first().waitFor();
-  await interact(viewport,page.locator('.landing-search-card [data-action="onboarding-start"]').nth(1));await progress(page,0);assert.equal(await page.locator('#location-chips .location-chip').count(),0,'Multiple source towns do not invent the seller location');
+  await interact(viewport,page.locator('.landing-search-card [data-action="onboarding-start"]').nth(1));await progress(page,0);assert.equal(await page.locator('#property-location-edit').count(),0,'Multiple source towns do not invent the seller location');
   const snapshot=await draft(page);for(const field of ['price','area','rooms','wholeRooms'])assert.ok(snapshot.data[field]==null||snapshot.data[field]==='','Ranges must not be guessed into an exact property');
   assert.equal(server.creates.length,0);assert.equal(server.authRequests.length,0);await assertNoSourcePrivacy(page);
   console.log(`Onboarding seeds ${viewport.name}: property tolerance bounds and finest public neighborhood, exact-only seller fields, ambiguous ranges/towns and private-address protection passed.`);

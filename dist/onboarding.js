@@ -1,5 +1,7 @@
 import {getLocation, isPropertyLocation, registerLocations} from './locations.js';
-import {CONDITION_OPTIONS, BUILDING_OPTIONS, CONSTRUCTION_AGE_OPTIONS, VIEW_OPTIONS, HEATING_OPTIONS, CEILING_HEIGHT_OPTIONS, FLOOR_OPTIONS, normalizeCondition, normalizeBuilding} from './attributes.js';
+import {CONDITION_OPTIONS, BUILDING_OPTIONS, CONSTRUCTION_AGE_OPTIONS, VIEW_OPTIONS, HEATING_OPTIONS, CEILING_HEIGHT_OPTIONS, FLOOR_OPTIONS, normalizeCondition, normalizeBuilding, normalizeHeating} from './attributes.js';
+
+import {energyCode,knownEnergyRating} from './energy-rating.js';
 
 export const DRAFT_STORAGE_KEY = 'otthonra.onboarding.v1';
 export const DRAFT_TTL_MS = 7 * 86400000;
@@ -45,8 +47,9 @@ function canonicalLocationIds(values) {
 export function normalizeDraftOrigin(value,entityKind) {
   if (!value || typeof value!=='object' || Array.isArray(value) || entityKind!=null && !kinds.includes(entityKind)) return null;
   if (kinds.includes(value.kind)) {
-    if (typeof value.key!=='string' || !publicSourceKeyPattern.test(value.key) || !value.key.startsWith(value.kind+'-') || value.kind===entityKind) return null;
-    return {kind:value.kind,key:value.key};
+    if (typeof value.key!=='string' || !publicSourceKeyPattern.test(value.key) || !value.key.startsWith(value.kind+'-') || value.kind===entityKind && !(value.kind==='search' && value.mode==='copy')) return null;
+    if(value.mode!=null && !(value.kind==='search' && value.mode==='copy' && (entityKind==null||entityKind==='search')))return null;
+    return {kind:value.kind,key:value.key,...(value.mode==='copy'?{mode:'copy'}:{})};
   }
   if (value.kind==='locations') {
     if (entityKind!=null && entityKind!=='search') return null;
@@ -57,6 +60,7 @@ export function normalizeDraftOrigin(value,entityKind) {
   return null;
 }
 export const originFromListing = (sourceKind,sourceKey) => normalizeDraftOrigin({kind:sourceKind,key:sourceKey});
+export const originFromSearchCopy = sourceKey => normalizeDraftOrigin({kind:'search',key:sourceKey,mode:'copy'},'search');
 export const originFromLocations = values => normalizeDraftOrigin({kind:'locations',locationIds:values});
 export const originBlank = entityKind => normalizeDraftOrigin({kind:'blank',entityKind});
 /** Location starts match the edited current choices; listing starts match their original identity. */
@@ -69,12 +73,12 @@ export function sameDraftOrigin(draft,entityKind,origin) {
     return current!=null && current.length===candidate.locationIds.length && current.every((id,index)=>id===candidate.locationIds[index]);
   }
   const previous=normalizeDraftOrigin(draft.origin,entityKind);
-  return previous?.kind===candidate.kind && (candidate.kind==='blank'?previous.entityKind===candidate.entityKind:previous.key===candidate.key);
+  return previous?.kind===candidate.kind && (candidate.kind==='blank'?previous.entityKind===candidate.entityKind:previous.key===candidate.key&&previous.mode===candidate.mode);
 }
-const textFields = {title:150, description:6000, type:40, city:120, district:20, locationId:200, address:500, neighborhood:180, street:180, houseNumber:32, postalCode:4, streetId:64, condition:80, building:80, constructionAge:80, view:80, ceilingHeight:80, heatingType:80, secondaryHeatingType:80, energyRating:20, parkingType:200, moveIn:200, financing:300};
+const textFields = {title:150, description:6000, type:40, city:120, district:20, locationId:200, address:500, neighborhood:180, street:180, houseNumber:32, postalCode:4, streetId:64, condition:80, building:80, constructionAge:80, view:80, ceilingHeight:80, heatingType:80, secondaryHeatingType:80, energyRating:20, energyRatingScheme:20, minEnergyRating:20, atticPreference:20, parkingType:200, moveIn:200, financing:300};
 const numericFields = ['price','area','rooms','wholeRooms','halfRooms','lotArea','floor','buildingFloors','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'];
 // sharedGarden is retained here only so old frozen creation payloads keep their receipt hash.
-const booleanFields = ['balcony','elevator','insulated','airConditioning','solarPanels','privateGarden','sharedGarden','floorIsUpperRange','excludeTopFloor','excludeGroundFloorAndBelow'];
+const booleanFields = ['balcony','elevator','insulated','airConditioning','solarPanels','privateGarden','sharedGarden','floorIsUpperRange','excludeTopFloor','excludeGroundFloorAndBelow','hideStreet','hideHouseNumber','isAttic'];
 const listFields = ['locationIds','districts','conditions','buildings','constructionAges','views','floors','heatingTypes','parkingTypes','images'];
 /** Persist only editable form fields. Authentication and origin metadata never enter an entity payload. */
 export function sanitizeDraftData(value = {}, kind = 'search') {
@@ -101,7 +105,7 @@ export function sanitizeDraftData(value = {}, kind = 'search') {
   return result;
 }
 function editorState(value = {}) {
-  return {layoutVersion:DRAFT_EDITOR_LAYOUT_VERSION,query:text(value?.query,120),streetQuery:text(value?.streetQuery,180),titleGenerated:value?.titleGenerated===true,completedSteps:[...new Set((Array.isArray(value?.completedSteps)?value.completedSteps:[]).filter(step=>Number.isInteger(step)&&step>=0&&step<=LAST_EDITOR_STEP))].sort(),locations:safeLocations(value?.locations)};
+  return {...Object.fromEntries(['floorMode','buildingFloorsMode'].filter(field=>Object.hasOwn(value,field)&&['','other','legacy-upper'].includes(value[field])).map(field=>[field,value[field]])),...Object.fromEntries(['floorOther','buildingFloorsOther'].filter(field=>Object.hasOwn(value,field)&&typeof value[field]==='string').map(field=>[field,text(value[field],3)])),layoutVersion:DRAFT_EDITOR_LAYOUT_VERSION,query:text(value?.query,120),streetQuery:text(value?.streetQuery,180),titleGenerated:value?.titleGenerated===true,completedSteps:[...new Set((Array.isArray(value?.completedSteps)?value.completedSteps:[]).filter(step=>Number.isInteger(step)&&step>=0&&step<=LAST_EDITOR_STEP))].sort(),locations:safeLocations(value?.locations)};
 }
 function normalizedDraft(value) {
   if (!value || typeof value !== 'object' || value.version !== VERSION || !validUuid(value.id) || !kinds.includes(value.kind) || !phases.includes(value.phase)) return null;
@@ -196,19 +200,24 @@ export function sanitizeTeaserPrefill(kind,value={}, {pricesInHuf=false}={}) {
   if (propertyTypes.includes(source.type)) data.type=source.type;
   const numbers=kind==='property'?['price','area','rooms','wholeRooms','halfRooms','lotArea','floor','buildingFloors']:['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'];
   for (const field of numbers) {const number=finite(source[field]);data[field]=number!=null && pricesInHuf && ['price','minPrice','maxPrice'].includes(field)?number/1000000:number;}
-  if (kind==='property') for (const [field,options,normalize] of [['condition',CONDITION_OPTIONS,normalizeCondition],['building',BUILDING_OPTIONS,normalizeBuilding],['constructionAge',CONSTRUCTION_AGE_OPTIONS],['view',VIEW_OPTIONS],['heatingType',HEATING_OPTIONS]]) data[field]=knownChoice(source[field],options,normalize);
+  if (kind==='property') for (const [field,options,normalize] of [['condition',CONDITION_OPTIONS,normalizeCondition],['building',BUILDING_OPTIONS,normalizeBuilding],['constructionAge',CONSTRUCTION_AGE_OPTIONS],['view',VIEW_OPTIONS],['heatingType',HEATING_OPTIONS,normalizeHeating]]) data[field]=knownChoice(source[field],options,normalize);
   else {
-    for (const [field,options,normalize] of [['conditions',CONDITION_OPTIONS,normalizeCondition],['buildings',BUILDING_OPTIONS,normalizeBuilding],['constructionAges',CONSTRUCTION_AGE_OPTIONS],['views',VIEW_OPTIONS],['heatingTypes',HEATING_OPTIONS]]) data[field]=[...new Set((Array.isArray(source[field])?source[field]:[]).slice(0,50).map(value=>knownChoice(value,options,normalize)).filter(Boolean))];
+    for (const [field,options,normalize] of [['conditions',CONDITION_OPTIONS,normalizeCondition],['buildings',BUILDING_OPTIONS,normalizeBuilding],['constructionAges',CONSTRUCTION_AGE_OPTIONS],['views',VIEW_OPTIONS],['heatingTypes',HEATING_OPTIONS,normalizeHeating]]) data[field]=[...new Set((Array.isArray(source[field])?source[field]:[]).slice(0,50).map(value=>knownChoice(value,options,normalize)).filter(Boolean))];
     data.floors=[...new Set((Array.isArray(source.floors)?source.floors:[]).slice(0,50).map(finite).map(value=>Number.isInteger(value)&&value>=9&&value<=11?9:value).filter(value=>value!=null&&FLOOR_OPTIONS.some(option=>option.value===value)))];
   }
-  data.ceilingHeight=knownChoice(source.ceilingHeight,CEILING_HEIGHT_OPTIONS);data.balcony=source.balcony===true;data.elevator=source.elevator===true;
+  data.ceilingHeight=knownChoice(source.ceilingHeight,CEILING_HEIGHT_OPTIONS);data.balcony=kind==='property'?(typeof source.balcony==='boolean'?source.balcony:null):source.balcony===true;data.elevator=source.elevator===true;
   if (kind==='property') {
     if (!Number.isInteger(data.buildingFloors) || data.buildingFloors<0 || data.buildingFloors>200 || data.floor!=null && data.floor>data.buildingFloors && !(data.floor===0.5 && data.buildingFloors===0)) data.buildingFloors=null;
     data.floorIsUpperRange=data.floor===9 && source.floorIsUpperRange===true;
+    data.isAttic=data.type==='Ház'?null:typeof source.isAttic==='boolean'?source.isAttic:null;
+    data.energyRating=source.energyRatingScheme==='2023'?energyCode(source.energyRating):text(source.energyRating,20);
+    data.energyRatingScheme=data.energyRating&&source.energyRatingScheme==='2023'?'2023':'';
     data.airConditioning=typeof source.airConditioning==='boolean'?source.airConditioning:null;
     data.privateGarden=data.type==='Lakás' && typeof source.privateGarden==='boolean'?source.privateGarden:null;
     data.sharedGarden=null;
   } else {
+    data.atticPreference=data.type!=='Ház'&&['only','exclude'].includes(source.atticPreference)?source.atticPreference:'';
+    data.minEnergyRating=energyCode(source.minEnergyRating);
     data.excludeTopFloor=data.type!=='Ház' && source.excludeTopFloor===true;
     data.excludeGroundFloorAndBelow=data.type!=='Ház' && source.excludeGroundFloorAndBelow===true;
     data.airConditioning=source.airConditioning===true;
@@ -252,13 +261,15 @@ export function prefillFromTeaser(targetKind,teaser,{locations}={}) {
     const maxPrice=price!=null && price>0?Math.ceil(price*11/50)*5:null;
     const minArea=area!=null && area>0?Math.floor(area*9/50)*5:null;
     Object.assign(data,{minPrice:null,maxPrice,minArea:minArea>0?minArea:null,maxArea:null,minRooms:rooms,maxRooms:null});
-    for (const [field,plural,options,normalize] of [['condition','conditions',CONDITION_OPTIONS,normalizeCondition],['building','buildings',BUILDING_OPTIONS,normalizeBuilding],['constructionAge','constructionAges',CONSTRUCTION_AGE_OPTIONS],['view','views',VIEW_OPTIONS],['heatingType','heatingTypes',HEATING_OPTIONS]]) {
+    for (const [field,plural,options,normalize] of [['condition','conditions',CONDITION_OPTIONS,normalizeCondition],['building','buildings',BUILDING_OPTIONS,normalizeBuilding],['constructionAge','constructionAges',CONSTRUCTION_AGE_OPTIONS],['view','views',VIEW_OPTIONS],['heatingType','heatingTypes',HEATING_OPTIONS,normalizeHeating]]) {
       const choice=knownChoice(source[field],options,normalize);data[plural]=choice?[choice]:[];
     }
     data.ceilingHeight=knownChoice(source.ceilingHeight,CEILING_HEIGHT_OPTIONS);
     const floor=finite(source.floor);data.floors=floor==null?[]:FLOOR_OPTIONS.some(option=>option.value===Math.min(9,floor))?[Math.min(9,floor)]:[];
     data.balcony=source.balcony===true;data.elevator=source.elevator===true;
     data.excludeTopFloor=false;data.excludeGroundFloorAndBelow=false;
+    data.atticPreference=typeof source.isAttic==='boolean'?(source.isAttic?'only':'exclude'):'';
+    data.minEnergyRating=knownEnergyRating(source)>=0?energyCode(source.energyRating):'';
     data.airConditioning=source.airConditioning===true;
     data.privateGarden=data.type==='Lakás' && source.privateGarden===true;
     data.sharedGarden=false;
@@ -267,9 +278,10 @@ export function prefillFromTeaser(targetKind,teaser,{locations}={}) {
     for (const [min,max,target] of [['minPrice','maxPrice','price'],['minArea','maxArea','area'],['minRooms','maxRooms','rooms']]) {
       const low=finite(source[min]),high=finite(source[max]);if (low!=null && low===high) data[target]=low;
     }
-    for (const [plural,field,options,normalize] of [['conditions','condition',CONDITION_OPTIONS,normalizeCondition],['buildings','building',BUILDING_OPTIONS,normalizeBuilding],['constructionAges','constructionAge',CONSTRUCTION_AGE_OPTIONS],['views','view',VIEW_OPTIONS],['heatingTypes','heatingType',HEATING_OPTIONS]]) {const choice=single(source[plural],options,normalize);if (choice) data[field]=choice;}
+    for (const [plural,field,options,normalize] of [['conditions','condition',CONDITION_OPTIONS,normalizeCondition],['buildings','building',BUILDING_OPTIONS,normalizeBuilding],['constructionAges','constructionAge',CONSTRUCTION_AGE_OPTIONS],['views','view',VIEW_OPTIONS],['heatingTypes','heatingType',HEATING_OPTIONS,normalizeHeating]]) {const choice=single(source[plural],options,normalize);if (choice) data[field]=choice;}
     const ceilingHeight=knownChoice(source.ceilingHeight,CEILING_HEIGHT_OPTIONS);if (ceilingHeight) data.ceilingHeight=ceilingHeight;
     if (Array.isArray(source.floors) && source.floors.length===1 && finite(source.floors[0])!=null && finite(source.floors[0])<9) data.floor=finite(source.floors[0]);
+    if(['only','exclude'].includes(source.atticPreference))data.isAttic=source.atticPreference==='only';
     if (source.balcony===true) data.balcony=true;if (source.elevator===true) data.elevator=true;
     if (source.airConditioning===true) data.airConditioning=true;
     if (data.type==='Lakás' && source.privateGarden===true) data.privateGarden=true;
@@ -277,4 +289,15 @@ export function prefillFromTeaser(targetKind,teaser,{locations}={}) {
   if (data.type==='Ház') {data.balcony=false;data.elevator=false;if (targetKind==='search') {data.floors=[];data.excludeTopFloor=false;data.excludeGroundFloorAndBelow=false;}else {delete data.floor;delete data.floorIsUpperRange;delete data.buildingFloors;}}
   data.title=suggestEntityTitle(targetKind,data);
   return sanitizeDraftData(data,targetKind);
+}
+
+/** Clone a public search's criteria without copying its identity or supplied title. */
+export function prefillFromSearchClone(teaser,{locations}={}) {
+  const source=teaser?.clonePrefill&&typeof teaser.clonePrefill==='object'?teaser.clonePrefill:teaser?.prefill&&typeof teaser.prefill==='object'?teaser.prefill:teaser??{};
+  const chosen=selectedLocations(source,locations);
+  const data=sanitizeTeaserPrefill('search',{...source,locations:chosen});
+  data.locationIds=chosen.map(location=>location.id);
+  for(const [field,limit]of [['description',6000],['moveIn',200],['financing',300]])if(typeof source[field]==='string')data[field]=text(source[field],limit);
+  data.title=suggestEntityTitle('search',data);
+  return sanitizeDraftData(data,'search');
 }

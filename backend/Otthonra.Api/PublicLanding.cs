@@ -81,6 +81,9 @@ public static class PublicLanding
     public static (LandingPropertyTeaser Teaser, string[] Regions)? PropertyTeaser(Property property, string? accountType, string? ownerName = null)
     {
         if (property.Archived || property.Price <= 0 || property.Area <= 0 || property.Rooms < 0) return null;
+        // A declared unknown identity must not become a public listing through
+        // the legacy city fallback. Blank old IDs retain that compatibility.
+        if (!string.IsNullOrWhiteSpace(property.LocationId) && LocationCatalog.Get(property.LocationId) is null) return null;
         var location = LocationCatalog.ForProperty(property);
         if (location is null) return null;
         var type = SafeType(property.Type);

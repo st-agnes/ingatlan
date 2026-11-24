@@ -419,7 +419,7 @@ public class PropertyGeocodingTests
     }
 
     [Fact]
-    public void ExactAddressAndCoordinatesAppearOnlyInTheOwnerPropertyDto()
+    public void HiddenAddressAndInternalCoordinatesStayPrivateWhenPublicAddressPartsAreOptedIn()
     {
         var property = Property();
         property.Address = "Titkos magáncím 20/A";
@@ -436,7 +436,10 @@ public class PropertyGeocodingTests
         using var publicDocument = JsonDocument.Parse(foreign);
         Assert.Equal(JsonValueKind.Null, publicDocument.RootElement.GetProperty("addressDetails").ValueKind);
         Assert.Equal("", publicDocument.RootElement.GetProperty("address").GetString());
-        foreach (var field in new[] { "street", "houseNumber", "postalCode", "latitude", "longitude", "geocodedAt", "geocodingProvider", "geocodingPlaceId", "geocodingAddressKey" })
+        Assert.Equal("", publicDocument.RootElement.GetProperty("street").GetString());
+        Assert.Equal("", publicDocument.RootElement.GetProperty("houseNumber").GetString());
+        var internalFields = new[] { "postalCode", "latitude", "longitude", "geocodedAt", "geocodingProvider", "geocodingPlaceId", "geocodingAddressKey" };
+        foreach (var field in internalFields)
             Assert.False(publicDocument.RootElement.TryGetProperty(field, out _));
         foreach (var value in new[] { "Titkos magáncím", "47.5554321", "21.6665432", "private-provider-place-id", "private-scoped-address-key", "rooftop" })
             Assert.DoesNotContain(value, foreign);
@@ -449,6 +452,20 @@ public class PropertyGeocodingTests
         Assert.Equal(property.Latitude.Value, details.GetProperty("latitude").GetDouble());
         Assert.Equal(property.Longitude.Value, details.GetProperty("longitude").GetDouble());
         Assert.Equal("google", details.GetProperty("provider").GetString());
+
+        property.HideStreet = false;
+        foreach (var hideHouseNumber in new[] { true, false })
+        {
+            property.HideHouseNumber = hideHouseNumber;
+            using var visible = JsonDocument.Parse(JsonSerializer.Serialize(Dto.Property(property), options));
+            Assert.Equal(property.Street, visible.RootElement.GetProperty("street").GetString());
+            Assert.Equal(hideHouseNumber ? "" : property.HouseNumber, visible.RootElement.GetProperty("houseNumber").GetString());
+            Assert.Equal(property.Street + (hideHouseNumber ? "" : " " + property.HouseNumber), visible.RootElement.GetProperty("address").GetString());
+            Assert.Equal(JsonValueKind.Null, visible.RootElement.GetProperty("addressDetails").ValueKind);
+            foreach (var field in internalFields) Assert.False(visible.RootElement.TryGetProperty(field, out _));
+            foreach (var secret in new[] { "47.5554321", "21.6665432", "private-provider-place-id", "private-scoped-address-key", "rooftop" })
+                Assert.DoesNotContain(secret, visible.RootElement.GetRawText());
+        }
     }
 
     private static Property Property() => new()
