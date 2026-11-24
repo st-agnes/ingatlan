@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorStep,editorSave,choosePropertyType,setAttributeChoice,assertEditorNavigation,assertKeyboardNavigation,assertRoomSteppers,installEditorViewportMock} from './editor-browser-helpers.mjs';
+import {editorField,editorStep,editorSave,choosePropertyType,setAttributeChoice,assertEditorNavigation,assertKeyboardNavigation,assertRoomSteppers,installEditorViewportMock,settleEditorLayout} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -175,7 +175,7 @@ async function alignedBounds(page,kind,viewport){
   else{assert.ok(row[1].top>=row[0].bottom,`${kind}: narrow form rows must stack with usable spacing`);assert.ok(Math.abs(row[0].left-row[1].left)<=1&&Math.abs(row[0].right-row[1].right)<=1,'Stacked inputs must share the same full column width');}
  }assert.ok(checked>0,'The price/size topic must contain actual paired or stacked field rows');};
  prove(await boundGeometry(page));
- if(kind==='search'&&viewport.name==='mobile'){await page.setViewportSize({width:320,height:viewport.height});prove(await boundGeometry(page));await assertEditorNavigation(page);await page.setViewportSize({width:viewport.width,height:viewport.height});prove(await boundGeometry(page));}
+ if(kind==='search'&&viewport.name==='mobile'){await page.setViewportSize({width:320,height:viewport.height});await settleEditorLayout(page);prove(await boundGeometry(page));await assertEditorNavigation(page);await page.setViewportSize({width:viewport.width,height:viewport.height});await settleEditorLayout(page);prove(await boundGeometry(page));}
 }
 
 const coreState=value=>({active:value.active,credits:value.credits,properties:value.properties,searches:value.searches,decisions:value.decisions});

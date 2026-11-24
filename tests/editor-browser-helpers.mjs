@@ -66,7 +66,7 @@ async function liveEditorNavigation(page) {
 function assertMobileMenu(proof){
  const {nav,viewport,topics}=proof,bottom=viewport.top+viewport.height,right=viewport.left+viewport.width;
  assert.equal(nav.position,'fixed','Mobile topics belong in one fixed bottom strip');
- assert.ok(nav.left>=viewport.left-1&&nav.right<=right+1&&nav.top>=viewport.top&&nav.bottom<=bottom+1,'The compact menu must fit the visible viewport');
+ assert.ok(nav.left>=viewport.left-1&&nav.right<=right+1&&nav.top>=viewport.top&&nav.bottom<=bottom+1,'The compact menu must fit the visible viewport: '+JSON.stringify({nav,viewport}));
  assert.ok(Math.abs(nav.bottom-bottom)<=2,'The menu must follow the visible viewport bottom, including the keyboard');
  assert.ok(nav.height<=80,'Six mobile topics must use a compact strip, including safe-area padding');
  for(let i=0;i<topics.length;i++){
@@ -158,6 +158,11 @@ export async function assertEditorNavigation(page,{scroll=false,lastField=false}
  if(scroll||lastField)await page.evaluate(top=>{const host=document.getElementById('entity-form')?.closest('.modal')||document.scrollingElement;host.scrollTo({top,behavior:'instant'});},original);
 }
 
+/** Resize events schedule layout work in rAF; measure only after that paint has settled. */
+export async function settleEditorLayout(page){
+ await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+}
+
 /** A visual viewport signal exercises the real keyboard-offset CSS while layout height stays put. */
 export async function installEditorViewportMock(context){
  await context.addInitScript(()=>{
@@ -175,8 +180,8 @@ export async function assertKeyboardNavigation(page){
   await page.evaluate(async()=>{globalThis.__editorViewportTest.setKeyboard(250);await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
   await assertEditorNavigation(page,{scroll:true,lastField:true});
   await page.evaluate(async()=>{globalThis.__editorViewportTest.setKeyboard(0);await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
-  await page.setViewportSize({width:original.width,height:Math.max(400,original.height-250)});await assertEditorNavigation(page,{scroll:true,lastField:true});
- }finally{await page.evaluate(()=>globalThis.__editorViewportTest?.setKeyboard(0));await page.setViewportSize(original);}
+  await page.setViewportSize({width:original.width,height:Math.max(400,original.height-250)});await settleEditorLayout(page);await assertEditorNavigation(page,{scroll:true,lastField:true});
+ }finally{await page.evaluate(()=>globalThis.__editorViewportTest?.setKeyboard(0));await page.setViewportSize(original);await settleEditorLayout(page);}
 }
 
 /** Exercise actual visible arrows without making optional numeric bounds mandatory. */
