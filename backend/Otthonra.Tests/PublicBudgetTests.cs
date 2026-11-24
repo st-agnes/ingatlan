@@ -76,7 +76,7 @@ public sealed class PublicBudgetTests
     [Theory]
     [InlineData(-1, null)] [InlineData(0, null)] [InlineData(80_000_001, null)]
     [InlineData(70_000_000, 75_000_000)]
-    public void PublicCapMustBePositiveAndInsideTheVisiblePriceRange(long amount, long? minimum)
+    public void PublicCapMustBePositiveAndInsideTheVisiblePriceRange(int amount, int? minimum)
     {
         var search = new SearchRequest();
         var error = Assert.Throws<ApiException>(() => Rules.Apply(search, Input() with { PublicMaxPrice = amount, MinPrice = minimum }));

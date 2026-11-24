@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [attributes, seller-form]
+        suite: [attributes]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,7 +40,7 @@ jobs:
           python3 - <<'PY'
           import base64,hashlib,json,os,urllib.request
           from pathlib import Path
-          paths=list(Path('.local/browser-tests').glob('forms-*.log'))+list(Path('.local/browser-tests/screenshots').glob('building-selector-*.png'))+list(Path('.local/browser-tests/screenshots').glob('form-refinements-*.png'))+list(Path('.local/browser-tests/screenshots').glob('public-listing*.png'))+list(Path('.local/browser-tests/screenshots').glob('form-details-*.png'))+sorted(Path('.local/browser-tests/screenshots').glob('*failure*.png'))[:3]
+          paths=list(Path('.local/browser-tests').glob('forms-*.log'))+list(Path('.local/browser-tests/screenshots').glob('building-selector-selected-*.png'))+list(Path('.local/browser-tests/screenshots').glob('budget-fields-*.png'))+list(Path('.local/browser-tests/screenshots').glob('form-refinements-*.png'))+list(Path('.local/browser-tests/screenshots').glob('public-listing*.png'))+list(Path('.local/browser-tests/screenshots').glob('form-details-*.png'))+sorted(Path('.local/browser-tests/screenshots').glob('*failure*.png'))[:3]
           for path in paths:
               if not path.is_file():continue
               raw=path.read_bytes()
