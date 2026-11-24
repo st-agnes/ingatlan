@@ -279,13 +279,27 @@ async function assertSourceLink(page, {landing = false} = {}) {
 function gate() {let release; const promise = new Promise(resolve => {release = resolve;}); return {promise, release};}
 async function readyMap(page, selector) {
   const map = page.locator(selector); await map.locator('.location-map-canvas.maplibregl-map').waitFor();
-  await map.locator('.location-map-canvas').evaluate(element => new Promise((resolve, reject) => {
+  // Landing refreshes may replace a canvas while it is loading. Inspect the
+  // current connected canvas on each frame, never a detached element handle.
+  await page.evaluate(selector => new Promise((resolve, reject) => {
     const deadline = performance.now() + 15000;
-    function check() {if (element.__mapBrowserInstance?.getLayer('otthonra-place-labels')) return resolve(); if (performance.now() > deadline) return reject(new Error('The real MapLibre label layer did not mount')); requestAnimationFrame(check);} check();
-  }));
+    let previous, replacements = 0;
+    function check() {
+      const host = document.querySelector(selector), element = host?.querySelector('.location-map-canvas.maplibregl-map');
+      if (previous && previous !== element) replacements++;
+      previous = element;
+      const actual = element?.isConnected ? element.__mapBrowserInstance : null;
+      const layerReady = !!actual?.getLayer('otthonra-place-labels');
+      const status = element?.closest('.location-map')?.querySelector('.location-map-status')?.textContent || '';
+      if (host?.isConnected && layerReady && performance.now() - (element.__mapBrowserLastMove || 0) > 220 && !actual.isMoving() && actual.loaded() && !status.includes('betöltése')) {resolve(); return;}
+      if (performance.now() > deadline) {reject(new Error('The current real MapLibre label layer did not mount and paint: ' + JSON.stringify({selector, connected: !!element?.isConnected, layerReady, replacements}))); return;}
+      requestAnimationFrame(check);
+    }
+    check();
+  }), selector);
   const box = await map.locator('canvas.maplibregl-canvas').boundingBox();
   assert.ok(box && box.width > 200 && box.height > 100, 'The real WebGL canvas must retain its map viewport, independently of global icon CSS');
-  await waitMapPaint(map); return map;
+  return map;
 }
 async function chooseText(page, viewport, id, value, {landing = false} = {}) {
   const prefix = landing ? 'landing-location' : 'location'; await page.locator(`#${prefix}-input`).fill(value);
