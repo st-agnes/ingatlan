@@ -72,7 +72,7 @@ public static class PublicLanding
         if (locations.Length == 0) return null;
         var type = SafeType(search.Type);
         return (new LandingSearchTeaser("", PublicListings.Title(search.Title, SearchTitle(type)), type,
-            locations.Select(location => location.Label).ToArray(), SafeBound(search.MinPrice), SafeBound(search.MaxPrice),
+            locations.Select(location => location.Label).ToArray(), SafeBound(search.MinPrice), SafeBound(SearchBudgets.PublicMaximum(search)),
             SafeBound(search.MinArea), SafeBound(search.MaxArea), SafeBound(search.MinRooms), SafeBound(search.MaxRooms),
             AccountTypes.PublicType(accountType), PublicProfile.FirstName(ownerName), LandingPrefill.Search(search, locations),
             SourceKey("search", search.Id)), RegionCatalog.ForLocations(locations));
@@ -176,7 +176,7 @@ public sealed class PublicLandingCache
                 where !search.Archived
                 orderby search.CreatedAt descending, search.Id descending
                 select new { search.Id, search.City, search.DistrictsJson, search.LocationIdsJson, search.Type,
-                    search.MinPrice, search.MaxPrice, search.MinArea, search.MaxArea, search.MinRooms, search.MaxRooms,
+                    search.MinPrice, MaxPrice = search.PublicMaxPrice ?? search.MaxPrice, search.MinArea, search.MaxArea, search.MinRooms, search.MaxRooms,
                     search.ConditionsJson, search.BuildingsJson, search.ConstructionAgesJson, search.ViewsJson, search.CeilingHeight,
                     search.FloorsJson, search.HeatingTypesJson, search.Balcony, search.Elevator,
                     search.ExcludeTopFloor, search.ExcludeGroundFloorAndBelow, search.AirConditioning, search.PrivateGarden,

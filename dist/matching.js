@@ -22,8 +22,11 @@ const garageTypes=new Set(['Garázs','Mélygarázs','Teremgarázs']);
 const drivewayTypes=new Set(['Fedett beálló','Udvari beálló']);
 const parkingOptions=['Utcai parkolás','Udvari beálló','Fedett beálló','Garázs','Mélygarázs','Teremgarázs','Egyéb'];
 
-export function prepareSearch(input={}) {
-  const search={...input,...normalizeSearchAttributes(input)};
+/** The public cap is the only budget used to rank a search for a seller. */
+export const publicMaxPrice = search => search?.publicMaxPrice == null || search.publicMaxPrice === '' ? search?.maxPrice ?? null : search.publicMaxPrice;
+
+export function prepareSearch(input={}, {perspective='buyer'}={}) {
+  const search={...input,...normalizeSearchAttributes(input),maxPrice:perspective==='seller'?publicMaxPrice(input):input.maxPrice};
   // Saved older rows may have an empty selection plus a canonical legacy city.
   // Save-time validation still rejects empty choices; explicit unknown IDs never fall back.
   let chosen=input.locationIds==null||Array.isArray(input.locationIds)&&input.locationIds.length===0
@@ -73,8 +76,8 @@ const knownTopFloor = p => knownFloor(p) && p.floorIsUpperRange !== true && p.bu
 const belowTopFloor = p => knownTopFloor(p) && Number(p.floor) < effectiveTopFloor(p);
 const aboveGroundFloor = p => knownFloor(p) && Number(p.floor) > 0;
 
-export function evaluateMatch(property,input,{includeReasons=true}={}){
-  const p=property,q=input?.[compiledMarker]?input:prepareSearch(input),s=q.search,place=p&&propertyPlace(p);
+export function evaluateMatch(property,input,{includeReasons=true,perspective='buyer'}={}){
+  const p=property,q=input?.[compiledMarker]?input:prepareSearch(input,{perspective}),s=q.search,place=p&&propertyPlace(p);
   const neighborhoodMatches=place&&Array.isArray(p?.neighborhoodIds)&&p.neighborhoodIds.some(id=>q.neighborhoodIds.has(id));
   const streetMatches=place&&q.streetIds.size>0&&matchesStreet(p,place,q.streetIds);
   if(!p||p.archived||s.archived||p.ownerId===s.ownerId||!place||(!q.cities.has(place.city)&&!q.districtIds.has(place.id)&&!neighborhoodMatches&&!streetMatches)
@@ -215,4 +218,4 @@ function specificityOf(q){
   if(!q.house){add(MATCH_WEIGHTS.floor,Math.max(category(q.floors.length,FLOOR_OPTIONS.length),s.excludeTopFloor||s.excludeGroundFloorAndBelow||s.atticPreference?1:0));add(MATCH_WEIGHTS.elevator,s.elevator?1:0);add(MATCH_WEIGHTS.balcony,s.balcony?1:0);}
   return Math.max(0,Math.min(100,Math.round(100*selected/total)));
 }
-export function searchSpecificity(search){return search?.[compiledMarker]?search.specificity:prepareSearch(search).specificity;}
+export function searchSpecificity(search,options){return search?.[compiledMarker]?search.specificity:prepareSearch(search,options).specificity;}

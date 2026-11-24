@@ -29,19 +29,27 @@ export async function choosePropertyType(page, value, interact) {
   assert.equal(await page.locator('#editor-step-button-2').getAttribute('aria-current'), 'step');
 }
 
-/** Set or clear an optional illustrated single choice through its real card. */
+/** Set a native three-state amenity or an optional illustrated single choice through its visible control. */
 export async function setAttributeChoice(page, name, value, interact) {
   value = value == null ? '' : String(value);
   const input = await editorField(page, `#f-${name}`, interact);
   const before = await input.inputValue();
   if (before === value) return input;
+  const radio = page.locator(`input[type="radio"][name="${name}"][value="${value}"]`);
+  if (await radio.count()) {
+    await press(page, page.locator('label').filter({has: radio}), interact);
+    assert.equal(await radio.isChecked(), true);
+    assert.equal(await page.locator(`input[type="radio"][name="${name}"]:checked`).count(), 1);
+    assert.equal(await input.inputValue(), value);
+    return input;
+  }
   const card = page.locator(`[data-attribute-name="${name}"][data-attribute-value="${value || before}"]`);
   await press(page, card, interact);
   assert.equal(await input.inputValue(), value);
   return input;
 }
 
-/** Choose exact seller floors through the visible cards, including the explicit higher-floor entry. */
+/** Choose exact seller floors through the drawn building, including its top Other row. */
 export async function setSellerFloor(page, value, interact) {
   return setFloorCards(page, 'floor', value, interact);
 }
@@ -54,7 +62,7 @@ async function setFloorCards(page, name, value, interact) {
   const input = await editorField(page, '#f-' + name, interact), target = value == null ? '' : String(value), before = await input.inputValue();
   if (before === target) return input;
   const choice = Number(target) > 10 ? 'other' : target || (Number(before) > 10 ? 'other' : before);
-  const card = page.locator(`[data-attribute-name="${name}"][data-attribute-value="${choice}"]`);
+  const card = page.locator(`.building-floor-row[data-building-number="${name}"][data-building-number-value="${choice}"]`);
   if (!(Number(target) > 10 && Number(before) > 10)) await press(page, card, interact);
   if (target && Number(target) > 10) await page.locator('#f-' + name + 'Other').fill(target);
   assert.equal(await input.inputValue(), target);
@@ -111,10 +119,12 @@ export async function assertAddressPrivacyControls(page, interact, {city = 'Debr
   assert.equal(await page.locator('#property-location-edit').isVisible(), true);
   assert.equal(await page.locator('#location-input').isVisible(), false, 'A selected seller city has a compact editable caption');
   const street = page.locator('#f-hideStreet'), house = page.locator('#f-hideHouseNumber');
-  assert.equal(await street.isChecked(), true);assert.equal(await house.isChecked(), true);assert.equal(await house.isEnabled(), false);
-  await street.uncheck();assert.equal(await house.isEnabled(), true);assert.equal(await house.isChecked(), true, 'Showing the street must not silently expose the house number');
-  await house.uncheck();assert.equal(await house.isChecked(), false);
-  await street.check();assert.equal(await house.isChecked(), true);assert.equal(await house.isEnabled(), false, 'Hiding the street must also hide the house number');
+  assert.equal(await street.isChecked(), true);assert.equal(await house.isChecked(), true);assert.equal(await house.isEnabled(), true, 'The house-number privacy choice remains active while the street is hidden');
+  await house.uncheck();assert.equal(await house.isChecked(), false);assert.equal(await street.isChecked(), false, 'Showing the house number must automatically show the street');
+  await street.check();assert.equal(await house.isChecked(), true);assert.equal(await house.isEnabled(), true, 'Hiding the street checks the house number without disabling it');
+  await street.uncheck();assert.equal(await house.isEnabled(), true);assert.equal(await house.isChecked(), true, 'Showing only the street must not silently expose the house number');
+  await house.uncheck();assert.equal(await street.isChecked(), false);assert.equal(await house.isChecked(), false);
+  await street.check();assert.equal(await house.isChecked(), true);assert.equal(await house.isEnabled(), true);
   const streetBefore = await page.locator('#f-street').inputValue(), numberBefore = await page.locator('#f-houseNumber').inputValue();
   await press(page, page.locator('#property-location-edit'), interact);
   assert.equal(await page.locator('#location-input').isVisible(), true);
@@ -123,21 +133,63 @@ export async function assertAddressPrivacyControls(page, interact, {city = 'Debr
   assert.equal(await page.locator('#location-input').isVisible(), false);
 }
 
-/** Both explicit presence/absence and a repeated-click unknown state must remain usable. */
+/** Native three-state choices preserve No versus unknown without a hidden default. */
 export async function assertNullableAmenities(page, interact) {
   for (const name of ['balcony', 'airConditioning', 'privateGarden', 'insulated', 'solarPanels']) {
     const input = await editorField(page, '#f-' + name, interact), before = await input.inputValue();
     assert.equal(await input.getAttribute('type'), 'hidden');
-    const cards = page.locator(`[data-attribute-name="${name}"]`);assert.equal(await cards.count(), 2);
-    assert.equal(await cards.locator('.attribute-card-illustration > svg').count(), 2);
-    for (const value of ['true', 'false']) {
+    const radios = page.locator(`input[type="radio"][name="${name}"]`);
+    assert.deepEqual(await radios.evaluateAll(inputs => inputs.map(input => input.value)), ['', 'true', 'false']);
+    assert.equal(await page.locator(`[data-attribute-name="${name}"]`).count(), 0, 'Comfort and equipment no longer use picture cards');
+    assert.deepEqual(await radios.evaluateAll(inputs => inputs.map(input => input.labels[0].textContent.trim().toLocaleLowerCase('hu'))), ['nem adom meg', 'van', 'nincs']);
+    for (const value of ['true', 'false', '']) {
       await setAttributeChoice(page, name, value, interact);
-      const card = page.locator(`[data-attribute-name="${name}"][data-attribute-value="${value}"]`);
-      assert.equal(await card.getAttribute('aria-pressed'), 'true');
-      await press(page, card, interact);assert.equal(await input.inputValue(), '', 'Repeating either explicit amenity choice returns it to unspecified');
+      assert.equal(await page.locator(`input[type="radio"][name="${name}"][value="${value}"]`).isChecked(), true);
+      assert.equal(await page.locator(`input[type="radio"][name="${name}"]:checked`).count(), 1);
+      assert.equal(await input.inputValue(), value);
     }
     await setAttributeChoice(page, name, before, interact);
   }
+}
+
+/** Buyer budget inputs disclose their audience and keep the public cap beneath the private cap. */
+export async function assertSearchBudgetFields(page, interact) {
+ const maximum = await editorField(page, '#f-maxPrice', interact), publicMaximum = page.locator('#f-publicMaxPrice');
+ assert.equal(await maximum.evaluate(input => input.required), true);assert.equal(await publicMaximum.evaluate(input => input.required), false);
+ assert.equal(await maximum.getAttribute('aria-describedby'), 'maxPrice-help');assert.equal(await publicMaximum.getAttribute('aria-describedby'), 'publicMaxPrice-help');
+ assert.match(await page.locator('#maxPrice-help').innerText(), /csak te.*algoritmus/iu);assert.match(await page.locator('#publicMaxPrice-help').innerText(), /eladók/iu);
+ assert.match(await page.locator('label[for="f-maxPrice"]').innerText(), /Privát/);assert.match(await page.locator('label[for="f-publicMaxPrice"]').innerText(), /Publikus/);
+ const privateBox = await maximum.boundingBox(), publicBox = await publicMaximum.boundingBox();assert.ok(privateBox && publicBox && publicBox.y >= privateBox.y + privateBox.height, 'The public maximum remains directly below the private maximum at every viewport');
+}
+
+/** The connected building rows stay usable, with cumulative height fill and one exact floor. */
+export async function assertBuildingSelectors(page, interact) {
+  await editorStep(page, 3, interact);
+  const floorBefore = await page.locator('#f-floor').inputValue(), heightBefore = await page.locator('#f-buildingFloors').inputValue();
+  const rows = name => page.locator(`.building-floor-row[data-building-number="${name}"]`);
+  const values = name => rows(name).evaluateAll(buttons => buttons.map(button => button.dataset.buildingNumberValue));
+  assert.deepEqual((await values('floor')).sort(), ['-1', '0', '0.5', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'other'].sort());
+  assert.deepEqual((await values('buildingFloors')).sort(), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'other'].sort());
+  assert.equal(await page.locator('.building-selector-height .building-stack').evaluate(element=>getComputedStyle(element).borderLeftStyle),'dashed','Building height uses a dashed outline');
+  assert.equal(await page.locator('.building-selector-floor .building-stack').evaluate(element=>getComputedStyle(element).borderLeftStyle),'solid','The exact floor is drawn within a solid building');
+  for (const name of ['floor', 'buildingFloors']) {
+    const boxes = await rows(name).evaluateAll(buttons => buttons.map(button => {const box = button.getBoundingClientRect(); return {value:button.dataset.buildingNumberValue, tag:button.tagName, left:box.left, top:box.top, right:box.right, bottom:box.bottom, width:box.width, text:button.innerText};}));
+    assert.ok(boxes.every(box => box.tag === 'BUTTON' && box.width > 50 && box.bottom - box.top >= 24), 'Every drawn floor is a real, readable click target');
+    const top = boxes.find(box => box.value === 'other');assert.match(top.text, /egyéb/iu);assert.doesNotMatch(top.text, /11\./);
+    assert.ok(boxes.filter(box => box.value !== 'other').every(box => box.top >= top.bottom - 1), 'Other is the top storey of the building');
+  }
+  await setSellerFloor(page, '2', interact);
+  assert.equal(await page.locator('.building-floor-row[data-building-number="floor"][aria-pressed="true"]').count(), 1);
+  await setBuildingFloors(page, '4', interact);
+  const filled = async () => rows('buildingFloors').evaluateAll(buttons => buttons.filter(button => button.dataset.filled === 'true').map(button => button.dataset.buildingNumberValue));
+  assert.deepEqual((await filled()).sort(), ['0', '1', '2', '3', '4'].sort(), 'Height selection fills each storey from the ground to the selected level');
+  await press(page, page.locator('.building-floor-row[data-building-number="buildingFloors"][data-building-number-value="4"]'), interact);
+  assert.equal(await page.locator('#f-buildingFloors').inputValue(), '');assert.deepEqual(await filled(), [], 'Repeating the selected height clears the whole fill');
+  await setBuildingFloors(page, '6', interact);assert.deepEqual((await filled()).sort(), ['0', '1', '2', '3', '4', '5', '6'].sort());
+  const third = page.locator('.building-floor-row[data-building-number="floor"][data-building-number-value="3"]');await third.focus();await third.press('Space');assert.equal(await page.locator('#f-floor').inputValue(), '3', 'The building supports keyboard selection as well as touch');
+  await third.press('Space');assert.equal(await page.locator('#f-floor').inputValue(), '', 'Repeating the same floor clears its selection');
+  await setSellerFloor(page, '12', interact);assert.equal(await page.locator('#f-floorOther').isVisible(), true);assert.equal(await page.locator('#f-floorOther').inputValue(), '12');
+  await setSellerFloor(page, floorBefore, interact);await setBuildingFloors(page, heightBefore, interact);
 }
 
 // Storage/focus refresh can replace the form; inspect only the current connected DOM.

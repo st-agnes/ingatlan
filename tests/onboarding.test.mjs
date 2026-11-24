@@ -422,3 +422,26 @@ test('new privacy, certificate and attic fields plus incomplete other-floor choi
  assert.equal(saved.editor.floorMode,'other');assert.equal(saved.editor.floorOther,'1');assert.equal(saved.editor.buildingFloorsOther,'20');
  const completed=prepareDraftSave(prepareDraftForAuth(saved,USER.email,{now:NOW}),USER,{now:NOW});assert.equal(completed.completedData.balcony,null);assert.equal(completed.completedData.isAttic,false);assert.equal(completed.completedData.hideStreet,false);
 });
+
+
+test('private and public budgets persist in own drafts while public seeds and automatic names use only the public cap',()=>{
+ const source={type:'Lakás',locationIds:['city:Debrecen'],locations:[getLocation('city:Debrecen')],maxPrice:80,publicMaxPrice:70,minArea:30};
+ const draft=createDraft('search',source,{now:NOW});
+ assert.equal(draft.data.maxPrice,80);assert.equal(draft.data.publicMaxPrice,70);
+ assert.match(suggestEntityTitle('search',source),/70 M Ft/);assert.doesNotMatch(suggestEntityTitle('search',source),/80 M Ft/);
+ const seed=sanitizeTeaserPrefill('search',source);assert.equal(seed.maxPrice,70);assert.equal(Object.hasOwn(seed,'publicMaxPrice'),false);
+ const copied=prefillFromSearchClone(source);assert.equal(copied.maxPrice,70);assert.equal(copied.publicMaxPrice,70);
+ const fromProperty=prefillFromTeaser('search',{prefill:{type:'Lakás',price:75,area:60,rooms:2,locations:[getLocation('city:Debrecen')]}});
+ assert.equal(fromProperty.maxPrice,85);assert.equal(fromProperty.publicMaxPrice,85);
+});
+
+
+test('blank public budgets fall back to the actual cap in automatic titles and public seeds while zero never falls back',()=>{
+ const source={type:'Lakás',locationIds:['city:Debrecen'],locations:[getLocation('city:Debrecen')],maxPrice:80};
+ for(const publicMaxPrice of [undefined,null,'']){
+  assert.match(suggestEntityTitle('search',{...source,publicMaxPrice}),/80 M Ft/);
+  assert.equal(sanitizeTeaserPrefill('search',{...source,publicMaxPrice}).maxPrice,80);
+ }
+ assert.doesNotMatch(suggestEntityTitle('search',{...source,publicMaxPrice:0}),/80 M Ft/);
+ assert.equal(sanitizeTeaserPrefill('search',{...source,publicMaxPrice:0}).maxPrice,0);
+});

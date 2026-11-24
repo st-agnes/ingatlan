@@ -167,7 +167,7 @@ function formInputEvent(t,input,type='change'){
 function chooseOptionalCard(t,name,value){
  const input=t.document.getElementById('f-'+name);assert.ok(input,`Missing canonical ${name}`);
  const desired=value==null?'':String(name==='condition'?propertyAttributes.normalizeCondition(value):name==='building'?propertyAttributes.normalizeBuilding(value):value),buttons=t.document.getElementById('entity-form').querySelectorAll('button').filter(button=>button.dataset.attributeName===name);
- if(!buttons.length){input.value=desired;formInputEvent(t,input);return;}
+ if(!buttons.length){const radio=t.document.getElementById('entity-form').querySelectorAll('input').find(control=>control.type==='radio'&&control.name===name);if(radio){chooseRadio(t,name,desired);return;}input.value=desired;formInputEvent(t,input);return;}
  if(name==='floor'||name==='buildingFloors'){
   const choice=desired!==''&&Number(desired)>10?'other':desired;
   const button=buttons.find(button=>button.dataset.buildingNumberValue===choice);
@@ -602,7 +602,7 @@ test('seller inputs preserve explicit no, unknown amenities and existing higher 
  t.ui.openEditor('property',saved.id);
  const html=t.document.getElementById('modal-root').innerHTML;
  assert.equal(t.document.getElementById('f-floor').value,'12');assert.equal(t.document.getElementById('f-floorOther').value,'12');assert.equal(t.document.getElementById('floor-other-field').hidden,false);
- assert.equal(t.document.getElementById('entity-form').querySelectorAll('button').find(button=>button.dataset.attributeName==='insulated'&&button.dataset.attributeValue==='false').getAttribute('aria-pressed'),'true');
+ assert.equal(t.document.getElementById('f-insulated-no').checked,true);
  assert.equal(t.document.getElementById('f-heatingType').value,'Hőszivattyú');
 });
 
@@ -2266,18 +2266,29 @@ test('seller location collapses to an editable city name and nested address priv
  assert.equal(query.hidden,true);assert.ok(edit);assert.match(edit.getAttribute('aria-label'),/Budapest V.*szerkesztése/);assert.equal(t.document.getElementById('f-postalCode').type,'hidden');assert.doesNotMatch(t.document.html,/<label[^>]*for="f-postalCode"/);
  const streetBefore=t.document.getElementById('f-street').value;chips.handlers.click({target:{closest:selector=>selector==='#property-location-edit'?edit:null}});assert.equal(query.hidden,false);assert.equal(t.document.activeElement.id,'location-input');assert.equal(t.document.getElementById('f-street').value,streetBefore,'Entering location editing does not erase the verified street');
  t.document.handlers.pointerdown({target:t.document.getElementById('toast')});assert.equal(query.hidden,true,'Leaving an empty location editor restores the selected city');
- const hideStreet=t.document.getElementById('f-hideStreet'),hideHouse=t.document.getElementById('f-hideHouseNumber');assert.equal(hideStreet.checked,true);assert.equal(hideHouse.checked,true);assert.equal(hideHouse.disabled,true);
+ const hideStreet=t.document.getElementById('f-hideStreet'),hideHouse=t.document.getElementById('f-hideHouseNumber');assert.equal(hideStreet.checked,true);assert.equal(hideHouse.checked,true);assert.equal(hideHouse.disabled,false);
  changeChoice(t,hideStreet,false);assert.equal(hideHouse.disabled,false);assert.equal(hideHouse.checked,true,'Showing a street does not silently expose its house number');changeChoice(t,hideHouse,false);assert.equal(hideHouse.checked,false);
- changeChoice(t,hideStreet,true);assert.equal(hideHouse.checked,true);assert.equal(hideHouse.disabled,true);await advanceEditor(t,5);submitEditor(t);await settle();
+ changeChoice(t,hideStreet,true);assert.equal(hideHouse.checked,true);assert.equal(hideHouse.disabled,false);await advanceEditor(t,5);submitEditor(t);await settle();
  const saved=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(saved.hideStreet,true);assert.equal(saved.hideHouseNumber,true);assert.equal(saved.addressDetails?.postalCode??saved.postalCode,'1051','Removing the visible postcode field preserves an unchanged existing value');
  assert.notEqual(t.document.getElementById('entity-form'),form);
 });
 
-test('seller nullable amenity cards cycle yes, no and unspecified without coercion on actual saves',async()=>{
+test('changing only the house number invalidates the invisible postcode and reverting preserves the verified address',async()=>{
+ const t=await setup({initialRaw:configuredCriteriaRaw('property')});t.ui.openEditor('property','own-p1');
+ const number=t.document.getElementById('f-houseNumber'),postal=t.document.getElementById('f-postalCode'),before=number.value;
+ assert.equal(postal.value,'1051');assert.equal(postal.type,'hidden');
+ number.value=before+'B';inputEvent(t,number);assert.equal(postal.value,'','A stale postcode must not constrain a different house on a multi-postcode street');
+ number.value=before;inputEvent(t,number);assert.equal(postal.value,'1051','Reverting the address preserves its existing verified metadata');
+ number.value='83';inputEvent(t,number);await advanceEditor(t,5);submitEditor(t);await settle();
+ const saved=t.model.getState().properties.find(row=>row.id==='own-p1');assert.equal(saved.houseNumber??saved.addressDetails?.houseNumber,'83');assert.equal(saved.postalCode??saved.addressDetails?.postalCode??'','');
+});
+
+test('seller amenities offer three native radio values and preserve yes, no and unspecified on actual saves',async()=>{
  const t=await setup({initialRaw:configuredCriteriaRaw('property')});t.ui.openEditor('property','own-p1');await advanceEditor(t,4);
  const names=['balcony','airConditioning','privateGarden','insulated','solarPanels'];
- for(const name of names){const input=t.document.getElementById('f-'+name);assert.equal(input.type,'hidden');chooseOptionalCard(t,name,true);assert.equal(input.value,'true');chooseOptionalCard(t,name,false);assert.equal(input.value,'false');const chosen=t.document.getElementById('entity-form').querySelectorAll('button').find(button=>button.dataset.attributeName===name&&button.dataset.attributeValue==='false');chosen.handlers.click({target:chosen,currentTarget:chosen,preventDefault(){}});assert.equal(input.value,'');assert.equal(chosen.getAttribute('aria-pressed'),'false');}
- await advanceEditor(t,5);submitEditor(t);await settle();const property=t.model.getState().properties.find(item=>item.id==='own-p1');for(const name of names)assert.equal(property[name],null,`${name} remains unspecified after clearing its pair`);
+ for(const name of names){const input=t.document.getElementById('f-'+name),radios=t.document.getElementById('entity-form').querySelectorAll('input').filter(control=>control.type==='radio'&&control.name===name);assert.equal(input.type,'hidden');assert.equal(input.name,'');assert.deepEqual(radios.map(control=>control.value),['','true','false']);chooseRadio(t,name,'true');assert.equal(input.value,'true');chooseRadio(t,name,'false');assert.equal(input.value,'false');chooseRadio(t,name,'');assert.equal(input.value,'');assert.equal(t.document.getElementById('f-'+name+'-unspecified').checked,true);}
+ await advanceEditor(t,5);submitEditor(t);await settle();let property=t.model.getState().properties.find(item=>item.id==='own-p1');for(const name of names)assert.equal(property[name],null,`${name} remains unspecified after selecting Nem adom meg`);
+ t.ui.openEditor('property','own-p1');await advanceEditor(t,4);for(const [index,name] of names.entries())chooseRadio(t,name,index%2?'false':'true');await advanceEditor(t,5);submitEditor(t);await settle();property=t.model.getState().properties.find(item=>item.id==='own-p1');for(const [index,name] of names.entries())assert.equal(property[name],index%2===0,`${name} preserves its explicit native radio value`);
 });
 
 test('energy sliders preserve legacy certificate text until changed and search minimum follows the official twelve grades',async()=>{
@@ -2358,4 +2369,54 @@ test('a full public listing CTA uses fresh detail parameters before an older tea
  const t=await setup({hosted:true,hash:'#landing',fetchLanding:async()=>landing,fetchPublicListing:async()=>detail});assert.match(t.document.getElementById('app').innerHTML,/Napfényes erkélyes otthon/);
  t.ctx.location.hash='#listing/property/'+key;await t.ui.render();await t.click({action:'onboarding-start',kind:'search',source:key});const draft=storedOnboarding(t);
  assert.equal(draft.kind,'search');assert.equal(Number(draft.data.maxPrice),125,'Fresh110M detail seeds125M after the10% cushion and5M rounding');assert.equal(Number(draft.data.minArea),75);assert.equal(Number(draft.data.minRooms),3.5);assert.deepEqual([...draft.data.locationIds],['city:Debrecen']);assert.deepEqual([...draft.data.heatingTypes],['Hőszivattyú']);assert.equal(draft.data.minEnergyRating,'B');assert.deepEqual(draft.origin,onboardingHelpers.originFromListing('property',key));
+});
+
+
+test('both address privacy controls stay interactive and revealing a house number also reveals its street',async()=>{
+ const t=await setup({initialRaw:configuredCriteriaRaw('property')});t.ui.openEditor('property','own-p1');
+ const street=t.document.getElementById('f-hideStreet'),number=t.document.getElementById('f-hideHouseNumber');
+ assert.equal(street.checked,true);assert.equal(number.checked,true);assert.equal(number.disabled,false);
+ changeChoice(t,number,false);assert.equal(number.checked,false);assert.equal(street.checked,false);assert.equal(number.disabled,false);
+ changeChoice(t,street,true);assert.equal(number.checked,true);assert.equal(number.disabled,false);
+ changeChoice(t,street,false);assert.equal(number.checked,true,'Street visibility does not expose a hidden number');
+ changeChoice(t,number,false);await advanceEditor(t,5);submitEditor(t);await settle();
+ const saved=t.model.getState().properties.find(row=>row.id==='own-p1');assert.equal(saved.hideStreet,false);assert.equal(saved.hideHouseNumber,false);
+});
+
+test('building diagrams fill only the selected property floor or all floors through the selected building height',async()=>{
+ const t=await setup({initialRaw:configuredCriteriaRaw('property')});t.ui.openEditor('property','own-p1');await advanceEditor(t,3);
+ const buttons=name=>t.document.getElementById('entity-form').querySelectorAll('button').filter(button=>button.dataset.buildingNumber===name),select=(name,value)=>{const row=buttons(name).find(button=>button.dataset.buildingNumberValue===String(value));assert.ok(row);assert.equal(row.classList.contains('building-floor-row'),true);row.handlers.click({target:row,currentTarget:row,preventDefault(){}});return row;};
+ assert.match(t.document.html,/class="building-stack"/);assert.match(t.document.html,/building-selector-height/);assert.doesNotMatch(t.document.html,/>11\. emelet</);
+ const floor=select('floor',4);assert.equal(floor.getAttribute('aria-pressed'),'true');assert.equal(buttons('floor').filter(button=>button.dataset.filled==='true').length,1);
+ const total=select('buildingFloors',5);for(const row of buttons('buildingFloors'))assert.equal(row.dataset.filled,String(row.dataset.buildingNumberValue!=='other'&&Number(row.dataset.buildingNumberValue)<=5));
+ select('buildingFloors',5);assert.equal(total.getAttribute('aria-pressed'),'false');assert.equal(buttons('buildingFloors').filter(button=>button.dataset.filled==='true').length,0);assert.equal(t.document.getElementById('f-buildingFloors').value,'');
+ select('buildingFloors','other');assert.equal(buttons('buildingFloors').every(button=>button.dataset.filled==='true'),true);assert.equal(t.document.getElementById('buildingFloors-other-field').hidden,false);assert.equal(t.document.activeElement.id,'f-buildingFloorsOther');
+ const exact=t.document.getElementById('f-buildingFloorsOther');exact.value='14';formInputEvent(t,exact,'input');assert.equal(t.document.getElementById('f-buildingFloors').value,'14');
+ select('floor',4);assert.equal(t.document.getElementById('f-floor').value,'');select('floor','other');assert.equal(t.document.getElementById('floor-other-field').hidden,false);assert.equal(t.document.getElementById('f-floorOther').disabled,false);
+});
+
+test('search budgets default the public amount to the private limit and retain a customized cap through owner saves',async()=>{
+ const raw=configuredCriteriaRaw('search');Object.assign(raw.searches.find(row=>row.id==='own-s1'),{maxPrice:80,publicMaxPrice:null});
+ const t=await setup({initialRaw:raw});t.ui.openEditor('search','own-s1');await advanceEditor(t,2);
+ const actual=t.document.getElementById('f-maxPrice'),publicLimit=t.document.getElementById('f-publicMaxPrice');assert.equal(publicLimit.value,'80');assert.equal(publicLimit.required,false);assert.equal(publicLimit.getAttribute('aria-describedby'),'publicMaxPrice-help');assert.match(t.document.html,/Ezt csak te és a párosító algoritmus látja/);assert.match(t.document.html,/Ezt az összeget látják az eladók/);assert.ok(t.document.html.indexOf('id="f-maxPrice"')<t.document.html.indexOf('id="f-publicMaxPrice"'));
+ actual.value='85';formInputEvent(t,actual,'input');assert.equal(publicLimit.value,'85');
+ publicLimit.value='70';formInputEvent(t,publicLimit,'input');actual.value='80';formInputEvent(t,actual,'input');assert.equal(publicLimit.value,'70','A customized advertised limit must survive true-budget edits');
+ publicLimit.value='81';formInputEvent(t,publicLimit,'input');await editorAction(t,'editor-next');assert.equal(editorStep(t),2);assert.match(publicLimit.validationMessage,/nem lehet magasabb/);assert.equal(t.document.activeElement,publicLimit);
+ publicLimit.value='70';formInputEvent(t,publicLimit,'input');const title=t.document.getElementById('f-title');title.value='';formInputEvent(t,title,'input');await advanceEditor(t,5);assert.doesNotMatch(title.value,/80/);assert.match(title.value,/70/);submitEditor(t);await settle();
+ const saved=t.model.getState().searches.find(row=>row.id==='own-s1');assert.equal(saved.maxPrice,80);assert.equal(saved.publicMaxPrice,70);
+ t.ui.openEditor('search','own-s1');assert.equal(t.document.getElementById('f-maxPrice').value,'80');assert.equal(t.document.getElementById('f-publicMaxPrice').value,'70');
+});
+
+test('guest public budget edits survive autosave and reload without disclosing the private amount in an automatic title',async()=>{
+ const data={type:'Lakás',locationIds:['city:Debrecen'],maxPrice:80,minArea:40,minRooms:null,maxRooms:null},draft=onboardingHelpers.createDraft('search',data,{editor:{locations:[getLocation('city:Debrecen')],titleGenerated:true,completedSteps:[0,1]}}),storage={[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(draft)};
+ let t=await setup({hosted:true,hash:'#onboarding',regionStorage:storage});await advanceEditor(t,2);const publicLimit=t.document.getElementById('f-publicMaxPrice');assert.equal(publicLimit.value,'80');publicLimit.value='70';formInputEvent(t,publicLimit,'input');assert.equal(storedOnboarding(t).data.publicMaxPrice,'70');assert.equal(Number(storedOnboarding(t).data.maxPrice),80);
+ t=await setup({hosted:true,hash:'#onboarding',regionStorage:t.regionStorage});assert.equal(t.document.getElementById('f-publicMaxPrice').value,'70');assert.equal(t.document.getElementById('f-maxPrice').value,'80');await advanceEditor(t,5);assert.match(t.document.getElementById('f-title').value,/70/);assert.doesNotMatch(t.document.getElementById('f-title').value,/80/);submitEditor(t);await settle();assert.equal(t.ctx.location.hash,'#register');assert.equal(Number(storedOnboarding(t).data.publicMaxPrice),70);assert.equal(Number(storedOnboarding(t).data.maxPrice),80);
+});
+
+test('previously automatic search names follow a new public budget while truly custom titles remain unchanged',async()=>{
+ for(const custom of [false,true]){
+  const raw=configuredCriteriaRaw('search'),item=raw.searches.find(row=>row.id==='own-s1');Object.assign(item,{maxPrice:80,publicMaxPrice:null,minArea:40,minRooms:2});item.locations=item.locationIds.map(getLocation);item.title=custom?'Saját különleges elképzelésem':onboardingHelpers.suggestEntityTitle('search',item);
+  const t=await setup({initialRaw:raw});t.ui.openEditor('search','own-s1');const publicLimit=t.document.getElementById('f-publicMaxPrice');publicLimit.value='70';formInputEvent(t,publicLimit,'input');
+  assert.equal(t.document.getElementById('f-title').value,custom?item.title:onboardingHelpers.suggestEntityTitle('search',{...item,publicMaxPrice:70}));
+ }
 });

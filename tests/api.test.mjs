@@ -858,3 +858,34 @@ test('missing or malformed anonymous listings fail without demo fallback or priv
  for(const [kind,key]of [['private','search-'+'a'.repeat(64)],['property','../private'],['search','property-'+'a'.repeat(64)]])await assert.rejects(fetchPublicListing(kind,key),/hirdetés/);
  assert.equal(count,1);
 });
+
+test('own public budget round-trips in HUF while invalid public caps are rejected before network writes',async()=>{
+ const calls=routes({'/api/searches':options=>response({...search,...JSON.parse(options.body)},201)});
+ const api=adapter(),data={title:'Védett árkeret',locationIds:['city:Debrecen'],type:'Lakás',minPrice:20,maxPrice:80,publicMaxPrice:70,minArea:20};
+ const saved=await api.saveEntity('search',data);assert.equal(saved.maxPrice,80);assert.equal(saved.publicMaxPrice,70);
+ assert.equal(JSON.parse(calls[0].body).maxPrice,80000000);assert.equal(JSON.parse(calls[0].body).publicMaxPrice,70000000);
+ for(const publicMaxPrice of [-1,0,19,81,'rossz'])await assert.rejects(api.saveEntity('search',{...data,publicMaxPrice}),/publikus maximumár/);
+ await assert.rejects(api.saveEntity('search',{...data,maxPrice:2000000,publicMaxPrice:1000001}),/publikus maximumár/);
+ assert.equal(calls.length,1);
+ await api.saveEntity('search',{...data,publicMaxPrice:null});assert.equal(JSON.parse(calls[1].body).publicMaxPrice,null);
+ const old={...data};delete old.publicMaxPrice;await api.saveEntity('search',old);assert.equal('publicMaxPrice' in JSON.parse(calls[2].body),false,'Old frozen creation payloads must keep their old shape');
+});
+
+test('API adapter retains private budget only for the owner, including history and matches',async()=>{
+ const protectedSearch={...search,maxPrice:123456000,publicMaxPrice:70000000};
+ routes(accountRoutes({'/api/me/entities':{searches:[protectedSearch],properties:[],decisions:[{id:'decision',actorId:ids.search,propertyId:ids.property,searchId:ids.search,searchRequest:protectedSearch}]},'/api/matches':[{...match,searchRequest:protectedSearch}]}));
+ const api=adapter(),own=await api.getState();assert.equal(own.searches[0].maxPrice,123.456);assert.equal(own.searches[0].publicMaxPrice,70);
+ assert.equal(own.decisions[0].search.maxPrice,123.456);assert.equal('searchRequest' in own.decisions[0],false);
+ assert.equal((await api.matches())[0].search.maxPrice,123.456);
+ const foreign={...protectedSearch,ownerId:'other'};
+ routes(accountRoutes({'/api/me/entities':{searches:[],properties:[],decisions:[{id:'d',actorId:ids.property,propertyId:ids.property,searchId:ids.search,searchRequest:foreign}]},'/api/matches':[{...match,searchRequest:foreign}],'/api/feed':{active:{kind:'property',id:ids.property},items:[{search:foreign,propertyId:ids.property,searchId:ids.search,score:93}]}}));
+ const foreignState=await api.getState();api.active={kind:'property',id:ids.property};
+ for(const row of [foreignState.decisions[0].search,(await api.matches())[0].search,(await api.feed())[0]]){assert.equal(row.maxPrice,70);assert.equal('publicMaxPrice' in row,false);}
+ assert.equal(JSON.stringify(await api.matches()).includes('123456000'),false);
+});
+
+test('anonymous details and public search-copy seeds never reuse a supplied private cap',()=>{
+ const key='search-'+'a'.repeat(64),value={kind:'search',sourceKey:key,title:'Védett keresés',listing:{type:'Lakás',locations:['Debrecen'],maxPrice:123456000,publicMaxPrice:70000000},prefill:{type:'Lakás',locations:[locations.find(x=>x.id==='city:Debrecen')],maxPrice:123456000,publicMaxPrice:70000000},clonePrefill:{type:'Lakás',locations:[locations.find(x=>x.id==='city:Debrecen')],maxPrice:123456000,publicMaxPrice:70000000}};
+ const data=publicListingFromApi('search',key,value);assert.equal(data.listing.maxPrice,70);assert.equal(data.prefill.maxPrice,70);assert.equal(data.clonePrefill.maxPrice,70);assert.equal(data.clonePrefill.publicMaxPrice,70);
+ assert.equal(JSON.stringify(data).includes('123456000'),false);assert.equal(JSON.stringify(data).includes('123.456'),false);
+});
