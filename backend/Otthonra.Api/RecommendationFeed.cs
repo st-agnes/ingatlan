@@ -32,15 +32,15 @@ public static class RecommendationFeed
     // Returning a newly projected entity rather than the tracked table avoids
     // selecting free text, exact address or image JSON merely for ranking.
     private static readonly Expression<Func<Property, Property>> PropertyColumns = property => new Property {
-        Id = property.Id, OwnerId = property.OwnerId, LocationId = property.LocationId, StreetId = property.StreetId,
+        Id = property.Id, OwnerId = property.OwnerId, LocationId = property.LocationId, StreetId = property.StreetId, HideStreet = property.HideStreet, HideHouseNumber = property.HideHouseNumber,
         City = property.City, District = property.District, Type = property.Type, NeighborhoodIdsJson = property.NeighborhoodIdsJson,
         Price = property.Price, Area = property.Area, LotArea = property.LotArea, Rooms = property.Rooms,
-        WholeRooms = property.WholeRooms, HalfRooms = property.HalfRooms, Floor = property.Floor, FloorIsUpperRange = property.FloorIsUpperRange,
+        WholeRooms = property.WholeRooms, HalfRooms = property.HalfRooms, Floor = property.Floor, FloorIsUpperRange = property.FloorIsUpperRange, IsAttic = property.IsAttic,
         BuildingFloors = property.BuildingFloors, PrivateGarden = property.PrivateGarden, SharedGarden = null,
         Condition = property.Condition, Building = property.Building, ConstructionAge = property.ConstructionAge,
         View = property.View, CeilingHeight = property.CeilingHeight, HeatingType = property.HeatingType,
         SecondaryHeatingType = property.SecondaryHeatingType, Insulated = property.Insulated,
-        EnergyRating = property.EnergyRating, AirConditioning = property.AirConditioning,
+        EnergyRating = property.EnergyRating, EnergyRatingScheme = property.EnergyRatingScheme, AirConditioning = property.AirConditioning,
         SolarPanels = property.SolarPanels, ParkingType = property.ParkingType, ParkingTypesJson = property.ParkingTypesJson,
         Balcony = property.Balcony, Elevator = property.Elevator, Archived = property.Archived
     };
@@ -53,7 +53,7 @@ public static class RecommendationFeed
         ViewsJson = search.ViewsJson, CeilingHeight = search.CeilingHeight, FloorsJson = search.FloorsJson,
         HeatingTypesJson = search.HeatingTypesJson, Balcony = search.Balcony, Elevator = search.Elevator,
         ExcludeTopFloor = search.ExcludeTopFloor, ExcludeGroundFloorAndBelow = search.ExcludeGroundFloorAndBelow,
-        AirConditioning = search.AirConditioning, PrivateGarden = search.PrivateGarden, SharedGarden = false,
+        AirConditioning = search.AirConditioning, PrivateGarden = search.PrivateGarden, SharedGarden = false, AtticPreference = search.AtticPreference, MinEnergyRating = search.MinEnergyRating,
         Archived = search.Archived
     };
 
@@ -189,7 +189,7 @@ public static class RecommendationFeed
         var streetIds = prepared.StreetIds.ToArray();
         var anyType = prepared.NormalizedType.Length == 0;
         var properties = db.Properties.AsNoTracking().Where(property => !property.Archived && property.OwnerId != user.Id
-            && (anyType || property.Type == search.Type) && (streetIds.Contains(property.StreetId!)
+            && (anyType || property.Type == search.Type) && (!property.HideStreet && streetIds.Contains(property.StreetId!)
                 || db.PropertyNeighborhoods.Any(membership => membership.PropertyId == property.Id && neighborhoodIds.Contains(membership.NeighborhoodId))
                 || ids.Contains(property.LocationId)
                 || (property.LocationId == null || property.LocationId.Trim() == "")

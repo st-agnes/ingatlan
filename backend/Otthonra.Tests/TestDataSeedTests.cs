@@ -15,11 +15,11 @@ public class TestDataSeedTests
     [Fact]
     public void EmbeddedCatalogBuildsTheEntireReadyDatasetWithRolesCreditsAndStableIds()
     {
-        Assert.Equal("20261118-test-fixtures-v6", TestDataSeed.CatalogVersion);
+        Assert.Equal("20261124-test-fixtures-v7", TestDataSeed.CatalogVersion);
         Assert.Equal(14, Plan.Users.Length);
         Assert.Equal(3, Plan.Users.Count(user => user.AccountType == AccountTypes.Agent));
         Assert.Equal(355, Plan.Properties.Length);
-        Assert.Equal(353, Plan.Searches.Length);
+        Assert.Equal(433, Plan.Searches.Length);
         Assert.Equal(15, Plan.Credits.Length);
         Assert.All(Plan.Users, user => {
             Assert.Equal(user.Email == "visszajelzes-elado@otthonra.local" ? 90 : 100, user.Credits);
@@ -150,7 +150,7 @@ public class TestDataSeedTests
             var searches = Plan.Searches.Where(search =>
                 RegionCatalog.ForLocations(LocationCatalog.ForSearch(search)).Contains(region.Id)).ToArray();
             Assert.True(properties.Length >= 12, $"{region.Label} needs real seeded properties.");
-            Assert.True(searches.Length >= 12, $"{region.Label} needs real seeded searches.");
+            Assert.True(searches.Length >= 16, $"{region.Label} needs real seeded searches.");
             Assert.Contains(properties, item => item.Type == "Lakás");
             Assert.Contains(properties, item => item.Type == "Ház");
             Assert.Contains(searches, item => item.Type == "Lakás");
@@ -222,7 +222,7 @@ public class TestDataSeedTests
     [Fact]
     public void DeploymentHistoryKeysDistinguishRevisionsAndLocalCatalogVersions()
     {
-        Assert.Equal("local:20261118-test-fixtures-v6", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
+        Assert.Equal("local:20261124-test-fixtures-v7", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
         Assert.Equal("ci-fixtures-a", TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion), TestDataSeed.RevisionKey("ci-fixtures-b", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey(null, "catalog-v1"), TestDataSeed.RevisionKey(null, "catalog-v2"));

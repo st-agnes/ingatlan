@@ -76,6 +76,7 @@ if (builder.Configuration.GetValue<bool>("Database:Initialize"))
 }
 app.MapLikeRefunds();
 app.MapPublicLanding();
+app.MapPublicListings();
 app.MapGet("/api/locations", (string? q, int? limit, string? kind) => Results.Ok(new { items = LocationCatalog.Search(q, limit ?? 8, kind) }));
 app.MapGet("/api/streets", (string? q, int? limit, string? locationId) => Results.Ok(new {
     items = StreetCatalog.Search(q, limit ?? 12, locationId).Select(LocationCatalog.FromStreet)
@@ -172,12 +173,12 @@ api.MapPost("/properties", async (PropertyInput input, AppDb db, ClaimsPrincipal
             && record.CreationRequestId == creation.RequestId, cancellationToken);
         if (previous is not null)
         {
-            EntityCreation.VerifyReplay(previous.CreationRequestHash, creation.RequestHash);
+            EntityCreation.VerifyPropertyReplay(previous, input, creation.RequestHash);
             await creation.CommitAsync(cancellationToken);
             return Results.Ok(Dto.Property(previous, true, owner.AccountType, owner.Name));
         }
     }
-    var p = new Property { OwnerId = owner.Id, CreationRequestId = creation.RequestId, CreationRequestHash = creation.RequestHash };
+    var p = new Property { OwnerId = owner.Id, CreationRequestId = creation.RequestId, CreationRequestHash = creation.RequestHash, CreationRequestHashVersion = 2 };
     Rules.Apply(p, input);
     await geocoding.UpdateAsync(p, cancellationToken);
     await AssignNeighborhoods(db, p, cancellationToken);
@@ -359,7 +360,7 @@ api.MapGet("/matches", async (AppDb db, ClaimsPrincipal principal) =>
         var partnerId = row.Property.OwnerId == uid ? row.Search.OwnerId : row.Property.OwnerId;
         var contact = await db.Users.AsNoTracking().SingleAsync(x => x.Id == partnerId);
         var messages = await db.Messages.AsNoTracking().Where(x => x.MatchId == row.Match.Id).OrderBy(x => x.CreatedAt).ToListAsync();
-        results.Add(new { row.Match.Id, row.Match.CreatedAt, property = Dto.Property(row.Property, true, ownerProfiles[row.Property.OwnerId].AccountType, ownerProfiles[row.Property.OwnerId].Name, includeOwnedLocationDetails: row.Property.OwnerId == uid), searchRequest = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name), contact = new { contact.Id, contact.Name, contact.Email, contact.Phone, contact.AccountType }, messages = messages.Select(Dto.Message), unread = 0 });
+        results.Add(new { row.Match.Id, row.Match.CreatedAt, property = Dto.Property(row.Property, row.Property.OwnerId == uid, ownerProfiles[row.Property.OwnerId].AccountType, ownerProfiles[row.Property.OwnerId].Name, includeOwnedLocationDetails: row.Property.OwnerId == uid), searchRequest = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name), contact = new { contact.Id, contact.Name, contact.Email, contact.Phone, contact.AccountType }, messages = messages.Select(Dto.Message), unread = 0 });
     }
     return Results.Ok(results);
 });

@@ -27,6 +27,7 @@ public static class SchemaUpgrade
     public const string AccountActivityVersion = ActivityNotifications.Version;
     public const string FlatAmenitiesVersion = "20261123-floor-and-garden-amenities";
     public const string RaisedAndUpperFloorVersion = "20261124-raised-and-upper-floor-range";
+    public const string PublicListingsVersion = "20261124-public-listings-and-energy";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -82,7 +83,16 @@ public static class SchemaUpgrade
         ("SearchRequests", "ExcludeGroundFloorAndBelow", "tinyint(1) NOT NULL DEFAULT FALSE"),
         ("SearchRequests", "AirConditioning", "tinyint(1) NOT NULL DEFAULT FALSE"),
         ("SearchRequests", "PrivateGarden", "tinyint(1) NOT NULL DEFAULT FALSE"),
-        ("SearchRequests", "SharedGarden", "tinyint(1) NOT NULL DEFAULT FALSE")
+        ("SearchRequests", "SharedGarden", "tinyint(1) NOT NULL DEFAULT FALSE"),
+        ("Properties", "HideStreet", "tinyint(1) NOT NULL DEFAULT TRUE"),
+        ("Properties", "HideHouseNumber", "tinyint(1) NOT NULL DEFAULT TRUE"),
+        ("Properties", "IsAttic", "tinyint(1) NULL"),
+        ("Properties", "EnergyRatingScheme", "varchar(20) NOT NULL DEFAULT ''"),
+        ("Properties", "PublicListingKey", "varchar(80) CHARACTER SET ascii COLLATE ascii_bin NULL"),
+        ("SearchRequests", "PublicListingKey", "varchar(80) CHARACTER SET ascii COLLATE ascii_bin NULL"),
+        ("Properties", "CreationRequestHashVersion", "int NOT NULL DEFAULT 1"),
+        ("SearchRequests", "AtticPreference", "varchar(20) NOT NULL DEFAULT ''"),
+        ("SearchRequests", "MinEnergyRating", "varchar(20) NOT NULL DEFAULT ''")
     ];
 
     public static async Task ApplyAsync(AppDb db, CancellationToken cancellationToken = default)
@@ -111,6 +121,18 @@ public static class SchemaUpgrade
                 "SELECT DATA_TYPE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'Properties' AND COLUMN_NAME = 'Floor'", cancellationToken));
             if (floorType is not "decimal")
                 await Execute(connection, "ALTER TABLE `Properties` MODIFY COLUMN `Floor` decimal(4,1) NULL", cancellationToken);
+            var balconyNullable = Convert.ToString(await Scalar(connection,
+                "SELECT IS_NULLABLE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'Properties' AND COLUMN_NAME = 'Balcony'", cancellationToken));
+            if (balconyNullable == "NO")
+                await Execute(connection, "ALTER TABLE `Properties` MODIFY COLUMN `Balcony` tinyint(1) NULL", cancellationToken);
+            await EnsureIndex(connection, "Properties", "IX_Properties_PublicListingKey",
+                "CREATE UNIQUE INDEX `IX_Properties_PublicListingKey` ON `Properties` (`PublicListingKey`)", cancellationToken);
+            await EnsureIndex(connection, "SearchRequests", "IX_SearchRequests_PublicListingKey",
+                "CREATE UNIQUE INDEX `IX_SearchRequests_PublicListingKey` ON `SearchRequests` (`PublicListingKey`)", cancellationToken);
+            // The indexed nullable keys make bounded, interrupted backfills cheap
+            // and preserve every previously published opaque source URL.
+            await BackfillPublicKeys(connection, "Properties", "property", cancellationToken);
+            await BackfillPublicKeys(connection, "SearchRequests", "search", cancellationToken);
             await Execute(connection, """
                 CREATE TABLE IF NOT EXISTS `SearchLocations` (
                     `SearchRequestId` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -259,6 +281,7 @@ public static class SchemaUpgrade
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", AccountActivityVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", FlatAmenitiesVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", RaisedAndUpperFloorVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PublicListingsVersion));
             if (Convert.ToInt32(await Scalar(connection,
                     "SELECT COUNT(*) FROM `__OtthonraSchemaVersions` WHERE `Version` = @version",
                     cancellationToken, ("version", ContinuousFeedbackVersion))) == 0)
@@ -282,6 +305,17 @@ public static class SchemaUpgrade
                 if (acquired) await Scalar(connection, "SELECT RELEASE_LOCK(@name)", CancellationToken.None, ("name", lockName));
             }
             finally { if (openedHere) await db.Database.CloseConnectionAsync(); }
+        }
+    }
+
+    private static async Task BackfillPublicKeys(DbConnection connection, string table, string kind, CancellationToken cancellationToken)
+    {
+        // Both identifiers are fixed internal call sites, never request data.
+        while (true)
+        {
+            await using var command = Command(connection,
+                $"UPDATE `{table}` SET `PublicListingKey` = CONCAT(@kind, '-', LOWER(SHA2(CONCAT('otthonra:landing-source:v1:', @kind, ':', LOWER(REPLACE(`Id`, '-', ''))), 256))) WHERE `PublicListingKey` IS NULL OR `PublicListingKey` = '' LIMIT 500", ("kind", kind));
+            if (await command.ExecuteNonQueryAsync(cancellationToken) == 0) return;
         }
     }
 

@@ -22,10 +22,12 @@ public sealed class User
 }
 public sealed class Property
 {
+    public int CreationRequestHashVersion { get; set; } = 1;
     public Guid Id { get; set; } = Guid.NewGuid();
     public Guid OwnerId { get; set; }
     public Guid? CreationRequestId { get; set; }
     public string? CreationRequestHash { get; set; }
+    public string? PublicListingKey { get; set; }
     public string Title { get; set; } = "";
     public string City { get; set; } = "";
     public string District { get; set; } = "";
@@ -33,6 +35,8 @@ public sealed class Property
     public decimal? LotArea { get; set; }
     public string Neighborhood { get; set; } = "";
     public string Address { get; set; } = "";
+    public bool HideStreet { get; set; } = true;
+    public bool HideHouseNumber { get; set; } = true;
     public string Street { get; set; } = "";
     public string? StreetId { get; set; }
     public string HouseNumber { get; set; } = "";
@@ -54,6 +58,7 @@ public sealed class Property
     public int? HalfRooms { get; set; }
     public decimal? Floor { get; set; }
     public bool FloorIsUpperRange { get; set; }
+    public bool? IsAttic { get; set; }
     public int? BuildingFloors { get; set; }
     public bool? PrivateGarden { get; set; }
     // Deprecated; keep the mapped column and old input shape without exposing an active option.
@@ -67,11 +72,12 @@ public sealed class Property
     public string SecondaryHeatingType { get; set; } = "";
     public bool? Insulated { get; set; }
     public string EnergyRating { get; set; } = "";
+    public string EnergyRatingScheme { get; set; } = "";
     public bool? AirConditioning { get; set; }
     public bool? SolarPanels { get; set; }
     public string ParkingType { get; set; } = "";
     public string? ParkingTypesJson { get; set; }
-    public bool Balcony { get; set; }
+    public bool? Balcony { get; set; } = false;
     public bool Elevator { get; set; }
     public string ImagesJson { get; set; } = "[]";
     public bool Archived { get; set; }
@@ -83,6 +89,7 @@ public sealed class SearchRequest
     public Guid OwnerId { get; set; }
     public Guid? CreationRequestId { get; set; }
     public string? CreationRequestHash { get; set; }
+    public string? PublicListingKey { get; set; }
     public string Title { get; set; } = "";
     public string City { get; set; } = "";
     public string DistrictsJson { get; set; } = "[]";
@@ -102,6 +109,8 @@ public sealed class SearchRequest
     public string CeilingHeight { get; set; } = "";
     public string? FloorsJson { get; set; } = "[]";
     public string? HeatingTypesJson { get; set; } = "[]";
+    public string AtticPreference { get; set; } = "";
+    public string MinEnergyRating { get; set; } = "";
     public bool Balcony { get; set; }
     public bool Elevator { get; set; }
     public string MoveIn { get; set; } = "";
@@ -201,13 +210,26 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
     public DbSet<PropertyImpression> PropertyImpressions => Set<PropertyImpression>();
     public DbSet<FeedbackPackage> FeedbackPackages => Set<FeedbackPackage>();
     public DbSet<FeedbackInvitation> FeedbackInvitations => Set<FeedbackInvitation>();
+    private void PreparePublicListingKeys()
+    {
+        foreach (var entry in ChangeTracker.Entries<Property>().Where(entry => entry.State is EntityState.Added or EntityState.Modified))
+            entry.Entity.PublicListingKey = PublicLanding.SourceKey("property", entry.Entity.Id);
+        foreach (var entry in ChangeTracker.Entries<SearchRequest>().Where(entry => entry.State is EntityState.Added or EntityState.Modified))
+            entry.Entity.PublicListingKey = PublicLanding.SourceKey("search", entry.Entity.Id);
+    }
     public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
-        => ActivityNotifications.SaveAsync(this, () => PropertyNeighborhoodIndex.SaveAsync(this,
+    {
+        PreparePublicListingKeys();
+        return ActivityNotifications.SaveAsync(this, () => PropertyNeighborhoodIndex.SaveAsync(this,
             () => SearchLocationIndex.SaveAsync(this, () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken), cancellationToken), cancellationToken), cancellationToken);
+    }
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
-        => ActivityNotifications.SaveAsync(this, () => PropertyNeighborhoodIndex.SaveAsync(this,
+    {
+        PreparePublicListingKeys();
+        return ActivityNotifications.SaveAsync(this, () => PropertyNeighborhoodIndex.SaveAsync(this,
             () => SearchLocationIndex.SaveAsync(this, () => Task.FromResult(base.SaveChanges(acceptAllChangesOnSuccess)), CancellationToken.None), CancellationToken.None), CancellationToken.None)
             .GetAwaiter().GetResult();
+    }
     protected override void OnModelCreating(ModelBuilder b)
     {
         Payments.Configure(b);
@@ -215,6 +237,11 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<User>().ToTable("Users");
         b.Entity<UserReport>().ToTable("UserReports");
         b.Entity<Property>().ToTable("Properties");
+        b.Entity<Property>().Property(property => property.HideStreet).HasDefaultValue(true).HasSentinel(true);
+        b.Entity<Property>().Property(property => property.HideHouseNumber).HasDefaultValue(true).HasSentinel(true);
+        b.Entity<Property>().Property(property => property.CreationRequestHashVersion).HasDefaultValue(1);
+        b.Entity<Property>().HasIndex(property => property.PublicListingKey).IsUnique();
+        b.Entity<SearchRequest>().HasIndex(search => search.PublicListingKey).IsUnique();
         b.Entity<Property>().Property(property => property.FloorIsUpperRange).HasDefaultValue(false);
         b.Entity<SearchRequest>().ToTable("SearchRequests");
         b.Entity<SearchLocation>().ToTable("SearchLocations");
@@ -271,6 +298,11 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         }
         // Apply the floor exception after the general decimal defaults so fresh
         // databases use the same precision as the additive floor upgrade.
+        b.Entity<Property>().Property(property => property.PublicListingKey).HasMaxLength(80).UseCollation("ascii_bin").HasCharSet("ascii");
+        b.Entity<SearchRequest>().Property(search => search.PublicListingKey).HasMaxLength(80).UseCollation("ascii_bin").HasCharSet("ascii");
+        b.Entity<Property>().Property(property => property.EnergyRatingScheme).HasMaxLength(20);
+        b.Entity<SearchRequest>().Property(search => search.AtticPreference).HasMaxLength(20);
+        b.Entity<SearchRequest>().Property(search => search.MinEnergyRating).HasMaxLength(20);
         b.Entity<Property>().Property(property => property.Floor).HasPrecision(4, 1);
         b.Entity<Property>().HasOne<User>().WithMany().HasForeignKey(x => x.OwnerId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<SearchRequest>().HasOne<User>().WithMany().HasForeignKey(x => x.OwnerId).OnDelete(DeleteBehavior.Restrict);
@@ -305,18 +337,20 @@ public static class Dto
 {
     public static string[] Strings(string? json) => string.IsNullOrWhiteSpace(json) ? [] : JsonSerializer.Deserialize<string[]>(json) ?? [];
     public static object Profile(User u, int unreadNotificationCount = 0) => new { u.Id, u.Name, u.Email, u.Phone, u.AccountType, u.Credits, u.ActiveKind, u.ActiveEntityId, u.CreatedAt, unreadNotificationCount };
-    // Public cards intentionally contain no user/contact object or exact street address.
+    public static string PublicAddress(Property property) => property.HideStreet ? ""
+        : property.Street + (property.HideHouseNumber || string.IsNullOrWhiteSpace(property.HouseNumber) ? "" : " " + property.HouseNumber);
+    // Public cards never contain owner contacts or internal geocoding data.
     public static object Property(Property p, bool own = false, string ownerAccountType = AccountTypes.Private, string? ownerName = null, bool includeOwnedLocationDetails = true)
     {
         var rooms = Rules.RoomCounts(p);
-        return new { p.Id, p.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), ownerAccountType = AccountTypes.PublicType(ownerAccountType), p.Title, p.City, p.District, p.Neighborhood, Address = own ? p.Address : "",
+        return new { p.Id, p.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), ownerAccountType = AccountTypes.PublicType(ownerAccountType), p.Title, p.City, p.District, p.Neighborhood, Address = own && includeOwnedLocationDetails ? p.Address : PublicAddress(p), publicAddress = PublicAddress(p), street = p.HideStreet ? "" : p.Street, houseNumber = p.HideStreet || p.HideHouseNumber ? "" : p.HouseNumber, p.HideStreet, hideHouseNumber = p.HideStreet || p.HideHouseNumber,
             addressDetails = own && includeOwnedLocationDetails ? new { street = p.Street, streetId = p.StreetId, houseNumber = p.HouseNumber, postalCode = p.PostalCode,
                 latitude = p.Latitude, longitude = p.Longitude, geocodedAt = p.GeocodedAt,
                 provider = p.GeocodingProvider, quality = p.GeocodingQuality,
                 geocodingStatus = p.Latitude.HasValue && p.Longitude.HasValue ? "located" : "missing" } : null,
             neighborhoodIds = Strings(p.NeighborhoodIdsJson),
             neighborhoods = Strings(p.NeighborhoodIdsJson).Select(NeighborhoodCatalog.Get).Where(x => x is not null).ToArray(),
-            p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, wholeRooms = rooms.WholeRooms, halfRooms = rooms.HalfRooms, p.Floor, p.FloorIsUpperRange, p.BuildingFloors, p.PrivateGarden, SharedGarden = (bool?)null, condition = PropertyAttributes.NormalizeCondition(p.Condition), building = PropertyAttributes.NormalizeBuilding(p.Building), p.ConstructionAge, p.View, p.CeilingHeight, heatingType = PropertyAttributes.NormalizeHeating(p.HeatingType), p.SecondaryHeatingType, p.Insulated, p.EnergyRating, p.AirConditioning, p.SolarPanels, p.ParkingType, parkingTypes = PropertyAttributes.Parking(p), p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
+            p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, wholeRooms = rooms.WholeRooms, halfRooms = rooms.HalfRooms, p.Floor, p.FloorIsUpperRange, p.IsAttic, p.BuildingFloors, p.PrivateGarden, SharedGarden = (bool?)null, condition = PropertyAttributes.NormalizeCondition(p.Condition), building = PropertyAttributes.NormalizeBuilding(p.Building), p.ConstructionAge, p.View, p.CeilingHeight, heatingType = PropertyAttributes.NormalizeHeating(p.HeatingType), p.SecondaryHeatingType, p.Insulated, p.EnergyRating, p.EnergyRatingScheme, p.AirConditioning, p.SolarPanels, p.ParkingType, parkingTypes = PropertyAttributes.Parking(p), p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
     }
     public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private, string? ownerName = null)
     {
@@ -325,7 +359,7 @@ public static class Dto
         // Keep invalid explicit choices visible to clients. Replacing them with []
         // would make an old client's legitimate empty-selection city fallback broaden this search.
         var locationIds = declaredIds.Length > 0 && locations.Length == 0 ? declaredIds : locations.Select(x => x.Id).ToArray();
-        return new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Specificity(s), ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds, locations, s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson), s.Balcony, s.Elevator, s.ExcludeTopFloor, s.ExcludeGroundFloorAndBelow, s.AirConditioning, s.PrivateGarden, SharedGarden = false, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
+        return new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Specificity(s), ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds, locations, s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson).Select(PropertyAttributes.NormalizeHeating).Distinct().ToArray(), s.Balcony, s.Elevator, s.ExcludeTopFloor, s.ExcludeGroundFloorAndBelow, s.AtticPreference, s.MinEnergyRating, s.AirConditioning, s.PrivateGarden, SharedGarden = false, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
     }
     public static object Message(Message m) => new { m.Id, m.MatchId, m.SenderId, m.Text, m.CreatedAt };
 }
@@ -340,14 +374,20 @@ public record MessageInput(string Text);
 public record TopupInput(int Amount);
 // New optional fields omit their defaults only when serializing inputs, preserving
 // the original private creation fingerprint of older, still-pending drafts.
-public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, decimal? Floor, string? Condition, string? Building, bool Balcony, bool Elevator, string[]? Images, bool Archived = false, string? LocationId = null, decimal? LotArea = null, string? ConstructionAge = null, string? View = null, string? CeilingHeight = null, string? HeatingType = null, bool? Insulated = null, string? EnergyRating = null, bool? AirConditioning = null, bool? SolarPanels = null, string? ParkingType = null, int? WholeRooms = null, int? HalfRooms = null, string? SecondaryHeatingType = null, string[]? ParkingTypes = null, string? Street = null, string? HouseNumber = null, string? PostalCode = null, string? StreetId = null, Guid? CreationRequestId = null,
+public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, decimal? Floor, string? Condition, string? Building, bool? Balcony, bool Elevator, string[]? Images, bool Archived = false, string? LocationId = null, decimal? LotArea = null, string? ConstructionAge = null, string? View = null, string? CeilingHeight = null, string? HeatingType = null, bool? Insulated = null, string? EnergyRating = null, bool? AirConditioning = null, bool? SolarPanels = null, string? ParkingType = null, int? WholeRooms = null, int? HalfRooms = null, string? SecondaryHeatingType = null, string[]? ParkingTypes = null, string? Street = null, string? HouseNumber = null, string? PostalCode = null, string? StreetId = null, Guid? CreationRequestId = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] int? BuildingFloors = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool? PrivateGarden = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool? SharedGarden = null,
-    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool FloorIsUpperRange = false);
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool FloorIsUpperRange = false,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool? HideStreet = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool? HideHouseNumber = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool? IsAttic = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] string? EnergyRatingScheme = null);
 public record SearchInput(string Title, string City, string[]? Districts, string? Description, string Type, decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, bool Balcony, bool Elevator, string? MoveIn, string? Financing, bool Archived = false, string[]? LocationIds = null, string[]? Conditions = null, string[]? Buildings = null, string[]? ConstructionAges = null, string[]? Views = null, string? CeilingHeight = null, decimal[]? Floors = null, string[]? HeatingTypes = null, Guid? CreationRequestId = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool ExcludeTopFloor = false,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool ExcludeGroundFloorAndBelow = false,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool AirConditioning = false,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool PrivateGarden = false,
-    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool SharedGarden = false);
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool SharedGarden = false,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] string? AtticPreference = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] string? MinEnergyRating = null);

@@ -254,7 +254,7 @@
       "balcony": true,
       "elevator": true
     },
-    "specificity": 82
+    "specificity": 80
   },
   {
     "name": "legacy-property-empty-id",
@@ -701,5 +701,150 @@
     "eligible": true,
     "score": 0,
     "valueForMoney": 0.75375
+  },
+  {
+    "name": "current-energy-above-minimum",
+    "property": {
+      "energyRating": "A+",
+      "energyRatingScheme": "2023"
+    },
+    "search": {
+      "minEnergyRating": "C"
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "current-energy-below-minimum",
+    "property": {
+      "energyRating": "G",
+      "energyRatingScheme": "2023"
+    },
+    "search": {
+      "minEnergyRating": "C"
+    },
+    "eligible": true,
+    "score": 64
+  },
+  {
+    "name": "current-energy-one-grade-below",
+    "property": {
+      "energyRating": "B",
+      "energyRatingScheme": "2023"
+    },
+    "search": {
+      "minEnergyRating": "A"
+    },
+    "eligible": true,
+    "score": 91
+  },
+  {
+    "name": "unknown-energy-does-not-meet-minimum",
+    "property": {},
+    "search": {
+      "minEnergyRating": "C"
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "legacy-energy-cannot-prove-current-minimum",
+    "property": {
+      "energyRating": "A+++"
+    },
+    "search": {
+      "minEnergyRating": "C"
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "attic-only-true",
+    "property": {
+      "isAttic": true
+    },
+    "search": {
+      "atticPreference": "only"
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "attic-only-false",
+    "property": {
+      "isAttic": false
+    },
+    "search": {
+      "atticPreference": "only"
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "attic-only-unknown",
+    "property": {},
+    "search": {
+      "atticPreference": "only"
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "attic-excluded-false",
+    "property": {
+      "isAttic": false
+    },
+    "search": {
+      "atticPreference": "exclude"
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "attic-excluded-true",
+    "property": {
+      "isAttic": true
+    },
+    "search": {
+      "atticPreference": "exclude"
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "attic-excluded-unknown",
+    "property": {},
+    "search": {
+      "atticPreference": "exclude"
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "house-ignores-attic",
+    "property": {
+      "type": "Ház",
+      "isAttic": true
+    },
+    "search": {
+      "type": "Ház",
+      "atticPreference": "exclude"
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "house-energy-still-applies",
+    "property": {
+      "type": "Ház",
+      "energyRating": "I",
+      "energyRatingScheme": "2023"
+    },
+    "search": {
+      "type": "Ház",
+      "minEnergyRating": "A"
+    },
+    "eligible": true,
+    "score": 27
   }
 ]

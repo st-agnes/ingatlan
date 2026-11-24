@@ -87,6 +87,9 @@ public static class Rules
             : LegacyRoomCounts(rooms);
         p.Price = i.Price; p.Area = i.Area; p.Rooms = rooms; p.Floor = house ? null : i.Floor;
         p.FloorIsUpperRange = !house && i.FloorIsUpperRange;
+        p.IsAttic = house ? null : i.IsAttic;
+        p.HideStreet = i.HideStreet ?? p.HideStreet;
+        p.HideHouseNumber = p.HideStreet || (i.HideHouseNumber ?? p.HideHouseNumber);
         p.BuildingFloors = house ? null : i.BuildingFloors;
         var flat = Normalize(p.Type) == "LAKAS";
         p.PrivateGarden = flat ? i.PrivateGarden : null;
@@ -118,7 +121,7 @@ public static class Rules
             p.LocationId = exact.Id; p.District = exact.District!;
         }
         p.Description = ContactTextPolicy.ValidateDescription(i.Description);
-        PropertyAttributes.Apply(p, i); p.Balcony = !house && i.Balcony; p.Elevator = !house && i.Elevator; p.Archived = i.Archived;
+        PropertyAttributes.Apply(p, i); p.Balcony = house ? null : i.Balcony; p.Elevator = !house && i.Elevator; p.Archived = i.Archived;
         var images = i.Images ?? [];
         if (images.Length > 12 || images.Any(x => !Uri.TryCreate(x, UriKind.Absolute, out var uri) || uri.Scheme != "https" || x.Length > 2000)) throw new ApiException(400, "Legfeljebb 12 HTTPS-képhivatkozás adható meg.");
         p.ImagesJson = System.Text.Json.JsonSerializer.Serialize(images);
