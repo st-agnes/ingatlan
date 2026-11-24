@@ -215,7 +215,6 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<User>().ToTable("Users");
         b.Entity<UserReport>().ToTable("UserReports");
         b.Entity<Property>().ToTable("Properties");
-        b.Entity<Property>().Property(property => property.Floor).HasPrecision(4, 1);
         b.Entity<Property>().Property(property => property.FloorIsUpperRange).HasDefaultValue(false);
         b.Entity<SearchRequest>().ToTable("SearchRequests");
         b.Entity<SearchLocation>().ToTable("SearchLocations");
@@ -270,6 +269,9 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
             }
             if (property.ClrType == typeof(decimal) || property.ClrType == typeof(decimal?)) { property.SetPrecision(18); property.SetScale(2); }
         }
+        // Apply the floor exception after the general decimal defaults so fresh
+        // databases use the same precision as the additive floor upgrade.
+        b.Entity<Property>().Property(property => property.Floor).HasPrecision(4, 1);
         b.Entity<Property>().HasOne<User>().WithMany().HasForeignKey(x => x.OwnerId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<SearchRequest>().HasOne<User>().WithMany().HasForeignKey(x => x.OwnerId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<SearchLocation>().HasOne<SearchRequest>().WithMany().HasForeignKey(x => x.SearchRequestId).OnDelete(DeleteBehavior.Restrict);
