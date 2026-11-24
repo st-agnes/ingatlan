@@ -20,7 +20,7 @@ async function verify(fixture){
   assert.equal(property.rooms,3.5);assert.equal(property.wholeRooms,2);assert.equal(property.halfRooms,3);
   assert.equal(property.heatingType,'Hőszivattyú');assert.equal(property.secondaryHeatingType,'Kandalló');
   assert.deepEqual(property.parkingTypes,['Garázs','Udvari beálló']);
-  assert.equal(house.lotArea,480);assert.equal(house.floor,null);assert.equal(house.balcony,false);assert.equal(house.elevator,false);
+  assert.equal(house.lotArea,480);assert.equal(house.floor,null);assert.equal(house.balcony,null);assert.equal(house.elevator,false);
   const buyer=await call('/me/entities',{token:fixture.buyer});
   const search=buyer.searchRequests.find(x=>x.id===fixture.searchId);
   assert.ok(search);assert.deepEqual(search.heatingTypes,['Nincs fűtés','Hőszivattyú']);
@@ -61,7 +61,7 @@ if(process.argv[3]==='--verify'){
   const houseBase={...complete,type:'Ház',floor:2,balcony:true,elevator:true};
   for(const lotArea of [undefined,null,0,-1])await call('/properties',{token:seller,method:'POST',body:{...houseBase,lotArea},status:400});
   const house=await call('/properties',{token:seller,method:'POST',body:{...houseBase,lotArea:480},status:201});
-  assert.equal(house.floor,null);assert.equal(house.balcony,false);assert.equal(house.elevator,false);
+  assert.equal(house.floor,null);assert.equal(house.balcony,null);assert.equal(house.elevator,false);
   const apartment=await call('/properties',{token:seller,method:'POST',body:{...complete,lotArea:480,floor:-1},status:201});
   assert.equal(apartment.lotArea,null);assert.equal(apartment.floor,-1,'Basement is a valid categorical floor');
   const searchBase={title:'Közös fűtéslista API-próba',city:'Budapest',locationIds:['district:Budapest:13'],type:'Lakás',minPrice:null,maxPrice:90000000,minArea:40,maxArea:null,minRooms:3.5,maxRooms:3.5,balcony:false,elevator:false,heatingTypes:['Nincs fűtés','Hőszivattyú','Hőszivattyú']};

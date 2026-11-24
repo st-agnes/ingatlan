@@ -75,7 +75,7 @@ function migrateLocations(state) {
   state.searches = state.searches.map(entity=>normalizeSearchAttributes(withLocations(entity, 'search')));
   return state;
 }
-const privatePropertyFields = ['streetId','streetMetadata','streetLocation','street','houseNumber','postalCode','latitude','longitude','coordinates','geocodingStatus','geocodingProvider','geocodedAt','formattedAddress','provider','quality','addressDetails'];
+const privatePropertyFields = ['streetId','streetMetadata','streetLocation','street','houseNumber','postalCode','latitude','longitude','coordinates','geocodingStatus','geocodingProvider','geocodedAt','formattedAddress','provider','quality','geocodingPlaceId','geocodingAddressKey','geocodingQuality','creationRequestId','creationRequestHash','creationRequestHashVersion','addressDetails'];
 const visibleEntity = (entity,users,specificity,viewerId) => {
   if(!entity)return null;
   const result = clone(entity);
@@ -83,7 +83,7 @@ const visibleEntity = (entity,users,specificity,viewerId) => {
   for(const field of privatePropertyFields)if(field!=='addressDetails')delete result[field];
   if(entity.ownerId!==viewerId){
     for(const field of privatePropertyFields)delete result[field];
-    if(Object.hasOwn(entity,'locationId'))result.address='';
+    if(Object.hasOwn(entity,'locationId')){const street=entity.hideStreet===false?String(entity.addressDetails?.street||''):'',number=entity.hideStreet===false&&entity.hideHouseNumber===false?String(entity.addressDetails?.houseNumber||''):'';if(entity.hideStreet===false)result.street=street;if(entity.hideStreet===false&&entity.hideHouseNumber===false)result.houseNumber=number;result.address=[street,number].filter(Boolean).join(' ');}
   }
   const owner=users?.find(user=>user.id===entity.ownerId);
   result.ownerAccountType=normalizeAccountType(owner?.accountType);
@@ -196,11 +196,8 @@ function samplePublicDemo(items,limit,kind,scope,random) {
 }
 
 /** Fictional public preview: real sample titles and first names, never saved users or contacts. */
-export function demoLanding(region=null,random=Math.random) {
+function demoPublicCatalog() {
   const sample=migrateLocations(seed(()=>new Date().toISOString()));
-  const available=!region||region.id==='HU110';
-  const ownerType=entity=>normalizeAccountType(sample.users.find(user=>user.id===entity.ownerId)?.accountType);
-  const ownerFirstName=entity=>publicFirstName(sample.users.find(user=>user.id===entity.ownerId)?.name);
   // These extra examples belong solely to the public preview, never to the user's stored profiles.
   const searchExamples=[
     ['district:Budapest:8','Lakás',null,35,20,40,1,2],
@@ -216,14 +213,40 @@ export function demoLanding(region=null,random=Math.random) {
     ['district:Budapest:8','Lakás',28.9,25,1,null],
     ['district:Budapest:5','Lakás',219,150,5,null]
   ].map(([id,type,price,area,rooms,lotArea],index)=>({id:'public-property-'+index,title:['Kertkapcsolatos otthon nyugodt környéken','Tágas családi otthon a zöldben','Kompakt városi otthon','Nagy terek a belváros szívében'][index],ownerId:index%2?'u2':'u1',type,price,area,rooms,wholeRooms:rooms,halfRooms:0,lotArea,location:getLocation(id)}));
+  const extraSearches=[['district:Budapest:6','Lakás',45,75,35,65,1.5,3],['district:Budapest:9','Lakás',80,140,70,110,3,5],['district:Budapest:19','Ház',40,80,65,120,2,4],['district:Budapest:23','Ház',70,150,110,210,4,7],['district:Budapest:11','Lakás',null,45,20,45,1,2],['district:Budapest:16','Ház',150,300,180,350,6,10]].map(([id,type,minPrice,maxPrice,minArea,maxArea,minRooms,maxRooms],index)=>({id:'public-search-extra-'+index,title:['Központi otthont szeretnék','Több helyet keresünk a családnak','Kertes házat keresünk','Nyugodt kertvárosba költöznénk','Kisebb otthon, nagy lehetőségek','Tágas családi otthont keresünk'][index],ownerId:index%2?'u4':'u5',type,minPrice,maxPrice,minArea,maxArea,minRooms,maxRooms,locations:[getLocation(id)],description:'Nyugodt otthont keresünk jól használható terekkel.'}));
+  return {sample,searches:[...sample.searches,...searchExamples,...extraSearches],properties:[...sample.properties,...propertyExamples]};
+}
+export function demoLanding(region=null,random=Math.random) {
+  const {sample,searches:allSearches,properties:allProperties}=demoPublicCatalog();
+  const available=!region||region.id==='HU110';
+  const ownerType=entity=>normalizeAccountType(sample.users.find(user=>user.id===entity.ownerId)?.accountType);
+  const ownerFirstName=entity=>publicFirstName(sample.users.find(user=>user.id===entity.ownerId)?.name);
   const scope=region?.id||'national';
-  const searches=available?samplePublicDemo([...sample.searches,...searchExamples],8,'search',scope,random):[];
-  const properties=available?samplePublicDemo([...sample.properties,...propertyExamples],4,'property',scope,random):[];
+  const searches=available?samplePublicDemo(allSearches,16,'search',scope,random):[];
+  const properties=available?samplePublicDemo(allProperties,8,'property',scope,random):[];
   return {
     region:clone(region),scope:region?'region':'national',
-    searches:searches.map((entity,index)=>({key:`search-${index+1}`,sourceKey:demoSourceKey('search',entity.id),title:publicTitle(entity.title,'Ingatlant keresnek'),type:publicDemoType(entity.type),locations:entity.locations.map(location=>location.label),minPrice:entity.minPrice,maxPrice:entity.maxPrice,minArea:entity.minArea,maxArea:entity.maxArea,minRooms:entity.minRooms,maxRooms:entity.maxRooms,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity),prefill:sanitizeTeaserPrefill('search',entity)})),
-    properties:properties.map((entity,index)=>({key:`property-${index+1}`,sourceKey:demoSourceKey('property',entity.id),title:publicTitle(entity.title,'Eladó ingatlan'),type:publicDemoType(entity.type),location:entity.location.label,price:entity.price,area:entity.area,wholeRooms:entity.wholeRooms??null,halfRooms:entity.halfRooms??null,rooms:entity.rooms,lotArea:entity.lotArea??null,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity),prefill:sanitizeTeaserPrefill('property',{...entity,locations:[getLocation(entity.neighborhoodIds?.[0])||entity.location]})}))
+    searches:searches.map((entity,index)=>({key:`search-${index+1}`,sourceKey:demoSourceKey('search',entity.id),href:'#listing/search/'+demoSourceKey('search',entity.id),title:publicTitle(entity.title,'Ingatlant keresnek'),type:publicDemoType(entity.type),locations:entity.locations.map(location=>location.label),minPrice:entity.minPrice,maxPrice:entity.maxPrice,minArea:entity.minArea,maxArea:entity.maxArea,minRooms:entity.minRooms,maxRooms:entity.maxRooms,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity),prefill:sanitizeTeaserPrefill('search',entity)})),
+    properties:properties.map((entity,index)=>({key:`property-${index+1}`,sourceKey:demoSourceKey('property',entity.id),href:'#listing/property/'+demoSourceKey('property',entity.id),image:Array.isArray(entity.images)?entity.images[0]||null:null,title:publicTitle(entity.title,'Eladó ingatlan'),type:publicDemoType(entity.type),location:entity.location.label,price:entity.price,area:entity.area,wholeRooms:entity.wholeRooms??null,halfRooms:entity.halfRooms??null,rooms:entity.rooms,lotArea:entity.lotArea??null,ownerAccountType:ownerType(entity),ownerFirstName:ownerFirstName(entity),prefill:sanitizeTeaserPrefill('property',{...entity,locations:[getLocation(entity.neighborhoodIds?.[0])||entity.location]})}))
   };
+}
+
+/** Resolve only the fixed fictional public catalogue, never the visitor's saved private state. */
+export function demoPublicListing(kind,key) {
+  if(!['property','search'].includes(kind)||typeof key!=='string'||!new RegExp('^'+kind+'-[a-f0-9]{64}$').test(key))throw new Error('A hirdetés nem érhető el.');
+  const {sample,searches,properties}=demoPublicCatalog(),entity=(kind==='property'?properties:searches).find(item=>!item.archived&&demoSourceKey(kind,item.id)===key);
+  if(!entity)throw new Error('A hirdetés nem érhető el.');
+  const owner=sample.users.find(user=>user.id===entity.ownerId),title=publicTitle(entity.title,kind==='property'?'Eladó ingatlan':'Ingatlant keresnek');
+  const ownerFirstName=publicFirstName(owner?.name),ownerAccountType=normalizeAccountType(owner?.accountType);
+  const fields=kind==='property'?['type','description','price','area','rooms','wholeRooms','halfRooms','lotArea','floor','floorIsUpperRange','buildingFloors','isAttic','condition','building','constructionAge','view','ceilingHeight','heatingType','insulated','energyRating','energyRatingScheme','airConditioning','solarPanels','parkingTypes','parkingType','balcony','elevator','privateGarden','hideStreet','hideHouseNumber','images']:['type','description','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','conditions','buildings','constructionAges','views','ceilingHeight','floors','heatingTypes','atticPreference','minEnergyRating','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','balcony','elevator','moveIn','financing'];
+  const normalized=kind==='property'?normalizePropertyAttributes(entity):normalizeSearchAttributes(entity);
+  const listing={title,...Object.fromEntries(fields.filter(field=>Object.hasOwn(normalized,field)).map(field=>[field,clone(normalized[field])]))};
+  if(kind==='property'){
+    listing.location=entity.location?.label||getLocation(entity.locationId)?.label||'';listing.city=entity.city||'';listing.district=entity.district||'';listing.neighborhood=entity.neighborhood||'';
+    listing.street=normalized.hideStreet?'':String(entity.addressDetails?.street||'');listing.houseNumber=normalized.hideHouseNumber?'':String(entity.addressDetails?.houseNumber||'');listing.address=[listing.street,listing.houseNumber].filter(Boolean).join(' ');
+  }else listing.locations=(entity.locations||[]).map(location=>location.label);
+  const prefill=sanitizeTeaserPrefill(kind,kind==='property'?{...normalized,locations:[getLocation(entity.neighborhoodIds?.[0])||entity.location]}:normalized);
+  return {kind,key,sourceKey:key,title,ownerFirstName,ownerAccountType,listing,prefill,...(kind==='search'?{clonePrefill:{...prefill,description:String(entity.description||''),moveIn:String(entity.moveIn||''),financing:String(entity.financing||'')}}:{})};
 }
 
 const notificationPages = new Set(['incoming','messages','insights','credits']);
@@ -423,7 +446,6 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     if(property.archived||search.archived||!ownersCanInteract(s,property,search))return null;
     const candidate=kind==='search'?property:search,prepared=prepareSearch(search),specificity=searchSpecificity(prepared);
     const data=visibleEntity(candidate,s.users,specificity);
-    if(kind==='search')data.address='';
     const mine=s.decisions.find(item=>item.propertyId===property.id&&item.searchId===search.id&&item.actorKind===kind);
     const evaluation=evaluateMatch(property,prepared),match=s.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id);
     return {...data,kind:kind==='search'?'property':'search',pair:{propertyId:property.id,searchId:search.id},score:evaluation.score,isExact:evaluation.isExact,reasons:evaluation.reasons,matchDetails:evaluation.matchDetails,searchSpecificity:specificity,valueForMoney:valueForMoney(property),likedYou:true,likedAt:decision.createdAt,myDecision:mine?(mine.liked?'liked':'passed'):null,matchId:match&&getMatch(s,match)?match.id:null,compatible:evaluation.eligible};
@@ -466,8 +488,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     return {items:selected.slice(0,50).map(item=>{
       const {candidate,property,search,...ranking}=item;
       const data=visibleEntity(candidate,s.users,ranking.searchSpecificity);
-      if(buyer)data.address='';
-      else{
+      if(!buyer){
         const person=s.users.find(user=>user.id===candidate.ownerId);
         data.buyerName ||= person?.name?.split(' ').at(-1)||'Érdeklődő';
         data.avatar=person?.avatar;
@@ -520,7 +541,6 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         if(candidate.ownerId===state.userId)return null;
         const prepared=preparedActive||prepareSearch(search),specificity=searchSpecificity(prepared);
         const data=visibleEntity(candidate,state.users,specificity);
-        if(activeKind==='search')data.address='';
         const mine=state.decisions.find(item=>item.propertyId===property.id&&item.searchId===search.id&&item.actorKind===activeKind);
         const evaluation=evaluateMatch(property,prepared),compatible=evaluation.eligible;
         const match=state.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id);
@@ -719,8 +739,8 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
           entity.district=String(entity.district||'').trim();entity.neighborhood=String(entity.neighborhood||'');
           if(entity.type==='Ház'&&(!Number.isFinite(entity.lotArea)||entity.lotArea<=0||entity.lotArea>10000000))throw new Error('A telekméret pozitív szám legyen.');
           entity.images=Array.isArray(entity.images)?entity.images.filter(u=>typeof u==='string'&&/^(https?:\/\/|\/assets\/|data:image\/(png|jpe?g|webp|gif);base64,)/i.test(u)):[];
-          if(entity.type==='Ház'){entity.floor=null;entity.balcony=false;entity.elevator=false;}
-          else{entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;}
+          if(entity.type==='Ház'){entity.floor=null;entity.balcony=null;entity.elevator=false;}
+          else{entity.elevator=!!entity.elevator;}
           const street=String(data.street??data.addressDetails?.street??existing?.addressDetails?.street??'').trim();
           const houseNumber=String(data.houseNumber??data.addressDetails?.houseNumber??existing?.addressDetails?.houseNumber??'').trim();
           const postalCode=String(data.postalCode??data.addressDetails?.postalCode??existing?.addressDetails?.postalCode??'').trim();

@@ -213,7 +213,7 @@ export function matchesLocations(property = {}, search = {}) {
   const home = propertyLocation(property);
   if (!home) return false;
   return searchLocationList(search).some(location => location.kind === 'street'
-    ? streetBelongsToLocation(location, home) && (property.streetId ?? property.addressDetails?.streetId) === location.id
+    ? property.hideStreet === false && streetBelongsToLocation(location, home) && (property.streetId ?? property.addressDetails?.streetId) === location.id
     : location.kind === 'neighborhood'
     ? Array.isArray(property.neighborhoodIds) && property.neighborhoodIds.includes(location.id)
     : location.kind === 'area' ? areaMembers.get(location.id)?.has(home.city) === true

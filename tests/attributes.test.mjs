@@ -2,8 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   CONDITION_OPTIONS,BUILDING_OPTIONS,CONSTRUCTION_AGE_OPTIONS,VIEW_OPTIONS,CEILING_HEIGHT_OPTIONS,FLOOR_OPTIONS,HEATING_OPTIONS,PARKING_OPTIONS,
-  normalizeCondition,normalizeBuilding,normalizePropertyAttributes,normalizePropertyRooms,roomLabel,normalizeSearchAttributes,attributesCompatible
+  normalizeCondition,normalizeHeating,normalizeBuilding,normalizePropertyAttributes,normalizePropertyRooms,roomLabel,normalizeSearchAttributes,attributesCompatible
 } from '../dist/attributes.js';
+
+import {ENERGY_RATINGS,ENERGY_SLIDER_OPTIONS,energyIndex,energySliderIndex,knownEnergyRating,meetsEnergyMinimum} from '../dist/energy-rating.js';
 
 const property = {condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m alatti',floor:3};
 const search = {conditions:['Jó','Átlagos'],buildings:['Panel','Tégla'],constructionAges:['10–30 év közötti','31–40 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m alatti',floors:[0,3]};
@@ -137,13 +139,13 @@ test('legacy room totals derive only exact half steps and retain an existing exp
 test('heating selections share canonical options and filter primary heating without confusing unknown with none',()=>{
  assert.equal(HEATING_OPTIONS.length,13);assert.ok(HEATING_OPTIONS.includes('Nincs fűtés'));
  const value=normalizePropertyAttributes({heatingType:'hőszivattyú',secondaryHeatingType:'klíma'},{strict:true});
- assert.equal(value.heatingType,'Hőszivattyú');assert.equal(value.secondaryHeatingType,'Klíma');
+ assert.equal(value.heatingType,'Hőszivattyú');assert.equal(value.secondaryHeatingType,'klíma');
  const old={heatingType:'Hőszivattyú és padlófűtés'};
  assert.equal(normalizePropertyAttributes(old).heatingType,old.heatingType);
  assert.equal(normalizePropertyAttributes(old,{strict:true,previous:old}).heatingType,old.heatingType);
  assert.throws(()=>normalizePropertyAttributes(old,{strict:true}),/Érvénytelen/);
  assert.throws(()=>normalizePropertyAttributes({secondaryHeatingType:'Régi egyedi'},{strict:true,allowLegacyUnknown:true}),/Érvénytelen/);
- assert.deepEqual(normalizeSearchAttributes({heatingTypes:['klíma','Klíma','Hőszivattyú']},{strict:true}).heatingTypes,['Klíma','Hőszivattyú']);
+ assert.deepEqual(normalizeSearchAttributes({heatingTypes:['klíma','Klíma','Hőszivattyú']},{strict:true}).heatingTypes,['Fűtő klíma','Hőszivattyú']);
  assert.equal(attributesCompatible(value,{heatingTypes:['Hőszivattyú','Nincs fűtés']}),true);
  assert.equal(attributesCompatible(value,{heatingTypes:['Klíma']}),false,'supplementary heating does not satisfy a primary-heating filter');
  assert.equal(attributesCompatible({},{heatingTypes:['Nincs fűtés']}),false);
@@ -226,4 +228,47 @@ test('raised ground and grouped upper floors preserve exact legacy values and to
  assert.throws(()=>normalizePropertyAttributes({floor:1.5},{strict:true}),/emelet/);
  assert.deepEqual(normalizeSearchAttributes({floors:[9,10,11,0.5]},{strict:true}).floors,[9,0.5]);
  assert.equal(normalizePropertyAttributes({type:'Ház',floor:9,floorIsUpperRange:true},{strict:true}).floorIsUpperRange,false);
+});
+
+test('accepted heating aliases merge overlapping gas names and keep retired secondary metadata unchanged',()=>{
+ assert.equal(HEATING_OPTIONS.length,13);assert.ok(HEATING_OPTIONS.includes('Pelletkazán'));
+ for(const value of ['Gázkazán','Gázcirkó','gázkazán / cirkó'])assert.equal(normalizeHeating(value,{strict:true}),'Gázkazán / cirkó');
+ assert.equal(normalizeHeating('Klíma',{strict:true}),'Fűtő klíma');
+ assert.equal(normalizeHeating('Vegyes tüzelésű kazán',{strict:true}),'Fa- / vegyes tüzelésű kazán');
+ assert.equal(normalizeHeating('Cserépkályha',{strict:true}),'Kályha / cserépkályha');
+ assert.equal(normalizePropertyAttributes({secondaryHeatingType:'Klíma'},{strict:true}).secondaryHeatingType,'Klíma');
+});
+
+test('seller privacy defaults preserve hidden legacy addresses and nullable amenities distinguish absent from unknown',()=>{
+ for(const value of [null,false,true]){
+  const p=normalizePropertyAttributes({type:'Lakás',balcony:value,airConditioning:value,privateGarden:value,insulated:value,solarPanels:value},{strict:true});
+  for(const key of ['balcony','airConditioning','privateGarden','insulated','solarPanels'])assert.equal(p[key],value,key);
+ }
+ assert.equal(normalizePropertyAttributes({}).hideStreet,true);assert.equal(normalizePropertyAttributes({}).hideHouseNumber,true);
+ const visible=normalizePropertyAttributes({hideStreet:false,hideHouseNumber:false},{strict:true});assert.equal(visible.hideHouseNumber,false);
+ assert.equal(normalizePropertyAttributes({hideStreet:true,hideHouseNumber:false},{strict:true}).hideHouseNumber,true);
+ assert.throws(()=>normalizePropertyAttributes({hideStreet:'invalid'},{strict:true}),/igen, nem/);
+ assert.equal(normalizePropertyAttributes({type:'Ház',balcony:true,isAttic:true},{strict:true}).balcony,null);
+});
+
+test('current energy classes use a worst-to-best slider and never infer a legacy certificate scheme',()=>{
+ assert.deepEqual(ENERGY_RATINGS,['I','H','G','F','E','D','C','B','A','A+','A++','A+++']);
+ assert.equal(ENERGY_SLIDER_OPTIONS.length,13);assert.equal(ENERGY_SLIDER_OPTIONS[0].color,'#ffffff');
+ for(const [index,energyRating]of ENERGY_RATINGS.entries()){
+  assert.equal(energyIndex(energyRating),index);assert.equal(energySliderIndex(energyRating,'2023'),index+1);
+  assert.equal(knownEnergyRating({energyRating,energyRatingScheme:'2023'}),index);
+  assert.equal(meetsEnergyMinimum({energyRating,energyRatingScheme:'2023'},energyRating),true);
+ }
+ assert.equal(energySliderIndex('A',''),0);assert.equal(knownEnergyRating({energyRating:'AA'}),-1);
+ assert.equal(meetsEnergyMinimum({energyRating:'A+++'},'C'),false);
+ assert.equal(normalizePropertyAttributes({energyRating:'AA'},{strict:true}).energyRating,'AA');
+ assert.throws(()=>normalizePropertyAttributes({energyRating:'AA',energyRatingScheme:'2023'},{strict:true}),/energetikai/);
+ assert.throws(()=>normalizeSearchAttributes({minEnergyRating:'AA'},{strict:true}),/energetikai/);
+});
+
+test('attic restrictions require an explicit seller fact and are ignored for a whole-house search',()=>{
+ for(const [atticPreference,isAttic,expected]of [['only',true,true],['only',false,false],['only',null,false],['exclude',false,true],['exclude',true,false],['exclude',null,false]])
+  assert.equal(attributesCompatible({type:'Lakás',isAttic},{type:'Lakás',atticPreference}),expected);
+ assert.equal(normalizeSearchAttributes({type:'Ház',atticPreference:'only'},{strict:true}).atticPreference,'');
+ assert.throws(()=>normalizeSearchAttributes({atticPreference:'maybe'},{strict:true}),/tetőtéri/);
 });

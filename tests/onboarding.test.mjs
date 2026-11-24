@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createDraft,updateDraft,saveDraft,loadDraft,clearDraft,prepareDraftForAuth,bindDraft,prepareDraftSave,markDraftSaved,prefillFromTeaser,suggestEntityTitle,sanitizeTeaserPrefill,normalizeDraftOrigin,originFromListing,originFromLocations,originBlank,sameDraftOrigin,DRAFT_STORAGE_KEY,DRAFT_TTL_MS,DRAFT_EDITOR_LAYOUT_VERSION} from '../dist/onboarding.js';
+import {createDraft,updateDraft,saveDraft,loadDraft,clearDraft,prepareDraftForAuth,bindDraft,prepareDraftSave,markDraftSaved,prefillFromTeaser,suggestEntityTitle,sanitizeTeaserPrefill,normalizeDraftOrigin,originFromListing,originFromSearchCopy,prefillFromSearchClone,originFromLocations,originBlank,sameDraftOrigin,DRAFT_STORAGE_KEY,DRAFT_TTL_MS,DRAFT_EDITOR_LAYOUT_VERSION} from '../dist/onboarding.js';
 import {getLocation,locations} from '../dist/locations.js';
 import {createModel,STORAGE_KEY,demoLanding} from '../dist/model.js';
 import {ApiModel,findPublicLocations,findPublicStreets,fetchLanding,getModel,connectApi,disconnectApi,API_CONFIG_KEY,AUTH_ATTEMPT_KEY} from '../dist/api.js';
@@ -401,4 +401,24 @@ test('a completed demo creation receipt is acknowledged before newly tightened d
  storage.setItem(STORAGE_KEY,JSON.stringify(raw));
  const restored=createModel(storage),count=restored.getState().searches.length;assert.equal(restored.saveEntity('search',legacy,undefined,{creationRequestId:requestId}).id,saved.id);assert.equal(restored.getState().searches.length,count);
  assert.throws(()=>restored.saveEntity('search',legacy),/Elérhetőséget/,'A fresh create cannot use the old receipt exemption');
+});
+
+test('copying a public search has a distinct resumable origin and clones every optional criterion',()=>{
+ const sourceKey='search-'+'a'.repeat(64),origin=originFromSearchCopy(sourceKey);
+ assert.deepEqual(origin,{kind:'search',key:sourceKey,mode:'copy'});
+ assert.equal(normalizeDraftOrigin(origin,'property'),null);
+ assert.equal(normalizeDraftOrigin({kind:'search',key:sourceKey},'search'),null);
+ const original={locations:[city],type:'Lakás',minPrice:45,maxPrice:90,minArea:45,maxArea:120,minRooms:1.5,maxRooms:4.5,conditions:['Jó'],buildings:['Panel','Tégla'],floors:[0.5,9],heatingTypes:['Gázcirkó'],atticPreference:'exclude',minEnergyRating:'B',description:'Világos otthont keresünk.',moveIn:'Azonnal',financing:'Önerő',balcony:true,airConditioning:true,privateGarden:true};
+ const data=prefillFromSearchClone({clonePrefill:original});
+ for(const field of ['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','conditions','buildings','floors','atticPreference','minEnergyRating','description','moveIn','financing','balcony','airConditioning','privateGarden'])assert.deepEqual(data[field],original[field],field);
+ assert.deepEqual(data.heatingTypes,['Gázkazán / cirkó']);assert.deepEqual(data.locationIds,[city.id]);assert.match(data.title,/Debrecen/);
+ const draft=createDraft('search',data,{origin,now:NOW});assert.equal(sameDraftOrigin(draft,'search',origin),true);
+ assert.equal(sameDraftOrigin(draft,'property',origin),false);
+});
+
+test('new privacy, certificate and attic fields plus incomplete other-floor choices survive draft and frozen payload round trips',()=>{
+ const storage=store(),draft=createDraft('property',{type:'Lakás',locationId:city.id,hideStreet:false,hideHouseNumber:true,balcony:null,isAttic:false,energyRating:'A+',energyRatingScheme:'2023'},{now:NOW,editor:{floorMode:'other',floorOther:'1',buildingFloorsMode:'other',buildingFloorsOther:'20'}});
+ saveDraft(draft,storage);const saved=loadDraft(storage,{now:NOW});assert.deepEqual(saved.data,draft.data);
+ assert.equal(saved.editor.floorMode,'other');assert.equal(saved.editor.floorOther,'1');assert.equal(saved.editor.buildingFloorsOther,'20');
+ const completed=prepareDraftSave(prepareDraftForAuth(saved,USER.email,{now:NOW}),USER,{now:NOW});assert.equal(completed.completedData.balcony,null);assert.equal(completed.completedData.isAttic,false);assert.equal(completed.completedData.hideStreet,false);
 });

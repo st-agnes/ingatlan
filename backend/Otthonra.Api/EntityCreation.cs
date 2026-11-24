@@ -63,6 +63,17 @@ public static class EntityCreation
             throw new ApiException(409, "Ezt a létrehozási azonosítót már más adatokkal használtad. Frissítsd az oldalt.");
     }
 
+    public static void VerifyPropertyReplay(Property previous, PropertyInput input, string? requestHash)
+    {
+        if (previous.CreationRequestHash == requestHash && requestHash is not null) return;
+        // Prior typed inputs treated a missing balcony as false. Only receipts
+        // written by that format may use this fallback; new null/false requests
+        // remain distinct, even after a restart or a client upgrade.
+        if (previous.CreationRequestHashVersion == 1 && input.Balcony is null
+            && previous.CreationRequestHash == RequestHash(input with { Balcony = false })) return;
+        VerifyReplay(previous.CreationRequestHash, requestHash);
+    }
+
     public static string RequestHash(PropertyInput input) => Hash(input with { CreationRequestId = null });
     public static string RequestHash(SearchInput input) => Hash(input with { CreationRequestId = null });
 

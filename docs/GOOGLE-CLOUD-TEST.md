@@ -205,7 +205,7 @@ A helyi, szerveroldali megfelelő a `Geocoding__Google__ApiKey` környezeti vál
 
 A telepítés az új Cloud Run API-t a Hosting módosítása előtt ellenőrzi. A Firebase közzétételének befejezése után a webes ellenőrzés legfeljebb 12 alkalommal, 5 másodperces várakozással kérdezi le újra az oldalt, a runtime-konfigurációt és az API állapotát. Minden kérés külön URL-paramétert kap, és tiltja a gyorsítótárazást. Átmenetileg még korábbi Hosting-útvonal válaszolhat; siker csak az aktuális beágyazott tesztadat-verzióval lehetséges. Tartós eltérésnél a napló kiírja a hibás útvonalat és feltételt, verzióeltérésnél a kapott és az elvárt verziót is. A 401/403 válasz azonnal megállítja az ellenőrzést. A „release complete” után kapott ellenőrzési hiba nem vonja vissza automatikusan a már közzétett kiadást.
 
-A backendbe beágyazott `20261118-test-fixtures-v6` tesztadatcsomag **14 felhasználót, 355 ingatlant és 353 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 11 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
+A backendbe beágyazott `20261124-test-fixtures-v7` tesztadatcsomag **14 felhasználót, 355 ingatlant és 433 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 11 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
 
 | Fiók | Fióktípus | E-mail-cím |
 |---|---|---|
@@ -236,7 +236,7 @@ A normál **Deploy Google Cloud test** workflow telepíti az új API-képet és 
 
 A teszttelepítés `Database__SeedTestFixtures=true` beállítást kap. Ez kizárólag `Deployment__Environment=test` környezetben engedélyezi az automatikus tesztadat-kezelést; a szokásos éles környezetben nem töröl és nem tölt fel adatokat. A szerver ASP.NET környezete a teszttelepítésben is lehet `Production`: a tesztjogosultságot a külön `Deployment__Environment=test` beállítás jelenti.
 
-Minden új Cloud Run-revízió (`K_REVISION`) első indulása alaphelyzetbe állítja a teszt alkalmazásadatait, majd létrehozza a 14 felhasználót, a 355 ingatlant, a 353 keresést, a kezdő krediteket és az aktív profilokat. Az előző tesztállapot összes felhasználója — a kézzel regisztrált fiókok is —, saját hirdetése, keresése, döntése, párosítása, üzenete, jelentése és kreditmozgása törlődik. Így az új telepítés után a korábban végighúzott minták helyett újra végigpróbálható alapállapot fogad.
+Minden új Cloud Run-revízió (`K_REVISION`) első indulása alaphelyzetbe állítja a teszt alkalmazásadatait, majd létrehozza a 14 felhasználót, a 355 ingatlant, a 433 keresést, a kezdő krediteket és az aktív profilokat. Az előző tesztállapot összes felhasználója — a kézzel regisztrált fiókok is —, saját hirdetése, keresése, döntése, párosítása, üzenete, jelentése és kreditmozgása törlődik. Így az új telepítés után a korábban végighúzott minták helyett újra végigpróbálható alapállapot fogad.
 
 Az adatbáziszár és a revíziók feltöltési előzménye gondoskodik arról, hogy több párhuzamosan induló példány is csak egyszer hajtsa végre ezt egy új revízióhoz. Az azonos revízió hidegindítása vagy újraindítása nem állítja vissza a tesztelés közbeni módosításokat. Egy korábban már feltöltött régi revízió újraindulása sem törli az újabb revízióval létrejött adatokat. A séma és a feltöltési előzmények megmaradnak; a folyamat az alkalmazás tesztadatait kezeli.
 
@@ -351,7 +351,7 @@ A keresési igény helyszínválasztója utcákat is felajánl, településsel �
 
 A már elmentett ingatlanok utcához rendelése csak egyértelmű név/település/kerület/irányítószám esetén történik, Google-hívás és koordinátamódosítás nélkül. Bizonytalan vagy ismeretlen utca nem kap találgatott azonosítót. Az új ingatlan címe továbbra is szerveroldali Google-geokódolást igényel, míg a gépelés közbeni utcanév-javaslat és az utcára szűrés a saját adatokból működik. A pontos utcaazonosító a tulajdonosi címadatok része, nem kerül a nyilvános ingatlankártyákba.
 
-A v6 tesztkészlet Réka és Bence két, egyértelműen szintetikus debreceni ingatlanjához két külön Posta-utcát és 99999 házszámot ad; Júlia és Márton további kereséseivel több utca, illetve utca–település kombináció próbálható. A minták nem valódi eladó ingatlanok és nem valódi házszámokra geokódolt címek. Az eredeti Vénkert–Sestakert keresési példák is megmaradnak.
+A v7 tesztkészlet Réka és Bence két, egyértelműen szintetikus debreceni ingatlanjához két külön Posta-utcát és 99999 házszámot ad; Júlia és Márton további kereséseivel több utca, illetve utca–település kombináció próbálható. A minták nem valódi eladó ingatlanok és nem valódi házszámokra geokódolt címek. Az eredeti Vénkert–Sestakert keresési példák is megmaradnak.
 
 A forrás, mezők, lefedettség, külön kezelt budapesti postai irányítószámok és frissítés részletei: [STREET-DATA.md](STREET-DATA.md). A gyűjtő workflow csak nyilvános állományt tölt le és artifactot készít; a futó alkalmazás nem kér adatot a Posta szerverétől minden kereséskor vagy induláskor.
 
@@ -397,3 +397,12 @@ A profil eltávolításának neve „Törlés”, mivel a felületen nincs vissz
 A normál deploy feltölti a helyben tárolt Leaflet-megjelenítőt és a külön, egyszerűsített térképes városrész-rétegeket is. Ehhez nem kell API-kulcsot, Secret Manager-értéket vagy `GCP_DEV_CONFIG` mezőt hozzáadni; a Google-geokódolás beállítása változatlan. A kezdőoldali kereső és a keresési igények űrlapja a kiválasztott helyszínre nagyít, a térképen kattintott városrészt pedig a keresésbe teszi. A teljes város kijelölését az adott város kiválasztott városrészei váltják fel.
 
 Az eredeti MySQL-határok és keresési indexek változatlanok; csak a megjelenítéshez használt, városonként betöltött fájlok újak. A telepítő hibával megáll, ha egy hivatkozott térképréteg hiányzik vagy megváltozott a tartalma. A részletes betöltési és licencinformációk a [térképes keresés dokumentációjában](MAP-SEARCH.md) szerepelnek.
+
+
+## Publikus hirdetésoldalak és energetikai szűrés
+
+A 2026-11-24-i frissítéshez a szokásos új API-kép és Firebase Hosting kiadás szükséges. A meglévő `GCP_DEV_CONFIG`, geokódoló secret és Google-jogosultságok változatlanok; új kulcsot vagy külön erőforrást nem kell létrehozni. Merge után indítsd a **Deploy Google Cloud test** workflow-t a main ágon. A backend az új oszlopokat és a publikus hirdetéskulcsok indexét a meglévő adatbázison frissíti.
+
+A v7 készlet minden vármegyében és Budapesten legalább 16 régiós keresést tartalmaz a legfeljebb 16/8 elemű kezdőoldali válogatáshoz. A modern példákon a jelenlegi 2023 energetikai skála és minimumszűrő is kipróbálható. Az utcanévre kereséshez előkészített két debreceni minta utcája látható, a kitalált 99999 házszám rejtett; a többi minta alapból rejti az utcát is. A városrészek szerinti keresés ettől továbbra is működik.
+
+Az egyes hirdetések bejelentkezés nélkül megnyitható adatlapjáról saját ingatlan vagy keresés kezdhető, a keresésekből pedig teljes keresési piszkozat másolható. A nyilvános oldalak a cím láthatóságát tiszteletben tartják; kapcsolati adatok és nyers geokódolási koordináták nem kerülnek ki. Részletek: [PUBLIC-LISTINGS.md](PUBLIC-LISTINGS.md).

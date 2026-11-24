@@ -1,7 +1,7 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import {locations} from '../dist/locations.js';
-import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment, fetchLanding, detectLandingRegion } from '../dist/api.js';
+import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment, fetchLanding, fetchPublicListing, publicListingFromApi, detectLandingRegion } from '../dist/api.js';
 
 const creditsTarget={page:'credits',entityKind:null,entityId:null,propertyId:null,searchRequestId:null,matchId:null};
 const exactAddress={street:'Fiktív teszt utca',houseNumber:'12',postalCode:'1234'};
@@ -360,10 +360,10 @@ test('invalid counts, negative numeric values and newly introduced heating or pa
 test('house API saves remove hidden controls while search heating remains an optional multi-selection',async()=>{
  const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201),'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
  const house=await adapter().saveEntity('property',{...exactAddress,title:'Kertes ház',locationId:'city:Solymár',type:'Ház',price:95,area:110,wholeRooms:4,halfRooms:0,lotArea:700,floor:'invalid',balcony:true,elevator:true});
- assert.deepEqual([house.floor,house.balcony,house.elevator],[null,false,false]);
+ assert.deepEqual([house.floor,house.balcony,house.elevator],[null,null,false]);
  const saved=await adapter().saveEntity('search',{title:'Házat keresünk',locationIds:['city:Solymár'],type:'Ház',floors:[3],balcony:true,elevator:true,heatingTypes:['Gázkazán','Klíma','Gázkazán'],minRooms:2.5,maxRooms:4.5});
  assert.deepEqual([saved.floors,saved.balcony,saved.elevator],[[],false,false]);
- assert.deepEqual(saved.heatingTypes,['Gázkazán','Klíma']);
+ assert.deepEqual(saved.heatingTypes,['Gázkazán / cirkó','Fűtő klíma']);
  assert.deepEqual([saved.minRooms,saved.maxRooms],[2.5,4.5]);
  const body=JSON.parse(calls[1].body);assert.deepEqual(body.heatingTypes,saved.heatingTypes);
 });
@@ -513,7 +513,7 @@ test('local public preview uses fictional safe catalog data, prioritizes searche
  globalThis.OTTHONRA_CONFIG={mode:'demo'};globalThis.fetch=async()=>{throw new Error('Local preview must not fetch');};
  globalThis.localStorage={getItem:()=>{throw new Error('Public preview must not read saved users');}};
  const national=await fetchLanding();assert.equal(national.scope,'national');assert.equal(national.region,null);assert.equal(national.regions.length,20);
- assert.ok(national.searches.length>national.properties.length);assert.ok(national.searches.length<=8);assert.ok(national.properties.length<=4);
+ assert.ok(national.searches.length>national.properties.length);assert.ok(national.searches.length<=16);assert.ok(national.properties.length<=8);
  assert.equal(JSON.stringify(national).includes('@'),false);assert.equal(JSON.stringify(national).includes('Pozsonyi'),false);
  const selected=await fetchLanding({region:'HU110'});assert.equal(selected.scope,'region');assert.ok(selected.searches.length);
  const empty=await fetchLanding({region:'HU321'});assert.equal(empty.region.label,'Hajdú-Bihar vármegye');assert.deepEqual(empty.searches,[]);assert.deepEqual(empty.properties,[]);
@@ -809,4 +809,52 @@ test('ordinary entity writes reject obfuscated description contacts before sendi
  await assert.rejects(adapter().saveEntity('search',{...base,description:'Anna kukac pelda pont hu'}),/Elérhetőséget/);assert.equal(calls.length,0);
  await adapter().saveEntity('search',{...base,description:'Világos, 60 négyzetméteres lakást keresek.',moveIn:''});assert.equal(JSON.parse(calls[0].body).moveIn,'');
  await adapter().saveEntity('search',{...base,description:'Anna kukac pelda pont hu'},undefined,{creationRequestId:'1252f520-aefe-4a9c-b1b6-932ef64fe38a'});assert.equal(calls.length,2,'The server must be able to acknowledge an old successful creation before applying the new policy');
+});
+
+test('new seller controls retain true, false and unknown values and send privacy/certificate facts explicitly',async()=>{
+ const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201)});
+ for(const balcony of [null,false,true]){
+  const result=await adapter().saveEntity('property',{...exactAddress,title:'Részletes otthon',locationId:'city:Debrecen',type:'Lakás',price:80,area:60,rooms:3,balcony,hideStreet:false,hideHouseNumber:false,isAttic:false,energyRating:'A+',energyRatingScheme:'2023',heatingType:'Gázcirkó'});
+  const body=JSON.parse(calls.at(-1).body);assert.equal(body.balcony,balcony);assert.equal(result.balcony,balcony);
+  assert.equal(body.hideStreet,false);assert.equal(body.hideHouseNumber,false);assert.equal(body.isAttic,false);assert.equal(body.energyRatingScheme,'2023');assert.equal(body.heatingType,'Gázkazán / cirkó');
+ }
+ const result=await adapter().saveEntity('property',{...exactAddress,title:'Rejtett cím',locationId:'city:Debrecen',price:80,area:60,rooms:3,hideStreet:true,hideHouseNumber:false});
+ assert.equal(JSON.parse(calls.at(-1).body).hideHouseNumber,true);assert.equal(result.hideHouseNumber,true);
+});
+
+test('frozen creations replay their historical heating labels and do not invent newly added request fields',async()=>{
+ const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201),'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
+ const creationRequestId='aa853da8-ac30-4b3d-8d3c-a6d348ffda09';
+ const saved=await adapter().saveEntity('property',{...exactAddress,title:'Régi piszkozat',locationId:'city:Debrecen',price:80,area:60,rooms:3,heatingType:'Gázcirkó',secondaryHeatingType:'Klíma'},undefined,{creationRequestId});
+ const body=JSON.parse(calls[0].body);assert.equal(body.heatingType,'Gázcirkó');assert.equal(body.secondaryHeatingType,'Klíma');assert.equal(saved.heatingType,'Gázkazán / cirkó');
+ for(const field of ['hideStreet','hideHouseNumber','isAttic','energyRatingScheme'])assert.equal(Object.hasOwn(body,field),false);
+ await adapter().saveEntity('search',{title:'Régi keresési piszkozat',locationIds:['city:Debrecen'],heatingTypes:['Gázcirkó','Klíma']},undefined,{creationRequestId});
+ assert.deepEqual(JSON.parse(calls[1].body).heatingTypes,['Gázcirkó','Klíma']);
+});
+
+test('anonymous detail reads whitelist every public field, convert prices once and honor address visibility',async()=>{
+ const key='property-'+'a'.repeat(64);globalThis.OTTHONRA_CONFIG={mode:'api'};globalThis.location={origin:'https://dev.otthonra.hu'};globalThis.localStorage=storage();globalThis.localStorage.setItem(API_CONFIG_KEY,JSON.stringify({baseUrl:'https://private.example.hu',token:'NEVER-SEND'}));
+ const base={kind:'property',key,sourceKey:key,title:'Világos otthon',ownerFirstName:'Anna',ownerAccountType:'agent',listing:{type:'Lakás',description:'Kellemes, világos otthon.',price:85000000,area:62,rooms:2.5,location:'Debrecen',city:'Debrecen',street:'Titkos utca',houseNumber:'18/A',address:'Titkos utca 18/A',hideStreet:true,hideHouseNumber:false,energyRating:'B',energyRatingScheme:'2023',balcony:null,isAttic:true,images:['https://images.example.hu/home.jpg','javascript:secret'],ownerId:'PRIVATE-ID',email:'PRIVATE-EMAIL',phone:'PRIVATE-PHONE',addressDetails:{latitude:47.5,longitude:19.1}},prefill:{type:'Lakás',locations:[locations.find(x=>x.id==='city:Debrecen')],price:85000000,area:62,rooms:2.5,energyRating:'B',energyRatingScheme:'2023'}};
+ let captured;globalThis.fetch=async(url,options)=>{captured={url,options};return response(base);};
+ const detail=await fetchPublicListing('property',key);assert.equal(captured.url,`https://dev.otthonra.hu/api/public/listings/property/${key}`);assert.equal(captured.options.headers.Authorization,undefined);
+ assert.equal(detail.listing.price,85);assert.equal(detail.prefill.price,85);assert.equal(detail.listing.balcony,null);assert.equal(detail.listing.address,'');assert.equal(detail.listing.houseNumber,'');assert.equal(detail.listing.hideHouseNumber,true);
+ assert.deepEqual(detail.listing.images,['https://images.example.hu/home.jpg']);assert.doesNotMatch(JSON.stringify(detail),/PRIVATE-|Titkos|18\/A|latitude|longitude|addressDetails/);
+ base.listing.hideStreet=false;base.listing.hideHouseNumber=true;
+ const streetOnly=await fetchPublicListing('property',key);assert.equal(streetOnly.listing.address,'Titkos utca');assert.equal(streetOnly.listing.houseNumber,'');
+ base.listing.hideHouseNumber=false;assert.equal((await fetchPublicListing('property',key)).listing.address,'Titkos utca 18/A');
+});
+
+test('search detail cloning retains optional criteria and text without identities or repeated HUF conversion',async()=>{
+ const key='search-'+'b'.repeat(64),city=locations.find(x=>x.id==='city:Debrecen');globalThis.OTTHONRA_CONFIG={mode:'api'};globalThis.location={origin:'https://dev.otthonra.hu'};
+ const source={type:'Lakás',locations:[city],minPrice:50000000,maxPrice:90000000,minArea:55,maxArea:95,minRooms:1.5,maxRooms:4,heatingTypes:['Gázcirkó'],atticPreference:'exclude',minEnergyRating:'C',description:'Világos otthont keresek.',moveIn:'Azonnal',financing:'Önerő',balcony:true};
+ globalThis.fetch=async()=>response({kind:'search',key,sourceKey:key,title:'Keresésem',ownerFirstName:'Péter',listing:{...source,ownerId:'PRIVATE'},prefill:source,clonePrefill:source});
+ const detail=await fetchPublicListing('search',key);assert.equal(detail.listing.maxPrice,90);assert.equal(detail.clonePrefill.maxPrice,90);assert.equal(detail.clonePrefill.minPrice,50);assert.equal(detail.clonePrefill.minRooms,1.5);assert.equal(detail.clonePrefill.description,source.description);assert.equal(detail.clonePrefill.atticPreference,'exclude');assert.equal(detail.clonePrefill.minEnergyRating,'C');assert.deepEqual(detail.clonePrefill.heatingTypes,['Gázkazán / cirkó']);assert.doesNotMatch(JSON.stringify(detail),/PRIVATE|ownerId/);
+});
+
+test('missing or malformed anonymous listings fail without demo fallback or private authentication',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'api'};globalThis.location={origin:'https://dev.otthonra.hu'};let count=0;
+ globalThis.fetch=async()=>{count++;return response({message:'A hirdetés nem található.'},404);};
+ await assert.rejects(fetchPublicListing('property','property-'+'a'.repeat(64)),error=>error.status===404);assert.equal(count,1);
+ for(const [kind,key]of [['private','search-'+'a'.repeat(64)],['property','../private'],['search','property-'+'a'.repeat(64)]])await assert.rejects(fetchPublicListing(kind,key),/hirdetés/);
+ assert.equal(count,1);
 });

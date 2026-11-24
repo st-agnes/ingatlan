@@ -25,6 +25,7 @@ export const BROWSER_GROUPS = Object.freeze({
   ]),
   onboarding: Object.freeze([
     'tests/onboarding-browser.test.mjs',
+    'tests/public-listings-browser.test.mjs',
     'tests/landing-refund-browser.test.mjs',
     'tests/tab-resume-browser.test.mjs',
     'tests/activity-notifications-browser.test.mjs'

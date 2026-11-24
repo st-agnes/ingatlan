@@ -27,7 +27,7 @@ const browserFiles=[
  'tests/wizard-dock-browser.test.mjs','tests/seller-form-browser.test.mjs','tests/broker-browser.test.mjs',
  'tests/interaction-browser.test.mjs','tests/matching-browser.test.mjs','tests/seller-feedback-browser.test.mjs',
  'tests/onboarding-browser.test.mjs','tests/landing-refund-browser.test.mjs','tests/tab-resume-browser.test.mjs',
- 'tests/activity-notifications-browser.test.mjs'
+ 'tests/activity-notifications-browser.test.mjs','tests/public-listings-browser.test.mjs'
 ];
 
 test('CI validates every PR and manual run without duplicate feature-branch push jobs',()=>{

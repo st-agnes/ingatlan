@@ -1,0 +1,68 @@
+import {publicFirstName,publicTitle} from './public-profile.js';
+import {normalizeAccountType} from './accounts.js';
+import {FLOOR_OPTIONS,roomLabel} from './attributes.js';
+
+const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const present=value=>value!==null&&value!==undefined&&value!=='';
+const num=value=>new Intl.NumberFormat('hu-HU',{maximumFractionDigits:1}).format(Number(value)||0);
+const symbol=(name)=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${({person:'M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM4 21v-3a8 8 0 0 1 16 0v3',agent:'M4 21V4h10v17M14 10h6v11M2 21h20M7 8h1M10 8h1M7 12h1M10 12h1M8 21v-4h3v4',arrow:'M4 12h16m-6-6 6 6-6 6',home:'m3 10 9-7 9 7v11h-6v-7H9v7H3Z',search:'M21 21l-5-5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z',pin:'M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0ZM15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z'})[name]||''}"/></svg>`;
+const range=(min,max,unit)=>present(min)&&present(max)?`${num(min)}–${num(max)} ${unit}`:present(min)?`Legalább ${num(min)} ${unit}`:present(max)?`Legfeljebb ${num(max)} ${unit}`:'Nincs megkötés';
+const list=value=>Array.isArray(value)?value.filter(present).join(', '):value;
+const places=item=>Array.isArray(item.locations)?item.locations.map(value=>typeof value==='string'?value:value?.label).filter(Boolean).join(', '):typeof item.location==='string'?item.location:item.location?.label||[item.city,item.district].filter(Boolean).join(', ');
+
+export function listingHref(kind,key){
+ if(!['property','search'].includes(kind)||typeof key!=='string'||!/^[a-z0-9-]{1,100}$/i.test(key))return '';
+ return `#listing/${kind}/${encodeURIComponent(key)}`;
+}
+export function parsePublicListingRoute(hash=''){
+ const match=String(hash).match(/^#?listing\/(property|search)\/([a-z0-9-]{1,100})$/i);
+ return match?{kind:match[1].toLowerCase(),key:match[2]}:null;
+}
+export function accountTypeIconMarkup(item){
+ const agent=normalizeAccountType(item?.ownerAccountType)==='agent',label=agent?'Ingatlanközvetítő':'Magánszemély';
+ return `<span class="advertiser-info account-type-tag"><button type="button" class="account-type-icon account-badge ${agent?'agent-badge':'private-badge'}" data-action="account-type-info" data-account-help aria-label="${label}" title="${label}" aria-expanded="false">${symbol(agent?'agent':'person')}</button><span class="advertiser-tooltip" data-account-help-panel role="tooltip">${label}</span></span></span>`;
+}
+export function publicAuthorMarkup(item,{className=''}={}){
+ const name=publicFirstName(item?.ownerFirstName);
+ return `<span class="public-listing-author ${esc(className)}"><span class="owner-first-name">${esc(name||'Hirdető')}</span>${accountTypeIconMarkup(item)}</span>`;
+}
+export function safeListingImages(item){
+ return (Array.isArray(item?.images)?item.images:[]).filter(value=>typeof value==='string'&&(/^https:\/\//i.test(value)||/^\/assets\/[a-z0-9._/-]+$/i.test(value)&&!value.split('/').includes('..'))).slice(0,30);
+}
+export function visibleListingAddress(item){
+ if(item?.hideStreet!==false)return '';
+ const street=String(item.street||'').trim();
+ if(!street)return '';
+ return item.hideHouseNumber===false?[street,String(item.houseNumber||'').trim()].filter(Boolean).join(' '):street;
+}
+function cardLink(item,kind){const href=listingHref(kind,item.sourceKey||item.key);return href?`<a class="landing-card-open" href="${esc(href)}" aria-label="${esc(publicTitle(item.title,kind==='property'?'Eladó ingatlan':'Keresési igény'))} megtekintése"></a>`:'';}
+function teaserCta(kind,item){const property=kind==='property';return `<button class="landing-card-cta" type="button" data-action="onboarding-start" data-kind="${property?'search':'property'}" data-source="${esc(item.sourceKey||item.key)}">${property?'Ilyen otthont keresek':'Ilyen ingatlanom van'} ${symbol('arrow')}</button>`;}
+export function publicSearchCard(item){
+ return `<article class="landing-search-card compact-listing-card">${cardLink(item,'search')}<div class="landing-card-top"><span class="landing-search-icon">${symbol('search')}</span><span class="landing-type">${esc(item.type)}</span></div>${publicAuthorMarkup(item,{className:'listing-card-owner'})}<h3 class="landing-ad-title">${esc(publicTitle(item.title,'Otthont keresek'))}</h3><p class="landing-card-location" title="${esc(places(item))}">${symbol('pin')}<span>${esc(places(item))}</span></p><div class="landing-budget"><small>Árkeret</small><strong>${esc(range(item.minPrice,item.maxPrice,'M Ft'))}</strong></div><div class="landing-search-specs"><span>${esc(range(item.minArea,item.maxArea,'m²'))}</span><span>${esc(range(item.minRooms,item.maxRooms,'szoba'))}</span></div>${teaserCta('search',item)}</article>`;
+}
+export function publicPropertyCard(item,index=0){
+ const actualImage=typeof item.image==='string'&&/^https:\/\//i.test(item.image)?item.image:safeListingImages(item)[0],image=actualImage||`/assets/${['living.jpg','kitchen.jpg','terrace.jpg','bedroom.jpg'][index%4]}`;
+ return `<article class="landing-property-card compact-listing-card">${cardLink(item,'property')}${publicAuthorMarkup(item,{className:'listing-card-owner'})}<div class="landing-property-image"><img src="${esc(image)}" alt="${esc(publicTitle(item.title,'Eladó ingatlan'))}" loading="lazy">${actualImage?'':'<span>Illusztráció</span>'}</div><div class="landing-property-body"><span class="landing-type">${esc(item.type)}</span><h3 class="landing-ad-title">${esc(publicTitle(item.title,'Eladó ingatlan'))}</h3><p class="landing-card-location" title="${esc(places(item))}">${symbol('pin')}<span>${esc(places(item))}</span></p><strong class="landing-property-price">${num(item.price)} <small>M Ft</small></strong><p class="landing-property-specs">${num(item.area)} m² · ${esc(roomLabel(item))}${item.type==='Ház'&&item.lotArea?` · ${num(item.lotArea)} m² telek`:''}</p>${teaserCta('property',item)}</div></article>`;
+}
+function publicHeader(){return `<header class="landing-header public-listing-header"><a class="brand" href="#landing">otthonra<span class="brand-dot">.</span></a><nav aria-label="Navigáció"><a class="btn btn-outline" href="#landing">Vissza a kezdőoldalra</a><button class="btn btn-dark landing-login" data-action="auth-mode" data-mode="login">Bejelentkezés ${symbol('arrow')}</button></nav></header>`;}
+function publicActions(detail){
+ const property=detail.kind==='property',source=esc(detail.sourceKey||detail.key);
+ return `<div class="public-listing-actions"><button class="btn btn-orange landing-card-cta" data-action="onboarding-start" data-kind="${property?'search':'property'}" data-source="${source}">${property?'Ilyen otthont keresek':'Ilyen ingatlanom van'} ${symbol('arrow')}</button>${property?'':`<button class="btn btn-outline" data-action="onboarding-copy-search" data-source="${source}">Én is ilyet keresek ${symbol('search')}</button>`}</div>`;
+}
+function fact(label,value){return present(value)?`<div class="public-listing-fact"><dt>${esc(label)}</dt><dd>${esc(Array.isArray(value)?list(value):value)}</dd></div>`:'';}
+function yesNo(value){return value===true?'Van':value===false?'Nincs':null;}
+function floor(value,upper=false){return !present(value)?null:upper?'9 vagy afölötti':Number(value)===0.5?'Magasföldszint':Number(value)===0?'Földszint':Number(value)===-1?'Szuterén':`${num(value)}. emelet`;}
+function searchFloors(values){return Array.isArray(values)&&values.length?values.map(value=>FLOOR_OPTIONS.find(option=>option.value===Number(value))?.label||floor(value)).join(', '):null;}
+function propertyFacts(item){
+ return fact('Ingatlan típusa',item.type)+fact('Városrész',item.neighborhood)+fact('Alapterület',present(item.area)?`${num(item.area)} m²`:null)+fact('Szobák',present(item.rooms)?roomLabel(item):null)+fact('Egész szobák',item.wholeRooms)+fact('Fél szobák',item.halfRooms)+fact('Telekméret',item.type==='Ház'&&present(item.lotArea)?`${num(item.lotArea)} m²`:null)+fact('Állapot',item.condition)+fact('Emelet',floor(item.floor,item.floorIsUpperRange))+fact('Az épület emeleteinek száma',present(item.buildingFloors)?Number(item.buildingFloors)===0?'Földszintes':`${num(item.buildingFloors)}`:null)+fact('Tetőtéri ingatlan',item.isAttic===true?'Igen':item.isAttic===false?'Nem':null)+fact('Építés éve',item.constructionAge)+fact('Kilátás',item.view)+fact('Falazat',item.building)+fact('Belmagasság',item.ceilingHeight)+fact('Fűtés típusa',item.heatingType)+fact('Erkély',yesNo(item.balcony))+fact('Lift',item.type==='Ház'?null:yesNo(item.elevator))+fact('Légkondi',yesNo(item.airConditioning))+fact('Saját kert',yesNo(item.privateGarden))+fact('Szigetelés',yesNo(item.insulated))+fact('Napelem',yesNo(item.solarPanels))+fact('Energetikai tanúsítvány',item.energyRating?`${item.energyRating}${item.energyRatingScheme==='2023'?'':' (korábbi besorolás)'}`:null)+fact('Parkolóhely',item.parkingTypes?.length?item.parkingTypes:item.parkingType);
+}
+function searchFacts(item){
+ return fact('Ingatlan típusa',item.type)+fact('Árkeret',range(item.minPrice,item.maxPrice,'M Ft'))+fact('Alapterület',range(item.minArea,item.maxArea,'m²'))+fact('Szobaszám',range(item.minRooms,item.maxRooms,'szoba'))+fact('Állapot',item.conditions?.length?item.conditions:null)+fact('Emelet',searchFloors(item.floors))+fact('További emeletfeltételek',[item.excludeGroundFloorAndBelow?'Földszint és az alatta lévő szintek kizárva':null,item.excludeTopFloor?'Zárószint kizárva':null].filter(Boolean).join(', '))+fact('Tetőtér',item.atticPreference==='only'?'Tetőtéri ingatlant keres':item.atticPreference==='exclude'?'Tetőtéri ingatlan kizárva':null)+fact('Lift',item.elevator?'Szükséges':null)+fact('Építés éve',item.constructionAges?.length?item.constructionAges:null)+fact('Kilátás',item.views?.length?item.views:null)+fact('Falazat',item.buildings?.length?item.buildings:null)+fact('Belmagasság',item.ceilingHeight)+fact('Fűtés típusa',item.heatingTypes?.length?item.heatingTypes:null)+fact('Minimum energetikai tanúsítvány',item.minEnergyRating?`Legalább ${item.minEnergyRating}`:null)+fact('Erkély',item.balcony?'Legyen erkély':null)+fact('Légkondi',item.airConditioning?'Legyen légkondi':null)+fact('Saját kert',item.privateGarden?'Legyen saját kert':null)+fact('Költözés',item.moveIn)+fact('Finanszírozás',item.financing);
+}
+export function publicListingMarkup(detail){
+ const property=detail.kind==='property',item={...detail.listing,title:detail.title||detail.listing?.title,ownerFirstName:detail.ownerFirstName||detail.listing?.ownerFirstName,ownerAccountType:detail.ownerAccountType||detail.listing?.ownerAccountType},title=publicTitle(item.title,property?'Eladó ingatlan':'Keresési igény'),images=safeListingImages(item),address=property?visibleListingAddress(item):'';
+ const gallery=property?`<section class="public-listing-gallery" aria-label="Az ingatlan képei">${images.length?images.map((image,index)=>`<a href="${esc(image)}" target="_blank" rel="noopener noreferrer"><img src="${esc(image)}" alt="${esc(title)} – ${index+1}. kép" ${index?'loading="lazy"':''}></a>`).join(''):'<figure class="public-listing-placeholder"><img src="/assets/living.jpg" alt="Ingatlanillusztráció"><figcaption>Illusztráció · A hirdető még nem töltött fel képet.</figcaption></figure>'}</section>`:'';
+ return `<div class="landing public-listing-page">${publicHeader()}<main id="public-listing" class="public-listing-main"><header class="public-listing-heading"><span class="public-listing-kind">${symbol(property?'home':'search')}${property?'Eladó ingatlan':'Keresési igény'} · ${esc(item.type||'Ingatlan')}</span>${publicAuthorMarkup(item)}<h1>${esc(title)}</h1><p class="public-listing-place">${symbol('pin')}${esc(places(item))}${address?`<span class="public-listing-address">${esc(address)}</span>`:''}</p>${property?`<p class="public-listing-price">${new Intl.NumberFormat('hu-HU').format(Math.round((Number(item.price)||0)*1000000))} <small>Ft</small></p>`:`<p class="public-listing-price">${esc(range(item.minPrice,item.maxPrice,'M Ft'))}</p>`}${publicActions(detail)}</header>${gallery}<section class="public-listing-specification"><h2>${property?'Az ingatlan részletei':'A keresés részletei'}</h2><dl class="public-listing-facts">${property?propertyFacts(item):searchFacts(item)}</dl></section>${item.description?`<section class="public-listing-description"><h2>${property?'Az ingatlanról':'Amit még fontos tudnod'}</h2><p>${esc(item.description)}</p></section>`:''}<section class="public-listing-invitation"><h2>${property?'Ilyen otthont keresel?':'Találtál közös pontot?'}</h2>${publicActions(detail)}</section></main><footer class="landing-footer"><a href="#landing">otthonra.</a><a href="/sources.html" target="_blank" rel="noopener">Források</a></footer></div>`;
+}
+export function publicListingLoading(){return `<div class="landing public-listing-page">${publicHeader()}<main class="public-listing-main"><p role="status">Betöltjük a hirdetést…</p></main></div>`;}
+export function publicListingError(notFound=false){return `<div class="landing public-listing-page">${publicHeader()}<main class="public-listing-main public-listing-error" role="status"><h1>${notFound?'Ez a hirdetés már nem elérhető.':'A hirdetést most nem sikerült betölteni.'}</h1><p>${notFound?'Lehet, hogy a hirdető már megtalálta, amit keresett. Nézz körül a többi ajánlat között.':'Próbáld újra egy kicsit később.'}</p>${notFound?'':'<button class="btn btn-dark" data-action="public-listing-retry">Újrapróbálom</button>'}<a class="btn btn-outline" href="#landing">Vissza a kezdőoldalra</a></main></div>`;}

@@ -38,12 +38,14 @@ async function seededLanding(){
  for(const area of areas)labelRegions.set(`${area.city} és környéke (${area.settlements.length} település)`,new Set(area.settlements.map(city=>cityRegions.get(city))));
  for(const area of neighborhoods)labelRegions.set(area.label,new Set([cityRegions.get(area.city)]));
  for(const street of streetDemoData)labelRegions.set(street.label,new Set([cityRegions.get(street.city)]));
- const searchKeys=['key','sourceKey','title','type','locations','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','ownerAccountType','ownerFirstName','prefill'].sort();
- const propertyKeys=['key','sourceKey','title','type','location','price','area','wholeRooms','halfRooms','rooms','lotArea','ownerAccountType','ownerFirstName','prefill'].sort();
+ const searchKeys=['href','key','sourceKey','title','type','locations','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','ownerAccountType','ownerFirstName','prefill'].sort();
+ const propertyKeys=['href','image','key','sourceKey','title','type','location','price','area','wholeRooms','halfRooms','rooms','lotArea','ownerAccountType','ownerFirstName','prefill'].sort();
  const prefillKeys={
-  search:['locations','type','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','conditions','buildings','constructionAges','views','ceilingHeight','floors','heatingTypes','balcony','elevator','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'].sort(),
-  property:['locations','type','price','area','rooms','wholeRooms','halfRooms','lotArea','condition','building','constructionAge','view','ceilingHeight','floor','heatingType','balcony','elevator','buildingFloors','floorIsUpperRange','airConditioning','privateGarden','sharedGarden'].sort()
+  search:['locations','type','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','conditions','buildings','constructionAges','views','ceilingHeight','floors','heatingTypes','balcony','elevator','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden','atticPreference','minEnergyRating'].sort(),
+  property:['locations','type','price','area','rooms','wholeRooms','halfRooms','lotArea','condition','building','constructionAge','view','ceilingHeight','floor','heatingType','balcony','elevator','buildingFloors','floorIsUpperRange','airConditioning','privateGarden','sharedGarden','isAttic','energyRating','energyRatingScheme'].sort()
  };
+ const energyRatings=['I','H','G','F','E','D','C','B','A','A+','A++','A+++'];
+ const sampleSignature=rows=>rows.map(({key,sourceKey,href,...visible})=>JSON.stringify(visible)).sort().join('\n');
  const locationKeys=['id','label','city','district','kind','settlementCount','streetName','postalCodes'].sort();
  const publishedOwners={property:new Map(),search:new Map()};
  for(const fixture of DEMO_FIXTURES){
@@ -55,8 +57,8 @@ async function seededLanding(){
  function check(page,region){
   assert.deepEqual(Object.keys(page).sort(),['properties','region','regions','scope','searches']);
   assert.deepEqual(page.regions,expectedRegions);assert.deepEqual(page.region,{id:region.id,label:region.label});assert.equal(page.scope,'region');
-  assert.equal(page.searches.length,8,`${region.id}: the shipped catalog needs eight search previews`);
-  assert.equal(page.properties.length,4,`${region.id}: the shipped catalog needs four property previews`);
+  assert.equal(page.searches.length,16,`${region.id}: the shipped catalog needs sixteen search previews`);
+  assert.equal(page.properties.length,8,`${region.id}: the shipped catalog needs eight property previews`);
   for(const [kind,items,keys] of [['search',page.searches,searchKeys],['property',page.properties,propertyKeys]]){
    const types=new Set(items.map(row=>row.type));assert.ok(types.has('Ház')&&types.has('Lakás'),`${region.id}: ${kind} previews must include houses and apartments`);assert.ok([...types].every(type=>['Ház','Lakás','Nyaraló'].includes(type)));
    for(const [index,row] of items.entries()){
@@ -64,6 +66,9 @@ async function seededLanding(){
     assert.deepEqual(Object.keys(row.prefill).sort(),prefillKeys[kind],'Nested onboarding seeds must retain their explicit public allowlist');
     if(kind==='search'){
      assert.equal(row.prefill.sharedGarden,false,'The removed shared-garden criterion must never be advertised');
+     assert.ok(['','only','exclude'].includes(row.prefill.atticPreference),'Public attic criteria must use the canonical optional choice');
+     assert.ok(row.prefill.minEnergyRating===''||energyRatings.includes(row.prefill.minEnergyRating),'Public minimum energy criteria use the current Hungarian scale');
+     if(row.type==='Ház')assert.equal(row.prefill.atticPreference,'');
      for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'])assert.equal(typeof row.prefill[field],'boolean',`Public search ${field} must be a boolean`);
      if(row.type==='Ház')for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow'])assert.equal(row.prefill[field],false,'House seeds must not include apartment floor restrictions');
      if(row.type!=='Lakás')for(const field of ['privateGarden','sharedGarden'])assert.equal(row.prefill[field],false,'Garden criteria belong only to apartment seeds');
@@ -73,8 +78,12 @@ async function seededLanding(){
      if(row.prefill.floorIsUpperRange)assert.equal(row.prefill.floor,9);
      if(row.type==='Ház')assert.equal(row.prefill.floorIsUpperRange,false);
      assert.ok(row.prefill.buildingFloors===null||Number.isInteger(row.prefill.buildingFloors)&&row.prefill.buildingFloors>=0&&row.prefill.buildingFloors<=200,'Public building floor count must be null or a bounded integer');
-     for(const field of ['airConditioning','privateGarden','sharedGarden'])assert.ok(row.prefill[field]===null||typeof row.prefill[field]==='boolean',`Public property ${field} must preserve boolean versus unknown`);
-     if(row.type==='Ház')assert.equal(row.prefill.buildingFloors,null,'House seeds must not include an apartment building floor count');
+     for(const field of ['balcony','airConditioning','privateGarden','sharedGarden','isAttic'])assert.ok(row.prefill[field]===null||typeof row.prefill[field]==='boolean',`Public property ${field} must preserve boolean versus unknown`);
+     if(row.type==='Ház'){assert.equal(row.prefill.buildingFloors,null,'House seeds must not include an apartment building floor count');assert.equal(row.prefill.balcony,null);assert.equal(row.prefill.isAttic,null);}
+     assert.ok(['','2023'].includes(row.prefill.energyRatingScheme));
+     if(row.prefill.energyRatingScheme==='2023')assert.ok(energyRatings.includes(row.prefill.energyRating));else assert.equal(row.prefill.energyRating,'','Unknown legacy schemes must not masquerade as a current energy grade');
+     assert.equal(typeof row.image,'string');
+     if(row.image){const image=new URL(row.image);assert.equal(image.protocol,'https:');assert.equal(image.username,'');assert.equal(image.password,'');}
      if(row.type!=='Lakás')for(const field of ['privateGarden','sharedGarden'])assert.equal(row.prefill[field],null,'Garden metadata belongs only to apartment seeds');
     }
     assert.ok(row.prefill.locations.length>0&&row.prefill.locations.length<=(kind==='property'?1:50));
@@ -84,7 +93,7 @@ async function seededLanding(){
      if(kind==='property')assert.ok(['city','district','neighborhood'].includes(location.kind),'A public property seed must never disclose a street');
      if(location.kind!=='street'){assert.equal(location.streetName,null);assert.equal(location.postalCodes,null);}
     }
-    assert.equal(row.key,`${kind}-${index+1}`);assert.match(row.sourceKey,new RegExp(`^${kind}-[a-f0-9]{64}$`));assert.ok(['private','agent'].includes(row.ownerAccountType));
+    assert.equal(row.key,`${kind}-${index+1}`);assert.match(row.sourceKey,new RegExp(`^${kind}-[a-f0-9]{64}$`));assert.equal(row.href,`#listing/${kind}/${row.sourceKey}`);assert.ok(['private','agent'].includes(row.ownerAccountType));
     assert.ok(publishedOwners[kind].get(row.title)?.has(row.ownerFirstName),
      'The real seeded ad title and its actual owner first name must reach the anonymous card');
     const labels=kind==='property'?[row.location]:row.locations;
@@ -103,7 +112,7 @@ async function seededLanding(){
    assert.ok(new Set(page.searches.map(row=>JSON.stringify([row[min],row[max]]))).size>=3,`Actual Hajdú-Bihar searches must show at least three different ${name}`);
   }
   for(const field of ['price','area','rooms'])assert.ok(new Set(page.properties.map(row=>row[field])).size>=2,`Actual Hajdú-Bihar properties must have different ${field} values`);
-  searchSamples.add(signature(page.searches));propertySamples.add(signature(page.properties));
+  searchSamples.add(sampleSignature(page.searches));propertySamples.add(sampleSignature(page.properties));
   allSearches.push(...page.searches);allProperties.push(...page.properties);
  }
  assert.ok(searchSamples.size>=3,'Refreshing must visibly change seeded search membership, not merely source IDs or order');
@@ -159,7 +168,15 @@ async function seededNeighborhoods(f,rows){
  const select=(key,kind,id)=>api('/me/active',{token:f.tokens[key],method:'PUT',body:{kind,id}});
  await select('julia','search',quarters.id);let page=await api('/feed',{token:f.tokens.julia});
  for(const property of [venkert,sestakert])assert.ok(page.items.some(item=>item.propertyId===property.id),'The deployed quarter OR search must find both synthetic fixture points');
- for(const card of page.items){assert.equal(card.property.address,'');assert.equal(card.property.addressDetails??null,null);}
+ for(const card of page.items){
+  const source=DEMO_FIXTURES.find(fixture=>fixture.kind==='property'&&fixture.input.title===card.property.title);assert.ok(source,'Every seeded quarter match must have a canonical property source');
+  const street=source.input.hideStreet===false?source.input.street||'':'';
+  const houseNumber=source.input.hideStreet===false&&source.input.hideHouseNumber===false?source.input.houseNumber||'':'';
+  assert.equal(card.property.street,street);assert.equal(card.property.houseNumber,houseNumber);
+  assert.equal(card.property.address,[street,houseNumber].filter(Boolean).join(' '));
+  assert.equal(card.property.addressDetails??null,null);
+  for(const key of ['latitude','longitude','geocodedAt','geocodingProvider','geocodingPlaceId','geocodingAddressKey'])assert.equal(Object.hasOwn(card.property,key),false,'Street visibility never authorizes exposing internal geocoding metadata');
+ }
  await select('marton','search',mixed.id);page=await api('/feed?includeApproximate=true',{token:f.tokens.marton});
  for(const property of [venkert,nearby])assert.ok(page.items.some(item=>item.propertyId===property.id),'The deployed mixed search must accept the quarter or the separate town');
  assert.equal(page.items.some(item=>item.propertyId===sestakert.id),false,'The other quarter stays outside even with approximate consent');

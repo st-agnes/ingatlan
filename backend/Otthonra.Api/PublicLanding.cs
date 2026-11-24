@@ -7,10 +7,16 @@ namespace Otthonra.Api;
 
 public sealed record LandingSearchTeaser(string Key, string Title, string Type, string[] Locations,
     decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms,
-    decimal? MaxRooms, string OwnerAccountType, string OwnerFirstName = "", LandingSearchPrefill? Prefill = null, string SourceKey = "");
+    decimal? MaxRooms, string OwnerAccountType, string OwnerFirstName = "", LandingSearchPrefill? Prefill = null, string SourceKey = "")
+{
+    public string Href => "#listing/search/" + SourceKey;
+}
 public sealed record LandingPropertyTeaser(string Key, string Title, string Type, string Location,
     decimal Price, decimal Area, int? WholeRooms, int? HalfRooms, decimal Rooms, decimal? LotArea,
-    string OwnerAccountType, string OwnerFirstName = "", LandingPropertyPrefill? Prefill = null, string SourceKey = "");
+    string OwnerAccountType, string OwnerFirstName = "", LandingPropertyPrefill? Prefill = null, string SourceKey = "", string Image = "")
+{
+    public string Href => "#listing/property/" + SourceKey;
+}
 public sealed record PublicLandingResponse(IReadOnlyList<LandingRegion> Regions, LandingRegion? Region,
     string Scope, LandingSearchTeaser[] Searches, LandingPropertyTeaser[] Properties);
 
@@ -40,8 +46,8 @@ public static class PublicLanding
     }
 
     // Only sanitized ad titles, given names and opaque source keys are public;
-    // contacts, raw source IDs, photographs and addresses stay private.
-    private static string SourceKey(string kind, Guid id) => kind + "-" + Convert.ToHexString(
+    // Contacts, raw source IDs and hidden addresses stay private.
+    public static string SourceKey(string kind, Guid id) => kind + "-" + Convert.ToHexString(
         SHA256.HashData(Encoding.UTF8.GetBytes($"otthonra:landing-source:v1:{kind}:{id:N}"))).ToLowerInvariant();
     public static string SafeType(string? type) => Rules.Normalize(type ?? "") switch
     {
@@ -65,7 +71,7 @@ public static class PublicLanding
         catch (JsonException) { return null; }
         if (locations.Length == 0) return null;
         var type = SafeType(search.Type);
-        return (new LandingSearchTeaser("", PublicProfile.Title(search.Title, SearchTitle(type)), type,
+        return (new LandingSearchTeaser("", PublicListings.Title(search.Title, SearchTitle(type)), type,
             locations.Select(location => location.Label).ToArray(), SafeBound(search.MinPrice), SafeBound(search.MaxPrice),
             SafeBound(search.MinArea), SafeBound(search.MaxArea), SafeBound(search.MinRooms), SafeBound(search.MaxRooms),
             AccountTypes.PublicType(accountType), PublicProfile.FirstName(ownerName), LandingPrefill.Search(search, locations),
@@ -75,15 +81,18 @@ public static class PublicLanding
     public static (LandingPropertyTeaser Teaser, string[] Regions)? PropertyTeaser(Property property, string? accountType, string? ownerName = null)
     {
         if (property.Archived || property.Price <= 0 || property.Area <= 0 || property.Rooms < 0) return null;
+        // A declared unknown identity must not become a public listing through
+        // the legacy city fallback. Blank old IDs retain that compatibility.
+        if (!string.IsNullOrWhiteSpace(property.LocationId) && LocationCatalog.Get(property.LocationId) is null) return null;
         var location = LocationCatalog.ForProperty(property);
         if (location is null) return null;
         var type = SafeType(property.Type);
         var rooms = Rules.RoomCounts(property);
-        return (new LandingPropertyTeaser("", PublicProfile.Title(property.Title, "Eladó " + type.ToLowerInvariant()), type, location.Label,
+        return (new LandingPropertyTeaser("", PublicListings.Title(property.Title, "Eladó " + type.ToLowerInvariant()), type, location.Label,
             property.Price, property.Area, rooms.WholeRooms >= 0 ? rooms.WholeRooms : null,
             rooms.HalfRooms >= 0 ? rooms.HalfRooms : null, property.Rooms,
             type == "Ház" ? SafeBound(property.LotArea) : null, AccountTypes.PublicType(accountType), PublicProfile.FirstName(ownerName),
-            LandingPrefill.Property(property, location), SourceKey("property", property.Id)),
+            LandingPrefill.Property(property, location), SourceKey("property", property.Id), PublicListings.Images(property.ImagesJson).FirstOrDefault() ?? ""),
             RegionCatalog.ForLocation(location));
     }
 }
@@ -131,11 +140,11 @@ public sealed class PublicLandingSnapshot
         var content = contents[region?.Id ?? ""];
         lock (content.Gate)
         {
-            var searches = content.Searches.Select(8).Select((candidate, index) => candidate.Value with {
+            var searches = content.Searches.Select(16).Select((candidate, index) => candidate.Value with {
                 Key = "search-" + (index + 1), Locations = candidate.Value.Locations.ToArray(),
                 Prefill = LandingPrefill.Clone(candidate.Value.Prefill)
             }).ToArray();
-            var properties = content.Properties.Select(4).Select((candidate, index) => candidate.Value with {
+            var properties = content.Properties.Select(8).Select((candidate, index) => candidate.Value with {
                 Key = "property-" + (index + 1), Prefill = LandingPrefill.Clone(candidate.Value.Prefill)
             }).ToArray();
             return new(RegionCatalog.All, region, region is null ? "national" : "region", searches, properties);
@@ -171,6 +180,7 @@ public sealed class PublicLandingCache
                     search.ConditionsJson, search.BuildingsJson, search.ConstructionAgesJson, search.ViewsJson, search.CeilingHeight,
                     search.FloorsJson, search.HeatingTypesJson, search.Balcony, search.Elevator,
                     search.ExcludeTopFloor, search.ExcludeGroundFloorAndBelow, search.AirConditioning, search.PrivateGarden,
+                    search.AtticPreference, search.MinEnergyRating,
                     search.Title, owner.Name, owner.AccountType };
             await foreach (var row in searches.AsAsyncEnumerable().WithCancellation(cancellationToken))
                 snapshot.Add(new SearchRequest { Id = row.Id, Title = row.Title, City = row.City, DistrictsJson = row.DistrictsJson,
@@ -180,7 +190,8 @@ public sealed class PublicLandingCache
                     ViewsJson = row.ViewsJson, CeilingHeight = row.CeilingHeight, FloorsJson = row.FloorsJson,
                     HeatingTypesJson = row.HeatingTypesJson, Balcony = row.Balcony, Elevator = row.Elevator,
                     ExcludeTopFloor = row.ExcludeTopFloor, ExcludeGroundFloorAndBelow = row.ExcludeGroundFloorAndBelow,
-                    AirConditioning = row.AirConditioning, PrivateGarden = row.PrivateGarden, SharedGarden = false }, row.AccountType, row.Name);
+                    AirConditioning = row.AirConditioning, PrivateGarden = row.PrivateGarden, SharedGarden = false,
+                    AtticPreference = row.AtticPreference, MinEnergyRating = row.MinEnergyRating }, row.AccountType, row.Name);
             var properties = from property in db.Properties.AsNoTracking()
                 join owner in db.Users.AsNoTracking() on property.OwnerId equals owner.Id
                 where !property.Archived
@@ -189,7 +200,8 @@ public sealed class PublicLandingCache
                     property.Area, property.Rooms, property.WholeRooms, property.HalfRooms, property.LotArea, property.NeighborhoodIdsJson,
                     property.Condition, property.Building, property.ConstructionAge, property.View, property.CeilingHeight,
                     property.Floor, property.FloorIsUpperRange, property.BuildingFloors, property.AirConditioning, property.PrivateGarden,
-                    property.HeatingType, property.Balcony, property.Elevator, property.Title, owner.Name, owner.AccountType };
+                    property.HeatingType, property.Balcony, property.Elevator, property.Title, property.ImagesJson, property.IsAttic,
+                    property.EnergyRating, property.EnergyRatingScheme, owner.Name, owner.AccountType };
             await foreach (var row in properties.AsAsyncEnumerable().WithCancellation(cancellationToken))
                 snapshot.Add(new Property { Id = row.Id, Title = row.Title, City = row.City, District = row.District, LocationId = row.LocationId,
                     Type = row.Type, Price = row.Price, Area = row.Area, Rooms = row.Rooms, WholeRooms = row.WholeRooms,
@@ -197,7 +209,8 @@ public sealed class PublicLandingCache
                     Condition = row.Condition, Building = row.Building, ConstructionAge = row.ConstructionAge, View = row.View,
                     CeilingHeight = row.CeilingHeight, Floor = row.Floor, FloorIsUpperRange = row.FloorIsUpperRange, BuildingFloors = row.BuildingFloors,
                     AirConditioning = row.AirConditioning, PrivateGarden = row.PrivateGarden, SharedGarden = null, HeatingType = row.HeatingType,
-                    Balcony = row.Balcony, Elevator = row.Elevator }, row.AccountType, row.Name);
+                    Balcony = row.Balcony, Elevator = row.Elevator, ImagesJson = row.ImagesJson, IsAttic = row.IsAttic,
+                    EnergyRating = row.EnergyRating, EnergyRatingScheme = row.EnergyRatingScheme }, row.AccountType, row.Name);
             Volatile.Write(ref cached, new Cached(DateTime.UtcNow.AddSeconds(60), snapshot));
             return snapshot;
         }

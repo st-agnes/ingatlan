@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 
@@ -7,7 +8,7 @@ import {resolve} from 'node:path';
 const base=(process.argv[2]||'http://localhost:5080').replace(/\/$/,'')+'/api';
 const fixture=JSON.parse(await readFile(resolve(process.env.OTTHONRA_UPGRADE_FIXTURE||'.local/schema-upgrade-fixture.json'),'utf8'));
 async function get(path,token){
- const response=await fetch(base+path,{signal:AbortSignal.timeout(10000),headers:{Authorization:`Bearer ${token}`}});
+ const response=await fetch(base+path,{signal:AbortSignal.timeout(10000),headers:token?{Authorization:`Bearer ${token}`} : {}});
  assert.equal(response.status,200,`GET ${path} failed after the schema upgrade`);
  return response.json();
 }
@@ -30,6 +31,13 @@ const property=sellerEntities.properties.find(item=>item.id===fixture.propertyId
 assert.ok(property);assert.equal(property.ownerAccountType,'private');assert.equal(property.city,'Budapest');assert.equal(property.district,'XIII.');
 assert.equal(property.locationId,'district:Budapest:13');assert.equal(property.location.id,'district:Budapest:13');
 assert.equal(property.address,'OTTHONRA TEST 1');assert.equal(property.lotArea,null);
+assert.equal(property.hideStreet,true);assert.equal(property.hideHouseNumber,true);
+assert.equal(property.isAttic,null);assert.equal(property.energyRatingScheme,'');
+const publicKey='property-'+createHash('sha256').update('otthonra:landing-source:v1:property:'+property.id.replaceAll('-','').toLowerCase()).digest('hex');
+const publicDetail=await get('/public/listings/property/'+publicKey);
+assert.equal(publicDetail.sourceKey,publicKey,'A repeated schema upgrade must backfill the existing stable public URL');
+assert.equal(publicDetail.listing.address,'');assert.equal(publicDetail.listing.street,'');assert.equal(publicDetail.listing.houseNumber,'');
+assert.equal(Object.hasOwn(publicDetail.listing,'addressDetails'),false);
 assert.equal(property.addressDetails.latitude,null);assert.equal(property.addressDetails.longitude,null);
 assert.equal(property.addressDetails.geocodingStatus,'missing','An additive upgrade must leave legacy coordinates unknown until the owner saves an exact address');
 assert.deepEqual(property.neighborhoodIds,[],'An old unlocated property must never acquire invented quarter membership');
@@ -57,10 +65,10 @@ const search=buyerEntities.searchRequests.find(item=>item.id===fixture.searchId)
 assert.ok(search);assert.equal(search.ownerAccountType,'private');assert.deepEqual(search.locationIds,['district:Budapest:13']);
 assert.equal(search.minPrice,null);assert.equal(search.maxArea,null);assert.equal(search.maxRooms,null);
 for(const field of ['conditions','buildings','constructionAges','views','floors','heatingTypes'])assert.deepEqual(search[field],[],`Old search must have no ${field} restriction`);
-assert.equal(search.ceilingHeight,'');
+assert.equal(search.ceilingHeight,'');assert.equal(search.atticPreference,'');assert.equal(search.minEnergyRating,'');
 const match=matches.find(item=>item.id===fixture.matchId);
 assert.ok(match);assert.equal(match.property.ownerAccountType,'private');assert.equal(match.searchRequest.ownerAccountType,'private');assert.equal(match.property.id,fixture.propertyId);assert.equal(match.searchRequest.id,fixture.searchId);
-assert.equal(match.property.address,'OTTHONRA TEST 1');assert.equal(match.contact.id,fixture.sellerId);
+assert.equal(match.property.address,'','The upgraded legacy row defaults to a hidden address, including historical matches');assert.equal(match.contact.id,fixture.sellerId);
 assert.equal(match.property.addressDetails,null,'A historical buyer match must retain owner-only coordinate privacy');
 assert.equal(match.property.wholeRooms,3);assert.equal(match.property.halfRooms,0);
 assert.equal(match.property.secondaryHeatingType,'');assert.deepEqual(match.property.parkingTypes,[]);

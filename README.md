@@ -2,7 +2,9 @@
 
 Magyar nyelvű ingatlanpárosító alkalmazás. Egy felhasználó több ingatlant és több keresési igényt kezelhet, majd egyet aktiválva fedezheti fel a hozzá illő ajánlásokat. Magánszemélyként a keresői kedvelés ingyenes, ingatlanközvetítőként 1 kredit; az eladói ajánlás mindkét fióktípusnál 2 kredit. Kölcsönös érdeklődéskor megnyílik az üzenetküldés és láthatóvá válnak az elérhetőségek. Ingatlanközvetítőnek mindkét szerepben csak magánszemély ajánlható; magánszemély mindkét fióktípust láthatja.
 
-Az eladó ingatlanok és keresési igények felvétele, illetve szerkesztése öt témakörre bontott űrlapon történik. Az állapotsoron követhető az előrehaladás; a korábbi lépésekre az addigi adatok megtartásával lehet visszatérni. Felfedezéskor a döntési gombok görgetés közben is a képernyőn maradnak. A Szűrők gomb először az aktív keresés vagy ingatlan beállításainak témakörös összesítőjét mutatja; innen a Szerkesztés gomb nyitja meg az űrlapot.
+Az eladó ingatlanok és keresési igények felvétele, illetve szerkesztése hat témakörre bontott űrlapon történik. Az állapotsoron követhető az előrehaladás; a korábbi lépésekre az addigi adatok megtartásával lehet visszatérni. Felfedezéskor a döntési gombok görgetés közben is a képernyőn maradnak. A Szűrők gomb először az aktív keresés vagy ingatlan beállításainak témakörös összesítőjét mutatja; innen a Szerkesztés gomb nyitja meg az űrlapot.
+
+A kezdőoldal legfeljebb 16 keresési igényt és 8 eladó ingatlant mutat változatos válogatásban. A hirdetésre kattintva bejelentkezés nélkül megnyitható a teljes, képekkel és ismert paraméterekkel kiegészített adatlap. Az eladó az utca és a házszám megjelenítéséről külön dönthet; a telefonszám és az e-mail-cím továbbra is csak párosítás után érhető el. A keresés adatlapjáról az „Én is ilyet keresek” gomb az összes keresési feltételt átveszi egy szerkeszthető piszkozatba. Részletek: [publikus hirdetések](docs/PUBLIC-LISTINGS.md).
 
 A visszajelzés-csomagok a vásárlástól számított két hétig folyamatosan működnek, szüneteltetés nélkül. A lejáratkor hiányzó válaszok után továbbra is kreditet írunk jóvá.
 
@@ -10,7 +12,7 @@ A visszajelzés-csomagok a vásárlástól számított két hétig folyamatosan 
 
 A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t külön Google Cloud SQL Auth Proxy konténerrel, valamint Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.
 
-**Az alap tesztadatcsomag 14 felhasználót, 355 ingatlant és 353 keresést tartalmaz**, köztük 3 ingatlanközvetítőt. Minden példafiók közös jelszava: `OtthonraDemo2026!`.
+**Az alap tesztadatcsomag 14 felhasználót, 355 ingatlant és 433 keresést tartalmaz**, köztük 3 ingatlanközvetítőt. Minden példafiók közös jelszava: `OtthonraDemo2026!`.
 
 | Fióktípus | E-mail-címek |
 |---|---|
@@ -35,7 +37,7 @@ A workflow alapból beköti a már létrehozott `otthonra-geocoding-dev` Secret 
 
 **Minden új teszt Cloud Run-revízió friss tesztállapotot kap:** az alkalmazásadatok törlődnek, majd visszaállnak a fenti példafiókok, ingatlanok, keresések és kezdő kreditek. Ez a tesztelés közben létrehozott saját fiókokat, döntéseket, párosításokat és üzeneteket is törli. Azonos revízió új példányának indulásakor vagy újraindításakor az adatok megmaradnak; egy korábban már feltöltött régi revízió újraindítása sem törli az újabb tesztállapotot.
 
-Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261118-test-fixtures-v6`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
+Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261124-test-fixtures-v7`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
 
 **A visszatérítések ütemezésének első telepítésekor** a teljes `bash scripts/gcp/run-dev.sh` parancs szükséges a Cloud Shellben, a frissített tároló gyökeréből; ez létrehozza az új tesztütemezőt is. A későbbi kiadások a megszokott Actions workflow-val mennek.
 
@@ -90,13 +92,13 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 - Egy keresésben több település és budapesti kerület is választható, például Budapest V. kerület, Budapest IX. kerület, Solymár és Pilisvörösvár. Bármely kiválasztott hely megfelelhet; a teljes Budapest választása minden kerületet elfogad.
 - Térképes helyszínválasztó a kezdőoldali kereső és a keresési igények űrlapja alatt: szöveges választásra automatikus nagyítás, kattintható városrészek, több helyszín és átfedő területek választója. A térképen választott városrész az adott teljes város kijelölését szűkíti. A 4308 városrész megjelenítési rétegei csak a látható környékhez töltődnek be. [Működés és térképadatok](docs/MAP-SEARCH.md).
 - 24 KSH szerinti városkörnyék is kiválasztható a keresésben, például „Budapest és környéke (81 település)” és „Debrecen és környéke (13 település)”. A szám a központot is tartalmazza; a csoportok konkrét településekkel és kerületekkel együtt használhatók. [Források és teljes lista](docs/LOCATION-DATA.md#város-és-környéke-csoportok).
-- Regisztráció előtt is elkezdhető az adatlap: a kezdőoldali „Hol keresel?” mező és a mintakártyák ugyanabba az hat lépéses űrlapba vezetnek. A böngésző megőrzi a kitöltést; regisztráció vagy belépés után a befejezett keresés/ingatlan egyszer kerül a fiókba, automatikus, szerkeszthető címmel. [Működés és ellenőrzés](docs/GOOGLE-CLOUD-TEST.md#regisztráció-előtti-kitöltés).
+- Regisztráció előtt is elkezdhető az adatlap: a kezdőoldali „Hol keresel?” mező és a mintakártyák ugyanabba a hat lépéses űrlapba vezetnek. A böngésző megőrzi a kitöltést; regisztráció vagy belépés után a befejezett keresés/ingatlan egyszer kerül a fiókba, automatikus, szerkeszthető címmel. [Működés és ellenőrzés](docs/GOOGLE-CLOUD-TEST.md#regisztráció-előtti-kitöltés).
 - A helyszínlista a beviteli mező alatt jelenik meg, és máshová kattintva választás nélkül bezárható. Új keresés mentése után külön visszajelzés és „Ingatlanok felfedezése” gomb segít az aktiválásban.
 - Keresésnél a minimumár, a maximum alapterület és a maximum szobaszám elhagyható; az üres mező valóban nyitott korlát. Házhoz kötelező telekméretet megadni; emeletet, erkélyt és liftet nem kérünk.
 - Az űrlap bal oldalán elkülönített függőleges lépésmenü, mobilon kompakt, rögzített alsó lépéssáv segíti a kitöltést. A Tovább gomb a tartalom tetején és alján marad. A képes típuskártya csak kijelöl, az opcionális képes választások ismételt kattintással törölhetők. A falazatokhoz külön magyarázat nyitható.
 - Magasföldszint és 9 vagy afölötti emeletcsoport; a korábbi pontos emeletek megőrzésével. Emelet/lift az ingatlanjellemzőknél, zárószint és földszint/szuterén kizárásával; eladóknál megadható az épület legfelső emelete. Kereshető légkondi és lakásnál saját kert, az adatok teljes mentésével és párosításával.
 - Opcionális, több értéket elfogadó keresési feltételek: állapot, falazat, épületkor, kilátás, fűtéstípus és emelet; külön választható belmagasság. Az ingatlanon egy érték adható meg, szintén opcionálisan.
-- Eladói fő- és kiegészítő fűtés közös legördülő listából, több parkolóhely kijelölése; szigetelés, energetikai besorolás, légkondi, napelem és parkolóhely. Az igen/nem mezők az ismeretlen értéket is megőrzik. Részletes értékek és API-mezők: [Ingatlanparaméterek](docs/PROPERTY-PARAMETERS.md).
+- Képes főfűtés-választó a keresőkkel közös listából, több parkolóhely kijelölése; képes Van/Nincs választók erkélyhez, légkondihoz, saját kerthez, szigeteléshez és napelemhez. Energetikai tanúsítvány a jelenlegi magyar színskálán, keresői minimumszűrővel és tetőtér-feltételekkel. Az igen/nem mezők az ismeretlen értéket is megőrzik; kiegészítő fűtést az új űrlap már nem kér. Részletes értékek és API-mezők: [Ingatlanparaméterek](docs/PROPERTY-PARAMETERS.md).
 - Külön egész- és félszobaszám az eladóknál, az összetétel megőrzésével. A keresési minimum és maximum szobaszám nem gépelhető mező, hanem plusz–mínusz gombokkal, 1-től fél szobánként állítható kijelzés; 1 alatt visszaáll a korlát nélküli állapotra. A számmezőkben a negatív érték bevitele blokkolt.
 - Hely, típus, ár, alapterület, szobaszám és a megadott opcionális paraméterek szerinti megfelelés; a már elbírált párok kizárása.
 - JWT-hitelesítés, sózott PBKDF2-jelszótárolás, tulajdonosi jogosultságok, rejtett elérhetőségek.

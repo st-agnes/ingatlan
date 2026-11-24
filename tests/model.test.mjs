@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createModel,isCompatible,STORAGE_KEY,demoLanding} from '../dist/model.js';
+import {createModel,isCompatible,STORAGE_KEY,demoLanding,demoPublicListing} from '../dist/model.js';
 import {locations, getLocation} from '../dist/locations.js';
 const exactAddress={street:'Fiktív teszt utca',houseNumber:'12',postalCode:'1234'};
 const store=()=>{const values=new Map();return{getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)}};
@@ -233,7 +233,7 @@ test('old room and house data load unchanged without rewriting storage or unrela
  assert.equal(storage.getItem(STORAGE_KEY),JSON.stringify(raw));
  assert.throws(()=>again.saveEntity('property',{...exactAddress,title:'Új név változatlan telekkel'},old.id),/telekméret/);
  const updated=again.saveEntity('property',{...exactAddress,lotArea:750},old.id);
- assert.deepEqual([updated.rooms,updated.wholeRooms,updated.halfRooms,updated.floor,updated.balcony,updated.elevator],[3.2,null,null,null,false,false]);
+ assert.deepEqual([updated.rooms,updated.wholeRooms,updated.halfRooms,updated.floor,updated.balcony,updated.elevator],[3.2,null,null,null,null,false]);
  const after=again.getState();assert.equal(after.credits,before.credits);assert.deepEqual(after.ledger,before.ledger);assert.deepEqual(after.decisions,before.decisions);assert.equal(again.matches().length,m.matches().length);
 });
 
@@ -241,7 +241,7 @@ test('house saves require positive plot area and clear hidden property and searc
  const m=setup(),base={title:'Ház a város szélén',locationId:'city:Solymár',type:'Ház',price:90,area:120,wholeRooms:4,halfRooms:1};
  for(const lotArea of [undefined,null,'',0,-1,'hibás',true,10000001])assert.throws(()=>m.saveEntity('property',{...exactAddress,...base,lotArea}),/telekméret/);
  const house=m.saveEntity('property',{...exactAddress,...base,lotArea:500,floor:'invalid',balcony:true,elevator:true});
- assert.deepEqual([house.floor,house.balcony,house.elevator],[null,false,false]);
+ assert.deepEqual([house.floor,house.balcony,house.elevator],[null,null,false]);
  const q=m.saveEntity('search',{title:'Családi házat keresünk',locationIds:['city:Solymár'],type:'Ház',floors:[3],balcony:true,elevator:true});
  assert.deepEqual([q.floors,q.balcony,q.elevator],[[],false,false]);
  assert.equal(isCompatible(house,{...q,ownerId:'other',floors:[3],balcony:true,elevator:true}),true,'hidden constraints from old house searches do not block matching');
@@ -258,7 +258,7 @@ test('heating and parking data persist while new invalid options or negative mea
  for(const key of ['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])assert.throws(()=>again.saveEntity('search',{title:'Hibás keresés',locationIds:['city:Debrecen'],[key]:-1}));
  assert.deepEqual(again.getState(),before);
  const q=again.saveEntity('search',{title:'Fűtésre szűrt keresés',locationIds:['city:Debrecen'],heatingTypes:['Hőszivattyú','Klíma','Hőszivattyú']});
- assert.deepEqual(q.heatingTypes,['Hőszivattyú','Klíma']);
+ assert.deepEqual(q.heatingTypes,['Hőszivattyú','Fűtő klíma']);
  assert.equal(isCompatible(loaded,{...q,ownerId:'other'}),true);
  assert.equal(isCompatible({...loaded,heatingType:'Nincs fűtés'},{...q,ownerId:'other'}),false);
 });
@@ -544,7 +544,7 @@ test('positive credits and expired feedback packages have separate durable recei
 const publicFingerprint=items=>items.map(({key,sourceKey,...item})=>JSON.stringify(item)).sort();
 test('public demo previews cover different budgets, sizes, room counts and districts without touching saved profiles',()=>{
  const storage=store(),m=createModel(storage,()=>REFUND_START);m.activate('property','own-p1');const before=JSON.stringify(m.getState()),saved=storage.getItem(STORAGE_KEY);
- const preview=demoLanding(null,()=>0);assert.equal(preview.searches.length,8);assert.equal(preview.properties.length,4);
+ const preview=demoLanding(null,()=>0);assert.equal(preview.searches.length,16);assert.equal(preview.properties.length,8);
  for(const items of [preview.searches,preview.properties])assert.equal(new Set(items.map(item=>item.type)).size,2,'Both apartments and houses should be represented');
  assert.ok(Math.min(...preview.properties.map(item=>item.price))<=50);assert.ok(Math.max(...preview.properties.map(item=>item.price))>=120);
  assert.ok(Math.min(...preview.properties.map(item=>item.area))<=40);assert.ok(Math.max(...preview.properties.map(item=>item.area))>=100);
@@ -555,7 +555,7 @@ test('public demo previews cover different budgets, sizes, room counts and distr
 test('public demo refresh changes selected membership with deterministic randomness while keeping the response private',()=>{
  const region={id:'HU110',label:'Budapest'};let previous;
  for(let i=0;i<6;i++){
-  const preview=demoLanding(region,()=>0);assert.equal(preview.searches.length,8);assert.equal(preview.properties.length,4);
+  const preview=demoLanding(region,()=>0);assert.equal(preview.searches.length,16);assert.equal(preview.properties.length,8);
   const current={searches:publicFingerprint(preview.searches),properties:publicFingerprint(preview.properties)};
   if(previous){assert.notDeepEqual(current.searches,previous.searches);assert.notDeepEqual(current.properties,previous.properties);}
   for(const item of [...preview.searches,...preview.properties])for(const key of ['id','ownerId','userId','description','address','images','email','phone'])assert.equal(Object.hasOwn(item,key),false);
@@ -761,4 +761,28 @@ test('demo raised and upper-range floors survive storage while a cleared move-in
  const state=createModel(storage).getState();assert.equal(state.properties.find(x=>x.id===p.id).floor,0.5);assert.equal(state.properties.find(x=>x.id===upper.id).floorIsUpperRange,true);assert.equal(state.properties.find(x=>x.id===exact.id).floor,12);
  assert.deepEqual(state.searches.find(x=>x.id===q.id).floors,[0.5,9]);assert.equal(state.searches.find(x=>x.id===q.id).moveIn,'');
  const before=state.searches.length;assert.throws(()=>m.saveEntity('search',{title:'Kapcsolatos hibás keresés',locationIds:['city:Debrecen'],description:'Anna kukac pelda pont hu'}),/Elérhetőséget/);assert.equal(m.getState().searches.length,before);
+});
+
+test('public detail lookup resolves every opaque teaser without reading saved account data or exposing private source fields',()=>{
+ for(const preview of [demoLanding(null,()=>0),demoLanding({id:'HU110',label:'Budapest'},()=>.5)]){
+  assert.equal(preview.searches.length,16);assert.equal(preview.properties.length,8);
+  for(const kind of ['property','search'])for(const teaser of kind==='property'?preview.properties:preview.searches){
+   const detail=demoPublicListing(kind,teaser.sourceKey);assert.equal(detail.title,teaser.title);assert.equal(detail.sourceKey,teaser.sourceKey);assert.equal(teaser.href,`#listing/${kind}/${teaser.sourceKey}`);
+   for(const privateKey of ['id','ownerId','email','phone','addressDetails','latitude','longitude','creationRequestId'])assert.equal(Object.hasOwn(detail.listing,privateKey),false,privateKey);
+   if(kind==='property')assert.equal(detail.listing.address,'');else assert.equal(detail.clonePrefill.maxPrice,detail.prefill.maxPrice);
+  }
+ }
+ assert.throws(()=>demoPublicListing('property','property-'+'0'.repeat(64)),/hirdetés/);
+});
+
+test('demo address visibility survives reload and hides street matching without blocking town or neighborhood alternatives',()=>{
+ const storage=store(),m=createModel(storage);m.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ const property=raw.properties.find(p=>p.id==='p1'),street=getLocation(property.addressDetails.streetId),search=raw.searches.find(s=>s.id==='own-s1');
+ assert.ok(street);raw.active={kind:'search',id:search.id};search.locationIds=[street.id];search.locations=[street];search.city=street.city;search.districts=[];
+ property.hideStreet=true;property.hideHouseNumber=false;storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ let again=createModel(storage);assert.ok(!again.feed().some(item=>item.id===property.id));
+ property.hideStreet=false;property.hideHouseNumber=true;storage.setItem(STORAGE_KEY,JSON.stringify(raw));again=createModel(storage);
+ const card=again.feed().find(item=>item.id===property.id);assert.ok(card);assert.equal(card.address,property.addressDetails.street);assert.equal(card.houseNumber,undefined);assert.equal(Object.hasOwn(card,'addressDetails'),false);
+ property.hideStreet=true;search.locationIds=[street.id,'city:Budapest'];search.locations=[street,getLocation('city:Budapest')];storage.setItem(STORAGE_KEY,JSON.stringify(raw));again=createModel(storage);
+ const byTown=again.feed().find(item=>item.id===property.id);assert.ok(byTown);assert.equal(byTown.address,'');
 });

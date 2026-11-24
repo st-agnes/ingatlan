@@ -10,7 +10,8 @@ public static class PropertyAttributes
     public static readonly string[] ConstructionAges = ["10 évnél fiatalabb", "10–30 év közötti", "31–40 év közötti", "41–50 év közötti", "Több mint 50 éves"];
     public static readonly string[] Views = ["Kertre néző", "Utcai", "Udvari", "Panorámás"];
     public static readonly string[] CeilingHeights = ["3 m alatti", "3 m feletti"];
-    public static readonly string[] HeatingTypes = ["Nincs fűtés", "Gázkazán", "Gázcirkó", "Gázkonvektor", "Távfűtés", "Házközponti fűtés", "Elektromos fűtés", "Hőszivattyú", "Klíma", "Vegyes tüzelésű kazán", "Cserépkályha", "Kandalló", "Egyéb"];
+    public static readonly string[] HeatingTypes = ["Gázkazán / cirkó", "Gázkonvektor", "Távfűtés", "Házközponti fűtés", "Hőszivattyú", "Fűtő klíma", "Elektromos fűtés", "Fa- / vegyes tüzelésű kazán", "Pelletkazán", "Kályha / cserépkályha", "Kandalló", "Egyéb", "Nincs fűtés"];
+    public static readonly string[] EnergyRatings = ["I", "H", "G", "F", "E", "D", "C", "B", "A", "A+", "A++", "A+++"];
     public static readonly string[] ParkingTypes = ["Utcai parkolás", "Udvari beálló", "Fedett beálló", "Garázs", "Mélygarázs", "Teremgarázs", "Egyéb"];
 
     // Old rows retain their stored value. Only the representation used for
@@ -26,7 +27,13 @@ public static class PropertyAttributes
         };
     }
     public static string NormalizeBuilding(string? value) => Canonical(value?.Trim() ?? "", Buildings);
-    public static string NormalizeHeating(string? value) => Canonical(value?.Trim() ?? "", HeatingTypes);
+    public static string NormalizeHeating(string? value) => Rules.Normalize(value ?? "") switch {
+        "GAZKAZAN" or "GAZCIRKO" => "Gázkazán / cirkó",
+        "KLIMA" => "Fűtő klíma",
+        "VEGYES TUEZELESU KAZAN" or "VEGYES TUZELESU KAZAN" => "Fa- / vegyes tüzelésű kazán",
+        "CSEREPKALYHA" => "Kályha / cserépkályha",
+        _ => Canonical(value?.Trim() ?? "", HeatingTypes)
+    };
     public static string[] Parking(Property property)
     {
         var values = property.ParkingTypesJson is not null
@@ -41,14 +48,14 @@ public static class PropertyAttributes
     {
         var text = Rules.PublicText(value, 100);
         if (text.Length == 0) return "";
-        var result = condition ? NormalizeCondition(text) : Canonical(text, options);
+        var result = condition ? NormalizeCondition(text) : ReferenceEquals(options, HeatingTypes) ? NormalizeHeating(text) : Canonical(text, options);
         if (!options.Contains(result)) throw new ApiException(400, $"Érvénytelen {name}.");
         return result;
     }
     private static string ChoicePreservingLegacy(string? value, string previous, string[] options, string name, bool condition = false)
     {
         var text = Rules.PublicText(value, 100);
-        var canonical = condition ? NormalizeCondition(text) : Canonical(text, options);
+        var canonical = condition ? NormalizeCondition(text) : ReferenceEquals(options, HeatingTypes) ? NormalizeHeating(text) : Canonical(text, options);
         // Older API versions permitted arbitrary metadata. An unrelated edit
         // may retain that exact value, but cannot introduce another unknown one.
         if (text.Length > 0 && text == previous.Trim() && !options.Contains(canonical)) return text;
@@ -98,15 +105,20 @@ public static class PropertyAttributes
             && Selected(Dto.Strings(search.ConstructionAgesJson), property.ConstructionAge)
             && Selected(Dto.Strings(search.ViewsJson), property.View)
             && (string.IsNullOrEmpty(search.CeilingHeight) || search.CeilingHeight == property.CeilingHeight)
-            && Selected(Dto.Strings(search.HeatingTypesJson), NormalizeHeating(property.HeatingType))
+            && Selected(Dto.Strings(search.HeatingTypesJson).Select(NormalizeHeating).ToArray(), NormalizeHeating(property.HeatingType))
+            && EnergyCertificates.MinimumSatisfied(property, search.MinEnergyRating)
             && (!search.AirConditioning || property.AirConditioning == true)
             && (type != "LAKAS" || !search.PrivateGarden || property.PrivateGarden == true)
             && (type == "HAZ" || (floors.Length == 0 || KnownFloor(property.Floor)
                 && floors.Any(floor => floor == 9m ? property.Floor.Value >= 9m : floor == property.Floor.Value))
                 && (!search.ExcludeTopFloor || BelowTopFloor(property))
-                && (!search.ExcludeGroundFloorAndBelow || AboveGroundFloor(property)));
+                && (!search.ExcludeGroundFloorAndBelow || AboveGroundFloor(property))
+                && AtticSatisfied(property, search.AtticPreference));
     }
 
+    public static bool AtticSatisfied(Property property, string? preference) => preference switch {
+        "only" => property.IsAttic == true, "exclude" => property.IsAttic == false, _ => true
+    };
     public static void Apply(Property property, PropertyInput input)
     {
         property.Condition = ChoicePreservingLegacy(input.Condition, property.Condition, Conditions, "állapot", condition: true);
@@ -115,8 +127,14 @@ public static class PropertyAttributes
         property.View = Choice(input.View, Views, "kilátás");
         property.CeilingHeight = Choice(input.CeilingHeight, CeilingHeights, "belmagasság");
         property.HeatingType = ChoicePreservingLegacy(input.HeatingType, property.HeatingType, HeatingTypes, "fűtéstípus");
-        property.SecondaryHeatingType = Choice(input.SecondaryHeatingType, HeatingTypes, "kiegészítő fűtés");
-        property.EnergyRating = Rules.PublicText(input.EnergyRating, 20);
+        // Retired in current editors; a missing field must not erase stored legacy metadata.
+        if (input.SecondaryHeatingType is not null)
+        {
+            var retired = Rules.PublicText(input.SecondaryHeatingType, 100);
+            if (retired != property.SecondaryHeatingType) Choice(retired, HeatingTypes, "kiegészítő fűtés");
+            property.SecondaryHeatingType = retired;
+        }
+        EnergyCertificates.Apply(property, input);
         var parking = ParkingSelections(property, input);
         property.ParkingTypesJson = JsonSerializer.Serialize(parking);
         property.ParkingType = string.Join(", ", parking);
@@ -150,5 +168,9 @@ public static class PropertyAttributes
         search.CeilingHeight = Choice(input.CeilingHeight, CeilingHeights, "belmagasság");
         search.FloorsJson = JsonSerializer.Serialize(Rules.Normalize(search.Type) == "HAZ" ? Array.Empty<decimal>() : FloorSelections(input.Floors));
         search.HeatingTypesJson = JsonSerializer.Serialize(Selections(input.HeatingTypes, HeatingTypes, "fűtéstípus"));
+        var attic = Rules.Optional(input.AtticPreference, 20);
+        if (attic is not ("" or "only" or "exclude")) throw new ApiException(400, "Érvénytelen tetőtér-feltétel.");
+        search.AtticPreference = Rules.Normalize(search.Type) == "HAZ" ? "" : attic;
+        search.MinEnergyRating = Choice(input.MinEnergyRating, EnergyRatings, "minimum energetikai tanúsítvány");
     }
 }
