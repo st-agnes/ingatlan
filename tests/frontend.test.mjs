@@ -113,8 +113,8 @@ async function setup(options={}){
  const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},windowListeners=new Map(),regionStorage=options.regionStorage instanceof Map?options.regionStorage:new Map(Object.entries(options.regionStorage||{})),maps=[];
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
-  document,console,Intl,Date:options.Date||Date,Promise,URL,URLSearchParams,AbortController,IntersectionObserver:options.IntersectionObserver,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
-  location:{get hash(){return currentHash;},set hash(value){const next=value?(value.startsWith('#')?value:'#'+value):'';if(next===currentHash)return;currentHash=next;if(options.dispatchHashChanges)Promise.resolve().then(()=>windowEvents.hashchange?.());},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},matchMedia:()=>({matches:!!options.mobile}),addEventListener:(type,handler)=>{const listeners=windowListeners.get(type)||[];listeners.push(handler);windowListeners.set(type,listeners);windowEvents[type]=event=>{const pending=[...(windowListeners.get(type)||[])].map(callback=>callback(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};}},
+  document,console,Intl,Date:options.Date||Date,Promise,URL,URLSearchParams,AbortController,IntersectionObserver:options.IntersectionObserver,ResizeObserver:options.ResizeObserver,visualViewport:options.visualViewport,innerWidth:options.innerWidth,innerHeight:options.innerHeight,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
+  location:{get hash(){return currentHash;},set hash(value){const next=value?(value.startsWith('#')?value:'#'+value):'';if(next===currentHash)return;currentHash=next;if(options.dispatchHashChanges)Promise.resolve().then(()=>windowEvents.hashchange?.());},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},matchMedia:()=>({matches:!!options.mobile}),addEventListener:(type,handler)=>{const listeners=windowListeners.get(type)||[];listeners.push(handler);windowListeners.set(type,listeners);windowEvents[type]=event=>{const pending=[...(windowListeners.get(type)||[])].map(callback=>callback(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};},removeEventListener:(type,handler)=>{windowListeners.set(type,(windowListeners.get(type)||[]).filter(listener=>listener!==handler));}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:options.environment||'test'}:{mode:'demo',environment:'local'},
   searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...attributeCardArt,...accountHelpers,...feedbackHelpers,...Object.fromEntries(Object.entries(onboardingHelpers).filter(([name])=>!['loadDraft','saveDraft','clearDraft'].includes(name))),
   loadDraft:()=>onboardingHelpers.loadDraft(ctx.localStorage),saveDraft:draft=>onboardingHelpers.saveDraft(draft,ctx.localStorage),clearDraft:id=>onboardingHelpers.clearDraft(id,ctx.localStorage),
@@ -133,7 +133,7 @@ async function setup(options={}){
  options.onDocument?.(document,windowEvents);
  await vm.runInContext(`(async()=>{${body}\nglobalThis.ui={render,changePage,startOnboarding,openEditor,openDetails,openModal,closeModal,openActivation,matchingTags,openFeedbackPackages,openFeedbackPurchase,openFeedbackPrompt,propertyInsightsPage,getFeedbackPrompt:()=>feedbackPrompt,getModelState:()=>state};})()`,ctx);
  const click=async(dataset)=>{const target={dataset,closest:()=>target};await document.handlers.click({target,preventDefault(){}})};
- return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents,timers,maps,runNextTimer:()=>timers.shift()?.callback(),runTimers:()=>{for(const timer of timers.splice(0))timer.callback();}};
+ return{model:options.hosted?apiModel:demoModel,document,ctx,click,ui:ctx.ui,connected,disconnected,getSelectedModel:()=>selected,landingCalls,regionStorage,windowEvents,windowListenerCount:type=>(windowListeners.get(type)||[]).length,timers,maps,runNextTimer:()=>timers.shift()?.callback(),runTimers:()=>{for(const timer of timers.splice(0))timer.callback();}};
 }
 const settle=async()=>{for(let i=0;i<16;i++)await Promise.resolve();};
 
@@ -334,15 +334,23 @@ test('moving focus outside a property picker dismisses suggestions and preserves
  assert.match(t.document.getElementById('location-chips').innerHTML,/Solymár/);
 });
 
-test('closing or replacing the editor removes its outside-picker document listeners',async()=>{
- const t=await setup(),before=Object.fromEntries(['pointerdown','focusin','keydown'].map(type=>[type,t.document.listenerCount(type)]));
+test('closing or replacing the editor removes its picker and responsive navigation resources',async()=>{
+ const viewportListeners=new Map(),observers=new Set(),viewport={width:390,height:844,offsetLeft:0,offsetTop:0,addEventListener(type,listener){const listeners=viewportListeners.get(type)||[];listeners.push(listener);viewportListeners.set(type,listeners);},removeEventListener(type,listener){viewportListeners.set(type,(viewportListeners.get(type)||[]).filter(item=>item!==listener));}};
+ class Observer{constructor(callback){this.callback=callback;}observe(){observers.add(this);}disconnect(){observers.delete(this);}}
+ const t=await setup({mobile:true,innerWidth:390,innerHeight:844,visualViewport:viewport,ResizeObserver:Observer,onDocument:document=>{
+  const lookup=document.getElementById.bind(document);document.getElementById=id=>{const node=lookup(id);if(node&&['entity-form','editor-navigation'].includes(id)){if(!node.style.setProperty){node.style.setProperty=function(name,value){this[name]=String(value);};node.style.removeProperty=function(name){delete this[name];};}if(id==='editor-navigation')node.getBoundingClientRect=()=>({height:48});}return node;};
+ }}),before=Object.fromEntries(['pointerdown','focusin','keydown','visibilitychange'].map(type=>[type,t.document.listenerCount(type)])),resizeBefore=t.windowListenerCount('resize');
  t.ui.openEditor('search');
  const mounted=Object.fromEntries(Object.keys(before).map(type=>[type,t.document.listenerCount(type)]));
  for(const type of ['pointerdown','focusin'])assert.ok(mounted[type]>before[type],`${type} dismissal is mounted for the editor`);
+ assert.ok(t.windowListenerCount('resize')>resizeBefore,'The mounted responsive menu observes viewport changes');assert.equal(observers.size,1);for(const type of ['resize','scroll'])assert.equal(viewportListeners.get(type)?.length,1);
+ const previousForm=t.document.getElementById('entity-form');assert.ok(previousForm.style['--editor-nav-clearance'],'Mobile content reserves space for the fixed navigation');
  t.ui.openEditor('property');
  for(const [type,count] of Object.entries(mounted))assert.equal(t.document.listenerCount(type),count,`${type} listeners do not accumulate when replacing the editor`);
- t.ui.closeModal();
+ assert.equal(previousForm.style['--editor-nav-clearance'],undefined,'Replacing a form removes its stale navigation clearance');assert.equal(observers.size,1);for(const type of ['resize','scroll'])assert.equal(viewportListeners.get(type)?.length,1);
+ const form=t.document.getElementById('entity-form');t.ui.closeModal();
  for(const [type,count] of Object.entries(before))assert.equal(t.document.listenerCount(type),count,`${type} listeners are removed when the editor closes`);
+ assert.equal(t.windowListenerCount('resize'),resizeBefore);assert.equal(observers.size,0);for(const type of ['resize','scroll'])assert.equal(viewportListeners.get(type)?.length,0);assert.equal(form.style['--editor-nav-clearance'],undefined);
 });
 
 function submitHostedAuth(t,values){
@@ -1200,7 +1208,7 @@ test('only the location query is a search input while editor progress retains ac
   assert.equal(t.document.getElementById('f-title').type,'text');assert.equal(t.document.getElementById(kind==='property'?'f-price':'f-maxPrice').type,'number');assert.equal(t.document.getElementById('f-description').tagName,'TEXTAREA');
   let html=t.document.getElementById('modal-root').innerHTML;assert.doesNotMatch(html,/id="editor-state-\d|<small[^>]*>\s*(?:Kitöltve|Aktuális|Hátravan)/);assert.equal(t.document.getElementById('editor-step-button-0').getAttribute('aria-current'),'step');
   await editorAction(t,'editor-next');assert.equal(editorStep(t),1);assert.equal(t.document.getElementById('editor-step-button-0').getAttribute('data-state'),'completed');assert.equal(t.document.getElementById('editor-step-button-1').getAttribute('aria-current'),'step');
-  assert.equal(t.document.getElementById('editor-step-status'),null,'The step count is represented by the left menu, without a redundant sentence');
+  assert.equal(t.document.getElementById('editor-step-status'),null,'The step count is represented by the named step menu, without a redundant sentence');
  }
 });
 
@@ -1979,12 +1987,18 @@ test('guest illustrated search choices remain independent and persist explicit c
  await t.click({action:'landing'});t.ctx.location.hash='#onboarding';await t.ui.render();assert.equal(editorStep(t),3);assert.equal(editorChoice(t,'buildings',propertyAttributes.BUILDING_OPTIONS[1]).checked,true);assert.equal(editorChoice(t,'buildings',propertyAttributes.BUILDING_OPTIONS[0]).checked,false);assert.equal(t.document.getElementById('f-ceilingHeight').value,'');
 });
 
-test('the left menu owns only named progress controls and the reordered attributes keep floor and lift together',async()=>{
- for(const kind of ['property','search']){
-  const t=await setup();t.ui.openEditor(kind,kind==='property'?'own-p1':'own-s1');const nav=t.document.getElementById('editor-navigation'),form=t.document.getElementById('entity-form');assert.ok(nav);
-  for(const id of Array.from({length:6},(_unused,index)=>`editor-step-button-${index}`))assert.equal(nav.contains(t.document.getElementById(id)),true,`${id} belongs to the common left step menu`);
-  for(const id of ['editor-next','editor-back','editor-save','editor-next-top','editor-back-top','editor-save-top']){const action=t.document.getElementById(id);assert.ok(action,id);assert.equal(nav.contains(action),false,'Actions belong to the content, separate from the left menu');assert.equal(form.contains(action),true);}
-  assert.equal(form.contains(nav),true);assert.ok(t.document.html.indexOf('id="editor-navigation"')<t.document.html.indexOf('id="editor-step-0"'),'The menu precedes the current content rather than occupying a fixed footer');
+test('the responsive step menu owns only named progress controls and the reordered attributes keep floor and lift together',async()=>{
+ for(const kind of ['property','search'])for(const guest of [false,true]){
+  const draft=onboardingHelpers.createDraft(kind,{type:'Lakás',locationIds:['city:Debrecen'],locationId:'city:Debrecen',street:'Teszt utca',houseNumber:'1',maxPrice:90,minArea:40},{editor:{locations:[getLocation('city:Debrecen')],titleGenerated:true}});
+  const t=await setup(guest?{hosted:true,hash:'#onboarding',regionStorage:{[onboardingHelpers.DRAFT_STORAGE_KEY]:JSON.stringify(draft)}}:{});if(!guest)t.ui.openEditor(kind,kind==='property'?'own-p1':'own-s1');const nav=t.document.getElementById('editor-navigation'),form=t.document.getElementById('entity-form');assert.ok(nav);
+  for(const id of Array.from({length:6},(_unused,index)=>`editor-step-button-${index}`))assert.equal(nav.contains(t.document.getElementById(id)),true,`${id} belongs to the common responsive step menu`);
+  for(const id of ['editor-next','editor-back','editor-save','editor-next-top','editor-back-top','editor-save-top']){const action=t.document.getElementById(id);assert.ok(action,id);assert.equal(nav.contains(action),false,'Actions belong to the content, separate from the responsive step menu');assert.equal(form.contains(action),true);}
+  assert.equal(form.contains(nav),true);assert.ok(t.document.html.indexOf('id="editor-navigation"')<t.document.html.indexOf('id="editor-step-0"'),'The named step navigation remains separate from the mounted content');
+  const content=t.document.getElementById('editor-content'),header=t.document.getElementById('editor-header');assert.ok(content);assert.ok(header);assert.equal(content.contains(header),true,'The main title belongs to the form content rather than appearing over the step navigation');assert.equal(nav.contains(header),false);assert.equal(form.contains(header),true);
+  assert.doesNotMatch(t.document.html,/<div class="eyebrow">(?:Keresési igény|Eladó ingatlan)<\/div>|Csak azt jelöld meg, ami fontos/);
+  const bounds=t.document.getElementById('editor-step-2');for(const [id,label] of [['editor-price-heading','Ár'],['editor-size-heading','Méret']]){const heading=t.document.getElementById(id);assert.ok(heading);assert.equal(heading.tagName,'H3');assert.equal(bounds.contains(heading),true);assert.ok(t.document.html.includes(`id="${id}"`));assert.match(t.document.html,new RegExp(`<h3\\b[^>]*id="${id}"[^>]*>${label}<\\/h3>`));}
+  const positionsInBounds=['editor-price-heading',kind==='property'?'f-price':'f-maxPrice','editor-size-heading',kind==='property'?'f-area':'f-minArea'].map(id=>t.document.html.indexOf(`id="${id}"`));assert.deepEqual(positionsInBounds,[...positionsInBounds].sort((left,right)=>left-right),'Price and size headings precede their existing editable fields');
+  for(const index of [2,3]){const anchor=t.document.getElementById(`editor-heading-${index}`);assert.ok(anchor,'Accessible topic labels remain available for navigation and validation focus');assert.equal(t.document.getElementById('editor-step-'+index).getAttribute('aria-labelledby'),anchor.id);}
   const ids=kind==='property'?['f-condition','f-floor','f-elevator','f-constructionAge','f-view','f-building','f-ceilingHeight']:['conditions-group','floors-group','f-elevator','constructionAges-group','views-group','buildings-group','f-ceilingHeight'];
   const section=t.document.getElementById('editor-step-3');for(const id of ids)assert.equal(section.contains(t.document.getElementById(id)),true,`${id} belongs to the attribute topic`);
   const positions=ids.map(id=>t.document.html.indexOf(`id="${id}"`));assert.deepEqual(positions,[...positions].sort((left,right)=>left-right),'The attributes follow condition, floor/lift, age, view, wall and ceiling order');

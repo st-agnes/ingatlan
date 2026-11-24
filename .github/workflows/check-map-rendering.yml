@@ -1,4 +1,4 @@
-name: Check vertical form navigation and half-room controls
+name: Check compact mobile steps and form headings
 on:
   push:
     branches: [codex/map-label-check-20261121]
@@ -40,7 +40,7 @@ jobs:
           python3 - <<'PY'
           import base64,hashlib,json,os,urllib.request
           from pathlib import Path
-          paths=list(Path('.local/browser-tests').glob('forms-*.log'))+list(Path('.local/browser-tests/screenshots').glob('vertical-form-*.png'))+list(Path('.local/browser-tests/screenshots').glob('visual-type-*.png'))+list(Path('.local/browser-tests/screenshots').glob('form-details-*.png'))+sorted(Path('.local/browser-tests/screenshots').glob('*failure*.png'))[:3]
+          paths=list(Path('.local/browser-tests').glob('forms-*.log'))+list(Path('.local/browser-tests/screenshots').glob('compact-editor-*.png'))+list(Path('.local/browser-tests/screenshots').glob('vertical-form-*.png'))+list(Path('.local/browser-tests/screenshots').glob('visual-type-*.png'))+list(Path('.local/browser-tests/screenshots').glob('form-details-*.png'))+sorted(Path('.local/browser-tests/screenshots').glob('*failure*.png'))[:3]
           for path in paths:
               if not path.is_file():continue
               raw=path.read_bytes()
