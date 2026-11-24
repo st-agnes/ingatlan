@@ -75,8 +75,10 @@ public static class Rules
         if (i.Price <= 0 || i.Price > 1_000_000_000_000m || i.Area <= 0 || i.Area > 1_000_000 || rooms <= 0 || rooms > 1000
             || wholeRooms < 0 || wholeRooms > 1000 || halfRooms < 0 || halfRooms > 1000
             || i.Rooms < 0 || explicitRoomCounts && i.Rooms > 0 && i.Rooms != rooms
-            || !house && (i.Floor < -5 || i.Floor > 200 || (i.Floor < -1 && i.Floor != p.Floor)
-                || i.BuildingFloors < 0 || i.BuildingFloors > 200 || i.Floor > i.BuildingFloors))
+            || !house && (i.Floor.HasValue && !PropertyAttributes.KnownFloor(i.Floor) || (i.Floor < -1 && i.Floor != p.Floor)
+                || i.BuildingFloors < 0 || i.BuildingFloors > 200
+                || i.Floor > i.BuildingFloors && !(i.Floor == .5m && i.BuildingFloors == 0)
+                || i.FloorIsUpperRange && i.Floor != 9m))
             throw new ApiException(400, "Az ár, alapterület, szobaszám vagy emelet érvénytelen.");
         if (house && (!i.LotArea.HasValue || i.LotArea <= 0 || i.LotArea > 10_000_000))
             throw new ApiException(400, "Ház esetén a telekméret kötelező, pozitív szám legyen, legfeljebb 10 000 000 m².");
@@ -84,6 +86,7 @@ public static class Rules
             : rooms == p.Rooms && (p.WholeRooms.HasValue || p.HalfRooms.HasValue) ? RoomCounts(p)
             : LegacyRoomCounts(rooms);
         p.Price = i.Price; p.Area = i.Area; p.Rooms = rooms; p.Floor = house ? null : i.Floor;
+        p.FloorIsUpperRange = !house && i.FloorIsUpperRange;
         p.BuildingFloors = house ? null : i.BuildingFloors;
         var flat = Normalize(p.Type) == "LAKAS";
         p.PrivateGarden = flat ? i.PrivateGarden : null;
@@ -114,7 +117,7 @@ public static class Rules
             var exact = LocationCatalog.ResolveLegacy("Budapest", [ward]).Single();
             p.LocationId = exact.Id; p.District = exact.District!;
         }
-        p.Description = PublicText(i.Description);
+        p.Description = ContactTextPolicy.ValidateDescription(i.Description);
         PropertyAttributes.Apply(p, i); p.Balcony = !house && i.Balcony; p.Elevator = !house && i.Elevator; p.Archived = i.Archived;
         var images = i.Images ?? [];
         if (images.Length > 12 || images.Any(x => !Uri.TryCreate(x, UriKind.Absolute, out var uri) || uri.Scheme != "https" || x.Length > 2000)) throw new ApiException(400, "Legfeljebb 12 HTTPS-képhivatkozás adható meg.");
@@ -141,7 +144,7 @@ public static class Rules
         s.AirConditioning = i.AirConditioning;
         s.PrivateGarden = flat && i.PrivateGarden;
         s.SharedGarden = false;
-        s.Description = PublicText(i.Description); s.MoveIn = PublicText(i.MoveIn, 100); s.Financing = PublicText(i.Financing, 255); s.Balcony = Normalize(s.Type) != "HAZ" && i.Balcony; s.Elevator = Normalize(s.Type) != "HAZ" && i.Elevator; s.Archived = i.Archived;
+        s.Description = ContactTextPolicy.ValidateDescription(i.Description); s.MoveIn = PublicText(i.MoveIn, 100); s.Financing = PublicText(i.Financing, 255); s.Balcony = Normalize(s.Type) != "HAZ" && i.Balcony; s.Elevator = Normalize(s.Type) != "HAZ" && i.Elevator; s.Archived = i.Archived;
     }
 }
 public static class Passwords

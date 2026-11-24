@@ -2,7 +2,7 @@
 import {getLocation,resolveLegacyLocations,isPropertyLocation} from './locations.js';
 import {agglomerations} from './agglomerations-data.js';
 import {CONDITION_OPTIONS,BUILDING_OPTIONS,CONSTRUCTION_AGE_OPTIONS,VIEW_OPTIONS,HEATING_OPTIONS,CEILING_HEIGHT_OPTIONS,
-  normalizeCondition,normalizeBuilding,normalizeSearchAttributes} from './attributes.js';
+  FLOOR_OPTIONS,normalizeCondition,normalizeBuilding,normalizeSearchAttributes} from './attributes.js';
 
 export const MATCH_WEIGHTS=Object.freeze({maxPrice:32,minRooms:22,minArea:16,condition:10,floor:7,elevator:5,balcony:4,
   building:3,heatingType:2.5,constructionAge:2,ceilingHeight:1.5,maxArea:1.25,maxRooms:1,minPrice:.75,view:.5,airConditioning:3,privateGarden:3});
@@ -65,9 +65,10 @@ function matchesStreet(property,place,streetIds){
     &&(!street.district||!place.district||street.district===place.district);
 }
 
-const knownFloor = p => p.floor != null && typeof p.floor !== 'boolean' && Number.isInteger(Number(p.floor)) && Number(p.floor) >= -5 && Number(p.floor) <= 200;
-const knownTopFloor = p => knownFloor(p) && p.buildingFloors != null && typeof p.buildingFloors !== 'boolean' && Number.isInteger(Number(p.buildingFloors)) && Number(p.buildingFloors) >= 0 && Number(p.buildingFloors) <= 200 && Number(p.floor) <= Number(p.buildingFloors);
-const belowTopFloor = p => knownTopFloor(p) && Number(p.floor) < Number(p.buildingFloors);
+const knownFloor = p => p.floor != null && typeof p.floor !== 'boolean' && (Number.isInteger(Number(p.floor)) || Number(p.floor) === 0.5) && Number(p.floor) >= -5 && Number(p.floor) <= 200;
+const effectiveTopFloor = p => Number(p.floor) === 0.5 && Number(p.buildingFloors) === 0 ? 0.5 : Number(p.buildingFloors);
+const knownTopFloor = p => knownFloor(p) && p.floorIsUpperRange !== true && p.buildingFloors != null && typeof p.buildingFloors !== 'boolean' && Number.isInteger(Number(p.buildingFloors)) && Number(p.buildingFloors) >= 0 && Number(p.buildingFloors) <= 200 && Number(p.floor) <= effectiveTopFloor(p);
+const belowTopFloor = p => knownTopFloor(p) && Number(p.floor) < effectiveTopFloor(p);
 const aboveGroundFloor = p => knownFloor(p) && Number(p.floor) > 0;
 
 export function evaluateMatch(property,input,{includeReasons=true}={}){
@@ -86,8 +87,8 @@ export function evaluateMatch(property,input,{includeReasons=true}={}){
   }
   const actualCondition=conditionIndex(p.condition);
   add('condition',q.conditions.size,actualCondition<0||q.conditionMinimum<0?1:(q.conditionMinimum-actualCondition)/3,'Állapot');
-  const floor=p.floor==null||!Number.isInteger(Number(p.floor))?null:Number(p.floor);
-  let floorLoss=q.floors.length?(floor==null?1:Math.min(...q.floors.map(wanted=>wanted===11&&floor>=11?0:Math.abs(wanted-floor)))/5):0;
+  const floor=!knownFloor(p)?null:Number(p.floor);
+  let floorLoss=q.floors.length?(floor==null?1:Math.min(...q.floors.map(wanted=>wanted===9&&floor>=9?0:Math.abs(wanted-floor)))/5):0;
   if(s.excludeTopFloor&&!belowTopFloor(p))floorLoss=Math.max(floorLoss,1);
   if(s.excludeGroundFloorAndBelow&&!aboveGroundFloor(p))floorLoss=Math.max(floorLoss,1);
   add('floor',!q.house&&(q.floors.length||s.excludeTopFloor||s.excludeGroundFloorAndBelow),floorLoss,'Emelet');
@@ -109,7 +110,7 @@ export function evaluateMatch(property,input,{includeReasons=true}={}){
 
 const explanationNumber=new Intl.NumberFormat('hu-HU',{useGrouping:false,maximumFractionDigits:6});
 const detailNumber=value=>explanationNumber.format(value);
-const detailFloor=(value,bucket=false)=>value===-1?'Szuterén':value===0?'Földszint':value===11&&bucket?'11. emelet vagy afölötti':`${value}. emelet`;
+const detailFloor=(value,bucket=false)=>value===-1?'Szuterén':value===0?'Földszint':value===0.5?'Magasföldszint':value>=9&&bucket?'9. emelet vagy afölötti':`${value}. emelet`;
 const knownDetail=(value,options)=>options.includes(value)?value:'Nincs megadva';
 
 /** Concrete requested/actual values, only built for cards that need presentation. */
@@ -139,14 +140,14 @@ function explainMatch(p,q,place){
       actual>=0?CONDITION_OPTIONS[actual]:'Nincs megadva',actual>=0&&minimum>=0&&actual>=minimum);
   }
   if(!q.house&&q.floors.length){
-    const floor=p.floor==null||!Number.isInteger(Number(p.floor))?null:Number(p.floor);
-    add('floor','Emelet',q.floors.map(value=>detailFloor(value,true)).join(' vagy '),floor==null?'Nincs megadva':detailFloor(floor),
-      floor!=null&&q.floors.some(value=>value===floor||value===11&&floor>=11));
+    const floor=!knownFloor(p)?null:Number(p.floor);
+    add('floor','Emelet',q.floors.map(value=>detailFloor(value,true)).join(' vagy '),floor==null?'Nincs megadva':detailFloor(floor,p.floorIsUpperRange===true),
+      floor!=null&&q.floors.some(value=>value===floor||value===9&&floor>=9));
   }
   if(!q.house&&s.elevator)add('elevator','Lift','Van lift',p.elevator?'Van lift':'Nincs lift',!!p.elevator);
   if(!q.house&&s.balcony)add('balcony','Erkély','Van erkély',p.balcony?'Van erkély':'Nincs erkély',!!p.balcony);
   if(!q.house&&s.excludeTopFloor)add('excludeTopFloor','Legfelső emelet','Nem legfelső emelet',!knownTopFloor(p)?'Nincs megadva':belowTopFloor(p)?'Nem legfelső emelet':'Legfelső emelet',belowTopFloor(p));
-  if(!q.house&&s.excludeGroundFloorAndBelow)add('excludeGroundFloorAndBelow','Földszint és szuterén','Földszint felett',knownFloor(p)?detailFloor(Number(p.floor)):'Nincs megadva',aboveGroundFloor(p));
+  if(!q.house&&s.excludeGroundFloorAndBelow)add('excludeGroundFloorAndBelow','Földszint és szuterén','Földszint felett',knownFloor(p)?detailFloor(Number(p.floor),p.floorIsUpperRange===true):'Nincs megadva',aboveGroundFloor(p));
   if(s.airConditioning)add('airConditioning','Légkondi','Van légkondi',p.airConditioning==null?'Nincs megadva':p.airConditioning===true?'Van légkondi':'Nincs légkondi',p.airConditioning===true);
   if(q.flat&&s.privateGarden)add('privateGarden','Saját kert','Van saját kert',p.privateGarden==null?'Nincs megadva':p.privateGarden===true?'Van saját kert':'Nincs saját kert',p.privateGarden===true);
   category('building','Falazat',normalizeBuilding(p.building),q.buildings,BUILDING_OPTIONS);
@@ -178,7 +179,7 @@ export function valueForMoney(p={}){
   const parking=(Array.isArray(p.parkingTypes)?p.parkingTypes:[p.parkingType]).map(value=>canon(value,parkingOptions));
   quality+=parking.some(value=>garageTypes.has(value))?.015:parking.some(value=>drivewayTypes.has(value))?.01:0;
   quality+=canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS)==='3 m feletti'?.005:0;
-  quality+=!house&&p.floor!=null&&Number(p.floor)>=0&&Number(p.floor)<=3?.005:0;
+  quality+=!house&&knownFloor(p)&&Number(p.floor)>=0&&Number(p.floor)<=3?.005:0;
   quality+=!house&&p.balcony?.01:0;quality+=!house&&p.elevator?.01:0;
   quality+=Math.min(1,Math.max(0,roomTotal(p)||0)/(area/25))*.005;
   return (area+.04*Math.min(plot,5*area))/price*(1+Math.min(.25,quality));
@@ -203,7 +204,7 @@ function specificityOf(q){
   add(MATCH_WEIGHTS.ceilingHeight,s.ceilingHeight?1:0);
   add(MATCH_WEIGHTS.airConditioning,s.airConditioning?1:0);
   if(q.flat)add(MATCH_WEIGHTS.privateGarden,s.privateGarden?1:0);
-  if(!q.house){add(MATCH_WEIGHTS.floor,Math.max(category(q.floors.length,13),s.excludeTopFloor||s.excludeGroundFloorAndBelow?1:0));add(MATCH_WEIGHTS.elevator,s.elevator?1:0);add(MATCH_WEIGHTS.balcony,s.balcony?1:0);}
+  if(!q.house){add(MATCH_WEIGHTS.floor,Math.max(category(q.floors.length,FLOOR_OPTIONS.length),s.excludeTopFloor||s.excludeGroundFloorAndBelow?1:0));add(MATCH_WEIGHTS.elevator,s.elevator?1:0);add(MATCH_WEIGHTS.balcony,s.balcony?1:0);}
   return Math.max(0,Math.min(100,Math.round(100*selected/total)));
 }
 export function searchSpecificity(search){return search?.[compiledMarker]?search.specificity:prepareSearch(search).specificity;}

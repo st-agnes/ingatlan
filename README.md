@@ -94,14 +94,14 @@ A webes felület önmagában böngészős demóként is használható. Demómód
 - A helyszínlista a beviteli mező alatt jelenik meg, és máshová kattintva választás nélkül bezárható. Új keresés mentése után külön visszajelzés és „Ingatlanok felfedezése” gomb segít az aktiválásban.
 - Keresésnél a minimumár, a maximum alapterület és a maximum szobaszám elhagyható; az üres mező valóban nyitott korlát. Házhoz kötelező telekméretet megadni; emeletet, erkélyt és liftet nem kérünk.
 - Az űrlap bal oldalán elkülönített függőleges lépésmenü, mobilon kompakt, rögzített alsó lépéssáv segíti a kitöltést. A Tovább gomb a tartalom tetején és alján marad. A képes típuskártya csak kijelöl, az opcionális képes választások ismételt kattintással törölhetők. A falazatokhoz külön magyarázat nyitható.
-- Emelet/lift az ingatlanjellemzőknél, zárószint és földszint/szuterén kizárásával; eladóknál megadható az épület legfelső emelete. Kereshető légkondi és lakásnál saját kert, az adatok teljes mentésével és párosításával.
+- Magasföldszint és 9 vagy afölötti emeletcsoport; a korábbi pontos emeletek megőrzésével. Emelet/lift az ingatlanjellemzőknél, zárószint és földszint/szuterén kizárásával; eladóknál megadható az épület legfelső emelete. Kereshető légkondi és lakásnál saját kert, az adatok teljes mentésével és párosításával.
 - Opcionális, több értéket elfogadó keresési feltételek: állapot, falazat, épületkor, kilátás, fűtéstípus és emelet; külön választható belmagasság. Az ingatlanon egy érték adható meg, szintén opcionálisan.
 - Eladói fő- és kiegészítő fűtés közös legördülő listából, több parkolóhely kijelölése; szigetelés, energetikai besorolás, légkondi, napelem és parkolóhely. Az igen/nem mezők az ismeretlen értéket is megőrzik. Részletes értékek és API-mezők: [Ingatlanparaméterek](docs/PROPERTY-PARAMETERS.md).
-- Külön egész- és félszobaszám, az összetétel megőrzésével; a keresési szobaszám az egész + fél / 2 összegre vonatkozik, fél szobánként léptethető plusz–mínusz gombokkal. A számmezőkben a negatív érték bevitele blokkolt.
+- Külön egész- és félszobaszám az eladóknál, az összetétel megőrzésével. A keresési minimum és maximum szobaszám nem gépelhető mező, hanem plusz–mínusz gombokkal, 1-től fél szobánként állítható kijelzés; 1 alatt visszaáll a korlát nélküli állapotra. A számmezőkben a negatív érték bevitele blokkolt.
 - Hely, típus, ár, alapterület, szobaszám és a megadott opcionális paraméterek szerinti megfelelés; a már elbírált párok kizárása.
 - JWT-hitelesítés, sózott PBKDF2-jelszótárolás, tulajdonosi jogosultságok, rejtett elérhetőségek.
 - Végleges, újraküldés esetén egyszer feldolgozott döntések; tranzakciós kreditlevonás, kreditnapló és kölcsönös párosítás.
-- Párosításokhoz kötött kapcsolatfelvétel és üzenetküldés.
+- Párosításokhoz kötött kapcsolatfelvétel és üzenetküldés. A leírások elérhetőség-ellenőrzése a tagolt és betűvel kiírt telefonszámokat, valamint az álcázott e-mail-címeket is vizsgálja a felületen és a backendben.
 - Stripe Checkout integráció szerveroldali csomagárakkal és aláírt, idempotens webhookos kreditjóváírással. A használatához saját Stripe-kulcsok és HTTPS-webhook szükségesek.
 - Frontendtől független REST API későbbi mobilkliensekhez.
 

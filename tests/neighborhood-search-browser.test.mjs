@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorSave,editorStep,removeSelectedLocation,choosePropertyType} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,editorStep,removeSelectedLocation,choosePropertyType,fillRoomBound} from './editor-browser-helpers.mjs';
 import {searchLocations} from '../dist/locations.js';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
@@ -59,7 +59,7 @@ async function searchFlow(browser,viewport){
   await input.focus();await list.waitFor({state:'visible'});await input.press('Escape');assert.equal(await list.isHidden(),true);
   await input.fill('');
   const title=`Városrészek és település – ${viewport.name}`;await choosePropertyType(page,'Lakás',interact);
-  await (await editorField(page,'#f-maxPrice')).fill('130');await (await editorField(page,'#f-minArea')).fill('40');await (await editorField(page,'#f-minRooms')).fill('1');
+  await (await editorField(page,'#f-maxPrice')).fill('130');await (await editorField(page,'#f-minArea')).fill('40');await fillRoomBound(page,'minRooms','1',interact);
   await (await editorField(page,'input[name="heatingTypes"][value="Hőszivattyú"]')).check();
   await fits(page);await (await editorField(page,'#f-title')).fill(title);await editorSave(page,interact);
   await page.getByRole('heading',{name:'Elkészült a keresési igényed.',exact:true}).waitFor();

@@ -115,7 +115,7 @@ public class MatchingRankingTests
     }
 
     [Fact]
-    public void FloorUsesNearestSelectedLevelAndKeepsTheElevenPlusBucket()
+    public void FloorUsesNearestSelectedLevelAndNormalizesTheOldElevenPlusBucket()
     {
         var q = Wanted(); q.FloorsJson = "[1,5]"; var p = Home();
         p.Floor = 4; Assert.Equal(80, Match(p, q).Score);
@@ -222,7 +222,7 @@ public class MatchingRankingTests
     }
 
     [Fact]
-    public void ExplanationsRespectBoundsAliasesElevenPlusUnknownValuesAndHouseApplicability()
+    public void ExplanationsRespectBoundsAliasesNinePlusUnknownValuesAndHouseApplicability()
     {
         var p = Home(); p.Price = 80_500_000m; p.Rooms = 3.5m;
         var q = Wanted(); q.MinPrice = 60_000_000m; q.MaxPrice = 100_000_000m;
@@ -231,7 +231,7 @@ public class MatchingRankingTests
         Assert.Equal("2,5–4 szoba", details["rooms"].Expected); Assert.Equal("80,5 M Ft", details["price"].Actual);
         q = Wanted(); q.FloorsJson = "[11]"; q.ConditionsJson = "[\"Jó\"]"; p.Floor = 27; p.Condition = "Felújított";
         var result = Match(p, q); details = result.MatchDetails.ToDictionary(value => value.Key);
-        Assert.Equal("11. emelet vagy afölötti", details["floor"].Expected); Assert.Equal("27. emelet", details["floor"].Actual);
+        Assert.Equal("9. emelet vagy afölötti", details["floor"].Expected); Assert.Equal("27. emelet", details["floor"].Actual);
         Assert.All(result.MatchDetails, value => Assert.True(value.Matches));
         q = Wanted(); q.BuildingsJson = "[\"Panel\",\"Tégla\"]"; q.HeatingTypesJson = "[\"Nincs fűtés\"]";
         details = Match(p, q).MatchDetails.ToDictionary(value => value.Key);

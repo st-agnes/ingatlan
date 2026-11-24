@@ -64,7 +64,7 @@ test('condition is an ordered minimum and better conditions remain exact',()=>{
   assert.equal(evaluateMatch(home({condition:'Jó'}),wanted({conditions:['Átlagos']})).score,100);
 });
 
-test('floor loss uses the nearest allowed floor, supports basement and 11-or-higher and penalizes unknown floors',()=>{
+test('floor loss uses the nearest allowed floor, supports basement and 9-or-higher and penalizes unknown floors',()=>{
   const q=wanted({floors:[1,5]});
   assert.equal(evaluateMatch(home({floor:4}),q).score,80);
   assert.equal(evaluateMatch(home({floor:3}),q).score,60);
@@ -147,12 +147,12 @@ test('partial explanations contain concrete requested and actual values plus met
   for(const key of ['location','type','area','building','heatingType'])assert.equal(details[key].matches,true,key);
 });
 
-test('explanations respect bounds, aliases, 11+ floors, unknown values and applicable criteria',()=>{
+test('explanations respect bounds, aliases, 9+ floors, unknown values and applicable criteria',()=>{
   let result=evaluateMatch(home({price:80.5,rooms:3.5,area:60}),wanted({minPrice:60,maxPrice:100,minRooms:2.5,maxRooms:4,minArea:50,maxArea:70}));
   assert.equal(result.matchDetails.find(item=>item.key==='rooms').expected,'2,5–4 szoba');
   assert.equal(result.matchDetails.find(item=>item.key==='price').actual,'80,5 M Ft');
   result=evaluateMatch(home({floor:27,condition:'Felújított'}),wanted({floors:[11],conditions:['Jó']}));
-  assert.equal(result.matchDetails.find(item=>item.key==='floor').expected,'11. emelet vagy afölötti');
+  assert.equal(result.matchDetails.find(item=>item.key==='floor').expected,'9. emelet vagy afölötti');
   assert.equal(result.matchDetails.find(item=>item.key==='floor').actual,'27. emelet');
   assert.ok(result.matchDetails.every(item=>item.matches));
   result=evaluateMatch(home(),wanted({buildings:['Panel','Tégla'],heatingTypes:['Nincs fűtés']}));
@@ -216,4 +216,21 @@ test('new match explanations expose requested and actual facts while lean scans 
  assert.equal(searchSpecificity(wanted({type:'Ház',privateGarden:true,sharedGarden:true,excludeTopFloor:true,excludeGroundFloorAndBelow:true})),searchSpecificity(wanted({type:'Ház'})));
  assert.ok(valueForMoney(home({privateGarden:true}))>valueForMoney(home()));
  assert.equal(valueForMoney(home({type:'Ház',privateGarden:true})),valueForMoney(home({type:'Ház'})));
+});
+
+
+test('raised-ground ordering and upper ranges distinguish known levels from unknown top floors',()=>{
+ assert.equal(valueForMoney(home({floor:1.5})),valueForMoney(home()),'An invalid fractional floor cannot earn a known-low-floor bonus');
+ const raised=home({floor:0.5,buildingFloors:0});
+ assert.equal(evaluateMatch(raised,wanted({floors:[0.5],excludeGroundFloorAndBelow:true})).score,100);
+ assert.equal(evaluateMatch(raised,wanted({floors:[0]})).score,90);
+ assert.equal(evaluateMatch(raised,wanted({excludeTopFloor:true})).score,0);
+ assert.equal(evaluateMatch({...raised,buildingFloors:1},wanted({excludeTopFloor:true})).score,100);
+ const range=home({floor:9,floorIsUpperRange:true,buildingFloors:12});
+ assert.equal(evaluateMatch(range,wanted({floors:[9]})).score,100);
+ assert.equal(evaluateMatch(range,wanted({floors:[11]})).score,100);
+ assert.equal(evaluateMatch(range,wanted({excludeTopFloor:true})).score,0);
+ const detail=evaluateMatch(range,wanted({floors:[8]})).matchDetails.find(x=>x.key==='floor');
+ assert.equal(detail.actual,'9. emelet vagy afölötti');assert.equal(detail.matches,false);
+ assert.equal(evaluateMatch(home({floor:12,buildingFloors:13}),wanted({floors:[9],excludeTopFloor:true})).score,100);
 });

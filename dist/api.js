@@ -1,3 +1,4 @@
+import {assertDescriptionContactFree} from './contact-policy.js';
 import { model as demoModel, demoLanding } from './model.js';
 import {publicFirstName,publicTitle} from './public-profile.js';
 import {FEEDBACK_OPTIONS,FEEDBACK_PACKAGE_SIZES,FEEDBACK_QUESTION,feedbackTitle} from './feedback.js';
@@ -156,7 +157,7 @@ function propertyFromApi(value, own = false) {
     ...(own ? {addressDetails:privateAddressFromApi(value.addressDetails)} : {}),
     type: value.type || value.propertyType || 'Lakás',
     price: millions(value.priceHuf ?? value.price), area: numeric(value.area ?? value.areaSqm ?? value.sizeSqm), rooms: numeric(value.rooms ?? value.roomCount), wholeRooms:value.wholeRooms, halfRooms:value.halfRooms,
-    lotArea: numeric(value.lotArea ?? value.lotAreaSqm ?? null), floor: numeric(value.floor), buildingFloors:numeric(value.buildingFloors), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
+    lotArea: numeric(value.lotArea ?? value.lotAreaSqm ?? null), floor: numeric(value.floor), floorIsUpperRange:value.floorIsUpperRange, buildingFloors:numeric(value.buildingFloors), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
     balcony: !!(value.balcony ?? value.hasBalcony), elevator: !!(value.elevator ?? value.hasElevator),
     constructionAge:value.constructionAge, view:value.view, ceilingHeight:value.ceilingHeight,
     heatingType:value.heatingType, secondaryHeatingType:value.secondaryHeatingType, insulated:value.insulated, energyRating:value.energyRating,
@@ -207,7 +208,6 @@ function propertyToApi(value, updating = false) {
   const attributes = normalizePropertyAttributes({...value,type},{strict:true,allowLegacyUnknown:updating});
   const countsSupplied = [value.wholeRooms,value.halfRooms].some(count=>count != null && String(count).trim() !== '');
   const floor = type === 'Ház' ? null : attributes.floor;
-  if (floor != null && !Number.isInteger(floor)) throw new Error('Az emelet egész szám legyen.');
   const images = Array.isArray(value.images) ? value.images.map(inputText).filter(Boolean) : inputText(value.images).split('\n').map(inputText).filter(Boolean);
   if (images.length > 12 || images.some(image => { try { return new URL(image).protocol !== 'https:' || image.length > 2000; } catch { return true; } })) throw new Error('Az API-hoz legfeljebb 12 HTTPS-képhivatkozás adható meg.');
   const price = inputNumber(value.price, 'ár'), area = inputNumber(value.area, 'alapterület'), rooms = inputNumber(attributes.rooms, 'szobaszám');
@@ -226,7 +226,7 @@ function propertyToApi(value, updating = false) {
   return {
     title: inputText(value.title), locationId:location.id, city:location.city, district:location.district || '', street, houseNumber, postalCode,
     ...(streetId ? {streetId} : {}), address: inputText(value.address), description: inputText(value.description),
-    type, price: Math.round(price * MILLION), area, rooms, wholeRooms:countsSupplied ? attributes.wholeRooms : null, halfRooms:countsSupplied ? attributes.halfRooms : null, lotArea, floor, buildingFloors:attributes.buildingFloors,
+    type, price: Math.round(price * MILLION), area, rooms, wholeRooms:countsSupplied ? attributes.wholeRooms : null, halfRooms:countsSupplied ? attributes.halfRooms : null, lotArea, floor, floorIsUpperRange:attributes.floorIsUpperRange, buildingFloors:attributes.buildingFloors,
     condition:attributes.condition, building:attributes.building,
     constructionAge:attributes.constructionAge, view:attributes.view, ceilingHeight:attributes.ceilingHeight,
     heatingType:attributes.heatingType, secondaryHeatingType:attributes.secondaryHeatingType, insulated:attributes.insulated, energyRating:attributes.energyRating,
@@ -490,9 +490,16 @@ export class ApiModel {
     if (!['property','search'].includes(kind)) throw new Error('Érvénytelen profiltípus.');
     if (creationRequestId != null && (id || typeof creationRequestId !== 'string' || !/^[\da-f]{8}-(?:[\da-f]{4}-){3}[\da-f]{12}$/i.test(creationRequestId) || /^0{8}-(?:0{4}-){3}0{12}$/.test(creationRequestId))) throw new Error('Érvénytelen létrehozási azonosító.');
     const route = kind === 'property' ? '/properties' : '/searches';
+    // Keyed requests may replay a successful older receipt; the backend checks
+    // that receipt before applying the current description policy to new data.
+    if (!creationRequestId) assertDescriptionContactFree(data.description);
     const payload=kind === 'property' ? propertyToApi(data,!!id) : searchToApi(data);
     if (creationRequestId) {
       payload.creationRequestId=creationRequestId.toLowerCase();
+      // Preserve the historical wire selection in frozen drafts. Persistence
+      // normalizes the old tenth/eleventh choices into today's ninth-plus band.
+      if (kind === 'search' && Array.isArray(data.floors) && inputText(data.type) !== 'Ház')
+        payload.floors=[...new Set(data.floors.map(Number))];
       // An old frozen draft must retry its original request hash. The server
       // ignores this retired field for persistence and matching.
       const legacyGarden=data.sharedGarden, legacyGardenText=String(legacyGarden).trim().toLowerCase();

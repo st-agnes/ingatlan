@@ -188,14 +188,14 @@ public sealed class PublicLandingCache
                 select new { property.Id, property.City, property.District, property.LocationId, property.Type, property.Price,
                     property.Area, property.Rooms, property.WholeRooms, property.HalfRooms, property.LotArea, property.NeighborhoodIdsJson,
                     property.Condition, property.Building, property.ConstructionAge, property.View, property.CeilingHeight,
-                    property.Floor, property.BuildingFloors, property.AirConditioning, property.PrivateGarden,
+                    property.Floor, property.FloorIsUpperRange, property.BuildingFloors, property.AirConditioning, property.PrivateGarden,
                     property.HeatingType, property.Balcony, property.Elevator, property.Title, owner.Name, owner.AccountType };
             await foreach (var row in properties.AsAsyncEnumerable().WithCancellation(cancellationToken))
                 snapshot.Add(new Property { Id = row.Id, Title = row.Title, City = row.City, District = row.District, LocationId = row.LocationId,
                     Type = row.Type, Price = row.Price, Area = row.Area, Rooms = row.Rooms, WholeRooms = row.WholeRooms,
                     HalfRooms = row.HalfRooms, LotArea = row.LotArea, NeighborhoodIdsJson = row.NeighborhoodIdsJson,
                     Condition = row.Condition, Building = row.Building, ConstructionAge = row.ConstructionAge, View = row.View,
-                    CeilingHeight = row.CeilingHeight, Floor = row.Floor, BuildingFloors = row.BuildingFloors,
+                    CeilingHeight = row.CeilingHeight, Floor = row.Floor, FloorIsUpperRange = row.FloorIsUpperRange, BuildingFloors = row.BuildingFloors,
                     AirConditioning = row.AirConditioning, PrivateGarden = row.PrivateGarden, SharedGarden = null, HeatingType = row.HeatingType,
                     Balcony = row.Balcony, Elevator = row.Elevator }, row.AccountType, row.Name);
             Volatile.Write(ref cached, new Cached(DateTime.UtcNow.AddSeconds(60), snapshot));

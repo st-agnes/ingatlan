@@ -134,7 +134,7 @@ public class PublicLandingTests
             p.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
         Assert.Equal(new[] { "airConditioning", "balcony", "buildings", "ceilingHeight", "conditions", "constructionAges", "elevator", "excludeGroundFloorAndBelow", "excludeTopFloor", "floors", "heatingTypes", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "privateGarden", "sharedGarden", "type", "views" },
             s.GetProperty("prefill").EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
-        Assert.Equal(new[] { "airConditioning", "area", "balcony", "building", "buildingFloors", "ceilingHeight", "condition", "constructionAge", "elevator", "floor", "halfRooms", "heatingType", "locations", "lotArea", "price", "privateGarden", "rooms", "sharedGarden", "type", "view", "wholeRooms" },
+        Assert.Equal(new[] { "airConditioning", "area", "balcony", "building", "buildingFloors", "ceilingHeight", "condition", "constructionAge", "elevator", "floor", "floorIsUpperRange", "halfRooms", "heatingType", "locations", "lotArea", "price", "privateGarden", "rooms", "sharedGarden", "type", "view", "wholeRooms" },
             p.GetProperty("prefill").EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
         Assert.DoesNotContain("47.5123456789", json); Assert.DoesNotContain("19.123456789", json);
         Assert.Equal("Ingatlant keres", response.Searches[0].Title);
@@ -253,7 +253,7 @@ public class PublicLandingTests
         Assert.Equal(search.MaxPrice, seed.MaxPrice); Assert.Equal(search.MinArea, seed.MinArea);
         Assert.Equal(new[] { "Jó" }, seed.Conditions); Assert.Equal(new[] { "Panel" }, seed.Buildings);
         Assert.Equal(new[] { "10–30 év közötti" }, seed.ConstructionAges); Assert.Equal(new[] { "Udvari" }, seed.Views);
-        Assert.Equal(new[] { -1, 0, 11 }, seed.Floors); Assert.Equal(new[] { "Gázcirkó" }, seed.HeatingTypes);
+        Assert.Equal(new[] { -1m, 0m, 9m }, seed.Floors); Assert.Equal(new[] { "Gázcirkó" }, seed.HeatingTypes);
         Assert.True(seed.Balcony); Assert.False(seed.Elevator);
         Assert.DoesNotContain("private@example.test", JsonSerializer.Serialize(seed));
     }
@@ -269,7 +269,7 @@ public class PublicLandingTests
         var seed = PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.Prefill!;
         Assert.Equal("Új/felújított", seed.Condition); Assert.Equal("Panel", seed.Building); Assert.Equal("Gázcirkó", seed.HeatingType);
         Assert.Equal(property.Price, seed.Price); Assert.Equal(property.Area, seed.Area); Assert.Equal(property.Rooms, seed.Rooms);
-        Assert.Equal(2, seed.WholeRooms); Assert.Equal(1, seed.HalfRooms); Assert.Equal(0, seed.Floor);
+        Assert.Equal(2, seed.WholeRooms); Assert.Equal(1, seed.HalfRooms); Assert.Equal(0m, seed.Floor);
         Assert.False(seed.Balcony); Assert.True(seed.Elevator);
         property.Type = "Ház"; property.LotArea = 700m; property.Balcony = true;
         seed = PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.Prefill!;
@@ -291,7 +291,7 @@ public class PublicLandingTests
         var seed = PublicLanding.SearchTeaser(search, AccountTypes.Private)!.Value.Teaser.Prefill!;
         Assert.Equal(50, seed.Locations.Length); Assert.Single(seed.Conditions);
         Assert.Empty(seed.Buildings); Assert.Empty(seed.ConstructionAges); Assert.Empty(seed.Views); Assert.Empty(seed.HeatingTypes);
-        Assert.InRange(seed.Floors.Length, 0, 13);
+        Assert.InRange(seed.Floors.Length, 0, 12);
         search.LocationIdsJson = JsonSerializer.Serialize(ids.Append("district:Budapest:5"));
         Assert.Null(PublicLanding.SearchTeaser(search, AccountTypes.Private));
     }
@@ -321,7 +321,7 @@ public class PublicLandingTests
             Assert.Equal(postcodes, fresh.Locations[1].PostalCodes);
             Assert.Equal(new[] { "Jó" }, fresh.Conditions); Assert.Equal(new[] { "Tégla" }, fresh.Buildings);
             Assert.Equal(new[] { "10–30 év közötti" }, fresh.ConstructionAges); Assert.Equal(new[] { "Udvari" }, fresh.Views);
-            Assert.Equal(new[] { "Gázcirkó" }, fresh.HeatingTypes); Assert.Equal(new[] { 0 }, fresh.Floors);
+            Assert.Equal(new[] { "Gázcirkó" }, fresh.HeatingTypes); Assert.Equal(new[] { 0m }, fresh.Floors);
             Assert.Equal("city:Debrecen", Assert.Single(Assert.Single(response.Properties).Prefill!.Locations).Id);
         });
         Assert.Equal(postcodes, LocationCatalog.Get(streetId)!.PostalCodes);

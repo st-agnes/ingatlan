@@ -1,0 +1,667 @@
+[
+  {
+    "id": "plain-mobile",
+    "text": "Hívj: +36 30 123 4567.",
+    "contact": true
+  },
+  {
+    "id": "plain-domestic",
+    "text": "06 20 123 4567",
+    "contact": true
+  },
+  {
+    "id": "plain-budapest",
+    "text": "06 1 234 5678",
+    "contact": true
+  },
+  {
+    "id": "plain-international",
+    "text": "+44 7700 900123",
+    "contact": true
+  },
+  {
+    "id": "double-zero",
+    "text": "0044 7700 900123",
+    "contact": true
+  },
+  {
+    "id": "bare-hu-country",
+    "text": "36 70 123 4567",
+    "contact": true
+  },
+  {
+    "id": "local-mobile",
+    "text": "30 123 4567",
+    "contact": true
+  },
+  {
+    "id": "local-seven",
+    "text": "Telefon: 1234567",
+    "contact": true
+  },
+  {
+    "id": "unadorned-seven",
+    "text": "1234567",
+    "contact": true
+  },
+  {
+    "id": "phone-parentheses",
+    "text": "(+36) (30) 123-4567",
+    "contact": true
+  },
+  {
+    "id": "phone-slashes",
+    "text": "06/30/123/4567",
+    "contact": true
+  },
+  {
+    "id": "phone-dots",
+    "text": "06.30.123.4567",
+    "contact": true
+  },
+  {
+    "id": "phone-single-digits",
+    "text": "0 6 3 0 1 2 3 4 5 6 7",
+    "contact": true
+  },
+  {
+    "id": "phone-lines",
+    "text": "06\n30\n123\n4567",
+    "contact": true
+  },
+  {
+    "id": "phone-dash-unicode",
+    "text": "06—30—123—4567",
+    "contact": true
+  },
+  {
+    "id": "phone-zero-width",
+    "text": "0​6 30 12‍3 4567",
+    "contact": true
+  },
+  {
+    "id": "phone-fullwidth",
+    "text": "＋３６ ３０ １２３ ４５６７",
+    "contact": true
+  },
+  {
+    "id": "phone-arabic-digits",
+    "text": "٠٦ ٣٠ ١٢٣ ٤٥٦٧",
+    "contact": true
+  },
+  {
+    "id": "phone-persian-digits",
+    "text": "۰۶ ۳۰ ۱۲۳ ۴۵۶۷",
+    "contact": true
+  },
+  {
+    "id": "phone-devanagari",
+    "text": "०६ ३० १२३ ४५६७",
+    "contact": true
+  },
+  {
+    "id": "phone-html-number-entities",
+    "text": "&#48;&#54; &#51;&#48; 123 4567",
+    "contact": true
+  },
+  {
+    "id": "phone-percent-encoding",
+    "text": "%30%36%20%33%30%20123%204567",
+    "contact": true
+  },
+  {
+    "id": "phone-unicode-escape",
+    "text": "\\u0030\\u0036 30 123 4567",
+    "contact": true
+  },
+  {
+    "id": "phone-words-hu",
+    "text": "nulla hat harminc egy kettő három négy öt hat hét",
+    "contact": true
+  },
+  {
+    "id": "phone-words-hu-accentless",
+    "text": "nulla hat husz egy ketto harom negy ot hat het",
+    "contact": true
+  },
+  {
+    "id": "phone-words-hu-all-digits",
+    "text": "nulla hat három nulla egy kettő három négy öt hat hét",
+    "contact": true
+  },
+  {
+    "id": "phone-words-plus",
+    "text": "plusz harminchat húsz egy kettő három négy öt hat hét",
+    "contact": true
+  },
+  {
+    "id": "phone-words-grouped",
+    "text": "nulla hat húsz százhuszonhárom négyezer-ötszázhatvanhét",
+    "contact": true
+  },
+  {
+    "id": "phone-words-spaced-tens",
+    "text": "plusz harminc hat harminc egy kettő három négy öt hat hét",
+    "contact": true
+  },
+  {
+    "id": "phone-words-english",
+    "text": "zero six thirty one two three four five six seven",
+    "contact": true
+  },
+  {
+    "id": "phone-words-english-international",
+    "text": "plus forty four seven seven zero zero nine zero zero one two three",
+    "contact": true
+  },
+  {
+    "id": "phone-mixed",
+    "text": "06 húsz 123 négy öt hat hét",
+    "contact": true
+  },
+  {
+    "id": "phone-words-no-spaces",
+    "text": "nullahatharomnullaegykettoharomnegyothathet",
+    "contact": true
+  },
+  {
+    "id": "phone-unicode-words",
+    "text": "nυlla hat 30 123 4567",
+    "contact": true
+  },
+  {
+    "id": "phone-with-unit-evasion",
+    "text": "Telefon: 06 30 123 4567 Ft",
+    "contact": true
+  },
+  {
+    "id": "phone-before-other-number",
+    "text": "2026: 06 30 123 4567",
+    "contact": true
+  },
+  {
+    "id": "plain-email",
+    "text": "anna@example.test",
+    "contact": true
+  },
+  {
+    "id": "email-plus",
+    "text": "anna.kovacs+otthon@example.test",
+    "contact": true
+  },
+  {
+    "id": "email-uppercase",
+    "text": "ANNA@EXAMPLE.TEST",
+    "contact": true
+  },
+  {
+    "id": "email-domestic",
+    "text": "peter@pelda.hu",
+    "contact": true
+  },
+  {
+    "id": "email-space-markers",
+    "text": "peter @ pelda . hu",
+    "contact": true
+  },
+  {
+    "id": "email-words",
+    "text": "peter kukac pelda pont hu",
+    "contact": true
+  },
+  {
+    "id": "email-words-uppercase",
+    "text": "PÉTER KUKAC PÉLDA PONT HU",
+    "contact": true
+  },
+  {
+    "id": "email-parentheses",
+    "text": "peter (kukac) pelda (pont) hu",
+    "contact": true
+  },
+  {
+    "id": "email-brackets",
+    "text": "peter [at] example [dot] test",
+    "contact": true
+  },
+  {
+    "id": "email-braces",
+    "text": "peter {at} example {dot} test",
+    "contact": true
+  },
+  {
+    "id": "email-english",
+    "text": "peter at example dot test",
+    "contact": true
+  },
+  {
+    "id": "email-concatenated-hu",
+    "text": "peterkukacpeldaponthu",
+    "contact": true
+  },
+  {
+    "id": "email-spaced-letters",
+    "text": "p e t e r @ p e l d a . h u",
+    "contact": true
+  },
+  {
+    "id": "email-dot-letter-obfuscation",
+    "text": "p.e.t.e.r@g.m.a.i.l.c.o.m",
+    "contact": true
+  },
+  {
+    "id": "email-zero-width",
+    "text": "pe​ter@pel‍da.hu",
+    "contact": true
+  },
+  {
+    "id": "email-fullwidth",
+    "text": "ｐｅｔｅｒ＠ｐｅｌｄａ．ｈｕ",
+    "contact": true
+  },
+  {
+    "id": "email-ideographic-dot",
+    "text": "peter@pelda。hu",
+    "contact": true
+  },
+  {
+    "id": "email-html-entity",
+    "text": "peter&commat;pelda&period;hu",
+    "contact": true
+  },
+  {
+    "id": "email-html-numeric",
+    "text": "peter&#64;pelda&#46;hu",
+    "contact": true
+  },
+  {
+    "id": "email-double-entity",
+    "text": "peter&amp;#64;pelda&amp;#46;hu",
+    "contact": true
+  },
+  {
+    "id": "email-percent",
+    "text": "peter%40pelda%2Ehu",
+    "contact": true
+  },
+  {
+    "id": "email-escaped",
+    "text": "peter\\u0040pelda\\u002ehu",
+    "contact": true
+  },
+  {
+    "id": "email-tags",
+    "text": "<b>peter</b>@<span>pelda</span>.hu",
+    "contact": true
+  },
+  {
+    "id": "email-mailto",
+    "text": "mailto:peter@pelda.hu",
+    "contact": true
+  },
+  {
+    "id": "email-introduced-no-at",
+    "text": "Email: peter gmail pont com",
+    "contact": true
+  },
+  {
+    "id": "email-multiline",
+    "text": "peter\n@\npelda\n.\nhu",
+    "contact": true
+  },
+  {
+    "id": "contact-early",
+    "text": "Elérhetőség: nulla hat harminc 123 4567. Egyébként jó lakás.",
+    "contact": true
+  },
+  {
+    "id": "contact-late",
+    "text": "Világos otthon. Érdeklődni a peter kukac pelda pont hu címen.",
+    "contact": true
+  },
+  {
+    "id": "empty",
+    "text": "",
+    "contact": false
+  },
+  {
+    "id": "null-text",
+    "text": "   ",
+    "contact": false
+  },
+  {
+    "id": "ordinary-hu",
+    "text": "Világos, csendes otthont keresek, jó közlekedéssel.",
+    "contact": false
+  },
+  {
+    "id": "ordinary-search",
+    "text": "65 m²-es, két szobás, 50 millió Ft-os lakást keresek.",
+    "contact": false
+  },
+  {
+    "id": "number-words",
+    "text": "Két egész és egy fél szoba, harminc négyzetméteres nappali.",
+    "contact": false
+  },
+  {
+    "id": "condition-description",
+    "text": "Felújítandó lakás, új konyhát szeretnék.",
+    "contact": false
+  },
+  {
+    "id": "prices-small",
+    "text": "Irányár: 36 200 000 Ft.",
+    "contact": false
+  },
+  {
+    "id": "prices-large",
+    "text": "36 200 000 000 Ft a teljes fejlesztés.",
+    "contact": false
+  },
+  {
+    "id": "prices-continuous",
+    "text": "65000000Ft",
+    "contact": false
+  },
+  {
+    "id": "prices-eur",
+    "text": "250000 EUR",
+    "contact": false
+  },
+  {
+    "id": "prices-seven",
+    "text": "1 234 567 forint",
+    "contact": false
+  },
+  {
+    "id": "price-budget",
+    "text": "Keret: 65000000",
+    "contact": false
+  },
+  {
+    "id": "area-large",
+    "text": "Alapterület: 1200000",
+    "contact": false
+  },
+  {
+    "id": "area-unit",
+    "text": "12 000 000 m²",
+    "contact": false
+  },
+  {
+    "id": "energy",
+    "text": "1200-2500 kWh az éves fogyasztás.",
+    "contact": false
+  },
+  {
+    "id": "date-year-first",
+    "text": "Átadás: 2026.11.24.",
+    "contact": false
+  },
+  {
+    "id": "date-day-first",
+    "text": "Költözés: 24.11.2026.",
+    "contact": false
+  },
+  {
+    "id": "date-slash",
+    "text": "2026/11/24",
+    "contact": false
+  },
+  {
+    "id": "year-range",
+    "text": "1999–2020 között épült.",
+    "contact": false
+  },
+  {
+    "id": "time-range",
+    "text": "Megtekintés 10:00–18:00 között.",
+    "contact": false
+  },
+  {
+    "id": "postal-address",
+    "text": "1137 Budapest, Pozsonyi út 12/A.",
+    "contact": false
+  },
+  {
+    "id": "debrecen-address",
+    "text": "4032 Debrecen, Egyetem sugárút 18.",
+    "contact": false
+  },
+  {
+    "id": "cadastral",
+    "text": "Helyrajzi szám: 1234567/8",
+    "contact": false
+  },
+  {
+    "id": "hrsz",
+    "text": "Hrsz: 1234567/8",
+    "contact": false
+  },
+  {
+    "id": "identifier",
+    "text": "Azonosító: 123456789",
+    "contact": false
+  },
+  {
+    "id": "coordinate",
+    "text": "GPS: 47.123456,19.234567",
+    "contact": false
+  },
+  {
+    "id": "transit",
+    "text": "Buszjáratok: 20, 30, 105, 110.",
+    "contact": false
+  },
+  {
+    "id": "transit-short",
+    "text": "Busz: 20, 30, 105, 110.",
+    "contact": false
+  },
+  {
+    "id": "rooms",
+    "text": "1, 1.5, 2 vagy 2.5 szobás lakás is érdekel.",
+    "contact": false
+  },
+  {
+    "id": "floor",
+    "text": "Magasföldszinti vagy legfeljebb 9. emeleti lakást keresek.",
+    "contact": false
+  },
+  {
+    "id": "ceiling",
+    "text": "3 méter fölötti belmagasság, 65 négyzetméter.",
+    "contact": false
+  },
+  {
+    "id": "plot",
+    "text": "Ház 120 m² alapterülettel, 700 m² telekkel.",
+    "contact": false
+  },
+  {
+    "id": "numbers-separated-by-facts",
+    "text": "2020-ban épült, 65 m², 2 szoba, 36 millió Ft.",
+    "contact": false
+  },
+  {
+    "id": "years-separated",
+    "text": "2020 és 2024 között felújították.",
+    "contact": false
+  },
+  {
+    "id": "garden",
+    "text": "A kertben pont jó helyen van az öreg fa.",
+    "contact": false
+  },
+  {
+    "id": "word-at-inside",
+    "text": "Az ingatlan átlagos állapotban van.",
+    "contact": false
+  },
+  {
+    "id": "literal-email-mention",
+    "text": "E-mailben csak párosítás után egyeztessünk.",
+    "contact": false
+  },
+  {
+    "id": "literal-phone-mention",
+    "text": "Telefonszámot itt nem adok meg.",
+    "contact": false
+  },
+  {
+    "id": "measurement-tens",
+    "text": "Harminc-hatvan négyzetméteres kert.",
+    "contact": false
+  },
+  {
+    "id": "units-before-numbers",
+    "text": "A nappali húsz, a háló tizenkét négyzetméter.",
+    "contact": false
+  },
+  {
+    "id": "long-ordinary",
+    "text": "Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. Kertre néző lakás, gépkocsibeállóval. ",
+    "contact": false
+  },
+  {
+    "id": "long-letters",
+    "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "contact": false
+  },
+  {
+    "id": "many-email-markers",
+    "text": "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+    "contact": false
+  },
+  {
+    "id": "many-dots",
+    "text": "................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................",
+    "contact": false
+  },
+  {
+    "id": "unicode-emphasis",
+    "text": "VILÁGOS ŐRMEZEI LAKÁS 🏡",
+    "contact": false
+  },
+  {
+    "id": "numbers-inverse",
+    "text": "Felújítva kétezerhuszonhatban.",
+    "contact": false
+  },
+  {
+    "id": "safe-html",
+    "text": "<b>Szép</b> és világos, 65 m².",
+    "contact": false
+  },
+  {
+    "id": "description-bounds",
+    "text": "Legfeljebb kilencvenmillió Ft, legalább két szoba.",
+    "contact": false
+  },
+  {
+    "id": "postal-streets",
+    "text": "Nádor utca 12., 30 m², 25 M Ft, 2. emelet.",
+    "contact": false
+  },
+  {
+    "id": "percentage",
+    "text": "A ház 100%-os készültségű.",
+    "contact": false
+  },
+  {
+    "id": "sale-age",
+    "text": "41–50 éves épületet keresek.",
+    "contact": false
+  },
+  {
+    "id": "phone-international-currency-evasion",
+    "text": "+36 20 123 4567 Ft",
+    "contact": true
+  },
+  {
+    "id": "phone-national-currency-evasion",
+    "text": "06 20 123 4567 forint",
+    "contact": true
+  },
+  {
+    "id": "phone-national-spelled-currency-evasion",
+    "text": "nulla hat húsz egy kettő három négy öt hat hét forint",
+    "contact": true
+  },
+  {
+    "id": "safe-accented-through",
+    "text": "Az udvaron át lehet. Minden szoba világos.",
+    "contact": false
+  },
+  {
+    "id": "safe-accented-through-uppercase",
+    "text": "ÁT lehet menni a kertbe. Minden helyiség világos.",
+    "contact": false
+  },
+  {
+    "id": "email-known-host-missing-dot",
+    "text": "peter kukac gmail hu",
+    "contact": true
+  },
+  {
+    "id": "email-known-host-missing-dot-english",
+    "text": "peter at outlook com",
+    "contact": true
+  },
+  {
+    "id": "phone-zero-prefix-unit-evasion",
+    "text": "0044 7700 900123 EUR",
+    "contact": true
+  },
+  {
+    "id": "safe-english-at-home",
+    "text": "Feel at home. Every room is bright.",
+    "contact": false
+  },
+  {
+    "id": "safe-english-at-night",
+    "text": "Walk at night. Sunny garden.",
+    "contact": false
+  },
+  {
+    "id": "email-english-unknown-spoken-domain",
+    "text": "john at company dot biz",
+    "contact": true
+  },
+  {
+    "id": "email-english-unknown-literal-domain",
+    "text": "john at company.biz",
+    "contact": true
+  },
+  {
+    "id": "long-email-local-no-domain",
+    "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "contact": false
+  },
+  {
+    "id": "long-repeated-local-no-domain",
+    "text": "ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@ab@",
+    "contact": false
+  },
+  {
+    "id": "long-repeated-numeric-domain-no-tld",
+    "text": "x@1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.",
+    "contact": false
+  },
+  {
+    "id": "long-space-fragments-no-domain",
+    "text": "local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local local @host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host host ",
+    "contact": false
+  },
+  {
+    "id": "long-introduced-no-domain",
+    "text": "email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa email aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ",
+    "contact": false
+  },
+  {
+    "id": "long-valid-email-at-limit",
+    "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa peter@pelda.hu",
+    "contact": true
+  }
+]

@@ -108,7 +108,7 @@ public class SellerFormTests
         Assert.Null(property.Floor); Assert.False(property.Balcony); Assert.False(property.Elevator);
         Rules.Apply(property, Input() with { LotArea = 600m });
         Assert.Null(property.LotArea);
-        Assert.Equal(2, property.Floor); Assert.True(property.Balcony); Assert.True(property.Elevator);
+        Assert.Equal(2m, property.Floor); Assert.True(property.Balcony); Assert.True(property.Elevator);
     }
 
     [Fact]
@@ -117,7 +117,7 @@ public class SellerFormTests
         var property = new Property { Type = "Ház", LotArea = null, Floor = 3, Balcony = true, Elevator = true };
         _ = Dto.Property(property);
         Assert.Null(property.LotArea);
-        Assert.Equal(3, property.Floor); Assert.True(property.Balcony); Assert.True(property.Elevator);
+        Assert.Equal(3m, property.Floor); Assert.True(property.Balcony); Assert.True(property.Elevator);
     }
 
     [Theory]

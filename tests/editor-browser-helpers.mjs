@@ -128,7 +128,9 @@ export async function assertEditorNavigation(page,{scroll=false,lastField=false}
  }
  assert.equal(await page.locator('#editor-step-status').count(),0,'The redundant X-of-Y sentence must be absent');
  assert.doesNotMatch(await page.locator('#entity-form').innerText(),/Később folytatom|Csak azt jelöld meg, ami fontos/);
+ await assertRequiredFieldLabels(page);
  const index=await page.locator('.editor-step:visible').getAttribute('data-editor-step');
+ if(index==='5'&&await page.locator('#f-maxPrice').count())assert.equal((await page.locator('label[for="f-title"]').innerText()).trim(),'Keresés neve (ez fog megjelenni az ingatlan-tulajdonosoknak)');
  if(index==='2'){
   const titles=proof.headings.filter(heading=>heading.tag==='H3');
   assert.deepEqual(titles.map(heading=>heading.text),['Ár','Méret'],'Price and size have separate visible section headings');
@@ -138,6 +140,10 @@ export async function assertEditorNavigation(page,{scroll=false,lastField=false}
   const expected=['Állapot','Építés éve','Kilátás','Falazat','Belmagasság'];
   if(await page.locator('#f-type').inputValue()!=='Ház')expected.splice(1,0,'Emelet');
   for(const label of expected){const heading=proof.headings.find(heading=>heading.text.startsWith(label));assert.ok(heading,`The ${label} subsection must retain its accessible label`);assert.equal(heading.size,proof.referenceHeadingSize,`${label} uses the topic-heading size`);}
+ }else if(index==='4'){
+  assert.equal(await page.locator('#editor-heading-4').evaluate(element=>element.classList.contains('editor-topic-anchor')),true,'The generic comfort title is only a validation focus anchor');
+  const comfort=proof.headings.find(heading=>heading.text==='Kényelem');assert.ok(comfort,'Comfort options have their own subsection');assert.equal(comfort.size,proof.referenceHeadingSize);
+  if(await page.locator('#f-airConditioning').getAttribute('type')==='checkbox')for(const [name,label]of [['balcony','Legyen erkély'],['airConditioning','Legyen légkondi'],['privateGarden','Legyen saját kert']])if(await page.locator('#f-'+name).isVisible())assert.equal((await page.locator('label:has(#f-'+name+')').innerText()).trim(),label);
  }
  if(scroll&&proof.mobile){
   for(const fraction of [0,.5,1]){
@@ -156,6 +162,56 @@ export async function assertEditorNavigation(page,{scroll=false,lastField=false}
   assert.equal(await revealEditorControl(page,field),true,'The last field must remain unobscured by navigation');
  }
  if(scroll||lastField)await page.evaluate(top=>{const host=document.getElementById('entity-form')?.closest('.modal')||document.scrollingElement;host.scrollTo({top,behavior:'instant'});},original);
+}
+
+/** Required fields are marked beside their accessible caption; optional labels stay clean. */
+export async function assertRequiredFieldLabels(page){
+ const proof=await page.locator('#entity-form').evaluate(form=>{
+  const section=form.querySelector('.editor-step:not([hidden])'),shown=element=>element.getClientRects().length>0&&getComputedStyle(element).display!=='none';
+  const fields=[...section.querySelectorAll('input:not([type="hidden"]),select,textarea')].filter(control=>shown(control)&&!control.disabled);
+  return {text:[...form.querySelectorAll('label,legend,h3')].map(element=>element.innerText).join(' '),mobile:innerWidth<=720,fields:fields.map(control=>{
+   const label=control.labels?.[0]||form.querySelector('label[for="'+control.id+'"]'),marker=label?.querySelector('[data-required-for="'+control.id+'"]'),color=marker?getComputedStyle(marker).color:'';
+   return{id:control.id,required:control.required||control.getAttribute('aria-required')==='true',kind:control.type,label:label?.innerText,marked:!!marker&&shown(marker)&&marker.textContent.includes('*'),color,font:parseFloat(getComputedStyle(control).fontSize),labelFont:label?parseFloat(getComputedStyle(label).fontSize):null};
+  })};
+ });
+ assert.doesNotMatch(proof.text,/opcionális/iu,'Optional controls do not need a separate optional suffix');
+ for(const field of proof.fields){
+  if(field.required){assert.equal(field.marked,true,`Required ${field.id} needs an asterisk beside its label`);const color=field.color.match(/[\d.]+/g)?.map(Number)||[];assert.ok(color[0]>color[1]&&color[0]>color[2],`Required ${field.id} uses a red marker`);}
+  if(!['checkbox','radio'].includes(field.kind)){assert.ok(field.font>=(proof.mobile?17:15),`The ${field.id} field text is comfortably readable`);if(field.labelFont!==null)assert.ok(field.labelFont>=13,`The ${field.id} caption is comfortably readable`);}
+ }
+ if(await page.locator('#editor-step-1').isVisible()){
+  const marker=page.locator('#required-f-type');assert.equal(await marker.isVisible(),true,'The custom required type group also carries a required marker');
+ }
+}
+
+/** Single-select move-in illustrations can each be cleared by a repeated click. */
+export async function assertMoveInChoices(page,interact){
+ const input=await editorField(page,'#f-moveIn',interact),before=await input.inputValue(),cards=page.locator('[data-attribute-name="moveIn"]');
+ assert.equal(await input.getAttribute('type'),'hidden');assert.equal(await cards.count(),4);
+ // Each card also contains a separate selection-check SVG; count its illustration only.
+ const illustrations=cards.locator('.attribute-card-illustration > svg');assert.equal(await illustrations.count(),4);
+ assert.equal(new Set(await illustrations.evaluateAll(elements=>elements.map(element=>element.innerHTML))).size,4,'Every moving option has its own distinct illustration');
+ for(const card of await cards.all())assert.equal(await card.locator('.attribute-card-illustration > svg').count(),1,'Each of the four choices owns exactly one illustration');
+ assert.deepEqual(await cards.evaluateAll(elements=>elements.map(element=>element.dataset.attributeValue)),['Rugalmas','Azonnal','3 hónapon belül','6 hónapon belül']);
+ for(const value of ['Rugalmas','Azonnal','3 hónapon belül','6 hónapon belül']){
+  await setAttributeChoice(page,'moveIn',value,interact);const card=page.locator('[data-attribute-name="moveIn"][data-attribute-value="'+value+'"]');
+  assert.equal(await page.locator('[data-attribute-name="moveIn"][aria-pressed="true"]').count(),1);
+  await press(page,card,interact);assert.equal(await input.inputValue(),'');assert.equal(await page.locator('[data-attribute-name="moveIn"][aria-pressed="true"]').count(),0);
+ }
+ if(before)await setAttributeChoice(page,'moveIn',before,interact);
+}
+
+/** Common obfuscated contacts are refused before saving, and correction clears the warning. */
+export async function assertDescriptionPrivacy(page,interact){
+ const input=await editorField(page,'#f-description',interact),before=await input.inputValue();
+ for(const content of ['Elérsz a nulla hat húsz egy kettő három négy öt hat hét számon.','Írj ide: peter kukac pelda pont hu']){
+  await input.fill(content);await press(page,page.locator('#editor-save'),interact);
+  assert.equal(await page.locator('#entity-form').isVisible(),true,'Contact details must not pass the final save');
+  assert.equal(await input.evaluate(element=>element.validity.customError),true);
+  const warning=page.locator('#description-contact-warning');assert.equal(await warning.isVisible(),true);assert.match(await warning.innerText(),/Elérhetőséget nem adhatsz meg a leírásban/);
+ }
+ await input.fill(before);assert.equal(await input.evaluate(element=>element.checkValidity()),true,'Correcting the description removes its contact validation error');
+ assert.equal(await page.locator('#description-contact-warning').isVisible(),false);
 }
 
 /** Resize events schedule layout work in rAF; measure only after that paint has settled. */
@@ -184,19 +240,38 @@ export async function assertKeyboardNavigation(page){
  }finally{await page.evaluate(()=>globalThis.__editorViewportTest?.setKeyboard(0));await page.setViewportSize(original);await settleEditorLayout(page);}
 }
 
-/** Exercise actual visible arrows without making optional numeric bounds mandatory. */
+/** Set optional room bounds exclusively through the visible minus/plus controls. */
+export async function fillRoomBound(page,name,value,interact){
+ assert.ok(['minRooms','maxRooms'].includes(name));
+ const input=await editorField(page,'#f-'+name,interact),target=value==null||value===''?null:Number(value);
+ assert.ok(target===null||Number.isFinite(target)&&target>=1&&target*2%1===0,'A new room preference starts at one and advances in half rooms');
+ for(let count=0;count<80;count++){
+  const raw=await input.inputValue(),current=raw===''?null:Number(raw);
+  if(current===target)return input;
+  const direction=target===null||current!==null&&current>target?'down':'up';
+  const button=page.locator('#f-'+name+'-'+direction);
+  assert.equal(await revealEditorControl(page,button),true,'Room controls must remain directly reachable above the compact menu');
+  await press(page,button,interact);
+ }
+ assert.fail('The visible room controls did not reach the requested preference');
+}
+
+/** Readouts have no editable number box; null, 1 and half-step transitions round-trip. */
 export async function assertRoomSteppers(page,interact){
  for(const name of ['minRooms','maxRooms']){
-  const input=await editorField(page,'#f-'+name,interact),previous=await input.inputValue(),minimum=name==='maxRooms'?0.5:0;
-  assert.equal(Number(await input.getAttribute('min')),minimum);
-  assert.equal(await input.getAttribute('step'),'0.5');
-  const up=page.locator('#f-'+name+'-up'),down=page.locator('#f-'+name+'-down');
-  await input.fill('');await press(page,up,interact);assert.equal(await input.inputValue(),'0.5');
-  await press(page,up,interact);assert.equal(await input.inputValue(),'1');await press(page,down,interact);assert.equal(await input.inputValue(),'0.5');
-  await press(page,down,interact);assert.equal(Number(await input.inputValue()),minimum);
-  if(await down.isEnabled())await press(page,down,interact);assert.equal(Number(await input.inputValue()),minimum,'The lower arrow cannot cross the valid room-count minimum');
-  await input.fill('1.5');await press(page,up,interact);assert.equal(await input.inputValue(),'2');
-  await input.fill(previous);assert.equal(await input.inputValue(),previous,'Optional empty bounds remain clearable after using arrows');
+  const input=await editorField(page,'#f-'+name,interact),previous=await input.inputValue(),empty=name==='minRooms'?'Nincs minimum':'Nincs maximum';
+  assert.equal(await input.getAttribute('type'),'hidden','Room bounds are serialized without an editable input');
+  const output=page.locator('#f-'+name+'-value'),up=page.locator('#f-'+name+'-up'),down=page.locator('#f-'+name+'-down');
+  assert.equal(await output.evaluate(element=>element.tagName),'OUTPUT');assert.equal(await output.getAttribute('contenteditable'),null);
+  await fillRoomBound(page,name,null,interact);assert.equal(await output.innerText(),empty);
+  if(await down.isEnabled())await press(page,down,interact);assert.equal(await input.inputValue(),'','Minus at the unspecified bound stays unspecified');
+  await press(page,up,interact);assert.equal(await input.inputValue(),'1');assert.match(await output.innerText(),/1/);
+  await press(page,up,interact);assert.equal(await input.inputValue(),'1.5');
+  await press(page,down,interact);assert.equal(await input.inputValue(),'1');
+  await press(page,down,interact);assert.equal(await input.inputValue(),'');assert.equal(await output.innerText(),empty,'Decrementing one room removes the bound');
+  const boxes=await page.evaluate(name=>['down','value','up'].map(suffix=>{const b=document.getElementById('f-'+name+'-'+suffix).getBoundingClientRect();return{left:b.left,right:b.right,top:b.top,bottom:b.bottom};}),name);
+  assert.ok(boxes[0].right<=boxes[1].left+1&&boxes[1].right<=boxes[2].left+1,'Minus, readout and plus appear from left to right');
+  await fillRoomBound(page,name,previous,interact);assert.equal(await input.inputValue(),previous,'Room-bound testing preserves the original draft');
  }
 }
 

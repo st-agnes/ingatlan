@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorStep,editorSave,choosePropertyType,setAttributeChoice,assertEditorNavigation,assertKeyboardNavigation,assertRoomSteppers,installEditorViewportMock,settleEditorLayout} from './editor-browser-helpers.mjs';
+import {editorField,editorStep,editorSave,choosePropertyType,setAttributeChoice,assertEditorNavigation,assertKeyboardNavigation,assertRoomSteppers,installEditorViewportMock,settleEditorLayout,fillRoomBound,assertMoveInChoices,assertDescriptionPrivacy} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -48,7 +48,7 @@ async function verifyTypeSelection(page,interact,kind,viewport){
  assert.deepEqual(await cards.evaluateAll(elements=>elements.map(element=>element.dataset.propertyType)),types);
  assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),0,'A new form must wait for an explicit type choice');
  const geometry=await page.locator('#property-type-options').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));assert.ok(geometry.scroll<=geometry.width+1,'The illustrated choices must fit the viewport');
- if(kind==='property'){await mkdir(screenshots,{recursive:true});await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await page.screenshot({path:resolve(screenshots,`compact-editor-${viewport.name}.png`)});}
+ if(kind==='property'){await mkdir(screenshots,{recursive:true});await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await page.screenshot({path:resolve(screenshots,`form-refinements-${viewport.name}.png`)});}
  for(const type of types){
   const card=page.locator(`[data-property-type="${type}"]`);assert.ok((await card.innerText()).includes(type));await interact(card);
   await verifyProgress(page,kind,1);assert.equal(await page.locator('#f-type').inputValue(),type);assert.equal(await card.getAttribute('aria-pressed'),'true');assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),1);
@@ -96,7 +96,7 @@ async function createWizard(page,interact,kind,viewport){
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,1);
  await verifyTypeSelection(page,interact,kind,viewport);await verifyProgress(page,kind,2);
  await alignedBounds(page,kind,viewport);
- if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`compact-editor-pricing-${viewport.name}.png`)});}
+ if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`form-refinements-pricing-${viewport.name}.png`)});}
  for(const field of kind==='property'?['price','area','wholeRooms','halfRooms']:['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])assert.equal(await page.locator(`#f-${field}`).inputValue(),'','Blank forms must wait for the user values');
  assert.equal(await page.locator('#editor-step-button-0').getAttribute('data-state'),'completed');
  if(kind==='property'){
@@ -105,7 +105,7 @@ async function createWizard(page,interact,kind,viewport){
   assert.equal(await page.locator('#f-lotArea').evaluate(element=>element.validity.valueMissing),true,'House plot is required on the size screen');
   await page.locator('#f-lotArea').fill('520.5');
  }else{
-  await page.locator('#f-minPrice').fill('');await page.locator('#f-maxPrice').fill('105.5');await page.locator('#f-minArea').fill('65');await page.locator('#f-maxArea').fill('');await page.locator('#f-minRooms').fill('2.5');await page.locator('#f-maxRooms').fill('');
+  await page.locator('#f-minPrice').fill('');await page.locator('#f-maxPrice').fill('105.5');await page.locator('#f-minArea').fill('65');await page.locator('#f-maxArea').fill('');await fillRoomBound(page,'minRooms','2.5',interact);await fillRoomBound(page,'maxRooms','',interact);
  }
  if(kind==='search')await assertRoomSteppers(page,interact);
  if(viewport.name==='mobile'&&kind==='property')await assertKeyboardNavigation(page);
@@ -117,7 +117,7 @@ async function createWizard(page,interact,kind,viewport){
   await page.locator('input[name="conditions"][value="Jó"]').check();await page.locator('input[name="conditions"][value="Új/felújított"]').check();await page.locator('input[name="buildings"][value="Tégla"]').check();
  }
  await optionalChoices(page,interact,kind);await assertEditorNavigation(page,{scroll:true,lastField:true});
- if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`compact-editor-attributes-${viewport.name}.png`)});}
+ if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`form-refinements-attributes-${viewport.name}.png`)});}
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,4);
  if(kind==='property'){
   await page.locator('#f-heatingType').selectOption('Hőszivattyú');await page.locator('#f-insulated').selectOption('false');await page.locator('#f-airConditioning').selectOption('true');
@@ -126,12 +126,13 @@ async function createWizard(page,interact,kind,viewport){
  }else{
   await page.locator('input[name="heatingTypes"][value="Hőszivattyú"]').check();await setAttributeChoice(page,'ceilingHeight','3 m feletti',interact);await (await editorField(page,'input[name="floors"][value="0"]',interact)).check();await page.locator('#f-elevator').check();await editorStep(page,4,interact);
  }
+ await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`form-refinements-comfort-${kind}-${viewport.name}.png`)});
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,5);
  const generatedTitle=await page.locator('#f-title').inputValue();assert.match(generatedTitle,/Debrecen/);assert.match(generatedTitle,kind==='property'?/Ház/:/Lakás/);assert.ok(generatedTitle.length<=70);assert.equal(await page.locator('#f-title').evaluate(element=>element.required),false);await page.locator('#f-title').fill(title);
  const description=`Megőrzött leírás – ${viewport.name} – ${kind}`;
  await page.locator('#f-description').fill(description);
  if(kind==='property')await page.locator('#property-images').fill('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');
- else await page.locator('#f-moveIn').selectOption('3 hónapon belül');
+ else{assert.equal(await page.locator('#f-moveIn').inputValue(),'','A new optional moving preference starts unspecified');await assertMoveInChoices(page,interact);await setAttributeChoice(page,'moveIn','3 hónapon belül',interact);}
  await interact(page.locator('#editor-back-top'));await verifyProgress(page,kind,4);
  await editorStep(page,0,interact);await verifyProgress(page,kind,0);
  assert.equal(await page.evaluate(()=>globalThis.wizardOriginalTitle===document.getElementById('f-title')),true,'Back navigation must retain the same input nodes and their draft values');
@@ -147,6 +148,7 @@ async function createWizard(page,interact,kind,viewport){
  }else{
   for(const field of ['minPrice','maxArea','maxRooms'])assert.equal(await page.locator(`#f-${field}`).inputValue(),'');assert.equal(await page.locator('input[name="conditions"][value="Új/felújított"]').isChecked(),true);assert.equal(await page.locator('#f-moveIn').inputValue(),'3 hónapon belül');
  }
+ await assertDescriptionPrivacy(page,interact);
  const draft=await state(page);assert.equal(draft[kind==='property'?'properties':'searches'].length,before[kind==='property'?'properties':'searches'].length,'No topic change or backward edit may save the draft early');
  await editorSave(page,interact,{top:kind==='property'});
  if(kind==='search'){await page.getByRole('heading',{name:'Elkészült a keresési igényed.',exact:true}).waitFor();await interact(page.locator('.search-created-actions [data-action="close"]'));}
@@ -164,7 +166,7 @@ async function createWizard(page,interact,kind,viewport){
 
 async function boundGeometry(page){
  return page.locator('#editor-step-2 .form-row').evaluateAll(rows=>rows.map(row=>[...row.querySelectorAll('.field')].map(field=>{
-  const input=field.querySelector('input,select,textarea'),label=field.querySelector('label');
+  const input=field.querySelector('input:not([type="hidden"]),output,select,textarea'),label=field.querySelector('label');
   if(!input||!label)return null;const box=input.getBoundingClientRect(),caption=label.getBoundingClientRect();
   return{id:input.id,left:box.left,right:box.right,top:box.top,bottom:box.bottom,labelHeight:caption.height};
  }).filter(Boolean)));
@@ -223,7 +225,7 @@ async function verifyCriteriaSummary(page,interact,kind,viewport){
  }else{
   await summaryIncludes(page,'locationIds','Debrecen','Hajdúszoboszló','Budapest','V.');
   for(const [key,value,unit]of [['minPrice',/^0\s*M Ft$/,'M Ft'],['maxPrice',/120[,.]5/,'M Ft'],['minArea',/^0\s*m²$/,'m²'],['maxArea',/95[,.]5/,'m²'],['minRooms',/^0\s*szoba$/,'szoba'],['maxRooms',/4[,.]5/,'szoba']])await summaryIncludes(page,key,value,unit);
-  await summaryIncludes(page,'conditions','Átlagos','Jó','Új/felújított');await summaryIncludes(page,'buildings','Tégla','Panel');await summaryIncludes(page,'constructionAges','10 évnél fiatalabb','10–30 év közötti');await summaryIncludes(page,'views','Kertre néző','Panorámás');await summaryIncludes(page,'heatingTypes','Nincs fűtés','Hőszivattyú');await summaryIncludes(page,'ceilingHeight','3 m alatti');await summaryIncludes(page,'floors','Szuterén','Földszint','11');await summaryIncludes(page,'balcony','Szükséges');await summaryIncludes(page,'elevator','Nem feltétel');await summaryIncludes(page,'moveIn','3 hónapon belül');await summaryIncludes(page,'financing','Teszt saját forrás és hitel');
+  await summaryIncludes(page,'conditions','Átlagos','Jó','Új/felújított');await summaryIncludes(page,'buildings','Tégla','Panel');await summaryIncludes(page,'constructionAges','10 évnél fiatalabb','10–30 év közötti');await summaryIncludes(page,'views','Kertre néző','Panorámás');await summaryIncludes(page,'heatingTypes','Nincs fűtés','Hőszivattyú');await summaryIncludes(page,'ceilingHeight','3 m alatti');await summaryIncludes(page,'floors','Szuterén','Földszint','9');await summaryIncludes(page,'balcony','Szükséges');await summaryIncludes(page,'elevator','Nem feltétel');await summaryIncludes(page,'moveIn','3 hónapon belül');await summaryIncludes(page,'financing','Teszt saját forrás és hitel');
  }
  await summaryIncludes(page,'description',`${kind==='property'?'Eladói':'Keresői'} összesítő <b>szöveg</b>`);assert.equal(await page.locator('.criteria-summary b,.criteria-summary script').count(),0,'Summary values must be escaped as text');
  assert.deepEqual(coreState(await state(page)),coreState(before),'Opening and scrolling an overview cannot save or bill anything');
@@ -231,7 +233,7 @@ async function verifyCriteriaSummary(page,interact,kind,viewport){
  assert.equal(await page.locator('#f-title').inputValue(),before[kind==='property'?'properties':'searches'].find(item=>item.id===id).title);
  assert.equal(await page.locator('#location-input').getAttribute('type'),'search');assert.equal(await page.locator('.entity-wizard input[type="search"]').count(),1);
  await editorStep(page,2,interact);await alignedBounds(page,kind,viewport);
- if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`compact-editor-pricing-${viewport.name}.png`)});}
+ if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`form-refinements-pricing-${viewport.name}.png`)});}
  await editorStep(page,5,interact);await page.locator('#f-description').fill(`Összesítőből szerkesztve ${kind} ${viewport.name}`);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
  const after=await state(page),saved=after[kind==='property'?'properties':'searches'].find(item=>item.id===id);assert.equal(saved.description,`Összesítőből szerkesztve ${kind} ${viewport.name}`);assert.deepEqual(after.active,before.active);assert.equal(after.credits,before.credits);
  assert.equal(kind==='property'?saved.address:saved.financing,kind==='property'?'Teszt utca 12.':'Teszt saját forrás és hitel','Uneditable legacy values shown in the overview must survive unrelated edits');

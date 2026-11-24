@@ -6,7 +6,7 @@ import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {getLocation, searchLocations} from '../dist/locations.js';
 import {neighborhoods} from '../dist/neighborhoods-data.js';
-import {editorField, editorSave, editorStep, choosePropertyType} from './editor-browser-helpers.mjs';
+import {editorField, editorSave, editorStep, choosePropertyType,fillRoomBound} from './editor-browser-helpers.mjs';
 import {mockMapTiles} from './map-browser-network.mjs';
 
 const modulePath = process.env.PLAYWRIGHT_MODULE;
@@ -518,7 +518,7 @@ async function ownedWizard(browser, viewport) {
     assert.notEqual(await page.evaluate(() => document.activeElement?.id), 'location-input', 'Map taps never summon the mobile keyboard'); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await chip(page, tocoskert.id).count(), 0); assert.equal(await chip(page, solymar.id).count(), 1); await assertOutline(map, tocoskert.id, false); await clickLabel(map, tocoskert.id, viewport);
     await page.evaluate(() => {globalThis.__mapEditorNode = document.getElementById('search-location-map');});
-    await choosePropertyType(page, 'Lakás', locator => interact(viewport, locator));await (await editorField(page, '#f-maxPrice')).fill('90'); await (await editorField(page, '#f-minArea')).fill('40'); await (await editorField(page, '#f-minRooms')).fill('1'); await editorStep(page, 0);
+    await choosePropertyType(page, 'Lakás', locator => interact(viewport, locator));await (await editorField(page, '#f-maxPrice')).fill('90'); await (await editorField(page, '#f-minArea')).fill('40'); await fillRoomBound(page,'minRooms','1',locator=>interact(viewport,locator)); await editorStep(page, 0);
     assert.equal(await page.evaluate(() => globalThis.__mapEditorNode === document.getElementById('search-location-map')), true); await assertOutline(map, tocoskert.id);
     await editorSave(page, locator => interact(viewport, locator)); await page.getByRole('heading', {name: 'Elkészült a keresési igényed.', exact: true}).waitFor();
     assert.deepEqual(server.writes[0].locationIds, [solymar.id, tocoskert.id]); assert.equal(server.writes[0].maxPrice, 90000000); assert.equal(server.writes.length, 1); assert.deepEqual(server.active, {kind: 'search', id: searchId});

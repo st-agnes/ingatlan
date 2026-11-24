@@ -6,13 +6,13 @@ namespace Otthonra.Api;
 // Prices use the API's HUF unit; the browser adapter handles its form units.
 public sealed record LandingSearchPrefill(Location[] Locations, string Type, decimal? MinPrice, decimal? MaxPrice,
     decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, string[] Conditions,
-    string[] Buildings, string[] ConstructionAges, string[] Views, string CeilingHeight, int[] Floors,
+    string[] Buildings, string[] ConstructionAges, string[] Views, string CeilingHeight, decimal[] Floors,
     string[] HeatingTypes, bool Balcony, bool Elevator, bool ExcludeTopFloor = false,
     bool ExcludeGroundFloorAndBelow = false, bool AirConditioning = false, bool PrivateGarden = false, bool SharedGarden = false);
 public sealed record LandingPropertyPrefill(Location[] Locations, string Type, decimal Price, decimal Area, decimal Rooms,
     int? WholeRooms, int? HalfRooms, decimal? LotArea, string Condition, string Building, string ConstructionAge,
-    string View, string CeilingHeight, int? Floor, string HeatingType, bool Balcony, bool Elevator,
-    int? BuildingFloors = null, bool? AirConditioning = null, bool? PrivateGarden = null, bool? SharedGarden = null);
+    string View, string CeilingHeight, decimal? Floor, string HeatingType, bool Balcony, bool Elevator,
+    int? BuildingFloors = null, bool? AirConditioning = null, bool? PrivateGarden = null, bool? SharedGarden = null, bool FloorIsUpperRange = false);
 
 internal static class LandingPrefill
 {
@@ -37,7 +37,7 @@ internal static class LandingPrefill
         }
         catch (JsonException) { return []; }
     }
-    private static int[] Floors(string? json)
+    private static decimal[] Floors(string? json)
     {
         if (string.IsNullOrWhiteSpace(json) || json.Length > 1024) return [];
         try
@@ -45,8 +45,9 @@ internal static class LandingPrefill
             using var document = JsonDocument.Parse(json);
             if (document.RootElement.ValueKind != JsonValueKind.Array) return [];
             return document.RootElement.EnumerateArray().Where(value => value.ValueKind == JsonValueKind.Number)
-                .Select(value => value.TryGetInt32(out var floor) ? floor : int.MinValue)
-                .Where(value => value is >= -1 and <= 11).Distinct().Take(13).ToArray();
+                .Select(value => value.TryGetDecimal(out var floor) ? floor : decimal.MinValue)
+                .Where(value => value == .5m || value is >= -1 and <= 11 && decimal.Truncate(value) == value)
+                .Select(value => value >= 9m ? 9m : value).Distinct().Take(12).ToArray();
         }
         catch (JsonException) { return []; }
     }
@@ -78,10 +79,10 @@ internal static class LandingPrefill
             house ? Bound(property.LotArea) : null, Choice(property.Condition, PropertyAttributes.Conditions, condition: true),
             Choice(property.Building, PropertyAttributes.Buildings), Choice(property.ConstructionAge, PropertyAttributes.ConstructionAges),
             Choice(property.View, PropertyAttributes.Views), Choice(property.CeilingHeight, PropertyAttributes.CeilingHeights),
-            !house && property.Floor is >= -5 and <= 200 ? property.Floor : null,
+            !house && PropertyAttributes.KnownFloor(property.Floor) ? property.Floor : null,
             Choice(property.HeatingType, PropertyAttributes.HeatingTypes), !house && property.Balcony, !house && property.Elevator,
             !house && property.BuildingFloors is >= 0 and <= 200 ? property.BuildingFloors : null,
-            property.AirConditioning, type == "Lakás" ? property.PrivateGarden : null, null);
+            property.AirConditioning, type == "Lakás" ? property.PrivateGarden : null, null, !house && property.FloorIsUpperRange && property.Floor == 9m);
     }
 
     private static Location PropertyLocation(Property property, Location fallback)
