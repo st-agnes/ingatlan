@@ -35,7 +35,7 @@ async function verify(fixture) {
   for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])assert.equal(search[field],true,field+' must survive a restart');
   assert.equal(search.sharedGarden,false, 'An old shared-garden request cannot remain a hidden criterion');
   assert.equal(search.minRooms,2.5,'Half-room bounds must retain their exact value after a restart');
-  verifyFormRefinementPersistence(fixture.refinements,seller,buyer);
+  await verifyFormRefinementPersistence(fixture.refinements,seller,buyer,call);
 }
 if (process.argv[3] === '--verify') {
   await verify(JSON.parse(await readFile(fixturePath,'utf8')));

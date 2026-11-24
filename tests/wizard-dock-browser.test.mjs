@@ -220,8 +220,8 @@ async function verifyCriteriaSummary(page,interact,kind,viewport){
  if(kind==='property'){
   await summaryIncludes(page,'locationId','Budapest','V.');await summaryIncludes(page,'neighborhood','Belváros');await summaryIncludes(page,'address','Teszt utca 12.');
   await summaryIncludes(page,'price',/95[,.]5/,'M Ft');await summaryIncludes(page,'area',/72[,.]5/,'m²');await summaryIncludes(page,'rooms','3','1','fél');await summaryIncludes(page,'floor','Földszint');
-  for(const [key,value]of Object.entries({condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Panorámás',ceilingHeight:'3 m feletti',heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',insulated:'Nincs',energyRating:'BB',airConditioning:'Van',solarPanels:'Nincs',balcony:'Nincs',elevator:'Van'}))await summaryIncludes(page,key,value);
-  await summaryIncludes(page,'parkingTypes','Udvari beálló','Garázs');assert.equal(await page.locator('.criteria-summary-row[data-summary-field="images"] a').count(),2);
+  for(const [key,value]of Object.entries({condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Panorámás',ceilingHeight:'3 m feletti',heatingType:'Hőszivattyú',insulated:'Nincs',energyRating:'BB',airConditioning:'Van',solarPanels:'Nincs',balcony:'Nincs',elevator:'Van'}))await summaryIncludes(page,key,value);
+  assert.equal(await page.locator('[data-summary-field=secondaryHeatingType]').count(),0,'Retired supplementary heating is not displayed as an active criterion');await summaryIncludes(page,'parkingTypes','Udvari beálló','Garázs');assert.equal(await page.locator('.criteria-summary-row[data-summary-field="images"] a').count(),2);
  }else{
   await summaryIncludes(page,'locationIds','Debrecen','Hajdúszoboszló','Budapest','V.');
   for(const [key,value,unit]of [['minPrice',/^0\s*M Ft$/,'M Ft'],['maxPrice',/120[,.]5/,'M Ft'],['minArea',/^0\s*m²$/,'m²'],['maxArea',/95[,.]5/,'m²'],['minRooms',/^0\s*szoba$/,'szoba'],['maxRooms',/4[,.]5/,'szoba']])await summaryIncludes(page,key,value,unit);
@@ -236,6 +236,7 @@ async function verifyCriteriaSummary(page,interact,kind,viewport){
  if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`form-refinements-pricing-${viewport.name}.png`)});}
  await editorStep(page,5,interact);await page.locator('#f-description').fill(`Összesítőből szerkesztve ${kind} ${viewport.name}`);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
  const after=await state(page),saved=after[kind==='property'?'properties':'searches'].find(item=>item.id===id);assert.equal(saved.description,`Összesítőből szerkesztve ${kind} ${viewport.name}`);assert.deepEqual(after.active,before.active);assert.equal(after.credits,before.credits);
+ if(kind==='property')assert.equal(saved.secondaryHeatingType,before.properties.find(item=>item.id===id).secondaryHeatingType,'Removing retired supplementary heating from the summary/editor must preserve the old stored value');
  assert.equal(kind==='property'?saved.address:saved.financing,kind==='property'?'Teszt utca 12.':'Teszt saját forrás és hitel','Uneditable legacy values shown in the overview must survive unrelated edits');
  if(kind==='search'){
   const staleEdit=await openSummary(page,interact,kind,id);

@@ -22,8 +22,8 @@ if(mode==='--setup'){
   await api('/properties',{token:previous.tokens.seller,status:400,body:{title:'Napfényes otthon '+contact,locationId:'city:Szekszárd',city:'Szekszárd',type:'Lakás',price:20000000,area:40,rooms:2,balcony:false,elevator:false,images:[]}});
   await api('/searches',{token:previous.tokens.buyer,status:400,body:{title:'Otthont keresek '+contact,locationIds:['city:Szekszárd'],city:'Szekszárd',type:'Lakás',maxPrice:20000000,minArea:30,minRooms:1,balcony:false,elevator:false}});
  }
- for(const [typeIndex,type] of types.entries())for(const [priceIndex,price] of [20000000,55000000,105000000,220000000].entries()){
-  const city=cities[priceIndex%2],area=[35,65,110,190][priceIndex]+typeIndex*3,rooms=[1,2,4,6][priceIndex];
+ for(const [typeIndex,type] of types.entries())for(const [priceIndex,price] of [20000000,55000000,105000000,220000000,75000000,155000000].entries()){
+  const city=cities[priceIndex%2],area=[35,65,110,190,85,145][priceIndex]+typeIndex*3,rooms=[1,2,4,6,3,5][priceIndex];
   const propertyTitle=`Napfényes ${type.toLowerCase()} ${city} közelében ${priceIndex+1}`;
   const searchTitle=`Otthont keresek ${city} környékén ${type.toLowerCase()} ${priceIndex+1}`;
   // The mandatory Iroda stratum exercises contact-bearing title suppression
@@ -36,14 +36,14 @@ if(mode==='--setup'){
   ids.push(property.id,search.id);
  }
  await writeFile(path,JSON.stringify({ids,expected}),{mode:0o600});await chmod(path,0o600);
- console.log('Diverse landing fixture prepared: 16 properties and 16 searches across four types, four budgets, two towns and varied sizes/room counts.');
+ console.log('Diverse landing fixture prepared: 24 properties and 24 searches across four types, six budgets, two towns and varied sizes/room counts.');
 }else if(mode==='--verify'){
  const fixture=JSON.parse(await readFile(path,'utf8'));
- const signature=rows=>rows.map(({key,...data})=>JSON.stringify(data)).sort().join('\n');
+ const signature=rows=>rows.map(({key,sourceKey,href,...data})=>JSON.stringify(data)).sort().join('\n');
  let prior=null;
  for(let i=0;i<8;i++){
   const page=await api('/public/landing?region=HU233');
-  assert.equal(page.scope,'region');assert.equal(page.region.id,'HU233');assert.equal(page.searches.length,8);assert.equal(page.properties.length,4);
+  assert.equal(page.scope,'region');assert.equal(page.region.id,'HU233');assert.equal(page.searches.length,16);assert.equal(page.properties.length,8);
   assert.deepEqual([...new Set(page.searches.map(row=>row.type))].sort(),[...types].sort());
   assert.deepEqual([...new Set(page.properties.map(row=>row.type))].sort(),[...types].sort());
   assert.ok(new Set(page.searches.map(row=>row.maxPrice)).size>=3,'Search previews should cover several budgets');

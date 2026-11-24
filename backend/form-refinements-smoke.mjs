@@ -1,6 +1,7 @@
 /** Included by the disposable loopback attribute/API smoke, never run in a deployment. */
 import assert from 'node:assert/strict';
 import {descriptionContactMessage} from '../dist/contact-policy.js';
+import {checkPublicListingRefinements,verifyPublicListingRefinements} from './public-listing-smoke.mjs';
 
 export async function checkFormRefinements({call, buyer, seller, baseProperty}) {
   const safeDescription='Világos, 2020-ban felújított, harminchat négyzetméteres otthon, két egész szobával.';
@@ -57,11 +58,12 @@ export async function checkFormRefinements({call, buyer, seller, baseProperty}) 
   const seeker=await call('/me/entities',{token:buyer});
   assert.equal(seeker.searchRequests.find(item=>item.id===raisedSearch.search.id).description,safeDescription,'Rejected descriptions cannot overwrite a saved search');
   console.log('Form refinement API checks passed: raised/upper floor semantics, legacy floor buckets, numeric precision and contact-free descriptions.');
-  return {properties:[raised,ground,upper,exact].map(({id,floor,floorIsUpperRange,buildingFloors})=>({id,floor,floorIsUpperRange,buildingFloors})),
+  const publicListings=await checkPublicListingRefinements(call,baseProperty);
+  return {publicListings,properties:[raised,ground,upper,exact].map(({id,floor,floorIsUpperRange,buildingFloors})=>({id,floor,floorIsUpperRange,buildingFloors})),
     search:{id:raisedSearch.search.id,floors:[0.5]},description:safeDescription};
 }
 
-export function verifyFormRefinementPersistence(refinements,seller,buyer) {
+export async function verifyFormRefinementPersistence(refinements,seller,buyer,call) {
   if(!refinements)return;
   for(const expected of refinements.properties){
     const property=seller.properties.find(item=>item.id===expected.id);assert.ok(property);
@@ -70,4 +72,5 @@ export function verifyFormRefinementPersistence(refinements,seller,buyer) {
   }
   const search=buyer.searchRequests.find(item=>item.id===refinements.search.id);assert.ok(search);
   assert.deepEqual(search.floors,refinements.search.floors);assert.equal(search.description,refinements.description);
+  await verifyPublicListingRefinements(refinements.publicListings,call);
 }
