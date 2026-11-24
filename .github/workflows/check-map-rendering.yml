@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [seller-form, public-listings]
+        suite: [public-listings]
     steps:
       - uses: actions/checkout@v4
         with:

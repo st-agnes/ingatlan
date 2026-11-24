@@ -179,6 +179,10 @@ public sealed class ListingPrivacyEnergyTests
         Assert.Equal(true, property.FindProperty(nameof(Property.HideStreet))!.Sentinel);
         Assert.Equal(true, property.FindProperty(nameof(Property.HideHouseNumber))!.Sentinel);
         Assert.Equal(1, property.FindProperty(nameof(Property.CreationRequestHashVersion))!.GetDefaultValue());
+        Assert.Equal("", property.FindProperty(nameof(Property.EnergyRatingScheme))!.GetDefaultValue());
+        var search = db.Model.FindEntityType(typeof(SearchRequest))!;
+        Assert.Equal("", search.FindProperty(nameof(SearchRequest.AtticPreference))!.GetDefaultValue());
+        Assert.Equal("", search.FindProperty(nameof(SearchRequest.MinEnergyRating))!.GetDefaultValue());
         foreach (var type in new[] { typeof(Property), typeof(SearchRequest) })
         {
             var entity = db.Model.FindEntityType(type)!;

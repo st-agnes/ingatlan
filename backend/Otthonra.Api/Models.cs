@@ -300,9 +300,9 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         // databases use the same precision as the additive floor upgrade.
         b.Entity<Property>().Property(property => property.PublicListingKey).HasMaxLength(80).UseCollation("ascii_bin").HasCharSet("ascii");
         b.Entity<SearchRequest>().Property(search => search.PublicListingKey).HasMaxLength(80).UseCollation("ascii_bin").HasCharSet("ascii");
-        b.Entity<Property>().Property(property => property.EnergyRatingScheme).HasMaxLength(20);
-        b.Entity<SearchRequest>().Property(search => search.AtticPreference).HasMaxLength(20);
-        b.Entity<SearchRequest>().Property(search => search.MinEnergyRating).HasMaxLength(20);
+        b.Entity<Property>().Property(property => property.EnergyRatingScheme).HasMaxLength(20).HasDefaultValue("");
+        b.Entity<SearchRequest>().Property(search => search.AtticPreference).HasMaxLength(20).HasDefaultValue("");
+        b.Entity<SearchRequest>().Property(search => search.MinEnergyRating).HasMaxLength(20).HasDefaultValue("");
         b.Entity<Property>().Property(property => property.Floor).HasPrecision(4, 1);
         b.Entity<Property>().HasOne<User>().WithMany().HasForeignKey(x => x.OwnerId).OnDelete(DeleteBehavior.Restrict);
         b.Entity<SearchRequest>().HasOne<User>().WithMany().HasForeignKey(x => x.OwnerId).OnDelete(DeleteBehavior.Restrict);

@@ -1,5 +1,7 @@
 """Read-only checks of embedded fixture resets in the disposable CI MySQL database."""
 import os
+import json
+from pathlib import Path
 import re
 import subprocess
 import sys
@@ -19,6 +21,9 @@ def query(sql):
     if result.returncode:
         raise SystemExit('The disposable MySQL fixture check could not read the test database.')
     return result.stdout.strip()
+
+catalog = json.loads((Path(__file__).parent / 'Otthonra.Api' / 'Data' / 'test-fixtures.json').read_text())
+fixture_counts = {kind: sum(row['kind'] == kind for row in catalog['fixtures']) for kind in ('property', 'search')}
 
 expressions = {
     'users': '(SELECT COUNT(*) FROM Users)',
@@ -41,7 +46,7 @@ values = query('SELECT ' + ','.join(expressions.values())).split('\t')
 assert len(values) == len(expressions), 'Unexpected fixture-count result.'
 actual = dict(zip(expressions, map(int, values)))
 expected = {
-    'users': 14, 'agents': 3, 'properties': 355, 'searches': 353,
+    'users': 14, 'agents': 3, 'properties': fixture_counts['property'], 'searches': fixture_counts['search'],
     'decisions': 3 if phase == 'changed' else 1,
     'matches': 1 if phase == 'changed' else 0,
     'messages': 1 if phase == 'changed' else 0,
@@ -58,7 +63,7 @@ for name, value in expected.items():
 # Coordinates are synthetic fixture points in their own municipality, never
 # Google-validated addresses. Zero quarter memberships are valid where the
 # source has no neighborhood coverage (for example Abádszalók).
-assert query("SELECT COUNT(*) FROM Properties WHERE (Street='OTTHONRA TEST' OR (StreetId IN ('street:aae22ff8e2d0fa698c0291dc','street:6cd1dbc01d7aec3be234b7ba') AND HouseNumber='99999')) AND HouseNumber<>'' AND Latitude IS NOT NULL AND Longitude IS NOT NULL AND GeocodedAt IS NOT NULL AND GeocodingProvider='synthetic-test-fixture' AND GeocodingQuality='SYNTHETIC' AND GeocodingPlaceId LIKE 'synthetic:%' AND GeocodingAddressKey<>''") == '355', 'Every startup property must carry explicitly synthetic owner-scoped point metadata.'
+assert query("SELECT COUNT(*) FROM Properties WHERE (Street='OTTHONRA TEST' OR (StreetId IN ('street:aae22ff8e2d0fa698c0291dc','street:6cd1dbc01d7aec3be234b7ba') AND HouseNumber='99999')) AND HouseNumber<>'' AND Latitude IS NOT NULL AND Longitude IS NOT NULL AND GeocodedAt IS NOT NULL AND GeocodingProvider='synthetic-test-fixture' AND GeocodingQuality='SYNTHETIC' AND GeocodingPlaceId LIKE 'synthetic:%' AND GeocodingAddressKey<>''") == str(fixture_counts['property']), 'Every startup property must carry explicitly synthetic owner-scoped point metadata.'
 assert query('SELECT COUNT(*) FROM Properties WHERE StreetId IS NOT NULL') == '2', 'Exactly two dedicated fictional fixture cases must exercise real source streets.'
 assert query('SELECT COUNT(*) FROM NeighborhoodSearchAreas') == '4308', 'A fixture reset must preserve the imported search boundaries.'
 assert query('SELECT COUNT(*) FROM __OtthonraNeighborhoodDataset WHERE Id=1 AND FeatureCount=4308') == '1', 'A fixture reset must preserve the single dataset marker.'
@@ -76,6 +81,6 @@ history = query('SELECT RevisionId,Version,(AppliedAt IS NOT NULL) FROM __Otthon
 rows = [row.split('\t') for row in history.splitlines()]
 expected_revisions = ['ci-fixtures-a'] if phase == 'changed' else ['ci-fixtures-a', 'ci-fixtures-b']
 assert [row[0] for row in rows] == expected_revisions, 'Seed history changed or ordinary Production created a marker.'
-assert all(len(row) == 3 and row[1] == '20261118-test-fixtures-v6' and row[2] == '1' for row in rows), 'Invalid seed version or timestamp in history.'
-print('Embedded fixture database check passed: 14 users, 3 agents, 355 properties, 353 searches; '
+assert all(len(row) == 3 and row[1] == catalog['version'] and row[2] == '1' for row in rows), 'Invalid seed version or timestamp in history.'
+print(f"Embedded fixture database check passed: 14 users, 3 agents, {fixture_counts['property']} properties, {fixture_counts['search']} searches; "
       + ('test changes and first revision recorded.' if phase == 'changed' else 'reset results and two-revision history preserved.'))
