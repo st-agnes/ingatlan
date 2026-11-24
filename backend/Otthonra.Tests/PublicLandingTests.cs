@@ -61,8 +61,8 @@ public class PublicLandingTests
         var national = snapshot.Response(null);
         Assert.Equal("national", national.Scope);
         Assert.Null(national.Region);
-        Assert.Equal(8, national.Searches.Length);
-        Assert.Equal(4, national.Properties.Length);
+        Assert.Equal(16, national.Searches.Length);
+        Assert.Equal(8, national.Properties.Length);
         var regional = snapshot.Response(RegionCatalog.Get("HU321"));
         Assert.Equal("region", regional.Scope);
         Assert.Equal("HU321", regional.Region!.Id);
@@ -128,13 +128,13 @@ public class PublicLandingTests
         using var document = JsonDocument.Parse(json);
         var s = document.RootElement.GetProperty("searches")[0];
         var p = document.RootElement.GetProperty("properties")[0];
-        Assert.Equal(new[] { "key", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "ownerAccountType", "ownerFirstName", "prefill", "sourceKey", "title", "type" },
+        Assert.Equal(new[] { "href", "key", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "ownerAccountType", "ownerFirstName", "prefill", "sourceKey", "title", "type" },
             s.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
-        Assert.Equal(new[] { "area", "halfRooms", "key", "location", "lotArea", "ownerAccountType", "ownerFirstName", "prefill", "price", "rooms", "sourceKey", "title", "type", "wholeRooms" },
+        Assert.Equal(new[] { "area", "halfRooms", "href", "image", "key", "location", "lotArea", "ownerAccountType", "ownerFirstName", "prefill", "price", "rooms", "sourceKey", "title", "type", "wholeRooms" },
             p.EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
-        Assert.Equal(new[] { "airConditioning", "balcony", "buildings", "ceilingHeight", "conditions", "constructionAges", "elevator", "excludeGroundFloorAndBelow", "excludeTopFloor", "floors", "heatingTypes", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minPrice", "minRooms", "privateGarden", "sharedGarden", "type", "views" },
+        Assert.Equal(new[] { "airConditioning", "atticPreference", "balcony", "buildings", "ceilingHeight", "conditions", "constructionAges", "elevator", "excludeGroundFloorAndBelow", "excludeTopFloor", "floors", "heatingTypes", "locations", "maxArea", "maxPrice", "maxRooms", "minArea", "minEnergyRating", "minPrice", "minRooms", "privateGarden", "sharedGarden", "type", "views" },
             s.GetProperty("prefill").EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
-        Assert.Equal(new[] { "airConditioning", "area", "balcony", "building", "buildingFloors", "ceilingHeight", "condition", "constructionAge", "elevator", "floor", "floorIsUpperRange", "halfRooms", "heatingType", "locations", "lotArea", "price", "privateGarden", "rooms", "sharedGarden", "type", "view", "wholeRooms" },
+        Assert.Equal(new[] { "airConditioning", "area", "balcony", "building", "buildingFloors", "ceilingHeight", "condition", "constructionAge", "elevator", "energyRating", "energyRatingScheme", "floor", "floorIsUpperRange", "halfRooms", "heatingType", "isAttic", "locations", "lotArea", "price", "privateGarden", "rooms", "sharedGarden", "type", "view", "wholeRooms" },
             p.GetProperty("prefill").EnumerateObject().Select(value => value.Name).Order(StringComparer.Ordinal).ToArray());
         Assert.DoesNotContain("47.5123456789", json); Assert.DoesNotContain("19.123456789", json);
         Assert.Equal("Ingatlant keres", response.Searches[0].Title);
@@ -253,7 +253,7 @@ public class PublicLandingTests
         Assert.Equal(search.MaxPrice, seed.MaxPrice); Assert.Equal(search.MinArea, seed.MinArea);
         Assert.Equal(new[] { "Jó" }, seed.Conditions); Assert.Equal(new[] { "Panel" }, seed.Buildings);
         Assert.Equal(new[] { "10–30 év közötti" }, seed.ConstructionAges); Assert.Equal(new[] { "Udvari" }, seed.Views);
-        Assert.Equal(new[] { -1m, 0m, 9m }, seed.Floors); Assert.Equal(new[] { "Gázcirkó" }, seed.HeatingTypes);
+        Assert.Equal(new[] { -1m, 0m, 9m }, seed.Floors); Assert.Equal(new[] { "Gázkazán / cirkó" }, seed.HeatingTypes);
         Assert.True(seed.Balcony); Assert.False(seed.Elevator);
         Assert.DoesNotContain("private@example.test", JsonSerializer.Serialize(seed));
     }
@@ -267,13 +267,13 @@ public class PublicLandingTests
         property.Floor = 0; property.Balcony = false; property.Elevator = true;
         property.WholeRooms = 2; property.HalfRooms = 1;
         var seed = PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.Prefill!;
-        Assert.Equal("Új/felújított", seed.Condition); Assert.Equal("Panel", seed.Building); Assert.Equal("Gázcirkó", seed.HeatingType);
+        Assert.Equal("Új/felújított", seed.Condition); Assert.Equal("Panel", seed.Building); Assert.Equal("Gázkazán / cirkó", seed.HeatingType);
         Assert.Equal(property.Price, seed.Price); Assert.Equal(property.Area, seed.Area); Assert.Equal(property.Rooms, seed.Rooms);
         Assert.Equal(2, seed.WholeRooms); Assert.Equal(1, seed.HalfRooms); Assert.Equal(0m, seed.Floor);
         Assert.False(seed.Balcony); Assert.True(seed.Elevator);
         property.Type = "Ház"; property.LotArea = 700m; property.Balcony = true;
         seed = PublicLanding.PropertyTeaser(property, AccountTypes.Private)!.Value.Teaser.Prefill!;
-        Assert.Equal(700m, seed.LotArea); Assert.Null(seed.Floor); Assert.False(seed.Balcony); Assert.False(seed.Elevator);
+        Assert.Equal(700m, seed.LotArea); Assert.Null(seed.Floor); Assert.Null(seed.Balcony); Assert.False(seed.Elevator);
         var search = SearchAt("city:Debrecen"); search.Type = "Ház"; search.FloorsJson = "[0,1]"; search.Balcony = search.Elevator = true;
         var searchSeed = PublicLanding.SearchTeaser(search, AccountTypes.Private)!.Value.Teaser.Prefill!;
         Assert.Empty(searchSeed.Floors); Assert.False(searchSeed.Balcony); Assert.False(searchSeed.Elevator);
@@ -321,7 +321,7 @@ public class PublicLandingTests
             Assert.Equal(postcodes, fresh.Locations[1].PostalCodes);
             Assert.Equal(new[] { "Jó" }, fresh.Conditions); Assert.Equal(new[] { "Tégla" }, fresh.Buildings);
             Assert.Equal(new[] { "10–30 év közötti" }, fresh.ConstructionAges); Assert.Equal(new[] { "Udvari" }, fresh.Views);
-            Assert.Equal(new[] { "Gázcirkó" }, fresh.HeatingTypes); Assert.Equal(new[] { 0m }, fresh.Floors);
+            Assert.Equal(new[] { "Gázkazán / cirkó" }, fresh.HeatingTypes); Assert.Equal(new[] { 0m }, fresh.Floors);
             Assert.Equal("city:Debrecen", Assert.Single(Assert.Single(response.Properties).Prefill!.Locations).Id);
         });
         Assert.Equal(postcodes, LocationCatalog.Get(streetId)!.PostalCodes);
@@ -391,7 +391,7 @@ public class PublicLandingTests
         for (var refresh = 0; refresh < 20; refresh++)
         {
             var response = snapshot.Response(RegionCatalog.Get("HU110"));
-            Assert.Equal(8, response.Searches.Length); Assert.Equal(4, response.Properties.Length);
+            Assert.Equal(16, response.Searches.Length); Assert.Equal(8, response.Properties.Length);
             Assert.Equal(new[] { "Ház", "Iroda", "Lakás", "Nyaraló" }, response.Searches.Select(item => item.Type).Distinct().Order(StringComparer.Ordinal).ToArray());
             Assert.Equal(4, response.Properties.Select(item => item.Type).Distinct().Count());
             Assert.Equal(4, response.Searches.Select(item => item.MaxPrice).Distinct().Count());
@@ -425,9 +425,10 @@ public class PublicLandingTests
         var owners = HostedFixtures.Value.Users.ToDictionary(user => user.Id, user => user.AccountType);
         foreach (var region in RegionCatalog.All)
         {
-            var allowedSearches = HostedFixtures.Value.Searches
+            var regionalSearches = HostedFixtures.Value.Searches
                 .Select(item => PublicLanding.SearchTeaser(item, owners[item.OwnerId])!.Value)
-                .Where(item => item.Regions.Contains(region.Id)).Select(item => VisibleSearch(item.Teaser)).ToHashSet();
+                .Where(item => item.Regions.Contains(region.Id)).ToArray();
+            var allowedSearches = regionalSearches.Select(item => VisibleSearch(item.Teaser)).ToHashSet();
             var allowedProperties = HostedFixtures.Value.Properties
                 .Select(item => PublicLanding.PropertyTeaser(item, owners[item.OwnerId])!.Value)
                 .Where(item => item.Regions.Contains(region.Id)).Select(item => VisibleProperty(item.Teaser)).ToHashSet();
@@ -435,7 +436,7 @@ public class PublicLandingTests
             {
                 var response = snapshot.Response(region);
                 Assert.Equal(region.Id, response.Region!.Id);
-                Assert.Equal(8, response.Searches.Length); Assert.Equal(4, response.Properties.Length);
+                Assert.Equal(Math.Min(16, regionalSearches.Length), response.Searches.Length); Assert.Equal(8, response.Properties.Length);
                 // The feedback trial adds a holiday home to the real catalog.
                 // Both principal housing types must remain visible even when
                 // a county also contains additional valid property types.
@@ -512,10 +513,10 @@ public class PublicLandingTests
             var searches = string.Join("|", response.Searches.Select(item => item.MaxPrice).Order());
             var properties = string.Join("|", response.Properties.Select(item => item.Price).Order());
             Assert.NotEqual(previousSearches, searches); Assert.NotEqual(previousProperties, properties);
-            Assert.Equal(8, response.Searches.Select(item => item.MaxPrice).Distinct().Count());
-            Assert.Equal(4, response.Properties.Select(item => item.Price).Distinct().Count());
-            Assert.Equal(Enumerable.Range(1, 8).Select(index => "search-" + index), response.Searches.Select(item => item.Key));
-            Assert.Equal(Enumerable.Range(1, 4).Select(index => "property-" + index), response.Properties.Select(item => item.Key));
+            Assert.Equal(16, response.Searches.Select(item => item.MaxPrice).Distinct().Count());
+            Assert.Equal(8, response.Properties.Select(item => item.Price).Distinct().Count());
+            Assert.Equal(Enumerable.Range(1, 16).Select(index => "search-" + index), response.Searches.Select(item => item.Key));
+            Assert.Equal(Enumerable.Range(1, 8).Select(index => "property-" + index), response.Properties.Select(item => item.Key));
             previousSearches = searches; previousProperties = properties;
         }
     }
@@ -537,11 +538,11 @@ public class PublicLandingTests
         Assert.Equal(32, responses.Count);
         foreach (var response in responses)
         {
-            Assert.Equal(8, response.Searches.Length); Assert.Equal(4, response.Properties.Length);
+            Assert.Equal(16, response.Searches.Length); Assert.Equal(8, response.Properties.Length);
             Assert.All(response.Searches, item => Assert.Equal("Debrecen", Assert.Single(item.Locations)));
             Assert.All(response.Properties, item => Assert.Equal("Debrecen", item.Location));
-            Assert.Equal(8, response.Searches.Select(item => item.MaxPrice).Distinct().Count());
-            Assert.Equal(4, response.Properties.Select(item => item.Price).Distinct().Count());
+            Assert.Equal(16, response.Searches.Select(item => item.MaxPrice).Distinct().Count());
+            Assert.Equal(8, response.Properties.Select(item => item.Price).Distinct().Count());
         }
     }
 

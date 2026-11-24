@@ -4,7 +4,7 @@ import {dirname, resolve} from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 import {DEMO_PASSWORD, DEMO_USERS, DEMO_FIXTURES, DEMO_FEEDBACK_SCENARIOS} from './demo-data.mjs';
 
-export const TEST_FIXTURE_VERSION = '20261118-test-fixtures-v6';
+export const TEST_FIXTURE_VERSION = '20261124-test-fixtures-v7';
 export const TEST_FIXTURE_PATH = fileURLToPath(new URL('../../backend/Otthonra.Api/Data/test-fixtures.json', import.meta.url));
 export function renderTestFixtureCatalog() {
   return JSON.stringify({version:TEST_FIXTURE_VERSION, password:DEMO_PASSWORD, users:DEMO_USERS, fixtures:DEMO_FIXTURES, feedbackScenarios:DEMO_FEEDBACK_SCENARIOS}, null, 2) + '\n';

@@ -105,7 +105,7 @@ public class SellerFormTests
         var property = new Property();
         Rules.Apply(property, Input() with { Type = "Ház", LotArea = 600m, Floor = -100, Balcony = true, Elevator = true });
         Assert.Equal(600m, property.LotArea);
-        Assert.Null(property.Floor); Assert.False(property.Balcony); Assert.False(property.Elevator);
+        Assert.Null(property.Floor); Assert.Null(property.Balcony); Assert.False(property.Elevator);
         Rules.Apply(property, Input() with { LotArea = 600m });
         Assert.Null(property.LotArea);
         Assert.Equal(2m, property.Floor); Assert.True(property.Balcony); Assert.True(property.Elevator);
@@ -152,9 +152,9 @@ public class SellerFormTests
     {
         var property = new Property();
         Rules.Apply(property, Input() with { HeatingType = "gazkazan", SecondaryHeatingType = "Kandalló" });
-        Assert.Equal("Gázkazán", property.HeatingType); Assert.Equal("Kandalló", property.SecondaryHeatingType);
+        Assert.Equal("Gázkazán / cirkó", property.HeatingType); Assert.Equal("Kandalló", property.SecondaryHeatingType);
         Rules.Apply(property, Input() with { HeatingType = "Nincs fűtés" });
-        Assert.Equal("Nincs fűtés", property.HeatingType); Assert.Equal("", property.SecondaryHeatingType);
+        Assert.Equal("Nincs fűtés", property.HeatingType); Assert.Equal("Kandalló", property.SecondaryHeatingType);
         property.HeatingType = "Hőszivattyú és padlófűtés";
         Rules.Apply(property, Input() with { HeatingType = property.HeatingType });
         Assert.Equal("Hőszivattyú és padlófűtés", property.HeatingType);
@@ -204,7 +204,7 @@ public class SellerFormTests
         var input = new SearchInput("Otthont keresünk", "Debrecen", null, null, "Lakás", null, null, null, null, null, null, false, false, null, null,
             LocationIds: ["city:Debrecen"], HeatingTypes: ["Hőszivattyú", "gazkazan", "Gázkazán"]);
         Rules.Apply(search, input);
-        Assert.Equal(new[] { "Hőszivattyú", "Gázkazán" }, Dto.Strings(search.HeatingTypesJson));
+        Assert.Equal(new[] { "Hőszivattyú", "Gázkazán / cirkó" }, Dto.Strings(search.HeatingTypesJson));
         Assert.True(Rules.Compatible(property, search));
         Rules.Apply(search, input with { HeatingTypes = ["Kandalló"] });
         Assert.False(Rules.Compatible(property, search));

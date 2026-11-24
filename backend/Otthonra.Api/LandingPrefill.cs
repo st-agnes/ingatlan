@@ -8,11 +8,13 @@ public sealed record LandingSearchPrefill(Location[] Locations, string Type, dec
     decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, string[] Conditions,
     string[] Buildings, string[] ConstructionAges, string[] Views, string CeilingHeight, decimal[] Floors,
     string[] HeatingTypes, bool Balcony, bool Elevator, bool ExcludeTopFloor = false,
-    bool ExcludeGroundFloorAndBelow = false, bool AirConditioning = false, bool PrivateGarden = false, bool SharedGarden = false);
+    bool ExcludeGroundFloorAndBelow = false, bool AirConditioning = false, bool PrivateGarden = false, bool SharedGarden = false,
+    string AtticPreference = "", string MinEnergyRating = "");
 public sealed record LandingPropertyPrefill(Location[] Locations, string Type, decimal Price, decimal Area, decimal Rooms,
     int? WholeRooms, int? HalfRooms, decimal? LotArea, string Condition, string Building, string ConstructionAge,
-    string View, string CeilingHeight, decimal? Floor, string HeatingType, bool Balcony, bool Elevator,
-    int? BuildingFloors = null, bool? AirConditioning = null, bool? PrivateGarden = null, bool? SharedGarden = null, bool FloorIsUpperRange = false);
+    string View, string CeilingHeight, decimal? Floor, string HeatingType, bool? Balcony, bool Elevator,
+    int? BuildingFloors = null, bool? AirConditioning = null, bool? PrivateGarden = null, bool? SharedGarden = null, bool FloorIsUpperRange = false,
+    bool? IsAttic = null, string EnergyRating = "", string EnergyRatingScheme = "");
 
 internal static class LandingPrefill
 {
@@ -21,7 +23,8 @@ internal static class LandingPrefill
     private static string Choice(string? value, string[] options, bool condition = false)
     {
         if (value is null || value.Length > 100) return "";
-        var normalized = Rules.Normalize(condition ? PropertyAttributes.NormalizeCondition(value) : value);
+        var normalized = Rules.Normalize(condition ? PropertyAttributes.NormalizeCondition(value)
+            : ReferenceEquals(options, PropertyAttributes.HeatingTypes) ? PropertyAttributes.NormalizeHeating(value) : value);
         return options.FirstOrDefault(option => Rules.Normalize(option) == normalized) ?? "";
     }
     private static string[] Choices(string? json, string[] options, bool condition = false)
@@ -65,7 +68,9 @@ internal static class LandingPrefill
             house ? [] : Floors(search.FloorsJson), Choices(search.HeatingTypesJson, PropertyAttributes.HeatingTypes),
             !house && search.Balcony, !house && search.Elevator, !house && search.ExcludeTopFloor,
             !house && search.ExcludeGroundFloorAndBelow, search.AirConditioning,
-            type == "Lakás" && search.PrivateGarden, false);
+            type == "Lakás" && search.PrivateGarden, false,
+            house || search.AtticPreference is not ("only" or "exclude") ? "" : search.AtticPreference,
+            PropertyAttributes.EnergyRatings.Contains(search.MinEnergyRating) ? search.MinEnergyRating : "");
     }
 
     public static LandingPropertyPrefill Property(Property property, Location location)
@@ -80,9 +85,11 @@ internal static class LandingPrefill
             Choice(property.Building, PropertyAttributes.Buildings), Choice(property.ConstructionAge, PropertyAttributes.ConstructionAges),
             Choice(property.View, PropertyAttributes.Views), Choice(property.CeilingHeight, PropertyAttributes.CeilingHeights),
             !house && PropertyAttributes.KnownFloor(property.Floor) ? property.Floor : null,
-            Choice(property.HeatingType, PropertyAttributes.HeatingTypes), !house && property.Balcony, !house && property.Elevator,
+            Choice(PropertyAttributes.NormalizeHeating(property.HeatingType), PropertyAttributes.HeatingTypes), house ? null : property.Balcony, !house && property.Elevator,
             !house && property.BuildingFloors is >= 0 and <= 200 ? property.BuildingFloors : null,
-            property.AirConditioning, type == "Lakás" ? property.PrivateGarden : null, null, !house && property.FloorIsUpperRange && property.Floor == 9m);
+            property.AirConditioning, type == "Lakás" ? property.PrivateGarden : null, null, !house && property.FloorIsUpperRange && property.Floor == 9m,
+            house ? null : property.IsAttic, property.EnergyRatingScheme == "2023" && PropertyAttributes.EnergyRatings.Contains(property.EnergyRating) ? property.EnergyRating : "",
+            property.EnergyRatingScheme == "2023" && PropertyAttributes.EnergyRatings.Contains(property.EnergyRating) ? "2023" : "");
     }
 
     private static Location PropertyLocation(Property property, Location fallback)

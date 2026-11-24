@@ -27,7 +27,7 @@ export const DEMO_STREET_SCENARIO = Object.freeze({
 const propertyDefaults = {
   neighborhood: '', address: '', description: fictional, type: 'Lakás', floor: 1,
   condition: 'Jó állapotú', building: 'Tégla', balcony: false, elevator: false,
-  images: photos, archived: false, lotArea: null
+  images: photos, archived: false, lotArea: null, hideStreet:true, hideHouseNumber:true
 };
 const searchDefaults = {
   districts: [], description: fictional, type: 'Lakás', minPrice: null, maxPrice: null,
@@ -150,10 +150,10 @@ const propertyExtras = (slot, ownerIndex) => ({
   constructionAge:['10 évnél fiatalabb','10–30 év közötti','31–40 év közötti','41–50 év közötti','Több mint 50 éves'][(slot + ownerIndex) % 5],
   view:['Kertre néző','Utcai','Udvari','Panorámás'][(slot + ownerIndex) % 4],
   ceilingHeight:slot % 2 ? '3 m feletti' : '3 m alatti',
-  heatingType:['Gázkazán','Távfűtés','Hőszivattyú','Elektromos fűtés','Nincs fűtés'][(slot + ownerIndex) % 5],
-  secondaryHeatingType:slot % 3 === 0 ? 'Klíma' : '',
+  heatingType:['Gázkazán / cirkó','Távfűtés','Hőszivattyú','Elektromos fűtés','Fűtő klíma'][(slot + ownerIndex) % 5],
   insulated:slot % 3 === 0 ? null : slot % 2 === 0,
-  energyRating:slot % 2 ? 'BB' : 'A+',
+  energyRating:['I','G','E','D','C','B','A','A+','A++','A+++'][(slot + ownerIndex) % 10], energyRatingScheme:'2023',
+  isAttic:slot % 4 === 0,
   airConditioning:slot % 2 === 0, solarPanels:slot % 3 === 0,
   parkingTypes:slot % 2 ? ['Garázs','Udvari beálló'] : ['Utcai parkolás']
 });
@@ -329,6 +329,14 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
           heatingTypes:index % 3 === 1 ? [attributes.heatingType] : [],
           description:fictional + 'Önálló régiós keresési példa változatos költségkerettel, méret- és szobaigénnyel. A nyitott felső korlátok és a több településes keresés is kipróbálható.'
         }});
+        if(index>=4){
+          const original=fixtures.at(-1);
+          fixtures.push({...copy(original),key:`${pairKey}-search-focused`,input:{...copy(original.input),
+            title:`Teszt · ${profile.labels[index]} · célzott keresés · ${city}${titleSuffix}`,
+            maxPrice:original.input.maxPrice+5_000_000,minArea:original.input.minArea+2,
+            minEnergyRating:attributes.energyRating,
+            description:fictional+'Célzottabb régiós keresés a bővebb kezdőoldali kínálathoz; a jelenlegi energetikai minimum is kipróbálható.'}});
+        }
       }
     }
   }
@@ -359,11 +367,11 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
   const fixture = key => fixtures.find(item => item.key === key);
   const venkert = fixture(`reka${keySuffix}-debrecen-1`);
   const sestakert = fixture(`bence${keySuffix}-debrecen-1`);
-  Object.assign(venkert.input, {neighborhood:'Vénkert', street:DEMO_STREET_SCENARIO.firstName,
+  Object.assign(venkert.input, {neighborhood:'Vénkert', hideStreet:false, hideHouseNumber:true, street:DEMO_STREET_SCENARIO.firstName,
     streetId:DEMO_STREET_SCENARIO.firstId, houseNumber:'99999', postalCode:'4027',
     title:'Teszt · Vénkerti lakás · szintetikus címpont' + titleSuffix,
     description:fictional + 'Szintetikus tesztkoordináta a Vénkert keresési területén; nem Google által ellenőrzött valódi cím. A postai közterület valódi, a 99999 házszám kitalált.'});
-  Object.assign(sestakert.input, {neighborhood:'Sestakert', street:DEMO_STREET_SCENARIO.secondName,
+  Object.assign(sestakert.input, {neighborhood:'Sestakert', hideStreet:false, hideHouseNumber:true, street:DEMO_STREET_SCENARIO.secondName,
     streetId:DEMO_STREET_SCENARIO.secondId, houseNumber:'99999', postalCode:'4032',
     title:'Teszt · Sestakerti lakás · szintetikus címpont' + titleSuffix,
     description:fictional + 'Szintetikus tesztkoordináta a Sestakert keresési területén; nem Google által ellenőrzött valódi cím. A postai közterület valódi, a 99999 házszám kitalált.'});

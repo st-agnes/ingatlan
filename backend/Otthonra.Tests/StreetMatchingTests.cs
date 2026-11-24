@@ -21,7 +21,7 @@ public sealed class StreetMatchingTests
 
     private static Property Home(Location street) => new()
     {
-        OwnerId = Seller, LocationId = LocationCatalog.ResolveLegacy(street.City,
+        HideStreet = false, OwnerId = Seller, LocationId = LocationCatalog.ResolveLegacy(street.City,
             street.District is null ? [] : [street.District]).Single().Id,
         City = street.City, District = street.District ?? "", StreetId = street.Id, Street = street.StreetName ?? "",
         Type = "Lakás", Price = 60_000_000m, Area = 60m, Rooms = 3m
