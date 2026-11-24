@@ -28,6 +28,7 @@ public static class SchemaUpgrade
     public const string FlatAmenitiesVersion = "20261123-floor-and-garden-amenities";
     public const string RaisedAndUpperFloorVersion = "20261124-raised-and-upper-floor-range";
     public const string PublicListingsVersion = "20261124-public-listings-and-energy";
+    public const string PublicBudgetVersion = "20261124-search-public-budget";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -92,7 +93,8 @@ public static class SchemaUpgrade
         ("SearchRequests", "PublicListingKey", "varchar(80) CHARACTER SET ascii COLLATE ascii_bin NULL"),
         ("Properties", "CreationRequestHashVersion", "int NOT NULL DEFAULT 1"),
         ("SearchRequests", "AtticPreference", "varchar(20) NOT NULL DEFAULT ''"),
-        ("SearchRequests", "MinEnergyRating", "varchar(20) NOT NULL DEFAULT ''")
+        ("SearchRequests", "MinEnergyRating", "varchar(20) NOT NULL DEFAULT ''"),
+        ("SearchRequests", "PublicMaxPrice", "decimal(18,2) NULL")
     ];
 
     public static async Task ApplyAsync(AppDb db, CancellationToken cancellationToken = default)
@@ -282,6 +284,7 @@ public static class SchemaUpgrade
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", FlatAmenitiesVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", RaisedAndUpperFloorVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PublicListingsVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PublicBudgetVersion));
             if (Convert.ToInt32(await Scalar(connection,
                     "SELECT COUNT(*) FROM `__OtthonraSchemaVersions` WHERE `Version` = @version",
                     cancellationToken, ("version", ContinuousFeedbackVersion))) == 0)

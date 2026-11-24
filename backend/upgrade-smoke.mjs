@@ -64,6 +64,12 @@ for(const oldProperty of sellerEntities.properties) {
 const search=buyerEntities.searchRequests.find(item=>item.id===fixture.searchId);
 assert.ok(search);assert.equal(search.ownerAccountType,'private');assert.deepEqual(search.locationIds,['district:Budapest:13']);
 assert.equal(search.minPrice,null);assert.equal(search.maxArea,null);assert.equal(search.maxRooms,null);
+assert.equal(search.publicMaxPrice,null,'The additive upgrade leaves an old maximum public through the compatible null fallback');
+const publicSearchKey='search-'+createHash('sha256').update('otthonra:landing-source:v1:search:'+search.id.replaceAll('-','').toLowerCase()).digest('hex');
+const publicSearch=await get('/public/listings/search/'+publicSearchKey);
+assert.equal(publicSearch.listing.maxPrice,search.maxPrice,'A legacy search retains its previous public budget without inventing a private/public difference');
+assert.equal(publicSearch.clonePrefill.maxPrice,search.maxPrice);
+assert.equal(Object.hasOwn(publicSearch.listing,'publicMaxPrice'),false,'Legacy public DTOs do not gain owner-only budget metadata');
 for(const field of ['conditions','buildings','constructionAges','views','floors','heatingTypes'])assert.deepEqual(search[field],[],`Old search must have no ${field} restriction`);
 assert.equal(search.ceilingHeight,'');assert.equal(search.atticPreference,'');assert.equal(search.minEnergyRating,'');
 const match=matches.find(item=>item.id===fixture.matchId);

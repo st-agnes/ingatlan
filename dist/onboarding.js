@@ -76,7 +76,7 @@ export function sameDraftOrigin(draft,entityKind,origin) {
   return previous?.kind===candidate.kind && (candidate.kind==='blank'?previous.entityKind===candidate.entityKind:previous.key===candidate.key&&previous.mode===candidate.mode);
 }
 const textFields = {title:150, description:6000, type:40, city:120, district:20, locationId:200, address:500, neighborhood:180, street:180, houseNumber:32, postalCode:4, streetId:64, condition:80, building:80, constructionAge:80, view:80, ceilingHeight:80, heatingType:80, secondaryHeatingType:80, energyRating:20, energyRatingScheme:20, minEnergyRating:20, atticPreference:20, parkingType:200, moveIn:200, financing:300};
-const numericFields = ['price','area','rooms','wholeRooms','halfRooms','lotArea','floor','buildingFloors','minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'];
+const numericFields = ['price','area','rooms','wholeRooms','halfRooms','lotArea','floor','buildingFloors','minPrice','maxPrice','publicMaxPrice','minArea','maxArea','minRooms','maxRooms'];
 // sharedGarden is retained here only so old frozen creation payloads keep their receipt hash.
 const booleanFields = ['balcony','elevator','insulated','airConditioning','solarPanels','privateGarden','sharedGarden','floorIsUpperRange','excludeTopFloor','excludeGroundFloorAndBelow','hideStreet','hideHouseNumber','isAttic'];
 const listFields = ['locationIds','districts','conditions','buildings','constructionAges','views','floors','heatingTypes','parkingTypes','images'];
@@ -199,7 +199,7 @@ export function sanitizeTeaserPrefill(kind,value={}, {pricesInHuf=false}={}) {
   const source=value && typeof value==='object'?value:{},data={locations:safeLocations(source.locations)};
   if (propertyTypes.includes(source.type)) data.type=source.type;
   const numbers=kind==='property'?['price','area','rooms','wholeRooms','halfRooms','lotArea','floor','buildingFloors']:['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'];
-  for (const field of numbers) {const number=finite(source[field]);data[field]=number!=null && pricesInHuf && ['price','minPrice','maxPrice'].includes(field)?number/1000000:number;}
+  for (const field of numbers) {const number=finite(kind==='search'&&field==='maxPrice'?(source.publicMaxPrice==null||source.publicMaxPrice===''?source.maxPrice:source.publicMaxPrice):source[field]);data[field]=number!=null && pricesInHuf && ['price','minPrice','maxPrice'].includes(field)?number/1000000:number;}
   if (kind==='property') for (const [field,options,normalize] of [['condition',CONDITION_OPTIONS,normalizeCondition],['building',BUILDING_OPTIONS,normalizeBuilding],['constructionAge',CONSTRUCTION_AGE_OPTIONS],['view',VIEW_OPTIONS],['heatingType',HEATING_OPTIONS,normalizeHeating]]) data[field]=knownChoice(source[field],options,normalize);
   else {
     for (const [field,options,normalize] of [['conditions',CONDITION_OPTIONS,normalizeCondition],['buildings',BUILDING_OPTIONS,normalizeBuilding],['constructionAges',CONSTRUCTION_AGE_OPTIONS],['views',VIEW_OPTIONS],['heatingTypes',HEATING_OPTIONS,normalizeHeating]]) data[field]=[...new Set((Array.isArray(source[field])?source[field]:[]).slice(0,50).map(value=>knownChoice(value,options,normalize)).filter(Boolean))];
@@ -237,7 +237,7 @@ export function suggestEntityTitle(kind,data={}) {
   const start=kind==='property'?`${type} eladó`:`${type} keresés`;
   const number=value=>new Intl.NumberFormat('hu-HU',{maximumFractionDigits:2}).format(value);
   const detail=(value,unit)=>{const parsed=finite(value);return parsed!=null && parsed>0?`${number(parsed)}${unit}`:'';};
-  const price=kind==='property'?detail(data.price,' M Ft'):detail(data.maxPrice,' M Ft-ig');
+  const price=kind==='property'?detail(data.price,' M Ft'):detail(data.publicMaxPrice==null||data.publicMaxPrice===''?data.maxPrice:data.publicMaxPrice,' M Ft-ig');
   const area=kind==='property'?detail(data.area,' m²'):detail(data.minArea,'+ m²');
   const rooms=kind==='property'?detail(data.rooms,' szoba'):detail(data.minRooms,'+ szoba');
   // Keep only two compact identifying figures, with room count as a fallback.
@@ -260,7 +260,7 @@ export function prefillFromTeaser(targetKind,teaser,{locations}={}) {
     // Multiply by integer ratios before rounding: 50 * 1.1 is not exactly 55 in JS.
     const maxPrice=price!=null && price>0?Math.ceil(price*11/50)*5:null;
     const minArea=area!=null && area>0?Math.floor(area*9/50)*5:null;
-    Object.assign(data,{minPrice:null,maxPrice,minArea:minArea>0?minArea:null,maxArea:null,minRooms:rooms,maxRooms:null});
+    Object.assign(data,{minPrice:null,maxPrice,publicMaxPrice:maxPrice,minArea:minArea>0?minArea:null,maxArea:null,minRooms:rooms,maxRooms:null});
     for (const [field,plural,options,normalize] of [['condition','conditions',CONDITION_OPTIONS,normalizeCondition],['building','buildings',BUILDING_OPTIONS,normalizeBuilding],['constructionAge','constructionAges',CONSTRUCTION_AGE_OPTIONS],['view','views',VIEW_OPTIONS],['heatingType','heatingTypes',HEATING_OPTIONS,normalizeHeating]]) {
       const choice=knownChoice(source[field],options,normalize);data[plural]=choice?[choice]:[];
     }
@@ -297,6 +297,7 @@ export function prefillFromSearchClone(teaser,{locations}={}) {
   const chosen=selectedLocations(source,locations);
   const data=sanitizeTeaserPrefill('search',{...source,locations:chosen});
   data.locationIds=chosen.map(location=>location.id);
+  data.publicMaxPrice=data.maxPrice;
   for(const [field,limit]of [['description',6000],['moveIn',200],['financing',300]])if(typeof source[field]==='string')data[field]=text(source[field],limit);
   data.title=suggestEntityTitle('search',data);
   return sanitizeDraftData(data,'search');

@@ -167,7 +167,7 @@ async function createWizard(page,interact,kind,viewport){
 async function boundGeometry(page){
  return page.locator('#editor-step-2 .form-row').evaluateAll(rows=>rows.map(row=>[...row.querySelectorAll('.field')].map(field=>{
   const input=field.querySelector('input:not([type="hidden"]),output,select,textarea'),label=field.querySelector('label');
-  if(!input||!label)return null;const box=input.getBoundingClientRect(),caption=label.getBoundingClientRect();
+  if(!input||!label||input.id==='f-publicMaxPrice')return null;const box=input.getBoundingClientRect(),caption=label.getBoundingClientRect();
   return{id:input.id,left:box.left,right:box.right,top:box.top,bottom:box.bottom,labelHeight:caption.height};
  }).filter(Boolean)));
 }

@@ -59,7 +59,7 @@ internal static class LandingPrefill
     {
         var type = PublicLanding.SafeType(search.Type);
         var house = type == "Ház";
-        return new(CloneLocations(locations), type, Bound(search.MinPrice), Bound(search.MaxPrice), Bound(search.MinArea),
+        return new(CloneLocations(locations), type, Bound(search.MinPrice), Bound(SearchBudgets.PublicMaximum(search)), Bound(search.MinArea),
             Bound(search.MaxArea), Bound(search.MinRooms), Bound(search.MaxRooms),
             Choices(search.ConditionsJson, PropertyAttributes.Conditions, condition: true),
             Choices(search.BuildingsJson, PropertyAttributes.Buildings),

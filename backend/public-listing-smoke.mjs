@@ -1,6 +1,7 @@
 /** Actual anonymous listing and seller-form contracts, scoped to disposable API accounts. */
 import assert from 'node:assert/strict';
 import {createHash,randomUUID} from 'node:crypto';
+import {checkPublicBudgets,verifyPublicBudgets} from './public-budget-smoke.mjs';
 
 const source=(kind,id)=>kind+'-'+createHash('sha256').update(`otthonra:landing-source:v1:${kind}:${id.replaceAll('-','').toLowerCase()}`).digest('hex');
 const fields=['hideStreet','hideHouseNumber','isAttic','energyRating','energyRatingScheme','balcony','airConditioning','privateGarden','insulated','solarPanels'];
@@ -92,8 +93,9 @@ export async function checkPublicListingRefinements(call,baseProperty){
  await call('/properties/'+once.id,{token:seller,method:'DELETE',status:204});
  await call('/public/listings/property/'+source('property',once.id),{status:404});
  await call('/searches/'+clonedSearch.id,{token:buyer,method:'DELETE',status:204});await call(searchPath,{status:404});
+ const budget=await checkPublicBudgets(call,{buyer,seller});
  const expected={seller,buyer,propertyId:property.id,searchId:search.id,fields:Object.fromEntries(fields.map(key=>[key,property[key]])),
-  search:{atticPreference:search.atticPreference,minEnergyRating:search.minEnergyRating,balcony:search.balcony},publicPath};
+  search:{atticPreference:search.atticPreference,minEnergyRating:search.minEnergyRating,balcony:search.balcony},publicPath,budget};
  console.log('Public listing API checks passed: visibility persistence, nullable amenities, attic/energy criteria, full anonymous details and cloning, archive 404, and version-two null/false idempotency.');
  return expected;
 }
@@ -105,5 +107,6 @@ export async function verifyPublicListingRefinements(fixture,call){
  for(const [key,value]of Object.entries(fixture.fields))assert.deepEqual(property[key],value,key+' must survive the actual restart');
  for(const [key,value]of Object.entries(fixture.search))assert.deepEqual(search[key],value,key+' search criterion must survive the actual restart');
  const detail=await call(fixture.publicPath);assert.equal(detail.listing.address,'');assert.equal(detail.listing.balcony,true);assert.equal(detail.listing.isAttic,false);assert.equal(detail.listing.energyRatingScheme,'2023');
+ await verifyPublicBudgets(fixture.budget,call);
  console.log('Public listing restart preservation passed: address switches, nullable amenities, attic and energy criteria, and stable anonymous URLs.');
 }

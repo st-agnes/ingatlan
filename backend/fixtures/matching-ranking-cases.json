@@ -846,5 +846,83 @@
     },
     "eligible": true,
     "score": 27
+  },
+  {
+    "name": "private-budget-buyer-within-real-ceiling",
+    "perspective": "buyer",
+    "property": {
+      "price": 75
+    },
+    "search": {
+      "maxPrice": 80,
+      "publicMaxPrice": 70
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "private-budget-seller-above-public-ceiling",
+    "perspective": "seller",
+    "property": {
+      "price": 75
+    },
+    "search": {
+      "maxPrice": 80,
+      "publicMaxPrice": 70
+    },
+    "eligible": true,
+    "score": 93
+  },
+  {
+    "name": "private-budget-seller-hidden-ceiling-invariant",
+    "perspective": "seller",
+    "property": {
+      "price": 75
+    },
+    "search": {
+      "maxPrice": 800,
+      "publicMaxPrice": 70
+    },
+    "eligible": true,
+    "score": 93
+  },
+  {
+    "name": "private-budget-legacy-public-fallback",
+    "perspective": "seller",
+    "property": {
+      "price": 75
+    },
+    "search": {
+      "maxPrice": 80,
+      "publicMaxPrice": null
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "private-budget-seller-inclusive-public-bound",
+    "perspective": "seller",
+    "property": {
+      "price": 70
+    },
+    "search": {
+      "maxPrice": 80,
+      "publicMaxPrice": 70
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "private-budget-buyer-above-real-bound",
+    "perspective": "buyer",
+    "property": {
+      "price": 82
+    },
+    "search": {
+      "maxPrice": 81,
+      "publicMaxPrice": 70
+    },
+    "eligible": true,
+    "score": 99
   }
 ]

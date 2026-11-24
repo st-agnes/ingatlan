@@ -124,10 +124,10 @@ test('prepared filters can be reused across large candidate lists without mutati
 test('the browser and .NET matching engines use the same fixed cross-language score fixtures',()=>{
   const cases=JSON.parse(readFileSync(new URL('../backend/fixtures/matching-ranking-cases.json',import.meta.url),'utf8'));
   for(const item of cases){
-    const p=home(item.property),s=wanted(item.search),result=evaluateMatch(p,s);
+    const p=home(item.property),s=wanted(item.search),result=evaluateMatch(p,s,{perspective:item.perspective??'buyer'});
     if('eligible' in item)assert.equal(result.eligible,item.eligible,item.name);
     if('score' in item){assert.equal(result.score,item.score,item.name);assert.equal(result.isExact,item.score===100,item.name);}
-    if('specificity' in item)assert.equal(searchSpecificity(s),item.specificity,item.name);
+    if('specificity' in item)assert.equal(searchSpecificity(s,{perspective:item.perspective??'buyer'}),item.specificity,item.name);
     if('valueForMoney' in item)assert.ok(Math.abs(valueForMoney(p)-item.valueForMoney)<1e-8,item.name);
     if('matchDetails' in item)assert.deepEqual(result.matchDetails,item.matchDetails,item.name);
   }
@@ -255,4 +255,22 @@ test('attic facts share the existing floor penalty budget and explicit false dif
  assert.equal(single.score,combined.score,'Adding another failed floor fact does not spend another independent penalty budget');
  assert.equal(combined.matchDetails.find(item=>item.key==='atticPreference').expected,'Nem tetőtéri ingatlan');
  assert.equal(evaluateMatch(home({type:'Ház',isAttic:true}),wanted({type:'Ház',atticPreference:'exclude'})).score,100);
+});
+
+
+test('seller scores, explanations and specificity depend only on the public budget while buyers use their true cap',()=>{
+ const property=home({price:75});
+ const request=wanted({minPrice:20,maxPrice:80,publicMaxPrice:70});
+ assert.equal(evaluateMatch(property,request).score,100);
+ const seller=evaluateMatch(property,request,{perspective:'seller'});
+ assert.equal(seller.isExact,false);assert.ok(seller.score<100);
+ assert.equal(seller.matchDetails.find(x=>x.key==='price').expected,'20–70 M Ft');
+ for(const privateCap of [80,100,150]){
+  const changed={...request,maxPrice:privateCap};
+  assert.deepEqual(evaluateMatch(property,changed,{perspective:'seller'}),seller);
+  assert.equal(searchSpecificity(changed,{perspective:'seller'}),searchSpecificity(request,{perspective:'seller'}));
+ }
+ const prepared=prepareSearch(request,{perspective:'seller'});request.maxPrice=1000;request.publicMaxPrice=1000;
+ assert.deepEqual(evaluateMatch(property,prepared),seller,'A compiled seller search snapshots only its public cap');
+ for(const legacyPublic of [undefined,null,''])assert.equal(evaluateMatch(property,wanted({maxPrice:80,publicMaxPrice:legacyPublic}),{perspective:'seller'}).score,100);
 });

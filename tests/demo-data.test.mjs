@@ -3,12 +3,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
-import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD, FEEDBACK_TEST_SCENARIO, DEMO_NEIGHBORHOOD_SCENARIO, DEMO_STREET_SCENARIO} from '../scripts/gcp/demo-data.mjs';
+import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD, FEEDBACK_TEST_SCENARIO, DEMO_NEIGHBORHOOD_SCENARIO, DEMO_STREET_SCENARIO, DEMO_PUBLIC_BUDGET_SCENARIO} from '../scripts/gcp/demo-data.mjs';
 import {getLocation, isPropertyLocation} from '../dist/locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from '../dist/attributes.js';
 import {isCompatible} from '../dist/model.js';
 import {canInteract} from '../dist/accounts.js';
 import {ENERGY_RATINGS} from '../dist/energy-rating.js';
+import {evaluateMatch} from '../dist/matching.js';
 
 const isScenarioUser=user=>user.key.startsWith('feedbackseller')||user.key.startsWith('feedbackbuyer');
 const oldUsers = ['anna','peter','eszter'];
@@ -21,6 +22,20 @@ const kind = (catalog,name) => catalog.fixtures.filter(fixture=>fixture.kind===n
 const property = fixture => ({...fixture.input,ownerId:fixture.owner,id:fixture.key});
 const search = fixture => ({...fixture.input,ownerId:fixture.owner,id:fixture.key});
 const canPair=(catalog,left,right)=>canInteract(catalog.users.find(user=>user.key===left.owner)?.accountType,catalog.users.find(user=>user.key===right.owner)?.accountType);
+
+test('the canonical budget example demonstrates private80/public70 against a75million home in either batch',()=>{
+ for(const batch of [DEFAULT_BATCH,'budget-trial']){
+  const catalog=createDemoCatalog(batch),suffix=batch===DEFAULT_BATCH?'':`--${batch}`;
+  const find=(key,kind)=>catalog.fixtures.find(item=>item.key===key.replace(new RegExp(`-${kind}$`),suffix+`-${kind}`));
+  const home=find(DEMO_PUBLIC_BUDGET_SCENARIO.property,'property'),request=find(DEMO_PUBLIC_BUDGET_SCENARIO.search,'search');
+  assert.equal(home.input.price,75_000_000);assert.equal(request.input.maxPrice,80_000_000);assert.equal(request.input.publicMaxPrice,70_000_000);
+  assert.ok(canPair(catalog,home,request));
+  assert.equal(evaluateMatch(property(home),search(request)).score,100);
+  const seller=evaluateMatch(property(home),search(request),{perspective:'seller'});
+  assert.equal(seller.isExact,false);assert.ok(seller.score<100);
+  assert.doesNotMatch(home.input.title+' '+home.input.description+' '+request.input.title+' '+request.input.description,/80[\s.,]*000[\s.,]*000|80\s*(?:M|millió)/i);
+ }
+});
 
 test('default catalog includes fourteen accounts, three agents, a feedback trial and substantial mixed-role inventory',()=>{
  const catalog=createDemoCatalog();

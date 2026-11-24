@@ -47,7 +47,7 @@ public static class RecommendationFeed
     private static readonly Expression<Func<SearchRequest, SearchRequest>> SearchColumns = search => new SearchRequest {
         Id = search.Id, OwnerId = search.OwnerId, City = search.City, DistrictsJson = search.DistrictsJson,
         LocationIdsJson = search.LocationIdsJson, Type = search.Type,
-        MinPrice = search.MinPrice, MaxPrice = search.MaxPrice, MinArea = search.MinArea, MaxArea = search.MaxArea,
+        MinPrice = search.MinPrice, MaxPrice = search.PublicMaxPrice ?? search.MaxPrice, MinArea = search.MinArea, MaxArea = search.MaxArea,
         MinRooms = search.MinRooms, MaxRooms = search.MaxRooms, ConditionsJson = search.ConditionsJson,
         BuildingsJson = search.BuildingsJson, ConstructionAgesJson = search.ConstructionAgesJson,
         ViewsJson = search.ViewsJson, CeilingHeight = search.CeilingHeight, FloorsJson = search.FloorsJson,
@@ -171,7 +171,7 @@ public static class RecommendationFeed
             await foreach (var row in SellerCandidates(db, user, activeProperty).AsAsyncEnumerable().WithCancellation(cancellationToken))
             {
                 var search = row.Search!;
-                var prepared = MatchingRanking.Prepare(search);
+                var prepared = MatchingRanking.Prepare(search, sellerPerspective: true);
                 var evaluation = MatchingRanking.Evaluate(activeProperty, prepared, includeReasons: false);
                 if (evaluation.Eligible)
                     yield return new(activeProperty, search, user.AccountType, row.OwnerType, user.Name, row.OwnerName, row.LikedYou, evaluation, prepared, value, prepared.Specificity);
@@ -253,7 +253,7 @@ public static class RecommendationFeed
             var evaluation = MatchingRanking.Evaluate(properties[candidate.Property.Id], candidate.Prepared);
             return new FeedItem(
                 Dto.Property(properties[candidate.Property.Id], !buyer, candidate.PropertyOwnerType, candidate.PropertyOwnerName),
-                Dto.Search(searches[candidate.Search.Id], candidate.SearchOwnerType, candidate.SearchOwnerName), candidate.Property.Id, candidate.Search.Id,
+                Dto.Search(searches[candidate.Search.Id], candidate.SearchOwnerType, candidate.SearchOwnerName, own: buyer), candidate.Property.Id, candidate.Search.Id,
                 candidate.Evaluation.Score, evaluation.Reasons, candidate.LikedYou, candidate.Evaluation.IsExact,
                 candidate.ValueForMoney, candidate.Specificity, evaluation.MatchDetails);
         }).ToArray();
