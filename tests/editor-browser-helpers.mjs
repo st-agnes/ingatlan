@@ -44,29 +44,72 @@ export async function setAttributeChoice(page, name, value, interact) {
 async function liveEditorNavigation(page) {
  for(let attempt=0;attempt<20;attempt++){
   const proof=await page.evaluate(()=>{
-   const form=document.getElementById('entity-form'),nav=document.getElementById('editor-navigation'),content=form?.querySelector('.editor-content'),section=form?.querySelector('.editor-step:not([hidden])');
-   if(!form?.isConnected||!nav?.isConnected||!content?.isConnected||!section?.isConnected)return null;
+   const form=document.getElementById('entity-form'),nav=document.getElementById('editor-navigation'),content=form?.querySelector('.editor-content'),section=form?.querySelector('.editor-step:not([hidden])'),header=content?.querySelector('#editor-header');
+   if(!form?.isConnected||!nav?.isConnected||!content?.isConnected||!section?.isConnected||!header?.isConnected)return null;
    const rect=element=>{const b=element.getBoundingClientRect();return{left:b.left,right:b.right,top:b.top,bottom:b.bottom,width:b.width,height:b.height,position:getComputedStyle(element).position};};
-   return {form:{...rect(form),client:form.clientWidth,scroll:form.scrollWidth},nav:rect(nav),content:rect(content),section:rect(section),
-    topics:[...nav.querySelectorAll('[data-action="editor-step"]')].map(rect),
+   const visible=element=>element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden';
+   const viewport={left:visualViewport?.offsetLeft||0,top:visualViewport?.offsetTop||0,width:visualViewport?.width||innerWidth,height:visualViewport?.height||innerHeight};
+   const heading=header.querySelector('h2'),reference=document.getElementById('editor-heading-1');
+   return {mobile:innerWidth<=720,viewport,form:{...rect(form),client:form.clientWidth,scroll:form.scrollWidth},nav:{...rect(nav),background:getComputedStyle(nav).backgroundColor},content:rect(content),section:rect(section),
+    header:{...rect(header),hasHeading:!!heading&&content.contains(heading),eyebrows:form.querySelectorAll('.eyebrow').length},
+    topics:[...nav.querySelectorAll('[data-action="editor-step"]')].map(button=>{const box=rect(button),top=document.elementFromPoint(box.left+box.width/2,box.top+box.height/2);return{...box,hit:button===top||button.contains(top)};}),
+    headings:[...section.querySelectorAll('h3,legend,label')].filter(element=>visible(element)&&!element.classList.contains('editor-topic-anchor')).map(element=>({tag:element.tagName,text:element.textContent.trim(),size:parseFloat(getComputedStyle(element).fontSize),weight:Number(getComputedStyle(element).fontWeight)})),
+    referenceHeadingSize:parseFloat(getComputedStyle(reference).fontSize),
     actions:['top','bottom'].map(where=>{const group=form.querySelector('.editor-navigation-'+where);return group?{...rect(group),buttons:[...group.querySelectorAll('button')].filter(button=>button.offsetParent!==null).map(button=>({id:button.id,disabled:button.disabled,...rect(button)}))}:null;})};
   });
   if(proof&&proof.nav.position!=='')return proof;
   if(attempt<19)await page.waitForTimeout(50);
  }
- assert.fail('The current left navigation and both action groups must mount within one second');
+ assert.fail('The current responsive navigation, content header and both action groups must mount within one second');
 }
 
-/** The wizard uses a left column and ordinary top/bottom actions, without a viewport dock. */
+function assertMobileMenu(proof){
+ const {nav,viewport,topics}=proof,bottom=viewport.top+viewport.height,right=viewport.left+viewport.width;
+ assert.equal(nav.position,'fixed','Mobile topics belong in one fixed bottom strip');
+ assert.ok(nav.left>=viewport.left-1&&nav.right<=right+1&&nav.top>=viewport.top&&nav.bottom<=bottom+1,'The compact menu must fit the visible viewport');
+ assert.ok(Math.abs(nav.bottom-bottom)<=2,'The menu must follow the visible viewport bottom, including the keyboard');
+ assert.ok(nav.height<=80,'Six mobile topics must use a compact strip, including safe-area padding');
+ for(let i=0;i<topics.length;i++){
+  const topic=topics[i];assert.ok(topic.top>=nav.top-1&&topic.bottom<=nav.bottom+1&&topic.left>=nav.left-1&&topic.right<=nav.right+1,'Every mobile topic must fit the compact strip');
+  if(i)assert.ok(Math.abs(topic.top-topics[0].top)<=1&&topic.left>=topics[i-1].right-1,'All six topics share one horizontal row');
+  assert.equal(topic.hit,true,'Every mobile topic must remain directly clickable');
+ }
+}
+
+async function revealEditorControl(page,locator){
+ await locator.scrollIntoViewIfNeeded();
+ await locator.evaluate(async element=>{
+  const host=element.closest('.modal')||document.scrollingElement,nav=document.getElementById('editor-navigation'),viewportTop=visualViewport?.offsetTop||0;
+  let limit=viewportTop+(visualViewport?.height||innerHeight);
+  if(nav&&getComputedStyle(nav).position==='fixed')limit=Math.min(limit,nav.getBoundingClientRect().top);
+  const box=element.getBoundingClientRect();
+  if(box.bottom>limit-8)host.scrollBy({top:box.bottom-limit+8,behavior:'instant'});
+  else if(box.top<viewportTop+8)host.scrollBy({top:box.top-viewportTop-8,behavior:'instant'});
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+ });
+ return locator.evaluate(element=>{
+  const box=element.getBoundingClientRect(),top=document.elementFromPoint(box.x+box.width/2,box.y+box.height/2),nav=document.getElementById('editor-navigation'),viewportTop=visualViewport?.offsetTop||0;
+  const limit=nav&&getComputedStyle(nav).position==='fixed'?nav.getBoundingClientRect().top:viewportTop+(visualViewport?.height||innerHeight);
+  return box.top>=viewportTop-1&&box.bottom<=limit+1&&(element===top||element.contains(top));
+ });
+}
+
+/** Desktop uses a left panel; mobile fixes only compact topics, keeping actions in flow. */
 export async function assertEditorNavigation(page,{scroll=false,lastField=false}={}) {
  const original=await page.evaluate(()=>{const host=document.getElementById('entity-form')?.closest('.modal')||document.scrollingElement;return host.scrollTop;});
  const proof=await liveEditorNavigation(page);
- assert.ok(proof.form.scroll<=proof.form.client+1,'The left navigation and content must fit without horizontal scrolling');
- assert.notEqual(proof.nav.position,'fixed','Topic navigation must not occupy a fixed bottom bar');
- assert.ok(proof.nav.right<=proof.content.left+1,'The topic menu belongs to the left of the form content');
- assert.ok(proof.content.width>=140,'The topic menu must leave a usable form column on mobile');
+ assert.ok(proof.form.scroll<=proof.form.client+1,'Responsive topics and content must fit without horizontal scrolling');
+ assert.ok(proof.header.hasHeading&&proof.header.eyebrows===0,'The main heading belongs only to the content column without a redundant entity-type eyebrow');
+ assert.ok(proof.header.left>=proof.content.left-1&&proof.header.right<=proof.content.right+1,'The main heading must stay above the content, not above the topic menu');
  assert.equal(proof.topics.length,6);
- for(let index=1;index<proof.topics.length;index++)assert.ok(proof.topics[index].top>=proof.topics[index-1].bottom-1,'Each named topic must occupy its own vertical row');
+ if(proof.mobile)assertMobileMenu(proof);
+ else{
+  assert.ok(!['fixed','sticky'].includes(proof.nav.position),'Desktop topics remain in a separate left panel');
+  assert.ok(proof.nav.right<=proof.content.left-1,'The topic panel must be separated from the form content');
+  assert.ok(!['transparent','rgba(0, 0, 0, 0)'].includes(proof.nav.background),'The left-side topic panel needs its own visible background');
+  for(let index=1;index<proof.topics.length;index++)assert.ok(proof.topics[index].top>=proof.topics[index-1].bottom-1,'Each desktop topic occupies its own vertical row');
+ }
+ assert.ok(proof.content.width>=140,'The form content must retain a usable width');
  assert.ok(proof.actions.every(Boolean),'Both top and bottom action groups are required');
  for(const group of proof.actions){
   assert.ok(!['fixed','sticky'].includes(group.position),'Previous/Next/Save controls must follow normal document flow');
@@ -84,27 +127,56 @@ export async function assertEditorNavigation(page,{scroll=false,lastField=false}
   if(await bottom.isVisible())assert.equal(await top.isEnabled(),await bottom.isEnabled());
  }
  assert.equal(await page.locator('#editor-step-status').count(),0,'The redundant X-of-Y sentence must be absent');
- assert.doesNotMatch(await page.locator('#entity-form').innerText(),/Később folytatom/);
+ assert.doesNotMatch(await page.locator('#entity-form').innerText(),/Később folytatom|Csak azt jelöld meg, ami fontos/);
+ const index=await page.locator('.editor-step:visible').getAttribute('data-editor-step');
+ if(index==='2'){
+  const titles=proof.headings.filter(heading=>heading.tag==='H3');
+  assert.deepEqual(titles.map(heading=>heading.text),['Ár','Méret'],'Price and size have separate visible section headings');
+  for(const title of titles)assert.equal(title.size,proof.referenceHeadingSize,'Price/size headings retain the established topic-title size');
+ }else if(index==='3'){
+  assert.ok(!proof.headings.some(heading=>heading.text==='Ingatlanjellemzők'),'The generic attribute title must not compete with its subsections');
+  const expected=['Állapot','Építés éve','Kilátás','Falazat','Belmagasság'];
+  if(await page.locator('#f-type').inputValue()!=='Ház')expected.splice(1,0,'Emelet');
+  for(const label of expected){const heading=proof.headings.find(heading=>heading.text.startsWith(label));assert.ok(heading,`The ${label} subsection must retain its accessible label`);assert.equal(heading.size,proof.referenceHeadingSize,`${label} uses the topic-heading size`);}
+ }
+ if(scroll&&proof.mobile){
+  for(const fraction of [0,.5,1]){
+   await page.evaluate(async fraction=>{const host=document.getElementById('entity-form')?.closest('.modal')||document.scrollingElement;host.scrollTo({top:(host.scrollHeight-host.clientHeight)*fraction,behavior:'instant'});await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));},fraction);
+   assertMobileMenu(await liveEditorNavigation(page));
+  }
+ }
  if(scroll){
   for(const selector of ['.editor-navigation-top','.editor-navigation-bottom']){
-   const button=page.locator(selector+' button:visible:not(:disabled)').last();await button.scrollIntoViewIfNeeded();
-   const hit=await button.evaluate(element=>{const b=element.getBoundingClientRect(),top=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);return b.top>=0&&b.bottom<=innerHeight+1&&(element===top||element.contains(top));});
-   assert.equal(hit,true,'Both normal-flow primary actions must be reachable and directly clickable through scrolling');
+   const button=page.locator(selector+' button:visible:not(:disabled)').last();
+   assert.equal(await revealEditorControl(page,button),true,'Both normal-flow primary actions must be reachable and directly clickable above the menu');
   }
  }
  if(lastField){
   const field=page.locator('.editor-step:visible input:not([type="hidden"]):visible,.editor-step:visible select:visible,.editor-step:visible textarea:visible,.editor-step:visible button:visible').last();
-  await field.scrollIntoViewIfNeeded();
-  assert.equal(await field.evaluate(element=>{const b=element.getBoundingClientRect(),top=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);return element===top||element.contains(top);}),true,'The last field must remain unobscured by navigation');
+  assert.equal(await revealEditorControl(page,field),true,'The last field must remain unobscured by navigation');
  }
  if(scroll||lastField)await page.evaluate(top=>{const host=document.getElementById('entity-form')?.closest('.modal')||document.scrollingElement;host.scrollTo({top,behavior:'instant'});},original);
 }
 
-/** Reduced mobile viewport keeps ordinary-flow controls scrollable; there is no keyboard dock. */
+/** A visual viewport signal exercises the real keyboard-offset CSS while layout height stays put. */
+export async function installEditorViewportMock(context){
+ await context.addInitScript(()=>{
+  let keyboard=0;
+  const viewport=new EventTarget();Object.defineProperties(viewport,{width:{get:()=>innerWidth},height:{get:()=>innerHeight-keyboard},offsetLeft:{get:()=>0},offsetTop:{get:()=>0},pageLeft:{get:()=>scrollX},pageTop:{get:()=>scrollY},scale:{get:()=>1}});
+  Object.defineProperty(window,'visualViewport',{configurable:true,value:viewport});
+  globalThis.__editorViewportTest={setKeyboard(height){keyboard=height;viewport.dispatchEvent(new Event('resize'));}};
+ });
+}
+
+/** Menu follows keyboard and reduced viewport; normal-flow actions remain scrollably reachable. */
 export async function assertKeyboardNavigation(page){
  const original=page.viewportSize();await page.locator('.editor-step:visible input:not([type="hidden"])').first().focus();
- try{await page.setViewportSize({width:original.width,height:Math.max(400,original.height-250)});await assertEditorNavigation(page,{scroll:true,lastField:true});}
- finally{await page.setViewportSize(original);}
+ try{
+  await page.evaluate(async()=>{globalThis.__editorViewportTest.setKeyboard(250);await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
+  await assertEditorNavigation(page,{scroll:true,lastField:true});
+  await page.evaluate(async()=>{globalThis.__editorViewportTest.setKeyboard(0);await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
+  await page.setViewportSize({width:original.width,height:Math.max(400,original.height-250)});await assertEditorNavigation(page,{scroll:true,lastField:true});
+ }finally{await page.evaluate(()=>globalThis.__editorViewportTest?.setKeyboard(0));await page.setViewportSize(original);}
 }
 
 /** Exercise actual visible arrows without making optional numeric bounds mandatory. */

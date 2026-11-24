@@ -1,7 +1,7 @@
 /** Responsive anonymous UI integration. Deterministic HTTP fixtures isolate the browser;
  * backend/onboarding-smoke.mjs proves creation semantics against actual MySQL. */
 import {mockMapTiles} from './map-browser-network.mjs';
-import {removeSelectedLocation,choosePropertyType,assertEditorNavigation,assertKeyboardNavigation,assertRoomSteppers} from './editor-browser-helpers.mjs';
+import {removeSelectedLocation,choosePropertyType,assertEditorNavigation,assertKeyboardNavigation,assertRoomSteppers,installEditorViewportMock} from './editor-browser-helpers.mjs';
 import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
@@ -33,6 +33,7 @@ function landing(){
 async function createFixture(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
  await mockMapTiles(context);
+ if(viewport.name==='mobile')await installEditorViewportMock(context);
  const server={user:{id:'10000000-0000-4000-8000-000000000001',email:'onboarding-browser@example.test',name:'Saját Fiók',accountType:'private',phone:''},authRequests:[],creates:[],lookupRequests:[],rows:new Map(),failAuth:0,failSave:0,active:null,unhandled:[],landing:landing()};
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());
  await context.route('https://get.geojs.io/**',route=>route.fulfill({status:200,contentType:'application/json',body:'{"country_code":"XX"}'}));
