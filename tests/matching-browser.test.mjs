@@ -91,5 +91,38 @@ async function verify(browser,viewport,kind){
  }catch(error){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`matching-${kind}-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;}
  finally{await context.close();}
 }
+/** One price can be perfect for the buyer and partial for the seller without exposing the private cap. */
+async function verifyPublicBudget(browser,viewport){
+ const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});await mockMapTiles(context);
+ await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());
+ const page=await context.newPage();page.setDefaultTimeout(10000);const errors=[];page.on('pageerror',error=>errors.push(error.message));const interact=locator=>viewport.touch?locator.tap():locator.click();
+ async function configureBudget(kind){
+  await page.goto(origin+'/#discover',{waitUntil:'domcontentloaded'});await page.locator('.page-heading').waitFor();
+  await page.evaluate(async kind=>{
+   const {createModel,STORAGE_KEY}=await import('/model.js');let raw;const seed=createModel({getItem:()=>null,setItem:(_key,value)=>{raw=JSON.parse(value);}});seed.activate('search','own-s1');
+   const sourceProperty=raw.properties.find(value=>value.id==='p1'),sourceSearch=raw.searches.find(value=>value.id==='own-s1');
+   const property={...sourceProperty,locationId:'city:Debrecen',city:'Debrecen',district:'',type:'Lakás',price:75,area:60,rooms:2,wholeRooms:2,halfRooms:0};
+   const search={...sourceSearch,locationIds:['city:Debrecen'],city:'Debrecen',districts:[],type:'Lakás',minPrice:null,maxPrice:80,publicMaxPrice:70,minArea:40,maxArea:null,minRooms:1,maxRooms:null,conditions:[],buildings:[],constructionAges:[],views:[],floors:[],heatingTypes:[],ceilingHeight:'',balcony:false,elevator:false,excludeTopFloor:false,excludeGroundFloorAndBelow:false,airConditioning:false,privateGarden:false,atticPreference:'',minEnergyRating:''};
+   raw.properties=[{...property,id:'own-p1',ownerId:'me',title:'Saját árteszt ingatlan'},{...property,id:'budget-property',ownerId:'u1',title:'A kereső valódi keretébe férő otthon'}];
+   raw.searches=[{...search,id:'own-s1',ownerId:'me',title:'Saját árteszt keresés'},{...search,id:'budget-search',ownerId:'u1',title:'Publikus kerettel keresünk otthont'}];
+   raw.decisions=[];raw.matches=[];raw.reports=[];raw.propertyImpressions=[];raw.feedbackInvitations=[];raw.feedbackPackages=[];raw.notifications=[];raw.credits=100;raw.active={kind,id:kind==='search'?'own-s1':'own-p1'};
+   localStorage.setItem(STORAGE_KEY,JSON.stringify(raw));
+  },kind);
+  await page.reload({waitUntil:'domcontentloaded'});
+ }
+ try{
+  await configureBudget('search');await page.locator('#candidate').waitFor();assert.match(await page.locator('#candidate .score').innerText(),/100%/,'The buyer uses the private maximum of 80 for a 75-million property');
+  assert.equal(await page.locator('.approximate-offer').count(),0);
+  await interact(page.locator('.filter-button'));await page.locator('.criteria-summary').waitFor();assert.match(await page.locator('[data-summary-field="maxPrice"]').innerText(),/80/);assert.match(await page.locator('[data-summary-field="publicMaxPrice"]').innerText(),/70/,'The owner sees both independent budgets in their criteria summary');
+  await interact(page.locator('.criteria-summary-actions [data-action="close"]'));await interact(page.locator('.card-actions [data-action="like"]'));await page.waitForFunction(async()=>(await import('/model.js')).model.getState().decisions.length===1);assert.equal((await readState(page)).decisions[0].liked,true,'An exact buyer-side like needs no approximate consent');
+  await configureBudget('property');await page.getByRole('heading',{name:'Elfogytak a tökéletes egyezések.',exact:true}).waitFor();assert.equal(await page.locator('#candidate').count(),0,'The seller cannot see the same 75-million property as exact against a public maximum of 70');
+  await interact(page.locator('[data-action="approximate-accept"]'));await page.locator('#candidate').waitFor();
+  const score=Number((await page.locator('#candidate .score').innerText()).match(/\d+/)?.[0]);assert.ok(score<100);assert.match(await page.locator('#candidate .price').innerText(),/70/);assert.doesNotMatch(await page.locator('#candidate').innerText(),/80\s*M\s*Ft|80\s*millió/,'The seller card cannot reveal the private budget');
+  assert.match(await page.locator('#candidate [data-criterion="price"]').innerText(),/70/);assert.doesNotMatch(JSON.stringify(await page.evaluate(async()=>(await import('/model.js')).model.feed({includeApproximate:true}))),/"maxPrice":80|"publicMaxPrice":80|"privateMaxPrice"/,'Even the seller feed object contains only the public cap');
+  await interact(page.locator('.card-actions [data-action="details"]'));await page.locator('.modal').waitFor();assert.match(await page.locator('.modal').innerText(),/70\s*M\s*Ft/);assert.doesNotMatch(await page.locator('.modal').innerText(),/80\s*M\s*Ft/);await interact(page.locator('.modal [data-action="close"]').last());
+  await interact(page.locator('.card-actions [data-action="like"]'));await page.waitForFunction(async()=>(await import('/model.js')).model.getState().decisions.length===1);const final=await readState(page);assert.equal(final.credits,98);assert.equal(final.decisions[0].liked,true);assert.doesNotMatch(JSON.stringify(final.decisions[0].search),/"maxPrice":80|"publicMaxPrice":80|"privateMaxPrice"/,'Saved seller history keeps the same price privacy');
+  assert.deepEqual(errors,[]);console.log(`Public budget ${viewport.name}: buyer-private exactness, seller-public partial consent, private owner summary, hidden foreign cap and ordinary billing passed.`);
+ }catch(error){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`public-budget-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;}finally{await context.close();}
+}
 const browser=await chromium.launch({headless:true});
-try{for(const viewport of viewports)for(const kind of ['search','property'])await verify(browser,viewport,kind);}finally{await browser.close();}
+try{for(const viewport of viewports){for(const kind of ['search','property'])await verify(browser,viewport,kind);await verifyPublicBudget(browser,viewport);}}finally{await browser.close();}

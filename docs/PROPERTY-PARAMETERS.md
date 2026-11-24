@@ -55,6 +55,14 @@ A keresési szobaszámok korlát nélkül indulnak, pluszra 1-re váltanak, majd
 A leírásban elérhetőség nem adható meg. A felület és a backend közös példakészlettel ellenőrzi a telefonszámok és e-mail-címek szokásos tagolt, Unicode- és szöveges alakjait; a privát profil telefonszáma és e-mail-címe ettől külön adat.
 
 
+## Privát és publikus maximum ár
+
+A keresési igény `maxPrice` értéke a kereső tényleges kerete. A `publicMaxPrice` ettől független, opcionális, pozitív felső határ, amely nem lehet nagyobb a tényleges maximumnál vagy kisebb a megadott minimumárnál. Régi kereséseknél, illetve külön publikus érték nélkül a két határ megegyezik.
+
+A kereső a saját űrlapján és összesítőjében mindkét árat látja. A tényleges maximum kitöltése kezdetben a publikus értéket is követi; a kézzel módosított publikus keretet megőrizzük. Az eladóknak küldött keresésadatokban, a publikus adatlapokon, a kezdőoldalon és a másolható keresési mintában kizárólag a publikus maximum szerepel. Az automatikus keresésnév is ezt használja.
+
+A párosítás nézőpontfüggő: 80 milliós tényleges és 70 milliós publikus keret esetén egy egyébként megfelelő, 75 milliós ingatlan a keresőnek 100%-os találat, az eladó számára azonban részleges. Az eladói rangsor, fókuszáltság, teljesülő/eltérő árindok és a részleges találatok engedélyezése egyaránt a publikus kerettel számol. A meglévő, indexelt helyszínszűrés és legjobb 50 találatot tároló rangsorolás megmarad; nincs páronkénti adatbázis-lekérdezés.
+
 ## Tetőtér és energetikai minimum
 
 A keresés `atticPreference` értéke üres (nincs feltétel), `only` (tetőtér) vagy `exclude` (kivéve tetőtér). Ezek közül egyszerre egy állhat fenn. Az ismeretlen `isAttic:null` egyik konkrét feltételt sem teljesíti tökéletesen. A tetőtér a meglévő emeletfeltételekkel együtt, legfeljebb a 7-es emeletsúlyon befolyásolja a részleges egyezést.

@@ -16,7 +16,7 @@ const city=getLocation('city:Debrecen');
 const key=(kind,letter)=>`${kind}-${letter.repeat(64)}`;
 const propertyKey=key('property','a'),searchKey=key('search','b'),streetOnlyKey=key('property','c'),visibleKey=key('property','d'),missingKey=key('property','f');
 const images=['https://images.example.test/first.jpg','https://images.example.test/second.jpg'];
-const searchCriteria={locations:[city],type:'Lakás',minPrice:50000000,maxPrice:80000000,minArea:45,maxArea:90,minRooms:2,maxRooms:4,
+const searchCriteria={locations:[city],type:'Lakás',minPrice:50000000,maxPrice:70000000,minArea:45,maxArea:90,minRooms:2,maxRooms:4,
  conditions:['Jó','Új/felújított'],buildings:['Tégla'],constructionAges:['10–30 év közötti'],views:['Kertre néző'],ceilingHeight:'3 m feletti',floors:[0.5,2],heatingTypes:['Hőszivattyú'],
  atticPreference:'only',minEnergyRating:'C',excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true,balcony:true,elevator:true};
 function propertyDetail(sourceKey=propertyKey){
@@ -32,12 +32,12 @@ function propertyDetail(sourceKey=propertyKey){
 }
 function searchDetail(){
  const listing={...searchCriteria,locations:[city.label],description:'Nyugodt otthont keresek, ahol hosszú távra tervezhetek.',moveIn:'3 hónapon belül',financing:'Saját megtakarítás',
-  ownerId:'PRIVATE SEARCH OWNER',email:'private-search@example.test',phone:'+36 20 765 4321'};
+  privateMaxPrice:80000000,ownerId:'PRIVATE SEARCH OWNER',email:'private-search@example.test',phone:'+36 20 765 4321'};
  return{kind:'search',key:searchKey,sourceKey:searchKey,title:'Zöld környéken keresünk otthont',ownerFirstName:'Péter',ownerAccountType:'agent',listing,prefill:searchCriteria,clonePrefill:{...searchCriteria,description:listing.description,moveIn:listing.moveIn,financing:listing.financing}};
 }
 function landing(){
  return{regions:[{id:'HU321',label:'Hajdú-Bihar'}],region:null,scope:'national',
-  searches:Array.from({length:16},(_,index)=>({key:'search-'+index,sourceKey:index===0?searchKey:key('search',index%2?'e':'b'),title:index?'Másik otthont keresünk':'Zöld környéken keresünk otthont',ownerFirstName:'Péter',ownerAccountType:'agent',type:'Lakás',locations:[city.label],minPrice:50000000,maxPrice:80000000,minArea:45,maxArea:90,minRooms:2,maxRooms:4,prefill:searchCriteria})),
+  searches:Array.from({length:16},(_,index)=>({key:'search-'+index,sourceKey:index===0?searchKey:key('search',index%2?'e':'b'),title:index?'Másik otthont keresünk':'Zöld környéken keresünk otthont',ownerFirstName:'Péter',ownerAccountType:'agent',type:'Lakás',locations:[city.label],minPrice:50000000,maxPrice:70000000,minArea:45,maxArea:90,minRooms:2,maxRooms:4,prefill:searchCriteria})),
   properties:Array.from({length:8},(_,index)=>({key:'property-'+index,sourceKey:index===0?propertyKey:key('property',index%2?'c':'d'),title:index?'Másik eladó otthon':'Világos <b>otthon</b> és csend',ownerFirstName:'Anna',ownerAccountType:'private',type:'Lakás',location:city.label,price:50000000,area:60,rooms:2.5,image:images[0],prefill:propertyDetail().prefill}))};
 }
 const loadDraft=page=>page.evaluate(async()=>(await import('/onboarding.js')).loadDraft());
@@ -79,12 +79,12 @@ async function verify(browser,viewport){
   let draft=await loadDraft(page);assert.equal(draft.kind,'search');assert.deepEqual(draft.origin,{kind:'property',key:propertyKey});assert.equal(Number(draft.data.maxPrice),55);assert.equal(Number(draft.data.minArea),50);assert.equal(Number(draft.data.minRooms),2.5);assert.doesNotMatch(JSON.stringify(draft),/PRIVATE|ownerId|private-owner@|Titkos közterület/);
   await detail('property',streetOnlyKey);assert.equal((await page.locator('.public-listing-address').innerText()).trim(),'Titkos közterület');assert.doesNotMatch(await page.locator('#public-listing').innerText(),/12\/A/,'Hiding only the house number still permits the street name');
   await detail('property',visibleKey);assert.match(await page.locator('.public-listing-address').innerText(),/Titkos közterület 12\/A/);
-  await detail('search',searchKey);assert.equal(await page.locator('#public-listing h1').innerText(),'Zöld környéken keresünk otthont');assert.match(await page.locator('#public-listing').innerText(),/Tetőtéri ingatlant keres/);assert.match(await page.locator('#public-listing').innerText(),/Legalább C/);assert.match(await page.locator('#public-listing').innerText(),/Nyugodt otthont/);assert.doesNotMatch(await page.locator('#public-listing').innerText(),/PRIVATE|private-search@|765 4321/);
+  await detail('search',searchKey);assert.equal(await page.locator('#public-listing h1').innerText(),'Zöld környéken keresünk otthont');assert.match(await page.locator('#public-listing').innerText(),/Tetőtéri ingatlant keres/);assert.match(await page.locator('#public-listing').innerText(),/Legalább C/);assert.match(await page.locator('#public-listing').innerText(),/Nyugodt otthont/);assert.doesNotMatch(await page.locator('#public-listing').innerText(),/PRIVATE|private-search@|765 4321/);const publicText=(await page.locator('#public-listing').innerText()).replace(/\s/g,'');assert.match(publicText,/50[–−-]70MFt/);assert.doesNotMatch(publicText,/80000000|80M(?:Ft)?/,'Anonymous search details show only the public bargaining limit');
   await interact(page.locator('#public-listing [data-action="onboarding-copy-search"]').first());await page.locator('#entity-form').waitFor();
   draft=await loadDraft(page);assert.equal(draft.kind,'search');assert.deepEqual(draft.origin,{kind:'search',key:searchKey,mode:'copy'});assert.deepEqual(draft.data.locationIds,[city.id]);
-  for(const [name,value]of Object.entries({minPrice:50,maxPrice:80,minArea:45,maxArea:90,minRooms:2,maxRooms:4,atticPreference:'only',minEnergyRating:'C',moveIn:'3 hónapon belül',financing:'Saját megtakarítás',description:searchDetail().clonePrefill.description}))assert.deepEqual(typeof value==='number'?Number(draft.data[name]):draft.data[name],value,`Copying a search preserves ${name}`);
+  for(const [name,value]of Object.entries({minPrice:50,maxPrice:70,publicMaxPrice:70,minArea:45,maxArea:90,minRooms:2,maxRooms:4,atticPreference:'only',minEnergyRating:'C',moveIn:'3 hónapon belül',financing:'Saját megtakarítás',description:searchDetail().clonePrefill.description}))assert.deepEqual(typeof value==='number'?Number(draft.data[name]):draft.data[name],value,`Copying a search preserves ${name}`);
   for(const name of ['conditions','buildings','constructionAges','views','floors','heatingTypes'])assert.deepEqual(name==='floors'?draft.data[name].map(Number):draft.data[name],searchCriteria[name]);
-  assert.notEqual(draft.data.title,searchDetail().title,'The new profile receives its own editable generated title');
+  assert.doesNotMatch(JSON.stringify(draft),/privateMaxPrice|80000000/,'Copying a public search cannot inherit its undisclosed private budget');assert.notEqual(draft.data.title,searchDetail().title,'The new profile receives its own editable generated title');
   const copyId=draft.id;await (await editorField(page,'#f-description',interact)).fill('Ezt a keresést a saját igényeimre módosítottam.');
   await page.waitForFunction(async()=>(await import('/onboarding.js')).loadDraft()?.data?.description==='Ezt a keresést a saját igényeimre módosítottam.');
   await detail('search',searchKey);await interact(page.locator('#public-listing [data-action="onboarding-copy-search"]').first());await page.locator('#entity-form').waitFor();draft=await loadDraft(page);assert.equal(draft.id,copyId,'A repeated copy action resumes the matching draft without asking');assert.equal(draft.data.description,'Ezt a keresést a saját igényeimre módosítottam.');

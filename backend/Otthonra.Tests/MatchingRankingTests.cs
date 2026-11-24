@@ -254,7 +254,7 @@ public class MatchingRankingTests
             var property = Merge(p, item.GetProperty("property"), options);
             var search = Merge(Wanted(), item.GetProperty("search"), options);
             property.Price *= 1_000_000m;
-            search.MinPrice *= 1_000_000m; search.MaxPrice *= 1_000_000m;
+            search.MinPrice *= 1_000_000m; search.MaxPrice *= 1_000_000m; search.PublicMaxPrice *= 1_000_000m;
             var rawSearch = item.GetProperty("search");
             if (rawSearch.TryGetProperty("locationIds", out var ids)) search.LocationIdsJson = ids.GetRawText();
             if (rawSearch.TryGetProperty("conditions", out var conditions)) search.ConditionsJson = conditions.GetRawText();
@@ -263,14 +263,15 @@ public class MatchingRankingTests
             if (rawSearch.TryGetProperty("constructionAges", out var ages)) search.ConstructionAgesJson = ages.GetRawText();
             if (rawSearch.TryGetProperty("views", out var views)) search.ViewsJson = views.GetRawText();
             if (rawSearch.TryGetProperty("floors", out var floors)) search.FloorsJson = floors.GetRawText();
-            var result = Match(property, search);
+            var sellerPerspective = item.TryGetProperty("perspective", out var perspective) && perspective.GetString() == "seller";
+            var result = MatchingRanking.Evaluate(property, MatchingRanking.Prepare(search, sellerPerspective));
             if (item.TryGetProperty("eligible", out var eligible)) Assert.Equal(eligible.GetBoolean(), result.Eligible);
             if (item.TryGetProperty("score", out var score))
             {
                 Assert.Equal(score.GetInt32(), result.Score);
                 Assert.Equal(score.GetInt32() == 100, result.IsExact);
             }
-            if (item.TryGetProperty("specificity", out var specificity)) Assert.Equal(specificity.GetInt32(), MatchingRanking.Specificity(search));
+            if (item.TryGetProperty("specificity", out var specificity)) Assert.Equal(specificity.GetInt32(), MatchingRanking.Specificity(search, sellerPerspective));
             if (item.TryGetProperty("valueForMoney", out var value))
                 Assert.InRange(Math.Abs((double)MatchingRanking.ValueForMoney(property) - value.GetDouble()), 0d, 1e-8);
             if (item.TryGetProperty("matchDetails", out var details))

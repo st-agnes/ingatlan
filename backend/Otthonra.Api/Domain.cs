@@ -131,7 +131,9 @@ public static class Rules
     {
         s.Title = Required(PublicText(i.Title, 150), "megnevezés", 150); s.Type = Required(PublicText(i.Type, 50), "ingatlantípus", 50);
         Range(i.MinPrice, i.MaxPrice, "ár"); Range(i.MinArea, i.MaxArea, "alapterület"); Range(i.MinRooms, i.MaxRooms, "szobaszám");
+        SearchBudgets.Validate(i.MinPrice, i.MaxPrice, i.PublicMaxPrice);
         s.MinPrice = i.MinPrice; s.MaxPrice = i.MaxPrice; s.MinArea = i.MinArea; s.MaxArea = i.MaxArea; s.MinRooms = i.MinRooms; s.MaxRooms = i.MaxRooms;
+        s.PublicMaxPrice = i.PublicMaxPrice;
         var districts = i.Districts ?? [];
         if (districts.Length > 50 || districts.Any(x => x is null || x.Length > 50)) throw new ApiException(400, "Érvénytelen kerületlista.");
         var locations = LocationCatalog.ResolveSearchInput(i.LocationIds, i.City, districts);

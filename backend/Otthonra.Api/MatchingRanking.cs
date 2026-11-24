@@ -31,13 +31,14 @@ public sealed class CompiledSearch
     internal int? ConditionMinimum { get; }
 
     internal CompiledSearch(SearchRequest input, HashSet<string> cities, HashSet<string> districtIds, HashSet<string> neighborhoodIds,
-        HashSet<string> streetIds)
+        HashSet<string> streetIds, bool sellerPerspective = false)
     {
         NormalizedType = Rules.Normalize(input.Type);
         Source = new SearchRequest {
             Id = input.Id, OwnerId = input.OwnerId, Type = input.Type, Archived = input.Archived,
             City = input.City, DistrictsJson = input.DistrictsJson, LocationIdsJson = input.LocationIdsJson,
-            MinPrice = input.MinPrice, MaxPrice = input.MaxPrice, MinArea = input.MinArea, MaxArea = input.MaxArea,
+            MinPrice = input.MinPrice, MaxPrice = sellerPerspective ? SearchBudgets.PublicMaximum(input) : input.MaxPrice,
+            MinArea = input.MinArea, MaxArea = input.MaxArea,
             MinRooms = input.MinRooms, MaxRooms = input.MaxRooms, Balcony = input.Balcony, Elevator = input.Elevator,
             CeilingHeight = MatchingRanking.Canonical(input.CeilingHeight, PropertyAttributes.CeilingHeights), ConditionsJson = input.ConditionsJson, BuildingsJson = input.BuildingsJson,
             ConstructionAgesJson = input.ConstructionAgesJson, ViewsJson = input.ViewsJson,
@@ -100,7 +101,7 @@ public static class MatchingRanking
     private static bool BelowTopFloor(Property property) => PropertyAttributes.BelowTopFloor(property);
     private static bool AboveGroundFloor(Property property) => PropertyAttributes.AboveGroundFloor(property);
 
-    public static CompiledSearch Prepare(SearchRequest search)
+    public static CompiledSearch Prepare(SearchRequest search, bool sellerPerspective = false)
     {
         var cities = new HashSet<string>(StringComparer.Ordinal);
         var districts = new HashSet<string>(StringComparer.Ordinal);
@@ -118,7 +119,7 @@ public static class MatchingRanking
             else cities.Add(location.City);
         }
         districts.RemoveWhere(id => cities.Contains(LocationCatalog.Get(id)!.City));
-        var prepared = new CompiledSearch(search, cities, districts, neighborhoods, streets);
+        var prepared = new CompiledSearch(search, cities, districts, neighborhoods, streets, sellerPerspective);
         prepared.Specificity = SpecificityOf(prepared);
         return prepared;
     }
@@ -314,7 +315,7 @@ public static class MatchingRanking
         return effectiveArea / (p.Price / 1_000_000m) * (1m + Math.Min(.25m, quality));
     }
 
-    public static int Specificity(SearchRequest search) => Prepare(search).Specificity;
+    public static int Specificity(SearchRequest search, bool sellerPerspective = false) => Prepare(search, sellerPerspective).Specificity;
     private static int SpecificityOf(CompiledSearch search)
     {
         var s = search.Source;

@@ -149,9 +149,9 @@ api.MapGet("/me/entities", async (AppDb db, ClaimsPrincipal principal, LikeRefun
         actorId = row.Decision.ActorKind == "property" ? row.Decision.PropertyId : row.Decision.SearchRequestId,
         row.Decision.PropertyId, searchId = row.Decision.SearchRequestId, row.Decision.SearchRequestId,
         row.Decision.Liked, row.Decision.Charged, row.Decision.RefundedAt, row.Decision.CreatedAt,
-        property = Dto.Property(row.Property, ownerAccountType: ownerProfiles[row.Property.OwnerId].AccountType, ownerName: ownerProfiles[row.Property.OwnerId].Name), search = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name)
+        property = Dto.Property(row.Property, ownerAccountType: ownerProfiles[row.Property.OwnerId].AccountType, ownerName: ownerProfiles[row.Property.OwnerId].Name), search = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name, own: row.Search.OwnerId == user.Id)
     });
-    return Results.Ok(new { properties = properties.Select(p => Dto.Property(p, true, user.AccountType, user.Name)), searchRequests = searches.Select(s => Dto.Search(s, user.AccountType, user.Name)), decisions, reportedOwnerIds, reportedEntities, active = user.ActiveKind is null ? null : new { kind = user.ActiveKind, id = user.ActiveEntityId } });
+    return Results.Ok(new { properties = properties.Select(p => Dto.Property(p, true, user.AccountType, user.Name)), searchRequests = searches.Select(s => Dto.Search(s, user.AccountType, user.Name, own: true)), decisions, reportedOwnerIds, reportedEntities, active = user.ActiveKind is null ? null : new { kind = user.ActiveKind, id = user.ActiveEntityId } });
 });
 api.MapPut("/me/active", async (ActiveInput input, AppDb db, ClaimsPrincipal principal) =>
 {
@@ -207,7 +207,7 @@ api.MapDelete("/properties/{id:guid}", async (Guid id, AppDb db, ClaimsPrincipal
     var uid = principal.UserId(); var p = await db.Properties.SingleOrDefaultAsync(x => x.Id == id && x.OwnerId == uid) ?? throw new ApiException(404, "Az ingatlan nem található.");
     p.Archived = true; await ClearArchivedActive(db, uid, id, true); await db.SaveChangesAsync(); return Results.NoContent();
 });
-api.MapGet("/searches", async (AppDb db, ClaimsPrincipal principal) => { var user = await CurrentUser(db, principal); var items = await db.SearchRequests.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).ToListAsync(); return Results.Ok(items.Select(s => Dto.Search(s, user.AccountType, user.Name))); });
+api.MapGet("/searches", async (AppDb db, ClaimsPrincipal principal) => { var user = await CurrentUser(db, principal); var items = await db.SearchRequests.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).ToListAsync(); return Results.Ok(items.Select(s => Dto.Search(s, user.AccountType, user.Name, own: true))); });
 api.MapPost("/searches", async (SearchInput input, AppDb db, ClaimsPrincipal principal, CancellationToken cancellationToken) =>
 {
     await using var creation = await EntityCreation.BeginAsync(db, principal.UserId(), input, cancellationToken);
@@ -220,19 +220,19 @@ api.MapPost("/searches", async (SearchInput input, AppDb db, ClaimsPrincipal pri
         {
             EntityCreation.VerifyReplay(previous.CreationRequestHash, creation.RequestHash);
             await creation.CommitAsync(cancellationToken);
-            return Results.Ok(Dto.Search(previous, owner.AccountType, owner.Name));
+            return Results.Ok(Dto.Search(previous, owner.AccountType, owner.Name, own: true));
         }
     }
     var s = new SearchRequest { OwnerId = owner.Id, CreationRequestId = creation.RequestId, CreationRequestHash = creation.RequestHash };
     Rules.Apply(s, input);
     db.SearchRequests.Add(s); await db.SaveChangesAsync(cancellationToken);
     await creation.CommitAsync(cancellationToken);
-    return Results.Created($"/api/searches/{s.Id}", Dto.Search(s, owner.AccountType, owner.Name));
+    return Results.Created($"/api/searches/{s.Id}", Dto.Search(s, owner.AccountType, owner.Name, own: true));
 });
 api.MapPut("/searches/{id:guid}", async (Guid id, SearchInput input, AppDb db, ClaimsPrincipal principal) =>
 {
     var uid = principal.UserId(); var s = await db.SearchRequests.SingleOrDefaultAsync(x => x.Id == id && x.OwnerId == uid && !x.Archived) ?? throw new ApiException(404, "A keresési igény nem található.");
-    Rules.Apply(s, input); await ClearArchivedActive(db, uid, id, s.Archived); await db.SaveChangesAsync(); var owner = await CurrentUser(db, principal); return Results.Ok(Dto.Search(s, owner.AccountType, owner.Name));
+    Rules.Apply(s, input); await ClearArchivedActive(db, uid, id, s.Archived); await db.SaveChangesAsync(); var owner = await CurrentUser(db, principal); return Results.Ok(Dto.Search(s, owner.AccountType, owner.Name, own: true));
 });
 api.MapDelete("/searches/{id:guid}", async (Guid id, AppDb db, ClaimsPrincipal principal) =>
 {
@@ -280,11 +280,11 @@ api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPr
     var items = rows.Select(row => {
         var own = ownDecisions.SingleOrDefault(decision => decision.PropertyId == row.Property.Id && decision.SearchRequestId == row.Search.Id);
         var match = matches.SingleOrDefault(item => item.PropertyId == row.Property.Id && item.SearchRequestId == row.Search.Id);
-        var prepared = MatchingRanking.Prepare(row.Search);
+        var prepared = MatchingRanking.Prepare(row.Search, sellerPerspective: kind == "property");
         var evaluation = MatchingRanking.Evaluate(row.Property, prepared);
         var compatible = evaluation.Eligible;
         return new IncomingLikeItem(Dto.Property(row.Property, ownerAccountType: row.PropertyOwnerType, ownerName: row.PropertyOwnerName),
-            Dto.Search(row.Search, row.SearchOwnerType, row.SearchOwnerName), row.Property.Id, row.Search.Id,
+            Dto.Search(row.Search, row.SearchOwnerType, row.SearchOwnerName, own: kind == "search"), row.Property.Id, row.Search.Id,
             compatible ? evaluation.Score : 0,
             compatible ? evaluation.Reasons : [], true, row.Decision.CreatedAt,
             own is null ? null : own.Liked ? "liked" : "passed", match?.Id, compatible,
@@ -326,7 +326,7 @@ api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal 
         var previousPrompt = kind == "search" && !input.Liked ? await SellerFeedback.PendingAsync(db, uid, clock.GetUtcNow().UtcDateTime, cancellationToken) : null;
         await tx.CommitAsync(); return Results.Ok(new { matchId = previousMatch?.Id, charged = 0, credits = user.Credits, feedbackPrompt = previousPrompt });
     }
-    var evaluation = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s), includeReasons: false);
+    var evaluation = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s, sellerPerspective: kind == "property"), includeReasons: false);
     if (!evaluation.Eligible) throw new ApiException(400, "Az ingatlan helyszíne vagy típusa nem felel meg az aktív keresésnek.");
     if (!evaluation.IsExact)
     {
@@ -360,7 +360,7 @@ api.MapGet("/matches", async (AppDb db, ClaimsPrincipal principal) =>
         var partnerId = row.Property.OwnerId == uid ? row.Search.OwnerId : row.Property.OwnerId;
         var contact = await db.Users.AsNoTracking().SingleAsync(x => x.Id == partnerId);
         var messages = await db.Messages.AsNoTracking().Where(x => x.MatchId == row.Match.Id).OrderBy(x => x.CreatedAt).ToListAsync();
-        results.Add(new { row.Match.Id, row.Match.CreatedAt, property = Dto.Property(row.Property, row.Property.OwnerId == uid, ownerProfiles[row.Property.OwnerId].AccountType, ownerProfiles[row.Property.OwnerId].Name, includeOwnedLocationDetails: row.Property.OwnerId == uid), searchRequest = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name), contact = new { contact.Id, contact.Name, contact.Email, contact.Phone, contact.AccountType }, messages = messages.Select(Dto.Message), unread = 0 });
+        results.Add(new { row.Match.Id, row.Match.CreatedAt, property = Dto.Property(row.Property, row.Property.OwnerId == uid, ownerProfiles[row.Property.OwnerId].AccountType, ownerProfiles[row.Property.OwnerId].Name, includeOwnedLocationDetails: row.Property.OwnerId == uid), searchRequest = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name, own: row.Search.OwnerId == uid), contact = new { contact.Id, contact.Name, contact.Email, contact.Phone, contact.AccountType }, messages = messages.Select(Dto.Message), unread = 0 });
     }
     return Results.Ok(results);
 });

@@ -786,3 +786,36 @@ test('demo address visibility survives reload and hides street matching without 
  property.hideStreet=true;search.locationIds=[street.id,'city:Budapest'];search.locations=[street,getLocation('city:Budapest')];storage.setItem(STORAGE_KEY,JSON.stringify(raw));again=createModel(storage);
  const byTown=again.feed().find(item=>item.id===property.id);assert.ok(byTown);assert.equal(byTown.address,'');
 });
+
+test('demo buyer and seller discovery use different caps without leaking the true cap through incoming likes, notifications or matches',()=>{
+ const {storage,property,search}=rankedFixture({seller:true}),clock=()=> '2026-11-10T12:00:00.000Z';
+ let raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ raw.properties=[property('own-home',{ownerId:'me',price:75})];
+ raw.searches=[search('protected-query',{ownerId:'u1',maxPrice:123.456,publicMaxPrice:70})];
+ raw.decisions=[];raw.matches=[];raw.notifications=[];raw.active={kind:'property',id:'own-home'};
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));let seller=createModel(storage,clock);
+ assert.equal(seller.recommendations().requiresApproximateConsent,true);
+ const offer=seller.feed({includeApproximate:true})[0];assert.equal(offer.maxPrice,70);assert.ok(offer.score<100);assert.equal('publicMaxPrice' in offer,false);
+ assert.equal(offer.matchDetails.find(x=>x.key==='price').expected,'legfeljebb 70 M Ft');
+ const snapshot=storage.getItem(STORAGE_KEY);assert.throws(()=>seller.decide({pair:offer.pair},true),/részleges/);assert.equal(storage.getItem(STORAGE_KEY),snapshot);
+ raw=JSON.parse(snapshot);raw.userId='u1';raw.active={kind:'search',id:'protected-query'};storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const buyer=createModel(storage,clock),wanted=buyer.getState().searches[0];assert.equal(wanted.maxPrice,123.456);assert.equal(wanted.publicMaxPrice,70);
+ const home=buyer.feed()[0];assert.equal(home.score,100);buyer.decide(home,true);
+ raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.userId='me';raw.active={kind:'property',id:'own-home'};storage.setItem(STORAGE_KEY,JSON.stringify(raw));seller=createModel(storage,clock);
+ const incoming=seller.incomingLikes().items[0];assert.equal(incoming.maxPrice,70);assert.ok(incoming.score<100);assert.equal('publicMaxPrice' in incoming,false);
+ const notification=seller.notifications().items.find(n=>n.kind==='incoming_like');assert.ok(notification);
+ const context=seller.getNotificationContext(notification.id);assert.equal(context.item.maxPrice,70);assert.ok(context.item.score<100);
+ const result=seller.decide(incoming,true,{allowApproximate:true});assert.ok(result.match);assert.equal(result.match.search.maxPrice,70);assert.equal('publicMaxPrice' in result.match.search,false);
+ assert.equal(seller.matches()[0].search.maxPrice,70);assert.equal(seller.getState().decisions[0].search.maxPrice,70);
+ for(const value of [seller.incomingLikes(),seller.getState(),seller.matches(),context])assert.equal(JSON.stringify(value).includes('123.456'),false);
+ raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.userId='u1';raw.active={kind:'search',id:'protected-query'};storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ assert.equal(createModel(storage,clock).matches()[0].search.maxPrice,123.456,'The owner still sees their true cap after matching');
+});
+
+test('public budget validation rejects impossible values and round-trips an optional cap independently',()=>{
+ const m=setup(),base={title:'Védett árkeret',locationIds:['city:Debrecen'],type:'Lakás',maxPrice:80,minPrice:20,minArea:20};
+ for(const publicMaxPrice of [-1,0,19,81,'nem szám'])assert.throws(()=>m.saveEntity('search',{...base,publicMaxPrice}),/publikus maximumár/);
+ assert.throws(()=>m.saveEntity('search',{...base,maxPrice:2000000,publicMaxPrice:1000001}),/publikus maximumár/);
+ const saved=m.saveEntity('search',{...base,publicMaxPrice:70});assert.equal(saved.maxPrice,80);assert.equal(saved.publicMaxPrice,70);
+ assert.equal(m.saveEntity('search',{...base,publicMaxPrice:null},saved.id).publicMaxPrice,null);
+});

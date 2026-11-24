@@ -31,6 +31,8 @@ Az utca rejtése a házszámot is elrejti. A városrészre, településre vagy a
 
 ## Indulás egy hirdetésből
 
+A keresési igény nyilvános árkerete a publikus maximumot használja. A kereső tényleges maximuma nem része az anonim válasznak, az eladóknak küldött keresési adatnak vagy az űrlap-előtöltésnek. Másoláskor a publikus keret lesz az új keresés kiinduló tényleges és publikus maximuma; a másoló ezeket később saját igénye szerint módosíthatja.
+
 Eladó ingatlannál az „Ilyen otthont keresek” a korábbi, ingatlan alapján számított keresési piszkozatot készíti elő. Keresési igénynél az „Ilyen ingatlanom van” továbbra is csak az egyértelmű, konkrét értékeket veszi át az eladói űrlaphoz.
 
 A keresési adatlap „Én is ilyet keresek” gombja az összes keresési feltételt, helyszínt és további elképzelést átveszi egy szerkeszthető keresési piszkozatba. A név a szokásos rövid automatikus név. A felhasználó végigmegy a lépéseken, majd a jelenlegi azonnali belépéses regisztrációval vagy saját fiókjában mentheti.
@@ -39,7 +41,7 @@ A másolás eredetét a forrás keresés kulcsa és a `copy` mód együtt azonos
 
 ## Tesztelés és kiadás
 
-A kezdőoldal legfeljebb 16 keresést és 8 ingatlant válogat ki a ténylegesen elérhető rekordokból. A v7 tesztkészlet minden vármegyében és Budapesten 16 régiós keresést biztosít, eltérő paraméterekkel. Az eredeti 12 regionális eladó ingatlanból 8 választható ki. A kiválasztás továbbra is változatos, frissítéskor újraválogatott.
+A kezdőoldal legfeljebb 16 keresést és 8 ingatlant válogat ki a ténylegesen elérhető rekordokból. A v8 tesztkészlet minden vármegyében és Budapesten 16 régiós keresést biztosít, eltérő paraméterekkel. Az eredeti 12 regionális eladó ingatlanból 8 választható ki. A kiválasztás továbbra is változatos, frissítéskor újraválogatott.
 
 Az új kliensfájlok `energy-rating.js`, `public-listings.js` és `public-listings.css`; mindhárom kötelező Hosting-állomány. A statikus CI futtatja a publikus megjelenítés egységtesztjét és az onboarding böngészős csoportjában egyszer a publikus adatlapfolyamatokat. A két MySQL-verzió integrációja külön ellenőrzi a címvédelmet, szűrést, új mezőket és újraindítás utáni megőrzést.
 

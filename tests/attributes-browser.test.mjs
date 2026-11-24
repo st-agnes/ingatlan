@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorSave,editorStep,choosePropertyType,setAttributeChoice,fillRoomBound,setSellerFloor,setBuildingFloors,setEnergyRating,setConstructionAge,assertAddressPrivacyControls,assertNullableAmenities,setAtticPreference} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,editorStep,choosePropertyType,setAttributeChoice,fillRoomBound,setSellerFloor,setBuildingFloors,setEnergyRating,setConstructionAge,assertAddressPrivacyControls,assertNullableAmenities,assertBuildingSelectors,setAtticPreference} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -34,26 +34,27 @@ async function verify(browser,viewport){
    for(const value of values)await (await editorField(page,`input[name="${name}"][value="${value}"]`)).check();
   }
   await setAttributeChoice(page,'ceilingHeight','3 m feletti',interact);await setAtticPreference(page,'exclude',interact);await setAtticPreference(page,'only',interact);await setEnergyRating(page,'B',interact,{search:true});
-  for(const name of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])await (await editorField(page,`#f-${name}`)).check();
+  await editorStep(page,4,interact);for(const name of ['balcony','airConditioning','privateGarden'])assert.equal(await page.locator('#f-'+name).isVisible(),true,'Every flat-search comfort option must be visible together');
+  for(const name of ['balcony','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])await (await editorField(page,`#f-${name}`)).check();
   const geometry=await page.locator('.modal').evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));
   assert.ok(geometry.scrollWidth<=geometry.width+1,'Attribute choices must fit the modal without horizontal scrolling');
   await (await editorField(page,'#f-title')).fill(searchTitle);await save(page,interact,true);
   let saved=(await state(page)).searches.find(value=>value.title===searchTitle);assert.ok(saved);
-  assert.equal(saved.atticPreference,'only');assert.equal(saved.minEnergyRating,'B');assert.deepEqual(saved.conditions,['Jó','Új/felújított']);assert.deepEqual(saved.buildings,['Tégla','Panel']);assert.deepEqual(saved.views,['Kertre néző','Panorámás']);assert.deepEqual(saved.floors,[-1,0,0.5,9]);assert.equal(saved.ceilingHeight,'3 m feletti');assert.equal(saved.sharedGarden,false,'A retired criterion cannot silently constrain the saved search');for(const name of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])assert.equal(saved[name],true);
+  assert.equal(saved.atticPreference,'only');assert.equal(saved.minEnergyRating,'B');assert.deepEqual(saved.conditions,['Jó','Új/felújított']);assert.deepEqual(saved.buildings,['Tégla','Panel']);assert.deepEqual(saved.views,['Kertre néző','Panorámás']);assert.deepEqual(saved.floors,[-1,0,0.5,9]);assert.equal(saved.ceilingHeight,'3 m feletti');assert.equal(saved.sharedGarden,false,'A retired criterion cannot silently constrain the saved search');for(const name of ['balcony','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])assert.equal(saved[name],true);
   await edit(page,interact,'search',saved.id);
   assert.equal(await page.locator('input[name="conditions"][value="Jó"]').isChecked(),true);
   assert.equal(await page.locator('input[name="floors"][value="-1"]').isChecked(),true);
   assert.equal(await page.locator('#f-ceilingHeight').inputValue(),'3 m feletti');
   for(const input of await page.locator('.attribute-group input[type="checkbox"]').all())await (await editorField(page,`#${await input.getAttribute('id')}`)).uncheck();
-  await setAtticPreference(page,'',interact);await setEnergyRating(page,'',interact,{search:true});await setAttributeChoice(page,'ceilingHeight','',interact);for(const name of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])await (await editorField(page,`#f-${name}`)).uncheck();await save(page,interact);
+  await setAtticPreference(page,'',interact);await setEnergyRating(page,'',interact,{search:true});await setAttributeChoice(page,'ceilingHeight','',interact);for(const name of ['balcony','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])await (await editorField(page,`#f-${name}`)).uncheck();await save(page,interact);
   saved=(await state(page)).searches.find(value=>value.id===saved.id);
   for(const name of ['conditions','buildings','constructionAges','views','floors'])assert.deepEqual(saved[name],[]);
-  assert.equal(saved.atticPreference,'');assert.equal(saved.minEnergyRating,'');assert.equal(saved.ceilingHeight,'');for(const name of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])assert.equal(saved[name],false);
+  assert.equal(saved.atticPreference,'');assert.equal(saved.minEnergyRating,'');assert.equal(saved.ceilingHeight,'');for(const name of ['balcony','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])assert.equal(saved[name],false);
   await openNew(page,interact,'property');await location(page,interact);await page.locator('#f-street').fill('Teszt utca');await page.locator('#f-houseNumber').fill('12/A');await assertAddressPrivacyControls(page,interact);
   const propertyTitle=`Opcionális ingatlanadatok – ${viewport.name}`;await choosePropertyType(page,'Lakás',interact);assert.equal(await page.locator('#f-sharedGarden').count(),0,'Shared garden is no longer an available form criterion');
   await (await editorField(page,'#f-price')).fill('85');await (await editorField(page,'#f-area')).fill('65');await (await editorField(page,'#f-wholeRooms')).fill('3');await (await editorField(page,'#f-halfRooms')).fill('0');
   for(const name of ['condition','building','constructionAge','view','ceilingHeight','floor','buildingFloors','insulated','airConditioning','solarPanels','privateGarden'])assert.equal(await page.locator(`#f-${name}`).inputValue(),'');
-  await (await editorField(page,'#f-title')).fill(propertyTitle);await save(page,interact);
+  await assertBuildingSelectors(page,interact);await mkdir(screenshots,{recursive:true});await page.locator('#property-floor-field').screenshot({path:resolve(screenshots,`building-selector-${viewport.name}.png`)});await (await editorField(page,'#f-title')).fill(propertyTitle);await save(page,interact);
   let property=(await state(page)).properties.find(value=>value.title===propertyTitle);assert.ok(property);
   for(const name of ['floor','buildingFloors','insulated','airConditioning','solarPanels','privateGarden','balcony'])assert.equal(property[name],null);
   await page.evaluate(async id=>{const {STORAGE_KEY}=await import('/model.js'),raw=JSON.parse(localStorage.getItem(STORAGE_KEY));Object.assign(raw.properties.find(item=>item.id===id),{secondaryHeatingType:'Klíma',isAttic:null,energyRating:'AA',energyRatingScheme:''});localStorage.setItem(STORAGE_KEY,JSON.stringify(raw));},property.id);
@@ -74,8 +75,8 @@ async function verify(browser,viewport){
   assert.equal(await page.locator('#f-buildingFloors').inputValue(),'4');assert.equal(await page.locator('#f-privateGarden').inputValue(),'true');assert.equal(await page.locator('#f-sharedGarden').count(),0);
   const floor=await editorField(page,'#f-floor',interact);
   assert.equal(await floor.getAttribute('type'),'hidden');
-  assert.deepEqual(await page.locator('[data-attribute-name="floor"]').evaluateAll(cards=>cards.map(card=>card.dataset.attributeValue)),['-1','0','0.5','1','2','3','4','5','6','7','8','9','10','other']);
-  assert.match(await page.locator('[data-attribute-name="floor"][data-attribute-value="0.5"]').innerText(),/Magasföldszint/);assert.match(await page.locator('[data-attribute-name="floor"][data-attribute-value="10"]').innerText(),/10/);
+  assert.deepEqual((await page.locator('.building-floor-row[data-building-number="floor"]').evaluateAll(buttons=>buttons.map(button=>button.dataset.buildingNumberValue))).sort(),['-1','0','0.5','1','2','3','4','5','6','7','8','9','10','other'].sort());
+  assert.match(await page.locator('.building-floor-row[data-building-number="floor"][data-building-number-value="0.5"]').innerText(),/Magasföldszint/);assert.match(await page.locator('.building-floor-row[data-building-number="floor"][data-building-number-value="10"]').innerText(),/10/);
   await setSellerFloor(page,'0.5',interact);await setBuildingFloors(page,'0',interact);await save(page,interact);property=(await state(page)).properties.find(value=>value.id===property.id);assert.equal(property.floor,0.5);assert.equal(property.floorIsUpperRange,false);assert.equal(property.buildingFloors,0,'A raised ground-only building remains valid');
   await edit(page,interact,'property',property.id);assert.equal(await page.locator('#f-floor').inputValue(),'0.5');await setSellerFloor(page,'9',interact);await setBuildingFloors(page,'12',interact);await save(page,interact);property=(await state(page)).properties.find(value=>value.id===property.id);assert.equal(property.floor,9);assert.equal(property.floorIsUpperRange,false,'A new ninth-floor card denotes the exact ninth floor');
   // An older unknown upper-floor record remains uncertain until the seller explicitly replaces it.

@@ -168,7 +168,7 @@ function propertyFromApi(value, own = false) {
     images: clone(value.images || value.imageUrls || []), archived: !!(value.archived ?? value.isArchived)
   });
 }
-function searchFromApi(value) {
+function searchFromApi(value,own=false) {
   if (!value) return null;
   // Street metadata travels with selected public search locations, not a browser-wide catalogue.
   registerLocations(value.locations);
@@ -180,7 +180,8 @@ function searchFromApi(value) {
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType), ownerFirstName:publicFirstName(value.ownerFirstName),
     title: value.title || '', locationIds, locations:clone(locations), city: locations[0]?.city ?? value.city ?? '', districts: locations.filter(location=>location.city===locations[0]?.city&&location.district).map(location=>location.district), description: value.description || '', moveIn: value.moveIn || '', buyerName: value.buyerName || '', financing: value.financing || '', avatar: value.avatar || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
-    minPrice: millions(value.minPriceHuf ?? value.minPrice ?? null), maxPrice: millions(value.maxPriceHuf ?? value.maxPrice ?? null),
+    minPrice: millions(value.minPriceHuf ?? value.minPrice ?? null), maxPrice: millions(!own&&value.publicMaxPrice!=null?value.publicMaxPrice:value.maxPriceHuf ?? value.maxPrice ?? null),
+    ...(own&&Object.hasOwn(value,'publicMaxPrice')?{publicMaxPrice:millions(value.publicMaxPrice)}:{}),
     minArea: numeric(value.minArea ?? value.minAreaSqm ?? null), maxArea: numeric(value.maxArea ?? value.maxAreaSqm ?? null),
     minRooms: numeric(value.minRooms ?? null), maxRooms: numeric(value.maxRooms ?? null),
     balcony: !!(value.balcony ?? value.requiresBalcony), elevator: !!(value.elevator ?? value.requiresElevator),
@@ -244,6 +245,8 @@ function searchToApi(value) {
   const type = inputText(value.type) || 'Lakás';
   const attributes = normalizeSearchAttributes({...value,type},{strict:true});
   const minPrice = inputNumber(value.minPrice, 'minimumár', true), maxPrice = inputNumber(value.maxPrice, 'maximumár', true);
+  const publicPrice=inputNumber(value.publicMaxPrice,'publikus maximumár',true);
+  if(publicPrice!=null&&(publicPrice<=0||publicPrice>1000000||maxPrice!=null&&publicPrice>maxPrice||minPrice!=null&&publicPrice<minPrice))throw new Error('A publikus maximumár a minimumár és a saját maximumár közé essen.');
   const locations = entityLocations(value, 'search', true);
   const minArea = inputNumber(value.minArea, 'minimum alapterület', true), maxArea = inputNumber(value.maxArea, 'maximum alapterület', true);
   const minRooms = inputNumber(value.minRooms, 'minimum szobaszám', true), maxRooms = inputNumber(value.maxRooms, 'maximum szobaszám', true);
@@ -253,6 +256,7 @@ function searchToApi(value) {
   return {
     title: inputText(value.title), locationIds:locations.map(location=>location.id), city:locations[0].city, districts:locations.filter(location=>location.city===locations[0].city&&location.district).map(location=>location.district), description: inputText(value.description), type: inputText(value.type) || 'Lakás',
     minPrice: minPrice == null ? null : Math.round(minPrice * MILLION), maxPrice: maxPrice == null ? null : Math.round(maxPrice * MILLION),
+    ...(Object.hasOwn(value,'publicMaxPrice')?{publicMaxPrice:publicPrice==null?null:Math.round(publicPrice*MILLION)}:{}),
     minArea, maxArea, minRooms, maxRooms,
     conditions:attributes.conditions, buildings:attributes.buildings, constructionAges:attributes.constructionAges,
     views:attributes.views, ceilingHeight:attributes.ceilingHeight, floors:attributes.floors, heatingTypes:attributes.heatingTypes,
@@ -348,12 +352,13 @@ function feedbackScenarioFromApi(value) {
 function messageFromApi(value) {
   return { ...clone(value), id: String(value.id), senderId: String(value.senderId ?? value.userId ?? ''), text: value.text ?? value.body ?? '', createdAt: value.createdAt };
 }
-function matchFromApi(value) {
+function matchFromApi(value,viewerId) {
   if (!value) return null;
   const partner = value.partner || value.contact || value.otherUser || {};
+  const {searchRequest:_legacySearch,...safe}=clone(value);
   return {
-    ...clone(value), id: String(value.id),
-    property: propertyFromApi(value.property), search: searchFromApi(value.search ?? value.searchRequest),
+    ...safe, id: String(value.id),
+    property: propertyFromApi(value.property), search: searchFromApi(value.search ?? value.searchRequest,String((value.search??value.searchRequest)?.ownerId)===viewerId),
     partner: { ...clone(partner), accountType:normalizeAccountType(partner.accountType), id: String(partner.id ?? partner.userId ?? ''), name: partner.name || partner.displayName || '', avatar: partner.avatar || initials(partner.name || partner.displayName), email: partner.email || '', phone: partner.phone || partner.phoneNumber || '' },
     messages: rows(value.messages).map(messageFromApi), unread: Number(value.unread ?? value.unreadCount ?? 0)
   };
@@ -389,8 +394,8 @@ export class ApiModel {
     return {
       user: { accountType:normalizeAccountType(user.accountType), id: String(user.id), name: user.name || user.displayName || '', email: user.email || '', phone: user.phone || user.phoneNumber || '', avatar: user.avatar || initials(user.name || user.displayName) },
       credits: Number(profile.credits ?? profile.creditBalance ?? profile.balance ?? user.credits ?? 0), active,
-      properties: rows(entities.properties).map(value=>propertyFromApi(value,String(value.ownerId ?? value.userId ?? '')===this.userId)), searches: rows(entities.searches || entities.searchRequests).map(searchFromApi),
-      decisions: rows(entities.decisions || profile.decisions).map(d=>({...clone(d),id:String(d.id),actorId:String(d.actorId),propertyId:String(d.propertyId),searchId:String(d.searchId??d.searchRequestId),property:propertyFromApi(d.property,String(d.property?.ownerId)===this.userId),search:searchFromApi(d.search??d.searchRequest)})),
+      properties: rows(entities.properties).map(value=>propertyFromApi(value,String(value.ownerId ?? value.userId ?? '')===this.userId)), searches: rows(entities.searches || entities.searchRequests).map(value=>searchFromApi(value,String(value.ownerId??value.userId??'')===this.userId)),
+      decisions: rows(entities.decisions || profile.decisions).map(d=>({...Object.fromEntries(Object.entries(clone(d)).filter(([key])=>key!=='searchRequest')),id:String(d.id),actorId:String(d.actorId),propertyId:String(d.propertyId),searchId:String(d.searchId??d.searchRequestId),property:propertyFromApi(d.property,String(d.property?.ownerId)===this.userId),search:searchFromApi(d.search??d.searchRequest,String((d.search??d.searchRequest)?.ownerId)===this.userId)})),
       ledger: rows(ledgerResponse.ledger || ledgerResponse).map(entry => ({ ...clone(entry), amount: Number(entry.amount ?? entry.delta ?? 0), description: entry.description || entry.reason || '', createdAt: entry.createdAt })),
       createdAt: user.createdAt,
       unreadNotificationCount:Number(profile.unreadNotificationCount??user.unreadNotificationCount??0),
@@ -486,7 +491,7 @@ export class ApiModel {
   }
   async decide(item, liked, {allowApproximate=false,resolveMatch=true}={}) {
     const result = await this.call('/decisions', 'POST', { propertyId: item.pair.propertyId, searchRequestId: item.pair.searchId, liked: inputBoolean(liked), ...(allowApproximate===true?{allowApproximate:true}:{}) });
-    let match = result.match ? matchFromApi(result.match) : null;
+    let match = result.match ? matchFromApi(result.match,this.userId) : null;
     const matchId = match?.id ?? (result.matchId == null ? null : String(result.matchId).trim() || null);
     if (!match && matchId && resolveMatch !== false) match = (await this.matches()).find(m => m.id === matchId) || null;
     return { match, matchId, charged: Number(result.charged ?? result.creditsSpent ?? result.creditCost ?? 0), feedbackPrompt:feedbackPromptFromApi(result.feedbackPrompt) };
@@ -516,7 +521,7 @@ export class ApiModel {
         payload.sharedGarden=(inputText(data.type)||'Lakás')==='Lakás' ? legacyGarden===true || legacyGarden===1 || legacyGardenText==='true' : kind==='property' ? null : false;
     }
     const result = await this.call(`${route}${id ? `/${encodeURIComponent(id)}` : ''}`, id ? 'PUT' : 'POST', payload);
-    return kind === 'property' ? propertyFromApi(result,true) : searchFromApi(result);
+    return kind === 'property' ? propertyFromApi(result,true) : searchFromApi(result,true);
   }
   async deleteEntity(kind, id) { const result = await this.call(`/${kind === 'property' ? 'properties' : 'searches'}/${encodeURIComponent(id)}`, 'DELETE'); this.active = null; return result; }
   async reportAccount(entityKind,entityId,reason) {
@@ -534,7 +539,7 @@ export class ApiModel {
     if (checkoutUrl.protocol !== 'https:' || checkoutUrl.username || checkoutUrl.password) throw new Error('A fizetési cím kizárólag biztonságos HTTPS-cím lehet.');
     return { checkoutUrl: checkoutUrl.href };
   }
-  async matches({signal}={}) { return rows(await this.call('/matches','GET',undefined,{signal})).map(matchFromApi); }
+  async matches({signal}={}) { return rows(await this.call('/matches','GET',undefined,{signal})).map(value=>matchFromApi(value,this.userId)); }
   async sendMessage(matchId, text) { return messageFromApi(await this.call(`/matches/${encodeURIComponent(matchId)}/messages`, 'POST', { text: String(text).trim() })); }
   async markRead() { return true; }
   async reset() { throw new Error('A valódi API-adatok a demó visszaállításával nem törölhetők. A demóhoz bontsd az API-kapcsolatot.'); }
@@ -576,7 +581,7 @@ export function publicListingFromApi(kind,key,value,{pricesInHuf=true}={}) {
   }else{
     const s=normalizeSearchAttributes(source);
     const locations=Array.isArray(source.locations)?source.locations.slice(0,50):[];
-    listing={...common,locations:locations.map(item=>typeof item==='string'?item:inputText(item?.label)).filter(Boolean),minPrice:price(source.minPrice),maxPrice:price(source.maxPrice),minArea:nullableNumber(source.minArea),maxArea:nullableNumber(source.maxArea),minRooms:nullableNumber(source.minRooms),maxRooms:nullableNumber(source.maxRooms),
+    listing={...common,locations:locations.map(item=>typeof item==='string'?item:inputText(item?.label)).filter(Boolean),minPrice:price(source.minPrice),maxPrice:price(source.publicMaxPrice??source.maxPrice),minArea:nullableNumber(source.minArea),maxArea:nullableNumber(source.maxArea),minRooms:nullableNumber(source.minRooms),maxRooms:nullableNumber(source.maxRooms),
       conditions:s.conditions,buildings:s.buildings,constructionAges:s.constructionAges,views:s.views,ceilingHeight:s.ceilingHeight,floors:s.floors,heatingTypes:s.heatingTypes,atticPreference:s.atticPreference,minEnergyRating:s.minEnergyRating,
       excludeTopFloor:s.excludeTopFloor,excludeGroundFloorAndBelow:s.excludeGroundFloorAndBelow,airConditioning:s.airConditioning,privateGarden:s.privateGarden,balcony:source.balcony===true,elevator:source.elevator===true,moveIn:inputText(source.moveIn),financing:inputText(source.financing)};
   }
@@ -598,7 +603,7 @@ function landingFromApi(value) {
   const publicType=value=>['Lakás','Ház','Telek','Nyaraló','Garázs','Iroda','Üzlethelyiség','Egyéb'].includes(value)?value:'Ingatlan';
   return {
     regions:regions.map(region=>({...region})),region:clone(region),scope:region?'region':'national',
-    searches:rows(value?.searches).slice(0,16).map((item,index)=>({key:String(item.key??`search-${index+1}`),sourceKey:originFromListing('search',item.sourceKey)?.key??null,href:publicListingHref('search',item.sourceKey),title:publicTitle(item.title,'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,50),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('search',item.prefill,{pricesInHuf:true})})),
+    searches:rows(value?.searches).slice(0,16).map((item,index)=>({key:String(item.key??`search-${index+1}`),sourceKey:originFromListing('search',item.sourceKey)?.key??null,href:publicListingHref('search',item.sourceKey),title:publicTitle(item.title,'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,50),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.publicMaxPrice??item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('search',item.prefill,{pricesInHuf:true})})),
     properties:rows(value?.properties).slice(0,8).map((item,index)=>({key:String(item.key??`property-${index+1}`),sourceKey:originFromListing('property',item.sourceKey)?.key??null,href:publicListingHref('property',item.sourceKey),image:publicImage(item.image),title:publicTitle(item.title,'Eladó ingatlan'),type:publicType(item.type),location:String(item.location||''),price:millions(nullableNumber(item.price)),area:nullableNumber(item.area),wholeRooms:nullableNumber(item.wholeRooms),halfRooms:nullableNumber(item.halfRooms),rooms:nullableNumber(item.rooms),lotArea:nullableNumber(item.lotArea),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('property',item.prefill,{pricesInHuf:true})}))
   };
 }

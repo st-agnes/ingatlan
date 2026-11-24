@@ -14,6 +14,8 @@ A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külö
 
 **Az alap tesztadatcsomag 14 felhasználót, 355 ingatlant és 433 keresést tartalmaz**, köztük 3 ingatlanközvetítőt. Minden példafiók közös jelszava: `OtthonraDemo2026!`.
 
+A publikus árkeret kipróbálásához Bence (`bence@otthonra.local`) „Teszt · Alkupozíciót védő keresés Debrecenben” keresése 80 milliós tényleges és 70 milliós publikus kerettel szerepel. Dániel (`daniel.kozvetito@otthonra.local`) „Teszt · Publikus keretes debreceni lakás” ingatlana 75 milliós: a keresőnek tökéletes, az eladónak részleges találat. A többi teljes találat kifutása után engedélyezhetők a részleges ajánlások.
+
 | Fióktípus | E-mail-címek |
 |---|---|
 | Alap magánszemélyek | `anna@otthonra.local`, `peter@otthonra.local`, `eszter@otthonra.local` |
@@ -37,7 +39,7 @@ A workflow alapból beköti a már létrehozott `otthonra-geocoding-dev` Secret 
 
 **Minden új teszt Cloud Run-revízió friss tesztállapotot kap:** az alkalmazásadatok törlődnek, majd visszaállnak a fenti példafiókok, ingatlanok, keresések és kezdő kreditek. Ez a tesztelés közben létrehozott saját fiókokat, döntéseket, párosításokat és üzeneteket is törli. Azonos revízió új példányának indulásakor vagy újraindításakor az adatok megmaradnak; egy korábban már feltöltött régi revízió újraindítása sem törli az újabb tesztállapotot.
 
-Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261124-test-fixtures-v7`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
+Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261124-test-fixtures-v8`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
 
 **A visszatérítések ütemezésének első telepítésekor** a teljes `bash scripts/gcp/run-dev.sh` parancs szükséges a Cloud Shellben, a frissített tároló gyökeréből; ez létrehozza az új tesztütemezőt is. A későbbi kiadások a megszokott Actions workflow-val mennek.
 

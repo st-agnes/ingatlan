@@ -1,5 +1,5 @@
 {
-  "version": "20261124-test-fixtures-v7",
+  "version": "20261124-test-fixtures-v8",
   "password": "OtthonraDemo2026!",
   "users": [
     {
@@ -17894,11 +17894,11 @@
         "parkingTypes": [
           "Utcai parkolás"
         ],
-        "title": "Teszt · Tágas családi lakás · Debrecen",
+        "title": "Teszt · Publikus keretes debreceni lakás",
         "city": "Debrecen",
         "district": "",
         "locationId": "city:Debrecen",
-        "price": 78000000,
+        "price": 75000000,
         "area": 83,
         "rooms": 3,
         "wholeRooms": 3,
@@ -17917,7 +17917,7 @@
         "description": "Kitalált tesztadat, nem valódi ingatlanhirdetés. Önálló régiós keresési példa változatos költségkerettel, méret- és szobaigénnyel. A nyitott felső korlátok és a több településes keresés is kipróbálható.",
         "type": "Lakás",
         "minPrice": null,
-        "maxPrice": 90000000,
+        "maxPrice": 80000000,
         "minArea": 75,
         "maxArea": 99,
         "minRooms": 2.5,
@@ -17927,7 +17927,7 @@
         "moveIn": "3 hónapon belül",
         "financing": "Tesztként megadott saját forrás",
         "archived": false,
-        "title": "Teszt · Tágas családi lakás keresése · Debrecen",
+        "title": "Teszt · Alkupozíciót védő keresés Debrecenben",
         "city": "Debrecen",
         "locationIds": [
           "city:Debrecen",
@@ -17937,7 +17937,8 @@
         "conditions": [
           "Átlagos"
         ],
-        "heatingTypes": []
+        "heatingTypes": [],
+        "publicMaxPrice": 70000000
       }
     },
     {

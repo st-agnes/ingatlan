@@ -24,6 +24,10 @@ export const DEMO_STREET_SCENARIO = Object.freeze({
   firstProperty:'reka-debrecen-1', secondProperty:'bence-debrecen-1',
   streetSearch:'julia-debrecen-search-2', mixedSearch:'marton-debrecen-search-2'
 });
+export const DEMO_PUBLIC_BUDGET_SCENARIO = Object.freeze({
+  property:'regional-hu321-lakas-4-property', search:'regional-hu321-lakas-4-search',
+  privateMaximum:80_000_000, publicMaximum:70_000_000, propertyPrice:75_000_000
+});
 const propertyDefaults = {
   neighborhood: '', address: '', description: fictional, type: 'Lakás', floor: 1,
   condition: 'Jó állapotú', building: 'Tégla', balcony: false, elevator: false,
@@ -365,6 +369,16 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
     Object.assign(fixture.input, {street:'OTTHONRA TEST', houseNumber:String(++houseNumber), postalCode:null});
   }
   const fixture = key => fixtures.find(item => item.key === key);
+  // This pair deliberately matches the buyer's private budget while exceeding
+  // the public cap. Neither the title nor public description discloses it.
+  const budgetPair = DEMO_PUBLIC_BUDGET_SCENARIO;
+  Object.assign(fixture(budgetPair.property.replace(/-property$/,keySuffix+'-property')).input, {
+    price:budgetPair.propertyPrice, title:'Teszt · Publikus keretes debreceni lakás'+titleSuffix
+  });
+  Object.assign(fixture(budgetPair.search.replace(/-search$/,keySuffix+'-search')).input, {
+    maxPrice:budgetPair.privateMaximum, publicMaxPrice:budgetPair.publicMaximum,
+    title:'Teszt · Alkupozíciót védő keresés Debrecenben'+titleSuffix
+  });
   const venkert = fixture(`reka${keySuffix}-debrecen-1`);
   const sestakert = fixture(`bence${keySuffix}-debrecen-1`);
   Object.assign(venkert.input, {neighborhood:'Vénkert', hideStreet:false, hideHouseNumber:true, street:DEMO_STREET_SCENARIO.firstName,

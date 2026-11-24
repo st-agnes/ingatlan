@@ -98,6 +98,7 @@ public sealed class SearchRequest
     public string Type { get; set; } = "Lakás";
     public decimal? MinPrice { get; set; }
     public decimal? MaxPrice { get; set; }
+    public decimal? PublicMaxPrice { get; set; }
     public decimal? MinArea { get; set; }
     public decimal? MaxArea { get; set; }
     public decimal? MinRooms { get; set; }
@@ -352,14 +353,15 @@ public static class Dto
             neighborhoods = Strings(p.NeighborhoodIdsJson).Select(NeighborhoodCatalog.Get).Where(x => x is not null).ToArray(),
             p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, wholeRooms = rooms.WholeRooms, halfRooms = rooms.HalfRooms, p.Floor, p.FloorIsUpperRange, p.IsAttic, p.BuildingFloors, p.PrivateGarden, SharedGarden = (bool?)null, condition = PropertyAttributes.NormalizeCondition(p.Condition), building = PropertyAttributes.NormalizeBuilding(p.Building), p.ConstructionAge, p.View, p.CeilingHeight, heatingType = PropertyAttributes.NormalizeHeating(p.HeatingType), p.SecondaryHeatingType, p.Insulated, p.EnergyRating, p.EnergyRatingScheme, p.AirConditioning, p.SolarPanels, p.ParkingType, parkingTypes = PropertyAttributes.Parking(p), p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
     }
-    public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private, string? ownerName = null)
+    public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private, string? ownerName = null, bool own = false)
     {
         var locations = LocationCatalog.ForSearch(s);
         var declaredIds = Strings(s.LocationIdsJson);
         // Keep invalid explicit choices visible to clients. Replacing them with []
         // would make an old client's legitimate empty-selection city fallback broaden this search.
         var locationIds = declaredIds.Length > 0 && locations.Length == 0 ? declaredIds : locations.Select(x => x.Id).ToArray();
-        return new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Specificity(s), ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds, locations, s.Description, s.Type, s.MinPrice, s.MaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson).Select(PropertyAttributes.NormalizeHeating).Distinct().ToArray(), s.Balcony, s.Elevator, s.ExcludeTopFloor, s.ExcludeGroundFloorAndBelow, s.AtticPreference, s.MinEnergyRating, s.AirConditioning, s.PrivateGarden, SharedGarden = false, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
+        if (own) return new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Prepare(s, sellerPerspective: !own).Specificity, ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds, locations, s.Description, s.Type, s.MinPrice, s.MaxPrice, s.PublicMaxPrice, s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson).Select(PropertyAttributes.NormalizeHeating).Distinct().ToArray(), s.Balcony, s.Elevator, s.ExcludeTopFloor, s.ExcludeGroundFloorAndBelow, s.AtticPreference, s.MinEnergyRating, s.AirConditioning, s.PrivateGarden, SharedGarden = false, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
+        return new { s.Id, s.OwnerId, ownerFirstName = PublicProfile.FirstName(ownerName), searchSpecificity = MatchingRanking.Prepare(s, sellerPerspective: !own).Specificity, ownerAccountType = AccountTypes.PublicType(ownerAccountType), s.Title, s.City, Districts = Strings(s.DistrictsJson), locationIds, locations, s.Description, s.Type, s.MinPrice, MaxPrice = SearchBudgets.PublicMaximum(s), s.MinArea, s.MaxArea, s.MinRooms, s.MaxRooms, conditions = Strings(s.ConditionsJson), buildings = Strings(s.BuildingsJson), constructionAges = Strings(s.ConstructionAgesJson), views = Strings(s.ViewsJson), s.CeilingHeight, floors = PropertyAttributes.Floors(s.FloorsJson), heatingTypes = Strings(s.HeatingTypesJson).Select(PropertyAttributes.NormalizeHeating).Distinct().ToArray(), s.Balcony, s.Elevator, s.ExcludeTopFloor, s.ExcludeGroundFloorAndBelow, s.AtticPreference, s.MinEnergyRating, s.AirConditioning, s.PrivateGarden, SharedGarden = false, s.MoveIn, s.Financing, s.Archived, s.CreatedAt };
     }
     public static object Message(Message m) => new { m.Id, m.MatchId, m.SenderId, m.Text, m.CreatedAt };
 }
@@ -390,4 +392,5 @@ public record SearchInput(string Title, string City, string[]? Districts, string
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool PrivateGarden = false,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool SharedGarden = false,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] string? AtticPreference = null,
-    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] string? MinEnergyRating = null);
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] string? MinEnergyRating = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] decimal? PublicMaxPrice = null);
