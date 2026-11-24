@@ -2273,6 +2273,16 @@ test('seller location collapses to an editable city name and nested address priv
  assert.notEqual(t.document.getElementById('entity-form'),form);
 });
 
+test('changing only the house number invalidates the invisible postcode and reverting preserves the verified address',async()=>{
+ const t=await setup({initialRaw:configuredCriteriaRaw('property')});t.ui.openEditor('property','own-p1');
+ const number=t.document.getElementById('f-houseNumber'),postal=t.document.getElementById('f-postalCode'),before=number.value;
+ assert.equal(postal.value,'1051');assert.equal(postal.type,'hidden');
+ number.value=before+'B';inputEvent(t,number);assert.equal(postal.value,'','A stale postcode must not constrain a different house on a multi-postcode street');
+ number.value=before;inputEvent(t,number);assert.equal(postal.value,'1051','Reverting the address preserves its existing verified metadata');
+ number.value='83';inputEvent(t,number);await advanceEditor(t,5);submitEditor(t);await settle();
+ const saved=t.model.getState().properties.find(row=>row.id==='own-p1');assert.equal(saved.houseNumber??saved.addressDetails?.houseNumber,'83');assert.equal(saved.postalCode??saved.addressDetails?.postalCode??'','');
+});
+
 test('seller nullable amenity cards cycle yes, no and unspecified without coercion on actual saves',async()=>{
  const t=await setup({initialRaw:configuredCriteriaRaw('property')});t.ui.openEditor('property','own-p1');await advanceEditor(t,4);
  const names=['balcony','airConditioning','privateGarden','insulated','solarPanels'];

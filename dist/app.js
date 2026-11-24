@@ -940,6 +940,11 @@ function openEditor(kind,id,options={}){
  if(inline){document.getElementById('app').innerHTML=`<main id="onboarding-page" class="onboarding-main"><a class="brand" href="#landing" data-action="landing">otthonra.</a><div class="onboarding-topline"><a href="#landing" data-action="landing">← Kezdőoldal</a><span>A piszkozatodat automatikusan mentjük.</span><button type="button" data-action="onboarding-abandon">Piszkozat törlése</button></div><section class="panel onboarding-editor">${editorMarkup}</section></main>`;}else openModal(editorMarkup,true);
  const picker=document.getElementById('location-picker'),input=document.getElementById('location-input'),list=document.getElementById('location-options'),chips=document.getElementById('location-chips'),error=document.getElementById('location-error');
  const streetPicker=property?document.getElementById('street-picker'):null,streetInput=property?document.getElementById('f-street'):null,streetList=property?document.getElementById('street-options'):null;
+ const originalPropertyLocationId=selected[0]?.id;
+ if(property)document.getElementById('f-houseNumber').addEventListener('input',()=>{
+  const unchanged=selected[0]?.id===originalPropertyLocationId&&streetInput.value.trim()===String(address.street).trim()&&document.getElementById('f-houseNumber').value.trim()===String(address.houseNumber).trim();
+  document.getElementById('f-postalCode').value=unchanged?address.postalCode:'';
+ });
  let locationAutocomplete,streetAutocomplete,locationMap,attributeUi,navUi,persistEditor=()=>{},editingPropertyLocation=property&&(!selected.length||!!draft?.editor?.query);
  const clearError=()=>{error.textContent='';input.setCustomValidity('');};
  const closeOptions=()=>{const open=!!(locationAutocomplete?.isOpen()||streetAutocomplete?.isOpen());locationAutocomplete?.close();streetAutocomplete?.close();attributeUi?.close();return open;};
