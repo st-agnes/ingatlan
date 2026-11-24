@@ -27,15 +27,31 @@ function plainAtIsEmail(rest) {
   || /^\s+[a-z0-9-]{1,63}\s*\.\s*(?:hu|com|net|org|eu|de|test)\b/.test(rest);
 }
 function emailLike(text) {
+ // Most estate descriptions contain no e-mail marker. Avoid all candidate
+ // patterns in that case, especially on maximum-length ordinary prose.
+ if(!['@','kukac','arroba','at','email','e-mail','e mail','mailcim'].some(marker=>text.includes(marker)))return false;
  let email=text.replace(/[\[({]\s*(?:kukac|at|arroba)\s*[\])}]/g,'@').replace(/kukac|arroba/g,'@');
  email=email.replace(/\bat\b/g,(match,index,whole)=>plainAtIsEmail(whole.slice(index+2,index+202))?'@':match);
  email=email.replace(/[\[({]\s*(?:pont|dot)\s*[\])}]/g,'.').replace(/pont|dot/g,'.');
- email=email.replace(/(?:\b[a-z]\s+){1,30}[a-z]\b/g,part=>part.replace(/\s/g,''));
- const address=/[\p{L}\p{N}._%+\-]{1,80}\s*@\s*[\p{L}\p{N}\-]{1,63}(?:\s*\.\s*[\p{L}\p{N}\-]{1,63}){0,7}\s*\.\s*[\p{L}]{1,24}/u;
- if(address.test(email))return true;
- if(/[\p{L}\p{N}._%+\-]{1,80}\s*@\s*(?:gmail|freemail|citromail|outlook|hotmail|yahoo)\s+(?:hu|com|net|org|eu|de|test)\b/u.test(email))return true;
+ email=email.replace(/(?:\b[a-z]\s+){1,30}[a-z]\b/g,part=>part.replace(/\s/g,'')).replace(/\s+/g,' ');
+ // Adjacent @ signs bound disjoint candidate segments. No unanchored address
+ // expression repeatedly scans a long local part or a long invalid domain.
+ const localEnd=/[\p{L}\p{N}._%+\-]$/u;
+ const domain=/^\s*[\p{L}\p{N}\-]{1,63}(?:\s*\.\s*[\p{L}\p{N}\-]{1,63}){0,7}\s*\.\s*[\p{L}]{1,24}/u;
+ const spokenHost=/^\s*(?:gmail|freemail|citromail|outlook|hotmail|yahoo)\s+(?:hu|com|net|org|eu|de|test)\b/;
+ for(let at=email.indexOf('@');at>=0;){
+  const next=email.indexOf('@',at+1);let end=at;while(end>0&&email[end-1]===' ')end--;
+  if(localEnd.test(email.slice(Math.max(0,end-2),end))){
+   const rest=email.slice(at+1,Math.min(at+769,next>=0?next:email.length));
+   if(domain.test(rest)||spokenHost.test(rest))return true;
+  }
+  at=next;
+ }
  // A missing @ does not make an explicitly introduced e-mail address safe.
- return /\b(?:email|e-mail|e mail|mailcim|emailcim)\s*[:=]?\s*[a-z0-9._%+\-]{1,80}\s+(?:gmail|freemail|citromail|outlook|hotmail|yahoo)\s*\.\s*[a-z]{2,12}\b/.test(email);
+ const introduction=/\b(?:emailcim|mailcim|e-mail|e mail|email)/g;
+ const introducedAddress=/^\s*[:=]?\s*[a-z0-9._%+\-]{1,80}\s+(?:gmail|freemail|citromail|outlook|hotmail|yahoo)\s*\.\s*[a-z]{2,12}\b/;
+ for(const marker of email.matchAll(introduction))if(introducedAddress.test(email.slice(marker.index+marker[0].length,marker.index+marker[0].length+220)))return true;
+ return false;
 }
 
 function underHundred(word) {
