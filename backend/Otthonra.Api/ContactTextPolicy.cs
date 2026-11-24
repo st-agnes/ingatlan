@@ -185,7 +185,7 @@ public static class ContactTextPolicy
     }
     private static bool PhoneLike(string text)
     {
-        var tokens=Pattern(@"[a-z]+|[0-9]+").Matches(text).Cast<Match>().Select(match=>new Token(match.Value,match.Index,match.Index+match.Length)).ToArray();
+        var tokens=Pattern(@"[a-z]+|[0-9]+").Matches(text).Cast<System.Text.RegularExpressions.Match>().Select(match=>new Token(match.Value,match.Index,match.Index+match.Length)).ToArray();
         List<Atom> run=[];
         for(var index=0;index<tokens.Length;index++){
             var atom=AtomAt(tokens,index,text);
