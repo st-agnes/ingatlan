@@ -1,57 +1,10 @@
-name: Check refined forms, floors and contact privacy
+name: Check bounded description policy
 on:
   push:
     branches: [codex/map-label-check-20261121]
 permissions:
-  contents: write
+  contents: read
 jobs:
-  browser:
-    if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/map-label-check-20261121'
-    runs-on: ubuntu-24.04
-    timeout-minutes: 8
-    strategy:
-      fail-fast: false
-      matrix:
-        suite: [wizard-dock, onboarding]
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-          sparse-checkout-cone-mode: false
-          sparse-checkout: |
-            /*
-            !/data/
-      - uses: ./.github/actions/ci-node
-        with:
-          browser: 'true'
-      - name: Exercise actual forms, viewport geometry, option clearing and persistence
-        run: |
-          set -o pipefail
-          mkdir -p .local/browser-tests
-          git rev-parse HEAD
-          python3 -m http.server 3000 --directory dist --bind 127.0.0.1 > .local/browser-tests/forms-server.log 2>&1 &
-          node tests/${{ matrix.suite }}-browser.test.mjs http://127.0.0.1:3000 2>&1 | tee .local/browser-tests/forms-${{ matrix.suite }}.log
-      - name: Preserve bounded public diagnostics
-        if: always()
-        env:
-          GH_TOKEN: ${{ github.token }}
-          FORM_SUITE: ${{ matrix.suite }}
-        run: |
-          python3 - <<'PY'
-          import base64,hashlib,json,os,urllib.request
-          from pathlib import Path
-          paths=list(Path('.local/browser-tests').glob('forms-*.log'))+list(Path('.local/browser-tests/screenshots').glob('form-refinements-*.png'))+list(Path('.local/browser-tests/screenshots').glob('form-details-*.png'))+sorted(Path('.local/browser-tests/screenshots').glob('*failure*.png'))[:3]
-          for path in paths:
-              if not path.is_file():continue
-              raw=path.read_bytes()
-              if len(raw)>3000000:continue
-              content=base64.b64encode(raw) if path.suffix=='.png' else raw
-              payload=json.dumps({'encoding':'base64','content':base64.b64encode(content).decode()}).encode()
-              request=urllib.request.Request('https://api.github.com/repos/st-agnes/ingatlan/git/blobs',data=payload,method='POST',headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'})
-              with urllib.request.urlopen(request,timeout=30) as response:result=json.load(response)
-              expected=hashlib.sha1(b'blob '+str(len(content)).encode()+b'\0'+content).hexdigest();assert result['sha']==expected
-              print(json.dumps({'suite':os.environ['FORM_SUITE'],'file':path.name,'sha':expected,'bytes':len(raw),'encoding':'base64-text' if path.suffix=='.png' else 'utf8'}))
-          PY
   dotnet:
     if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/map-label-check-20261121'
     runs-on: ubuntu-24.04
@@ -72,5 +25,5 @@ jobs:
             /data/neighborhoods/sources/country-osm/municipalities.geojson.gz
             /data/neighborhoods/sources/country-osm/named-nodes.geojson.gz
       - uses: ./.github/actions/ci-dotnet
-      - name: Verify actual .NET model, matching parity and serialization compatibility
+      - name: Verify actual .NET model and bounded contact checks
         run: dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release

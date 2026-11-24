@@ -91,13 +91,28 @@ public static class ContactTextPolicy
         || Is(rest,@"^\s+[a-z0-9-]{1,63}\s*\.\s*(?:hu|com|net|org|eu|de|test)\b");
     private static bool EmailLike(string text)
     {
+        // Maximum-length ordinary prose must not enter an address candidate regex.
+        if(!new[]{"@","kukac","arroba","at","email","e-mail","e mail","mailcim"}.Any(marker=>text.Contains(marker,StringComparison.Ordinal)))return false;
         var email=Replace(Replace(text,@"[\[({]\s*(?:kukac|at|arroba)\s*[\])}]","@"),@"kukac|arroba","@");
         email=Replace(email,@"\bat\b",match=>PlainAtIsEmail(email[(match.Index+2)..Math.Min(email.Length,match.Index+202)])?"@":match.Value);
         email=Replace(Replace(email,@"[\[({]\s*(?:pont|dot)\s*[\])}]","."),@"pont|dot",".");
-        email=Replace(email,@"(?:\b[a-z]\s+){1,30}[a-z]\b",match=>Replace(match.Value,@"\s",""));
-        if (Is(email,@"[\p{L}\p{N}._%+\-]{1,80}\s*@\s*[\p{L}\p{N}\-]{1,63}(?:\s*\.\s*[\p{L}\p{N}\-]{1,63}){0,7}\s*\.\s*[\p{L}]{1,24}")) return true;
-        if(Is(email,@"[\p{L}\p{N}._%+\-]{1,80}\s*@\s*(?:gmail|freemail|citromail|outlook|hotmail|yahoo)\s+(?:hu|com|net|org|eu|de|test)\b"))return true;
-        return Is(email,@"\b(?:email|e-mail|e mail|mailcim|emailcim)\s*[:=]?\s*[a-z0-9._%+\-]{1,80}\s+(?:gmail|freemail|citromail|outlook|hotmail|yahoo)\s*\.\s*[a-z]{2,12}\b");
+        email=Replace(Replace(email,@"(?:\b[a-z]\s+){1,30}[a-z]\b",match=>Replace(match.Value,@"\s","")),@"\s+"," ");
+        // Each @ examines only its disjoint following segment, capped above the
+        // maximum supported domain size. The domain patterns are anchored.
+        for(var at=email.IndexOf('@');at>=0;){
+            var next=email.IndexOf('@',at+1);var end=at;while(end>0&&email[end-1]==' ')end--;
+            if(Is(email[Math.Max(0,end-2)..end],@"[\p{L}\p{N}._%+\-]$")){
+                var rest=email[(at+1)..Math.Min(at+769,next>=0?next:email.Length)];
+                if(Is(rest,@"^\s*[\p{L}\p{N}\-]{1,63}(?:\s*\.\s*[\p{L}\p{N}\-]{1,63}){0,7}\s*\.\s*[\p{L}]{1,24}")
+                    || Is(rest,@"^\s*(?:gmail|freemail|citromail|outlook|hotmail|yahoo)\s+(?:hu|com|net|org|eu|de|test)\b"))return true;
+            }
+            at=next;
+        }
+        foreach(System.Text.RegularExpressions.Match marker in Pattern(@"\b(?:emailcim|mailcim|e-mail|e mail|email)").Matches(email)){
+            var start=marker.Index+marker.Length;
+            if(Is(email[start..Math.Min(email.Length,start+220)],@"^\s*[:=]?\s*[a-z0-9._%+\-]{1,80}\s+(?:gmail|freemail|citromail|outlook|hotmail|yahoo)\s*\.\s*[a-z]{2,12}\b"))return true;
+        }
+        return false;
     }
     private static int? UnderHundred(string word)
     {
