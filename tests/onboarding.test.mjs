@@ -214,7 +214,7 @@ test('property teaser seeds a relaxed search using chosen canonical locations an
   const source={prefill:{locations:[district],type:'Lakás',price:72.9,area:64,rooms:3,condition:'Felújított',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:14,heatingType:'Hőszivattyú',balcony:true,elevator:false},title:'Más címe',description:'Más leírása',address:'Titkos cím',id:'source'};
   const data=prefillFromTeaser('search',source,{locations:[city,district]});
   assert.deepEqual(data.locationIds,[city.id,district.id]);assert.deepEqual([data.minPrice,data.maxPrice,data.minRooms,data.maxRooms],[null,85,3,null]);assert.deepEqual([data.minArea,data.maxArea],[55,null]);
-  assert.deepEqual(data.conditions,['Új/felújított']);assert.deepEqual(data.buildings,['Tégla']);assert.deepEqual(data.heatingTypes,['Hőszivattyú']);assert.deepEqual(data.floors,[11]);
+  assert.deepEqual(data.conditions,['Új/felújított']);assert.deepEqual(data.buildings,['Tégla']);assert.deepEqual(data.heatingTypes,['Hőszivattyú']);assert.deepEqual(data.floors,[9]);
   assert.equal(data.balcony,true);assert.equal(data.elevator,false);assert.equal('address' in data,false);assert.equal('description' in data,false);assert.notEqual(data.title,source.title);assert.ok(data.title.includes('+1'));
 });
 
@@ -265,8 +265,8 @@ test('public seed normalization converts HUF once, strips private data and gener
 });
 
 test('demo creation requests survive reload and another tab without duplicating or accepting changed payload',()=>{
-  const storage=store(),first=createModel(storage),otherTab=createModel(storage),data={title:'Új keresési igény',locationIds:[city.id],maxPrice:80,minRooms:null};
-  const before=first.getState().searches.length,saved=first.saveEntity('search',data,undefined,{creationRequestId:requestId});
+  const storage=store(),first=createModel(storage),otherTab=createModel(storage),data={title:'Új keresési igény',locationIds:[city.id],maxPrice:80,minRooms:null,floors:[11]};
+  const before=first.getState().searches.length,saved=first.saveEntity('search',data,undefined,{creationRequestId:requestId});assert.deepEqual(saved.floors,[9],'Persisted current selection changes without changing the original creation signature');
   const replay=otherTab.saveEntity('search',{...data},undefined,{creationRequestId:requestId});assert.equal(replay.id,saved.id);assert.equal(otherTab.getState().searches.length,before+1);
   assert.equal(createModel(storage).saveEntity('search',data,undefined,{creationRequestId:requestId}).id,saved.id);
   assert.throws(()=>otherTab.saveEntity('search',{...data,maxPrice:81},undefined,{creationRequestId:requestId}),/másik kitöltés/);
@@ -376,4 +376,29 @@ test('public prefills bound building heights, keep false distinct from unknown a
  assert.deepEqual([house.floor,house.buildingFloors,house.privateGarden,house.sharedGarden,house.airConditioning],[null,null,null,null,true]);
  const h=sanitizeTeaserPrefill('search',{type:'Ház',excludeTopFloor:true,excludeGroundFloorAndBelow:true,privateGarden:true,sharedGarden:true,airConditioning:true});
  assert.deepEqual([h.excludeTopFloor,h.excludeGroundFloorAndBelow,h.privateGarden,h.sharedGarden,h.airConditioning],[false,false,false,false,true]);
+});
+
+
+test('raised and upper-range floor metadata persist in drafts while interval-only search seeds never invent an exact upper floor',()=>{
+ const storage=store(),data={title:'Magas emeleti otthon',type:'Lakás',floor:9,floorIsUpperRange:true,buildingFloors:12};
+ const d=saveDraft(createDraft('property',data,{now:NOW}),storage);const restored=loadDraft(storage,{now:NOW});assert.equal(restored.data.floorIsUpperRange,true);
+ const frozen=prepareDraftForAuth(restored,USER.email,{now:NOW});assert.equal(frozen.completedData.floorIsUpperRange,true);
+ const raised=sanitizeTeaserPrefill('property',{type:'Lakás',locations:[city],floor:0.5,buildingFloors:0});assert.equal(raised.floor,0.5);assert.equal(raised.buildingFloors,0);
+ assert.deepEqual(prefillFromTeaser('search',{prefill:{...raised,rooms:2}}).floors,[0.5]);
+ assert.deepEqual(prefillFromTeaser('search',{prefill:{type:'Lakás',locations:[city],floor:12,floorIsUpperRange:false}}).floors,[9]);
+ const grouped=prefillFromTeaser('property',{prefill:{type:'Lakás',locations:[city],floors:[9]}});assert.equal('floor' in grouped,false,'A ninth-plus preference is not a known exact property floor');
+ const exact=prefillFromTeaser('property',{prefill:{type:'Lakás',locations:[city],floors:[0.5]}});assert.equal(exact.floor,0.5);assert.equal(d.creationRequestId,frozen.creationRequestId);
+});
+
+
+test('a completed demo creation receipt is acknowledged before newly tightened description validation',()=>{
+ const storage=store(),first=createModel(storage),safe={title:'Régebben elmentett keresés',locationIds:[city.id],type:'Lakás',maxPrice:80,floors:[11],description:'Csendes otthont keresek.'};
+ const saved=first.saveEntity('search',safe,undefined,{creationRequestId:requestId});
+ const legacy={...safe,description:'Anna kukac pelda pont hu'};
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY));const row=raw.searches.find(x=>x.id===saved.id);row.description=legacy.description;
+ const frozen=createDraft('search',legacy,{now:NOW}).data;
+ raw.creationRequests.find(x=>x.requestId===requestId).signature=JSON.stringify(frozen,(_,item)=>item&&typeof item==='object'&&!Array.isArray(item)?Object.fromEntries(Object.keys(item).sort().map(key=>[key,item[key]])):item);
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const restored=createModel(storage),count=restored.getState().searches.length;assert.equal(restored.saveEntity('search',legacy,undefined,{creationRequestId:requestId}).id,saved.id);assert.equal(restored.getState().searches.length,count);
+ assert.throws(()=>restored.saveEntity('search',legacy),/Elérhetőséget/,'A fresh create cannot use the old receipt exemption');
 });

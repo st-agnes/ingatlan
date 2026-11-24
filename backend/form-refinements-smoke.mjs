@@ -1,0 +1,73 @@
+/** Included by the disposable loopback attribute/API smoke, never run in a deployment. */
+import assert from 'node:assert/strict';
+import {descriptionContactMessage} from '../dist/contact-policy.js';
+
+export async function checkFormRefinements({call, buyer, seller, baseProperty}) {
+  const safeDescription='Világos, 2020-ban felújított, harminchat négyzetméteres otthon, két egész szobával.';
+  const propertyBody={...baseProperty,title:'Új emeletválasztások próbája',price:41123456,area:77.5,rooms:2.5,description:safeDescription};
+  const createProperty=change=>call('/properties',{token:seller,method:'POST',body:{...propertyBody,...change},status:201});
+  const raised=await createProperty({floor:0.5,buildingFloors:0});
+  const ground=await createProperty({floor:0,buildingFloors:0});
+  const upper=await createProperty({floor:9,floorIsUpperRange:true,buildingFloors:12});
+  const exact=await createProperty({floor:12,floorIsUpperRange:false,buildingFloors:12});
+  assert.equal(raised.floor,0.5);assert.equal(raised.floorIsUpperRange,false);
+  assert.equal(upper.floor,9);assert.equal(upper.floorIsUpperRange,true);
+  assert.equal(exact.floor,12);assert.equal(exact.floorIsUpperRange,false);
+  const searchBody={title:'Új emeletfeltételek próbája',city:baseProperty.city,locationIds:[baseProperty.locationId],type:'Lakás',
+    minPrice:propertyBody.price,maxPrice:propertyBody.price,minArea:propertyBody.area,maxArea:propertyBody.area,minRooms:2.5,maxRooms:2.5,
+    balcony:false,elevator:false,description:safeDescription};
+  const searchAndFeed=async change=>{
+    const search=await call('/searches',{token:buyer,method:'POST',body:{...searchBody,...change},status:201});
+    await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:search.id}});
+    return {search,feed:await call('/feed',{token:buyer})};
+  };
+  const ids=feed=>feed.items.map(item=>item.propertyId).sort();
+  const raisedSearch=await searchAndFeed({floors:[0.5]});
+  assert.deepEqual(ids(raisedSearch.feed),[raised.id]);
+  const upperSearch=await searchAndFeed({floors:[9]});
+  assert.deepEqual(ids(upperSearch.feed),[upper.id,exact.id].sort());
+  const legacySearch=await searchAndFeed({floors:[11]});
+  assert.deepEqual(legacySearch.search.floors,[9]);
+  assert.deepEqual(ids(legacySearch.feed),[upper.id,exact.id].sort());
+  const upperWithoutTop=await searchAndFeed({floors:[9],excludeTopFloor:true});
+  assert.equal(upperWithoutTop.feed.items.length,0,'Neither a known top floor nor an unknown 9+ floor can be a perfect not-top-floor match');
+  const raisedWithoutTop=await searchAndFeed({floors:[0.5],excludeTopFloor:true});
+  assert.equal(raisedWithoutTop.feed.items.length,0,'A raised ground floor is the top in a ground-only building');
+  const aboveGround=await searchAndFeed({excludeGroundFloorAndBelow:true});
+  assert.ok(ids(aboveGround.feed).includes(raised.id),'Raised ground is above ground for the exclusion');
+  assert.ok(!ids(aboveGround.feed).includes(ground.id));
+  for(const floor of [0.25,1.5])await call('/properties',{token:seller,method:'POST',body:{...propertyBody,floor,buildingFloors:12},status:400});
+  await call('/properties',{token:seller,method:'POST',body:{...propertyBody,floor:8,floorIsUpperRange:true,buildingFloors:12},status:400});
+  await call('/searches',{token:buyer,method:'POST',body:{...searchBody,floors:[0.25]},status:400});
+
+  const forbidden=[
+    'Telefonon elérsz: +36 20 123 4567.',
+    'Elérsz: nulla hat húsz egy kettő három négy öt hat hét.',
+    'Írj ide: peter kukac pelda pont hu.'
+  ];
+  for(const description of forbidden){
+    const error={status:400,message:descriptionContactMessage};
+    await call('/properties',{token:seller,method:'POST',body:{...propertyBody,floor:0,description},...error});
+    await call('/searches',{token:buyer,method:'POST',body:{...searchBody,description},...error});
+    await call('/properties/'+raised.id,{token:seller,method:'PUT',body:{...propertyBody,floor:0.5,buildingFloors:0,description},...error});
+    await call('/searches/'+raisedSearch.search.id,{token:buyer,method:'PUT',body:{...searchBody,floors:[0.5],description},...error});
+  }
+  const owner=await call('/me/entities',{token:seller});
+  assert.equal(owner.properties.find(item=>item.id===raised.id).description,safeDescription,'Rejected descriptions cannot overwrite a saved property');
+  const seeker=await call('/me/entities',{token:buyer});
+  assert.equal(seeker.searchRequests.find(item=>item.id===raisedSearch.search.id).description,safeDescription,'Rejected descriptions cannot overwrite a saved search');
+  console.log('Form refinement API checks passed: raised/upper floor semantics, legacy floor buckets, numeric precision and contact-free descriptions.');
+  return {properties:[raised,ground,upper,exact].map(({id,floor,floorIsUpperRange,buildingFloors})=>({id,floor,floorIsUpperRange,buildingFloors})),
+    search:{id:raisedSearch.search.id,floors:[0.5]},description:safeDescription};
+}
+
+export function verifyFormRefinementPersistence(refinements,seller,buyer) {
+  if(!refinements)return;
+  for(const expected of refinements.properties){
+    const property=seller.properties.find(item=>item.id===expected.id);assert.ok(property);
+    for(const field of ['floor','floorIsUpperRange','buildingFloors'])assert.equal(property[field],expected[field],field+' must survive a MySQL restart');
+    assert.equal(property.description,refinements.description);
+  }
+  const search=buyer.searchRequests.find(item=>item.id===refinements.search.id);assert.ok(search);
+  assert.deepEqual(search.floors,refinements.search.floors);assert.equal(search.description,refinements.description);
+}

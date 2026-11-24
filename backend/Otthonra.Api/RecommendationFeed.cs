@@ -35,7 +35,7 @@ public static class RecommendationFeed
         Id = property.Id, OwnerId = property.OwnerId, LocationId = property.LocationId, StreetId = property.StreetId,
         City = property.City, District = property.District, Type = property.Type, NeighborhoodIdsJson = property.NeighborhoodIdsJson,
         Price = property.Price, Area = property.Area, LotArea = property.LotArea, Rooms = property.Rooms,
-        WholeRooms = property.WholeRooms, HalfRooms = property.HalfRooms, Floor = property.Floor,
+        WholeRooms = property.WholeRooms, HalfRooms = property.HalfRooms, Floor = property.Floor, FloorIsUpperRange = property.FloorIsUpperRange,
         BuildingFloors = property.BuildingFloors, PrivateGarden = property.PrivateGarden, SharedGarden = null,
         Condition = property.Condition, Building = property.Building, ConstructionAge = property.ConstructionAge,
         View = property.View, CeilingHeight = property.CeilingHeight, HeatingType = property.HeatingType,

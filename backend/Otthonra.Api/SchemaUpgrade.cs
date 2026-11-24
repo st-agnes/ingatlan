@@ -26,6 +26,7 @@ public static class SchemaUpgrade
     public const string EntityCreationVersion = "20261118-idempotent-entity-creation";
     public const string AccountActivityVersion = ActivityNotifications.Version;
     public const string FlatAmenitiesVersion = "20261123-floor-and-garden-amenities";
+    public const string RaisedAndUpperFloorVersion = "20261124-raised-and-upper-floor-range";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -74,6 +75,7 @@ public static class SchemaUpgrade
         ("SearchRequests", "CreationRequestId", "char(36) COLLATE ascii_general_ci NULL"),
         ("SearchRequests", "CreationRequestHash", "varchar(64) CHARACTER SET ascii COLLATE ascii_bin NULL"),
         ("Properties", "BuildingFloors", "int NULL"),
+        ("Properties", "FloorIsUpperRange", "tinyint(1) NOT NULL DEFAULT FALSE"),
         ("Properties", "PrivateGarden", "tinyint(1) NULL"),
         ("Properties", "SharedGarden", "tinyint(1) NULL"),
         ("SearchRequests", "ExcludeTopFloor", "tinyint(1) NOT NULL DEFAULT FALSE"),
@@ -103,6 +105,12 @@ public static class SchemaUpgrade
                 if (!exists)
                     await Execute(connection, $"ALTER TABLE `{addition.Table}` ADD COLUMN `{addition.Column}` {addition.Definition}", cancellationToken);
             }
+            // Upgrade the former integer column without replacing rows. A decimal
+            // represents raised ground (0.5) while retaining exact legacy floors.
+            var floorType = Convert.ToString(await Scalar(connection,
+                "SELECT DATA_TYPE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'Properties' AND COLUMN_NAME = 'Floor'", cancellationToken));
+            if (floorType is not "decimal")
+                await Execute(connection, "ALTER TABLE `Properties` MODIFY COLUMN `Floor` decimal(4,1) NULL", cancellationToken);
             await Execute(connection, """
                 CREATE TABLE IF NOT EXISTS `SearchLocations` (
                     `SearchRequestId` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -250,6 +258,7 @@ public static class SchemaUpgrade
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", EntityCreationVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", AccountActivityVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", FlatAmenitiesVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", RaisedAndUpperFloorVersion));
             if (Convert.ToInt32(await Scalar(connection,
                     "SELECT COUNT(*) FROM `__OtthonraSchemaVersions` WHERE `Version` = @version",
                     cancellationToken, ("version", ContinuousFeedbackVersion))) == 0)

@@ -61,7 +61,7 @@ test('property form strings become correctly typed .NET JSON and prices round-tr
   assert.equal(result.location.label, 'Budapest XI. kerület');
   assert.equal(calls[0].headers.Authorization, 'Bearer sample-token');
   await assert.rejects(adapter().saveEntity('property', {...exactAddress,  price: 'invalid', area: 5, rooms: 1 }), /érvényes szám/);
-  await assert.rejects(adapter().saveEntity('property', {...exactAddress,  price: 5, area: 5, rooms: 1, floor: 1.5 }), /egész szám/);
+  await assert.rejects(adapter().saveEntity('property', {...exactAddress,  price: 5, area: 5, rooms: 1, floor: 1.5 }), /emelet|magasföldszint/);
   await assert.rejects(adapter().saveEntity('property', {...exactAddress,  price: 5, area: 5, rooms: 1, images: ['/assets/home.jpg'] }), /HTTPS/);
   assert.equal(calls.length, 1, 'invalid form data is rejected before sending');
 });
@@ -284,7 +284,7 @@ test('multiselect search attributes serialize as deduplicated arrays and can all
  const calls=routes({'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
  const result=await adapter().saveEntity('search',{title:'Szűrt keresés',locationIds:['city:Budapest'],conditions:['Jó','Felújított','Jó'],buildings:['Panel','Tégla'],constructionAges:['10 évnél fiatalabb','10–30 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m alatti',floors:['-1','0','11']});
  const body=JSON.parse(calls[0].body);
- assert.deepEqual(body.conditions,['Jó','Új/felújított']);assert.deepEqual(body.buildings,['Panel','Tégla']);assert.deepEqual(body.floors,[-1,0,11]);
+ assert.deepEqual(body.conditions,['Jó','Új/felújított']);assert.deepEqual(body.buildings,['Panel','Tégla']);assert.deepEqual(body.floors,[-1,0,9]);
  for(const field of ['conditions','buildings','constructionAges','views','ceilingHeight','floors'])assert.deepEqual(result[field],body[field],field);
  const cleared=await adapter().saveEntity('search',{...result,conditions:[],buildings:[],constructionAges:[],views:[],ceilingHeight:'',floors:[]});
  assert.deepEqual([cleared.conditions,cleared.buildings,cleared.constructionAges,cleared.views,cleared.floors],[[],[],[],[],[]]);assert.equal(cleared.ceilingHeight,'');
@@ -787,4 +787,26 @@ test('old keyed creation payloads preserve retired garden bytes while returned f
  await adapter().saveEntity('search',{...q,type:'Ház'},undefined,{creationRequestId});assert.equal(JSON.parse(calls[2].body).sharedGarden,false,'The old house serialization also ignored shared garden');
  await adapter().saveEntity('property',p);assert.equal(JSON.parse(calls[3].body).sharedGarden,null,'Ordinary creates have no retired preference');
  await adapter().saveEntity('search',q);assert.equal(JSON.parse(calls[4].body).sharedGarden,false);
+});
+
+
+test('raised floor and an upper-range choice round-trip without losing old exact heights',async()=>{
+ const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201),'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
+ const base={...exactAddress,title:'Magasföldszinti otthon',locationId:'city:Debrecen',type:'Lakás',price:60,area:60,rooms:3};
+ const raised=await adapter().saveEntity('property',{...base,floor:0.5,buildingFloors:0});assert.equal(raised.floor,0.5);assert.equal(raised.floorIsUpperRange,false);
+ const grouped=await adapter().saveEntity('property',{...base,floor:9,floorIsUpperRange:true,buildingFloors:12});assert.equal(grouped.floorIsUpperRange,true);
+ const exact=await adapter().saveEntity('property',{...base,floor:12,floorIsUpperRange:false,buildingFloors:12});assert.equal(exact.floor,12);assert.equal(exact.floorIsUpperRange,false);
+ await assert.rejects(adapter().saveEntity('property',{...base,floor:8,floorIsUpperRange:true}),/9 vagy/);
+ const q={title:'Régebbi emeleti keresés',locationIds:['city:Debrecen'],type:'Lakás',floors:[11]};
+ const key='1252f520-aefe-4a9c-b1b6-932ef64fe38a';
+ const replay=await adapter().saveEntity('search',q,undefined,{creationRequestId:key});assert.deepEqual(JSON.parse(calls[3].body).floors,[11],'A frozen old input keeps its original wire hash');assert.deepEqual(replay.floors,[9]);
+ await adapter().saveEntity('search',q);assert.deepEqual(JSON.parse(calls[4].body).floors,[9],'Ordinary writes use the current ninth-plus key');
+});
+
+test('ordinary entity writes reject obfuscated description contacts before sending requests while old keyed receipts remain replayable',async()=>{
+ const calls=routes({'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
+ const base={title:'Elérhetőség nélküli keresés',locationIds:['city:Debrecen'],type:'Lakás'};
+ await assert.rejects(adapter().saveEntity('search',{...base,description:'Anna kukac pelda pont hu'}),/Elérhetőséget/);assert.equal(calls.length,0);
+ await adapter().saveEntity('search',{...base,description:'Világos, 60 négyzetméteres lakást keresek.',moveIn:''});assert.equal(JSON.parse(calls[0].body).moveIn,'');
+ await adapter().saveEntity('search',{...base,description:'Anna kukac pelda pont hu'},undefined,{creationRequestId:'1252f520-aefe-4a9c-b1b6-932ef64fe38a'});assert.equal(calls.length,2,'The server must be able to acknowledge an old successful creation before applying the new policy');
 });

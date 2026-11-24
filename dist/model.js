@@ -1,3 +1,4 @@
+import {assertDescriptionContactFree} from './contact-policy.js';
 import { getLocation, resolveLegacyLocations, isPropertyLocation, registerLocations, searchLocations, searchStreets, resolveStreetLocation, isStreetId } from './locations.js';
 import {neighborhoodDemoPoints} from './neighborhood-demo-points.js';
 import {streetDemoData} from './street-demo-data.js';
@@ -695,6 +696,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
           }
         }
         const existing=id?own(s,kind,id):null;
+        assertDescriptionContactFree(data.description ?? existing?.description);
         if(id&&!existing)throw new Error('Ez a profil nem szerkeszthető.');
         const title=String(data.title??existing?.title??'').trim();
         if(title.length<3||title.length>150)throw new Error('Adj meg egy 3–150 karakteres nevet.');
@@ -744,7 +746,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
           entity.streetId=streetId;
         }else{
           for(const [min,max] of [['minPrice','maxPrice'],['minArea','maxArea'],['minRooms','maxRooms']]){entity[min]=numeric(entity[min],null);entity[max]=numeric(entity[max],null);if((entity[min]!=null&&(!Number.isFinite(entity[min])||entity[min]<0))||(entity[max]!=null&&(!Number.isFinite(entity[max])||entity[max]<=0))||(entity[min]!=null&&entity[max]!=null&&entity[max]<entity[min]))throw new Error('A minimum érték nem lehet nagyobb a maximumnál; a korlátok érvényes számok legyenek.');}
-          entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;entity.moveIn ||= 'Rugalmas';
+          entity.balcony=!!entity.balcony;entity.elevator=!!entity.elevator;entity.moveIn=String(entity.moveIn??'').trim();
         }
         const list=kind==='property'?s.properties:s.searches;
         if(existing)list[list.findIndex(e=>e.id===id)]=entity;else list.push(entity);
