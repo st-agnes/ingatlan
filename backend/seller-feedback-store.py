@@ -10,6 +10,7 @@ import re
 import subprocess
 import sys
 import uuid
+import hashlib
 
 MODES = ('legacy-notification', 'upgraded-notification', 'preserved-notification', 'prime', 'capacity', 'age', 'record', 'verify')
 if os.environ.get('CI') != 'true' or len(sys.argv) != 3 or sys.argv[2] not in MODES:
@@ -207,7 +208,8 @@ elif mode == 'capacity':
         user_id, search_id, decision_id, invitation_id = [str(uuid.uuid4()) for _ in range(4)]
         synthetic.append({'userId': user_id, 'searchId': search_id, 'decisionId': decision_id, 'invitationId': invitation_id})
         statements.append(clone('Users', users['buyer'], {'Id': literal(user_id), 'Name': literal('Határ Teszt'), 'Email': literal(f'feedback-boundary-{user_id}@example.test'), 'Phone': "''", 'Credits': '0', 'ActiveKind': 'NULL', 'ActiveEntityId': 'NULL', 'FeedbackPassCounter': '0'}))
-        statements.append(clone('SearchRequests', source_search, {'Id': literal(search_id), 'OwnerId': literal(user_id)}))
+        public_key = 'search-' + hashlib.sha256(('otthonra:landing-source:v1:search:' + uuid.UUID(search_id).hex).encode()).hexdigest()
+        statements.append(clone('SearchRequests', source_search, {'Id': literal(search_id), 'OwnerId': literal(user_id), 'PublicListingKey': literal(public_key)}))
         statements.append(f"INSERT INTO SearchLocations(SearchRequestId,LocationId) SELECT '{search_id}',LocationId FROM SearchLocations WHERE SearchRequestId='{source_search}'")
         statements.append(clone('Decisions', source_decision, {'Id': literal(decision_id), 'ActorUserId': literal(user_id), 'SearchRequestId': literal(search_id), 'Liked': '0', 'Charged': '0', 'RefundedAt': 'NULL'}))
         statements.append(f"""INSERT INTO FeedbackInvitations(Id,PackageId,PropertyId,DecisionId,BuyerId,CreatedAt,ExpiresAt,AnsweredAt,Reason)
