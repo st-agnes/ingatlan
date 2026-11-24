@@ -175,9 +175,10 @@ assert.equal((await api('/me',{token:seller.token})).credits,beforeSeller-2);
 const matches = await api('/matches',{token:buyer.token});
 const matched = matches.find(item=>item.id===replies[0].matchId);
 assert.ok(matched);assert.equal(matched.contact.email,seller.email);assert.equal(matched.contact.phone,privatePhone);
-assert.equal(matched.property.address,propertyBase.address);
+assert.equal(matched.property.address,'','A reciprocal match respects the seller’s hidden-address setting');
 assert.equal(matched.property.addressDetails,null,'Matching must not grant the buyer access to owner-only coordinate details');
-for(const key of ['latitude','longitude','street','houseNumber','postalCode','geocodingAddressKey','geocodingPlaceId'])assert.equal(Object.hasOwn(matched.property,key),false);
+for(const key of ['latitude','longitude','postalCode','geocodingAddressKey','geocodingPlaceId'])assert.equal(Object.hasOwn(matched.property,key),false);
+assert.equal(matched.property.street,'');assert.equal(matched.property.houseNumber,'');
 await api(`/matches/${matched.id}/messages`,{token:secondBuyer.token,method:'POST',body:{text:'Forbidden outsider message'},status:404});
 
 // Seller order: existing likes, percentage, then search specialization.

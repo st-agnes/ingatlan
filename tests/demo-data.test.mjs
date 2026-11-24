@@ -8,6 +8,7 @@ import {getLocation, isPropertyLocation} from '../dist/locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from '../dist/attributes.js';
 import {isCompatible} from '../dist/model.js';
 import {canInteract} from '../dist/accounts.js';
+import {ENERGY_RATINGS} from '../dist/energy-rating.js';
 
 const isScenarioUser=user=>user.key.startsWith('feedbackseller')||user.key.startsWith('feedbackbuyer');
 const oldUsers = ['anna','peter','eszter'];
@@ -25,7 +26,7 @@ test('default catalog includes fourteen accounts, three agents, a feedback trial
  const catalog=createDemoCatalog();
  assert.equal(DEFAULT_BATCH,'alap');assert.deepEqual(DEMO_USERS,catalog.users);assert.deepEqual(DEMO_FIXTURES,catalog.fixtures);
  assert.equal(catalog.users.length,14);assert.equal(catalog.users.filter(user=>user.accountType==='agent').length,3);
- assert.equal(kind(catalog,'property').length,355);assert.equal(kind(catalog,'search').length,353);
+ assert.equal(kind(catalog,'property').length,355);assert.equal(kind(catalog,'search').length,433);
  assert.equal(new Set(catalog.users.map(user=>user.email)).size,catalog.users.length);
  assert.equal(new Set(catalog.users.map(user=>user.key)).size,catalog.users.length);
  assert.equal(new Set(catalog.fixtures.map(fixture=>fixture.key)).size,catalog.fixtures.length);
@@ -48,7 +49,7 @@ test('original accounts, active selections and original criteria survive the req
  const legacyUsers=catalog.users.filter(user=>oldUsers.includes(user.key)).map(({accountType,...user})=>{assert.equal(accountType,'private');return user;});
  assert.equal(hash(legacyUsers),'6e6e71428372a5f3fca6303b5ad32e6b1308e79b4e439b73c917e12190cf52a8');
  const legacyFixtures=catalog.fixtures.filter(fixture=>oldFixtures.includes(fixture.key)).map(fixture=>{
-  const {street,houseNumber,postalCode,...input}=fixture.input;
+  const {street,houseNumber,postalCode,hideStreet,hideHouseNumber,...input}=fixture.input;
   return {...fixture,input};
  });
  assert.equal(hash(legacyFixtures),'ab21f1aabe76a260775dca9ee14cf587b318df357751dce8e44ebc0fb346dcca');
@@ -179,7 +180,7 @@ test('the actual hosted catalog covers every county with visibly different homes
   const regional=catalog.fixtures.filter(fixture=>fixture.key.startsWith(`regional-${region.id.toLowerCase()}-`));
   const properties=regional.filter(fixture=>fixture.kind==='property'),searches=regional.filter(fixture=>fixture.kind==='search');
   assert.equal(properties.length,12,`${region.label}: property coverage`);
-  assert.equal(searches.length,12,`${region.label}: search coverage`);
+  assert.equal(searches.length,16,`${region.label}: search coverage`);
   for(const fixture of regional){
    const ids=fixture.kind==='property'?[fixture.input.locationId]:fixture.input.locationIds;
    assert.ok(ids.every(id=>region.settlements.includes(getLocation(id)?.city)),`${fixture.key}: canonical county isolation`);
@@ -210,6 +211,27 @@ test('the actual hosted catalog covers every county with visibly different homes
    assert.ok(canPair(catalog,home,request),`${home.key}: account types can interact`);
    assert.ok(isCompatible(property(home),search(request)),`${home.key}: corresponding criteria match`);
   }
+ }
+});
+
+test('the hosted examples keep addresses private except for the two deliberate street-search trials',()=>{
+ const homes=createDemoCatalog().fixtures.filter(item=>item.kind==='property');
+ for(const home of homes){
+  const streetTrial=[DEMO_STREET_SCENARIO.firstProperty,DEMO_STREET_SCENARIO.secondProperty].includes(home.key);
+  assert.equal(home.input.hideStreet,!streetTrial,home.key);
+  assert.equal(home.input.hideHouseNumber,true,home.key+' must never publish its fictional house number');
+ }
+});
+
+test('every region has current energy data and extra focused searches with a compatible home',()=>{
+ const catalog=createDemoCatalog(),homes=catalog.fixtures.filter(item=>item.kind==='property'&&item.key.startsWith('regional-'));
+ const focused=catalog.fixtures.filter(item=>item.kind==='search'&&item.key.endsWith('-search-focused'));
+ assert.equal(focused.length,80,'Four additional search profiles in each of the twenty regions support the denser landing');
+ for(const home of homes){assert.equal(home.input.energyRatingScheme,'2023');assert.ok(ENERGY_RATINGS.includes(home.input.energyRating));}
+ for(const request of focused){
+  const home=homes.find(item=>item.key===request.key.replace(/-search-focused$/,'-property'));
+  assert.ok(home);assert.equal(request.input.minEnergyRating,home.input.energyRating);
+  assert.ok(isCompatible(property(home),search(request)),request.key+' must satisfy its advertised current energy minimum');
  }
 });
 

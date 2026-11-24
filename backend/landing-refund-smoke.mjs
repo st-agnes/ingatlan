@@ -22,23 +22,30 @@ async function save(f){await mkdir(dirname(fixturePath),{recursive:true});await 
 const active=(token,kind,id)=>api('/me/active',{token,method:'PUT',body:{kind,id}});
 const decision=(token,p,s,liked=true)=>api('/decisions',{token,method:'POST',body:{propertyId:p.id,searchRequestId:s.id,liked}});
 const byId=rows=>[...rows].sort((a,b)=>a.id.localeCompare(b.id));
-function noPrivateFields(value){
- if(Array.isArray(value)){value.forEach(noPrivateFields);return;}
+function noPrivateFields(value,path=[]){
+ if(Array.isArray(value)){value.forEach((item,index)=>noPrivateFields(item,[...path,index]));return;}
  if(!value||typeof value!=='object')return;
  for(const [key,item] of Object.entries(value)){
-  assert.ok(!['ownerId','userId','name','email','phone','contact','address','description','passwordHash','images','image','imageUrl','propertyId','searchRequestId','searchId','creationRequestId','creationRequestHash'].includes(key),`Public teaser leaked ${key}`);
-  noPrivateFields(item);
+  // One explicitly public image is allowed on a property teaser, never in a private owner object or a nested seed.
+  if(key==='image'&&path.length===2&&path[0]==='properties'&&Number.isInteger(path[1])){
+   assert.equal(typeof item,'string');assert.ok(item.length<=2000);
+   if(item){const image=new URL(item);assert.equal(image.protocol,'https:');assert.equal(image.username,'');assert.equal(image.password,'');assert.ok(!/\s/.test(item));}
+   continue;
+  }
+  assert.ok(!['ownerId','userId','name','email','phone','contact','address','description','passwordHash','images','image','imageUrl','propertyId','searchRequestId','searchId','creationRequestId','creationRequestHash','creationRequestHashVersion','publicListingKey','addressDetails','latitude','longitude','geocodedAt','geocodingProvider','geocodingPlaceId','geocodingAddressKey'].includes(key),`Public teaser leaked ${key}`);
+  noPrivateFields(item,[...path,key]);
  }
 }
 async function publicLanding(f){
  const national=await api('/public/landing');assert.equal(national.scope,'national');assert.equal(national.region,null);
  assert.equal(national.regions.length,20);assert.equal(new Set(national.regions.map(r=>r.id)).size,20);
- assert.ok(national.searches.length>0&&national.searches.length<=8);assert.ok(national.properties.length>0&&national.properties.length<=4);
+ assert.ok(national.searches.length>0&&national.searches.length<=16);assert.ok(national.properties.length>0&&national.properties.length<=8);
  for(const page of [national,await api('/public/landing?region=HU222'),await api('/public/landing?region=HU321')]){
   noPrivateFields(page);const raw=JSON.stringify(page);assert.ok(!raw.includes(f.secret),'Public landing exposed a private description or address');
   for(const teaser of [...page.searches,...page.properties]){
    assert.equal(typeof teaser.ownerFirstName,'string');assert.ok(teaser.title.trim());
    assert.match(teaser.sourceKey,/^(property|search)-[a-f0-9]{64}$/);
+   const kind=teaser.sourceKey.startsWith('property-')?'property':'search';assert.equal(teaser.href,`#listing/${kind}/${teaser.sourceKey}`);
   }
   for(const name of Object.values(f.displayNames))assert.ok(!raw.includes(name),'Anonymous cards must expose only the first name');
   for(const id of [...Object.values(f.ids),...Object.values(f.properties).map(p=>p.id),f.search.id,f.agentSearch.id])assert.ok(!raw.includes(id),'Public landing exposed source/owner IDs');

@@ -17,7 +17,7 @@ test('the packaged backend catalog contains every canonical fictional account an
   assert.equal(packaged.users.length,14);
   assert.equal(packaged.users.filter(user=>user.accountType==='agent').length,3);
   assert.equal(packaged.fixtures.filter(item=>item.kind==='property').length,355);
-  assert.equal(packaged.fixtures.filter(item=>item.kind==='search').length,353);
+  assert.equal(packaged.fixtures.filter(item=>item.kind==='search').length,433);
   for(const fixture of packaged.fixtures.filter(item=>item.kind==='property')){
     const streetFixture=[DEMO_STREET_SCENARIO.firstProperty,DEMO_STREET_SCENARIO.secondProperty].includes(fixture.key);
     if(streetFixture){assert.equal(fixture.input.houseNumber,'99999');assert.match(fixture.input.streetId,/^street:[a-f0-9]{24}$/);}

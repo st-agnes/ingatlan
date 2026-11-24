@@ -26,13 +26,16 @@ const entity=(rows,key)=>{const definition=catalog(key);return (definition.kind=
 const select=(owner,kind,id)=>api('/me/active',{token:tokens[owner],method:'PUT',body:{kind,id}});
 const has=(page,property)=>page.items.some(item=>item.propertyId===property.id);
 function privateProperty(property){
- assert.equal(property.address,'');assert.equal(property.addressDetails??null,null);
+ assert.equal(property.addressDetails??null,null);
  const serialized=JSON.stringify(property);
- for(const key of ['streetId','street','houseNumber','postalCode','latitude','longitude','geocodingPlaceId','geocodingAddressKey']){
+ for(const key of ['streetId','postalCode','latitude','longitude','provider','geocodedAt','geocodingPlaceId','geocodingAddressKey']){
   assert.equal(serialized.includes('"'+key+'"'),false,`${key} is owner-only`);
  }
- // Address fields above are checked structurally; a random entity ID can contain house-number digits.
- assert.equal(serialized.includes(scenario.firstName),false);
+ if(property.hideStreet){assert.equal(property.address,'');assert.equal(property.street,'');assert.equal(property.houseNumber,'');}
+ else{
+  assert.ok([scenario.firstName,scenario.secondName].includes(property.street),'Only the explicitly revealed canonical street may be public');
+  assert.equal(property.hideHouseNumber,true);assert.equal(property.houseNumber,'');assert.equal(property.address,property.street);
+ }
 }
 const first=entity(await own('reka'),scenario.firstProperty),second=entity(await own('bence'),scenario.secondProperty);
 const nearby=entity(await own('bence'),'bence-debrecen-2');
@@ -96,6 +99,34 @@ for(const [title,ids] of [['Utca vagy városrész',[scenario.firstId,quarters.se
  const search=await create({title:'CI · '+title,locationIds:ids});await select('julia','search',search.id);
  page=await api('/feed',{token:tokens.julia});assert.ok(has(page,first));assert.ok(has(page,second),'OR alternatives remain independent choices.');
 }
+// Hiding an unchanged canonical street is a hard eligibility change, not
+// merely a presentation switch; neighborhood and whole-town OR choices survive.
+const streetOnly=await create({title:'CI · Címvédelem utcai keresése',locationIds:[scenario.firstId]});
+await select('julia','search',streetOnly.id);assert.ok(has(await api('/feed',{token:tokens.julia}),first));
+const hidden=await api('/properties/'+first.id,{token:tokens.reka,method:'PUT',body:{...input,hideStreet:true,hideHouseNumber:false}});
+assert.equal(hidden.hideStreet,true);assert.equal(hidden.hideHouseNumber,true);
+assert.equal(hidden.addressDetails.streetId,first.addressDetails.streetId);
+assert.equal(hidden.addressDetails.latitude,first.addressDetails.latitude);assert.equal(hidden.addressDetails.longitude,first.addressDetails.longitude);
+assert.deepEqual(hidden.neighborhoodIds,first.neighborhoodIds);
+assert.equal(has(await api('/feed?includeApproximate=true',{token:tokens.julia}),first),false,'A hidden street cannot be inferred through an approximate street-only feed');
+await select('reka','property',first.id);
+assert.equal((await api('/feed?includeApproximate=true',{token:tokens.reka})).items.some(card=>card.searchRequestId===streetOnly.id),false,'Sellers must not discover a street-only search with a hidden street either');
+const privacyCredits=await Promise.all([api('/me',{token:tokens.julia}),api('/me',{token:tokens.reka})]);
+for(const token of [tokens.julia,tokens.reka])await api('/decisions',{token,method:'POST',body:{propertyId:first.id,searchRequestId:streetOnly.id,liked:false,allowApproximate:true},status:400});
+assert.deepEqual((await Promise.all([api('/me',{token:tokens.julia}),api('/me',{token:tokens.reka})])).map(row=>row.credits),privacyCredits.map(row=>row.credits));
+for(const [name,ids]of [['város',[scenario.firstId,'city:Debrecen']],['városrész',[scenario.firstId,quarters.venkertId]]]){
+ const alternative=await create({title:'CI · Rejtett utca vagy '+name,locationIds:ids});
+ await select('julia','search',alternative.id);page=await api('/feed',{token:tokens.julia});
+ assert.ok(has(page,first),'Independent '+name+' selection must still include a hidden-street property');
+ const card=page.items.find(item=>item.propertyId===first.id);privateProperty(card.property);
+ assert.equal(card.property.address,'');assert.equal(card.property.street,'');assert.equal(card.property.houseNumber,'');
+ await select('reka','property',first.id);assert.ok((await api('/feed',{token:tokens.reka})).items.some(item=>item.searchRequestId===alternative.id));
+}
+const revealed=await api('/properties/'+first.id,{token:tokens.reka,method:'PUT',body:{...input,hideStreet:false,hideHouseNumber:true}});
+assert.equal(revealed.hideStreet,false);assert.equal(revealed.hideHouseNumber,true);
+await select('julia','search',streetOnly.id);page=await api('/feed',{token:tokens.julia});assert.ok(has(page,first));
+privateProperty(page.items.find(item=>item.propertyId===first.id).property);
+
 for(const changes of [{locationIds:[invalid]},{locationIds:[scenario.firstId,invalid]}])await api('/searches',{token:tokens.julia,method:'POST',body:{...searchBase,...changes},status:400});
 const houses=await create({title:'CI · Utcához kötött házkeresés',type:'Ház',locationIds:[scenario.firstId]});
 await select('julia','search',houses.id);assert.equal((await api('/feed?includeApproximate=true',{token:tokens.julia})).items.length,0,'Property type stays a hard gate under approximate consent.');

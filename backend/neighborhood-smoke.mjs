@@ -1,6 +1,7 @@
 /** Native MySQL polygons and owner-address API regression. Disposable loopback CI only. */
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
+import {randomUUID} from 'node:crypto';
 import {mkdir, readFile, writeFile, chmod} from 'node:fs/promises';
 import {dirname, resolve} from 'node:path';
 import {gunzipSync} from 'node:zlib';
@@ -52,9 +53,10 @@ function geocodeSignature(id) {
 function privateCard(card) {
   assert.equal(card.property.address,''); assert.equal(card.property.addressDetails ?? null,null);
   const serialized=JSON.stringify(card.property);
-  for(const key of ['latitude','longitude','street','houseNumber','postalCode','geocodingAddressKey','geocodingPlaceId']) {
+  for(const key of ['latitude','longitude','postalCode','geocodingAddressKey','geocodingPlaceId']) {
     assert.equal(serialized.includes('"'+key+'"'),false,`${key} is owner-only`);
   }
+  assert.equal(card.property.street,'');assert.equal(card.property.houseNumber,'');
   assert.equal(serialized.includes('OTTHONRA TEST'),false);
 }
 const active = (token,kind,id) => api('/me/active',{token,method:'PUT',body:{kind,id}});
@@ -155,7 +157,21 @@ if(mode==='--stale') {
   await api('/properties',{token:seller,method:'POST',body:{...propertyBody,locationId:scenario.venkertId},status:400});
   await api('/properties',{method:'POST',body:propertyBody,status:401});
   const create=body=>api('/properties',{token:seller,method:'POST',body:{...propertyBody,...body},status:201});
-  const venkert=await create({latitude:0,longitude:0,neighborhoodIds:[scenario.sestakertId]});
+  const legacyReceiptInput={...propertyBody,latitude:0,longitude:0,neighborhoodIds:[scenario.sestakertId],creationRequestId:randomUUID()};
+  const venkert=await create(legacyReceiptInput);
+  // Simulate the old typed request format on exactly this CI-owned row. New
+  // version-two receipts distinguish null from false; only old rows may replay
+  // a request whose absent balcony used to deserialize as false.
+  const {balcony:ignoredBalcony,...missingBalconyInput}=legacyReceiptInput;
+  await api('/properties',{token:seller,method:'POST',body:missingBalconyInput,status:409});
+  assert.match(venkert.id,/^[a-f0-9-]{36}$/);
+  const receiptHash=sql(`SELECT CreationRequestHash FROM Properties WHERE Id='${venkert.id}'`);
+  assert.match(receiptHash,/^[A-F0-9]{64}$/);
+  assert.equal(sql(`SELECT CreationRequestHashVersion FROM Properties WHERE Id='${venkert.id}'`),'2');
+  sql(`UPDATE Properties SET CreationRequestHashVersion=1 WHERE Id='${venkert.id}'`);
+  const legacyReplay=await api('/properties',{token:seller,method:'POST',body:missingBalconyInput});
+  assert.equal(legacyReplay.id,venkert.id);assert.equal(legacyReplay.balcony,false);
+  assert.equal(sql(`SELECT CreationRequestHash FROM Properties WHERE Id='${venkert.id}'`),receiptHash,'A replay cannot rewrite the original receipt');
   const sestakert=await create({houseNumber:'2'});
   const town=await create({city:'Hajdúsámson',locationId:'city:Hajdúsámson'});
   const outside=await create({city:'Szeged',locationId:'city:Szeged'});

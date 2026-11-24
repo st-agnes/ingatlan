@@ -40,3 +40,15 @@ test('complete private phone, email and address values cannot leak under an unex
 test('an absent optional contact value does not reject every public string',()=>{
   assert.doesNotThrow(()=>assertNoContactData(publicCard(),[undefined,null,'',...privateValues]));
 });
+
+test('the public address projection can explicitly communicate an empty street and house number',()=>{
+ const card=publicCard();Object.assign(card.property,{street:'',houseNumber:''});
+ assert.doesNotThrow(()=>assertNoContactData(card,privateValues));
+});
+
+test('the general private-card assertion still rejects nonempty or non-string address fields',()=>{
+ for(const field of ['street','houseNumber'])for(const value of ['Private street','12',null,undefined]){
+  const card=publicCard();card.property[field]=value;
+  assert.throws(()=>assertNoContactData(card,privateValues),/Private|address|field/i);
+ }
+});

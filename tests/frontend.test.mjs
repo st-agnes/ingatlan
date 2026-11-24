@@ -2321,3 +2321,41 @@ test('a public search can seed either a full matching search draft or a distinct
  t.ctx.location.hash='#listing/search/'+key;await t.ui.render();await t.click({action:'onboarding-copy-search',source:key});draft=storedOnboarding(t);assert.equal(draft.id,identity);assert.equal(draft.data.maxPrice,'135');
  t.ctx.location.hash='#listing/search/'+key;await t.ui.render();await t.click({action:'onboarding-start',kind:'property',source:key});draft=storedOnboarding(t);assert.equal(draft.kind,'property');assert.notEqual(draft.id,identity);assert.equal(draft.data.type,'Ház');assert.ok(draft.data.price==null||draft.data.price==='','A ranged search cannot invent an exact seller price');assert.deepEqual(draft.origin,onboardingHelpers.originFromListing('search',key));
 });
+
+test('a legacy energy certificate can be cleared directly while its slider remains unspecified',async()=>{
+ const raw=configuredCriteriaRaw('property');Object.assign(raw.properties.find(item=>item.id==='own-p1'),{energyRating:'AA',energyRatingScheme:''});
+ const t=await setup({initialRaw:raw});t.ui.openEditor('property','own-p1');await advanceEditor(t,4);
+ const input=t.document.getElementById('f-energyRating'),scheme=t.document.getElementById('f-energyRatingScheme'),slider=t.document.getElementById('f-energyRating-slider'),legacy=t.document.getElementById('energyRating-legacy');
+ assert.equal(input.value,'AA');assert.equal(slider.value,'0');assert.equal(scheme.value,'');assert.equal(legacy.hidden,false);
+ await editorAction(t,'f-energyRating-clear-legacy');assert.equal(input.value,'');assert.equal(scheme.value,'');assert.equal(slider.value,'0');assert.equal(slider.getAttribute('aria-valuetext'),'Nincs megadva');assert.equal(legacy.hidden,true);assert.equal(t.document.activeElement,slider);
+ await advanceEditor(t,5);submitEditor(t);await settle();const saved=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(saved.energyRating,'');assert.equal(saved.energyRatingScheme,'');
+});
+
+function feedbackPublicProperty(key){return {kind:'property',sourceKey:key,title:'Nyilvános otthon',ownerFirstName:'Réka',ownerAccountType:'private',listing:{title:'Nyilvános otthon',city:'Debrecen',type:'Lakás',price:90,area:65,rooms:2.5,description:'Világos nyilvános otthon.'},prefill:{locations:[getLocation('city:Debrecen')],type:'Lakás',price:90,area:65,rooms:2.5}};}
+test('public listing navigation defers pending feedback without blocking CTAs and preserves an in-flight answer acknowledgement',async()=>{
+ const key=publicSourceKey('property','f'),detail=feedbackPublicProperty(key);
+ for(const action of ['cta','login']){
+  const prompt={id:'public-feedback-'+action,propertyId:'p1',title:'Segíts Rékának egy visszajelzéssel',options:feedbackHelpers.FEEDBACK_OPTIONS};
+  const t=await setup({hosted:true,authenticated:true,hash:'#discover',fetchPublicListing:async()=>detail,apiOverrides:{pendingFeedback:async()=>({feedbackPrompt:prompt})}});
+  assert.equal(t.ui.getFeedbackPrompt()?.id,prompt.id);assert.ok(t.document.getElementById('feedback-prompt-title'));
+  t.ctx.location.hash='#listing/property/'+key;await t.ui.render();await settle();assert.equal(t.ui.getFeedbackPrompt(),null);assert.equal(t.document.getElementById('feedback-prompt-title'),null);assert.match(t.document.getElementById('app').innerHTML,/Nyilvános otthon/);
+  if(action==='cta'){await t.click({action:'onboarding-start',kind:'search',source:key});assert.equal(t.ctx.location.hash,'#onboarding');assert.ok(t.document.getElementById('entity-form'));}
+  else{await t.click({action:'auth-mode',mode:'login'});assert.equal(t.ctx.location.hash,'#login');assert.ok(t.document.getElementById('hosted-auth-form'));}
+  await settle();assert.equal(t.document.getElementById('feedback-prompt-title'),null,'Deferred feedback must never cover a public page or an unrelated form');
+  t.ctx.location.hash='#discover';await t.ui.render();await settle();assert.equal(t.ui.getFeedbackPrompt()?.id,prompt.id);assert.ok(t.document.getElementById('feedback-prompt-title'),'Returning to the workspace restores its still-pending feedback');
+ }
+ let pending={id:'public-feedback-flight',propertyId:'p1',title:'Segíts Rékának egy visszajelzéssel',options:feedbackHelpers.FEEDBACK_OPTIONS},resolveAnswer,writes=0;
+ const t=await setup({hosted:true,authenticated:true,hash:'#discover',fetchPublicListing:async()=>detail,apiOverrides:{pendingFeedback:async()=>({feedbackPrompt:pending}),answerFeedback:async()=>{writes++;await new Promise(resolve=>{resolveAnswer=resolve;});pending=null;return {accepted:true};}}});
+ const answering=t.click({action:'feedback-answer',reason:'layout'});await settle();assert.equal(writes,1);assert.equal(typeof resolveAnswer,'function');
+ t.ctx.location.hash='#listing/property/'+key;await t.ui.render();await settle();assert.equal(t.ui.getFeedbackPrompt(),null);await t.click({action:'onboarding-start',kind:'search',source:key});const form=t.document.getElementById('entity-form');assert.ok(form);const description=t.document.getElementById('f-description');description.value='A közben megnyitott űrlap maradjon meg.';formInputEvent(t,description,'input');
+ resolveAnswer();await answering;await settle();assert.equal(writes,1);assert.equal(t.document.getElementById('entity-form'),form,'An accepted answer cannot overwrite the unrelated public onboarding form');assert.equal(description.value,'A közben megnyitott űrlap maradjon meg.');assert.equal(t.document.getElementById('feedback-prompt-title'),null);
+ t.ctx.location.hash='#discover';await t.ui.render();await settle();assert.equal(t.ui.getFeedbackPrompt(),null);assert.equal(t.document.getElementById('feedback-prompt-title'),null,'The acknowledged deferred invitation must not reopen');
+});
+
+test('a full public listing CTA uses fresh detail parameters before an older teaser cached under the same source',async()=>{
+ const key=publicSourceKey('property','b'),landing=landingFixture();landing.properties[0]={...landing.properties[0],sourceKey:key,price:60,area:50,rooms:2,prefill:{locations:[getLocation('district:Budapest:13')],type:'Lakás',price:60,area:50,rooms:2,heatingType:'Gázkazán / cirkó'}};
+ const detail={...feedbackPublicProperty(key),prefill:{locations:[getLocation('city:Debrecen')],type:'Lakás',price:110,area:88,rooms:3.5,heatingType:'Hőszivattyú',energyRating:'B',energyRatingScheme:'2023'}};
+ const t=await setup({hosted:true,hash:'#landing',fetchLanding:async()=>landing,fetchPublicListing:async()=>detail});assert.match(t.document.getElementById('app').innerHTML,/Napfényes erkélyes otthon/);
+ t.ctx.location.hash='#listing/property/'+key;await t.ui.render();await t.click({action:'onboarding-start',kind:'search',source:key});const draft=storedOnboarding(t);
+ assert.equal(draft.kind,'search');assert.equal(Number(draft.data.maxPrice),125,'Fresh110M detail seeds125M after the10% cushion and5M rounding');assert.equal(Number(draft.data.minArea),75);assert.equal(Number(draft.data.minRooms),3.5);assert.deepEqual([...draft.data.locationIds],['city:Debrecen']);assert.deepEqual([...draft.data.heatingTypes],['Hőszivattyú']);assert.equal(draft.data.minEnergyRating,'B');assert.deepEqual(draft.origin,onboardingHelpers.originFromListing('property',key));
+});

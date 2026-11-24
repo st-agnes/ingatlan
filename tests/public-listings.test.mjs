@@ -65,3 +65,9 @@ test('image safety and missing listing fallbacks stay usable without authenticat
  assert.match(publicListingError(true),/public-listing-error/);assert.match(publicListingError(true),/már nem elérhető/);
  assert.doesNotMatch(publicListingError(true),/data-action="public-listing-retry"/);assert.match(publicListingError(),/data-action="public-listing-retry"/);
 });
+test('demo detail pages retain every real local asset photo and the computed neighborhood',()=>{
+ const detail={...property,listing:{...property.listing,neighborhood:'Vénkert',images:['/assets/living.jpg','/assets/kitchen.jpg','/assets/terrace.jpg']}};
+ assert.equal(safeListingImages(detail.listing).length,3);
+ const markup=publicListingMarkup(detail);for(const path of detail.listing.images)assert.ok(markup.includes(path));assert.match(markup,/Vénkert/);
+ assert.doesNotMatch(markup,/public-listing-placeholder/);assert.deepEqual(safeListingImages({images:['/assets/../runtime-config.js']}),[]);
+});
