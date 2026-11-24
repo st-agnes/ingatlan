@@ -45,12 +45,12 @@ test('unknown source wards remain available city-wide and cannot be assigned to 
   assert.deepEqual(searchStreets('Ismeretlen kerület',district.id,8,[unknownWard]),[]);
   assert.equal(resolveStreetLocation(unknownWard.streetName,city,'1007',[unknownWard]).id,unknownWard.id);
   assert.equal(resolveStreetLocation(unknownWard.streetName,district,'1007',[unknownWard]),null);
-  assert.equal(matchesLocations({locationId:district.id,streetId:unknownWard.id},{locationIds:[unknownWard.id]}),true,'matching still honors trusted legacy associations');
+  assert.equal(matchesLocations({locationId:district.id,streetId:unknownWard.id,hideStreet:false},{locationIds:[unknownWard.id]}),true,'matching still honors trusted legacy associations');
 });
 
 test('street selections are exact hard gates with town, district, neighborhood and area OR semantics',()=>{
   const selected=registerLocations([street('3')])[0];
-  const home={ownerId:'seller',locationId:'district:Budapest:11',streetId:selected.id,type:'Lakás',price:60,area:60,rooms:3};
+  const home={ownerId:'seller',locationId:'district:Budapest:11',streetId:selected.id,hideStreet:false,type:'Lakás',price:60,area:60,rooms:3};
   const query={ownerId:'buyer',type:'Lakás',locationIds:[selected.id]};
   assert.equal(prepareSearch(query).streetIds.has(selected.id),true);
   for(const check of [matchesLocations,(p,q)=>evaluateMatch(p,q).eligible]){
@@ -100,7 +100,7 @@ test('API search DTO metadata hydrates street IDs before reading and malformed u
   const state=await api().getState();
   assert.equal(state.searches[0].locations[0].kind,'street');
   assert.deepEqual(state.searches[0].locationIds,[selected.id]);
-  assert.equal(evaluateMatch({...property,price:60,streetId:selected.id},state.searches[0]).eligible,true);
+  assert.equal(evaluateMatch({...property,price:60,streetId:selected.id,hideStreet:false},state.searches[0]).eligible,true);
   const invalid='street:'+'8'.repeat(24);
   accountRoutes({properties:[],searchRequests:[{...search,locationIds:[invalid],locations:[street('8',{postalCodes:['bad']})]}]});
   const broken=(await api().getState()).searches[0];
@@ -180,7 +180,7 @@ test('demo keeps private street associations for matching and strips them from e
   createModel(values,()=> '2026-11-18T12:00:00Z',{streetCatalog:[selected]}).buyDemoCredits(1);
   const raw=JSON.parse(values.getItem(STORAGE_KEY));
   for(const home of raw.properties.filter(item=>['p1','matched-p1'].includes(item.id))){
-    home.streetId=selected.id;home.streetMetadata=selected;
+    home.streetId=selected.id;home.streetMetadata=selected;home.hideStreet=false;
     home.addressDetails={...home.addressDetails,street:selected.streetName,postalCode:'1133',streetId:selected.id};
   }
   const ownSearch=raw.searches.find(item=>item.id==='own-s1');ownSearch.locationIds=[selected.id];ownSearch.locations=[selected];
@@ -218,7 +218,22 @@ test('fictional demo seeds bind real catalogue streets while retaining synthetic
     assert.match(home.addressDetails.houseNumber,/^99999\//);assert.equal(home.addressDetails.provider,'synthetic-demo');
   }
   const choice=streetDemoData.find(street=>street.streetName==='Pozsonyi út');
-  const search=model.saveEntity('search',{title:'Pozsonyi úton keresünk',locationIds:[choice.id],type:'Lakás'});
-  model.activate('search',search.id);assert.ok(model.feed().some(home=>home.id==='p1'));
-  for(const home of model.feed())assert.equal('streetId' in home,false);
+  for(const home of supported)home.hideStreet=false;values.setItem(STORAGE_KEY,JSON.stringify(raw));
+  const visibleModel=createModel(values);
+  const search=visibleModel.saveEntity('search',{title:'Pozsonyi úton keresünk',locationIds:[choice.id],type:'Lakás'});
+  visibleModel.activate('search',search.id);assert.ok(visibleModel.feed().some(home=>home.id==='p1'));
+  for(const home of visibleModel.feed())assert.equal('streetId' in home,false);
+});
+
+
+test('hidden street choices cannot discover a property but broad location alternatives still can',()=>{
+ const selected=registerLocations([street('f',{streetName:'Elrejtett fixture utca',label:'Budapest XI. kerület, Elrejtett fixture utca'})])[0];
+ const home={ownerId:'seller',locationId:'district:Budapest:11',streetId:selected.id,type:'Lakás',price:60,area:60,rooms:3};
+ for(const check of [matchesLocations,(p,q)=>evaluateMatch(p,q).eligible]){
+  const query={ownerId:'buyer',type:'Lakás',locationIds:[selected.id]};
+  assert.equal(check(home,query),false,'Legacy missing visibility settings remain private');
+  assert.equal(check({...home,hideStreet:true},query),false);
+  assert.equal(check({...home,hideStreet:false,hideHouseNumber:true},query),true);
+  assert.equal(check({...home,hideStreet:true},{...query,locationIds:[selected.id,'city:Budapest']}),true);
+ }
 });

@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorSave,editorStep,removeSelectedLocation,choosePropertyType,fillRoomBound} from './editor-browser-helpers.mjs';
+import {setAttributeChoice,assertAddressPrivacyControls,editorField,editorSave,editorStep,removeSelectedLocation,choosePropertyType,fillRoomBound} from './editor-browser-helpers.mjs';
 import {searchLocations} from '../dist/locations.js';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
@@ -114,7 +114,7 @@ async function addressFlow(browser,viewport){
   if(path==='/api/properties'&&request.method()==='POST'){
    const data=request.postDataJSON();writes.push(data);attempts++;
    if(attempts===1){await failureGate;return reply({message:'A címellenőrző szolgáltatás átmenetileg nem érhető el. Próbáld újra.'},502);}
-   const saved={...data,id:'saved-private-property',ownerId:owner.id,neighborhood:'Újlipótváros',neighborhoodId:'mock-derived-quarter',addressDetails:{street:data.street,houseNumber:data.houseNumber,postalCode:data.postalCode,latitude:47.519,longitude:19.052,geocodedAt:'2026-11-16T12:00:00Z',provider:'google'}};
+   const saved={...data,id:'saved-private-property',ownerId:owner.id,neighborhood:'Újlipótváros',neighborhoodId:'mock-derived-quarter',addressDetails:{street:data.street,houseNumber:data.houseNumber,postalCode:'1137',latitude:47.519,longitude:19.052,geocodedAt:'2026-11-16T12:00:00Z',provider:'google'}};
    properties.push(saved);return reply(saved,201);
   }
   return reply({message:`Unexpected mock endpoint: ${path}`},404);
@@ -129,21 +129,14 @@ async function addressFlow(browser,viewport){
   await interact(page.locator('#editor-next'));assert.equal(await page.locator('#editor-step-0').isVisible(),true);assert.equal(await page.locator('#f-street').evaluate(element=>element.validity.valid),false);
   await page.locator('#f-street').fill('Pozsonyi út');await interact(page.locator('#editor-next'));assert.equal(await page.locator('#editor-step-0').isVisible(),true);assert.equal(await page.locator('#f-houseNumber').evaluate(element=>element.validity.valid),false);
   await page.locator('#f-houseNumber').fill('12/A');assert.equal(await page.locator('#f-houseNumber').getAttribute('type'),'text');
-  const postal=page.locator('#f-postalCode');assert.equal(await postal.getAttribute('inputmode'),'numeric');
-  await postal.fill('113');await interact(page.locator('#editor-next'));assert.equal(await page.locator('#editor-step-0').isVisible(),true);assert.equal(await postal.evaluate(element=>element.validity.valid),false);
-  await postal.fill('');await interact(page.locator('#editor-next'));assert.equal(await page.locator('#editor-step-1').isVisible(),true,'Postal code stays optional');
-  await editorStep(page,0,interact);await postal.fill('1137');
-  const geometry=await page.locator('.property-address-row').evaluate(row=>[...row.querySelectorAll('input')].map(input=>{const box=input.getBoundingClientRect();return{left:box.left,right:box.right,top:box.top,bottom:box.bottom};}));
-  assert.equal(geometry.length,2,'The address row contains the house-number and optional postal-code inputs');
-  if(viewport.width<=720){
-   assert.ok(geometry[1].top>=geometry[0].bottom,'The narrow editor intentionally stacks address inputs with usable vertical spacing');
-   assert.ok(Math.abs(geometry[0].left-geometry[1].left)<=1&&Math.abs(geometry[0].right-geometry[1].right)<=1,'Stacked address inputs share the full form-column width');
-  }else{
-   assert.ok(geometry[0].right<=geometry[1].left+1,'Wider editors retain side-by-side address inputs');
-   assert.ok(Math.abs(geometry[0].top-geometry[1].top)<=1&&Math.abs(geometry[0].bottom-geometry[1].bottom)<=1,'Side-by-side address inputs align even when their labels wrap');
-  }
+  await assertAddressPrivacyControls(page,interact,{city:'Budapest 13',locationId:'district:Budapest:13'});
+  await interact(page.locator('#editor-next'));assert.equal(await page.locator('#editor-step-1').isVisible(),true,'A complete address advances without asking for a postcode');
+  await editorStep(page,0,interact);
+  const geometry=await page.locator('#f-street,#f-houseNumber').evaluateAll(inputs=>inputs.map(input=>{const box=input.getBoundingClientRect();return{left:box.left,right:box.right,width:box.width};}));
+  assert.equal(geometry.length,2,'The user enters street and house number, without an additional postcode field');
+  assert.ok(geometry.every(box=>box.width>=140&&box.left>=0&&box.right<=viewport.width),'Both address fields remain readable inside the viewport');
   await choosePropertyType(page,'Lakás',interact);await (await editorField(page,'#f-price')).fill('85');await (await editorField(page,'#f-area')).fill('65');await (await editorField(page,'#f-wholeRooms')).fill('2');await (await editorField(page,'#f-halfRooms')).fill('1');
-  await (await editorField(page,'#f-insulated')).selectOption('false');
+  await setAttributeChoice(page,'insulated','false',interact);
   await fits(page);await (await editorField(page,'#f-title')).fill(`Pontos című otthon – ${viewport.name}`);await editorSave(page,interact);
   await page.locator('#entity-form[aria-busy="true"]').waitFor();assert.equal(await page.locator('#editor-save').isDisabled(),true);assert.match(await page.locator('#editor-save-status').innerText(),/cím ellenőrzése/);
   assert.equal(properties.length,1,'A pending provider response must not announce a saved profile');
@@ -151,16 +144,16 @@ async function addressFlow(browser,viewport){
   assert.match(await page.locator('#editor-save-status').innerText(),/mentés nem sikerült.*címellenőrző/s);assert.equal(await page.locator('#editor-save').isEnabled(),true);
   assert.equal(await page.locator('#f-street').inputValue(),'Pozsonyi út');assert.equal(await page.locator('#f-houseNumber').inputValue(),'12/A');assert.equal(properties.length,1);
   await interact(page.locator('#editor-save'));await page.locator('#entity-form').waitFor({state:'detached'});
-  assert.equal(writes.length,2);assert.equal(writes[1].street,'Pozsonyi út');assert.equal(writes[1].houseNumber,'12/A');assert.equal(writes[1].postalCode,'1137');
+  assert.equal(writes.length,2);assert.equal(writes[1].street,'Pozsonyi út');assert.equal(writes[1].houseNumber,'12/A');assert.equal(writes[1].postalCode??'','');assert.equal(writes[1].hideStreet,true);assert.equal(writes[1].hideHouseNumber,true);
   for(const key of ['latitude','longitude','neighborhood','neighborhoodId'])assert.equal(Object.hasOwn(writes[1],key),false,`Client must not invent ${key}`);
   const saved=(await apiState(page)).properties.find(item=>item.id==='saved-private-property');assert.ok(saved);assert.equal(saved.insulated,false);
-  await interact(page.locator('[data-action="edit"][data-id="saved-private-property"]'));assert.equal(await page.locator('#f-street').inputValue(),'Pozsonyi út');assert.equal(await page.locator('#f-houseNumber').inputValue(),'12/A');assert.equal(await page.locator('#f-postalCode').inputValue(),'1137');assert.match(await page.locator('.derived-neighborhood').innerText(),/Újlipótváros/);await closeModal(page,interact);
+  await interact(page.locator('[data-action="edit"][data-id="saved-private-property"]'));assert.equal(await page.locator('#f-street').inputValue(),'Pozsonyi út');assert.equal(await page.locator('#f-houseNumber').inputValue(),'12/A');assert.equal(await page.locator('#f-postalCode').getAttribute('type'),'hidden');assert.equal(saved.postalCode,'1137','The derived/legacy postcode remains available internally without a form field');assert.match(await page.locator('.derived-neighborhood').innerText(),/Újlipótváros/);await closeModal(page,interact);
   await interact(page.locator('[data-action="activate-one"][data-id="saved-private-property"]'));await page.locator('.filter-button').waitFor();await interact(page.locator('.filter-button'));
   assert.match(await page.locator('[data-summary-field="address"]').innerText(),/1137.*Pozsonyi út 12\/A/);assert.match(await page.locator('[data-summary-field="neighborhood"]').innerText(),/Újlipótváros/);assert.doesNotMatch(await page.locator('.criteria-summary').innerText(),/47\.519|19\.052/);await fits(page);await closeModal(page,interact);
   await page.goto(`${origin}/#properties`,{waitUntil:'domcontentloaded'});await interact(page.locator('[data-action="edit"][data-id="legacy-property"]'));
   assert.equal(await page.locator('#f-street').inputValue(),'');assert.equal(await page.locator('#f-houseNumber').inputValue(),'');assert.match(await page.locator('#address-update-note').innerText(),/egészítsd ki/);await interact(page.locator('#editor-next'));assert.equal(await page.locator('#editor-step-0').isVisible(),true);
   assert.deepEqual(errors,[]);
-  console.log(`Address browser ${viewport.name}: required exact address, optional postcode, provider wait/failure/retry, saved owner address and legacy update passed (mock API).`);
+  console.log(`Address browser ${viewport.name}: required exact address, hidden postcode/privacy dependencies, provider wait/failure/retry, saved owner address and legacy update passed (mock API).`);
  }catch(error){releaseFailure();await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`neighborhood-address-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;}
  finally{releaseFailure();await context.close();}
 }

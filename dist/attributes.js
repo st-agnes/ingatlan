@@ -1,9 +1,10 @@
+import {energyCode,energyIndex,meetsEnergyMinimum} from './energy-rating.js';
 /** Shared optional property data and search filters. Values are the API's Hungarian labels. */
 export const CONDITION_OPTIONS = Object.freeze(['Felújítandó','Átlagos','Jó','Új/felújított']);
 export const BUILDING_OPTIONS = Object.freeze(['Tégla','Panel','Csúsztatott zsalu','Vályog','Szilikát','Vegyes falazat','Fa','Könnyűszerkezet','Kő és tégla','Rönkház','Passzívház','Egyéb']);
 export const CONSTRUCTION_AGE_OPTIONS = Object.freeze(['10 évnél fiatalabb','10–30 év közötti','31–40 év közötti','41–50 év közötti','Több mint 50 éves']);
 export const VIEW_OPTIONS = Object.freeze(['Kertre néző','Utcai','Udvari','Panorámás']);
-export const HEATING_OPTIONS = Object.freeze(['Nincs fűtés','Gázkazán','Gázcirkó','Gázkonvektor','Távfűtés','Házközponti fűtés','Elektromos fűtés','Hőszivattyú','Klíma','Vegyes tüzelésű kazán','Cserépkályha','Kandalló','Egyéb']);
+export const HEATING_OPTIONS = Object.freeze(['Gázkazán / cirkó','Gázkonvektor','Távfűtés','Házközponti fűtés','Hőszivattyú','Fűtő klíma','Elektromos fűtés','Fa- / vegyes tüzelésű kazán','Pelletkazán','Kályha / cserépkályha','Kandalló','Egyéb','Nincs fűtés']);
 export const PARKING_OPTIONS = Object.freeze(['Utcai parkolás','Udvari beálló','Fedett beálló','Garázs','Mélygarázs','Teremgarázs','Egyéb']);
 export const CEILING_HEIGHT_OPTIONS = Object.freeze(['3 m alatti','3 m feletti']);
 export const FLOOR_OPTIONS = Object.freeze([
@@ -26,6 +27,8 @@ function choice(value, options, {strict = false, aliases, allowUnknown = false} 
   if (strict && !allowUnknown) throw new Error(`Érvénytelen választás: ${raw.slice(0,80)}.`);
   return raw;
 }
+const heatingAliases = new Map([['Gázkazán','Gázkazán / cirkó'],['Gázcirkó','Gázkazán / cirkó'],['Klíma','Fűtő klíma'],['Vegyes tüzelésű kazán','Fa- / vegyes tüzelésű kazán'],['Cserépkályha','Kályha / cserépkályha']].map(([key,value])=>[normalized(key),value]));
+export const normalizeHeating = (value, options = {}) => choice(value,HEATING_OPTIONS,{...options,aliases:heatingAliases});
 export const normalizeCondition = (value, options = {}) => choice(value,CONDITION_OPTIONS,{...options,aliases:conditionAliases});
 export const normalizeBuilding = (value, options = {}) => choice(value,BUILDING_OPTIONS,options);
 function choices(value, options, normalize, strict) {
@@ -119,6 +122,12 @@ function parkingSelections(value, {strict, previous, allowLegacyUnknown}) {
   if (strict && result.some(item=>!item)) throw new Error('Érvénytelen parkolóhely-választás.');
   return [...new Set(result.filter(Boolean))];
 }
+/** Retired supplementary heating stays readable without silently rewriting old metadata. */
+function retiredHeating(value,strict,previous) {
+  const raw=optionalText(value,80,strict);
+  normalizeHeating(raw,{strict,allowUnknown:!!previous&&raw===text(previous.secondaryHeatingType)});
+  return raw;
+}
 /** Normalize without mutating the entity; unknown old labels survive reads. */
 export function normalizePropertyAttributes(value = {}, {strict = false, previous, allowLegacyUnknown = false} = {}) {
   const legacyOptions = field => ({strict,allowUnknown:allowLegacyUnknown || (!!previous && text(value[field]) === text(previous[field]))});
@@ -127,6 +136,12 @@ export function normalizePropertyAttributes(value = {}, {strict = false, previou
   const floor = strict && house ? null : floorNumber(value.floor,strict,allowLegacyUnknown || (!!previous && value.floor != null && Number(value.floor) === Number(previous.floor)));
   const buildingFloors = house ? null : buildingFloorNumber(value.buildingFloors,strict);
   const upperRange = !house && nullableBoolean(value.floorIsUpperRange,strict) === true;
+  const hideStreet = nullableBoolean(value.hideStreet,strict) !== false;
+  const hideHouseNumber = hideStreet || nullableBoolean(value.hideHouseNumber,strict) !== false;
+  const energyRating = optionalText(value.energyRating,20,strict);
+  const energyRatingScheme = optionalText(value.energyRatingScheme,20,strict);
+  if (strict && energyRatingScheme && energyRatingScheme !== '2023') throw new Error('Érvénytelen energetikai tanúsítványrendszer.');
+  if (strict && energyRatingScheme === '2023' && energyRating && energyIndex(energyRating)<0) throw new Error('Válassz érvényes energetikai kategóriát.');
   if (strict && upperRange && floor !== 9) throw new Error('A 9 vagy afölötti jelöléshez a csoportosított emeletet válaszd.');
   if (strict && floor != null && buildingFloors != null && floor > buildingFloors && !(floor === 0.5 && buildingFloors === 0)) throw new Error('Az ingatlan emelete nem lehet magasabb az épület legfelső emeleténél.');
   return {
@@ -137,11 +152,13 @@ export function normalizePropertyAttributes(value = {}, {strict = false, previou
     view:choice(value.view,VIEW_OPTIONS,{strict}),
     ceilingHeight:choice(value.ceilingHeight,CEILING_HEIGHT_OPTIONS,{strict}),
     floor, buildingFloors, floorIsUpperRange:upperRange && floor === 9,
+    hideStreet,hideHouseNumber,isAttic:house ? null : nullableBoolean(value.isAttic,strict),
+    balcony:strict && house ? null : nullableBoolean(value.balcony==='on'?true:value.balcony,strict),
     privateGarden:apartment ? nullableBoolean(value.privateGarden,strict) : null,
     sharedGarden:null, // Retained wire field; the shared-garden option is retired.
-    heatingType:choice(optionalText(value.heatingType,80,strict),HEATING_OPTIONS,legacyOptions('heatingType')),
-    secondaryHeatingType:choice(optionalText(value.secondaryHeatingType,80,strict),HEATING_OPTIONS,{strict}),
-    energyRating:optionalText(value.energyRating,20,strict),
+    heatingType:normalizeHeating(optionalText(value.heatingType,80,strict),legacyOptions('heatingType')),
+    secondaryHeatingType:retiredHeating(value.secondaryHeatingType,strict,previous),
+    energyRating:energyRatingScheme==='2023'?energyCode(energyRating):energyRating,energyRatingScheme:energyRating?energyRatingScheme:'',
     parkingTypes, parkingType:parkingTypes.join(', '),
     insulated:nullableBoolean(value.insulated,strict),
     airConditioning:nullableBoolean(value.airConditioning,strict),
@@ -154,6 +171,10 @@ export function normalizeSearchAttributes(value = {}, {strict = false} = {}) {
   if (strict && !Array.isArray(floors)) throw new Error('Az emeleteket listaként add meg.');
   const rawFloors = (Array.isArray(floors) ? floors : [floors]).map(floor=>floor == null || typeof floor === 'boolean' || (typeof floor === 'string' && !floor.trim()) ? NaN : Number(floor));
   if (strict && rawFloors.some(floor=>!FLOOR_OPTIONS.some(option=>option.value === floor) && floor !== 10 && floor !== 11)) throw new Error('Érvénytelen emeletválasztás.');
+  const atticPreference = text(value.atticPreference);
+  if (strict && !['','only','exclude'].includes(atticPreference)) throw new Error('Válassz érvényes tetőtéri feltételt.');
+  const minEnergyRating = text(value.minEnergyRating);
+  if (strict && minEnergyRating && energyIndex(minEnergyRating)<0) throw new Error('Válassz érvényes minimum energetikai kategóriát.');
   const normalizedFloors = [...new Set(rawFloors.map(floor=>Number.isInteger(floor) && floor >= 9 && floor <= 11 ? 9 : floor))];
   return {
     ...value,
@@ -163,7 +184,9 @@ export function normalizeSearchAttributes(value = {}, {strict = false} = {}) {
     views:choices(value.views,VIEW_OPTIONS,(item,options)=>choice(item,VIEW_OPTIONS,options),strict),
     ceilingHeight:choice(value.ceilingHeight,CEILING_HEIGHT_OPTIONS,{strict}),
     floors:normalizedFloors,
-    heatingTypes:choices(value.heatingTypes,HEATING_OPTIONS,(item,options)=>choice(item,HEATING_OPTIONS,options),strict),
+    heatingTypes:choices(value.heatingTypes,HEATING_OPTIONS,normalizeHeating,strict),
+    atticPreference:normalized(value.type)==='haz'?'':['only','exclude'].includes(atticPreference)?atticPreference:'',
+    minEnergyRating:energyCode(minEnergyRating),
     excludeTopFloor:normalized(value.type) === 'haz' ? false : nullableBoolean(value.excludeTopFloor,strict) === true,
     excludeGroundFloorAndBelow:normalized(value.type) === 'haz' ? false : nullableBoolean(value.excludeGroundFloorAndBelow,strict) === true,
     airConditioning:nullableBoolean(value.airConditioning,strict) === true,
@@ -189,6 +212,8 @@ export function attributesCompatible(property, search) {
   }
   if (s.type !== 'Ház' && s.excludeTopFloor && (p.floor == null || p.floorIsUpperRange || p.buildingFloors == null || p.floor >= (p.floor === 0.5 && p.buildingFloors === 0 ? 0.5 : p.buildingFloors))) return false;
   if (s.type !== 'Ház' && s.excludeGroundFloorAndBelow && (p.floor == null || p.floor <= 0)) return false;
+  if (s.type!=='Ház' && s.atticPreference && (p.isAttic == null || p.isAttic !== (s.atticPreference==='only'))) return false;
+  if (!meetsEnergyMinimum(p,s.minEnergyRating)) return false;
   if (s.airConditioning && p.airConditioning !== true) return false;
   if (s.privateGarden && p.privateGarden !== true) return false;
   return true;

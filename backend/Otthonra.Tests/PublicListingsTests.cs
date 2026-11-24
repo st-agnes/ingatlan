@@ -120,6 +120,9 @@ public class PublicListingsTests
         Assert.Null(PublicListings.Property(property, AccountTypes.Private));
         property.Archived = false; property.LocationId = "city:unknown";
         Assert.Null(PublicListings.Property(property, AccountTypes.Private));
+        Assert.Null(PublicLanding.PropertyTeaser(property, AccountTypes.Private));
+        property.LocationId = "";
+        Assert.NotNull(PublicListings.Property(property, AccountTypes.Private)); // A genuinely old blank identity may use its known city.
         var search = Search(); search.Archived = true;
         Assert.Null(PublicListings.Search(search, AccountTypes.Private));
         search.Archived = false; search.LocationIdsJson = "{broken";

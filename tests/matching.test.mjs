@@ -234,3 +234,25 @@ test('raised-ground ordering and upper ranges distinguish known levels from unkn
  assert.equal(detail.actual,'9. emelet vagy afölötti');assert.equal(detail.matches,false);
  assert.equal(evaluateMatch(home({floor:12,buildingFloors:13}),wanted({floors:[9],excludeTopFloor:true})).score,100);
 });
+
+test('certificate minimum applies its ordered deviation only to a known current scheme',()=>{
+ const q=wanted({minEnergyRating:'A'});
+ const high=evaluateMatch(home({energyRating:'A+',energyRatingScheme:'2023'}),q);
+ const near=evaluateMatch(home({energyRating:'B',energyRatingScheme:'2023'}),q);
+ const far=evaluateMatch(home({energyRating:'I',energyRatingScheme:'2023'}),q);
+ assert.equal(high.score,100);assert.equal(near.score,91);assert.equal(far.score,27);
+ assert.equal(evaluateMatch(home({energyRating:'A+'}),q).score,0);
+ const detail=near.matchDetails.find(item=>item.key==='minEnergyRating');assert.equal(detail.expected,'A vagy jobb');assert.equal(detail.actual,'B');assert.equal(detail.matches,false);
+ assert.ok(searchSpecificity(wanted({minEnergyRating:'A'}))>=searchSpecificity(wanted({minEnergyRating:'C'})));
+ assert.ok(searchSpecificity(wanted({minEnergyRating:'A+++'}))>searchSpecificity(wanted()));
+});
+
+test('attic facts share the existing floor penalty budget and explicit false differs from missing',()=>{
+ const q=wanted({floors:[2],atticPreference:'exclude'}),p=home({floor:2,isAttic:false});
+ assert.equal(evaluateMatch(p,q).score,100);assert.equal(evaluateMatch({...p,isAttic:true},q).score,0);
+ assert.equal(evaluateMatch({...p,isAttic:null},q).score,0);
+ const single=evaluateMatch({...p,floor:7},wanted({floors:[2]})),combined=evaluateMatch({...p,floor:7,isAttic:true},q);
+ assert.equal(single.score,combined.score,'Adding another failed floor fact does not spend another independent penalty budget');
+ assert.equal(combined.matchDetails.find(item=>item.key==='atticPreference').expected,'Nem tetőtéri ingatlan');
+ assert.equal(evaluateMatch(home({type:'Ház',isAttic:true}),wanted({type:'Ház',atticPreference:'exclude'})).score,100);
+});

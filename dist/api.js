@@ -1,5 +1,5 @@
-import {assertDescriptionContactFree} from './contact-policy.js';
-import { model as demoModel, demoLanding } from './model.js';
+import {assertDescriptionContactFree,containsContactDetails} from './contact-policy.js';
+import { model as demoModel, demoLanding, demoPublicListing } from './model.js';
 import {publicFirstName,publicTitle} from './public-profile.js';
 import {FEEDBACK_OPTIONS,FEEDBACK_PACKAGE_SIZES,FEEDBACK_QUESTION,feedbackTitle} from './feedback.js';
 import { regions } from './regions-data.js';
@@ -7,7 +7,7 @@ import {searchSpecificity} from './matching.js';
 import { getLocation, resolveLegacyLocations, isPropertyLocation, registerLocations, isStreetId, streetBelongsToLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,normalizeReportReason,normalizeIncomingPagination,REPORT_REASON_OPTIONS} from './accounts.js';
-import {sanitizeTeaserPrefill,originFromListing} from './onboarding.js';
+import {sanitizeTeaserPrefill,originFromListing,prefillFromSearchClone} from './onboarding.js';
 
 export const API_CONFIG_KEY = 'otthonra.api';
 export const AUTH_ATTEMPT_KEY = 'otthonra.auth.attempt';
@@ -150,17 +150,20 @@ function propertyFromApi(value, own = false) {
   if (!value) return null;
   const location = entityLocations(value, 'property')[0] || null;
   const declaredId = value.locationId ?? value.location?.id;
+  const hideStreet=value.hideStreet!==false,hideHouseNumber=hideStreet||value.hideHouseNumber!==false;
+  const visibleStreet=!hideStreet?inputText(value.street):'',visibleNumber=!hideHouseNumber?inputText(value.houseNumber):'';
+  const publicAddress=visibleStreet?[visibleStreet,visibleNumber].filter(Boolean).join(' '):!hideStreet&&!hideHouseNumber?inputText(value.address):'';
   return normalizePropertyAttributes({
     id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType), ownerFirstName:publicFirstName(value.ownerFirstName),
-    title: value.title || '', locationId:location?.id ?? declaredId ?? '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: own ? value.address || '' : '', description: value.description || '', createdAt: value.createdAt,
+    title: value.title || '', locationId:location?.id ?? declaredId ?? '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: own ? value.address || '' : publicAddress,hideStreet,hideHouseNumber,...(!own&&!hideStreet?{street:visibleStreet,...(!hideHouseNumber?{houseNumber:visibleNumber}:{})}:{}), description: value.description || '', createdAt: value.createdAt,
     neighborhoodIds: [...new Set((Array.isArray(value.neighborhoodIds) ? value.neighborhoodIds : []).filter(id => getLocation(id)?.kind === 'neighborhood'))],
     ...(own ? {addressDetails:privateAddressFromApi(value.addressDetails)} : {}),
     type: value.type || value.propertyType || 'Lakás',
     price: millions(value.priceHuf ?? value.price), area: numeric(value.area ?? value.areaSqm ?? value.sizeSqm), rooms: numeric(value.rooms ?? value.roomCount), wholeRooms:value.wholeRooms, halfRooms:value.halfRooms,
     lotArea: numeric(value.lotArea ?? value.lotAreaSqm ?? null), floor: numeric(value.floor), floorIsUpperRange:value.floorIsUpperRange, buildingFloors:numeric(value.buildingFloors), condition: value.condition || '', building: value.building || value.buildingMaterial || '',
-    balcony: !!(value.balcony ?? value.hasBalcony), elevator: !!(value.elevator ?? value.hasElevator),
+    balcony: value.balcony??value.hasBalcony??null, elevator: !!(value.elevator ?? value.hasElevator),
     constructionAge:value.constructionAge, view:value.view, ceilingHeight:value.ceilingHeight,
-    heatingType:value.heatingType, secondaryHeatingType:value.secondaryHeatingType, insulated:value.insulated, energyRating:value.energyRating,
+    heatingType:value.heatingType, secondaryHeatingType:value.secondaryHeatingType, insulated:value.insulated, energyRating:value.energyRating,energyRatingScheme:value.energyRatingScheme,isAttic:value.isAttic,
     airConditioning:value.airConditioning, privateGarden:value.privateGarden, sharedGarden:value.sharedGarden, solarPanels:value.solarPanels, parkingType:value.parkingType, parkingTypes:value.parkingTypes,
     images: clone(value.images || value.imageUrls || []), archived: !!(value.archived ?? value.isArchived)
   });
@@ -184,7 +187,7 @@ function searchFromApi(value) {
     conditions:value.conditions ?? (value.condition ? [value.condition] : []),
     buildings:value.buildings ?? (value.building ? [value.building] : []),
     constructionAges:value.constructionAges, views:value.views, ceilingHeight:value.ceilingHeight, floors:value.floors, heatingTypes:value.heatingTypes,
-    excludeTopFloor:value.excludeTopFloor, excludeGroundFloorAndBelow:value.excludeGroundFloorAndBelow,
+    excludeTopFloor:value.excludeTopFloor, excludeGroundFloorAndBelow:value.excludeGroundFloorAndBelow,atticPreference:value.atticPreference,minEnergyRating:value.minEnergyRating,
     airConditioning:value.airConditioning, privateGarden:value.privateGarden, sharedGarden:value.sharedGarden,
     archived: !!(value.archived ?? value.isArchived)
   });
@@ -232,7 +235,9 @@ function propertyToApi(value, updating = false) {
     heatingType:attributes.heatingType, secondaryHeatingType:attributes.secondaryHeatingType, insulated:attributes.insulated, energyRating:attributes.energyRating,
     airConditioning:attributes.airConditioning, privateGarden:attributes.privateGarden, sharedGarden:attributes.sharedGarden,
     solarPanels:attributes.solarPanels, parkingType:attributes.parkingType, parkingTypes:attributes.parkingTypes,
-    balcony: type === 'Ház' ? false : inputBoolean(value.balcony), elevator: type === 'Ház' ? false : inputBoolean(value.elevator), images, archived: inputBoolean(value.archived)
+    ...(Object.hasOwn(value,'hideStreet')?{hideStreet:attributes.hideStreet}:{}),...(Object.hasOwn(value,'hideHouseNumber')?{hideHouseNumber:attributes.hideHouseNumber}:{}),
+    ...(Object.hasOwn(value,'isAttic')?{isAttic:attributes.isAttic}:{}),...(Object.hasOwn(value,'energyRatingScheme')?{energyRatingScheme:attributes.energyRatingScheme}:{}),
+    balcony: attributes.balcony, elevator: type === 'Ház' ? false : inputBoolean(value.elevator), images, archived: inputBoolean(value.archived)
   };
 }
 function searchToApi(value) {
@@ -253,6 +258,7 @@ function searchToApi(value) {
     views:attributes.views, ceilingHeight:attributes.ceilingHeight, floors:attributes.floors, heatingTypes:attributes.heatingTypes,
     excludeTopFloor:attributes.excludeTopFloor, excludeGroundFloorAndBelow:attributes.excludeGroundFloorAndBelow,
     airConditioning:attributes.airConditioning, privateGarden:attributes.privateGarden, sharedGarden:attributes.sharedGarden,
+    ...(Object.hasOwn(value,'atticPreference')?{atticPreference:attributes.atticPreference}:{}),...(Object.hasOwn(value,'minEnergyRating')?{minEnergyRating:attributes.minEnergyRating}:{}),
     balcony: value.type === 'Ház' ? false : inputBoolean(value.balcony), elevator: value.type === 'Ház' ? false : inputBoolean(value.elevator), moveIn: inputText(value.moveIn), financing: inputText(value.financing), archived: inputBoolean(value.archived)
   };
 }
@@ -265,7 +271,7 @@ function reportSummaries(values) {
   }
   return [...unique.values()];
 }
-const matchDetailKeys=new Set(['location','type','price','rooms','area','condition','floor','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','elevator','balcony','building','heatingType','constructionAge','ceilingHeight','view']);
+const matchDetailKeys=new Set(['location','type','price','rooms','area','condition','floor','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','elevator','balcony','building','heatingType','atticPreference','minEnergyRating','constructionAge','ceilingHeight','view']);
 function matchDetailsFromApi(value) {
   if(!Array.isArray(value))return [];
   return value.filter(item=>item&&matchDetailKeys.has(item.key)&&typeof item.matches==='boolean'
@@ -496,6 +502,9 @@ export class ApiModel {
     const payload=kind === 'property' ? propertyToApi(data,!!id) : searchToApi(data);
     if (creationRequestId) {
       payload.creationRequestId=creationRequestId.toLowerCase();
+      // An accepted old receipt must replay its original pre-alias heating labels.
+      if(kind==='property')for(const field of ['heatingType','secondaryHeatingType'])if(typeof data[field]==='string')payload[field]=data[field].trim();
+      if(kind==='search'&&Array.isArray(data.heatingTypes))payload.heatingTypes=data.heatingTypes.map(inputText);
       // Preserve the historical wire selection in frozen drafts. Persistence
       // normalizes the old tenth/eleventh choices into today's ninth-plus band.
       if (kind === 'search' && Array.isArray(data.floors) && inputText(data.type) !== 'Ház')
@@ -543,13 +552,54 @@ export async function findPublicStreets(query,locationId,limit=12) {
 
 const regionById = id => regions.find(region=>region.id===id)||null;
 const nullableNumber = value => value==null||value===''?null:(Number.isFinite(Number(value))?Number(value):null);
+
+const publicListingHref=(kind,key)=>originFromListing(kind,key)?`#listing/${kind}/${key}`:null;
+const publicImage=value=>{if(typeof value!=='string'||value.length>2000)return null;try{const url=new URL(value);return url.protocol==='https:'&&!url.username&&!url.password?url.href:null;}catch{return null;}};
+/** Whitelist full anonymous detail fields; never spread transport data into public state. */
+export function publicListingFromApi(kind,key,value,{pricesInHuf=true}={}) {
+  if(!originFromListing(kind,key)||value?.kind!==kind||value?.sourceKey!==key)throw new Error('A hirdetés nem érhető el.');
+  const source=value.listing&&typeof value.listing==='object'?value.listing:{};
+  const prefill=sanitizeTeaserPrefill(kind,value.prefill,{pricesInHuf});
+  const price=v=>pricesInHuf?millions(nullableNumber(v)):nullableNumber(v);
+  const common={title:containsContactDetails(value.title||source.title)?(kind==='property'?'Eladó ingatlan':'Ingatlant keresnek'):publicTitle(value.title||source.title,kind==='property'?'Eladó ingatlan':'Ingatlant keresnek'),type:inputText(source.type),description:typeof source.description==='string'&&!containsContactDetails(source.description)?source.description.slice(0,6000):'',ownerFirstName:publicFirstName(value.ownerFirstName),ownerAccountType:normalizeAccountType(value.ownerAccountType)};
+  let listing;
+  if(kind==='property'){
+    const p=normalizePropertyAttributes({...source});
+    const hideStreet=p.hideStreet,hideHouseNumber=p.hideHouseNumber;
+    const street=hideStreet?'':inputText(source.street),houseNumber=hideHouseNumber?'':inputText(source.houseNumber);
+    listing={...common,location:inputText(source.location),city:inputText(source.city),district:inputText(source.district),neighborhood:inputText(source.neighborhood),
+      price:price(source.price),area:nullableNumber(source.area),rooms:nullableNumber(source.rooms),wholeRooms:nullableNumber(source.wholeRooms),halfRooms:nullableNumber(source.halfRooms),lotArea:nullableNumber(source.lotArea),
+      floor:p.floor,floorIsUpperRange:p.floorIsUpperRange,buildingFloors:p.buildingFloors,isAttic:p.isAttic,condition:p.condition,building:p.building,constructionAge:p.constructionAge,view:p.view,ceilingHeight:p.ceilingHeight,
+      heatingType:p.heatingType,insulated:p.insulated,energyRating:p.energyRating,energyRatingScheme:p.energyRatingScheme,airConditioning:p.airConditioning,solarPanels:p.solarPanels,parkingTypes:[...p.parkingTypes],parkingType:p.parkingType,
+      balcony:p.balcony,elevator:source.elevator===true,privateGarden:p.privateGarden,hideStreet,hideHouseNumber,street,houseNumber,address:street?[street,houseNumber].filter(Boolean).join(' '):'',
+      images:(Array.isArray(source.images)?source.images:[]).slice(0,12).map(value=>!pricesInHuf&&typeof value==='string'&&/^\/assets\/[a-z0-9._/-]+$/i.test(value)?value:publicImage(value)).filter(Boolean)};
+  }else{
+    const s=normalizeSearchAttributes(source);
+    const locations=Array.isArray(source.locations)?source.locations.slice(0,50):[];
+    listing={...common,locations:locations.map(item=>typeof item==='string'?item:inputText(item?.label)).filter(Boolean),minPrice:price(source.minPrice),maxPrice:price(source.maxPrice),minArea:nullableNumber(source.minArea),maxArea:nullableNumber(source.maxArea),minRooms:nullableNumber(source.minRooms),maxRooms:nullableNumber(source.maxRooms),
+      conditions:s.conditions,buildings:s.buildings,constructionAges:s.constructionAges,views:s.views,ceilingHeight:s.ceilingHeight,floors:s.floors,heatingTypes:s.heatingTypes,atticPreference:s.atticPreference,minEnergyRating:s.minEnergyRating,
+      excludeTopFloor:s.excludeTopFloor,excludeGroundFloorAndBelow:s.excludeGroundFloorAndBelow,airConditioning:s.airConditioning,privateGarden:s.privateGarden,balcony:source.balcony===true,elevator:source.elevator===true,moveIn:inputText(source.moveIn),financing:inputText(source.financing)};
+  }
+  const result={kind,key,sourceKey:key,title:common.title,ownerFirstName:common.ownerFirstName,ownerAccountType:common.ownerAccountType,listing,prefill,href:publicListingHref(kind,key)};
+  if(kind==='search'){
+    const cloneSource={...sanitizeTeaserPrefill('search',value.clonePrefill||value.prefill,{pricesInHuf}),...Object.fromEntries(['description','moveIn','financing'].map(field=>[field,typeof value.clonePrefill?.[field]==='string'&&!containsContactDetails(value.clonePrefill[field])?value.clonePrefill[field]:'']))};
+    result.clonePrefill=prefillFromSearchClone(cloneSource);
+  }
+  return result;
+}
+export async function fetchPublicListing(kind,key,{signal}={}) {
+  if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
+  if(!hostedMode())return publicListingFromApi(kind,key,demoPublicListing(kind,key),{pricesInHuf:false});
+  return publicListingFromApi(kind,key,await request(hostedApiBase(),null,`/public/listings/${kind}/${key}`,'GET',undefined,{signal}));
+}
+
 function landingFromApi(value) {
   const region=regionById(value?.region?.id);
   const publicType=value=>['Lakás','Ház','Telek','Nyaraló','Garázs','Iroda','Üzlethelyiség','Egyéb'].includes(value)?value:'Ingatlan';
   return {
     regions:regions.map(region=>({...region})),region:clone(region),scope:region?'region':'national',
-    searches:rows(value?.searches).slice(0,8).map((item,index)=>({key:String(item.key??`search-${index+1}`),sourceKey:originFromListing('search',item.sourceKey)?.key??null,title:publicTitle(item.title,'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,50),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('search',item.prefill,{pricesInHuf:true})})),
-    properties:rows(value?.properties).slice(0,4).map((item,index)=>({key:String(item.key??`property-${index+1}`),sourceKey:originFromListing('property',item.sourceKey)?.key??null,title:publicTitle(item.title,'Eladó ingatlan'),type:publicType(item.type),location:String(item.location||''),price:millions(nullableNumber(item.price)),area:nullableNumber(item.area),wholeRooms:nullableNumber(item.wholeRooms),halfRooms:nullableNumber(item.halfRooms),rooms:nullableNumber(item.rooms),lotArea:nullableNumber(item.lotArea),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('property',item.prefill,{pricesInHuf:true})}))
+    searches:rows(value?.searches).slice(0,16).map((item,index)=>({key:String(item.key??`search-${index+1}`),sourceKey:originFromListing('search',item.sourceKey)?.key??null,href:publicListingHref('search',item.sourceKey),title:publicTitle(item.title,'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,50),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('search',item.prefill,{pricesInHuf:true})})),
+    properties:rows(value?.properties).slice(0,8).map((item,index)=>({key:String(item.key??`property-${index+1}`),sourceKey:originFromListing('property',item.sourceKey)?.key??null,href:publicListingHref('property',item.sourceKey),image:publicImage(item.image),title:publicTitle(item.title,'Eladó ingatlan'),type:publicType(item.type),location:String(item.location||''),price:millions(nullableNumber(item.price)),area:nullableNumber(item.area),wholeRooms:nullableNumber(item.wholeRooms),halfRooms:nullableNumber(item.halfRooms),rooms:nullableNumber(item.rooms),lotArea:nullableNumber(item.lotArea),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('property',item.prefill,{pricesInHuf:true})}))
   };
 }
 export async function fetchLanding({region,signal}={}) {

@@ -31,6 +31,7 @@ export async function choosePropertyType(page, value, interact) {
 
 /** Set or clear an optional illustrated single choice through its real card. */
 export async function setAttributeChoice(page, name, value, interact) {
+  value = value == null ? '' : String(value);
   const input = await editorField(page, `#f-${name}`, interact);
   const before = await input.inputValue();
   if (before === value) return input;
@@ -38,6 +39,105 @@ export async function setAttributeChoice(page, name, value, interact) {
   await press(page, card, interact);
   assert.equal(await input.inputValue(), value);
   return input;
+}
+
+/** Choose exact seller floors through the visible cards, including the explicit higher-floor entry. */
+export async function setSellerFloor(page, value, interact) {
+  return setFloorCards(page, 'floor', value, interact);
+}
+
+export async function setBuildingFloors(page, value, interact) {
+  return setFloorCards(page, 'buildingFloors', value, interact);
+}
+
+async function setFloorCards(page, name, value, interact) {
+  const input = await editorField(page, '#f-' + name, interact), target = value == null ? '' : String(value), before = await input.inputValue();
+  if (before === target) return input;
+  const choice = Number(target) > 10 ? 'other' : target || (Number(before) > 10 ? 'other' : before);
+  const card = page.locator(`[data-attribute-name="${name}"][data-attribute-value="${choice}"]`);
+  if (!(Number(target) > 10 && Number(before) > 10)) await press(page, card, interact);
+  if (target && Number(target) > 10) await page.locator('#f-' + name + 'Other').fill(target);
+  assert.equal(await input.inputValue(), target);
+  if (target && Number(target) > 10) await assertRequiredFieldLabels(page);
+  return input;
+}
+
+/** The certificate selector is a real, discrete range control with a textual value. */
+export async function setEnergyRating(page, value, interact, {search = false} = {}) {
+  const name = search ? 'minEnergyRating' : 'energyRating', input = await editorField(page, '#f-' + name, interact);
+  const order = ['', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A', 'A+', 'A++', 'A+++'], index = order.indexOf(value || '');
+  assert.ok(index >= 0, 'Choose a current Hungarian certificate category');
+  const slider = page.locator('#f-' + name + '-slider');
+  assert.equal(await slider.getAttribute('type'), 'range');
+  assert.equal(await slider.getAttribute('min'), '0');assert.equal(await slider.getAttribute('max'), '12');
+  await slider.focus();if(index===0&&await input.inputValue())await slider.press('ArrowRight');await slider.press('Home');
+  for (let step = 0; step < index; step++) await slider.press('ArrowRight');
+  assert.equal(await input.inputValue(), value || '');
+  assert.equal(await slider.inputValue(), String(index));
+  return input;
+}
+
+/** Seller construction age remains optional and single-valued; buyer ages retain their multiselect. */
+export async function setConstructionAge(page, value, interact) {
+  const choice = await editorField(page, `input[name="constructionAge"][value="${value || ''}"]`, interact);
+  assert.equal(await choice.getAttribute('type'), 'radio');
+  await press(page, page.locator('label').filter({has: choice}), interact);
+  assert.equal(await choice.isChecked(), true);
+  assert.equal(await page.locator('input[name="constructionAge"]:checked').count(), 1);
+  return choice;
+}
+
+export async function setAtticPreference(page, value, interact) {
+  const choice = await editorField(page, `input[name="atticPreference"][value="${value || ''}"]`, interact);
+  assert.equal(await choice.getAttribute('type'), 'radio');
+  await press(page, page.locator('label').filter({has: choice}), interact);
+  assert.equal(await choice.isChecked(), true);
+  assert.equal(await page.locator('input[name="atticPreference"]:checked').count(), 1, 'Only/except attic restrictions are mutually exclusive');
+  return choice;
+}
+
+/** Illustrated buyer heating controls are operated through their visible labels. */
+export async function setHeatingRequirement(page, value, checked = true, interact) {
+  const choice = await editorField(page, `input[name="heatingTypes"][value="${value}"]`, interact);
+  if (await choice.isChecked() !== checked) await press(page, page.locator('label').filter({has: choice}), interact);
+  assert.equal(await choice.isChecked(), checked);
+}
+
+/** Compact selected city, privacy dependencies and address field removal are shared by owned/guest sellers. */
+export async function assertAddressPrivacyControls(page, interact, {city = 'Debrecen', locationId = 'city:Debrecen'} = {}) {
+  await editorStep(page, 0, interact);
+  assert.equal(await page.locator('#editor-step-button-0').getAttribute('aria-label'), 'Helyszín');
+  assert.equal(await page.locator('#f-postalCode').getAttribute('type'), 'hidden', 'Postcode metadata is not an extra user-entry task');assert.equal(await page.locator('label[for="f-postalCode"]').count(), 0);
+  assert.equal(await page.locator('#property-location-edit').isVisible(), true);
+  assert.equal(await page.locator('#location-input').isVisible(), false, 'A selected seller city has a compact editable caption');
+  const street = page.locator('#f-hideStreet'), house = page.locator('#f-hideHouseNumber');
+  assert.equal(await street.isChecked(), true);assert.equal(await house.isChecked(), true);assert.equal(await house.isEnabled(), false);
+  await street.uncheck();assert.equal(await house.isEnabled(), true);assert.equal(await house.isChecked(), true, 'Showing the street must not silently expose the house number');
+  await house.uncheck();assert.equal(await house.isChecked(), false);
+  await street.check();assert.equal(await house.isChecked(), true);assert.equal(await house.isEnabled(), false, 'Hiding the street must also hide the house number');
+  const streetBefore = await page.locator('#f-street').inputValue(), numberBefore = await page.locator('#f-houseNumber').inputValue();
+  await press(page, page.locator('#property-location-edit'), interact);
+  assert.equal(await page.locator('#location-input').isVisible(), true);
+  assert.equal(await page.locator('#f-street').inputValue(), streetBefore);assert.equal(await page.locator('#f-houseNumber').inputValue(), numberBefore, 'Opening city editing does not discard the current address');
+  await page.locator('#location-input').fill(city);await press(page, page.locator('[data-location-id="' + locationId + '"]'), interact);
+  assert.equal(await page.locator('#location-input').isVisible(), false);
+}
+
+/** Both explicit presence/absence and a repeated-click unknown state must remain usable. */
+export async function assertNullableAmenities(page, interact) {
+  for (const name of ['balcony', 'airConditioning', 'privateGarden', 'insulated', 'solarPanels']) {
+    const input = await editorField(page, '#f-' + name, interact), before = await input.inputValue();
+    assert.equal(await input.getAttribute('type'), 'hidden');
+    const cards = page.locator(`[data-attribute-name="${name}"]`);assert.equal(await cards.count(), 2);
+    assert.equal(await cards.locator('.attribute-card-illustration > svg').count(), 2);
+    for (const value of ['true', 'false']) {
+      await setAttributeChoice(page, name, value, interact);
+      const card = page.locator(`[data-attribute-name="${name}"][data-attribute-value="${value}"]`);
+      assert.equal(await card.getAttribute('aria-pressed'), 'true');
+      await press(page, card, interact);assert.equal(await input.inputValue(), '', 'Repeating either explicit amenity choice returns it to unspecified');
+    }
+    await setAttributeChoice(page, name, before, interact);
+  }
 }
 
 // Storage/focus refresh can replace the form; inspect only the current connected DOM.
@@ -282,6 +382,7 @@ export async function editorField(page, selector, interact) {
     return section ? Number(section.dataset.editorStep) : null;
   });
   if (step !== null) await editorStep(page, step, interact);
+  if (selector === '#location-input' && !await locator.isVisible() && await page.locator('#property-location-edit').isVisible()) await press(page, page.locator('#property-location-edit'), interact);
   return locator;
 }
 

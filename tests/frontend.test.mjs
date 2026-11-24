@@ -11,6 +11,8 @@ import * as accountHelpers from '../dist/accounts.js';
 import * as feedbackHelpers from '../dist/feedback.js';
 import * as onboardingHelpers from '../dist/onboarding.js';
 import * as contactPolicy from '../dist/contact-policy.js';
+import * as energyRatingHelpers from '../dist/energy-rating.js';
+import * as publicListingHelpers from '../dist/public-listings.js';
 
 
 const publicSourceKey=(kind,character='a')=>kind+'-'+character.repeat(64);
@@ -33,13 +35,15 @@ class Element {
   if(markup.startsWith('<select')) {const option=[...markup.matchAll(/<option\b([^>]*)>([^<]*)/g)],selected=option.find(match=>/\bselected\b/.test(match[1]))||option[0];this.value=decodeHtmlValue(selected?.[1].match(/\bvalue="([^"]*)"/)?.[1]??selected?.[2]??'');}
   if(markup.startsWith('<textarea'))this.value=decodeHtmlValue(markup.match(/^[^>]*>([\s\S]*?)<\/textarea>/)?.[1]||'');
   this.checked=/\schecked(?:\s|>)/.test(markup);this.disabled=/\sdisabled(?:\s|>)/.test(markup);this.hidden=/\shidden(?:\s|>)/.test(markup);
-  this.style={};this.handlers={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.reportedValidity=0;
+  this.style={setProperty(name,value){this[name]=String(value);},removeProperty(name){delete this[name];}};this.handlers={};this.scrollHeight=500;this.scrollTop=0;this.validationMessage='';this.reportedValidity=0;
   this.classList={toggle:(name,on)=>{const classes=new Set(this.className.split(' ').filter(Boolean));if(on??!classes.has(name))classes.add(name);else classes.delete(name);this.className=[...classes].join(' ');},remove:name=>this.classList.toggle(name,false),add:name=>this.classList.toggle(name,true),contains:name=>this.className.split(' ').includes(name)};
  }
  set innerHTML(value){const previous=this._innerHTML;this._innerHTML=value;this.innerHTMLWasAssigned=true;if(['app','modal-root'].includes(this.id)){for(const match of previous.matchAll(/\bid=["']([^"']+)["']/g))if(!['app','modal-root','toast'].includes(match[1]))this.doc.elements.delete(match[1]);}else this.doc.replaceContents(this.id,value);if(this.id==='modal-root'){const markup=value.match(/<[^>]*class="modal(?:\s[^"]*)?"[^>]*>/)?.[0];this.doc.currentModal=markup?new Element('__modal-'+(++this.doc.modalSerial),this.doc,markup):null;if(this.doc.currentModal)this.doc.currentModal.isModal=true;}}
  get innerHTML(){return this._innerHTML;}
  addEventListener(type,handler){const prior=this.handlers[type];this.handlers[type]=prior?event=>{prior(event);return handler(event);}:handler;}
+ dispatchEvent(event){event.target??=this;event.currentTarget=this;this.handlers[event.type]?.(event);if(event.bubbles&&!event.propagationStopped)this.parentElement?.dispatchEvent?.(event);return !event.defaultPrevented;}
  querySelectorAll(selector){return this.doc.selectWithin(this,selector);}
+ querySelector(selector){return this.querySelectorAll(selector)[0]||null;}
  setAttribute(name,value){this.attributes[name]=String(value);if(name==='hidden')this.hidden=true;}
  getAttribute(name){return this.attributes[name]??null;}
  removeAttribute(name){delete this.attributes[name];if(name==='hidden')this.hidden=false;}
@@ -72,12 +76,14 @@ class Document {
  get html(){return [...this.elements.entries()].filter(([id])=>['app','modal-root'].includes(id)).map(([,e])=>e.innerHTML).join('');}
  replaceContents(id,value){for(const rootId of ['app','modal-root']){const root=this.elements.get(rootId),html=root._innerHTML,opening=[...html.matchAll(/<([a-z][\w-]*)\b[^>]*>/gi)].find(match=>match[0].includes(`id="${id}"`)||match[0].includes(`id='${id}'`));if(!opening)continue;const start=opening.index+opening[0].length,tag=opening[1].toLowerCase();let depth=1,end=start;for(const token of html.slice(start).matchAll(new RegExp(`</?${tag}\\b[^>]*>`,'gi'))){depth+=token[0].startsWith('</')?-1:1;if(depth===0){end=start+token.index;break;}}const old=html.slice(start,end);for(const match of old.matchAll(/\bid=["']([^"']+)["']/g))this.elements.delete(match[1]);root._innerHTML=html.slice(0,start)+value+html.slice(end);return;}}
  getElementById(id){if(this.elements.has(id))return this.elements.get(id);const markup=this.html.match(new RegExp(`<[^>]*\\bid=["']${id}["'][^>]*>`))?.[0];if(!markup)return null;const full=markup.startsWith('<select')||markup.startsWith('<textarea')?this.html.match(new RegExp(`<${markup.startsWith('<select')?'select':'textarea'}[^>]*\\bid=["']${id}["'][^>]*>[\\s\\S]*?</${markup.startsWith('<select')?'select':'textarea'}>`))?.[0]||markup:markup;const element=new Element(id,this,full);this.elements.set(id,element);return element;}
+ contains(node){return node?.doc===this;}
+ querySelectorAll(selector){return this.selectWithin(this,selector);}
  querySelector(selector){if(selector==='.modal')return this.currentModal;if(selector.startsWith('.modal '))return this.currentModal?.querySelectorAll(selector)[0]||null;if(selector.startsWith('#'))return this.getElementById(selector.slice(1).split(' ')[0]);return null;}
  selectWithin(root,selector){
   const selectors=selector.split(',').map(value=>value.trim().replace(/^\.modal\s+/,'')),markup=root.isModal?this.elements.get('modal-root').innerHTML:this.html,selected=[];
   for(const match of markup.matchAll(/<([a-z][\w-]*)\b[^>]*\bid="([^"]+)"[^>]*>/gi)){
    const element=this.getElementById(match[2]);if(!element||!root.isModal&&!root.contains(element))continue;
-   if(selectors.some(value=>{const tag=value.match(/^[a-z]+/)?.[0];if(tag&&tag!==match[1].toLowerCase())return false;if(value.includes(':not(.modal-close)')&&element.classList.contains('modal-close'))return false;const type=value.match(/\[type="([^"]+)"\]/)?.[1];if(type&&element.type!==type)return false;for(const [,name,expected] of value.matchAll(/\[(data-[\w-]+)(?:="([^"]*)")?\]/g)){const actual=element.getAttribute(name);if(actual===null||expected!==undefined&&actual!==expected)return false;}return true;}))selected.push(element);
+   if(selectors.some(value=>{const tag=value.match(/^[a-z]+/)?.[0];if(tag&&tag!==match[1].toLowerCase())return false;if(value.includes(':not(.modal-close)')&&element.classList.contains('modal-close'))return false;const negative=[...value.matchAll(/:not\(([^)]+)\)/g)].map(match=>match[1]);const positive=value.replace(/:not\([^)]+\)/g,'');const leaf=positive.trim().split(/[ >]+/).at(-1);for(const [,name]of leaf.matchAll(/\.([\w-]+)/g))if(!element.classList.contains(name))return false;const attributesMatch=fragment=>[...fragment.matchAll(/\[([\w-]+)(?:="([^"]*)")?\]/g)].every(([,name,expected])=>{const actual=element.getAttribute(name);return actual!==null&&(expected===undefined||actual===expected);});if(!attributesMatch(positive))return false;for(const fragment of negative){if(fragment.startsWith('.')&&element.classList.contains(fragment.slice(1)))return false;if(fragment.startsWith('[')&&attributesMatch(fragment))return false;}return true;}))selected.push(element);
   }
   return selected;
  }
@@ -114,15 +120,16 @@ async function setup(options={}){
  const timers=[],connected=[],disconnected=[],landingCalls=[],windowEvents={},windowListeners=new Map(),regionStorage=options.regionStorage instanceof Map?options.regionStorage:new Map(Object.entries(options.regionStorage||{})),maps=[];
  let currentHash=options.hash??(options.hosted&&!options.authenticated?'#login':'');
  const ctx=vm.createContext({
-  document,console,Intl,Date:options.Date||Date,Promise,URL,URLSearchParams,AbortController,IntersectionObserver:options.IntersectionObserver,ResizeObserver:options.ResizeObserver,visualViewport:options.visualViewport,innerWidth:options.innerWidth,innerHeight:options.innerHeight,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
+  document,console,Intl,Date:options.Date||Date,Promise,URL,URLSearchParams,AbortController,Event:class{constructor(type,{bubbles=false}={}){this.type=type;this.bubbles=bubbles;this.defaultPrevented=false;}preventDefault(){this.defaultPrevented=true;}stopPropagation(){this.propagationStopped=true;}},IntersectionObserver:options.IntersectionObserver,ResizeObserver:options.ResizeObserver,visualViewport:options.visualViewport,innerWidth:options.innerWidth,innerHeight:options.innerHeight,setTimeout:(callback,delay)=>{if(options.captureTimers)timers.push({callback,delay});return timers.length;},clearTimeout:()=>{},
   location:{get hash(){return currentHash;},set hash(value){const next=value?(value.startsWith('#')?value:'#'+value):'';if(next===currentHash)return;currentHash=next;if(options.dispatchHashChanges)Promise.resolve().then(()=>windowEvents.hashchange?.());},search:'',origin:'https://test.example'},window:{scrollTo:()=>{},matchMedia:()=>({matches:!!options.mobile}),addEventListener:(type,handler)=>{const listeners=windowListeners.get(type)||[];listeners.push(handler);windowListeners.set(type,listeners);windowEvents[type]=event=>{const pending=[...(windowListeners.get(type)||[])].map(callback=>callback(event)).filter(value=>value?.then);return pending.length?Promise.all(pending):undefined;};},removeEventListener:(type,handler)=>{windowListeners.set(type,(windowListeners.get(type)||[]).filter(listener=>listener!==handler));}},
   OTTHONRA_CONFIG:options.hosted?{mode:'api',environment:options.environment||'test'}:{mode:'demo',environment:'local'},
-  searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...attributeCardArt,...accountHelpers,...feedbackHelpers,...contactPolicy,...Object.fromEntries(Object.entries(onboardingHelpers).filter(([name])=>!['loadDraft','saveDraft','clearDraft'].includes(name))),
+  searchLocations,getLocation,resolveLegacyLocations,...propertyAttributes,...attributeCardArt,...accountHelpers,...feedbackHelpers,...contactPolicy,...energyRatingHelpers,...publicListingHelpers,...Object.fromEntries(Object.entries(onboardingHelpers).filter(([name])=>!['loadDraft','saveDraft','clearDraft'].includes(name))),
   loadDraft:()=>onboardingHelpers.loadDraft(ctx.localStorage),saveDraft:draft=>onboardingHelpers.saveDraft(draft,ctx.localStorage),clearDraft:id=>onboardingHelpers.clearDraft(id,ctx.localStorage),
   findPublicLocations:async(query,limit,options)=>searchLocations(query,limit,options),findPublicStreets:async()=>[],API_CONFIG_KEY:'otthonra.api',
   hostedMode:()=>!!options.hosted,deploymentEnvironment:()=>options.hosted?(options.environment||'test'):'local',
   getModel:()=>selected,
   __createLocationMap:(container,{selectedIds,onSelect})=>{const map={id:container.id,ids:[...selectedIds],disposed:false,select:onSelect,setSelection(ids){this.ids=[...ids];},destroy(){this.disposed=true;}};maps.push(map);return map;},
+  fetchPublicListing:options.fetchPublicListing||(async()=>{const error=new Error('A hirdetés nem található.');error.status=404;throw error;}),
   fetchLanding:async(input={})=>{landingCalls.push(input);if(options.fetchLanding)return options.fetchLanding(input);return landingFixture(input.region);},
   detectLandingRegion:options.detectLandingRegion||(async()=>null),
   localStorage:{getItem:key=>regionStorage.get(key)||null,setItem:(key,value)=>regionStorage.set(key,value),removeItem:key=>regionStorage.delete(key)},
@@ -153,14 +160,47 @@ function mountedFormValues(document,form){
  }
  return values;
 }
+function formInputEvent(t,input,type='change'){
+ const event={type,target:input,currentTarget:input,bubbles:true,preventDefault(){this.defaultPrevented=true;},stopPropagation(){this.propagationStopped=true;}};
+ input.dispatchEvent(event);return event;
+}
+function chooseOptionalCard(t,name,value){
+ const input=t.document.getElementById('f-'+name);assert.ok(input,`Missing canonical ${name}`);
+ const desired=value==null?'':String(name==='condition'?propertyAttributes.normalizeCondition(value):name==='building'?propertyAttributes.normalizeBuilding(value):value),buttons=t.document.getElementById('entity-form').querySelectorAll('button').filter(button=>button.dataset.attributeName===name);
+ if(!buttons.length){input.value=desired;formInputEvent(t,input);return;}
+ if(name==='floor'||name==='buildingFloors'){
+  const choice=desired!==''&&Number(desired)>10?'other':desired;
+  const button=buttons.find(button=>button.dataset.buildingNumberValue===choice);
+  const selected=buttons.find(button=>button.getAttribute('aria-pressed')==='true');
+  if(!desired){if(selected)selected.handlers.click({target:selected,currentTarget:selected,preventDefault(){}});return;}
+  assert.ok(button,`Missing illustrated ${name} choice ${choice}`);
+  if(button.getAttribute('aria-pressed')!=='true')button.handlers.click({target:button,currentTarget:button,preventDefault(){}});
+  if(choice==='other'){const other=t.document.getElementById('f-'+name+'Other');other.value=desired;formInputEvent(t,other,'input');}
+  return;
+ }
+ const selected=buttons.find(button=>button.getAttribute('aria-pressed')==='true');
+ if(!desired){if(selected)selected.handlers.click({target:selected,currentTarget:selected,preventDefault(){}});return;}
+ const button=buttons.find(button=>button.dataset.attributeValue===desired);assert.ok(button,`Missing illustrated ${name} value ${desired}`);
+ if(button.getAttribute('aria-pressed')!=='true')button.handlers.click({target:button,currentTarget:button,preventDefault(){}});
+}
+function chooseRadio(t,name,value){
+ const controls=t.document.getElementById('entity-form').querySelectorAll('input').filter(input=>input.type==='radio'&&input.name===name),chosen=controls.find(input=>input.value===String(value??''));
+ assert.ok(chosen,`Missing ${name} radio ${value}`);for(const input of controls)input.checked=input===chosen;formInputEvent(t,chosen);return chosen;
+}
+function chooseEnergy(t,name,value){const slider=t.document.getElementById('f-'+name+'-slider');assert.ok(slider);slider.value=String(energyRatingHelpers.energySliderIndex(value));formInputEvent(t,slider,'input');}
 function setEditorValues(t,values){
- const entries=Array.isArray(values)?values:Object.entries(values);
+ const entries=Array.isArray(values)?values:Object.entries(values),type=t.document.getElementById('f-type'),desiredType=entries.find(([name])=>name==='type')?.[1];
+ if(desiredType!==undefined){type.value=String(desiredType);type.handlers.change?.({target:type,currentTarget:type});}
  for(const [name,value] of entries){
   const control=t.document.getElementById(name==='images'?'property-images':'f-'+name);
-  if(control&&control.type!=='checkbox')control.value=String(value??'');
+  if(!control||control.type==='checkbox')continue;
+  if(control.type==='hidden'&&['floor','buildingFloors','condition','view','building','ceilingHeight','heatingType','insulated','airConditioning','solarPanels','privateGarden','balcony'].includes(name)&&!control.disabled){chooseOptionalCard(t,name,value);continue;}
+  if(name==='constructionAge'){chooseRadio(t,name,value);continue;}
+  if(name==='energyRating'||name==='minEnergyRating'){chooseEnergy(t,name,value);continue;}
+  control.value=String(value??'');
  }
  if(entries.some(([name])=>name==='title')){const title=t.document.getElementById('f-title');title?.handlers.input?.({target:title,currentTarget:title});}
- const type=t.document.getElementById('f-type');type?.handlers.change?.({target:type,currentTarget:type});
+ type?.handlers.change?.({target:type,currentTarget:type});
  for(const name of ['wholeRooms','halfRooms']){const control=t.document.getElementById('f-'+name);control?.handlers.input?.({target:control,currentTarget:control,inputType:'insertText'});}
 }
 function editorStep(t){return Array.from({length:6},(_value,index)=>t.document.getElementById('editor-step-'+index)).findIndex(step=>step&&!step.hidden);}
@@ -518,19 +558,17 @@ test('a rejected hosted test-credit grant preserves the balance and confirmation
 test('new property attributes are optional and unknown floor or amenities do not become false defaults',async()=>{
  const t=await setup();t.ui.openEditor('property');
  const html=t.document.getElementById('modal-root').innerHTML;
- for(const name of ['constructionAge','floor','insulated','airConditioning','solarPanels','privateGarden']){
-  const select=html.match(new RegExp(`<select id="f-${name}"[^>]*>([\\s\\S]*?)</select>`))?.[1];
-  assert.ok(select,`${name} select must be present`);
-  assert.match(select,/<option value="" selected>Nincs megadva<\/option>/);
+ for(const name of ['constructionAge','floor','buildingFloors','balcony','insulated','airConditioning','solarPanels','privateGarden','condition','building','view','ceilingHeight','heatingType']){
+  const control=t.document.getElementById('f-'+name);assert.ok(control,`${name} canonical control must be present`);assert.equal(control.type,'hidden');assert.equal(control.value,'');assert.equal(control.required,false);
  }
- for(const name of ['condition','building','view','ceilingHeight']){const input=t.document.getElementById('f-'+name);assert.equal(input.type,'hidden');assert.equal(input.value,'');assert.equal(input.required,false);}
- assert.match(html,/<select id="f-heatingType"/);assert.match(html,/<select id="f-secondaryHeatingType"/);assert.match(html,/>Nincs fűtés<\/option>/);assert.equal((html.match(/name="parkingTypes"/g)||[]).length,propertyAttributes.PARKING_OPTIONS.length);
+ const radios=t.document.getElementById('entity-form').querySelectorAll('input').filter(input=>input.name==='constructionAge');assert.equal(radios.length,propertyAttributes.CONSTRUCTION_AGE_OPTIONS.length+1);assert.equal(radios[0].checked,true);assert.equal(radios[0].value,'');
+ const heaters=t.document.getElementById('entity-form').querySelectorAll('button').filter(button=>button.dataset.attributeName==='heatingType');assert.deepEqual(heaters.map(button=>button.dataset.attributeValue),[...propertyAttributes.HEATING_OPTIONS]);assert.equal(t.document.getElementById('f-secondaryHeatingType'),null);assert.ok(html.includes('Nincs fűtés'));assert.equal((html.match(/name="parkingTypes"/g)||[]).length,propertyAttributes.PARKING_OPTIONS.length);
  chooseLocation(t,'city:Solymár');
  submitEntity(t,{street:'Teszt utca',houseNumber:'12/A',title:'Opcionális jellemzők',type:'Lakás',price:'82',area:'64',wholeRooms:'3',halfRooms:'0',floor:'',condition:'',building:'',constructionAge:'',view:'',ceilingHeight:'',insulated:'',airConditioning:'',solarPanels:'',images:''});
  await settle();
  const saved=t.model.getState().properties.find(item=>item.title==='Opcionális jellemzők');
  assert.ok(saved);
- for(const name of ['floor','insulated','airConditioning','solarPanels'])assert.equal(saved[name],null,name);
+ for(const name of ['floor','balcony','insulated','airConditioning','solarPanels'])assert.equal(saved[name],null,name);
  for(const name of ['condition','building','constructionAge','view','ceilingHeight'])assert.equal(saved[name],'',name);
 });
 
@@ -557,14 +595,14 @@ test('search checkboxes serialize several choices per category and can all be cl
 
 test('seller inputs preserve explicit no, unknown amenities and existing higher floor values',async()=>{
  const t=await setup();t.ui.openEditor('property');chooseLocation(t,'district:Budapest:13');
- submitEntity(t,{street:'Teszt utca',houseNumber:'12/A',title:'Részletes eladó lakás',type:'Lakás',price:'78',area:'65',wholeRooms:'3',halfRooms:'0',floor:'12',condition:'Jó',building:'Csúsztatott zsalu',constructionAge:'31–40 év közötti',view:'Panorámás',ceilingHeight:'3 m feletti',heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',energyRating:'A+',parkingTypes:'Mélygarázs',insulated:'false',airConditioning:'true',solarPanels:'',images:''});await settle();
+ submitEntity(t,{street:'Teszt utca',houseNumber:'12/A',title:'Részletes eladó lakás',type:'Lakás',price:'78',area:'65',wholeRooms:'3',halfRooms:'0',floor:'12',condition:'Jó',building:'Csúsztatott zsalu',constructionAge:'31–40 év közötti',view:'Panorámás',ceilingHeight:'3 m feletti',heatingType:'Hőszivattyú',energyRating:'A+',energyRatingScheme:'2023',parkingTypes:'Mélygarázs',insulated:'false',airConditioning:'true',solarPanels:'',images:''});await settle();
  const saved=t.model.getState().properties.find(item=>item.title==='Részletes eladó lakás');assert.ok(saved);
  assert.equal(saved.floor,12);assert.equal(saved.insulated,false);assert.equal(saved.airConditioning,true);assert.equal(saved.solarPanels,null);
  assert.equal(saved.building,'Csúsztatott zsalu');assert.equal(saved.energyRating,'A+');
  t.ui.openEditor('property',saved.id);
  const html=t.document.getElementById('modal-root').innerHTML;
- assert.match(html,/<option value="12"(?=[^>]*\bselected\b)[^>]*>9 vagy afölötti<\/option>/);assert.equal(t.document.getElementById('f-floor').value,'12');
- assert.match(html,/<option value="false"(?=[^>]*\bselected\b)[^>]*>Nem<\/option>/);
+ assert.equal(t.document.getElementById('f-floor').value,'12');assert.equal(t.document.getElementById('f-floorOther').value,'12');assert.equal(t.document.getElementById('floor-other-field').hidden,false);
+ assert.equal(t.document.getElementById('entity-form').querySelectorAll('button').find(button=>button.dataset.attributeName==='insulated'&&button.dataset.attributeValue==='false').getAttribute('aria-pressed'),'true');
  assert.equal(t.document.getElementById('f-heatingType').value,'Hőszivattyú');
 });
 
@@ -630,14 +668,13 @@ test('seller suggestions and a forged picker action cannot assign a broad city-r
  assert.ok(saved);assert.equal(saved.locationId,'city:Debrecen');
 });
 
-test('seller heating lists, supplemental heating and multiple parking choices persist together with exact room counts',async()=>{
- const t=await setup();t.ui.openEditor('property');chooseLocation(t,'city:Debrecen');
- const html=t.document.getElementById('modal-root').innerHTML;
- const options=name=>[...html.match(new RegExp(`<select id="f-${name}"[^>]*>([\\s\\S]*?)</select>`))[1].matchAll(/<option value="([^"]*)"/g)].map(match=>match[1]);
- assert.deepEqual(options('heatingType'),['',...propertyAttributes.HEATING_OPTIONS]);assert.deepEqual(options('secondaryHeatingType'),options('heatingType'));
- assert.doesNotMatch(html,/id="f-rooms"|id="f-parkingType"/);
- submitEntity(t,[...Object.entries({street:'Teszt utca',houseNumber:'12/A',title:'Egész és fél szobák',type:'Lakás',price:'82.5',area:'64.5',wholeRooms:'2',halfRooms:'3',floor:'-1',heatingType:'Nincs fűtés',secondaryHeatingType:'Klíma',images:''}),['parkingTypes','Garázs'],['parkingTypes','Udvari beálló']]);await settle();
- const saved=t.model.getState().properties.find(item=>item.title==='Egész és fél szobák');assert.ok(saved);assert.equal(saved.wholeRooms,2);assert.equal(saved.halfRooms,3);assert.equal(saved.rooms,3.5);assert.equal(saved.floor,-1);assert.equal(saved.heatingType,'Nincs fűtés');assert.equal(saved.secondaryHeatingType,'Klíma');assert.deepEqual([...saved.parkingTypes],['Garázs','Udvari beálló']);
+test('seller illustrated heating, preserved legacy supplemental heating and multiple parking choices persist with exact room counts',async()=>{
+ const raw=configuredCriteriaRaw('property');raw.properties.find(property=>property.id==='own-p1').secondaryHeatingType='Klíma';
+ const t=await setup({initialRaw:raw});t.ui.openEditor('property','own-p1');
+ const html=t.document.getElementById('modal-root').innerHTML,buttons=t.document.getElementById('entity-form').querySelectorAll('button').filter(button=>button.dataset.attributeName==='heatingType');
+ assert.deepEqual(buttons.map(button=>button.dataset.attributeValue),[...propertyAttributes.HEATING_OPTIONS]);assert.equal(t.document.getElementById('f-secondaryHeatingType'),null);assert.doesNotMatch(html,/Kiegészítő fűtés|id="f-rooms"|id="f-parkingType"/);
+ submitEntity(t,[...Object.entries({street:'Teszt utca',houseNumber:'12/A',title:'Egész és fél szobák',type:'Lakás',price:'82.5',area:'64.5',wholeRooms:'2',halfRooms:'3',floor:'-1',heatingType:'Nincs fűtés',images:''}),['parkingTypes','Garázs'],['parkingTypes','Udvari beálló']]);await settle();
+ const saved=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(saved.title,'Egész és fél szobák');assert.equal(saved.wholeRooms,2);assert.equal(saved.halfRooms,3);assert.equal(saved.rooms,3.5);assert.equal(saved.floor,-1);assert.equal(saved.heatingType,'Nincs fűtés');assert.equal(saved.secondaryHeatingType,'Klíma','Removing the editor control must not erase an unchanged legacy value');assert.deepEqual([...saved.parkingTypes],['Garázs','Udvari beálló']);
  t.ui.openEditor('property',saved.id);assert.equal(t.document.getElementById('f-wholeRooms').value,'2');assert.equal(t.document.getElementById('f-halfRooms').value,'3');
  assert.match(t.document.getElementById('modal-root').innerHTML,/name="parkingTypes" value="Garázs" checked/);
  await t.click({page:'properties'});assert.match(t.document.getElementById('app').innerHTML,/2 egész \+ 3 fél szoba/);
@@ -675,15 +712,15 @@ test('house forms require lot area only for sellers and hide or disable floor, b
   if(kind==='property'){assert.equal(t.document.getElementById('f-lotArea').required,false);assert.equal(t.document.getElementById('f-lotArea').disabled,true);assert.equal(t.document.getElementById('f-floor').disabled,false);}else assert.equal(t.document.getElementById('floors-group').disabled,false);
  }
  t.ui.openEditor('property');chooseLocation(t,'city:Debrecen');submitEntity(t,{street:'Teszt utca',houseNumber:'12/A',title:'Ház mezőtisztítás',type:'Ház',price:'99.5',area:'120.5',wholeRooms:'2',halfRooms:'3',lotArea:'650',floor:'3',balcony:'on',elevator:'on',images:''});await settle();
- const property=t.model.getState().properties.find(item=>item.title==='Ház mezőtisztítás');assert.ok(property);assert.equal(property.floor,null);assert.equal(property.balcony,false);assert.equal(property.elevator,false);
+ const property=t.model.getState().properties.find(item=>item.title==='Ház mezőtisztítás');assert.ok(property);assert.equal(property.floor,null);assert.equal(property.balcony,null);assert.equal(property.elevator,false);
  t.ui.openEditor('search');chooseLocation(t,'city:Debrecen');submitEntity(t,[...Object.entries({...searchValues('Ház keresési mezőtisztítás'),type:'Ház',balcony:'on',elevator:'on'}),['floors','-1'],['heatingTypes','Gázkazán'],['heatingTypes','Hőszivattyú']]);await settle();
- const search=t.model.getState().searches.find(item=>item.title==='Ház keresési mezőtisztítás');assert.ok(search);assert.deepEqual([...search.floors],[]);assert.equal(search.balcony,false);assert.equal(search.elevator,false);assert.deepEqual([...search.heatingTypes],['Gázkazán','Hőszivattyú']);
+ const search=t.model.getState().searches.find(item=>item.title==='Ház keresési mezőtisztítás');assert.ok(search);assert.deepEqual([...search.floors],[]);assert.equal(search.balcony,false);assert.equal(search.elevator,false);assert.deepEqual([...search.heatingTypes],['Gázkazán / cirkó','Hőszivattyú']);
 });
 
 test('legacy arbitrary room totals are never rounded and existing heating or parking text remains selectable',async()=>{
  const demo=createModel({getItem:()=>null,setItem:()=>{}}).getState();demo.properties[0]={...demo.properties[0],id:'legacy-property',rooms:3.2,wholeRooms:null,halfRooms:null,heatingType:'Régi vegyes rendszer',parkingType:'Régi garázs és beálló',parkingTypes:undefined};
  const t=await setup({hosted:true,authenticated:true,apiOverrides:{getState:async()=>demo}});t.ui.openEditor('property','legacy-property');const html=t.document.getElementById('modal-root').innerHTML;
- assert.equal(t.document.getElementById('f-wholeRooms').value,'');assert.equal(t.document.getElementById('f-halfRooms').value,'');assert.match(html,/<option value="Régi vegyes rendszer"(?=[^>]*\bselected\b)[^>]*>Meglévő érték: Régi vegyes rendszer<\/option>/);assert.match(html,/name="parkingTypes" value="Régi garázs és beálló" checked/);
+ assert.equal(t.document.getElementById('f-wholeRooms').value,'');assert.equal(t.document.getElementById('f-halfRooms').value,'');assert.equal(t.document.getElementById('f-heatingType').value,'Régi vegyes rendszer');const existing=t.document.getElementById('entity-form').querySelectorAll('button').find(button=>button.dataset.attributeName==='heatingType'&&button.dataset.attributeValue==='Régi vegyes rendszer');assert.ok(existing);assert.equal(existing.getAttribute('aria-pressed'),'true');assert.match(html,/name="parkingTypes" value="Régi garázs és beálló" checked/);
 });
 
 
@@ -691,9 +728,9 @@ function chooseReport(t,reason){for(const option of accountHelpers.REPORT_REASON
 function accountFixture(mutate){let raw;const local=createModel({getItem:()=>null,setItem:(_key,value)=>{raw=JSON.parse(value);}});local.activate('search','own-s1');mutate(raw);return raw;}
 test('hosted and settings registration both offer account types and send the selected agent role',async()=>{
  const hosted=await setup({hosted:true});await hosted.click({action:'auth-mode',mode:'register'});
- const registration=hosted.document.getElementById('app').innerHTML;assert.match(registration,/id="f-accountType"/);assert.match(registration,/value="private">Magánszemély/);assert.match(registration,/value="agent">Ingatlanközvetítő/);
+ const registration=hosted.document.getElementById('app').innerHTML;assert.match(registration,/id="f-accountType"/);assert.match(registration,/name="accountType" value="private" type="radio"/);assert.match(registration,/name="accountType" value="agent" type="radio"/);assert.match(registration,/Magánszemély/);assert.match(registration,/Ingatlanközvetítő/);assert.doesNotMatch(registration,/<select[^>]*accountType/);
  await submitHostedAuth(hosted,{...hostedCredentials,name:'Közvetítő Anna',accountType:'agent'});await settle();assert.equal(hosted.connected[0][3].accountType,'agent');
- const legacy=await setup();await legacy.click({page:'settings'});const select=legacy.document.getElementById('api-accountType');assert.ok(select);assert.equal(select.value,'private');
+ const legacy=await setup();await legacy.click({page:'settings'});const choices=legacy.document.getElementById('api-accountType');assert.ok(choices);assert.equal(legacy.document.getElementById('api-accountType-private').checked,true);assert.equal(legacy.document.getElementById('api-accountType-agent').checked,false);
  legacy.document.getElementById('register-toggle').handlers.change({target:{checked:true}});assert.doesNotMatch(legacy.document.getElementById('register-name').className,/hidden/);
  const form=legacy.document.getElementById('api-form');form.values={baseUrl:'https://api.example.test',email:'agent@example.test',password:'LongPassword2026!',register:'on',registerName:'Közvetítő Eszter',accountType:'agent'};form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(legacy.connected[0][3].accountType,'agent');
 });
@@ -773,8 +810,8 @@ test('local landing preview does not alter the saved demo workspace',async()=>{
  const t=await setup({hash:'#landing'}),before=t.model.getState();assert.ok(t.document.getElementById('landing-region'));await t.click({page:'discover'});assert.match(t.document.getElementById('app').innerHTML,/A következő fejezeted/);assert.deepEqual(t.model.getState(),before);
 });
 test('landing uses public structured teaser fields only, escapes markup and bounds demand and property cards',async()=>{
- const data=landingFixture();data.searches=Array.from({length:12},(_,i)=>({...data.searches[0],key:'s'+i,title:'Lakást <keresnek>',description:'hidden@example.hu',ownerId:'secret-owner',ownerName:'Titkos Név'}));data.properties=Array.from({length:6},(_,i)=>({...data.properties[0],key:'p'+i,title:'Eladó <lakás>',address:'Titkos utca 42.',images:['https://tracker.test/photo.jpg'],ownerEmail:'hidden@example.hu'}));
- const t=await setup({hosted:true,hash:'',fetchLanding:async()=>data}),html=t.document.getElementById('app').innerHTML;assert.equal((html.match(/class="landing-search-card"/g)||[]).length,8);assert.equal((html.match(/class="landing-property-card"/g)||[]).length,4);assert.match(html,/Lakást &lt;keresnek&gt;/);assert.doesNotMatch(html,/hidden@example|secret-owner|Titkos|tracker.test|<keresnek>/);assert.doesNotMatch(source,/navigator\s*\.\s*geolocation|watchPosition|getCurrentPosition/);
+ const data=landingFixture();data.searches=Array.from({length:22},(_,i)=>({...data.searches[0],key:'s'+i,title:'Lakást & kertet <keresnek>',description:'hidden@example.hu',ownerId:'secret-owner',ownerName:'Titkos Név'}));data.properties=Array.from({length:14},(_,i)=>({...data.properties[0],key:'p'+i,title:'Eladó <lakás>',address:'Titkos utca 42.',images:['https://images.example.test/photo.jpg?size=1&view=2','javascript:alert(1)'],ownerEmail:'hidden@example.hu'}));
+ const t=await setup({hosted:true,hash:'',fetchLanding:async()=>data}),html=t.document.getElementById('app').innerHTML;assert.equal((html.match(/class="landing-search-card(?:\s[^"]*)?"/g)||[]).length,16);assert.equal((html.match(/class="landing-property-card(?:\s[^"]*)?"/g)||[]).length,8);assert.match(html,/Lakást &amp; kertet/);assert.match(html,/https:\/\/images.example.test\/photo.jpg\?size=1&amp;view=2/);assert.doesNotMatch(html,/hidden@example|secret-owner|Titkos|javascript:|<keresnek>/);assert.doesNotMatch(source,/navigator\s*\.\s*geolocation|watchPosition|getCurrentPosition/);
 });
 test('manual region choice wins a delayed approximate lookup and only its canonical ID is remembered',async()=>{
  let detected;const geo=new Promise(resolve=>{detected=resolve});const t=await setup({hosted:true,hash:'',detectLandingRegion:()=>geo});assert.deepEqual(JSON.parse(JSON.stringify(t.landingCalls)),[{}]);let select=t.document.getElementById('landing-region');select.value='HU321';select.handlers.change({currentTarget:select});await settle();assert.equal(t.regionStorage.get('otthonra.landing.region'),'HU321');assert.match(t.document.getElementById('app').innerHTML,/Debrecen/);detected('HU110');await settle();assert.deepEqual(JSON.parse(JSON.stringify(t.landingCalls)),[{},{region:'HU321'}]);assert.equal(t.document.getElementById('landing-region').value,'HU321');
@@ -784,10 +821,10 @@ test('approximate region is optional and not persisted; saved manual region bypa
  let lookups=0;const saved=await setup({hosted:true,hash:'',regionStorage:{'otthonra.landing.region':'HU321'},detectLandingRegion:async()=>{lookups++;return 'HU110'}});assert.deepEqual(JSON.parse(JSON.stringify(saved.landingCalls)),[{},{region:'HU321'}]);assert.equal(lookups,0);assert.match(saved.document.getElementById('app').innerHTML,/Debrecen/);
 });
 test('regional empty results remain honest and national fallback clears remembered choice',async()=>{
- const t=await setup({hosted:true,hash:''});const select=t.document.getElementById('landing-region');select.value='HU232';select.handlers.change({currentTarget:select});await settle();let html=t.document.getElementById('app').innerHTML;assert.match(html,/Ebben a régióban még nincs keresési igény/);assert.match(html,/Somogy/);assert.doesNotMatch(html,/class="landing-search-card"|class="landing-property-card"/);await t.click({action:'landing-national'});html=t.document.getElementById('app').innerHTML;assert.match(html,/Országos válogatás/);assert.match(html,/class="landing-search-card"/);assert.equal(t.regionStorage.has('otthonra.landing.region'),false);
+ const t=await setup({hosted:true,hash:''});const select=t.document.getElementById('landing-region');select.value='HU232';select.handlers.change({currentTarget:select});await settle();let html=t.document.getElementById('app').innerHTML;assert.match(html,/Ebben a régióban még nincs keresési igény/);assert.match(html,/Somogy/);assert.doesNotMatch(html,/class="landing-search-card(?:\s[^"]*)?"|class="landing-property-card(?:\s[^"]*)?"/);await t.click({action:'landing-national'});html=t.document.getElementById('app').innerHTML;assert.match(html,/Országos válogatás/);assert.match(html,/class="landing-search-card(?:\s[^"]*)?"/);assert.equal(t.regionStorage.has('otthonra.landing.region'),false);
 });
 test('public API failure offers retry without substituting demo or erasing regional choices',async()=>{
- let requests=0;const t=await setup({hosted:true,hash:'',fetchLanding:async input=>{if(++requests===1)throw new Error('Átmeneti hálózati hiba.');return landingFixture(input.region)}});let html=t.document.getElementById('app').innerHTML;assert.match(html,/A válogatás most nem elérhető/);assert.doesNotMatch(html,/class="landing-search-card"|sidebar/);assert.equal(t.getSelectedModel(),null);await t.click({action:'landing-retry'});html=t.document.getElementById('app').innerHTML;assert.match(html,/class="landing-search-card"/);
+ let requests=0;const t=await setup({hosted:true,hash:'',fetchLanding:async input=>{if(++requests===1)throw new Error('Átmeneti hálózati hiba.');return landingFixture(input.region)}});let html=t.document.getElementById('app').innerHTML;assert.match(html,/A válogatás most nem elérhető/);assert.doesNotMatch(html,/class="landing-search-card(?:\s[^"]*)?"|sidebar/);assert.equal(t.getSelectedModel(),null);await t.click({action:'landing-retry'});html=t.document.getElementById('app').innerHTML;assert.match(html,/class="landing-search-card(?:\s[^"]*)?"/);
 });
 test('a late public response cannot replace the authentication page',async()=>{
  let release,requests=0;const pending=new Promise(resolve=>{release=resolve}),t=await setup({hosted:true,hash:'',fetchLanding:()=>++requests===1?landingFixture():pending});const retry=t.click({action:'landing-retry'});await settle();await t.click({action:'auth-mode',mode:'register'});assert.ok(t.document.getElementById('hosted-auth-form'));release(landingFixture('HU321'));await retry;assert.ok(t.document.getElementById('hosted-auth-form'));assert.equal(t.ctx.location.hash,'#register');
@@ -928,7 +965,7 @@ test('discovery shows concise fulfilled conditions and only the other party valu
    assert.match(html,/legalább 3 szoba/);assert.match(html,/Tégla &lt;és&gt; kő/);
    assert.doesNotMatch(html,/2 szoba|Panel|<és>/,'A seller sees only the foreign search values, escaped as plain text');
   }
-  assert.match(t.document.getElementById('app').innerHTML,/Anna &lt;teszt&gt;/);
+  assert.match(t.document.getElementById('app').innerHTML,/owner-first-name">Hirdető/);assert.doesNotMatch(t.document.getElementById('app').innerHTML,/Anna <teszt>|Anna &lt;teszt&gt;/,'Unsafe identity strings are replaced with a neutral public name');
  }
 });
 
@@ -941,8 +978,8 @@ test('hard-only match details do not produce a fulfilled condition section or re
 
 test('public cards display listing titles, discreet types and first names',async()=>{
  const t=await setup({hosted:true,hash:''}),html=t.document.getElementById('app').innerHTML;
- for(const text of ['Kertes otthont keresünk','Napfényes erkélyes otthon','Anna','Péter','lakást keres','landing-ad-title','landing-type','owner-first-name'])assert.ok(html.includes(text),text);
- assert.doesNotMatch(html,/Lakást keresnek|Eladó lakás/);
+ for(const text of ['Kertes otthont keresünk','Napfényes erkélyes otthon','Anna','Péter','landing-ad-title','landing-type','owner-first-name'])assert.ok(html.includes(text),text);
+ assert.doesNotMatch(html,/Lakást keresnek|Eladó lakás|lakást keres/);assert.match(html,/<h3 class="landing-ad-title">Kertes otthont keresünk<\/h3>/);
 });
 
 test('seller insights are property scoped, anonymous and show an active package without another purchase',async()=>{
@@ -1072,7 +1109,7 @@ test('search editor exposes named stages, validates the current topic and retain
 test('seller wizard preserves required house plot, nullable amenities, image URLs and multiple parking choices through backtracking',async()=>{
  const t=await setup(),before=t.model.getState(),saved=[],save=t.model.saveEntity;t.model.saveEntity=(...args)=>{saved.push(args);return save(...args);};
  t.ui.openEditor('property');const html=t.document.getElementById('modal-root').innerHTML;
- for(const label of ['Helyszín és cím','Ingatlan típusa','Ár és méret','Ingatlanjellemzők','Felszereltség','Képek és leírás'])assert.ok(html.includes(label),label);
+ for(const label of ['Helyszín','Ingatlan típusa','Ár és méret','Ingatlanjellemzők','Felszereltség','Képek és leírás'])assert.ok(html.includes(label),label);
  chooseLocation(t,'city:Solymár');t.document.getElementById('f-street').value='Teszt utca';t.document.getElementById('f-houseNumber').value='12/A';
  await editorAction(t,'editor-next');assert.equal(editorStep(t),1);chooseEditorType(t,'Ház');assert.equal(editorStep(t),2);
  for(const [name,value] of Object.entries({price:'110.5',area:'130.5',wholeRooms:'3',halfRooms:'1'}))t.document.getElementById('f-'+name).value=value;
@@ -1080,7 +1117,7 @@ test('seller wizard preserves required house plot, nullable amenities, image URL
  t.document.getElementById('f-lotArea').value='720';await editorAction(t,'editor-next');assert.equal(editorStep(t),3);
  t.document.getElementById('f-condition').value='Jó';t.document.getElementById('f-building').value='Tégla';
  await editorAction(t,'editor-next');assert.equal(editorStep(t),4);
- for(const [name,value] of Object.entries({heatingType:'Hőszivattyú',secondaryHeatingType:'Klíma',insulated:'false',airConditioning:'true',solarPanels:'',energyRating:'A+'}))t.document.getElementById('f-'+name).value=value;
+ for(const [name,value] of Object.entries({heatingType:'Hőszivattyú',insulated:'false',airConditioning:'true',solarPanels:''}))chooseOptionalCard(t,name,value);chooseEnergy(t,'energyRating','A+');
  editorChoice(t,'parkingTypes','Garázs').checked=true;editorChoice(t,'parkingTypes','Udvari beálló').checked=true;
  await editorAction(t,'editor-next');assert.equal(editorStep(t),5);
  const title=t.document.getElementById('f-title');assert.match(title.value,/Solymár/);assert.match(title.value,/Ház/);title.value='Lépésenként megőrzött családi ház';title.handlers.input({target:title});
@@ -1090,7 +1127,7 @@ test('seller wizard preserves required house plot, nullable amenities, image URL
  await editorAction(t,'editor-step-button-5');assert.match(t.document.getElementById('property-images').value,/kert\.jpg/);assert.equal(saved.length,0);
  submitEditor(t);await settle();assert.equal(saved.length,1);
  const result=t.model.getState().properties.find(item=>item.title==='Lépésenként megőrzött családi ház');assert.ok(result);assert.equal(result.lotArea,720);assert.equal(result.insulated,false);assert.equal(result.airConditioning,true);assert.equal(result.solarPanels,null);assert.equal(result.wholeRooms,3);assert.equal(result.halfRooms,1);
- assert.deepEqual([...result.parkingTypes],['Udvari beálló','Garázs']);assert.deepEqual([...result.images],['https://example.test/elol.jpg','https://example.test/kert.jpg']);assert.equal(result.floor,null);assert.equal(result.balcony,false);assert.equal(result.elevator,false);
+ assert.deepEqual([...result.parkingTypes],['Udvari beálló','Garázs']);assert.deepEqual([...result.images],['https://example.test/elol.jpg','https://example.test/kert.jpg']);assert.equal(result.floor,null);assert.equal(result.balcony,null);assert.equal(result.elevator,false);
  assert.deepEqual(t.model.getState().active,before.active);
 });
 
@@ -1221,7 +1258,7 @@ test('discovery filters first show every configured search criterion read-only, 
  assert.equal(criteriaRow(t,'type').text,'Lakás');assert.match(criteriaRow(t,'locationIds').text,/Debrecen/);assert.match(criteriaRow(t,'locationIds').text,/Budapest V\. kerület/);
  for(const key of ['minPrice','minArea','minRooms'])assert.match(criteriaRow(t,key).text,/^0(?:\s|,|\.|$)/,`${key}=0 is a configured value`);
  assert.match(criteriaRow(t,'maxPrice').text,/120,5.*M Ft/);assert.match(criteriaRow(t,'maxArea').text,/150.*m²/);assert.match(criteriaRow(t,'maxRooms').text,/5,5.*szoba/);
- for(const [key,values] of Object.entries({conditions:['Átlagos','Jó'],buildings:['Tégla','Panel'],constructionAges:['10 évnél fiatalabb','31–40 év közötti'],views:['Kertre néző','Panorámás'],heatingTypes:['Hőszivattyú','Klíma'],floors:['Szuterén','Földszint','9']}))for(const value of values)assert.ok(criteriaRow(t,key).text.includes(value),`${key} must show ${value}`);
+ for(const [key,values] of Object.entries({conditions:['Átlagos','Jó'],buildings:['Tégla','Panel'],constructionAges:['10 évnél fiatalabb','31–40 év közötti'],views:['Kertre néző','Panorámás'],heatingTypes:['Hőszivattyú','Fűtő klíma'],floors:['Szuterén','Földszint','9']}))for(const value of values)assert.ok(criteriaRow(t,key).text.includes(value),`${key} must show ${value}`);
  assert.equal(criteriaRow(t,'ceilingHeight').text,'3 m alatti');assert.equal(criteriaRow(t,'balcony').text,'Szükséges');assert.equal(criteriaRow(t,'elevator').text,'Szükséges');assert.equal(criteriaRow(t,'moveIn').text,'Azonnal');assert.equal(criteriaRow(t,'financing').text,'Saját forrásból');
  assert.match(criteriaRow(t,'description').html,/Csendes &lt;kert&gt; &amp; tágas tér\./);assert.doesNotMatch(html,/<keresés>|<kert>/);
  assert.deepEqual(t.model.getState(),before);assert.equal(writes.length,0,'Opening the overview neither saves nor debits');
@@ -1233,7 +1270,7 @@ test('property filter overview shows saved details, known negative amenities and
  assert.match(html,/class="criteria-summary"[^>]*data-kind="property"[^>]*data-id="own-p1"/);assert.match(html,/Az ingatlan adatai/);assert.match(html,/Minden adat &lt;otthon&gt; &amp; fény/);assert.doesNotMatch(html,/<form\b|<input\b|<select\b|<textarea\b/);
  assert.equal(criteriaRow(t,'type').text,'Lakás');assert.match(criteriaRow(t,'locationId').text,/Budapest V\. kerület/);assert.equal(criteriaRow(t,'neighborhood').text,'Belváros');assert.equal(criteriaRow(t,'address').text,'1051, Napfény utca 12.');
  assert.match(criteriaRow(t,'price').text,/92,5.*M Ft/);assert.match(criteriaRow(t,'area').text,/66,5.*m²/);assert.match(criteriaRow(t,'rooms').text,/2.*egész.*1.*fél/);assert.equal(criteriaRow(t,'floor').text,'Földszint');
- for(const [key,value] of Object.entries({condition:'Átlagos',building:'Tégla',constructionAge:'31–40 év közötti',view:'Udvari',ceilingHeight:'3 m feletti',heatingType:'Nincs fűtés',secondaryHeatingType:'Klíma',energyRating:'BB'}))assert.equal(criteriaRow(t,key).text,value);
+ for(const [key,value] of Object.entries({condition:'Átlagos',building:'Tégla',constructionAge:'31–40 év közötti',view:'Udvari',ceilingHeight:'3 m feletti',heatingType:'Nincs fűtés',energyRating:'BB'}))assert.equal(criteriaRow(t,key).text,value);
  for(const key of ['insulated','airConditioning','balcony'])assert.equal(criteriaRow(t,key).text,'Nincs',`${key}=false must remain distinguishable from unknown`);
  for(const key of ['solarPanels','elevator'])assert.equal(criteriaRow(t,key).text,'Van');
  for(const choice of ['Udvari beálló','Garázs'])assert.ok(criteriaRow(t,'parkingTypes').text.includes(choice));
@@ -2010,19 +2047,16 @@ test('the responsive step menu owns only named progress controls and the reorder
 test('floor exclusions, raised ground floors and legacy exact upper floors survive actual owner saves',async()=>{
  const raw=configuredCriteriaRaw('property');Object.assign(raw.properties.find(item=>item.id==='own-p1'),{floor:12,buildingFloors:12,floorIsUpperRange:false});
  const t=await setup({initialRaw:raw});t.ui.openEditor('property','own-p1');const form=t.document.getElementById('entity-form');
- let floor=t.document.getElementById('f-floor'),floorOptions=floor.markup;
- assert.match(floorOptions,/<option value="0\.5"[^>]*>Magasföldszint<\/option>/);
- assert.match(floorOptions,/<option value="9"[^>]*>9 vagy afölötti<\/option>/);
- assert.doesNotMatch(floorOptions,/<option value="(?:10|11)"/,'Only the grouped upper-floor option is offered for new selections');
- assert.equal(floor.value,'12','An existing exact upper floor remains available as its selected legacy value');
- const buildingFloors=t.document.getElementById('f-buildingFloors');assert.equal(buildingFloors.type,'number');assert.equal(buildingFloors.getAttribute('min'),'0');assert.equal(buildingFloors.getAttribute('max'),'200');assert.equal(buildingFloors.step,'1');assert.equal(buildingFloors.required,false);
+ const floor=t.document.getElementById('f-floor'),floorCards=t.document.getElementById('entity-form').querySelectorAll('button').filter(button=>button.dataset.buildingNumber==='floor');
+ assert.equal(floor.type,'hidden');assert.deepEqual(floorCards.map(button=>button.dataset.buildingNumberValue),['-1','0','0.5','1','2','3','4','5','6','7','8','9','10','other']);
+ assert.equal(floor.value,'12','An existing exact upper floor remains available through the Other control');assert.equal(t.document.getElementById('f-floorOther').value,'12');
+ const buildingFloors=t.document.getElementById('f-buildingFloors'),buildingOther=t.document.getElementById('f-buildingFloorsOther');assert.equal(buildingFloors.type,'hidden');assert.equal(buildingOther.type,'number');assert.equal(buildingOther.getAttribute('min'),'11');assert.equal(buildingOther.getAttribute('max'),'200');assert.equal(buildingOther.step,'1');assert.equal(buildingOther.required,true);
  await advanceEditor(t,5);submitEditor(t);await settle();let property=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(property.floor,12);assert.equal(property.floorIsUpperRange,false);assert.equal(property.buildingFloors,12,'Opening and saving an old profile must preserve the exact floor used for top-floor checks');
- const chooseFloor=value=>{const input=t.document.getElementById('f-floor');input.value=String(value);const event={target:input,currentTarget:input};input.handlers.change?.(event);t.document.getElementById('entity-form').handlers.change?.(event);};
- t.ui.openEditor('property','own-p1');chooseFloor(9);await advanceEditor(t,5);submitEditor(t);await settle();property=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(property.floor,9);assert.equal(property.floorIsUpperRange,true,'An explicit grouped option records that the exact upper floor is unknown');
- t.ui.openEditor('property','own-p1');chooseFloor(.5);t.document.getElementById('f-buildingFloors').value='0';t.document.getElementById('f-privateGarden').value='false';assert.equal(t.document.getElementById('f-sharedGarden'),null);
+ t.ui.openEditor('property','own-p1');await advanceEditor(t,3);chooseOptionalCard(t,'floor',9);await advanceEditor(t,5);submitEditor(t);await settle();property=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(property.floor,9);assert.equal(property.floorIsUpperRange,false,'Selecting the numbered card means the exact ninth floor');
+ t.ui.openEditor('property','own-p1');await advanceEditor(t,3);chooseOptionalCard(t,'floor',.5);chooseOptionalCard(t,'buildingFloors',0);await advanceEditor(t,4);chooseOptionalCard(t,'privateGarden',false);assert.equal(t.document.getElementById('f-sharedGarden'),null);
  await advanceEditor(t,5);submitEditor(t);await settle();property=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(property.floor,.5);assert.equal(property.floorIsUpperRange,false);assert.equal(property.buildingFloors,0);assert.equal(property.privateGarden,false);assert.equal(property.sharedGarden,null);
  t.ui.openEditor('property','own-p1');assert.equal(t.document.getElementById('f-floor').value,'0.5');assert.equal(t.document.getElementById('f-buildingFloors').value,'0');assert.equal(t.document.getElementById('f-privateGarden').value,'false');
- t.document.getElementById('f-buildingFloors').value='';t.document.getElementById('f-privateGarden').value='';await advanceEditor(t,5);submitEditor(t);await settle();property=t.model.getState().properties.find(item=>item.id==='own-p1');for(const key of ['buildingFloors','privateGarden','sharedGarden'])assert.equal(property[key],null,`${key} remains unknown when cleared`);
+ await advanceEditor(t,3);chooseOptionalCard(t,'buildingFloors',null);await advanceEditor(t,4);chooseOptionalCard(t,'privateGarden',null);await advanceEditor(t,5);submitEditor(t);await settle();property=t.model.getState().properties.find(item=>item.id==='own-p1');for(const key of ['buildingFloors','privateGarden','sharedGarden'])assert.equal(property[key],null,`${key} remains unknown when cleared`);
  t.ui.openEditor('search','own-s1');for(const id of ['f-excludeTopFloor','f-excludeGroundFloorAndBelow','f-airConditioning','f-privateGarden'])changeChoice(t,t.document.getElementById(id),true);
  await advanceEditor(t,5);submitEditor(t);await settle();let search=t.model.getState().searches.find(item=>item.id==='own-s1');for(const key of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])assert.equal(search[key],true,key);assert.equal(search.sharedGarden,false);
  t.ui.openEditor('search','own-s1');for(const id of ['f-excludeTopFloor','f-excludeGroundFloorAndBelow','f-airConditioning','f-privateGarden']){assert.equal(t.document.getElementById(id).checked,true);changeChoice(t,t.document.getElementById(id),false);}
@@ -2222,4 +2256,68 @@ test('legacy room limits below one remain unchanged until a counter action choos
  t.ui.openEditor('search','own-s1');await advanceEditor(t,2);
  for(const name of ['minRooms','maxRooms']){await editorAction(t,`f-${name}-up`);assert.equal(Number(t.document.getElementById('f-'+name).value),1);await editorAction(t,`f-${name}-down`);assert.equal(t.document.getElementById('f-'+name).value,'');}
  await advanceEditor(t,5);submitEditor(t);await settle();saved=t.model.getState().searches.find(row=>row.id==='own-s1');assert.equal(saved.minRooms,null);assert.equal(saved.maxRooms,null);
+});
+
+
+test('seller location collapses to an editable city name and nested address privacy never exposes a hidden house number',async()=>{
+ const raw=configuredCriteriaRaw('property'),original=raw.properties.find(item=>item.id==='own-p1');original.hideStreet=true;original.hideHouseNumber=true;
+ const t=await setup({initialRaw:raw});t.ui.openEditor('property','own-p1');
+ const form=t.document.getElementById('entity-form'),query=t.document.getElementById('property-location-query'),chips=t.document.getElementById('location-chips'),edit=t.document.getElementById('property-location-edit');
+ assert.equal(query.hidden,true);assert.ok(edit);assert.match(edit.getAttribute('aria-label'),/Budapest V.*szerkesztése/);assert.equal(t.document.getElementById('f-postalCode').type,'hidden');assert.doesNotMatch(t.document.html,/<label[^>]*for="f-postalCode"/);
+ const streetBefore=t.document.getElementById('f-street').value;chips.handlers.click({target:{closest:selector=>selector==='#property-location-edit'?edit:null}});assert.equal(query.hidden,false);assert.equal(t.document.activeElement.id,'location-input');assert.equal(t.document.getElementById('f-street').value,streetBefore,'Entering location editing does not erase the verified street');
+ t.document.handlers.pointerdown({target:t.document.getElementById('toast')});assert.equal(query.hidden,true,'Leaving an empty location editor restores the selected city');
+ const hideStreet=t.document.getElementById('f-hideStreet'),hideHouse=t.document.getElementById('f-hideHouseNumber');assert.equal(hideStreet.checked,true);assert.equal(hideHouse.checked,true);assert.equal(hideHouse.disabled,true);
+ changeChoice(t,hideStreet,false);assert.equal(hideHouse.disabled,false);assert.equal(hideHouse.checked,true,'Showing a street does not silently expose its house number');changeChoice(t,hideHouse,false);assert.equal(hideHouse.checked,false);
+ changeChoice(t,hideStreet,true);assert.equal(hideHouse.checked,true);assert.equal(hideHouse.disabled,true);await advanceEditor(t,5);submitEditor(t);await settle();
+ const saved=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(saved.hideStreet,true);assert.equal(saved.hideHouseNumber,true);assert.equal(saved.addressDetails?.postalCode??saved.postalCode,'1051','Removing the visible postcode field preserves an unchanged existing value');
+ assert.notEqual(t.document.getElementById('entity-form'),form);
+});
+
+test('seller nullable amenity cards cycle yes, no and unspecified without coercion on actual saves',async()=>{
+ const t=await setup({initialRaw:configuredCriteriaRaw('property')});t.ui.openEditor('property','own-p1');await advanceEditor(t,4);
+ const names=['balcony','airConditioning','privateGarden','insulated','solarPanels'];
+ for(const name of names){const input=t.document.getElementById('f-'+name);assert.equal(input.type,'hidden');chooseOptionalCard(t,name,true);assert.equal(input.value,'true');chooseOptionalCard(t,name,false);assert.equal(input.value,'false');const chosen=t.document.getElementById('entity-form').querySelectorAll('button').find(button=>button.dataset.attributeName===name&&button.dataset.attributeValue==='false');chosen.handlers.click({target:chosen,currentTarget:chosen,preventDefault(){}});assert.equal(input.value,'');assert.equal(chosen.getAttribute('aria-pressed'),'false');}
+ await advanceEditor(t,5);submitEditor(t);await settle();const property=t.model.getState().properties.find(item=>item.id==='own-p1');for(const name of names)assert.equal(property[name],null,`${name} remains unspecified after clearing its pair`);
+});
+
+test('energy sliders preserve legacy certificate text until changed and search minimum follows the official twelve grades',async()=>{
+ const t=await setup({initialRaw:configuredCriteriaRaw('property')});t.ui.openEditor('property','own-p1');await advanceEditor(t,4);
+ const input=t.document.getElementById('f-energyRating'),slider=t.document.getElementById('f-energyRating-slider'),scheme=t.document.getElementById('f-energyRatingScheme');assert.equal(input.value,'BB');assert.equal(slider.value,'0');assert.equal(scheme.value,'');assert.equal(slider.type,'range');assert.equal(slider.getAttribute('max'),'12');assert.match(t.document.html,/id="energyRating-legacy"[^>]*>Korábban megadott érték/);
+ assert.deepEqual(energyRatingHelpers.ENERGY_SLIDER_OPTIONS.map(entry=>entry.value),['','I','H','G','F','E','D','C','B','A','A+','A++','A+++']);chooseEnergy(t,'energyRating','A++');assert.equal(input.value,'A++');assert.equal(scheme.value,'2023');assert.equal(slider.getAttribute('aria-valuetext'),'A++');assert.equal(t.document.getElementById('energyRating-legacy').hidden,true);
+ await advanceEditor(t,5);submitEditor(t);await settle();let property=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(property.energyRating,'A++');assert.equal(property.energyRatingScheme,'2023');
+ t.ui.openEditor('property','own-p1');await advanceEditor(t,4);chooseEnergy(t,'energyRating','');await advanceEditor(t,5);submitEditor(t);await settle();property=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(property.energyRating,'');assert.equal(property.energyRatingScheme,'');
+ t.ui.openEditor('search','own-s1');await advanceEditor(t,4);assert.ok(t.document.html.indexOf('id="heatingTypes-group"')<t.document.html.indexOf('id="minEnergyRating-group"'));chooseEnergy(t,'minEnergyRating','C');await advanceEditor(t,5);submitEditor(t);await settle();assert.equal(t.model.getState().searches.find(item=>item.id==='own-s1').minEnergyRating,'C');
+});
+
+test('attic requirements and construction-age radio values survive backtracking while a legacy unknown upper floor stays imprecise',async()=>{
+ const raw=configuredCriteriaRaw('property');Object.assign(raw.properties.find(item=>item.id==='own-p1'),{floor:9,buildingFloors:12,floorIsUpperRange:true,isAttic:null});
+ const t=await setup({initialRaw:raw});t.ui.openEditor('property','own-p1');await advanceEditor(t,3);
+ const cards=t.document.getElementById('entity-form').querySelectorAll('button');assert.equal(cards.find(button=>button.dataset.buildingNumberValue==='legacy-upper').getAttribute('aria-pressed'),'true');
+ changeChoice(t,t.document.getElementById('f-isAttic'),true);chooseRadio(t,'constructionAge','10 évnél fiatalabb');await editorAction(t,'editor-back');await advanceEditor(t,3);assert.equal(t.document.getElementById('f-isAttic').checked,true);assert.equal(t.document.getElementById('f-constructionAge').value,'10 évnél fiatalabb');await advanceEditor(t,5);submitEditor(t);await settle();
+ const property=t.model.getState().properties.find(item=>item.id==='own-p1');assert.equal(property.floor,9);assert.equal(property.floorIsUpperRange,true);assert.equal(property.isAttic,true);assert.equal(property.constructionAge,'10 évnél fiatalabb');
+ t.ui.openEditor('search','own-s1');await advanceEditor(t,3);chooseRadio(t,'atticPreference','only');await advanceEditor(t,5);submitEditor(t);await settle();assert.equal(t.model.getState().searches.find(item=>item.id==='own-s1').atticPreference,'only');
+ t.ui.openEditor('search','own-s1');await advanceEditor(t,3);chooseRadio(t,'atticPreference','exclude');await advanceEditor(t,5);submitEditor(t);await settle();assert.equal(t.model.getState().searches.find(item=>item.id==='own-s1').atticPreference,'exclude');
+});
+
+test('anonymous full listing routes show public facts and images without leaking hidden address or private contact metadata',async()=>{
+ const key=publicSourceKey('property','c'),calls=[],detail={kind:'property',sourceKey:key,title:'Fényes kertkapcsolatos lakás',ownerFirstName:'Réka',ownerAccountType:'private',listing:{title:'Fényes kertkapcsolatos lakás',type:'Lakás',city:'Debrecen',price:85,area:63,rooms:2.5,wholeRooms:2,halfRooms:1,floor:.5,buildingFloors:2,isAttic:false,energyRating:'B',energyRatingScheme:'2023',airConditioning:true,balcony:null,privateGarden:true,hideStreet:true,hideHouseNumber:true,street:'PRIVATE-STREET',houseNumber:'PRIVATE-HOUSE',latitude:47.000123,longitude:21.000123,ownerEmail:'PRIVATE-CONTACT@example.test',description:'Világos <kert> & tágas szobák.',images:['https://example.test/otthon-1.jpg','https://example.test/otthon-2.jpg']}};
+ const t=await setup({hosted:true,hash:'#listing/property/'+key,fetchPublicListing:async(...args)=>{calls.push(args);return detail;}}),html=t.document.getElementById('app').innerHTML;
+ assert.deepEqual(calls.map(([kind,source])=>[kind,source]),[['property',key]]);assert.equal(t.getSelectedModel(),null);assert.match(html,/Fényes kertkapcsolatos lakás/);assert.match(html,/Réka/);assert.match(html,/example.test\/otthon-1.jpg/);assert.match(html,/example.test\/otthon-2.jpg/);assert.match(html,/Magasföldszint|Energetikai tanúsítvány/);assert.match(html,/Világos &lt;kert&gt; &amp; tágas szobák/);assert.match(html,/Ilyen otthont keresek/);assert.doesNotMatch(html,/PRIVATE-|47\.000123|21\.000123|<kert>|sidebar|hosted-auth-form/);
+ const missing=await setup({hosted:true,hash:'#listing/property/'+key});assert.match(missing.document.getElementById('app').innerHTML,/Ez a hirdetés már nem elérhető/);assert.equal(missing.document.getElementById('hosted-auth-form'),null);
+});
+
+test('a late public listing read cannot replace registration after navigation',async()=>{
+ const key=publicSourceKey('property','d');let resolveRead;const pending=new Promise(resolve=>{resolveRead=resolve;}),t=await setup({hosted:true,hash:'#landing',fetchPublicListing:()=>pending});
+ t.ctx.location.hash='#listing/property/'+key;const read=t.ui.render();await settle();assert.match(t.document.getElementById('app').innerHTML,/Betöltjük a hirdetést/);
+ await t.click({action:'auth-mode',mode:'register'});assert.ok(t.document.getElementById('hosted-auth-form'));const identity=t.document.getElementById('f-name');identity.value='Megőrzött név';
+ resolveRead({kind:'property',sourceKey:key,title:'LATE-PUBLIC-CARD',listing:{type:'Lakás',price:10,area:20,description:'Kései nyilvános válasz'}});await read;await settle();assert.equal(t.ctx.location.hash,'#register');assert.equal(t.document.getElementById('f-name'),identity);assert.equal(identity.value,'Megőrzött név');assert.doesNotMatch(t.document.getElementById('app').innerHTML,/LATE-PUBLIC-CARD|Kései nyilvános/);
+});
+
+test('a public search can seed either a full matching search draft or a distinct property draft without replacing a same-source edit',async()=>{
+ const key=publicSourceKey('search','e'),detail={kind:'search',sourceKey:key,title:'Csendes házat keresek',ownerFirstName:'Péter',ownerAccountType:'private',listing:{type:'Ház',city:'Debrecen',maxPrice:120,minArea:80,minRooms:3,minEnergyRating:'C'},clonePrefill:{locations:[getLocation('city:Debrecen')],type:'Ház',minPrice:null,maxPrice:120,minArea:80,maxArea:null,minRooms:3,maxRooms:null,conditions:['Jó'],heatingTypes:['Hőszivattyú'],minEnergyRating:'C',description:'Csendes kertet és világos szobákat szeretnék.',moveIn:'Azonnal'},prefill:{locations:[getLocation('city:Debrecen')],type:'Ház',maxPrice:120,minArea:80,minRooms:3,conditions:['Jó']}};
+ const t=await setup({hosted:true,hash:'#listing/search/'+key,fetchPublicListing:async()=>detail});let html=t.document.getElementById('app').innerHTML;assert.match(html,/Ilyen ingatlanom van/);assert.match(html,/Én is ilyet keresek/);
+ await t.click({action:'onboarding-copy-search',source:key});let draft=storedOnboarding(t);assert.equal(draft.kind,'search');assert.equal(Number(draft.data.maxPrice),120);assert.equal(Number(draft.data.minArea),80);assert.equal(Number(draft.data.minRooms),3);assert.equal(draft.data.minEnergyRating,'C');assert.deepEqual([...draft.data.heatingTypes],['Hőszivattyú']);assert.equal(draft.data.description,detail.clonePrefill.description);assert.deepEqual(draft.origin,onboardingHelpers.originFromSearchCopy(key));
+ const identity=draft.id;t.document.getElementById('f-maxPrice').value='135';formInputEvent(t,t.document.getElementById('f-maxPrice'),'input');assert.equal(storedOnboarding(t).data.maxPrice,'135');
+ t.ctx.location.hash='#listing/search/'+key;await t.ui.render();await t.click({action:'onboarding-copy-search',source:key});draft=storedOnboarding(t);assert.equal(draft.id,identity);assert.equal(draft.data.maxPrice,'135');
+ t.ctx.location.hash='#listing/search/'+key;await t.ui.render();await t.click({action:'onboarding-start',kind:'property',source:key});draft=storedOnboarding(t);assert.equal(draft.kind,'property');assert.notEqual(draft.id,identity);assert.equal(draft.data.type,'Ház');assert.ok(draft.data.price==null||draft.data.price==='','A ranged search cannot invent an exact seller price');assert.deepEqual(draft.origin,onboardingHelpers.originFromListing('search',key));
 });

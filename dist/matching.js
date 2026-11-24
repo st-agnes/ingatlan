@@ -2,10 +2,12 @@
 import {getLocation,resolveLegacyLocations,isPropertyLocation} from './locations.js';
 import {agglomerations} from './agglomerations-data.js';
 import {CONDITION_OPTIONS,BUILDING_OPTIONS,CONSTRUCTION_AGE_OPTIONS,VIEW_OPTIONS,HEATING_OPTIONS,CEILING_HEIGHT_OPTIONS,
-  FLOOR_OPTIONS,normalizeCondition,normalizeBuilding,normalizeSearchAttributes} from './attributes.js';
+  FLOOR_OPTIONS,normalizeCondition,normalizeBuilding,normalizeHeating,normalizeSearchAttributes} from './attributes.js';
+
+import {energyIndex,knownEnergyRating} from './energy-rating.js';
 
 export const MATCH_WEIGHTS=Object.freeze({maxPrice:32,minRooms:22,minArea:16,condition:10,floor:7,elevator:5,balcony:4,
-  building:3,heatingType:2.5,constructionAge:2,ceilingHeight:1.5,maxArea:1.25,maxRooms:1,minPrice:.75,view:.5,airConditioning:3,privateGarden:3});
+  building:3,heatingType:2.5,minEnergyRating:3,constructionAge:2,ceilingHeight:1.5,maxArea:1.25,maxRooms:1,minPrice:.75,view:.5,airConditioning:3,privateGarden:3});
 const norm=value=>String(value??'').normalize('NFD').replace(/\p{M}/gu,'').trim().toUpperCase();
 const clamp=value=>Math.min(1,Math.max(0,value));
 const members=new Map(agglomerations.map(area=>[area.id,area.settlements]));
@@ -15,7 +17,7 @@ const categoryLoss=(value,selected,options)=>selected.size?(!known(value,options
 const conditionIndex=value=>CONDITION_OPTIONS.indexOf(normalizeCondition(value));
 const compiledMarker=Symbol('matching-search');
 const valueBuildings=new Set(['Tégla','Kő és tégla','Fa','Rönkház','Könnyűszerkezet']);
-const valueHeating=new Set(['Gázkazán','Gázcirkó','Távfűtés','Házközponti fűtés']);
+const valueHeating=new Set(['Gázkazán / cirkó','Távfűtés','Házközponti fűtés']);
 const garageTypes=new Set(['Garázs','Mélygarázs','Teremgarázs']);
 const drivewayTypes=new Set(['Fedett beálló','Udvari beálló']);
 const parkingOptions=['Utcai parkolás','Udvari beálló','Fedett beálló','Garázs','Mélygarázs','Teremgarázs','Egyéb'];
@@ -61,7 +63,7 @@ function roomTotal(property){
 
 function matchesStreet(property,place,streetIds){
   const street=getLocation(property.streetId??property.addressDetails?.streetId);
-  return street?.kind==='street'&&streetIds.has(street.id)&&street.city===place.city
+  return property.hideStreet===false&&street?.kind==='street'&&streetIds.has(street.id)&&street.city===place.city
     &&(!street.district||!place.district||street.district===place.district);
 }
 
@@ -91,13 +93,16 @@ export function evaluateMatch(property,input,{includeReasons=true}={}){
   let floorLoss=q.floors.length?(floor==null?1:Math.min(...q.floors.map(wanted=>wanted===9&&floor>=9?0:Math.abs(wanted-floor)))/5):0;
   if(s.excludeTopFloor&&!belowTopFloor(p))floorLoss=Math.max(floorLoss,1);
   if(s.excludeGroundFloorAndBelow&&!aboveGroundFloor(p))floorLoss=Math.max(floorLoss,1);
-  add('floor',!q.house&&(q.floors.length||s.excludeTopFloor||s.excludeGroundFloorAndBelow),floorLoss,'Emelet');
+  if(s.atticPreference&&(p.isAttic==null||p.isAttic!==(s.atticPreference==='only')))floorLoss=Math.max(floorLoss,1);
+  add('floor',!q.house&&(q.floors.length||s.excludeTopFloor||s.excludeGroundFloorAndBelow||s.atticPreference),floorLoss,'Emelet');
   add('elevator',!q.house&&s.elevator,p.elevator?0:1,'Lift');
   add('balcony',!q.house&&s.balcony,p.balcony?0:1,'Erkély');
   add('airConditioning',s.airConditioning,p.airConditioning===true?0:1,'Légkondi');
   add('privateGarden',q.flat&&s.privateGarden,p.privateGarden===true?0:1,'Saját kert');
   add('building',q.buildings.size,categoryLoss(normalizeBuilding(p.building),q.buildings,BUILDING_OPTIONS),'Falazat');
-  add('heatingType',q.heating.size,categoryLoss(canon(p.heatingType,HEATING_OPTIONS),q.heating,HEATING_OPTIONS),'Fűtés típusa');
+  add('heatingType',q.heating.size,categoryLoss(normalizeHeating(p.heatingType),q.heating,HEATING_OPTIONS),'Fűtés típusa');
+  const energyMinimum=energyIndex(s.minEnergyRating),energyActual=knownEnergyRating(p);
+  add('minEnergyRating',energyMinimum>=0,energyActual<0?1:(energyMinimum-energyActual)/11,'Energetikai tanúsítvány');
   const age=CONSTRUCTION_AGE_OPTIONS.indexOf(canon(p.constructionAge,CONSTRUCTION_AGE_OPTIONS));
   add('constructionAge',q.ages.size,age<0?1:Math.min(...[...q.ages].map(value=>Math.abs(CONSTRUCTION_AGE_OPTIONS.indexOf(value)-age)))/4,'Építési kor');
   add('ceilingHeight',!!s.ceilingHeight,known(canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS),CEILING_HEIGHT_OPTIONS)&&canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS)===s.ceilingHeight?0:1,'Belmagasság');
@@ -145,13 +150,16 @@ function explainMatch(p,q,place){
       floor!=null&&q.floors.some(value=>value===floor||value===9&&floor>=9));
   }
   if(!q.house&&s.elevator)add('elevator','Lift','Van lift',p.elevator?'Van lift':'Nincs lift',!!p.elevator);
-  if(!q.house&&s.balcony)add('balcony','Erkély','Van erkély',p.balcony?'Van erkély':'Nincs erkély',!!p.balcony);
+  if(!q.house&&s.balcony)add('balcony','Erkély','Van erkély',p.balcony==null?'Nincs megadva':p.balcony===true?'Van erkély':'Nincs erkély',p.balcony===true);
   if(!q.house&&s.excludeTopFloor)add('excludeTopFloor','Legfelső emelet','Nem legfelső emelet',!knownTopFloor(p)?'Nincs megadva':belowTopFloor(p)?'Nem legfelső emelet':'Legfelső emelet',belowTopFloor(p));
   if(!q.house&&s.excludeGroundFloorAndBelow)add('excludeGroundFloorAndBelow','Földszint és szuterén','Földszint felett',knownFloor(p)?detailFloor(Number(p.floor),p.floorIsUpperRange===true):'Nincs megadva',aboveGroundFloor(p));
+  if(!q.house&&s.atticPreference)add('atticPreference','Tetőtér',s.atticPreference==='only'?'Tetőtéri ingatlan':'Nem tetőtéri ingatlan',p.isAttic==null?'Nincs megadva':p.isAttic?'Tetőtéri ingatlan':'Nem tetőtéri ingatlan',p.isAttic!=null&&p.isAttic===(s.atticPreference==='only'));
   if(s.airConditioning)add('airConditioning','Légkondi','Van légkondi',p.airConditioning==null?'Nincs megadva':p.airConditioning===true?'Van légkondi':'Nincs légkondi',p.airConditioning===true);
   if(q.flat&&s.privateGarden)add('privateGarden','Saját kert','Van saját kert',p.privateGarden==null?'Nincs megadva':p.privateGarden===true?'Van saját kert':'Nincs saját kert',p.privateGarden===true);
   category('building','Falazat',normalizeBuilding(p.building),q.buildings,BUILDING_OPTIONS);
-  category('heatingType','Fűtés típusa',canon(p.heatingType,HEATING_OPTIONS),q.heating,HEATING_OPTIONS);
+  category('heatingType','Fűtés típusa',normalizeHeating(p.heatingType),q.heating,HEATING_OPTIONS);
+  const energyMinimum=energyIndex(s.minEnergyRating),energyActual=knownEnergyRating(p);
+  if(energyMinimum>=0)add('minEnergyRating','Energetikai tanúsítvány',`${s.minEnergyRating} vagy jobb`,energyActual<0?'Nincs megadva':p.energyRating,energyActual>=energyMinimum);
   category('constructionAge','Építési kor',canon(p.constructionAge,CONSTRUCTION_AGE_OPTIONS),q.ages,CONSTRUCTION_AGE_OPTIONS);
   if(s.ceilingHeight){
     const actual=canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS);
@@ -170,8 +178,7 @@ export function valueForMoney(p={}){
   quality+=building==='Passzívház'?.02:valueBuildings.has(building)?.015:building==='Panel'?.01:known(building,BUILDING_OPTIONS)?.005:0;
   const age=CONSTRUCTION_AGE_OPTIONS.indexOf(canon(p.constructionAge,CONSTRUCTION_AGE_OPTIONS));quality+=age<0?0:(4-age)/4*.025;
   const view=canon(p.view,VIEW_OPTIONS);quality+=view==='Panorámás'?.015:view==='Kertre néző'?.01:view==='Udvari'?.005:0;
-  const heating=canon(p.heatingType,HEATING_OPTIONS);quality+=heating==='Hőszivattyú'?.025:valueHeating.has(heating)?.015:known(heating,HEATING_OPTIONS)&&heating!=='Nincs fűtés'?.005:0;
-  const secondary=canon(p.secondaryHeatingType,HEATING_OPTIONS);quality+=known(secondary,HEATING_OPTIONS)&&secondary!=='Nincs fűtés'?.005:0;
+  const heating=normalizeHeating(p.heatingType);quality+=heating==='Hőszivattyú'?.025:valueHeating.has(heating)?.015:known(heating,HEATING_OPTIONS)&&heating!=='Nincs fűtés'?.005:0;
   quality+=p.insulated===true?.015:0;
   const energy=norm(p.energyRating);quality+=/^(AA?|A[1-4])\+{0,3}$/.test(energy)?.02:/^BB?\+{0,3}$/.test(energy)?.015:/^CC?\+{0,3}$/.test(energy)?.005:0;
   quality+=p.airConditioning===true?.01:0;quality+=p.solarPanels===true?.015:0;
@@ -199,12 +206,13 @@ function specificityOf(q){
   add(MATCH_WEIGHTS.condition,q.conditionMinimum==null?0:(q.conditionMinimum+1)/4);
   add(MATCH_WEIGHTS.building,category(q.buildings.size,BUILDING_OPTIONS.length));
   add(MATCH_WEIGHTS.heatingType,category(q.heating.size,HEATING_OPTIONS.length));
+  const energyMinimum=energyIndex(s.minEnergyRating);add(MATCH_WEIGHTS.minEnergyRating,energyMinimum<0?0:(energyMinimum+1)/12);
   add(MATCH_WEIGHTS.constructionAge,category(q.ages.size,CONSTRUCTION_AGE_OPTIONS.length));
   add(MATCH_WEIGHTS.view,category(q.views.size,VIEW_OPTIONS.length));
   add(MATCH_WEIGHTS.ceilingHeight,s.ceilingHeight?1:0);
   add(MATCH_WEIGHTS.airConditioning,s.airConditioning?1:0);
   if(q.flat)add(MATCH_WEIGHTS.privateGarden,s.privateGarden?1:0);
-  if(!q.house){add(MATCH_WEIGHTS.floor,Math.max(category(q.floors.length,FLOOR_OPTIONS.length),s.excludeTopFloor||s.excludeGroundFloorAndBelow?1:0));add(MATCH_WEIGHTS.elevator,s.elevator?1:0);add(MATCH_WEIGHTS.balcony,s.balcony?1:0);}
+  if(!q.house){add(MATCH_WEIGHTS.floor,Math.max(category(q.floors.length,FLOOR_OPTIONS.length),s.excludeTopFloor||s.excludeGroundFloorAndBelow||s.atticPreference?1:0));add(MATCH_WEIGHTS.elevator,s.elevator?1:0);add(MATCH_WEIGHTS.balcony,s.balcony?1:0);}
   return Math.max(0,Math.min(100,Math.round(100*selected/total)));
 }
 export function searchSpecificity(search){return search?.[compiledMarker]?search.specificity:prepareSearch(search).specificity;}
