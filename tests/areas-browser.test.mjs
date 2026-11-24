@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorSave,editorStep,choosePropertyType,selectedLocationText,removeSelectedLocation} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,editorStep,choosePropertyType,selectedLocationText,removeSelectedLocation,fillRoomBound} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -53,7 +53,7 @@ async function verify(browser,viewport){
   const geometry=await page.locator('.modal').evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));
   assert.ok(geometry.scrollWidth<=geometry.width+1,'Region names and counts must fit the modal without horizontal scrolling');
   const title=`Városkörnyékek és település – ${viewport.name}`;
-  await choosePropertyType(page,'Lakás',interact);await (await editorField(page,'#f-maxPrice')).fill('100');await (await editorField(page,'#f-minArea')).fill('40');await (await editorField(page,'#f-minRooms')).fill('1');await (await editorField(page,'#f-title')).fill(title);await save(page,interact,true);
+  await choosePropertyType(page,'Lakás',interact);await (await editorField(page,'#f-maxPrice')).fill('100');await (await editorField(page,'#f-minArea')).fill('40');await fillRoomBound(page,'minRooms','1',interact);await (await editorField(page,'#f-title')).fill(title);await save(page,interact,true);
   let search=(await readState(page)).searches.find(item=>item.title===title);assert.ok(search);
   assert.deepEqual(search.locationIds,['area:Debrecen','area:Budapest','city:Solymár'],'Selected groups stay compact and are not expanded to member IDs');
   await openPage(page,'search');

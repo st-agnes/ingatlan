@@ -1,4 +1,4 @@
-name: Check compact mobile steps and form headings
+name: Check refined forms, floors and contact privacy
 on:
   push:
     branches: [codex/map-label-check-20261121]
@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [wizard-dock]
+        suite: [wizard-dock, onboarding, neighborhood-map]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,7 +40,7 @@ jobs:
           python3 - <<'PY'
           import base64,hashlib,json,os,urllib.request
           from pathlib import Path
-          paths=list(Path('.local/browser-tests').glob('forms-*.log'))+list(Path('.local/browser-tests/screenshots').glob('compact-editor-*.png'))+list(Path('.local/browser-tests/screenshots').glob('vertical-form-*.png'))+list(Path('.local/browser-tests/screenshots').glob('visual-type-*.png'))+list(Path('.local/browser-tests/screenshots').glob('form-details-*.png'))+sorted(Path('.local/browser-tests/screenshots').glob('*failure*.png'))[:3]
+          paths=list(Path('.local/browser-tests').glob('forms-*.log'))+list(Path('.local/browser-tests/screenshots').glob('form-refinements-*.png'))+list(Path('.local/browser-tests/screenshots').glob('form-details-*.png'))+sorted(Path('.local/browser-tests/screenshots').glob('*failure*.png'))[:3]
           for path in paths:
               if not path.is_file():continue
               raw=path.read_bytes()
@@ -52,3 +52,25 @@ jobs:
               expected=hashlib.sha1(b'blob '+str(len(content)).encode()+b'\0'+content).hexdigest();assert result['sha']==expected
               print(json.dumps({'suite':os.environ['FORM_SUITE'],'file':path.name,'sha':expected,'bytes':len(raw),'encoding':'base64-text' if path.suffix=='.png' else 'utf8'}))
           PY
+  dotnet:
+    if: github.repository == 'st-agnes/ingatlan' && github.ref == 'refs/heads/codex/map-label-check-20261121'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/data/
+            /data/streets/
+            /data/neighborhoods/search-areas.geojson.gz
+            /data/neighborhoods/sources/country-osm/municipalities.geojson.gz
+            /data/neighborhoods/sources/country-osm/named-nodes.geojson.gz
+      - uses: ./.github/actions/ci-dotnet
+      - name: Verify actual .NET model, matching parity and serialization compatibility
+        run: dotnet test backend/Otthonra.Tests/Otthonra.Tests.csproj --configuration Release

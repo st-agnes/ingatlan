@@ -62,14 +62,27 @@ public static class PropertyAttributes
         if (result.Any(string.IsNullOrEmpty)) throw new ApiException(400, $"Érvénytelen {name}.");
         return result.Distinct().ToArray();
     }
-    public static int[] FloorSelections(int[]? values)
+    public static bool KnownFloor(decimal? floor) => floor is >= -5m and <= 200m
+        && (floor == .5m || decimal.Truncate(floor.Value) == floor.Value);
+    public static decimal FloorBucket(decimal floor) => floor is >= 9m and <= 11m ? 9m : floor;
+    public static decimal? EffectiveTopFloor(Property property) => property.BuildingFloors == 0 && property.Floor == .5m
+        ? .5m : property.BuildingFloors;
+    public static bool KnownTopFloor(Property property) => !property.FloorIsUpperRange && KnownFloor(property.Floor)
+        && property.BuildingFloors is >= 0 and <= 200 && property.Floor <= EffectiveTopFloor(property);
+    public static bool BelowTopFloor(Property property) => KnownTopFloor(property) && property.Floor < EffectiveTopFloor(property);
+    public static bool AboveGroundFloor(Property property) => KnownFloor(property.Floor) && property.Floor > 0;
+    public static decimal[] FloorSelections(decimal[]? values)
     {
         if (values is null) return [];
-        if (values.Length > 13 || values.Any(value => value < -1 || value > 11))
+        // Old callers can still echo 10/11. The visible search category now
+        // combines every floor at or above nine, without changing raw receipts.
+        if (values.Length > 14 || values.Any(value => value != .5m
+            && (value < -1m || value > 11m || decimal.Truncate(value) != value)))
             throw new ApiException(400, "Érvénytelen emeletlista.");
-        return values.Distinct().ToArray();
+        return values.Select(FloorBucket).Distinct().ToArray();
     }
-    public static int[] Floors(string? json) => string.IsNullOrWhiteSpace(json) ? [] : JsonSerializer.Deserialize<int[]>(json) ?? [];
+    public static decimal[] Floors(string? json) => string.IsNullOrWhiteSpace(json) ? []
+        : (JsonSerializer.Deserialize<decimal[]>(json) ?? []).Select(FloorBucket).Distinct().ToArray();
 
     private static bool Selected(string[] selected, string? propertyValue) => selected.Length == 0
         || (!string.IsNullOrEmpty(propertyValue) && selected.Contains(propertyValue));
@@ -88,10 +101,10 @@ public static class PropertyAttributes
             && Selected(Dto.Strings(search.HeatingTypesJson), NormalizeHeating(property.HeatingType))
             && (!search.AirConditioning || property.AirConditioning == true)
             && (type != "LAKAS" || !search.PrivateGarden || property.PrivateGarden == true)
-            && (type == "HAZ" || (floors.Length == 0 || property.Floor.HasValue
-                && floors.Any(floor => floor == 11 ? property.Floor.Value >= 11 : floor == property.Floor.Value))
-                && (!search.ExcludeTopFloor || property.Floor is >= -5 and <= 200 && property.BuildingFloors is >= 0 and <= 200 && property.Floor < property.BuildingFloors)
-                && (!search.ExcludeGroundFloorAndBelow || property.Floor is > 0 and <= 200));
+            && (type == "HAZ" || (floors.Length == 0 || KnownFloor(property.Floor)
+                && floors.Any(floor => floor == 9m ? property.Floor.Value >= 9m : floor == property.Floor.Value))
+                && (!search.ExcludeTopFloor || BelowTopFloor(property))
+                && (!search.ExcludeGroundFloorAndBelow || AboveGroundFloor(property)));
     }
 
     public static void Apply(Property property, PropertyInput input)
@@ -135,7 +148,7 @@ public static class PropertyAttributes
         search.ConstructionAgesJson = JsonSerializer.Serialize(Selections(input.ConstructionAges, ConstructionAges, "építési korcsoport"));
         search.ViewsJson = JsonSerializer.Serialize(Selections(input.Views, Views, "kilátás"));
         search.CeilingHeight = Choice(input.CeilingHeight, CeilingHeights, "belmagasság");
-        search.FloorsJson = JsonSerializer.Serialize(Rules.Normalize(search.Type) == "HAZ" ? Array.Empty<int>() : FloorSelections(input.Floors));
+        search.FloorsJson = JsonSerializer.Serialize(Rules.Normalize(search.Type) == "HAZ" ? Array.Empty<decimal>() : FloorSelections(input.Floors));
         search.HeatingTypesJson = JsonSerializer.Serialize(Selections(input.HeatingTypes, HeatingTypes, "fűtéstípus"));
     }
 }

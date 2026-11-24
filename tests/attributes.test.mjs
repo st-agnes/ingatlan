@@ -12,8 +12,8 @@ test('attribute choices cover every requested category and the floor buckets inc
   assert.deepEqual(CONDITION_OPTIONS,['Felújítandó','Átlagos','Jó','Új/felújított']);
   assert.equal(BUILDING_OPTIONS.length,12);assert.equal(CONSTRUCTION_AGE_OPTIONS.length,5);
   assert.equal(VIEW_OPTIONS.length,4);assert.equal(CEILING_HEIGHT_OPTIONS.length,2);
-  assert.deepEqual(FLOOR_OPTIONS.map(option=>option.value),[-1,0,1,2,3,4,5,6,7,8,9,10,11]);
-  assert.equal(FLOOR_OPTIONS.at(-1).label,'11 vagy afölötti');
+  assert.deepEqual(FLOOR_OPTIONS.map(option=>option.value),[-1,0,0.5,1,2,3,4,5,6,7,8,9]);
+  assert.equal(FLOOR_OPTIONS.at(-1).label,'9 vagy afölötti');
 });
 
 test('legacy known condition labels normalize while unknown old text is retained on reads',()=>{
@@ -41,9 +41,9 @@ test('unselected filters accept old incomplete property data, but selected ones 
   }
 });
 
-test('floor buckets preserve zero, reject unknown floors and include every floor above eleven',()=>{
-  for(const floor of [11,12,20,200])assert.equal(attributesCompatible({floor},{floors:[11]}),true);
-  for(const floor of [null,undefined,-2,0,10])assert.equal(attributesCompatible({floor},{floors:[11]}),false);
+test('floor buckets preserve zero, reject unknown floors and include every floor above nine',()=>{
+  for(const floor of [9,10,11,12,20,200])assert.equal(attributesCompatible({floor},{floors:[11]}),true);
+  for(const floor of [null,undefined,-2,0,8])assert.equal(attributesCompatible({floor},{floors:[11]}),false);
   assert.equal(attributesCompatible({floor:0},{floors:[0]}),true);
   assert.equal(attributesCompatible({floor:-1},{floors:[-1]}),true);
   assert.equal(attributesCompatible({floor:null},{floors:[0]}),false);
@@ -54,7 +54,7 @@ test('normalizers deduplicate selections, canonicalize aliases, preserve unrelat
   const before=structuredClone(input),result=normalizeSearchAttributes(input,{strict:true});
   assert.deepEqual(input,before);assert.equal(result.id,'same-id');
   assert.deepEqual(result.conditions,['Jó','Új/felújított']);assert.deepEqual(result.buildings,['Panel']);
-  assert.deepEqual(result.views,['Udvari']);assert.deepEqual(result.floors,[0,11]);
+  assert.deepEqual(result.views,['Udvari']);assert.deepEqual(result.floors,[0,9]);
   assert.equal(normalizeSearchAttributes({condition:'Bármilyen'}).conditions.length,0);
 });
 
@@ -89,7 +89,7 @@ test('strict malformed selections cannot silently clear filters or reinterpret b
   }
   assert.throws(()=>normalizeSearchAttributes({conditions:['Jó','']},{strict:true}),/Érvénytelen/,'a valid choice must not hide a malformed element');
   for(const floor of [false,true]) {
-    assert.throws(()=>normalizePropertyAttributes({floor},{strict:true}),/egész szám/);
+    assert.throws(()=>normalizePropertyAttributes({floor},{strict:true}),/emelet|magasföldszint/);
     assert.throws(()=>normalizeSearchAttributes({floors:[floor]},{strict:true}),/Érvénytelen/);
     assert.throws(()=>normalizeSearchAttributes({floors:[0,floor]},{strict:true}),/Érvénytelen/);
     assert.equal(normalizePropertyAttributes({floor}).floor,null,'a malformed stored boolean is not ground or first floor');
@@ -100,11 +100,11 @@ test('strict malformed selections cannot silently clear filters or reinterpret b
 
 
 test('new lower basement values are rejected while unchanged legacy floors remain editable',()=>{
-  assert.throws(()=>normalizePropertyAttributes({floor:-2},{strict:true}),/egész szám/);
-  assert.throws(()=>normalizePropertyAttributes({floor:-5},{strict:true}),/egész szám/);
+  assert.throws(()=>normalizePropertyAttributes({floor:-2},{strict:true}),/emelet|magasföldszint/);
+  assert.throws(()=>normalizePropertyAttributes({floor:-5},{strict:true}),/emelet|magasföldszint/);
   assert.equal(normalizePropertyAttributes({floor:-2}).floor,-2,'reading old rows does not rewrite their stored floor');
   assert.equal(normalizePropertyAttributes({floor:'-2'},{strict:true,previous:{floor:-2}}).floor,-2,'an unrelated local edit can retain its exact old floor');
-  assert.throws(()=>normalizePropertyAttributes({floor:-3},{strict:true,previous:{floor:-2}}),/egész szám/);
+  assert.throws(()=>normalizePropertyAttributes({floor:-3},{strict:true,previous:{floor:-2}}),/emelet|magasföldszint/);
   assert.equal(normalizePropertyAttributes({floor:-2},{strict:true,allowLegacyUnknown:true}).floor,-2,'API updates can relay the old floor for authoritative server comparison');
   assert.equal(normalizePropertyAttributes({floor:-1},{strict:true}).floor,-1);
   assert.equal(normalizePropertyAttributes({floor:12},{strict:true}).floor,12);
@@ -208,4 +208,22 @@ test('exact attribute compatibility requires known non-top and above-ground fact
  assert.equal(attributesCompatible({type:'Lakás',floor:2,buildingFloors:3,airConditioning:true},search),true);
  for(const p of [{floor:3,buildingFloors:3},{floor:0,buildingFloors:3},{floor:-1,buildingFloors:3},{floor:2},{buildingFloors:3}])assert.equal(attributesCompatible({type:'Lakás',airConditioning:true,...p},search),false,JSON.stringify(p));
  assert.equal(attributesCompatible({type:'Lakás',floor:2,buildingFloors:3,airConditioning:null},search),false);
+});
+
+
+test('raised ground and grouped upper floors preserve exact legacy values and top-floor uncertainty',()=>{
+ const raised=normalizePropertyAttributes({type:'Lakás',floor:'0.5',buildingFloors:'0'},{strict:true});
+ assert.equal(raised.floor,0.5);assert.equal(raised.floorIsUpperRange,false);
+ assert.equal(attributesCompatible(raised,{type:'Lakás',floors:[0.5],excludeGroundFloorAndBelow:true}),true);
+ assert.equal(attributesCompatible(raised,{type:'Lakás',excludeTopFloor:true}),false);
+ assert.equal(attributesCompatible({...raised,buildingFloors:1},{type:'Lakás',excludeTopFloor:true}),true);
+ const range=normalizePropertyAttributes({type:'Lakás',floor:9,floorIsUpperRange:true,buildingFloors:12},{strict:true});
+ assert.equal(attributesCompatible(range,{type:'Lakás',floors:[9]}),true);
+ assert.equal(attributesCompatible(range,{type:'Lakás',excludeTopFloor:true}),false);
+ assert.equal(normalizePropertyAttributes({floor:12,buildingFloors:12},{strict:true}).floor,12);
+ assert.equal(normalizePropertyAttributes({floor:12},{strict:true}).floorIsUpperRange,false);
+ assert.throws(()=>normalizePropertyAttributes({floor:8,floorIsUpperRange:true},{strict:true}),/9 vagy/);
+ assert.throws(()=>normalizePropertyAttributes({floor:1.5},{strict:true}),/emelet/);
+ assert.deepEqual(normalizeSearchAttributes({floors:[9,10,11,0.5]},{strict:true}).floors,[9,0.5]);
+ assert.equal(normalizePropertyAttributes({type:'Ház',floor:9,floorIsUpperRange:true},{strict:true}).floorIsUpperRange,false);
 });

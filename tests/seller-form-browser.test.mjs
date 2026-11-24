@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorSave,editorStep,choosePropertyType} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,editorStep,choosePropertyType,fillRoomBound} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -64,8 +64,8 @@ async function verify(browser,viewport){
   await edit(page,interact,'property',property.id);assert.equal(await page.locator('#f-lotArea').inputValue(),'650.5');assert.equal(await page.locator('#property-floor-field').evaluate(element=>element.classList.contains('hidden')),true);assert.equal(await page.locator('#property-floor-field').isVisible(),false);assert.equal(await page.locator('#entity-amenities').isVisible(),false);assert.equal(await page.locator('#f-wholeRooms').inputValue(),'2');assert.equal(await page.locator('#f-halfRooms').inputValue(),'3');
   await editorStep(page,4);for(const checkbox of await page.locator('input[name="parkingTypes"]').all())await checkbox.uncheck();await (await editorField(page,'#f-secondaryHeatingType')).selectOption('');await save(page,interact);property=(await state(page)).properties.find(value=>value.id===property.id);assert.deepEqual(property.parkingTypes,[]);assert.equal(property.secondaryHeatingType,'');
   await openNew(page,interact,'search');await chooseLocation(page,interact);const searchTitle=`Fűtés és házszűrők – ${viewport.name}`;await choosePropertyType(page,'Lakás',interact);assert.equal(await page.locator('#f-sharedGarden').count(),0,'Shared garden is no longer an available form criterion');
-  for(const name of ['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])await verifyNumeric(await editorField(page,`#f-${name}`));
-  await (await editorField(page,'#f-maxPrice')).fill('100.5');await (await editorField(page,'#f-minArea')).fill('40');await (await editorField(page,'#f-minRooms')).fill('2.5');
+  for(const name of ['minPrice','maxPrice','minArea','maxArea'])await verifyNumeric(await editorField(page,`#f-${name}`));
+  await (await editorField(page,'#f-maxPrice')).fill('100.5');await (await editorField(page,'#f-minArea')).fill('40');await fillRoomBound(page,'minRooms','2.5',interact);
   const heatingOptions=await page.locator('input[name="heatingTypes"]').evaluateAll(inputs=>inputs.map(input=>input.value));assert.deepEqual(heatingOptions,primaryOptions.filter(Boolean));
   for(const value of ['Gázkazán','Hőszivattyú'])await (await editorField(page,`input[name="heatingTypes"][value="${value}"]`)).check();await (await editorField(page,'input[name="floors"][value="-1"]')).check();await (await editorField(page,'#f-balcony')).check();await (await editorField(page,'#f-elevator')).check();for(const name of ['excludeTopFloor','excludeGroundFloorAndBelow','privateGarden'])await (await editorField(page,`#f-${name}`)).check();await (await editorField(page,'#f-airConditioning')).check();await choosePropertyType(page,'Ház',interact);
   assert.equal(await page.locator('#floors-group').evaluate(element=>element.classList.contains('hidden')),true);assert.equal(await page.locator('#floors-group').isVisible(),false);assert.equal(await page.locator('#entity-amenities').isVisible(),false);assert.equal(await page.locator('input[name="floors"][value="-1"]').isEnabled(),false);for(const name of ['excludeTopFloor','excludeGroundFloorAndBelow','privateGarden'])assert.equal(await page.locator(`#f-${name}`).isEnabled(),false);

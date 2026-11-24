@@ -3,7 +3,7 @@
  */
 import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
-import {editorField,editorSave,choosePropertyType} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,choosePropertyType,fillRoomBound} from './editor-browser-helpers.mjs';
 import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -120,7 +120,7 @@ async function verifyViewport(browser, viewport) {
     const title = `Böngészős próba – ${viewport.name}`;
     await (await editorField(page, '#f-maxPrice')).fill('90');
     await (await editorField(page, '#f-minArea')).fill('40');
-    await (await editorField(page, '#f-minRooms')).fill('1');
+    await fillRoomBound(page,'minRooms','1',interact);
     await (await editorField(page, '#f-title')).fill(title);
     await editorSave(page, interact);
     await page.getByRole('heading', { name: 'Elkészült a keresési igényed.', exact: true }).waitFor();
@@ -144,7 +144,7 @@ async function verifyViewport(browser, viewport) {
     const laterTitle = `Később folytatom – ${viewport.name}`;
     await (await editorField(page, '#f-maxPrice')).fill('90');
     await (await editorField(page, '#f-minArea')).fill('40');
-    await (await editorField(page, '#f-minRooms')).fill('1');
+    await fillRoomBound(page,'minRooms','1',interact);
     await (await editorField(page, '#f-title')).fill(laterTitle);
     await editorSave(page, interact);
     await page.getByRole('heading', { name: 'Elkészült a keresési igényed.', exact: true }).waitFor();

@@ -576,5 +576,130 @@
     "score": 100,
     "specificity": 3,
     "valueForMoney": 0.75375
+  },
+  {
+    "name": "raised-ground-exact-and-above-ground",
+    "property": {
+      "floor": 0.5,
+      "buildingFloors": 1
+    },
+    "search": {
+      "floors": [
+        0.5
+      ],
+      "excludeGroundFloorAndBelow": true
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "raised-ground-half-floor-distance",
+    "property": {
+      "floor": 0.5
+    },
+    "search": {
+      "floors": [
+        0
+      ]
+    },
+    "eligible": true,
+    "score": 90
+  },
+  {
+    "name": "raised-only-building-is-top-floor",
+    "property": {
+      "floor": 0.5,
+      "buildingFloors": 0
+    },
+    "search": {
+      "excludeTopFloor": true
+    },
+    "eligible": true,
+    "score": 0
+  },
+  {
+    "name": "raised-ground-below-first-floor-top",
+    "property": {
+      "floor": 0.5,
+      "buildingFloors": 1
+    },
+    "search": {
+      "excludeTopFloor": true
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "unknown-upper-range-still-matches-ninth-plus",
+    "property": {
+      "floor": 9,
+      "floorIsUpperRange": true,
+      "buildingFloors": 12
+    },
+    "search": {
+      "floors": [
+        9
+      ],
+      "excludeGroundFloorAndBelow": true
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "unknown-upper-range-cannot-confirm-not-top",
+    "property": {
+      "floor": 9,
+      "floorIsUpperRange": true,
+      "buildingFloors": 12
+    },
+    "search": {
+      "maxPrice": 100,
+      "excludeTopFloor": true
+    },
+    "eligible": true,
+    "score": 82
+  },
+  {
+    "name": "old-eleventh-selection-now-ninth-plus",
+    "property": {
+      "floor": 9
+    },
+    "search": {
+      "floors": [
+        11
+      ]
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "legacy-exact-twelfth-keeps-top-information",
+    "property": {
+      "floor": 12,
+      "buildingFloors": 13,
+      "floorIsUpperRange": false
+    },
+    "search": {
+      "floors": [
+        9
+      ],
+      "excludeTopFloor": true
+    },
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "invalid-fractional-floor-is-unknown",
+    "property": {
+      "floor": 1.5
+    },
+    "search": {
+      "floors": [
+        1
+      ]
+    },
+    "eligible": true,
+    "score": 0,
+    "valueForMoney": 0.75375
   }
 ]

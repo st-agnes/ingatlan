@@ -11,10 +11,10 @@ Az ingatlanon ezekből a jellemzőkből mezőnként egy érték választható, m
 | Építés ideje | `constructionAge` | `constructionAges` tömb | 10 évnél fiatalabb, 10–30 év közötti, 31–40 év közötti, 41–50 év közötti, Több mint 50 éves |
 | Kilátás | `view` | `views` tömb | Kertre néző, Utcai, Udvari, Panorámás |
 | Belmagasság | `ceilingHeight` | `ceilingHeight` | 3 m alatti, 3 m feletti |
-| Emelet | `floor` szám vagy `null` | `floors` számtömb | `-1`: szuterén; `0`: földszint; `1`–`10`; `11`: 11 vagy afölötti |
+| Emelet | `floor` szám vagy `null` | `floors` számtömb | `-1`: szuterén; `0`: földszint; `0.5`: magasföldszint; `1`–`8`; `9`: 9 vagy afölötti keresési csoport |
 | Fűtés típusa | `heatingType` | `heatingTypes` tömb | Nincs fűtés, Gázkazán, Gázcirkó, Gázkonvektor, Távfűtés, Házközponti fűtés, Elektromos fűtés, Hőszivattyú, Klíma, Vegyes tüzelésű kazán, Cserépkályha, Kandalló, Egyéb |
 
-A keresési `floors: [11]` a ténylegesen 12., 15. vagy magasabb emeleten lévő meglévő ingatlanokat is elfogadja. A `null` ingatlanemelet nem jelent földszintet. A korábbi konkrét emeletszám szerkesztéskor is megmarad, ha azt nem változtatják meg.
+A keresési `floors: [9]` minden 9. vagy magasabb emeletet elfogad. A régi keresési 10/11 érték olvasáskor és mentéskor ebbe a csoportba kerül. Az ingatlan új 9+ választása `floor:9, floorIsUpperRange:true`; ez nem állít pontos emeletet, ezért a zárószint kizárását önmagában nem teljesítheti. A korábbi pontos emelet (`floor:12, floorIsUpperRange:false`) változatlan szerkesztéskor megmarad. A `null` ingatlanemelet nem jelent földszintet. A korábbi konkrét emeletszám szerkesztéskor is megmarad, ha azt nem változtatják meg.
 
 Csak az ingatlanhoz adható meg:
 
@@ -46,3 +46,9 @@ A `20261105-property-attributes` és az új `20261106-seller-form-details` séma
 A régi állapotok olvasáskor megfeleltethetők az új kategóriáknak: „Felújított”, „Újszerű” és „Új építésű” → „Új/felújított”; „Jó állapotú” → „Jó”. A migráció nem írja át a régi sorokat. A régi API-val mentett, ismeretlen állapot/falazat/fő fűtés egy másik mező szerkesztésekor megőrizhető, de új ismeretlen választási érték nem hozható létre. A korábbi `parkingType` szöveg egyetlen választásként olvasható, nem daraboljuk fel. A `parkingTypes` lista az elsődleges; `[]` törli a választásokat. A `parkingType` válaszmező kompatibilitási összefűzött címke a régi klienseknek. Változatlan régi parkolószöveg másik mező szerkesztésekor megőrizhető. A böngészős demó mentése azonos tárolókulccsal és azonosítókkal marad használható.
 
 A frissítéshez új backendkép és frontend telepítése szükséges: a korábbi kiadás backendképe nem tartalmazza ezeket a mezőket és szűrési szabályokat. A Google Cloud meglévő adatbázisa helyben frissül. Az alkalmazás élesítésétől függetlenül a mostani telepítés továbbra is tesztkörnyezet.
+
+A `buildingFloors` az épület legfelső emeletszáma (0: csak földszint/magasföldszint). A magasföldszint `floor:0.5`, és 0-szintes épületben zárószintnek számít. Az új `20261124-raised-and-upper-floor-range` sémabővítés megőrzi a korábbi egész emeletértékeket.
+
+A keresési szobaszámok korlát nélkül indulnak, pluszra 1-re váltanak, majd 0,5-ös lépésekkel állíthatók. Mínusz 1-ről visszatér a korlát nélküli állapothoz. A költözési idő négy képes opcióból választható, és újbóli kattintással törölhető.
+
+A leírásban elérhetőség nem adható meg. A felület és a backend közös példakészlettel ellenőrzi a telefonszámok és e-mail-címek szokásos tagolt, Unicode- és szöveges alakjait; a privát profil telefonszáma és e-mail-címe ettől külön adat.

@@ -3,7 +3,7 @@
  */
 import {mockMapTiles} from './map-browser-network.mjs';
 import assert from 'node:assert/strict';
-import {editorField,editorSave,choosePropertyType} from './editor-browser-helpers.mjs';
+import {editorField,editorSave,choosePropertyType,fillRoomBound} from './editor-browser-helpers.mjs';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -107,7 +107,7 @@ async function verifyViewport(browser, viewport) {
     await choosePropertyType(page, 'Lakás', interact);
     await (await editorField(page, '#f-maxPrice')).fill('90');
     await (await editorField(page, '#f-minArea')).fill('40');
-    await (await editorField(page, '#f-minRooms')).fill('1');
+    await fillRoomBound(page,'minRooms','1',interact);
     await (await editorField(page, '#f-title')).fill(title);
     const save = page.waitForResponse(response => new URL(response.url()).pathname === '/api/searches' && response.request().method() === 'POST');
     await editorSave(page, interact);

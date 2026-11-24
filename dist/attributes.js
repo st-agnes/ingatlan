@@ -7,9 +7,9 @@ export const HEATING_OPTIONS = Object.freeze(['Nincs fűtés','Gázkazán','Gáz
 export const PARKING_OPTIONS = Object.freeze(['Utcai parkolás','Udvari beálló','Fedett beálló','Garázs','Mélygarázs','Teremgarázs','Egyéb']);
 export const CEILING_HEIGHT_OPTIONS = Object.freeze(['3 m alatti','3 m feletti']);
 export const FLOOR_OPTIONS = Object.freeze([
-  {value:-1,label:'Szuterén'}, {value:0,label:'Földszint'},
-  ...Array.from({length:10},(_,index)=>({value:index+1,label:String(index+1)})),
-  {value:11,label:'11 vagy afölötti'}
+  {value:-1,label:'Szuterén'}, {value:0,label:'Földszint'}, {value:0.5,label:'Magasföldszint'},
+  ...Array.from({length:8},(_,index)=>({value:index+1,label:String(index+1)})),
+  {value:9,label:'9 vagy afölötti'}
 ].map(Object.freeze));
 
 const normalized = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLocaleLowerCase('hu');
@@ -56,12 +56,12 @@ function optionalText(value, maximum, strict) {
 function floorNumber(value, strict, allowLegacy = false) {
   if (value == null || (typeof value === 'string' && !value.trim())) return null;
   if (typeof value === 'boolean') {
-    if (strict) throw new Error('Az emelet -1 és 200 közötti egész szám legyen.');
+    if (strict) throw new Error('Válassz érvényes emeletet vagy magasföldszintet.');
     return null;
   }
   const number = Number(value);
-  if (Number.isInteger(number) && number >= (strict && !allowLegacy ? -1 : -5) && number <= 200) return number;
-  if (strict) throw new Error('Az emelet -1 és 200 közötti egész szám legyen.');
+  if ((Number.isInteger(number) || number === 0.5) && number >= (strict && !allowLegacy ? -1 : -5) && number <= 200) return number;
+  if (strict) throw new Error('Válassz érvényes emeletet vagy magasföldszintet.');
   return null;
 }
 function buildingFloorNumber(value, strict) {
@@ -126,7 +126,9 @@ export function normalizePropertyAttributes(value = {}, {strict = false, previou
   const house = normalized(value.type) === 'haz', apartment = normalized(value.type) === 'lakas';
   const floor = strict && house ? null : floorNumber(value.floor,strict,allowLegacyUnknown || (!!previous && value.floor != null && Number(value.floor) === Number(previous.floor)));
   const buildingFloors = house ? null : buildingFloorNumber(value.buildingFloors,strict);
-  if (strict && floor != null && buildingFloors != null && floor > buildingFloors) throw new Error('Az ingatlan emelete nem lehet magasabb az épület legfelső emeleténél.');
+  const upperRange = !house && nullableBoolean(value.floorIsUpperRange,strict) === true;
+  if (strict && upperRange && floor !== 9) throw new Error('A 9 vagy afölötti jelöléshez a csoportosított emeletet válaszd.');
+  if (strict && floor != null && buildingFloors != null && floor > buildingFloors && !(floor === 0.5 && buildingFloors === 0)) throw new Error('Az ingatlan emelete nem lehet magasabb az épület legfelső emeleténél.');
   return {
     ...normalizePropertyRooms(value,{strict,previous}),
     condition:normalizeCondition(value.condition,legacyOptions('condition')),
@@ -134,7 +136,7 @@ export function normalizePropertyAttributes(value = {}, {strict = false, previou
     constructionAge:choice(value.constructionAge,CONSTRUCTION_AGE_OPTIONS,{strict}),
     view:choice(value.view,VIEW_OPTIONS,{strict}),
     ceilingHeight:choice(value.ceilingHeight,CEILING_HEIGHT_OPTIONS,{strict}),
-    floor, buildingFloors,
+    floor, buildingFloors, floorIsUpperRange:upperRange && floor === 9,
     privateGarden:apartment ? nullableBoolean(value.privateGarden,strict) : null,
     sharedGarden:null, // Retained wire field; the shared-garden option is retired.
     heatingType:choice(optionalText(value.heatingType,80,strict),HEATING_OPTIONS,legacyOptions('heatingType')),
@@ -150,8 +152,9 @@ export function normalizeSearchAttributes(value = {}, {strict = false} = {}) {
   const legacy = (plural,singular) => Object.hasOwn(value,plural) ? value[plural] : value[singular] && !['barmilyen','mindegy','osszes'].includes(normalized(value[singular])) ? [value[singular]] : [];
   const floors = (strict && value.type === 'Ház') || value.floors == null || value.floors === '' ? [] : value.floors;
   if (strict && !Array.isArray(floors)) throw new Error('Az emeleteket listaként add meg.');
-  const normalizedFloors = [...new Set((Array.isArray(floors) ? floors : [floors]).map(floor=>floor == null || typeof floor === 'boolean' || (typeof floor === 'string' && !floor.trim()) ? NaN : Number(floor)))];
-  if (strict && normalizedFloors.some(floor=>!Number.isInteger(floor) || !FLOOR_OPTIONS.some(option=>option.value === floor))) throw new Error('Érvénytelen emeletválasztás.');
+  const rawFloors = (Array.isArray(floors) ? floors : [floors]).map(floor=>floor == null || typeof floor === 'boolean' || (typeof floor === 'string' && !floor.trim()) ? NaN : Number(floor));
+  if (strict && rawFloors.some(floor=>!FLOOR_OPTIONS.some(option=>option.value === floor) && floor !== 10 && floor !== 11)) throw new Error('Érvénytelen emeletválasztás.');
+  const normalizedFloors = [...new Set(rawFloors.map(floor=>Number.isInteger(floor) && floor >= 9 && floor <= 11 ? 9 : floor))];
   return {
     ...value,
     conditions:choices(legacy('conditions','condition'),CONDITION_OPTIONS,normalizeCondition,strict),
@@ -181,10 +184,10 @@ export function attributesCompatible(property, search) {
   }
   if (s.ceilingHeight && (!CEILING_HEIGHT_OPTIONS.includes(p.ceilingHeight) || s.ceilingHeight !== p.ceilingHeight)) return false;
   if (s.type !== 'Ház' && s.floors.length) {
-    const bucket = p.floor == null ? null : p.floor >= 11 ? 11 : p.floor;
+    const bucket = p.floor == null ? null : p.floor >= 9 ? 9 : p.floor;
     if (bucket == null || !FLOOR_OPTIONS.some(option=>option.value === bucket) || !s.floors.includes(bucket)) return false;
   }
-  if (s.type !== 'Ház' && s.excludeTopFloor && (p.floor == null || p.buildingFloors == null || p.floor >= p.buildingFloors)) return false;
+  if (s.type !== 'Ház' && s.excludeTopFloor && (p.floor == null || p.floorIsUpperRange || p.buildingFloors == null || p.floor >= (p.floor === 0.5 && p.buildingFloors === 0 ? 0.5 : p.buildingFloors))) return false;
   if (s.type !== 'Ház' && s.excludeGroundFloorAndBelow && (p.floor == null || p.floor <= 0)) return false;
   if (s.airConditioning && p.airConditioning !== true) return false;
   if (s.privateGarden && p.privateGarden !== true) return false;

@@ -52,7 +52,8 @@ public sealed class Property
     public decimal Rooms { get; set; }
     public int? WholeRooms { get; set; }
     public int? HalfRooms { get; set; }
-    public int? Floor { get; set; }
+    public decimal? Floor { get; set; }
+    public bool FloorIsUpperRange { get; set; }
     public int? BuildingFloors { get; set; }
     public bool? PrivateGarden { get; set; }
     // Deprecated; keep the mapped column and old input shape without exposing an active option.
@@ -214,6 +215,8 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<User>().ToTable("Users");
         b.Entity<UserReport>().ToTable("UserReports");
         b.Entity<Property>().ToTable("Properties");
+        b.Entity<Property>().Property(property => property.Floor).HasPrecision(4, 1);
+        b.Entity<Property>().Property(property => property.FloorIsUpperRange).HasDefaultValue(false);
         b.Entity<SearchRequest>().ToTable("SearchRequests");
         b.Entity<SearchLocation>().ToTable("SearchLocations");
         b.Entity<SearchLocation>().HasKey(location => new { location.SearchRequestId, location.LocationId });
@@ -311,7 +314,7 @@ public static class Dto
                 geocodingStatus = p.Latitude.HasValue && p.Longitude.HasValue ? "located" : "missing" } : null,
             neighborhoodIds = Strings(p.NeighborhoodIdsJson),
             neighborhoods = Strings(p.NeighborhoodIdsJson).Select(NeighborhoodCatalog.Get).Where(x => x is not null).ToArray(),
-            p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, wholeRooms = rooms.WholeRooms, halfRooms = rooms.HalfRooms, p.Floor, p.BuildingFloors, p.PrivateGarden, SharedGarden = (bool?)null, condition = PropertyAttributes.NormalizeCondition(p.Condition), building = PropertyAttributes.NormalizeBuilding(p.Building), p.ConstructionAge, p.View, p.CeilingHeight, heatingType = PropertyAttributes.NormalizeHeating(p.HeatingType), p.SecondaryHeatingType, p.Insulated, p.EnergyRating, p.AirConditioning, p.SolarPanels, p.ParkingType, parkingTypes = PropertyAttributes.Parking(p), p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
+            p.Description, locationId = LocationCatalog.ForProperty(p)?.Id ?? p.LocationId, location = LocationCatalog.ForProperty(p), p.Type, p.Price, p.Area, p.LotArea, p.Rooms, wholeRooms = rooms.WholeRooms, halfRooms = rooms.HalfRooms, p.Floor, p.FloorIsUpperRange, p.BuildingFloors, p.PrivateGarden, SharedGarden = (bool?)null, condition = PropertyAttributes.NormalizeCondition(p.Condition), building = PropertyAttributes.NormalizeBuilding(p.Building), p.ConstructionAge, p.View, p.CeilingHeight, heatingType = PropertyAttributes.NormalizeHeating(p.HeatingType), p.SecondaryHeatingType, p.Insulated, p.EnergyRating, p.AirConditioning, p.SolarPanels, p.ParkingType, parkingTypes = PropertyAttributes.Parking(p), p.Balcony, p.Elevator, Images = Strings(p.ImagesJson), p.Archived, p.CreatedAt };
     }
     public static object Search(SearchRequest s, string ownerAccountType = AccountTypes.Private, string? ownerName = null)
     {
@@ -335,11 +338,12 @@ public record MessageInput(string Text);
 public record TopupInput(int Amount);
 // New optional fields omit their defaults only when serializing inputs, preserving
 // the original private creation fingerprint of older, still-pending drafts.
-public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, int? Floor, string? Condition, string? Building, bool Balcony, bool Elevator, string[]? Images, bool Archived = false, string? LocationId = null, decimal? LotArea = null, string? ConstructionAge = null, string? View = null, string? CeilingHeight = null, string? HeatingType = null, bool? Insulated = null, string? EnergyRating = null, bool? AirConditioning = null, bool? SolarPanels = null, string? ParkingType = null, int? WholeRooms = null, int? HalfRooms = null, string? SecondaryHeatingType = null, string[]? ParkingTypes = null, string? Street = null, string? HouseNumber = null, string? PostalCode = null, string? StreetId = null, Guid? CreationRequestId = null,
+public record PropertyInput(string Title, string City, string? District, string? Neighborhood, string? Address, string? Description, string Type, decimal Price, decimal Area, decimal Rooms, decimal? Floor, string? Condition, string? Building, bool Balcony, bool Elevator, string[]? Images, bool Archived = false, string? LocationId = null, decimal? LotArea = null, string? ConstructionAge = null, string? View = null, string? CeilingHeight = null, string? HeatingType = null, bool? Insulated = null, string? EnergyRating = null, bool? AirConditioning = null, bool? SolarPanels = null, string? ParkingType = null, int? WholeRooms = null, int? HalfRooms = null, string? SecondaryHeatingType = null, string[]? ParkingTypes = null, string? Street = null, string? HouseNumber = null, string? PostalCode = null, string? StreetId = null, Guid? CreationRequestId = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] int? BuildingFloors = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool? PrivateGarden = null,
-    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool? SharedGarden = null);
-public record SearchInput(string Title, string City, string[]? Districts, string? Description, string Type, decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, bool Balcony, bool Elevator, string? MoveIn, string? Financing, bool Archived = false, string[]? LocationIds = null, string[]? Conditions = null, string[]? Buildings = null, string[]? ConstructionAges = null, string[]? Views = null, string? CeilingHeight = null, int[]? Floors = null, string[]? HeatingTypes = null, Guid? CreationRequestId = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool? SharedGarden = null,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool FloorIsUpperRange = false);
+public record SearchInput(string Title, string City, string[]? Districts, string? Description, string Type, decimal? MinPrice, decimal? MaxPrice, decimal? MinArea, decimal? MaxArea, decimal? MinRooms, decimal? MaxRooms, bool Balcony, bool Elevator, string? MoveIn, string? Financing, bool Archived = false, string[]? LocationIds = null, string[]? Conditions = null, string[]? Buildings = null, string[]? ConstructionAges = null, string[]? Views = null, string? CeilingHeight = null, decimal[]? Floors = null, string[]? HeatingTypes = null, Guid? CreationRequestId = null,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool ExcludeTopFloor = false,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool ExcludeGroundFloorAndBelow = false,
     [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] bool AirConditioning = false,

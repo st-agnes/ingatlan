@@ -38,7 +38,7 @@ public class FlatAmenitiesTests
     {
         var p = new Property();
         Rules.Apply(p, PropertyInput() with { Floor = floor, BuildingFloors = buildingFloors });
-        Assert.Equal(floor, p.Floor); Assert.Equal(buildingFloors, p.BuildingFloors);
+        Assert.Equal((decimal?)floor, p.Floor); Assert.Equal(buildingFloors, p.BuildingFloors);
     }
 
     [Theory]

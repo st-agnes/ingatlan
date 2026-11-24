@@ -118,7 +118,7 @@ test('new optional property data and multiselect filters persist without turning
  const q=m.saveEntity('search',{title:'Részletes keresési igény',locationIds:['district:Budapest:13'],conditions:['Jó','Átlagos'],buildings:['Panel','Tégla'],constructionAges:['10–30 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',floors:[0,11]});
  const again=createModel(storage),saved=again.getState().properties.find(item=>item.id===p.id),savedSearch=again.getState().searches.find(item=>item.id===q.id);
  for(const field of ['condition','building','constructionAge','view','ceilingHeight','floor','heatingType','insulated','energyRating','airConditioning','solarPanels','parkingType'])assert.deepEqual(saved[field],p[field],field);
- assert.deepEqual(savedSearch.conditions,['Jó','Átlagos']);assert.deepEqual(savedSearch.floors,[0,11]);
+ assert.deepEqual(savedSearch.conditions,['Jó','Átlagos']);assert.deepEqual(savedSearch.floors,[0,9]);
  const blank=again.saveEntity('property',{...exactAddress,title:'Opcionális mezők nélkül',locationId:'city:Debrecen',type:'Lakás',price:40,area:50,rooms:2});
  assert.deepEqual([blank.condition,blank.building,blank.floor,blank.insulated,blank.airConditioning,blank.solarPanels],['','',null,null,null,null]);
  const cleared=again.saveEntity('property',{...exactAddress,...p,condition:'',building:'',constructionAge:'',view:'',ceilingHeight:'',floor:'',insulated:'',airConditioning:'',solarPanels:''},p.id);
@@ -749,4 +749,16 @@ test('new demo floor and amenity requirements govern exact feeds and retain the 
  const before=model.getState();assert.throws(()=>model.decide(partial,true));assert.deepEqual(model.getState(),before);
  model.saveEntity('search',{...q,excludeTopFloor:false,excludeGroundFloorAndBelow:false,airConditioning:false,privateGarden:false},q.id);
  assert.ok(model.feed().some(p=>p.id==='p1'));
+});
+
+
+test('demo raised and upper-range floors survive storage while a cleared move-in choice remains empty',()=>{
+ const storage=store(),m=createModel(storage),base={...exactAddress,title:'Magasföldszinti tesztlakás',locationId:'city:Debrecen',type:'Lakás',price:60,area:60,rooms:3};
+ const p=m.saveEntity('property',{...base,floor:0.5,buildingFloors:0});
+ const upper=m.saveEntity('property',{...base,title:'Felső emeleti lakás',floor:9,floorIsUpperRange:true,buildingFloors:12});
+ const exact=m.saveEntity('property',{...base,title:'Pontos magas emelet',floor:12,buildingFloors:12});
+ const q=m.saveEntity('search',{title:'Emeleti otthont keresek',locationIds:['city:Debrecen'],type:'Lakás',floors:[0.5,11],moveIn:''});
+ const state=createModel(storage).getState();assert.equal(state.properties.find(x=>x.id===p.id).floor,0.5);assert.equal(state.properties.find(x=>x.id===upper.id).floorIsUpperRange,true);assert.equal(state.properties.find(x=>x.id===exact.id).floor,12);
+ assert.deepEqual(state.searches.find(x=>x.id===q.id).floors,[0.5,9]);assert.equal(state.searches.find(x=>x.id===q.id).moveIn,'');
+ const before=state.searches.length;assert.throws(()=>m.saveEntity('search',{title:'Kapcsolatos hibás keresés',locationIds:['city:Debrecen'],description:'Anna kukac pelda pont hu'}),/Elérhetőséget/);assert.equal(m.getState().searches.length,before);
 });

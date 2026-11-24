@@ -27,7 +27,7 @@ public sealed class CompiledSearch
     internal HashSet<string> Heating { get; }
     internal HashSet<string> Ages { get; }
     internal HashSet<string> Views { get; }
-    internal int[] Floors { get; }
+    internal decimal[] Floors { get; }
     internal int? ConditionMinimum { get; }
 
     internal CompiledSearch(SearchRequest input, HashSet<string> cities, HashSet<string> districtIds, HashSet<string> neighborhoodIds,
@@ -95,11 +95,10 @@ public static class MatchingRanking
     private static decimal Unit(decimal value) => Math.Clamp(value, 0m, 1m);
     private static decimal CategoryLoss(string? value, HashSet<string> selected, string[] options) =>
         selected.Count == 0 ? 0m : options.Contains(value) && selected.Contains(value!) ? 0m : 1m;
-    private static bool KnownFloor(Property property) => property.Floor is >= -5 and <= 200;
-    private static bool KnownTopFloor(Property property) => KnownFloor(property)
-        && property.BuildingFloors is >= 0 and <= 200 && property.Floor <= property.BuildingFloors;
-    private static bool BelowTopFloor(Property property) => KnownTopFloor(property) && property.Floor < property.BuildingFloors;
-    private static bool AboveGroundFloor(Property property) => KnownFloor(property) && property.Floor > 0;
+    private static bool KnownFloor(Property property) => PropertyAttributes.KnownFloor(property.Floor);
+    private static bool KnownTopFloor(Property property) => PropertyAttributes.KnownTopFloor(property);
+    private static bool BelowTopFloor(Property property) => PropertyAttributes.BelowTopFloor(property);
+    private static bool AboveGroundFloor(Property property) => PropertyAttributes.AboveGroundFloor(property);
 
     public static CompiledSearch Prepare(SearchRequest search)
     {
@@ -177,8 +176,8 @@ public static class MatchingRanking
         var condition = ConditionIndex(property.Condition);
         Add(ConditionWeight, search.Conditions.Count > 0, condition < 0 || search.ConditionMinimum < 0 ? 1m
             : ((search.ConditionMinimum ?? 0) - condition) / 3m, "Állapot");
-        var floorLoss = search.Floors.Length == 0 ? 0m : property.Floor.HasValue
-            ? search.Floors.Min(wanted => wanted == 11 && property.Floor.Value >= 11 ? 0m : Math.Abs(wanted - property.Floor.Value) / 5m) : 1m;
+        var floorLoss = search.Floors.Length == 0 ? 0m : KnownFloor(property)
+            ? search.Floors.Min(wanted => wanted == 9m && property.Floor!.Value >= 9m ? 0m : Math.Abs(wanted - property.Floor!.Value) / 5m) : 1m;
         if (s.ExcludeTopFloor && !BelowTopFloor(property)) floorLoss = Math.Max(floorLoss, 1m);
         if (s.ExcludeGroundFloorAndBelow && !AboveGroundFloor(property)) floorLoss = Math.Max(floorLoss, 1m);
         Add(FloorWeight, !search.House && (search.Floors.Length > 0 || s.ExcludeTopFloor || s.ExcludeGroundFloorAndBelow), floorLoss, "Emelet");
@@ -204,8 +203,8 @@ public static class MatchingRanking
 
     private static readonly CultureInfo Hungarian = CultureInfo.GetCultureInfo("hu-HU");
     private static string Number(decimal value) => value.ToString("0.######", Hungarian);
-    private static string Floor(int value, bool bucket = false) => value switch {
-        -1 => "Szuterén", 0 => "Földszint", 11 when bucket => "11. emelet vagy afölötti", _ => value + ". emelet"
+    private static string Floor(decimal value, bool bucket = false) => value switch {
+        -1m => "Szuterén", 0m => "Földszint", .5m => "Magasföldszint", 9m when bucket => "9. emelet vagy afölötti", _ => Number(value) + ". emelet"
     };
     private static string Known(string value, string[] options) => options.Contains(value) ? value : "Nincs megadva";
 
@@ -250,14 +249,14 @@ public static class MatchingRanking
         }
         if (!q.House && q.Floors.Length > 0)
             Add("floor", "Emelet", string.Join(" vagy ", q.Floors.Select(value => Floor(value, bucket: true))),
-                p.Floor.HasValue ? Floor(p.Floor.Value) : "Nincs megadva",
-                p.Floor.HasValue && q.Floors.Any(value => value == p.Floor.Value || value == 11 && p.Floor.Value >= 11));
+                KnownFloor(p) ? Floor(p.Floor!.Value, p.FloorIsUpperRange) : "Nincs megadva",
+                KnownFloor(p) && q.Floors.Any(value => value == p.Floor!.Value || value == 9m && p.Floor!.Value >= 9m));
         if (!q.House && s.Elevator) Add("elevator", "Lift", "Van lift", p.Elevator ? "Van lift" : "Nincs lift", p.Elevator);
         if (!q.House && s.Balcony) Add("balcony", "Erkély", "Van erkély", p.Balcony ? "Van erkély" : "Nincs erkély", p.Balcony);
         if (!q.House && s.ExcludeTopFloor) Add("excludeTopFloor", "Legfelső emelet", "Nem legfelső emelet",
             !KnownTopFloor(p) ? "Nincs megadva" : BelowTopFloor(p) ? "Nem legfelső emelet" : "Legfelső emelet", BelowTopFloor(p));
         if (!q.House && s.ExcludeGroundFloorAndBelow) Add("excludeGroundFloorAndBelow", "Földszint és szuterén", "Földszint felett",
-            KnownFloor(p) ? Floor(p.Floor!.Value) : "Nincs megadva", AboveGroundFloor(p));
+            KnownFloor(p) ? Floor(p.Floor!.Value, p.FloorIsUpperRange) : "Nincs megadva", AboveGroundFloor(p));
         if (s.AirConditioning) Add("airConditioning", "Légkondi", "Van légkondi",
             p.AirConditioning is null ? "Nincs megadva" : p.AirConditioning == true ? "Van légkondi" : "Nincs légkondi", p.AirConditioning == true);
         if (q.Flat && s.PrivateGarden) Add("privateGarden", "Saját kert", "Van saját kert",
@@ -301,7 +300,7 @@ public static class MatchingRanking
         quality += parking.Any(value => value is "Garázs" or "Mélygarázs" or "Teremgarázs") ? .015m
             : parking.Any(value => value is "Fedett beálló" or "Udvari beálló") ? .01m : 0m;
         quality += Canonical(p.CeilingHeight, PropertyAttributes.CeilingHeights) == "3 m feletti" ? .005m : 0m;
-        quality += !house && p.Floor is >= 0 and <= 3 ? .005m : 0m;
+        quality += !house && KnownFloor(p) && p.Floor is >= 0 and <= 3 ? .005m : 0m;
         quality += !house && p.Balcony ? .01m : 0m;
         quality += !house && p.Elevator ? .01m : 0m;
         quality += Math.Min(1m, Math.Max(0m, p.Rooms) / (p.Area / 25m)) * .005m;
@@ -341,7 +340,7 @@ public static class MatchingRanking
         }
         if (!search.House)
         {
-            Add(FloorWeight, Math.Max(Category(search.Floors.Length, 13), s.ExcludeTopFloor || s.ExcludeGroundFloorAndBelow ? 1m : 0m));
+            Add(FloorWeight, Math.Max(Category(search.Floors.Length, 12), s.ExcludeTopFloor || s.ExcludeGroundFloorAndBelow ? 1m : 0m));
             Add(ElevatorWeight, s.Elevator ? 1m : 0m); Add(BalconyWeight, s.Balcony ? 1m : 0m);
         }
         return Math.Clamp((int)Math.Round(100m * selected / total, MidpointRounding.AwayFromZero), 0, 100);

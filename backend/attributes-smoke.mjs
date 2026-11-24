@@ -1,4 +1,5 @@
 import {withTestAddress} from './smoke-address.mjs';
+import {checkFormRefinements,verifyFormRefinementPersistence} from './form-refinements-smoke.mjs';
 /** Real API/MySQL attribute regression. Only disposable loopback environments. */
 import assert from 'node:assert/strict';
 import {mkdir, readFile, writeFile, chmod} from 'node:fs/promises';
@@ -7,17 +8,18 @@ const origin = new URL(process.argv[2] || 'http://127.0.0.1:3000');
 if (origin.protocol !== 'http:' || !['localhost','127.0.0.1','[::1]'].includes(origin.hostname)
     || origin.username || origin.password || origin.pathname !== '/' || origin.search || origin.hash) throw new Error('Use only a disposable loopback API.');
 const fixturePath = resolve('.local/attributes-upgrade-fixture.json');
-async function call(path, {token, method='GET', body, status=200}={}) {
+async function call(path, {token, method='GET', body, status=200, message}={}) {
  body=withTestAddress(path,method,body);
   const response = await fetch(new URL('/api'+path, origin), {method, redirect:'error', signal:AbortSignal.timeout(20000),
     headers:{...(token?{Authorization:`Bearer ${token}`} : {}), ...(body === undefined ? {} : {'Content-Type':'application/json'})},
     ...(body === undefined ? {} : {body:JSON.stringify(body)})});
   assert.equal(response.status,status,`${method} ${path}: HTTP ${response.status}`);
+  if(message){const error=await response.json();assert.equal(error.message,message,'Contact validation must explain the blocked description');return error;}
   // Invalid JSON numeric types are rejected by ASP.NET before the endpoint,
   // whose Development 400 response is plain text rather than a JSON payload.
   return response.status === 204 || status >= 400 ? null : response.json();
 }
-const propertyFields = ['condition','building','constructionAge','view','ceilingHeight','floor','buildingFloors','heatingType','insulated','energyRating','airConditioning','privateGarden','sharedGarden','solarPanels','parkingType'];
+const propertyFields = ['condition','building','constructionAge','view','ceilingHeight','floor','floorIsUpperRange','buildingFloors','heatingType','insulated','energyRating','airConditioning','privateGarden','sharedGarden','solarPanels','parkingType'];
 const searchFields = ['conditions','buildings','constructionAges','views','ceilingHeight','floors','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden','sharedGarden'];
 async function verify(fixture) {
   const [seller,buyer] = await Promise.all([call('/me/entities',{token:fixture.seller}),call('/me/entities',{token:fixture.buyer})]);
@@ -28,10 +30,12 @@ async function verify(fixture) {
   for(const field of searchFields)assert.deepEqual(search[field],fixture.search[field],`Search ${field} was not preserved`);
   assert.equal(property.insulated,false); assert.equal(property.solarPanels,false); assert.equal(property.airConditioning,true);
   assert.equal(property.floor,12, 'An existing floor above 11 must retain its actual value');
+  assert.equal(property.floorIsUpperRange,false,'A legacy exact floor must not become an imprecise range');
   assert.equal(property.buildingFloors,14);assert.equal(property.privateGarden,true);assert.equal(property.sharedGarden,null, 'The removed shared-garden option stays neutral');
   for(const field of ['excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])assert.equal(search[field],true,field+' must survive a restart');
   assert.equal(search.sharedGarden,false, 'An old shared-garden request cannot remain a hidden criterion');
   assert.equal(search.minRooms,2.5,'Half-room bounds must retain their exact value after a restart');
+  verifyFormRefinementPersistence(fixture.refinements,seller,buyer);
 }
 if (process.argv[3] === '--verify') {
   await verify(JSON.parse(await readFile(fixturePath,'utf8')));
@@ -71,7 +75,7 @@ if (process.argv[3] === '--verify') {
   assert.ok(upperFeed.items.every(item=>![unknown,...lower].some(home=>home.id===item.propertyId)),'Unknown, ground and basement floors cannot be perfect matches for the exclusion');
   await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:search.id}});
   const duplicate=await call('/searches/'+search.id,{token:buyer,method:'PUT',body:{...searchBody,conditions:['Jó','Jó'],floors:[11,11]}});
-  assert.deepEqual(duplicate.conditions,['Jó']);assert.deepEqual(duplicate.floors,[11]);
+  assert.deepEqual(duplicate.conditions,['Jó']);assert.deepEqual(duplicate.floors,[9]);
   await call('/searches/'+search.id,{token:buyer,method:'PUT',body:searchBody});
   for(const field of ['condition','building','constructionAge','view','ceilingHeight']) await call('/properties',{token:seller,method:'POST',body:{...propertyBody,[field]:'Ismeretlen opció'},status:400});
   for(const buildingFloors of [-1,201,1.5,11])await call('/properties',{token:seller,method:'POST',body:{...propertyBody,buildingFloors},status:400});
@@ -83,7 +87,9 @@ if (process.argv[3] === '--verify') {
   for(const field of ['condition','building','constructionAge','view','ceilingHeight','heatingType','energyRating','parkingType'])assert.equal(reset[field],'');
   for(const field of ['floor','buildingFloors','insulated','airConditioning','privateGarden','sharedGarden','solarPanels'])assert.equal(reset[field],null);
   const restored=await call('/properties/'+property.id,{token:seller,method:'PUT',body:propertyBody});
-  const fixture={buyer,seller,propertyId:property.id,searchId:search.id,property:restored,search};
+  const refinements=await checkFormRefinements({call,buyer,seller,baseProperty});
+  await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:search.id}});
+  const fixture={buyer,seller,propertyId:property.id,searchId:search.id,property:restored,search,refinements};
   await verify(fixture);
   await mkdir(dirname(fixturePath),{recursive:true});
   await writeFile(fixturePath,JSON.stringify(fixture),{mode:0o600});await chmod(fixturePath,0o600);

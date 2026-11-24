@@ -6,7 +6,7 @@ import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {getLocation, searchLocations} from '../dist/locations.js';
 import {neighborhoods} from '../dist/neighborhoods-data.js';
-import {editorField, editorSave, editorStep, choosePropertyType} from './editor-browser-helpers.mjs';
+import {editorField, editorSave, editorStep, choosePropertyType,fillRoomBound} from './editor-browser-helpers.mjs';
 import {mockMapTiles} from './map-browser-network.mjs';
 
 const modulePath = process.env.PLAYWRIGHT_MODULE;
@@ -279,13 +279,27 @@ async function assertSourceLink(page, {landing = false} = {}) {
 function gate() {let release; const promise = new Promise(resolve => {release = resolve;}); return {promise, release};}
 async function readyMap(page, selector) {
   const map = page.locator(selector); await map.locator('.location-map-canvas.maplibregl-map').waitFor();
-  await map.locator('.location-map-canvas').evaluate(element => new Promise((resolve, reject) => {
+  // Landing refreshes may replace a canvas while it is loading. Inspect the
+  // current connected canvas on each frame, never a detached element handle.
+  await page.evaluate(selector => new Promise((resolve, reject) => {
     const deadline = performance.now() + 15000;
-    function check() {if (element.__mapBrowserInstance?.getLayer('otthonra-place-labels')) return resolve(); if (performance.now() > deadline) return reject(new Error('The real MapLibre label layer did not mount')); requestAnimationFrame(check);} check();
-  }));
+    let previous, replacements = 0;
+    function check() {
+      const host = document.querySelector(selector), element = host?.querySelector('.location-map-canvas.maplibregl-map');
+      if (previous && previous !== element) replacements++;
+      previous = element;
+      const actual = element?.isConnected ? element.__mapBrowserInstance : null;
+      const layerReady = !!actual?.getLayer('otthonra-place-labels');
+      const status = element?.closest('.location-map')?.querySelector('.location-map-status')?.textContent || '';
+      if (host?.isConnected && layerReady && performance.now() - (element.__mapBrowserLastMove || 0) > 220 && !actual.isMoving() && actual.loaded() && !status.includes('betöltése')) {resolve(); return;}
+      if (performance.now() > deadline) {reject(new Error('The current real MapLibre label layer did not mount and paint: ' + JSON.stringify({selector, connected: !!element?.isConnected, layerReady, replacements}))); return;}
+      requestAnimationFrame(check);
+    }
+    check();
+  }), selector);
   const box = await map.locator('canvas.maplibregl-canvas').boundingBox();
   assert.ok(box && box.width > 200 && box.height > 100, 'The real WebGL canvas must retain its map viewport, independently of global icon CSS');
-  await waitMapPaint(map); return map;
+  return map;
 }
 async function chooseText(page, viewport, id, value, {landing = false} = {}) {
   const prefix = landing ? 'landing-location' : 'location'; await page.locator(`#${prefix}-input`).fill(value);
@@ -504,7 +518,7 @@ async function ownedWizard(browser, viewport) {
     assert.notEqual(await page.evaluate(() => document.activeElement?.id), 'location-input', 'Map taps never summon the mobile keyboard'); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
     await clickLabel(map, tocoskert.id, viewport); assert.equal(await chip(page, tocoskert.id).count(), 0); assert.equal(await chip(page, solymar.id).count(), 1); await assertOutline(map, tocoskert.id, false); await clickLabel(map, tocoskert.id, viewport);
     await page.evaluate(() => {globalThis.__mapEditorNode = document.getElementById('search-location-map');});
-    await choosePropertyType(page, 'Lakás', locator => interact(viewport, locator));await (await editorField(page, '#f-maxPrice')).fill('90'); await (await editorField(page, '#f-minArea')).fill('40'); await (await editorField(page, '#f-minRooms')).fill('1'); await editorStep(page, 0);
+    await choosePropertyType(page, 'Lakás', locator => interact(viewport, locator));await (await editorField(page, '#f-maxPrice')).fill('90'); await (await editorField(page, '#f-minArea')).fill('40'); await fillRoomBound(page,'minRooms','1',locator=>interact(viewport,locator)); await editorStep(page, 0);
     assert.equal(await page.evaluate(() => globalThis.__mapEditorNode === document.getElementById('search-location-map')), true); await assertOutline(map, tocoskert.id);
     await editorSave(page, locator => interact(viewport, locator)); await page.getByRole('heading', {name: 'Elkészült a keresési igényed.', exact: true}).waitFor();
     assert.deepEqual(server.writes[0].locationIds, [solymar.id, tocoskert.id]); assert.equal(server.writes[0].maxPrice, 90000000); assert.equal(server.writes.length, 1); assert.deepEqual(server.active, {kind: 'search', id: searchId});

@@ -108,6 +108,7 @@ jobs:
           node tests/areas.test.mjs
           node tests/regions.test.mjs
           node tests/attributes.test.mjs
+          node tests/contact-policy.test.mjs
           node tests/gcp-deployment.test.mjs
           node tests/gcp-verification.test.mjs
           node tests/gcp-ci-validation.test.mjs
