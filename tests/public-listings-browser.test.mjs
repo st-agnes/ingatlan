@@ -63,6 +63,7 @@ async function verify(browser,viewport){
  try{
   await page.goto(`${origin}/#landing`,{waitUntil:'domcontentloaded'});await page.locator('.landing-search-card').first().waitFor();
   assert.equal(await page.locator('.landing-search-card').count(),16);assert.equal(await page.locator('.landing-property-card').count(),8);
+  await mkdir('.local/browser-tests/screenshots',{recursive:true});await page.locator('.landing-search-card').first().scrollIntoViewIfNeeded();await page.screenshot({path:resolve('.local/browser-tests/screenshots',`public-listings-landing-${viewport.name}.png`)});
   const card=page.locator('.landing-property-card').first(),link=card.locator('a.landing-card-open');
   assert.equal(await link.getAttribute('href'),`#listing/property/${propertyKey}`);assert.match(await card.locator('h3').innerText(),/Világos/);
   const owner=card.locator('.public-listing-author'),ownerBox=await owner.boundingBox(),titleBox=await card.locator('h3').boundingBox();assert.ok(ownerBox&&titleBox&&ownerBox.y<titleBox.y,'The advertiser is a compact upper-right detail above the actual title');
@@ -73,6 +74,7 @@ async function verify(browser,viewport){
   const text=await page.locator('#public-listing').innerText();assert.match(text,/Vénkert/);assert.match(text,/Hőszivattyú/);assert.match(text,/Energetikai tanúsítvány/);assert.match(text,/A\+/);assert.match(text,/Világos nappali/);assert.match(text.replace(/\s/g,''),/50000000Ft/);
   assert.doesNotMatch(text,/Titkos közterület|12\/A|PRIVATE|private-owner@|47\.53312345|21\.62112345/,'A hidden address and internal metadata must never appear on a public detail page');
   assert.deepEqual(await page.locator('.public-listing-gallery img').evaluateAll(nodes=>nodes.map(node=>node.src)),images,'The complete safe photo collection is visible without registration');assert.equal(await page.locator('img[src^="javascript:"]').count(),0);
+  await page.screenshot({path:resolve('.local/browser-tests/screenshots',`public-listings-property-${viewport.name}.png`)});
   await interact(page.locator('#public-listing .public-listing-actions [data-action="onboarding-start"]').first());await page.locator('#entity-form').waitFor();
   let draft=await loadDraft(page);assert.equal(draft.kind,'search');assert.deepEqual(draft.origin,{kind:'property',key:propertyKey});assert.equal(Number(draft.data.maxPrice),55);assert.equal(Number(draft.data.minArea),50);assert.equal(Number(draft.data.minRooms),2.5);assert.doesNotMatch(JSON.stringify(draft),/PRIVATE|ownerId|private-owner@|Titkos közterület/);
   await detail('property',streetOnlyKey);assert.equal((await page.locator('.public-listing-address').innerText()).trim(),'Titkos közterület');assert.doesNotMatch(await page.locator('#public-listing').innerText(),/12\/A/,'Hiding only the house number still permits the street name');
