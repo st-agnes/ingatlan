@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {editorField,editorStep,editorSave,choosePropertyType,setAttributeChoice,assertEditorNavigation,assertKeyboardNavigation,assertRoomSteppers} from './editor-browser-helpers.mjs';
+import {editorField,editorStep,editorSave,choosePropertyType,setAttributeChoice,assertEditorNavigation,assertKeyboardNavigation,assertRoomSteppers,installEditorViewportMock,settleEditorLayout} from './editor-browser-helpers.mjs';
 
 const modulePath=process.env.PLAYWRIGHT_MODULE;
 const playwrightUrl=modulePath?(modulePath.startsWith('file:')?modulePath:pathToFileURL(resolve(modulePath)).href):new URL('../.local/browser-tests/node_modules/playwright/index.mjs',import.meta.url).href;
@@ -30,7 +30,7 @@ async function fresh(page,kind='search',long=false){
 
 async function verifyProgress(page,kind,index){
  const buttons=page.locator('.editor-progress [data-action="editor-step"]');assert.equal(await buttons.count(),6);
- for(let step=0;step<6;step++)assert.ok((await buttons.nth(step).innerText()).includes(labels[kind][step]),`Step ${step+1} must have its topic name`);
+ for(let step=0;step<6;step++)assert.equal(await buttons.nth(step).getAttribute('aria-label'),labels[kind][step],`Step ${step+1} must retain its complete accessible topic name`);
  assert.equal(await page.locator(`#editor-step-button-${index}`).getAttribute('aria-current'),'step');
  assert.equal(await page.locator('.editor-step:visible').count(),1,'Only one topic is displayed at a time');
  assert.equal(await page.locator(`#editor-step-${index}`).isVisible(),true);await assertEditorNavigation(page);
@@ -38,7 +38,7 @@ async function verifyProgress(page,kind,index){
  assert.doesNotMatch(await page.locator('.editor-progress').innerText(),/Kitöltve|Aktuális|Hátravan/);
  const geometry=await page.locator('.entity-wizard').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));
  assert.ok(geometry.scroll<=geometry.width+1,'Named progress and fields must fit without horizontal scrolling');
- const tabs=await page.locator('.editor-progress').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth,rows:[...new Set([...element.querySelectorAll('button')].map(button=>Math.round(button.getBoundingClientRect().top)))]}));assert.ok(tabs.scroll<=tabs.width+1,'Vertical topic names must fit their left column');assert.equal(tabs.rows.length,6,'All six topic names occupy distinct vertical rows');
+ const tabs=await page.locator('.editor-progress').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth,rows:[...new Set([...element.querySelectorAll('button')].map(button=>Math.round(button.getBoundingClientRect().top)))]}));assert.ok(tabs.scroll<=tabs.width+1,'Topic names must fit their responsive menu');assert.equal(tabs.rows.length,await page.evaluate(()=>innerWidth<=720)?1:6,'Mobile topics share a compact bottom row; desktop topics occupy six vertical rows');
 }
 
 async function verifyTypeSelection(page,interact,kind,viewport){
@@ -48,7 +48,7 @@ async function verifyTypeSelection(page,interact,kind,viewport){
  assert.deepEqual(await cards.evaluateAll(elements=>elements.map(element=>element.dataset.propertyType)),types);
  assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),0,'A new form must wait for an explicit type choice');
  const geometry=await page.locator('#property-type-options').evaluate(element=>({width:element.clientWidth,scroll:element.scrollWidth}));assert.ok(geometry.scroll<=geometry.width+1,'The illustrated choices must fit the viewport');
- if(kind==='property'){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`visual-type-${viewport.name}.png`)});}
+ if(kind==='property'){await mkdir(screenshots,{recursive:true});await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await page.screenshot({path:resolve(screenshots,`compact-editor-${viewport.name}.png`)});}
  for(const type of types){
   const card=page.locator(`[data-property-type="${type}"]`);assert.ok((await card.innerText()).includes(type));await interact(card);
   await verifyProgress(page,kind,1);assert.equal(await page.locator('#f-type').inputValue(),type);assert.equal(await card.getAttribute('aria-pressed'),'true');assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),1);
@@ -96,6 +96,7 @@ async function createWizard(page,interact,kind,viewport){
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,1);
  await verifyTypeSelection(page,interact,kind,viewport);await verifyProgress(page,kind,2);
  await alignedBounds(page,kind,viewport);
+ if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`compact-editor-pricing-${viewport.name}.png`)});}
  for(const field of kind==='property'?['price','area','wholeRooms','halfRooms']:['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms'])assert.equal(await page.locator(`#f-${field}`).inputValue(),'','Blank forms must wait for the user values');
  assert.equal(await page.locator('#editor-step-button-0').getAttribute('data-state'),'completed');
  if(kind==='property'){
@@ -116,7 +117,7 @@ async function createWizard(page,interact,kind,viewport){
   await page.locator('input[name="conditions"][value="Jó"]').check();await page.locator('input[name="conditions"][value="Új/felújított"]').check();await page.locator('input[name="buildings"][value="Tégla"]').check();
  }
  await optionalChoices(page,interact,kind);await assertEditorNavigation(page,{scroll:true,lastField:true});
- if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`vertical-form-${viewport.name}.png`)});}
+ if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`compact-editor-attributes-${viewport.name}.png`)});}
  await interact(page.locator('#editor-next'));await verifyProgress(page,kind,4);
  if(kind==='property'){
   await page.locator('#f-heatingType').selectOption('Hőszivattyú');await page.locator('#f-insulated').selectOption('false');await page.locator('#f-airConditioning').selectOption('true');
@@ -174,7 +175,7 @@ async function alignedBounds(page,kind,viewport){
   else{assert.ok(row[1].top>=row[0].bottom,`${kind}: narrow form rows must stack with usable spacing`);assert.ok(Math.abs(row[0].left-row[1].left)<=1&&Math.abs(row[0].right-row[1].right)<=1,'Stacked inputs must share the same full column width');}
  }assert.ok(checked>0,'The price/size topic must contain actual paired or stacked field rows');};
  prove(await boundGeometry(page));
- if(kind==='search'&&viewport.name==='mobile'){await page.setViewportSize({width:320,height:viewport.height});prove(await boundGeometry(page));await assertEditorNavigation(page);await page.setViewportSize({width:viewport.width,height:viewport.height});prove(await boundGeometry(page));}
+ if(kind==='search'&&viewport.name==='mobile'){await page.setViewportSize({width:320,height:viewport.height});await settleEditorLayout(page);prove(await boundGeometry(page));await assertEditorNavigation(page);await page.setViewportSize({width:viewport.width,height:viewport.height});await settleEditorLayout(page);prove(await boundGeometry(page));}
 }
 
 const coreState=value=>({active:value.active,credits:value.credits,properties:value.properties,searches:value.searches,decisions:value.decisions});
@@ -230,6 +231,7 @@ async function verifyCriteriaSummary(page,interact,kind,viewport){
  assert.equal(await page.locator('#f-title').inputValue(),before[kind==='property'?'properties':'searches'].find(item=>item.id===id).title);
  assert.equal(await page.locator('#location-input').getAttribute('type'),'search');assert.equal(await page.locator('.entity-wizard input[type="search"]').count(),1);
  await editorStep(page,2,interact);await alignedBounds(page,kind,viewport);
+ if(kind==='property'){await page.locator('.modal').evaluate(element=>element.scrollTo({top:0,behavior:'instant'}));await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`compact-editor-pricing-${viewport.name}.png`)});}
  await editorStep(page,5,interact);await page.locator('#f-description').fill(`Összesítőből szerkesztve ${kind} ${viewport.name}`);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
  const after=await state(page),saved=after[kind==='property'?'properties':'searches'].find(item=>item.id===id);assert.equal(saved.description,`Összesítőből szerkesztve ${kind} ${viewport.name}`);assert.deepEqual(after.active,before.active);assert.equal(after.credits,before.credits);
  assert.equal(kind==='property'?saved.address:saved.financing,kind==='property'?'Teszt utca 12.':'Teszt saját forrás és hitel','Uneditable legacy values shown in the overview must survive unrelated edits');
@@ -290,6 +292,7 @@ async function verifyDock(page,interact,kind,viewport){
 async function verify(browser,viewport){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});
  await mockMapTiles(context);
+ if(viewport.name==='mobile')await installEditorViewportMock(context);
  await context.route('https://fonts.googleapis.com/**',route=>route.abort());await context.route('https://fonts.gstatic.com/**',route=>route.abort());await context.route('https://images.unsplash.com/**',route=>route.abort());
  const page=await context.newPage();page.setDefaultTimeout(10000);page.setDefaultNavigationTimeout(20000);const errors=[];page.on('pageerror',error=>errors.push(error.message));const interact=locator=>viewport.touch?locator.tap():locator.click();
  try{
