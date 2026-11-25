@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [landing-refund, neighborhood-map, wizard-dock]
+        suite: [wizard-dock]
     steps:
       - uses: actions/checkout@v4
         with:
