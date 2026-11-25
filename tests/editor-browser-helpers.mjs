@@ -201,9 +201,10 @@ async function liveEditorNavigation(page) {
    const rect=element=>{const b=element.getBoundingClientRect();return{left:b.left,right:b.right,top:b.top,bottom:b.bottom,width:b.width,height:b.height,position:getComputedStyle(element).position};};
    const visible=element=>element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden';
    const viewport={left:visualViewport?.offsetLeft||0,top:visualViewport?.offsetTop||0,width:visualViewport?.width||innerWidth,height:visualViewport?.height||innerHeight};
-   const heading=header.querySelector('h2'),reference=document.getElementById('editor-heading-1');
+   const heading=header.querySelector('h2'),reference=document.getElementById('editor-heading-1'),modalClose=form.closest('.modal')?.querySelector('.modal-close');
    return {mobile:innerWidth<=720,viewport,form:{...rect(form),client:form.clientWidth,scroll:form.scrollWidth},nav:{...rect(nav),background:getComputedStyle(nav).backgroundColor},content:rect(content),section:rect(section),
     header:{...rect(header),hasHeading:!!heading&&content.contains(heading),heading:heading?rect(heading):null,topActionInside:!!header.querySelector('.editor-navigation-top'),eyebrows:form.querySelectorAll('.eyebrow').length},
+    modalClose:modalClose&&visible(modalClose)?rect(modalClose):null,
     topics:[...nav.querySelectorAll('[data-action="editor-step"]')].map(button=>{const box=rect(button),top=document.elementFromPoint(box.left+box.width/2,box.top+box.height/2);return{...box,hit:button===top||button.contains(top)};}),
     headings:[...section.querySelectorAll('h3,legend,label')].filter(element=>visible(element)&&!element.classList.contains('editor-topic-anchor')).map(element=>({tag:element.tagName,text:element.textContent.trim(),size:parseFloat(getComputedStyle(element).fontSize),weight:Number(getComputedStyle(element).fontWeight)})),
     referenceHeadingSize:parseFloat(getComputedStyle(reference).fontSize),
@@ -255,6 +256,7 @@ export async function assertEditorNavigation(page,{scroll=false,lastField=false}
  assert.ok(proof.header.left>=proof.content.left-1&&proof.header.right<=proof.content.right+1,'The main heading must stay above the content, not above the topic menu');
  assert.equal(proof.header.topActionInside,true,'The upper action row belongs inside the main heading row');
  const headerAction=proof.actions[0]?.buttons.at(-1),heading=proof.header.heading;assert.ok(headerAction&&heading&&headerAction.left>=heading.right-1,'The upper primary action sits beside the main heading');assert.ok(headerAction.top<heading.bottom&&headerAction.bottom>heading.top,'The heading and upper primary action share a vertical row on every viewport');
+ if(proof.modalClose)for(const button of proof.actions[0].buttons){const overlapWidth=Math.min(button.right,proof.modalClose.right)-Math.max(button.left,proof.modalClose.left),overlapHeight=Math.min(button.bottom,proof.modalClose.bottom)-Math.max(button.top,proof.modalClose.top);assert.ok(overlapWidth<=0||overlapHeight<=0,'The modal close control must not cover any part of the upper Next/Save/Back buttons: '+JSON.stringify({button,close:proof.modalClose}));}
  assert.equal(proof.topics.length,6);
  if(proof.mobile)assertMobileMenu(proof);
  else{

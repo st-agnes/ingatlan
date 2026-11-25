@@ -250,6 +250,7 @@ form label[for],.entity-wizard .location-search-controls>label{font-size:14px}
 
 /* The headline and the upper forward action share one content row. */
 .entity-wizard .editor-header{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:12px 18px}
+.modal:has(.entity-wizard) .editor-header{padding-right:40px}
 .entity-wizard .editor-heading-copy{min-width:0}
 .entity-wizard .editor-header h2{margin-top:0;padding-right:0}
 .entity-wizard .editor-header-actions{min-width:0;align-self:start}
