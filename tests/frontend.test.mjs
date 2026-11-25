@@ -2478,6 +2478,7 @@ test('discovery contact buttons use a contact icon and preserve ordinary mutual-
  const t=await setup();let html=t.document.getElementById('app').innerHTML;
  const positive=()=>t.document.getElementById('app').innerHTML.match(/<button\b[^>]*data-action="like"[^>]*>([\s\S]*?)<\/button>/)?.[1]||'';
  assert.match(html,/decision-like-caption"><span>Kapcsolatfelvétel<\/span>/);assert.match(positive(),/data-icon="contact"/);assert.doesNotMatch(positive(),/data-icon="heart"/);
+ t.ui.openDetails();const buyerDetails=t.document.getElementById('modal-root').innerHTML.match(/<button\b[^>]*data-action="like"[^>]*>([\s\S]*?)<\/button>/)?.[1]||'';assert.match(buyerDetails,/Kapcsolatfelvétel/);assert.match(buyerDetails,/data-icon="contact"/);assert.doesNotMatch(buyerDetails,/Tetszik az ingatlan/);await t.click({action:'close'});
  await t.click({action:'like'});assert.match(t.document.getElementById('modal-root').innerHTML,/Egymásra találtatok/);assert.equal(t.model.getState().credits,24);
  await t.click({action:'close'});await t.click({action:'activate-one',kind:'property',id:'own-p1'});html=t.document.getElementById('app').innerHTML;assert.match(html,/Kapcsolatfelvétel<\/span><small>2 kredit/);assert.match(positive(),/data-icon="contact"/);
  t.ui.openDetails();assert.match(t.document.getElementById('modal-root').innerHTML,/Kapcsolatfelvétel · 2 kredit/);await t.click({action:'close'});
