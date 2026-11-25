@@ -1,8 +1,10 @@
 # Térképes helyszínválasztás
 
-A kezdőoldali kereső és a keresési igények hatlépéses űrlapja OpenFreeMap-alaptérképet használ a helyben tárolt MapLibre megjelenítővel. Mobilon a térkép a szöveges választó alatt, tablettől a választó mellett jelenik meg. A kereshető települések, budapesti kerületek és városrészek neveire kattintva vagy koppintva ugyanazokat a kanonikus helyszínazonosítókat választjuk ki, mint a szöveges keresővel.
+A főoldalon csak a szöveges helyszínkereső jelenik meg. Mellette a **Térkép** gomb a külön `#map-search` oldalra visz: itt a kereső, a kiválasztott helyszínek és a térkép tölti ki a felületet. A két oldal ugyanazt a helyszínválasztást őrzi, a visszalépés nem veszít el adatot. A Keresés gomb innen is a szokásos keresési piszkozatot indítja; a kezdőoldali választás a sikeres átadáskor kiürül.
 
-Alapállapotban helynevek és az alaptérkép látszanak. Csak a **kiválasztott** helyek körvonala jelenik meg, kitöltés nélkül. A kiválasztott név kiemelést kap. Újabb kattintás a névre kiveszi a helyet a keresésből, és eltünteti a körvonalát. Az üres területre kattintás nem jelöl ki egy esetlegesen ott fekvő, átfedő poligont.
+A térkép és a keresési igények hatlépéses űrlapja OpenFreeMap-alaptérképet használ a helyben tárolt MapLibre megjelenítővel. Mobilon a térkép a szöveges választó alatt, tablettől a választó mellett jelenik meg. A kereshető települések, budapesti kerületek és városrészek neveire kattintva vagy koppintva ugyanazokat a kanonikus helyszínazonosítókat választjuk ki, mint a szöveges keresővel. A főoldal önmagában nem tölt be térképmegjelenítőt, workert vagy térképszolgáltatói adatot.
+
+Alapállapotban helynevek és az alaptérkép látszanak. A választható nevek mellett állandó kis **+** jel mutatja a kattinthatóságot. Ez a kijelölt és nem kijelölt állapotban is megmarad: a váltás továbbra is csak a színt változtatja, a szövegdoboz méretét és helyét nem. Csak a **kiválasztott** helyek körvonala jelenik meg, kitöltés nélkül. A kiválasztott név kiemelést kap. Újabb kattintás a névre kiveszi a helyet a keresésből, és eltünteti a körvonalát. Az üres területre kattintás nem jelöl ki egy esetlegesen ott fekvő, átfedő poligont.
 
 A szöveges találat kiválasztása a településre, kerületre, utcára vagy városrészre nagyít. Térképes városrészválasztáskor az adott teljes város vagy az őt tartalmazó, korábban kijelölt nagyobb terület helyett a kisebb terület kerül a keresésbe. A többi választás és az 50-es helyszínkorlát megmarad. A térkép nem nyitja fel a telefon billentyűzetét.
 

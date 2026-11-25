@@ -84,6 +84,9 @@ async function verifyViewport(browser, viewport) {
     assert.equal(new URL(page.url()).hash, '#register', 'The registration action must switch the auth route');
     await page.getByRole('heading', {name: 'Hozd létre a fiókodat.', exact: true}).waitFor();
     await page.locator('#f-name').fill(`Felhős Teszt ${viewport.name}`);
+    assert.equal(await page.locator('#f-phone').evaluate(element=>element.required),true);
+    assert.match(await page.locator('#hosted-auth-form').innerText(),/csak azok számára válik láthatóvá, akikkel úgy döntesz, hogy fel akarod venni a kapcsolatot/i);
+    await page.locator('#f-phone').fill('+36 30 555 0147');
     await page.locator('#f-email').fill(email);
     await page.locator('#f-password').fill(password);
     const registration = page.waitForResponse(response => new URL(response.url()).pathname === '/api/auth/register' && response.request().method() === 'POST');

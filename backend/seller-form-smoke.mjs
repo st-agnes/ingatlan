@@ -34,7 +34,7 @@ if(process.argv[3]==='--verify'){
   console.log('Seller-form restart preservation passed: explicit room composition, heating, parking, required house plot and clean house criteria survive.');
 }else{
   const suffix=Date.now()+'-'+Math.random().toString(16).slice(2);
-  const account=async name=>(await call('/auth/register',{method:'POST',body:{name:'Seller form '+name,email:`seller-form-${name}-${suffix}@example.test`,password:'SellerFormSmoke2026!'}})).accessToken;
+  const account=async name=>(await call('/auth/register',{method:'POST',body:{name:'Seller form '+name,email:`seller-form-${name}-${suffix}@example.test`,password:'SellerFormSmoke2026!',phone:'+36 30 555 0803'}})).accessToken;
   const buyer=await account('buyer'),seller=await account('seller');
   const base={title:'Eladói mezők API-próba',city:'Budapest',district:'XIII.',locationId:'district:Budapest:13',type:'Lakás',price:75000000,area:72,rooms:3.5,wholeRooms:2,halfRooms:3,images:[],balcony:false,elevator:false};
   const complete={...base,heatingType:'Hőszivattyú',secondaryHeatingType:'Kandalló',parkingTypes:['Garázs','Udvari beálló','Garázs']};

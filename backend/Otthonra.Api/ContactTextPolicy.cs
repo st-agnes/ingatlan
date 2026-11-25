@@ -42,8 +42,17 @@ public static class ContactTextPolicy
 
     public static bool ContainsContactDetails(string? value)
     {
-        var text = Normalize(value);
-        return EmailLike(text) || PhoneLike(text);
+        try
+        {
+            var text = Normalize(value);
+            return EmailLike(text) || PhoneLike(text);
+        }
+        catch (RegexMatchTimeoutException)
+        {
+            // A bounded check that could not finish must not approve contact
+            // text or leak a regex exception through writes/public listings.
+            return true;
+        }
     }
 
     private static string Scalar(int code, string fallback) => code >= 0 && code <= 0x10ffff && !(code >= 0xd800 && code <= 0xdfff)

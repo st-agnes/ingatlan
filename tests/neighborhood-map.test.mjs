@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {boundsIntersect,chooseVisibleCities,pointInGeometry,geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature,validateNeighborhoodHierarchy,neighborhoodAncestors,validatePlaceLabels,chooseVisiblePlaceLabels,chooseLabelHit} from '../dist/location-map.js';
+import {boundsIntersect,chooseVisibleCities,pointInGeometry,geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature,validateNeighborhoodHierarchy,neighborhoodAncestors,validatePlaceLabels,chooseVisiblePlaceLabels,chooseLabelHit,selectablePlaceLabelLayout} from '../dist/location-map.js';
 
 // Synthetic WGS84 rectangles exercise display picking, never address geocoding.
 const ring=(west,south,east,north)=>[[west,south],[east,south],[east,north],[west,north],[west,south]];
@@ -33,6 +33,22 @@ const labelFixture=()=>{
   districtBoundaries:{'district:Budapest:5':'neighborhood:ward'},coverage:{type:'Polygon',coordinates:[ring(16,45.6,23,48.7)]}};
  return {manifest,value,locations,getLocation:id=>locations.get(id)||null};
 };
+
+test('selectable names carry a constant visible plus without state-dependent layout or changed canonical names',()=>{
+ const fixture=labelFixture(),before=JSON.stringify(fixture.value),layout=selectablePlaceLabelLayout();
+ const formatted=layout['text-field'];
+ assert.equal(formatted[0],'format');assert.equal(formatted[1].trim(),'+');
+ assert.ok(formatted[2]['font-scale']>0&&formatted[2]['font-scale']<=1,'The add marker remains a discreet readable part of each selectable name');
+ assert.deepEqual(formatted[3],['get','name'],'The visible name comes from the original feature, never from a rewritten location label');
+ assert.doesNotMatch(JSON.stringify(layout),/feature-state|selected|variable-anchor/,'Toggling may change paint, never text content, offset or collision layout');
+ const labels=validatePlaceLabels(fixture.value,fixture.manifest,fixture.getLocation);
+ for(const selected of [[],['city:Budapest'],['neighborhood:ward']]){
+  const visible=chooseVisiblePlaceLabels(labels.features,[19,47,20,48],12,selected);
+  assert.ok(visible.every(feature=>feature.properties.name===fixture.value.features.find(original=>original.id===feature.id).properties.name));
+  assert.deepEqual(selectablePlaceLabelLayout(),layout);
+ }
+ assert.equal(JSON.stringify(fixture.value),before,'Adding the click affordance never changes catalogue identities or geographic anchors');
+});
 
 test('canonical label metadata binds points, district aliases and lazy town outlines without changing its source',()=>{
  const f=labelFixture(),before=JSON.stringify(f.value),labels=validatePlaceLabels(f.value,f.manifest,f.getLocation);

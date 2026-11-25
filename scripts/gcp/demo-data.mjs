@@ -349,8 +349,8 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
   const seller = 'feedbackseller' + keySuffix, buyer = 'feedbackbuyer' + keySuffix;
   const propertyKey = 'feedback-demo-property' + keySuffix, searchKey = 'feedback-demo-search' + keySuffix;
   users.push(
-    {key:seller,name:'Teszt Péter' + titleSuffix,email:`visszajelzes-elado${batch === DEFAULT_BATCH ? '' : `+${batch}`}@otthonra.local`,phone:'',accountType:'private',active:{kind:'property',key:propertyKey}},
-    {key:buyer,name:'Teszt Anna' + titleSuffix,email:`visszajelzes-kereso${batch === DEFAULT_BATCH ? '' : `+${batch}`}@otthonra.local`,phone:'',accountType:'private',active:{kind:'search',key:searchKey}}
+    {key:seller,name:'Teszt Péter' + titleSuffix,email:`visszajelzes-elado${batch === DEFAULT_BATCH ? '' : `+${batch}`}@otthonra.local`,phone:'+36 30 555 0201',accountType:'private',active:{kind:'property',key:propertyKey}},
+    {key:buyer,name:'Teszt Anna' + titleSuffix,email:`visszajelzes-kereso${batch === DEFAULT_BATCH ? '' : `+${batch}`}@otthonra.local`,phone:'+36 30 555 0202',accountType:'private',active:{kind:'search',key:searchKey}}
   );
   fixtures.push(
     {key:propertyKey,owner:seller,kind:'property',input:{...copy(propertyDefaults),title:'Visszajelzés-próba · Tisza-tavi nyaraló' + titleSuffix,

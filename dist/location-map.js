@@ -21,6 +21,18 @@ const LABEL_LAYERS = ['otthonra-place-labels'];
 const OUTLINE_SOURCE = 'otthonra-outlines';
 const emptyCollection = () => ({type: 'FeatureCollection', features: []});
 
+export function selectablePlaceLabelLayout() {
+  return {'text-field': ['format', '+ ', {'font-scale': 0.85}, ['get', 'name'], {}],
+    'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 6, 12, 11, 14, 15, 16],
+    'text-padding': 5, 'text-max-width': 13,
+    // The visible add/select affordance is constant in both selection states.
+    // Selection changes paint only, so neither the name nor its hit box moves.
+    'text-anchor': ['case', ['==', ['get', 'kind'], 'city'], 'bottom', 'top'],
+    'text-offset': ['case', ['==', ['get', 'kind'], 'city'], ['literal', [0, -0.65]], ['literal', [0, 0.65]]],
+    'text-allow-overlap': false,
+    'text-ignore-placement': false, 'symbol-sort-key': ['get', 'priority']};
+}
+
 const finite = value => typeof value === 'number' && Number.isFinite(value);
 const validBounds = bounds => Array.isArray(bounds) && bounds.length === 4 && bounds.every(finite)
   && bounds[0] <= bounds[2] && bounds[1] <= bounds[3]
@@ -451,7 +463,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
   const outlineCache = new Map();
   const labelSelection = new Map();
   container.classList.add('location-map');
-  container.innerHTML = '<div class="location-map-heading"><strong>Válassz a helynevekre kattintva</strong><span>Újabb kattintással kiveheted a keresésből.</span></div><div class="location-map-canvas" role="region" aria-label="Helyszínek térképes kiválasztása"></div><div class="location-map-status" role="status" aria-live="polite">Térkép betöltése…</div><button type="button" class="location-map-retry" hidden>Újrapróbálom</button><details class="location-map-list" hidden><summary>Látható helynevek</summary><div class="location-map-options"></div><p class="location-map-list-note" hidden>Nagyíts közelebb a további helynevekhez.</p></details><div class="location-map-legend"><span class="location-map-legend-selected">A kiválasztott helyek körvonala</span></div>';
+  container.innerHTML = '<div class="location-map-heading"><strong>Válassz a helynevekre kattintva</strong></div><div class="location-map-canvas" role="region" aria-label="Helyszínek térképes kiválasztása"></div><div class="location-map-status" role="status" aria-live="polite">Térkép betöltése…</div><button type="button" class="location-map-retry" hidden>Újrapróbálom</button><details class="location-map-list" hidden><summary>Látható helynevek</summary><div class="location-map-options"></div><p class="location-map-list-note" hidden>Nagyíts közelebb a további helynevekhez.</p></details>';
   const canvas = container.querySelector('.location-map-canvas'), status = container.querySelector('.location-map-status');
   const retry = container.querySelector('.location-map-retry'), options = container.querySelector('.location-map-options');
   const details = container.querySelector('.location-map-list'), summary = details.querySelector('summary'), note = container.querySelector('.location-map-list-note');
@@ -518,7 +530,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     if (failed || loading) return;
     if (backgroundUnavailable) tell('A háttértérkép egy része most nem érhető el. A helynevekre továbbra is kattinthatsz.');
     else if (!features.length) tell('Nagyíts rá egy településre a helynevek kiválasztásához.');
-    else tell(`${features.length} helynév látható. Kattints a névre a kiválasztáshoz.`);
+    else tell(`${features.length} helynév látható.`);
   }
   function selectAncestors(id) {
     const boundary = registry?.byId.get(id)?.properties.boundaryId || id;
@@ -717,16 +729,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       map.addLayer({id: 'otthonra-selected-outlines', type: 'line', source: OUTLINE_SOURCE,
         paint: {'line-color': '#c6623e', 'line-width': 2.5, 'line-opacity': 0.95}});
       map.addSource(LABEL_SOURCE, {type: 'geojson', data: emptyCollection(), promoteId: 'id'});
-      const font = ['Noto Sans Regular'];
-      const layout = {'text-field': ['get', 'name'], 'text-font': font, 'text-size': ['interpolate', ['linear'], ['zoom'], 6, 12, 11, 14, 15, 16],
-        'text-padding': 5, 'text-max-width': 13,
-        // Fixed, selection-independent positions keep names at the same place.
-        // Opposite sides of the anchor keep a city and its central quarter
-        // individually clickable when the source gives them the same point.
-        'text-anchor': ['case', ['==', ['get', 'kind'], 'city'], 'bottom', 'top'],
-        'text-offset': ['case', ['==', ['get', 'kind'], 'city'], ['literal', [0, -0.65]], ['literal', [0, 0.65]]],
-        'text-allow-overlap': false,
-        'text-ignore-placement': false, 'symbol-sort-key': ['get', 'priority']};
+      const layout = selectablePlaceLabelLayout();
       const selectedStyle = ['boolean', ['feature-state', 'selected'], false];
       map.addLayer({id: LABEL_LAYERS[0], type: 'symbol', source: LABEL_SOURCE, layout,
         paint: {'text-color': ['case', selectedStyle, '#a64c2c', '#284b41'],
