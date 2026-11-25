@@ -12,8 +12,19 @@ async function call(path, {token,method='GET',body,status=200}={}) {
   assert.equal(response.status,status,`${method} ${path}: ${JSON.stringify(value)}`);return value;
 }
 async function account(name){return await call('/auth/register',{method:'POST',body:{name,email:`${name}-${run}@example.test`,password:'SmokePassword2026!',phone:'+36 30 555 9999'}})}
+// Exercise these once in the initial Development phase on each MySQL version.
+// The later TEST repeat shares its auth window with six hosted-browser actions.
+// Keep all validation cases without repeating them into that ten-request window.
+if((await call('/health')).deployment==='development'){
+ for(const [label,phone]of [['missing',undefined],['empty',''],['whitespace','   ']]){
+  const rejected=await call('/auth/register',{method:'POST',status:400,body:{name:'Phone validation',email:`phone-${label}-${run}@example.test`,password:'SmokePassword2026!',...(phone===undefined?{}:{phone})}});
+  assert.match(rejected.message,/telefonszám/iu,'A valid registration with only its phone absent must be rejected for that missing phone');
+ }
+}
 const buyer=await account('Buyer'),seller=await account('Seller'),outsider=await account('Outsider');
 const b=buyer.accessToken,s=seller.accessToken,o=outsider.accessToken;
+await call('/me',{method:'PUT',token:b,status:400,body:{name:buyer.user.name,email:buyer.user.email,phone:' '}});
+assert.equal((await call('/me',{token:b})).phone,buyer.user.phone,'Rejecting an empty phone must preserve the stored contact');
 const suggestions=await call('/locations?q=Debr');
 assert.ok((Array.isArray(suggestions)?suggestions:suggestions.items).some(item=>item.id==='city:Debrecen'));
 const propertyBody={title:'Smoke lakás',locationId:'district:Budapest:13',city:'Budapest',district:'XIII.',type:'Lakás',price:80000000,area:60,rooms:3,floor:2,address:'OTTHONRA TEST 1',description:'Világos és csendes.',condition:'Felújított',building:'Tégla',balcony:true,elevator:true,images:[]};

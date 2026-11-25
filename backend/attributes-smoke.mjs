@@ -42,7 +42,7 @@ if (process.argv[3] === '--verify') {
   console.log('Attribute restart preservation passed: selections, false/null distinction and actual floor survive.');
 } else {
   const suffix=Date.now()+'-'+Math.random().toString(16).slice(2);
-  const account=async name=>(await call('/auth/register',{method:'POST',body:{name:'Attributes '+name,email:`attrs-${name}-${suffix}@example.test`,password:'AttributeSmoke2026!'}})).accessToken;
+  const account=async name=>(await call('/auth/register',{method:'POST',body:{name:'Attributes '+name,email:`attrs-${name}-${suffix}@example.test`,password:'AttributeSmoke2026!',phone:'+36 30 555 0801'}})).accessToken;
   const buyer=await account('buyer'),seller=await account('seller');
   const baseProperty={title:'Opcionális adatok API-próbája',city:'Budapest',locationId:'district:Budapest:13',district:'XIII.',type:'Lakás',price:80000000,area:70,rooms:3,balcony:false,elevator:false,images:[]};
   const propertyBody={...baseProperty,condition:'Jó',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:12,buildingFloors:14,heatingType:'Hőszivattyú',insulated:false,energyRating:'A+',airConditioning:true,privateGarden:true,sharedGarden:true,solarPanels:false,parkingType:'Udvari beálló'};

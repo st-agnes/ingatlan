@@ -203,7 +203,7 @@ async function liveEditorNavigation(page) {
    const viewport={left:visualViewport?.offsetLeft||0,top:visualViewport?.offsetTop||0,width:visualViewport?.width||innerWidth,height:visualViewport?.height||innerHeight};
    const heading=header.querySelector('h2'),reference=document.getElementById('editor-heading-1');
    return {mobile:innerWidth<=720,viewport,form:{...rect(form),client:form.clientWidth,scroll:form.scrollWidth},nav:{...rect(nav),background:getComputedStyle(nav).backgroundColor},content:rect(content),section:rect(section),
-    header:{...rect(header),hasHeading:!!heading&&content.contains(heading),eyebrows:form.querySelectorAll('.eyebrow').length},
+    header:{...rect(header),hasHeading:!!heading&&content.contains(heading),heading:heading?rect(heading):null,topActionInside:!!header.querySelector('.editor-navigation-top'),eyebrows:form.querySelectorAll('.eyebrow').length},
     topics:[...nav.querySelectorAll('[data-action="editor-step"]')].map(button=>{const box=rect(button),top=document.elementFromPoint(box.left+box.width/2,box.top+box.height/2);return{...box,hit:button===top||button.contains(top)};}),
     headings:[...section.querySelectorAll('h3,legend,label')].filter(element=>visible(element)&&!element.classList.contains('editor-topic-anchor')).map(element=>({tag:element.tagName,text:element.textContent.trim(),size:parseFloat(getComputedStyle(element).fontSize),weight:Number(getComputedStyle(element).fontWeight)})),
     referenceHeadingSize:parseFloat(getComputedStyle(reference).fontSize),
@@ -253,6 +253,8 @@ export async function assertEditorNavigation(page,{scroll=false,lastField=false}
  assert.ok(proof.form.scroll<=proof.form.client+1,'Responsive topics and content must fit without horizontal scrolling');
  assert.ok(proof.header.hasHeading&&proof.header.eyebrows===0,'The main heading belongs only to the content column without a redundant entity-type eyebrow');
  assert.ok(proof.header.left>=proof.content.left-1&&proof.header.right<=proof.content.right+1,'The main heading must stay above the content, not above the topic menu');
+ assert.equal(proof.header.topActionInside,true,'The upper action row belongs inside the main heading row');
+ const headerAction=proof.actions[0]?.buttons.at(-1),heading=proof.header.heading;assert.ok(headerAction&&heading&&headerAction.left>=heading.right-1,'The upper primary action sits beside the main heading');assert.ok(headerAction.top<heading.bottom&&headerAction.bottom>heading.top,'The heading and upper primary action share a vertical row on every viewport');
  assert.equal(proof.topics.length,6);
  if(proof.mobile)assertMobileMenu(proof);
  else{

@@ -203,7 +203,7 @@ function assertSameLabelBox(actual, expected, message) {
   assert.ok(actual.offset.every((value, index) => Math.abs(value - expected.offset[index]) <= 1.25), message + ': symbol moved relative to its geographic point ' + JSON.stringify({actual: actual.offset, expected: expected.offset}));
 }
 async function pickerGeometry(page, {landing = false} = {}) {
-  return page.locator(landing ? '.landing-location-layout' : '#location-picker.location-search-layout').evaluate(layout => {
+  return page.locator(landing ? '.landing-map-search-layout' : '#location-picker.location-search-layout').evaluate(layout => {
     const map = layout.querySelector('.search-location-map').getBoundingClientRect(), input = layout.querySelector('input[role="combobox"]').getBoundingClientRect(), chips = layout.querySelector('.location-chips').getBoundingClientRect(), outer = layout.getBoundingClientRect();
     return {map: {left: map.left, top: map.top, right: map.right, width: map.width}, input: {left: input.left, top: input.top, right: input.right, bottom: input.bottom}, mapTop: map.top - outer.top, chipHeight: chips.height, chipWidth: chips.width, outerRight: outer.right};
   });
@@ -301,6 +301,18 @@ async function readyMap(page, selector) {
   assert.ok(box && box.width > 200 && box.height > 100, 'The real WebGL canvas must retain its map viewport, independently of global icon CSS');
   return map;
 }
+async function openLandingMap(page, viewport) {
+  await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'});
+  await page.locator('#landing-open-map').waitFor();
+  assert.equal(await page.locator('#landing-location-map,.maplibregl-map').count(), 0, 'The ordinary landing never mounts an interactive map');
+  await interact(viewport, page.locator('#landing-open-map'));
+  await page.locator('#map-search-page').waitFor();
+  assert.equal(new URL(page.url()).hash, '#map-search');
+  assert.equal(await page.locator('.landing-search-card,.landing-property-card,.landing-hero,#hosted-auth-form').count(), 0, 'The dedicated map page contains the picker and map rather than the landing or authentication forms');
+  const map = await readyMap(page, '#landing-location-map');
+  assert.doesNotMatch(await map.innerText(), /Települést|kiválasztott helyek körvonala/i);
+  return map;
+}
 async function chooseText(page, viewport, id, value, {landing = false} = {}) {
   const prefix = landing ? 'landing-location' : 'location'; await page.locator(`#${prefix}-input`).fill(value);
   const item = page.locator(`#${prefix}-options [data-location-id="${id}"]`); await item.waitFor(); await interact(viewport, item);
@@ -342,9 +354,10 @@ async function fixture(browser, viewport, {authenticated = false, realStyle = fa
   await context.route('https://get.geojs.io/**', route => route.fulfill({status: 200, contentType: 'application/json', body: '{"country_code":"XX"}'}));
   await context.route(`${origin}/runtime-config.js`, route => route.fulfill({status: 200, contentType: 'text/javascript', body: 'globalThis.OTTHONRA_CONFIG=Object.freeze({mode:"api",environment:"test"});'}));
   if (authenticated) await context.addInitScript(origin => localStorage.setItem('otthonra.api', JSON.stringify({baseUrl: origin, token: 'map-browser-session'})), origin);
-  const server = {requests: [], writes: [], errors: [], unhandled: [], failCity: null, holdCity: null, hold: null, townDelay: 0, activeTownRequests: 0, maxTownRequests: 0, searches: [{id: searchId, ownerId: owner.id, title: 'Meglévő keresésem', city: 'Debrecen', locationIds: [city.id], locations: [city], type: 'Lakás', maxPrice: 90000000, minArea: 40, minRooms: 1, conditions: [], buildings: [], floors: [], balcony: false, elevator: false}], properties: [{id: propertyId, ownerId: owner.id, title: 'Meglévő otthonom', city: 'Debrecen', locationId: city.id, type: 'Lakás', price: 60000000, area: 60, rooms: 2, wholeRooms: 2, halfRooms: 0, images: [], addressDetails: {street: 'Fiktív tesztutca', houseNumber: '1', postalCode: '4028'}}], active: {kind: 'search', id: searchId}};
+  const server = {mapNetworkRequests: [], requests: [], writes: [], errors: [], unhandled: [], failCity: null, holdCity: null, hold: null, townDelay: 0, activeTownRequests: 0, maxTownRequests: 0, searches: [{id: searchId, ownerId: owner.id, title: 'Meglévő keresésem', city: 'Debrecen', locationIds: [city.id], locations: [city], type: 'Lakás', maxPrice: 90000000, minArea: 40, minRooms: 1, conditions: [], buildings: [], floors: [], balcony: false, elevator: false}], properties: [{id: propertyId, ownerId: owner.id, title: 'Meglévő otthonom', city: 'Debrecen', locationId: city.id, type: 'Lakás', price: 60000000, area: 60, rooms: 2, wholeRooms: 2, halfRooms: 0, images: [], addressDetails: {street: 'Fiktív tesztutca', houseNumber: '1', postalCode: '4028'}}], active: {kind: 'search', id: searchId}};
   const activeTownRequests = new Set();
   context.on('request', request => {
+    if (/tiles\.openfreemap\.org|\/data\/map\//.test(request.url())) server.mapNetworkRequests.push(request.url());
     if (!/\/data\/map\/town-[a-f0-9]+\.json$/.test(new URL(request.url()).pathname)) return;
     activeTownRequests.add(request); server.activeTownRequests = activeTownRequests.size;
     server.maxTownRequests = Math.max(server.maxTownRequests, activeTownRequests.size);
@@ -411,11 +424,15 @@ async function inspect(f, viewport, name, run) {
 async function landingSelection(browser, viewport) {
   const f = await fixture(browser, viewport), {page, server} = f;
   await inspect(f, viewport, 'landing', async () => {
-    await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map');
+    await page.goto(`${origin}/#landing`, {waitUntil:'domcontentloaded'});await page.locator('#landing-results[aria-busy="false"]').waitFor();
+    assert.deepEqual(server.mapNetworkRequests, [], 'The ordinary landing makes no map provider or geometry requests before an explicit map action');
+    const map = await openLandingMap(page, viewport);
     assert.deepEqual(await outlineIds(map), [], 'An unselected map shows labels with no area outlines');
+    const labelFormat=await map.locator('.location-map-canvas').evaluate(element=>element.__mapBrowserInstance.getLayoutProperty('otthonra-place-labels','text-field'));assert.ok(JSON.stringify(labelFormat).includes('+ '),'Every selectable label carries a visible, constant click indicator');
     assert.equal(server.requests.filter(path => /\/(city|town)-/.test(path)).length, 0, 'A country view never downloads all area geometry');
     assert.match(await map.locator('.maplibregl-ctrl-attrib').innerText(), /OpenStreetMap/); await assertSourceLink(page, {landing: true});
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await assertOutline(map, city.id);
+    await interact(viewport,page.locator('#map-search-back'));await page.locator('#landing-open-map').waitFor();assert.equal(await page.locator('#landing-location-map').count(),0);assert.equal(await chip(page,city.id,true).count(),1,'Returning from the map retains its canonical location in the landing text picker');await interact(viewport,page.locator('#landing-open-map'));await readyMap(page,'#landing-location-map');await assertOutline(map,city.id);
     assert.equal(server.requests.filter(path => /\/city-/.test(path)).length, 0, 'Focusing a town does not fetch unselected quarter polygons');
     await removeChip(page, viewport, city.id, {landing: true}); await waitLabel(map, city.id); await clickLabel(map, city.id, viewport); await chip(page, city.id, true).waitFor({state: 'attached'});
     await zoomTo(map, viewport, 13); await waitLabel(map, venkert.id); await waitLabel(map, sestakert.id);
@@ -444,7 +461,8 @@ async function landingSelection(browser, viewport) {
     await zoom(map, viewport, 'out'); assertSameLabelBox(await renderedLabelBox(map, tocoskert.id), unselectedBox, 'Returning to a zoom level restores the same label placement');
     assert.equal(await mapZoom(map), toggleZoom, 'Repeated label taps cannot double-tap zoom'); await assertCenter(map, toggleCenter, 'Label toggles retain the camera');
     await mkdir(resolve('.local/browser-tests/screenshots'), {recursive: true});
-    await page.locator('.landing-location-layout').screenshot({path: resolve('.local/browser-tests/screenshots', `neighborhood-map-labels-${viewport.name}.png`)});
+    await page.locator('.landing-map-search-layout').screenshot({path: resolve('.local/browser-tests/screenshots', `neighborhood-map-labels-${viewport.name}.png`)});
+    await page.screenshot({path:resolve('.local/browser-tests/screenshots',`landing-map-page-${viewport.name}.png`)});
     await removeChip(page, viewport, sestakert.id, {landing: true}); await assertOutline(map, sestakert.id, false);
     await chooseText(page, viewport, otherCity.id, 'Szeged', {landing: true}); await waitLabel(map, szeged.id); await clickLabel(map, szeged.id, viewport); await chip(page, szeged.id, true).waitFor({state: 'attached'});
     await assertOutline(map, szeged.id); await assertOutline(map, tocoskert.id, false);
@@ -458,7 +476,7 @@ async function landingSelection(browser, viewport) {
 async function disjointZoomLevels(browser, viewport) {
   const f = await fixture(browser, viewport), {page} = f;
   await inspect(f, viewport, 'disjoint-levels', async () => {
-    await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map');
+    const map = await openLandingMap(page, viewport);
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await waitMapPaint(map); const center = await mapCenter(map);
     const naturalZoom = await mapZoom(map);
     assert.ok(Math.abs(naturalZoom - Math.round(naturalZoom)) > .01, 'Natural geographic fit supplies a genuine fractional-zoom regression fixture');
@@ -481,7 +499,7 @@ async function disjointZoomLevels(browser, viewport) {
 async function budapestZoomLevels(browser, viewport) {
   const f = await fixture(browser, viewport), {page, server} = f;
   await inspect(f, viewport, 'budapest-levels', async () => {
-    await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map');
+    const map = await openLandingMap(page, viewport);
     await chooseText(page, viewport, 'city:Budapest', 'Budapest', {landing: true}); await zoomTo(map, viewport, 8); await waitLabel(map, buda.id); await waitLabel(map, pest.id);
     const state = await placeState(map); assert.ok(!state.rendered.includes(ward.id) && !state.rendered.includes(belvaros.id), 'Distant Budapest offers broad named halves before finer names');
     const coarseZoom = await mapZoom(map), coarseCenter = await mapCenter(map);
@@ -530,7 +548,7 @@ async function ownedWizard(browser, viewport) {
 async function anonymousDraft(browser, viewport) {
   const f = await fixture(browser, viewport), {page} = f;
   await inspect(f, viewport, 'draft', async () => {
-    await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const landing = await readyMap(page, '#landing-location-map');
+    const landing = await openLandingMap(page, viewport);
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(landing, viewport, 13); await centerTarget(landing, tocoskert.id); await clickLabel(landing, tocoskert.id, viewport); assert.equal(await chip(page, city.id, true).count(), 0);
     await interact(viewport, page.locator('#landing-search-form button[type="submit"]')); await page.locator('#onboarding-page #entity-form').waitFor(); await choosePropertyType(page, 'Lakás', locator => interact(viewport, locator)); await editorStep(page, 0, locator => interact(viewport, locator)); const map = await readyMap(page, '#search-location-map');
     await centerTarget(map, tocoskert.id); await assertSourceLink(page); await assertOutline(map, tocoskert.id);
@@ -539,14 +557,14 @@ async function anonymousDraft(browser, viewport) {
     await clickLabel(map, tocoskert.id, viewport); await chooseText(page, viewport, sestakert.id, 'Sestakert'); await waitLabel(map, sestakert.id); await assertOutline(map, sestakert.id);
     await page.waitForFunction(async ids => {const draft = (await import('/onboarding.js')).loadDraft(); return ids.every(id => draft?.data?.locationIds?.includes(id));}, [tocoskert.id, sestakert.id]);
     await page.reload({waitUntil: 'domcontentloaded'}); await readyMap(page, '#search-location-map'); assert.equal(await page.locator('#location-chips .location-chip').count(), 2); assert.equal(await page.locator('#f-type').inputValue(), 'Lakás');
-    await interact(viewport, page.locator('[data-action="landing"]').first()); await readyMap(page, '#landing-location-map'); assert.equal(await page.locator('#landing-location-chips .location-chip').count(), 0); assert.equal(await page.locator('#search-location-map').count(), 0);
+    await interact(viewport, page.locator('[data-action="landing"]').first()); await page.locator('#landing-open-map').waitFor(); assert.equal(await page.locator('.maplibregl-map').count(),0); await openLandingMap(page, viewport); assert.equal(await page.locator('#landing-location-chips .location-chip').count(), 0); assert.equal(await page.locator('#search-location-map').count(), 0);
     console.log(`Neighborhood map draft ${viewport.name}: named selections/removals persist through guest wizard, text focus, reload and picker cleanup passed.`);
   });
 }
 async function failuresAndStaleReads(browser, viewport) {
   const f = await fixture(browser, viewport), {page, server} = f;
   await inspect(f, viewport, 'network', async () => {
-    await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map'); await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(map, viewport, 13);
+    const map = await openLandingMap(page, viewport); await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(map, viewport, 13);
     server.failCity = 'Debrecen'; await clickLabel(map, venkert.id, viewport); const retry = map.locator('.location-map-retry'); await retry.waitFor();
     assert.equal(await chip(page, venkert.id, true).count(), 1, 'Geometry failures retain the acknowledged selection'); await waitLabel(map, sestakert.id);
     await interact(viewport, retry); await assertOutline(map, venkert.id); assert.equal(await retry.isVisible(), false);
@@ -583,7 +601,7 @@ async function narrowingAtLimit(browser, viewport) {
 async function realLibertyStyle(browser, viewport) {
   const f = await fixture(browser, viewport, {realStyle: true}), {page} = f;
   await inspect(f, viewport, 'real-liberty-style', async () => {
-    await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map');
+    const map = await openLandingMap(page, viewport);
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await zoomTo(map, viewport, 13); await waitLabel(map, venkert.id);
     const state = await map.locator('.location-map-canvas').evaluate(element => {
       const map = element.__mapBrowserInstance, style = map.getStyle();
@@ -638,7 +656,7 @@ async function allSelectedTownOutlines(browser, viewport) {
 async function coincidentCityAndQuarter(browser, viewport) {
   const f = await fixture(browser, viewport, {coincidentLabels: true}), {page} = f;
   await inspect(f, viewport, 'coincident-city-quarter', async () => {
-    await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'}); const map = await readyMap(page, '#landing-location-map');
+    const map = await openLandingMap(page, viewport);
     await chooseText(page, viewport, city.id, 'Debrecen', {landing: true}); await removeChip(page, viewport, city.id, {landing: true}); await zoomTo(map, viewport, 8);
     await waitLabel(map, city.id); assert.ok(!((await placeState(map)).rendered.includes(central.id)), 'The distant city name appears before the coincident quarter');
     await clickLabel(map, city.id, viewport); await chip(page, city.id, true).waitFor({state: 'attached'}); await zoomTo(map, viewport, 13);
@@ -658,7 +676,7 @@ async function responsiveSelections(browser, viewport) {
     const f = await fixture(browser, viewport, {authenticated: !landing}), {page, server} = f;
     await inspect(f, viewport, landing ? 'responsive-landing' : 'responsive-wizard', async () => {
       const ids = [city.id, solymar.id, otherCity.id, 'city:Budapest', bulkTownBounds[0].location.id, bulkTownBounds[1].location.id];
-      if (landing) await page.goto(`${origin}/#landing`, {waitUntil: 'domcontentloaded'});
+      if (landing) await openLandingMap(page, viewport);
       else {
         server.searches[0].locationIds = [city.id]; server.searches[0].locations = [city];
         await page.goto(`${origin}/#searches`, {waitUntil: 'domcontentloaded'});

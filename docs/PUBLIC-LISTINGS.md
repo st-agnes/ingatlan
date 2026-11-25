@@ -41,7 +41,7 @@ A másolás eredetét a forrás keresés kulcsa és a `copy` mód együtt azonos
 
 ## Tesztelés és kiadás
 
-A kezdőoldal legfeljebb 16 keresést és 8 ingatlant válogat ki a ténylegesen elérhető rekordokból. A v8 tesztkészlet minden vármegyében és Budapesten 16 régiós keresést biztosít, eltérő paraméterekkel. Az eredeti 12 regionális eladó ingatlanból 8 választható ki. A kiválasztás továbbra is változatos, frissítéskor újraválogatott.
+A kezdőoldal legfeljebb 16 keresést és 8 ingatlant válogat ki a ténylegesen elérhető rekordokból. A v9 tesztkészlet minden vármegyében és Budapesten 16 régiós keresést biztosít, eltérő paraméterekkel. Az eredeti 12 regionális eladó ingatlanból 8 választható ki. A kiválasztás továbbra is változatos, frissítéskor újraválogatott.
 
 Az új kliensfájlok `energy-rating.js`, `public-listings.js` és `public-listings.css`; mindhárom kötelező Hosting-állomány. A statikus CI futtatja a publikus megjelenítés egységtesztjét és az onboarding böngészős csoportjában egyszer a publikus adatlapfolyamatokat. A két MySQL-verzió integrációja külön ellenőrzi a címvédelmet, szűrést, új mezőket és újraindítás utáni megőrzést.
 
