@@ -258,6 +258,7 @@ form label[for],.entity-wizard .location-search-controls>label{font-size:14px}
 
 /* The homepage keeps a compact text search; the map has its own page. */
 .landing-main .landing-location-layout{display:block}
+.landing-main .landing-text-search{margin-bottom:18px}
 .landing-location-search:has(.landing-search-row){display:block;max-width:none}
 .landing-search-row{display:flex;align-items:stretch;gap:8px;min-width:0}
 .landing-search-row>.location-input-wrap{flex:1;min-width:0}
@@ -307,3 +308,4 @@ form label[for],.entity-wizard .location-search-controls>label{font-size:14px}
 .discovery-decision-dock .decision-like-caption{min-width:0;max-width:100%;text-align:center}
 .discovery-decision-dock .decision-like-caption>span{min-width:0;max-width:100%;padding-inline:1px;white-space:normal;overflow-wrap:anywhere;hyphens:auto;line-height:1.3}
 .discovery-decision-dock .decision-like-caption small{max-width:100%;white-space:nowrap}
+@media(min-width:768px){.landing-main .landing-text-search{margin-bottom:24px}}
