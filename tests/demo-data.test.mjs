@@ -58,6 +58,13 @@ test('default catalog includes fourteen accounts, three agents, a feedback trial
  }
 });
 
+test('every canonical account has a fictional phone usable by the required registration flow',()=>{
+ for(const user of createDemoCatalog().users){
+  assert.equal(typeof user.phone,'string');assert.ok(user.phone.trim().length>0&&user.phone.length<=40,user.key);
+  assert.match(user.phone,/^\+36 30 555 /,user.key);
+ }
+});
+
 test('original accounts, active selections and original criteria survive the required fictional address fields',()=>{
  const catalog=createDemoCatalog();
  assert.equal(DEMO_PASSWORD,'OtthonraDemo2026!');

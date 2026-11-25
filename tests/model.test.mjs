@@ -819,3 +819,13 @@ test('public budget validation rejects impossible values and round-trips an opti
  const saved=m.saveEntity('search',{...base,publicMaxPrice:70});assert.equal(saved.maxPrice,80);assert.equal(saved.publicMaxPrice,70);
  assert.equal(m.saveEntity('search',{...base,publicMaxPrice:null},saved.id).publicMaxPrice,null);
 });
+
+test('demo profile updates require a phone while legacy phone-less profiles remain readable',()=>{
+ const storage=store(),initial=createModel(storage).reset(),raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ raw.users.find(user=>user.id===raw.userId).phone='';storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const model=createModel(storage);assert.equal(model.getState().user.phone,'');
+ for(const phone of ['', ' \t '])assert.throws(()=>model.updateProfile({phone}),/telefonszám/);
+ assert.equal(model.getState().user.name,initial.user.name);assert.equal(model.getState().user.phone,'');
+ const saved=model.updateProfile({phone:' +36 30 555 0199 '});assert.equal(saved.phone,'+36 30 555 0199');
+ assert.equal(createModel(storage).getState().user.phone,'+36 30 555 0199');
+});

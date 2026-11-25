@@ -245,9 +245,9 @@ test('hosted login rejects a different API address before sending credentials',a
 test('hosted registration and logout use a verified same-origin API session',async()=>{
   hostedSession();
   const calls=routes(accountRoutes({'/api/auth/register':{accessToken:'new-user-token'}}));
-  const api=await connectApi(globalThis.location.origin,'anna@example.hu','password1234',{name:'Teszt Anna',phone:''});
+  const api=await connectApi(globalThis.location.origin,'anna@example.hu','password1234',{name:'Teszt Anna',phone:' +36 30 555 0199 '});
   assert.equal(api.baseUrl,globalThis.location.origin);assert.equal(api.mode,'api');
-  assert.deepEqual(JSON.parse(calls[0].body),{name:'Teszt Anna',phone:'',accountType:'private',email:'anna@example.hu',password:'password1234'});
+  assert.deepEqual(JSON.parse(calls[0].body),{name:'Teszt Anna',phone:'+36 30 555 0199',accountType:'private',email:'anna@example.hu',password:'password1234'});
   const saved=JSON.parse(globalThis.localStorage.getItem(API_CONFIG_KEY));
   assert.deepEqual(saved,{baseUrl:'https://test.example.hu',token:'new-user-token'});
   assert.equal(getModel().mode,'api');assert.equal(disconnectApi(),null);assert.equal(getModel(),null);
@@ -371,7 +371,7 @@ test('house API saves remove hidden controls while search heating remains an opt
 test('agent declarations register explicitly while invalid choices never send credentials',async()=>{
  globalThis.localStorage=storage();
  const calls=routes(accountRoutes({'/api/auth/register':{accessToken:'registered-agent-token'},'/api/me':{...profile,accountType:'agent'}}));
- const api=await connectApi('https://api.example.hu','agent@example.hu','password1234',{name:'Közvetítő Anna',accountType:'agent'});
+ const api=await connectApi('https://api.example.hu','agent@example.hu','password1234',{name:'Közvetítő Anna',phone:'+36 30 555 0199',accountType:'agent'});
  assert.equal(JSON.parse(calls[0].body).accountType,'agent');assert.equal((await api.getState()).user.accountType,'agent');assert.equal((await api.getState()).likeCost,1);
  const before=calls.length;for(const accountType of ['',false,'unknown'])await assert.rejects(connectApi('https://api.example.hu','agent@example.hu','password1234',{name:'Közvetítő Anna',accountType}),/fióktípust/);
  assert.equal(calls.length,before);
@@ -404,7 +404,7 @@ test('report requests use source entities only and preserve idempotent acknowled
 test('owner declarations cannot be set through property or search save payloads or profile updates',async()=>{
  const calls=routes({'/api/properties':options=>response({id:ids.property,...JSON.parse(options.body)},201),'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201),'/api/me':options=>response({...profile,...JSON.parse(options.body)})});
  const api=adapter();await api.saveEntity('property',{...exactAddress,title:'Saját ingatlan',locationId:'city:Debrecen',price:50,area:50,rooms:2,ownerAccountType:'agent'});
- await api.saveEntity('search',{title:'Saját keresés',locationIds:['city:Debrecen'],ownerAccountType:'agent'});await api.updateProfile({name:'Nagy Anna',email:'anna@example.hu',phone:'',accountType:'agent'});
+ await api.saveEntity('search',{title:'Saját keresés',locationIds:['city:Debrecen'],ownerAccountType:'agent'});await api.updateProfile({name:'Nagy Anna',email:'anna@example.hu',phone:'+36 30 555 0199',accountType:'agent'});
  for(const call of calls){const body=JSON.parse(call.body);assert.equal('ownerAccountType' in body,false);assert.equal('accountType' in body,false);}
 });
 
@@ -888,4 +888,19 @@ test('anonymous details and public search-copy seeds never reuse a supplied priv
  const key='search-'+'a'.repeat(64),value={kind:'search',sourceKey:key,title:'Védett keresés',listing:{type:'Lakás',locations:['Debrecen'],maxPrice:123456000,publicMaxPrice:70000000},prefill:{type:'Lakás',locations:[locations.find(x=>x.id==='city:Debrecen')],maxPrice:123456000,publicMaxPrice:70000000},clonePrefill:{type:'Lakás',locations:[locations.find(x=>x.id==='city:Debrecen')],maxPrice:123456000,publicMaxPrice:70000000}};
  const data=publicListingFromApi('search',key,value);assert.equal(data.listing.maxPrice,70);assert.equal(data.prefill.maxPrice,70);assert.equal(data.clonePrefill.maxPrice,70);assert.equal(data.clonePrefill.publicMaxPrice,70);
  assert.equal(JSON.stringify(data).includes('123456000'),false);assert.equal(JSON.stringify(data).includes('123.456'),false);
+});
+
+test('registration and profile writes require a trimmed phone without sending empty contact data',async()=>{
+ globalThis.localStorage=storage();const calls=routes(accountRoutes({'/api/auth/register':{accessToken:'registered-with-phone'},'/api/me':options=>response({...profile,...(options.body?JSON.parse(options.body):{})})}));
+ for(const phone of [undefined,null,'',' \t ',false,12345,'1'.repeat(41)]){
+  await assert.rejects(connectApi('https://api.example.hu','phone@example.hu','password1234',{name:'Telefonszámos Anna',phone}),/telefonszám/);
+ }
+ assert.equal(calls.length,0,'Invalid registration does not send credentials or replace a session');
+ const api=await connectApi('https://api.example.hu','phone@example.hu','password1234',{name:'Telefonszámos Anna',phone:'  +36 30 555 0199  '});
+ assert.equal(JSON.parse(calls[0].body).phone,'+36 30 555 0199');
+ const before=calls.length;
+ for(const phone of [undefined,null,'','  '])await assert.rejects(api.updateProfile({name:'Telefonszámos Anna',email:'phone@example.hu',phone}),/telefonszám/);
+ assert.equal(calls.length,before);
+ await api.updateProfile({name:'Telefonszámos Anna',email:'phone@example.hu',phone:' +36 30 555 0188 '});
+ assert.equal(JSON.parse(calls.at(-1).body).phone,'+36 30 555 0188');
 });

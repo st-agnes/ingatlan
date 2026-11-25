@@ -36,14 +36,14 @@ if(process.argv[3]==='--verify'){
  console.log('Broker restart preservation passed: account types, owner badges, one-time credit ledger, matching and reporter-private per-entity deduplication survive.');
 }else{
  const suffix=Date.now()+'-'+Math.random().toString(16).slice(2),password='BrokerSmoke2026!';
- const register=async(name,accountType)=>call('/auth/register',{method:'POST',body:{name:'Broker '+name,email:`broker-${name}-${suffix}@example.test`,password,...(accountType===undefined?{}:{accountType})}});
+ const register=async(name,accountType)=>call('/auth/register',{method:'POST',body:{name:'Broker '+name,email:`broker-${name}-${suffix}@example.test`,password,phone:'+36 30 555 0805',...(accountType===undefined?{}:{accountType})}});
  // Assert invalid registration statuses explicitly without relying on an exception.
- for(const accountType of ['unknown',''])await call('/auth/register',{method:'POST',status:400,body:{name:'Invalid type',email:`broker-invalid-${accountType||'empty'}-${suffix}@example.test`,password,accountType}});
+ for(const accountType of ['unknown',''])await call('/auth/register',{method:'POST',status:400,body:{name:'Invalid type',email:`broker-invalid-${accountType||'empty'}-${suffix}@example.test`,password,phone:'+36 30 555 0805',accountType}});
  const a=await register('agent','agent'),s=await register('seller','private'),b=await register('private');
  const agent=a.accessToken,seller=s.accessToken,privateUser=b.accessToken;
  assert.equal(a.user.accountType,'agent');assert.equal(s.user.accountType,'private');assert.equal(b.user.accountType,'private');
  const logged=await call('/auth/login',{method:'POST',body:{email:a.user.email,password}});assert.equal(logged.user.accountType,'agent');
- const flip=await call('/me',{token:agent,method:'PUT',body:{name:a.user.name,email:a.user.email,phone:'',accountType:'private'}});assert.equal(flip.accountType,'agent','Profile writes must not turn paid agent searches into free private searches');
+ const flip=await call('/me',{token:agent,method:'PUT',body:{name:a.user.name,email:a.user.email,phone:a.user.phone,accountType:'private'}});assert.equal(flip.accountType,'agent','Profile writes must not turn paid agent searches into free private searches');
  const propertyBody={title:'Közvetítői elszámolás API-próba',locationId:'city:Debrecen',city:'Debrecen',district:'',type:'Lakás',price:40000000,area:80,rooms:3,wholeRooms:3,halfRooms:0,balcony:false,elevator:false,images:[]};
  const searchBody={title:'Közvetítői keresés API-próba',locationIds:['city:Debrecen'],city:'Debrecen',type:'Lakás',minPrice:null,maxPrice:60000000,minArea:70,maxArea:null,minRooms:3,maxRooms:null,balcony:false,elevator:false};
  const property=await call('/properties',{token:seller,method:'POST',body:{...propertyBody,ownerAccountType:'agent'},status:201});assert.equal(property.ownerAccountType,'private');

@@ -15,7 +15,7 @@ public class TestDataSeedTests
     [Fact]
     public void EmbeddedCatalogBuildsTheEntireReadyDatasetWithRolesCreditsAndStableIds()
     {
-        Assert.Equal("20261124-test-fixtures-v8", TestDataSeed.CatalogVersion);
+        Assert.Equal("20261125-test-fixtures-v9", TestDataSeed.CatalogVersion);
         Assert.Equal(14, Plan.Users.Length);
         Assert.Equal(3, Plan.Users.Count(user => user.AccountType == AccountTypes.Agent));
         Assert.Equal(355, Plan.Properties.Length);
@@ -222,7 +222,7 @@ public class TestDataSeedTests
     [Fact]
     public void DeploymentHistoryKeysDistinguishRevisionsAndLocalCatalogVersions()
     {
-        Assert.Equal("local:20261124-test-fixtures-v8", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
+        Assert.Equal("local:20261125-test-fixtures-v9", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
         Assert.Equal("ci-fixtures-a", TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion), TestDataSeed.RevisionKey("ci-fixtures-b", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey(null, "catalog-v1"), TestDataSeed.RevisionKey(null, "catalog-v2"));

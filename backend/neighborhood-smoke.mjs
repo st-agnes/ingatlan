@@ -145,7 +145,7 @@ if(mode==='--stale') {
   }
   assert.ok((await api('/locations?q=V%C3%A9nkert&kind=property')).items.every(item=>item.kind!=='neighborhood'));
   const suffix=Date.now()+'-'+Math.random().toString(16).slice(2);
-  const account=async name=>(await api('/auth/register',{method:'POST',body:{name:'Neighborhood '+name,email:`neighborhood-${name}-${suffix}@example.test`,password:'NeighborhoodSmoke2026!'}})).accessToken;
+  const account=async name=>(await api('/auth/register',{method:'POST',body:{name:'Neighborhood '+name,email:`neighborhood-${name}-${suffix}@example.test`,password:'NeighborhoodSmoke2026!',phone:'+36 30 555 0804'}})).accessToken;
   const buyer=await account('buyer'),seller=await account('seller'),outsider=await account('outsider');
   const propertyBody={title:'Városrész API teszt · kitalált cím',city:'Debrecen',district:'',locationId:'city:Debrecen',type:'Lakás',price:50000000,area:65,rooms:3,
     street:'OTTHONRA TEST',houseNumber:'1',postalCode:null,balcony:false,elevator:false,images:[]};

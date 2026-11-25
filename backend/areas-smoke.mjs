@@ -39,7 +39,7 @@ if(process.argv[3]==='--verify') {
   const debrecenMember=debrecen.settlements.find(city=>city!=='Debrecen');
   const outside='Záhony';assert.ok(!budapest.settlements.includes(outside)&&!debrecen.settlements.includes(outside));
   const suffix=Date.now()+'-'+Math.random().toString(16).slice(2);
-  const account=async name=>(await call('/auth/register',{method:'POST',body:{name:'Area '+name,email:`area-${name}-${suffix}@example.test`,password:'AreaSmokePassword2026!'}})).accessToken;
+  const account=async name=>(await call('/auth/register',{method:'POST',body:{name:'Area '+name,email:`area-${name}-${suffix}@example.test`,password:'AreaSmokePassword2026!',phone:'+36 30 555 0802'}})).accessToken;
   const buyer=await account('buyer'),seller=await account('seller');
   const baseProperty={title:'Városkörnyéki helyszín API-próba',city:'Budapest',district:'V.',locationId:'district:Budapest:5',type:'Lakás',price:20000000,area:60,rooms:2,images:[],balcony:false,elevator:false};
   const create=async data=>call('/properties',{token:seller,method:'POST',body:{...baseProperty,...data},status:201});

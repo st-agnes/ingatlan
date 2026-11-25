@@ -96,7 +96,7 @@ async function readResponsiveness(browser,viewport){
   await eventually(()=>server.gets.length>before,'Returning to a stale authenticated tab should begin one readonly refresh');
   const refreshCalls=server.gets.slice(before);assert.ok(refreshCalls.filter(item=>item.path==='/me').length<=1,'A visible/focus/pageshow burst must not issue multiple account refreshes');
   await navigate(page,viewport,'settings');await page.locator('#profile-form').waitFor({timeout:1500});
-  await page.locator('#f-name').fill('Még nem mentett név');
+  await page.locator('#f-name').fill('Még nem mentett név');await page.locator('#f-phone').fill('+36 30 555 0149');
   await page.evaluate(()=>{globalThis.profileNode=document.getElementById('profile-form');});
   server.readGate.release();server.readGate=null;
   await page.locator('#workspace-refresh-status').waitFor({state:'hidden',timeout:5000});
@@ -106,7 +106,7 @@ async function readResponsiveness(browser,viewport){
   const profileSaved=page.waitForResponse(response=>new URL(response.url()).pathname==='/api/me'&&response.request().method()==='PUT');
   await interact(viewport,page.locator('#profile-form button[type="submit"]'));assert.equal((await profileSaved).status(),200);
   await page.locator('#workspace-refresh-status').waitFor({state:'hidden',timeout:5000});
-  const profileWrites=server.posts.filter(item=>item.path==='/me'&&item.method==='PUT');assert.equal(profileWrites.length,1);assert.deepEqual(profileWrites[0].body,{name:'Még nem mentett név',email:'a@example.test',phone:''});assert.equal(server.profiles.a.name,'Még nem mentett név','A real submit Event must retain its form before awaiting refresh');
+  const profileWrites=server.posts.filter(item=>item.path==='/me'&&item.method==='PUT');assert.equal(profileWrites.length,1);assert.deepEqual(profileWrites[0].body,{name:'Még nem mentett név',email:'a@example.test',phone:'+36 30 555 0149'});assert.equal(server.profiles.a.name,'Még nem mentett név','A real submit Event must retain its form before awaiting refresh');
   assert.equal(await page.locator('#f-name').inputValue(),'Még nem mentett név');
   server.readGate=gate();await freezeResume(page,{advanceClock:true});
   await navigate(page,viewport,'properties');await page.locator('.page-heading [data-action="new"]').waitFor({timeout:1500});

@@ -40,11 +40,12 @@ async function compactCriteria(page,selector){
 }
 async function sellerCaption(page){
  const button=await page.locator('.card-actions [data-action="like"]').boundingBox(),label=page.locator('.decision-like-caption');
- assert.match(await label.innerText(),/Kedvelés\s+2 kredit/);
+ assert.match(await label.innerText(),/Kapcsolatfelvétel\s+2 kredit/);
+ assert.match(await page.locator('.card-actions [data-action="like"]').getAttribute('aria-label'),/^Kapcsolatfelvétel/);assert.equal(await page.locator('.card-actions [data-action="like"] svg[data-icon="contact"]').count(),1,'The positive decision uses a contact icon instead of a heart');
  const main=await label.locator('span').first().boundingBox(),cost=await label.locator('small').boundingBox();
  assert.ok(button&&main&&cost);assert.ok(cost.y>=main.y+main.height-1,'Credit cost belongs below the main caption');
  assert.ok(Math.abs(cost.x+cost.width/2-main.x-main.width/2)<=2,'Credit cost stays centered below the caption');
- assert.ok(Math.abs(main.x+main.width/2-button.x-button.width/2)<=2,'Seller caption stays centered below the heart');
+ assert.ok(Math.abs(main.x+main.width/2-button.x-button.width/2)<=2,'Seller caption stays centered below the contact icon');
 }
 async function verify(browser,viewport,kind){
  const context=await browser.newContext({viewport:{width:viewport.width,height:viewport.height},hasTouch:viewport.touch,reducedMotion:'reduce'});

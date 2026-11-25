@@ -83,6 +83,7 @@ async function createWizard(page,interact,kind,viewport){
  const before=await state(page),title=`Lépésenként ${kind} ${viewport.name}`;
  await interact(page.locator(`.page-heading [data-action="new"][data-kind="${kind}"]`));
  await page.locator('#entity-form').waitFor();await verifyProgress(page,kind,0);
+ await mkdir(screenshots,{recursive:true});await page.locator('#editor-header').screenshot({path:resolve(screenshots,`form-header-${kind}-${viewport.name}.png`)});
  if(kind==='search')assert.equal(await page.locator('.modal-description').innerText(),'Először a feltételeidnek mindenben megfelelő ingatlanokat mutatjuk. Ha ezek elfogynak, az igényeidhez legközelebb állókat nézheted meg.');
  assert.equal(await page.locator('#location-input').getAttribute('type'),'search');assert.equal(await page.locator('#location-input').getAttribute('role'),'combobox');assert.equal(await page.locator('#location-input').getAttribute('autocomplete'),'off');assert.equal(await page.locator('.entity-wizard input[type="search"]').count(),1,'Only the location query uses search semantics');
  assert.equal(await page.locator('#editor-save').isVisible(),false,'Saving is offered only after all topic screens');

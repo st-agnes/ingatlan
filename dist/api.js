@@ -206,6 +206,13 @@ function inputNumber(value, name, nullable = false) {
 }
 const inputBoolean = value => value === true || value === 1 || ['true', '1', 'on'].includes(String(value).toLowerCase());
 const inputText = value => value == null ? '' : String(value).trim();
+function requiredPhone(value) {
+  if(typeof value!=='string')throw new Error('A telefonszám megadása kötelező.');
+  const phone=inputText(value);
+  if(!phone)throw new Error('A telefonszám megadása kötelező.');
+  if(phone.length>40)throw new Error('A telefonszám legfeljebb 40 karakter lehet.');
+  return phone;
+}
 const inputStrings = value => Array.isArray(value) ? value.map(inputText).filter(Boolean) : inputText(value).split(/[,\n]/).map(inputText).filter(Boolean);
 function propertyToApi(value, updating = false) {
   const type = inputText(value.type) || 'Lakás';
@@ -528,7 +535,7 @@ export class ApiModel {
     if(!['property','search'].includes(entityKind)||typeof entityId!=='string'||!entityId.trim())throw new Error('Érvénytelen jelentési profil.');
     return this.call('/reports','POST',{entityKind,entityId,reason:normalizeReportReason(reason)});
   }
-  async updateProfile(data) { return this.call('/me', 'PUT', { name: data.name, email: data.email, phone: data.phone }); }
+  async updateProfile(data) { return this.call('/me', 'PUT', { name: data.name, email: data.email, phone: requiredPhone(data.phone) }); }
   async buyDemoCredits(amount) { return this.call('/credits/demo-topup', 'POST', { amount: Number(amount) }); }
   async createCheckout(amount) {
     const creditAmount = inputNumber(amount, 'kreditmennyiség');
@@ -640,7 +647,7 @@ export function getModel() {
 export async function connectApi(baseUrl, email, password, registerData) {
   const base = apiBase(baseUrl);
   if (hostedMode() && base !== hostedApiBase()) throw new Error('Ehhez a munkatérhez a saját webcímén jelentkezhetsz be.');
-  const registration=registerData?{...registerData,accountType:normalizeAccountType(registerData.accountType,{strict:true})}:{};
+  const registration=registerData?{...registerData,accountType:normalizeAccountType(registerData.accountType,{strict:true}),phone:requiredPhone(registerData.phone)}:{};
   const attempt=beginAuthAttempt();
   const result = await request(base, null, registerData ? '/auth/register' : '/auth/login', 'POST', { ...registration, email: String(email).trim(), password: String(password) });
   requireCurrentAuthAttempt(attempt);

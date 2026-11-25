@@ -22,6 +22,7 @@ public static class Rules
         if ((value?.Length ?? 0) > max) throw new ApiException(400, $"A szöveg legfeljebb {max} karakter lehet.");
         return value?.Trim() ?? "";
     }
+    public static string Phone(string? value) => Required(value, "telefonszám", 40);
     public static string Email(string? value)
     {
         var email = Required(value, "e-mail-cím").ToLowerInvariant();

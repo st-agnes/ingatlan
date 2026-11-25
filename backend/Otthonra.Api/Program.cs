@@ -96,9 +96,10 @@ var auth = app.MapGroup("/api/auth").RequireRateLimiting("auth");
 auth.MapPost("/register", async (RegisterInput input, AppDb db) =>
 {
     Rules.Password(input.Password);
+    var phone = Rules.Phone(input.Phone);
     var email = Rules.Email(input.Email);
     if (await db.Users.AnyAsync(x => x.Email == email)) throw new ApiException(409, "Ezzel az e-mail-címmel már létezik fiók.");
-    var user = new User { Name = Rules.Required(input.Name, "név", 100), Email = email, Phone = Rules.Optional(input.Phone, 40), PasswordHash = Passwords.Hash(input.Password), AccountType = AccountTypes.RegistrationType(input.AccountType) };
+    var user = new User { Name = Rules.Required(input.Name, "név", 100), Email = email, Phone = phone, PasswordHash = Passwords.Hash(input.Password), AccountType = AccountTypes.RegistrationType(input.AccountType) };
     db.Users.Add(user); await db.SaveChangesAsync(); return Results.Ok(Session(user));
 });
 auth.MapPost("/login", async (LoginInput input, AppDb db) =>
@@ -123,9 +124,9 @@ api.MapGet("/me", async (AppDb db, ClaimsPrincipal principal, LikeRefundService 
 });
 api.MapPut("/me", async (ProfileInput input, AppDb db, ClaimsPrincipal principal) =>
 {
-    var user = await CurrentUser(db, principal); var email = Rules.Email(input.Email);
+    var user = await CurrentUser(db, principal); var email = Rules.Email(input.Email); var phone = Rules.Phone(input.Phone);
     if (await db.Users.AnyAsync(x => x.Id != user.Id && x.Email == email)) throw new ApiException(409, "Ez az e-mail-cím már foglalt.");
-    user.Name = Rules.Required(input.Name, "név", 100); user.Email = email; user.Phone = Rules.Optional(input.Phone, 40);
+    user.Name = Rules.Required(input.Name, "név", 100); user.Email = email; user.Phone = phone;
     await db.SaveChangesAsync(); return Results.Ok(Dto.Profile(user));
 });
 api.MapGet("/me/entities", async (AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
