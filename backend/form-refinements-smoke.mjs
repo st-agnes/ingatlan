@@ -42,36 +42,44 @@ export async function checkFormRefinements({call, buyer, seller, baseProperty}) 
   await call('/properties',{token:seller,method:'POST',body:{...propertyBody,floor:8,floorIsUpperRange:true,buildingFloors:12},status:400});
   await call('/searches',{token:buyer,method:'POST',body:{...searchBody,floors:[0.25]},status:400});
 
-  // Keep the new floor/attic cases isolated by their exact price while still
-  // exercising the actual MySQL query in both matching directions.
-  const alternativePrice=propertyBody.price+1;
-  const eighth=await createProperty({price:alternativePrice,floor:8,buildingFloors:9,isAttic:false});
-  const third=await createProperty({price:alternativePrice,floor:3,buildingFloors:9,isAttic:false});
-  const attic=await createProperty({price:alternativePrice,floor:7,buildingFloors:7,isAttic:true});
-  const alternative={minPrice:alternativePrice,maxPrice:alternativePrice};
+  // Use a different non-house type and a substantial price gap from the
+  // earlier apartment fixtures. Their one-forint differences can otherwise
+  // round away in MySQL's relative numeric-loss arithmetic.
+  const alternativeType='Iroda',alternativePrice=propertyBody.price+5_000_000;
+  const eighth=await createProperty({type:alternativeType,price:alternativePrice,floor:8,buildingFloors:9,isAttic:false});
+  const third=await createProperty({type:alternativeType,price:alternativePrice,floor:3,buildingFloors:9,isAttic:false});
+  const attic=await createProperty({type:alternativeType,price:alternativePrice,floor:7,buildingFloors:7,isAttic:true});
+  const alternative={type:alternativeType,minPrice:alternativePrice,maxPrice:alternativePrice};
+  const alternativePropertyIds=new Set([eighth.id,third.id,attic.id]);
+  const alternativeItems=feed=>feed.items.filter(item=>alternativePropertyIds.has(item.propertyId));
+  const alternativeIds=feed=>alternativeItems(feed).map(item=>item.propertyId).sort();
   const eighthSearch=await searchAndFeed({...alternative,floors:[8]});
-  assert.deepEqual(ids(eighthSearch.feed),[eighth.id],'The upper search bucket starts at the eighth floor');
+  assert.deepEqual(alternativeIds(eighthSearch.feed),[eighth.id],'Only the eighth-floor cohort property satisfies the upper search bucket');
   const legacyEighthSearch=await searchAndFeed({...alternative,floors:[11]});
   assert.deepEqual(legacyEighthSearch.search.floors,[8]);
-  assert.deepEqual(ids(legacyEighthSearch.feed),[eighth.id],'A stored legacy upper bucket also includes the eighth floor');
+  assert.deepEqual(alternativeIds(legacyEighthSearch.feed),[eighth.id],'A stored legacy upper bucket also includes the eighth floor');
   const atticOrFloor=await searchAndFeed({...alternative,floors:[3],atticPreference:'only'});
-  assert.deepEqual(ids(atticOrFloor.feed),[third.id,attic.id].sort(),'A third-floor apartment OR an attic is an exact match');
-  for(const item of atticOrFloor.feed.items){
+  assert.deepEqual(alternativeIds(atticOrFloor.feed),[third.id,attic.id].sort(),'The third floor OR an attic is an exact match; the eighth floor is partial');
+  for(const item of alternativeItems(atticOrFloor.feed)){
     const detail=item.matchDetails.find(value=>value.key==='floor');
     assert.equal(detail.expected,'3. emelet vagy Tetőtéri ingatlan');assert.equal(detail.matches,true);
     assert.ok(!item.matchDetails.some(value=>value.key==='atticPreference'),'An OR alternative cannot appear as an independent failed criterion');
   }
-  const partial=await call('/feed?includeApproximate=true',{token:buyer});
-  const eighthCard=partial.items.find(item=>item.propertyId===eighth.id);assert.ok(eighthCard);
-  assert.equal(eighthCard.compatibilityScore,61,'The OR alternatives share one floor penalty');
-  assert.equal(eighthCard.compatibilityScore,evaluateMatch(eighthCard.property,eighthCard.searchRequest).score,'MySQL and browser share the floor/attic distance');
   await call('/me/active',{token:seller,method:'PUT',body:{kind:'property',id:attic.id}});
   const sellerAlternatives=await call('/feed',{token:seller});
   assert.ok(sellerAlternatives.items.some(item=>item.searchRequestId===atticOrFloor.search.id&&item.compatibilityScore===100),'The same OR choice works in the seller query');
+  // Approximate consent does not skip unseen exact matches. Pass only this
+  // search's two known exact candidates before requesting its partial stage.
+  for(const property of [third,attic])await call('/decisions',{token:buyer,method:'POST',body:{propertyId:property.id,searchRequestId:atticOrFloor.search.id,liked:false}});
+  const partial=await call('/feed?includeApproximate=true',{token:buyer});
+  assert.equal(partial.stage,'approximate','Partial floor scoring is checked only after the known exact matches have been handled');
+  const eighthCard=alternativeItems(partial).find(item=>item.propertyId===eighth.id);assert.ok(eighthCard,'The isolated eighth-floor candidate must be selected for the partial page');
+  assert.equal(eighthCard.compatibilityScore,61,'The OR alternatives share one floor penalty');
+  assert.equal(eighthCard.compatibilityScore,evaluateMatch(eighthCard.property,eighthCard.searchRequest).score,'MySQL and browser share the floor/attic distance');
   const notTop=await searchAndFeed({...alternative,floors:[3],atticPreference:'only',excludeTopFloor:true});
-  assert.deepEqual(ids(notTop.feed),[third.id],'The top-floor exclusion still applies to an attic alternative');
+  assert.deepEqual(alternativeIds(notTop.feed),[third.id],'The top-floor exclusion still applies to an attic alternative');
   const withLift=await searchAndFeed({...alternative,floors:[3],atticPreference:'only',elevator:true});
-  assert.equal(withLift.feed.items.length,0,'The elevator requirement still applies to both alternatives');
+  assert.deepEqual(alternativeIds(withLift.feed),[],'The elevator requirement still applies to both alternatives');
 
   const forbidden=[
     'Telefonon elérsz: +36 20 123 4567.',
