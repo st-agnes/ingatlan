@@ -21,9 +21,10 @@ if(mode==='--production'){assert.equal(health.deployment,'production');assert.eq
 else{assert.equal(health.deployment,'test');assert.equal(health.testDataVersion,version);}
 const agent=DEMO_USERS.find(user=>user.accountType==='agent'),scenario=FEEDBACK_TEST_SCENARIO,scenarioKeys=new Set([scenario.seller,scenario.buyer]);
 const quarterAccountKeys=new Set(['reka','bence','julia','marton']);
-const accounts=[...DEMO_USERS.slice(0,3),agent,...DEMO_USERS.filter(user=>scenarioKeys.has(user.key)||quarterAccountKeys.has(user.key))];
+const activityExpected={activitybuyer:{credits:94,decisions:4,matches:2,ledger:4,notifications:9,unread:8,incoming:2},activityseller:{credits:96,decisions:2,matches:1,ledger:3,notifications:6,unread:5,incoming:1},activityagent:{credits:96,decisions:3,matches:1,ledger:4,notifications:5,unread:4,incoming:1}};
+const accounts=[...DEMO_USERS.slice(0,3),agent,...DEMO_USERS.filter(user=>scenarioKeys.has(user.key)||quarterAccountKeys.has(user.key)||Object.hasOwn(activityExpected,user.key))];
 const catalog=key=>DEMO_FIXTURES.find(fixture=>fixture.key===key);
-async function snapshot(f){return Promise.all(accounts.map(async user=>({key:user.key,profile:await api('/me',{token:f.tokens[user.key]}),entities:await api('/me/entities',{token:f.tokens[user.key]}),ledger:await api('/credits/ledger',{token:f.tokens[user.key]}),matches:await api('/matches',{token:f.tokens[user.key]})})));}
+async function snapshot(f){return Promise.all(accounts.map(async user=>({key:user.key,profile:await api('/me',{token:f.tokens[user.key]}),entities:await api('/me/entities',{token:f.tokens[user.key]}),ledger:await api('/credits/ledger',{token:f.tokens[user.key]}),matches:await api('/matches',{token:f.tokens[user.key]}),...(Object.hasOwn(activityExpected,user.key)?{notifications:await api('/notifications?offset=0&limit=50',{token:f.tokens[user.key]})}:{})})));}
 async function save(f){await mkdir(dirname(fixturePath),{recursive:true});await writeFile(fixturePath,JSON.stringify(f),{mode:0o600});await chmod(fixturePath,0o600);}
 function entity(rows,fixture){return (fixture.kind==='property'?rows.entities.properties:rows.entities.searchRequests).find(item=>item.title===fixture.input.title);}
 const signature=rows=>rows.map(({key,...data})=>JSON.stringify(data)).sort().join('\n');
@@ -131,12 +132,12 @@ async function fresh(f){
  await seededLanding();
  const rows=await snapshot(f);
  for(const row of rows){
-  const user=accounts.find(user=>user.key===row.key),isTrial=scenarioKeys.has(user.key),isSeller=user.key===scenario.seller;
-  assert.equal(row.profile.accountType,user.accountType??'private');assert.equal(row.profile.credits,isSeller?90:100);
+  const user=accounts.find(user=>user.key===row.key),isTrial=scenarioKeys.has(user.key),isSeller=user.key===scenario.seller,activity=activityExpected[row.key],balance=activity?.credits??(isSeller?90:100);
+  assert.equal(row.profile.accountType,user.accountType??'private');assert.equal(row.profile.credits,balance);
   assert.equal(row.entities.properties.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='property').length);
   assert.equal(row.entities.searchRequests.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='search').length);
-  assert.deepEqual(row.entities.decisions,[]);assert.deepEqual(row.entities.reportedOwnerIds,[]);assert.deepEqual(row.matches,[]);
-  assert.equal(row.ledger.length,isSeller?2:1);assert.equal(row.ledger.reduce((sum,item)=>sum+item.amount,0),isSeller?90:100);
+  if(activity){assert.equal(row.entities.decisions.length,activity.decisions);assert.equal(row.matches.length,activity.matches);}else{assert.deepEqual(row.entities.decisions,[]);assert.deepEqual(row.matches,[]);}assert.deepEqual(row.entities.reportedOwnerIds,[]);
+  assert.equal(row.ledger.length,activity?.ledger??(isSeller?2:1));assert.equal(row.ledger.reduce((sum,item)=>sum+item.amount,0),balance);
   assert.equal(row.ledger.filter(item=>item.amount===100).length,1);
   if(isSeller)assert.equal(row.ledger.filter(item=>item.amount===-10&&item.feedbackPackageId).length,1);
   assert.ok([...row.entities.properties,...row.entities.searchRequests].every(item=>item.ownerAccountType===(user.accountType??'private')));
@@ -153,7 +154,30 @@ async function fresh(f){
   assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='private'));
  }
  await seededNeighborhoods(f,rows);
+ await seededActivity(f,rows);
  return rows;
+}
+async function seededActivity(f,rows){
+ for(const [key,expected] of Object.entries(activityExpected)){
+  const row=rows.find(item=>item.key===key),token=f.tokens[key],notices=row.notifications;
+  assert.equal(notices.total,expected.notifications);assert.equal(notices.items.length,expected.notifications);assert.equal(notices.unreadCount,expected.unread);assert.equal(row.profile.unreadNotificationCount,expected.unread);
+  assert.equal(notices.items.filter(item=>item.readAt).length,1,'Each activity workspace starts with an already-seen event');
+  for(const kind of ['incoming_like','match_created','message_received','credit_added'])assert.ok(notices.items.some(item=>item.kind===kind),key+' needs '+kind);
+  const incoming=await api('/incoming-likes',{token});assert.equal(incoming.total,expected.incoming);assert.deepEqual(incoming.active,row.entities.active);
+  for(const item of incoming.items){assert.equal(item.myDecision,null);assert.equal(item.matchId,null);assert.equal(item.compatible,true);assert.equal(item.isExact,true);}
+  const pending=notices.items.find(item=>item.kind==='incoming_like'&&item.target?.entityId===row.entities.active.id);assert.ok(pending);
+  const context=await api('/notifications/'+pending.id+'/context',{token});assert.equal(context.available,true);assert.equal(context.canActivate,true);assert.equal(context.target.entityId,row.entities.active.id);assert.equal(context.item.myDecision,null);
+  const raw=JSON.stringify(context);for(const user of DEMO_USERS){assert.ok(!raw.includes(user.email));assert.ok(!raw.includes(user.phone));}
+  assert.doesNotMatch(raw,/"(?:latitude|longitude|geocodingPlaceId|provider)"\s*:/i);
+  const inactive=notices.items.find(item=>item.target?.entityId&&item.target.entityId!==row.entities.active.id);assert.ok(inactive,'Activity on an inactive profile must remain visible');
+  const other=await api('/notifications/'+inactive.id+'/context',{token});assert.equal(other.available,true);assert.equal(other.canActivate,true);assert.equal(other.target.entityId,inactive.target.entityId);
+  const unread=notices.items.find(item=>item.kind==='incoming_like'&&!item.readAt);assert.ok(unread);
+  const marked=await api('/notifications/'+unread.id+'/read',{token,method:'PUT'});assert.ok(marked.readAt);
+  const again=await api('/notifications/'+unread.id+'/read',{token,method:'PUT'});assert.equal(again.readAt,marked.readAt);assert.equal(again.unreadCount,expected.unread-1);
+  assert.equal((await api('/me',{token})).credits,expected.credits,'Reading or resolving an activity cannot debit credits');
+  await api('/notifications/'+pending.id+'/context',{token:f.tokens.anna,status:404});
+ }
+ console.log('Prepared activity accounts passed: active incoming interests, inactive-profile targets, likes/matches/messages, role-based fees, contacts hidden, durable first-read and unread badges.');
 }
 async function seededNeighborhoods(f,rows){
  const quarter=DEMO_NEIGHBORHOOD_SCENARIO,row=key=>rows.find(item=>item.key===key);
@@ -221,7 +245,7 @@ async function proveFeedbackScenario(f){
 }
 if(mode==='--initial'){
  const f={tokens:{},ids:{}};
- for(const user of accounts){const session=await api('/auth/login',{method:'POST',body:{email:user.email,password:DEMO_PASSWORD}});f.tokens[user.key]=session.accessToken;f.ids[user.key]=session.user.id;}
+ for(const [index,user] of accounts.entries()){if(index>0&&index%10===0){console.log('Waiting for the existing authentication window before the next test logins.');await new Promise(resolve=>setTimeout(resolve,61000));}const session=await api('/auth/login',{method:'POST',body:{email:user.email,password:DEMO_PASSWORD}});f.tokens[user.key]=session.accessToken;f.ids[user.key]=session.user.id;}
  await fresh(f);await proveFeedbackScenario(f);
  const rows=await snapshot(f),anna=rows.find(row=>row.key==='anna'),peter=rows.find(row=>row.key==='peter'),agency=rows.find(row=>row.key===agent.key);
  const property=entity(peter,catalog('peter-pozsonyi')),search=entity(anna,catalog('anna-budapest')),agentSearch=entity(agency,catalog(agent.active.key));
@@ -234,7 +258,7 @@ if(mode==='--initial'){
  await api('/properties/'+house.id,{token:f.tokens.anna,method:'PUT',body:{...catalog('anna-solymar-house').input,title:'Edited and archived before cold start',archived:true}});
  await api('/me',{token:f.tokens.anna,method:'PUT',body:{name:'Edited before cold start',email:anna.profile.email,phone:anna.profile.phone}});
  await api('/me/active',{token:f.tokens.anna,method:'PUT',body:{kind:'search',id:entity(anna,catalog('anna-debrecen')).id}});
- f.expected=await snapshot(f);await save(f);console.log('Embedded startup fixtures passed: ready 14-account catalog, mixed-owner recommendations, agent/private/seller billing, match, message and changes recorded for restart preservation.');
+ f.expected=await snapshot(f);await save(f);console.log('Embedded startup fixtures passed: ready 17-account catalog, mixed-owner recommendations, agent/private/seller billing, match, message and changes recorded for restart preservation.');
 }else{
  const f=JSON.parse(await readFile(fixturePath,'utf8'));
  if(mode==='--reset'){

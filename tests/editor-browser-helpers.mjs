@@ -291,11 +291,15 @@ export async function assertEditorNavigation(page,{scroll=false,lastField=false}
  }
  assert.ok(proof.actions[0].bottom<=proof.section.top+1,'Top actions must precede the current fields');
  assert.ok(proof.actions[1].top>=proof.section.bottom-1,'Bottom actions must follow the current fields');
+ const editing=await page.locator('#entity-form').getAttribute('data-editing')==='true';
  for(const name of ['next','back','save']){
   const bottom=page.locator('#editor-'+name),top=page.locator('#editor-'+name+'-top');
   assert.equal(await top.count(),1);assert.equal(await bottom.count(),1);
-  assert.equal(await top.isVisible(),await bottom.isVisible(),`Both ${name} actions must reflect the same topic state`);
-  if(await bottom.isVisible())assert.equal(await top.isEnabled(),await bottom.isEnabled());
+  const bottomVisible=await bottom.isVisible(),topVisible=await top.isVisible();
+  assert.equal(topVisible,editing&&name==='save'?true:editing&&name==='next'?false:bottomVisible,
+   editing?'Existing profiles retain top Save on every topic while lower navigation follows the current topic':`Both ${name} actions must reflect the same creation topic state`);
+  if(topVisible&&bottomVisible)assert.equal(await top.isEnabled(),await bottom.isEnabled());
+  if(editing&&name==='save')assert.equal((await top.innerText()).trim(),'Mentés');
  }
  assert.equal(await page.locator('#editor-step-status').count(),0,'The redundant X-of-Y sentence must be absent');
  assert.doesNotMatch(await page.locator('#entity-form').innerText(),/Később folytatom|Csak azt jelöld meg, ami fontos/);

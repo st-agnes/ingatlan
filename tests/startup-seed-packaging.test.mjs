@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {DEMO_PASSWORD, DEMO_USERS, DEMO_FIXTURES, FEEDBACK_TEST_SCENARIO, DEMO_STREET_SCENARIO} from '../scripts/gcp/demo-data.mjs';
+import {DEMO_PASSWORD, DEMO_USERS, DEMO_FIXTURES, FEEDBACK_TEST_SCENARIO, DEMO_STREET_SCENARIO, DEMO_ACTIVITY_SCENARIOS} from '../scripts/gcp/demo-data.mjs';
 import {TEST_FIXTURE_VERSION, TEST_FIXTURE_PATH, exportTestFixtureCatalog} from '../scripts/gcp/export-demo-data.mjs';
 
 test('the packaged backend catalog contains every canonical fictional account and entity', async()=>{
@@ -14,10 +14,12 @@ test('the packaged backend catalog contains every canonical fictional account an
   assert.deepEqual(packaged.users,DEMO_USERS);
   assert.deepEqual(packaged.fixtures,DEMO_FIXTURES);
   assert.deepEqual(packaged.feedbackScenarios,[FEEDBACK_TEST_SCENARIO]);
-  assert.equal(packaged.users.length,14);
-  assert.equal(packaged.users.filter(user=>user.accountType==='agent').length,3);
-  assert.equal(packaged.fixtures.filter(item=>item.kind==='property').length,355);
-  assert.equal(packaged.fixtures.filter(item=>item.kind==='search').length,433);
+  assert.deepEqual(packaged.activityScenarios,DEMO_ACTIVITY_SCENARIOS);
+  assert.equal(packaged.activityScenarios.length,7);
+  assert.equal(packaged.users.length,17);
+  assert.equal(packaged.users.filter(user=>user.accountType==='agent').length,4);
+  assert.equal(packaged.fixtures.filter(item=>item.kind==='property').length,361);
+  assert.equal(packaged.fixtures.filter(item=>item.kind==='search').length,439);
   for(const fixture of packaged.fixtures.filter(item=>item.kind==='property')){
     const streetFixture=[DEMO_STREET_SCENARIO.firstProperty,DEMO_STREET_SCENARIO.secondProperty].includes(fixture.key);
     if(streetFixture){assert.equal(fixture.input.houseNumber,'99999');assert.match(fixture.input.streetId,/^street:[a-f0-9]{24}$/);}

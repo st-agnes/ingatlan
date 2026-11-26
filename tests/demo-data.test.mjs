@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
-import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD, FEEDBACK_TEST_SCENARIO, DEMO_NEIGHBORHOOD_SCENARIO, DEMO_STREET_SCENARIO, DEMO_PUBLIC_BUDGET_SCENARIO} from '../scripts/gcp/demo-data.mjs';
+import {DEFAULT_BATCH, createDemoCatalog, DEMO_USERS, DEMO_FIXTURES, DEMO_PASSWORD, FEEDBACK_TEST_SCENARIO, DEMO_NEIGHBORHOOD_SCENARIO, DEMO_STREET_SCENARIO, DEMO_PUBLIC_BUDGET_SCENARIO, DEMO_ACTIVITY_SCENARIOS} from '../scripts/gcp/demo-data.mjs';
 import {getLocation, isPropertyLocation} from '../dist/locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from '../dist/attributes.js';
 import {isCompatible} from '../dist/model.js';
@@ -11,6 +11,7 @@ import {canInteract} from '../dist/accounts.js';
 import {ENERGY_RATINGS} from '../dist/energy-rating.js';
 import {evaluateMatch} from '../dist/matching.js';
 
+const isActivityUser=user=>user.key.startsWith('activity');
 const isScenarioUser=user=>user.key.startsWith('feedbackseller')||user.key.startsWith('feedbackbuyer');
 const oldUsers = ['anna','peter','eszter'];
 const oldFixtures = [
@@ -37,11 +38,11 @@ test('the canonical budget example demonstrates private80/public70 against a75mi
  }
 });
 
-test('default catalog includes fourteen accounts, three agents, a feedback trial and substantial mixed-role inventory',()=>{
+test('default catalog includes seventeen accounts, four agents, a feedback trial and substantial mixed-role inventory',()=>{
  const catalog=createDemoCatalog();
  assert.equal(DEFAULT_BATCH,'alap');assert.deepEqual(DEMO_USERS,catalog.users);assert.deepEqual(DEMO_FIXTURES,catalog.fixtures);
- assert.equal(catalog.users.length,14);assert.equal(catalog.users.filter(user=>user.accountType==='agent').length,3);
- assert.equal(kind(catalog,'property').length,355);assert.equal(kind(catalog,'search').length,433);
+ assert.equal(catalog.users.length,17);assert.equal(catalog.users.filter(user=>user.accountType==='agent').length,4);
+ assert.equal(kind(catalog,'property').length,361);assert.equal(kind(catalog,'search').length,439);
  assert.equal(new Set(catalog.users.map(user=>user.email)).size,catalog.users.length);
  assert.equal(new Set(catalog.users.map(user=>user.key)).size,catalog.users.length);
  assert.equal(new Set(catalog.fixtures.map(fixture=>fixture.key)).size,catalog.fixtures.length);
@@ -50,7 +51,8 @@ test('default catalog includes fourteen accounts, three agents, a feedback trial
   if(isScenarioUser(user))assert.equal(own.length,1,'Each feedback test account has one unambiguous role');
   else{assert.ok(own.some(fixture=>fixture.kind==='property'));assert.ok(own.some(fixture=>fixture.kind==='search'));}
   assert.ok(own.some(fixture=>fixture.key===user.active.key&&fixture.kind===user.active.kind));
-  if(!oldUsers.includes(user.key)&&!isScenarioUser(user)){
+  if(isActivityUser(user))assert.equal(own.length,4,'Activity accounts have two properties and two searches');
+  if(!oldUsers.includes(user.key)&&!isScenarioUser(user)&&!isActivityUser(user)){
    assert.equal(own.filter(fixture=>!fixture.key.startsWith('regional-')).length,24,'Keep the existing matching inventory');
    assert.ok(own.length>=76,'Distribute the added regional examples across the existing accounts');
   }
@@ -115,7 +117,7 @@ test('all fixture locations, categories, room compositions and house requirement
  for(const fixture of catalog.fixtures){
   const input=fixture.input;
   assert.ok(catalog.users.some(user=>user.key===fixture.owner));
-  assert.ok(input.title.startsWith(isScenarioUser({key:fixture.owner})?'Visszajelzés-próba · ':'Teszt · '));assert.ok(input.title.length<=150);
+  assert.ok(input.title.startsWith(isScenarioUser({key:fixture.owner})?'Visszajelzés-próba · ':isActivityUser({key:fixture.owner})?'Aktivitás-próba · ':'Teszt · '));assert.ok(input.title.length<=150);
   assert.match(input.description,/Kitalált tesztadat/);
   assert.equal(Object.hasOwn(input,'ownerAccountType'),false,'The server must derive owner roles');
   if(fixture.kind==='property'){
@@ -268,4 +270,31 @@ test('the feedback trial starts with an isolated exact counterpart and canonical
  assert.equal(home.owner,seller.key);assert.equal(query.owner,buyer.key);assert.equal(home.input.type,'Nyaraló');assert.equal(query.input.type,'Nyaraló');
  assert.equal(home.input.locationId,'city:Abádszalók');assert.deepEqual(query.input.locationIds,['city:Abádszalók']);
  assert.ok(isCompatible(property(home),search(query)));
+});
+
+
+test('activity catalog links pending interests and message-bearing mutual pairs for three named workspaces',()=>{
+ for(const batch of [DEFAULT_BATCH,'activity-trial']){
+  const catalog=createDemoCatalog(batch),suffix=batch===DEFAULT_BATCH?'':`--${batch}`;
+  assert.equal(catalog.activityScenarios.length,7);
+  if(batch===DEFAULT_BATCH)assert.deepEqual(catalog.activityScenarios,DEMO_ACTIVITY_SCENARIOS);
+  const pairs=new Set(),decisions=[];
+  for(const scenario of catalog.activityScenarios){
+   const home=catalog.fixtures.find(item=>item.key===scenario.property),request=catalog.fixtures.find(item=>item.key===scenario.search);
+   assert.equal(home.kind,'property');assert.equal(request.kind,'search');assert.ok(canPair(catalog,home,request));assert.ok(isCompatible(property(home),search(request)));
+   assert.ok(!pairs.has(home.key+':'+request.key));pairs.add(home.key+':'+request.key);
+   assert.ok(scenario.actors.length>=1&&scenario.actors.length<=2);assert.equal(new Set(scenario.actors).size,scenario.actors.length);
+   for(const actor of scenario.actors){assert.ok(['property','search'].includes(actor));decisions.push({actor,owner:actor==='property'?home.owner:request.owner});}
+   if(scenario.actors.length===1){assert.equal(scenario.propertyMessage,undefined);assert.equal(scenario.searchMessage,undefined);}
+   else{assert.ok(scenario.propertyMessage.length>0&&scenario.searchMessage.length>0);}
+  }
+  assert.equal(decisions.length,9);assert.equal(catalog.activityScenarios.filter(item=>item.actors.length===1).length,5);
+  assert.equal(catalog.activityScenarios.filter(item=>item.actors.length===2).length,2);
+  for(const [key,expected] of [['activitybuyer',94],['activityseller',96],['activityagent',96]]){
+   const user=catalog.users.find(item=>item.key===key+suffix);assert.ok(user);
+   const charges=decisions.filter(item=>item.owner===user.key).reduce((sum,item)=>sum+(item.actor==='property'?2:user.accountType==='agent'?1:0),0);
+   assert.equal(100-charges,expected);
+   assert.ok(catalog.activityScenarios.some(item=>item.actors.length===1&&(user.active.kind==='property'?item.property:item.search)===user.active.key&&item.actors[0]!==user.active.kind),'Every activity account opens onto a pending incoming interest');
+  }
+ }
 });

@@ -153,8 +153,10 @@ public static class TestDataSeed
                 FeedbackPackageId = package.Id, Description = "Előkészített visszajelzés-próba – 10 válaszos csomag", CreatedAt = now
             });
         }
+        var activity = TestActivitySeed.Build(catalog.ActivityScenarios, fixtureEntities, users, properties, searches, credits, now);
         return new(catalog.Version, users.Values.ToArray(), properties.ToArray(), searches.ToArray(), credits.ToArray()) {
-            FeedbackPackages = feedbackPackages.ToArray()
+            FeedbackPackages = feedbackPackages.ToArray(), Decisions = activity.Decisions,
+            Matches = activity.Matches, Messages = activity.Messages, Notifications = activity.Notifications
         };
     }
 
@@ -282,6 +284,10 @@ public static class TestDataSeed
             db.Properties.AddRange(plan.Properties);
             db.SearchRequests.AddRange(plan.Searches);
             db.FeedbackPackages.AddRange(plan.FeedbackPackages);
+            db.Decisions.AddRange(plan.Decisions);
+            db.Matches.AddRange(plan.Matches);
+            db.Messages.AddRange(plan.Messages);
+            db.UserNotifications.AddRange(plan.Notifications);
             db.CreditEntries.AddRange(plan.Credits);
             await db.SaveChangesAsync(cancellationToken);
             await Execute(db, connection,
@@ -324,7 +330,7 @@ public static class TestDataSeed
 }
 
 public sealed record TestFixtureCatalog(string Version, string Password, TestFixtureUser[] Users, TestFixture[] Fixtures,
-    TestFeedbackScenario[]? FeedbackScenarios = null);
+    TestFeedbackScenario[]? FeedbackScenarios = null, TestActivityScenario[]? ActivityScenarios = null);
 public sealed record TestFeedbackScenario(string Key, string Seller, string Buyer, string Property, string Search, int Size);
 public sealed record TestFixtureUser(string Key, string Name, string Email, string? Phone, string? AccountType, TestFixtureActive Active);
 public sealed record TestFixtureActive(string Kind, string Key);
@@ -332,4 +338,8 @@ public sealed record TestFixture(string Key, string Owner, string Kind, JsonElem
 public sealed record TestDataPlan(string Version, User[] Users, Property[] Properties, SearchRequest[] Searches, CreditEntry[] Credits)
 {
     public FeedbackPackage[] FeedbackPackages { get; init; } = [];
+    public Decision[] Decisions { get; init; } = [];
+    public Match[] Matches { get; init; } = [];
+    public Message[] Messages { get; init; } = [];
+    public UserNotification[] Notifications { get; init; } = [];
 }

@@ -12,7 +12,7 @@ A visszajelzés-csomagok a vásárlástól számított két hétig folyamatosan 
 
 A `scripts/gcp/` telepítői az `ingatlan-513620` projekthez készítenek külön `-dev` szolgáltatásokat: Firebase Hosting webet, Cloud Run API-t külön Google Cloud SQL Auth Proxy konténerrel, valamint Cloud SQL for MySQL-adatbázist. Az első indítás a saját Google Cloud Shellből történik; a telepítő kiírja a Google által biztosított HTTPS-címet. A tesztoldal valódi regisztrációt és szerveres adatmentést használ, ingyenes tesztkreditekkel.
 
-**Az alap tesztadatcsomag 14 felhasználót, 355 ingatlant és 433 keresést tartalmaz**, köztük 3 ingatlanközvetítőt. Minden példafiók közös jelszava: `OtthonraDemo2026!`.
+**Az alap tesztadatcsomag 17 felhasználót, 361 ingatlant és 439 keresést tartalmaz**, köztük 4 ingatlanközvetítőt. Minden példafiók közös jelszava: `OtthonraDemo2026!`.
 
 A publikus árkeret kipróbálásához Bence (`bence@otthonra.local`) „Teszt · Alkupozíciót védő keresés Debrecenben” keresése 80 milliós tényleges és 70 milliós publikus kerettel szerepel. Dániel (`daniel.kozvetito@otthonra.local`) „Teszt · Publikus keretes debreceni lakás” ingatlana 75 milliós: a keresőnek tökéletes, az eladónak részleges találat. A többi teljes találat kifutása után engedélyezhetők a részleges ajánlások.
 
@@ -21,9 +21,24 @@ A publikus árkeret kipróbálásához Bence (`bence@otthonra.local`) „Teszt �
 | Alap magánszemélyek | `anna@otthonra.local`, `peter@otthonra.local`, `eszter@otthonra.local` |
 | Ingatlanközvetítők | `daniel.kozvetito@otthonra.local`, `kata.kozvetito@otthonra.local`, `gabor.kozvetito@otthonra.local` |
 | Visszajelzés-próba | `visszajelzes-kereso@otthonra.local`, `visszajelzes-elado@otthonra.local` |
+| Kedvelések és értesítések próbája | `aktivitas-kereso@otthonra.local`, `aktivitas-elado@otthonra.local`, `aktivitas-ingatlanos@otthonra.local` |
 | További magánszemélyek | `reka@otthonra.local`, `bence@otthonra.local`, `julia@otthonra.local`, `marton@otthonra.local`, `lilla@otthonra.local`, `balazs@otthonra.local` |
 
 Minden fiókban van aktiválható keresés vagy ingatlan, és az eredeti példafiókok 100 ingyenes tesztkredittel indulnak. A közvetítők aktív kereséssel indulnak: például Dániellel rögtön kipróbálható az 1 kredites keresői kedvelés. Anna, Péter és Eszter eredeti alapmintái mellett sok új, egymáshoz illő magánszemély- és közvetítői ajánlat szerepel. A példafiókok megosztott, kitalált tesztadatokhoz tartoznak. Mind a 19 vármegyében és Budapesten vannak lakások és házak, kisebb garzontól nagy családi házig, eltérő árakkal, méretekkel és szobaszámokkal. A keresések között nyitott korlátú példák is szerepelnek.
+
+### Beérkező érdeklődések és értesítések kipróbálása
+
+A következő fiókok a következő szokásos tesztdeploy után használhatók, a fenti közös jelszóval:
+
+| E-mail-cím | Kezdő aktív profil | Tesztkredit |
+|---|---|---|
+| `aktivitas-kereso@otthonra.local` | Magánszemély keresési igénye | 94 |
+| `aktivitas-elado@otthonra.local` | Magánszemély eladó ingatlana | 96 |
+| `aktivitas-ingatlanos@otthonra.local` | Ingatlanközvetítő keresési igénye | 96 |
+
+Mindhárom fiókhoz két ingatlan és két keresés tartozik. Belépés után a **Téged kedveltek** menüben rögtön vannak megválaszolható érdeklődések. Az **Értesítések** között beérkező érdeklődés, létrejött párosítás és új üzenet is szerepel, olvasott és még nem látott példákkal. Egyes értesítések másik, éppen inaktív profilhoz tartoznak, így a célzott profilváltás is kipróbálható. A minták korábban elküldött fizetős érdeklődéseket is tartalmaznak; ezeket tükrözik a fenti egyenlegek és a kreditnapló.
+
+Azonos tesztrevízió újraindításakor az érdeklődések, beszélgetések és az értesítések olvasottsága megmarad. Új tesztrevízió telepítése a teljes mintakészlettel együtt ezeket is alaphelyzetbe állítja.
 
 ### Visszajelzés kipróbálása
 
@@ -39,7 +54,7 @@ A workflow alapból beköti a már létrehozott `otthonra-geocoding-dev` Secret 
 
 **Minden új teszt Cloud Run-revízió friss tesztállapotot kap:** az alkalmazásadatok törlődnek, majd visszaállnak a fenti példafiókok, ingatlanok, keresések és kezdő kreditek. Ez a tesztelés közben létrehozott saját fiókokat, döntéseket, párosításokat és üzeneteket is törli. Azonos revízió új példányának indulásakor vagy újraindításakor az adatok megmaradnak; egy korábban már feltöltött régi revízió újraindítása sem törli az újabb tesztállapotot.
 
-Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261125-test-fixtures-v9`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
+Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261126-test-fixtures-v10`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
 
 **A visszatérítések ütemezésének első telepítésekor** a teljes `bash scripts/gcp/run-dev.sh` parancs szükséges a Cloud Shellben, a frissített tároló gyökeréből; ez létrehozza az új tesztütemezőt is. A későbbi kiadások a megszokott Actions workflow-val mennek.
 
