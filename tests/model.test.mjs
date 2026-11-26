@@ -41,6 +41,32 @@ test('a detail context honors exact-first consent, agent restrictions and addres
  const street=raw.properties.find(item=>item.id===initial.id);street.hideStreet=false;street.hideHouseNumber=false;storage.setItem(STORAGE_KEY,JSON.stringify(raw));
  const unchanged=createModel(storage).getListingMap('property',initial.publicListingKey);assert.equal(unchanged.externalUrl,null,'The fictional public catalogue never exposes an address from a visitor-private demo mutation');
 });
+test('detail profile choices page only owned live opposite profiles without changing workspace or credits',()=>{
+ const storage=store(),initial=createModel(storage),card=initial.feed()[0];initial.activate('search',initial.getState().active.id);
+ const raw=JSON.parse(storage.getItem(STORAGE_KEY)),template=raw.searches.find(row=>row.ownerId===raw.userId);
+ for(let index=0;index<54;index++)raw.searches.push({...template,id:`picker-search-${index}`,title:`Választható ${String(index).padStart(2,'0')}`,archived:false});
+ raw.searches.push({...template,id:'picker-archived',title:'Archivált',archived:true});storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const m=createModel(storage),before=storage.getItem(STORAGE_KEY),first=m.getListingProfiles('property',card.publicListingKey),second=m.getListingProfiles('property',card.publicListingKey,{offset:50,limit:50});
+ const own=m.getState().searches.filter(row=>!row.archived);assert.equal(first.kind,'search');assert.equal(first.total,own.length);assert.equal(first.items.length,50);assert.equal(first.hasMore,true);
+ assert.equal(second.items.length,own.length-50);assert.equal(second.hasMore,false);assert.equal(new Set([...first.items,...second.items].map(row=>row.profile.id)).size,own.length);
+ assert.equal(first.items[0].profile.id,raw.active.id);assert.equal(first.items[0].isActive,true);
+ for(const row of [...first.items,...second.items]){assert.ok(own.some(profile=>profile.id===row.profile.id));assert.equal(row.profile.kind,'search');assert.ok(Number.isInteger(row.score)&&row.score>=0&&row.score<=100);}
+ assert.doesNotMatch(JSON.stringify(first),/"(?:ownerId|email|phone|latitude|longitude|street|houseNumber|addressDetails)"/);
+ assert.equal(storage.getItem(STORAGE_KEY),before,'Simply viewing profile choices must not persist, activate, charge, or refund');
+ assert.throws(()=>m.getListingProfiles('property',card.publicListingKey,{limit:51}),/lapozási/);
+});
+test('profile choice scores use actual own search budgets and public counterpart budgets',()=>{
+ const storage=store(),m=createModel(storage),property=m.feed()[0];m.activate('property','own-p1');const search=m.feed()[0],raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ const mine=raw.searches.find(row=>row.ownerId===raw.userId),theirs=raw.searches.find(row=>row.id===search.id),ownProperty=raw.properties.find(row=>row.id==='own-p1');
+ mine.maxPrice=property.price+20;mine.publicMaxPrice=1;theirs.maxPrice=ownProperty.price+20;theirs.publicMaxPrice=1;
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));const current=createModel(storage);
+ const seller=current.getListingProfiles('search',search.publicListingKey).items.find(row=>row.profile.id===ownProperty.id);
+ assert.equal(seller.score,current.getListingContext('search',search.publicListingKey).compatibilityScore);assert.equal(seller.isExact,false,'A seller cannot rank with the buyer private cap');
+ current.activate('search',mine.id);const buyer=current.getListingProfiles('property',property.publicListingKey).items.find(row=>row.profile.id===mine.id);
+ assert.equal(buyer.score,current.getListingContext('property',property.publicListingKey).compatibilityScore);assert.equal(buyer.profile.maxPrice,mine.maxPrice,'The owner sees their own actual cap');assert.ok(buyer.score>seller.score);
+ current.activate('property','own-p1');const ownKey=current.getState().properties.find(row=>row.id==='own-p1').publicListingKey;
+ assert.deepEqual(current.getListingProfiles('property',ownKey).items,[]);assert.equal(current.getListingProfiles('property',ownKey).unavailableReason,'own_listing');
+});
 test('seller is charged exactly once for a compatible like and passing is free',()=>{
  const m=setup();m.activate('property','own-p1');const first=m.feed()[0];assert.ok(first);
  const before=m.getState().credits;assert.equal(m.decide(first,true).charged,2);assert.equal(m.getState().credits,before-2);

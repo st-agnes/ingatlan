@@ -3,7 +3,7 @@ import { MAX_SEARCH_LOCATIONS, getLocation, resolveLegacyLocations, isPropertyLo
 import {neighborhoodDemoPoints} from './neighborhood-demo-points.js';
 import {streetDemoData} from './street-demo-data.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
-import {normalizeAccountType,likeCost,canInteract,normalizeReportReason,normalizeIncomingPagination} from './accounts.js';
+import {normalizeAccountType,likeCost,canInteract,normalizeReportReason,normalizeListingProfilePagination,normalizeIncomingPagination} from './accounts.js';
 import {prepareSearch,evaluateMatch,exactLocationMatch,valueForMoney,searchSpecificity,publicMaxPrice} from './matching.js';
 import {publicFirstName,publicTitle} from './public-profile.js';
 import {FEEDBACK_OPTIONS,FEEDBACK_QUESTION,FEEDBACK_PACKAGE_SIZES,FEEDBACK_DURATION_DAYS,FEEDBACK_PROMPT_SPACING,FEEDBACK_INVITATION_MINUTES,feedbackTitle} from './feedback.js';
@@ -588,9 +588,12 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       const active=own(state,state.active?.kind,state.active?.id),activeKind=state.active?.kind;
       const candidate=(kind==='property'?state.properties:kind==='search'?state.searches:[]).find(entity=>!entity.archived&&demoSourceKey(kind,entity.id)===key);
       const empty={active:null,item:null,myDecision:null,matchId:null,compatible:false,isExact:false,compatibilityScore:0,likeCost:0,credits:state.credits,canDecide:false,requiresApproximateConsent:false,hasUnseenExact:false,unavailableReason:null};
-      if(!candidate||!active||active.archived||activeKind===kind||candidate.ownerId===state.userId)return empty;
+      if(!candidate)return empty;
+      if(candidate.ownerId===state.userId)return {...empty,unavailableReason:'own_listing'};
+      if(!active||active.archived)return {...empty,unavailableReason:'no_active_profile'};
+      if(activeKind===kind)return {...empty,unavailableReason:'opposite_profile_required'};
       const property=kind==='property'?candidate:active,search=kind==='search'?candidate:active;
-      if(!ownersCanInteract(state,property,search))return empty;
+      if(!ownersCanInteract(state,property,search))return {...empty,unavailableReason:'agent_pair_forbidden'};
       const prepared=prepareSearch(search,{perspective:activeKind==='property'?'seller':'buyer'}),evaluation=evaluateDemoMatch(property,prepared);
       const mine=state.decisions.find(decision=>decision.propertyId===property.id&&decision.searchId===search.id&&decision.actorKind===activeKind);
       const other=state.decisions.find(decision=>decision.propertyId===property.id&&decision.searchId===search.id&&decision.actorKind!==activeKind&&decision.liked);
@@ -614,6 +617,24 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       }
       const id=candidate?.neighborhoodIds?.find(id=>getLocation(id))||detail.prefill?.locationIds?.find(id=>getLocation(id))||candidate?.locationId;
       return {kind,available:!!id,locationIds:id?[id]:[],externalUrl:null};
+    },
+    getListingProfiles(kind,key,options={}) {
+      const page=normalizeListingProfilePagination(options),opposite=kind==='property'?'search':'property';
+      const candidate=(kind==='property'?state.properties:kind==='search'?state.searches:[]).find(entity=>!entity.archived&&demoSourceKey(kind,entity.id)===key);
+      if(!candidate)throw new Error('A hirdetés már nem érhető el.');
+      const empty={kind:opposite,items:[],total:0,...page,hasMore:false,unavailableReason:null};
+      if(candidate.ownerId===state.userId)return {...empty,unavailableReason:'own_listing'};
+      const viewer=state.users.find(user=>user.id===state.userId),owner=state.users.find(user=>user.id===candidate.ownerId);
+      if(!canInteract(viewer?.accountType,owner?.accountType))return {...empty,unavailableReason:'agent_pair_forbidden'};
+      const owned=(opposite==='property'?state.properties:state.searches).filter(entity=>entity.ownerId===state.userId&&!entity.archived)
+        .sort((a,b)=>Number(state.active?.kind===opposite&&b.id===state.active.id)-Number(state.active?.kind===opposite&&a.id===state.active.id)||String(a.title).localeCompare(String(b.title),'hu')||String(a.id).localeCompare(String(b.id)));
+      const items=owned.slice(page.offset,page.offset+page.limit).map(entity=>{
+        const property=kind==='property'?candidate:entity,search=kind==='search'?candidate:entity,evaluation=evaluateDemoMatch(property,prepareSearch(search,{perspective:opposite==='property'?'seller':'buyer'}));
+        const view=visibleEntity(entity,state.users,undefined,state.userId),profile={kind:opposite,id:view.id,title:view.title,type:view.type,locations:(opposite==='search'?view.locations:[view.location]).filter(Boolean).map(place=>place.label),locationIds:opposite==='search'?view.locationIds:[view.locationId],
+          ...(opposite==='search'?{minPrice:view.minPrice,maxPrice:view.maxPrice,minArea:view.minArea,maxArea:view.maxArea,minRooms:view.minRooms,maxRooms:view.maxRooms}:{price:view.price})};
+        return {profile,score:evaluation.eligible?evaluation.score:0,isExact:evaluation.eligible&&evaluation.isExact,compatible:evaluation.eligible,isActive:state.active?.kind===opposite&&state.active.id===entity.id};
+      });
+      return {...empty,items,total:owned.length,hasMore:page.offset+items.length<owned.length};
     },
     incomingLikes(options={}) {
       const {offset,limit}=normalizeIncomingPagination(options);

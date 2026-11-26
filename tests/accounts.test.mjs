@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {ACCOUNT_TYPE_OPTIONS,normalizeAccountType,likeCost,canInteract,REPORT_REASON_OPTIONS,getReportReasons,normalizeReportReason,normalizeIncomingPagination} from '../dist/accounts.js';
+import {ACCOUNT_TYPE_OPTIONS,normalizeAccountType,likeCost,canInteract,REPORT_REASON_OPTIONS,getReportReasons,normalizeReportReason,normalizeIncomingPagination,normalizeListingProfilePagination} from '../dist/accounts.js';
 
 test('account choices have stable API codes and unambiguous Hungarian labels',()=>{
  assert.deepEqual(ACCOUNT_TYPE_OPTIONS,[{value:'private',label:'Magánszemély'},{value:'agent',label:'Ingatlanközvetítő'}]);
@@ -33,4 +33,9 @@ test('report choices have stable codes and permit disguised-agent reports only f
 test('incoming pagination validates bounds without silently truncating or coercing invalid values',()=>{
  assert.deepEqual(normalizeIncomingPagination(),{offset:0,limit:50});assert.deepEqual(normalizeIncomingPagination({offset:1000000,limit:100}),{offset:1000000,limit:100});
  for(const value of [{offset:-1},{offset:1000001},{offset:1.5},{offset:'0'},{limit:0},{limit:101},{limit:1.5},{limit:'10'}])assert.throws(()=>normalizeIncomingPagination(value),/lapozási/);
+});
+test('listing profile pages share the API fifty-row bound in demo and hosted modes',()=>{
+ assert.deepEqual(normalizeListingProfilePagination(),{offset:0,limit:50});
+ assert.deepEqual(normalizeListingProfilePagination({offset:1000000,limit:1}),{offset:1000000,limit:1});
+ for(const value of [{offset:-1},{offset:1000001},{limit:0},{limit:51},{limit:100},{limit:'50'}])assert.throws(()=>normalizeListingProfilePagination(value),/lapozási/);
 });

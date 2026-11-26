@@ -28,7 +28,7 @@ async function verifyWorkspace(browser,viewport){
   await go(page);
   assert.equal((await current(page)).user.accountType,'agent');assert.equal((await current(page)).credits,1);
   let candidate=await first(page);assert.equal(candidate.id,'p1');assert.equal(candidate.ownerAccountType,'private');
-  assert.match(await page.locator('.decision-like-caption').innerText(),/Kapcsolatfelvétel\s+1 kredit/);
+  assert.match(await page.locator('.decision-like-caption').innerText(),/Érdeklődöm\s+1 kredit/);
   assert.equal(await page.locator('#candidate .agent-badge').count(),0,'A private owner must not inherit the current agent actor badge');
   assert.match(await page.locator('#candidate .private-badge').getAttribute('aria-label'),/Magánszemély/);
   assert.equal(await page.evaluate(async()=> (await import('/model.js')).model.feed().every(item=>item.ownerAccountType==='private')),true,'Agent searches must exclude all agent counterparties');
@@ -44,7 +44,7 @@ async function verifyWorkspace(browser,viewport){
   await go(page);assert.ok((await current(page)).reportedEntities.some(row=>row.entityKind==='property'&&row.entityId===candidate.id&&row.reason==='suspected_agent'),'Reported context must survive reload');
   await reportReason(candidate.id,'suspected_agent');assert.equal((await raw(page)).reports.length,1,'The same source/reason must not produce a duplicate');assert.equal((await raw(page)).reports[0].createdAt,reportRow.createdAt);
   await reportReason(candidate.id,'misleading_content');assert.equal((await raw(page)).reports.length,2,'A second reason is a distinct report');
-  await interact(page.locator('.card-actions [data-action="like"]'));await page.getByRole('heading',{name:'Egymásra találtatok!',exact:true}).waitFor();assert.equal((await current(page)).credits,0);assert.equal((await current(page)).ledger.filter(row=>row.amount===-1).length,1,'The agent search like must charge exactly one credit');await interact(page.locator('.modal [data-action="close"]').last());
+  await interact(page.locator('.card-actions [data-action="like"]'));await page.getByRole('heading',{name:'Egymásra találtatok!',exact:true}).waitFor();assert.equal(await page.locator('#toast').innerText(),'Elküldtük érdeklődésedet! Most a másik félen a sor, hogy felvegyétek a kapcsolatot.');assert.equal((await current(page)).credits,0);assert.equal((await current(page)).ledger.filter(row=>row.amount===-1).length,1,'The agent search like must charge exactly one credit');await interact(page.locator('.modal [data-action="close"]').last());
   candidate=await first(page);const beforeDecisions=(await current(page)).decisions.length,beforeCandidate=candidate.id;
   await interact(page.locator('.card-actions [data-action="like"]'));await page.getByRole('heading',{name:'Kreditekre van szükséged.',exact:true}).waitFor();assert.equal((await current(page)).decisions.length,beforeDecisions);assert.equal((await first(page)).id,beforeCandidate);await interact(page.locator('.modal [data-action="close"]').last());
   await page.keyboard.press('ArrowRight');await page.getByRole('heading',{name:'Kreditekre van szükséged.',exact:true}).waitFor();assert.equal((await current(page)).decisions.length,beforeDecisions);await interact(page.locator('.modal [data-action="close"]').last());
@@ -55,7 +55,7 @@ async function verifyWorkspace(browser,viewport){
   await go(page,'matches');await expectBadge(page.locator('.match-card .agent-badge').first());
   await go(page,'discover');await interact(page.locator('[data-action="tab"][data-tab="liked"]'));assert.match(await page.locator('.liked-grid .private-badge').first().getAttribute('aria-label'),/Magánszemély/);
   await go(page,'settings');assert.match(await page.locator('#app').innerText(),/Ingatlanközvetítő/);
-  await page.evaluate(async()=>{const {model}=await import('/model.js');model.activate('property','own-p1');});await go(page);assert.match(await page.locator('.decision-like-caption').innerText(),/Kapcsolatfelvétel\s+2 kredit/);
+  await page.evaluate(async()=>{const {model}=await import('/model.js');model.activate('property','own-p1');});await go(page);assert.match(await page.locator('.decision-like-caption').innerText(),/Érdeklődöm\s+2 kredit/);
   candidate=await first(page);assert.equal(candidate.kind,'search');assert.equal(candidate.ownerAccountType,'private');assert.match(await page.locator('#candidate .private-badge').getAttribute('aria-label'),/Magánszemély/);
   assert.equal(await page.evaluate(async()=> (await import('/model.js')).model.feed().every(item=>item.ownerAccountType==='private')),true,'Agent sellers must exclude all agent searches');
   // A separate private-actor scenario still discovers and reports declared agents.

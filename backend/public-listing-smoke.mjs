@@ -122,6 +122,7 @@ export async function checkPublicListingRefinements(call,baseProperty){
  await call('/searches/'+clonedSearch.id,{token:buyer,method:'DELETE',status:204});await call(searchPath,{status:404});
  const budget=await checkPublicBudgets(call,{buyer,seller});
  await checkListingBudgetContexts(call,budget);
+ await checkListingProfileOptions(call,budget);
  const expected={seller,buyer,propertyId:property.id,searchId:search.id,fields:Object.fromEntries(fields.map(key=>[key,property[key]])),
   search:{atticPreference:search.atticPreference,minEnergyRating:search.minEnergyRating,balcony:search.balcony},publicPath,budget};
  console.log('Public listing API checks passed: visibility persistence, nullable amenities, attic/energy criteria, full anonymous details and cloning, archive 404, and version-two null/false idempotency.');
@@ -162,6 +163,64 @@ async function checkListingBudgetContexts(call,budget){
  assert.deepEqual((await call(mapPath)).locationIds,['city:Debrecen']);
  await call('/searches/'+streetSearch.id,{token:buyer,method:'DELETE',status:204});
  console.log('Shared listing context checks passed: current owned activation, exact/partial scorer parity, asymmetric private budgets, prior pass/like/match states, and coordinate-free map descriptors.');
+}
+
+async function checkListingProfileOptions(call,budget){
+ const {buyer,seller,propertyId,searchId}=budget,propertyKey=source('property',propertyId),searchKey=source('search',searchId);
+ const buyerPath='/listings/property/'+propertyKey+'/profiles',sellerPath='/listings/search/'+searchKey+'/profiles';
+ await call(buyerPath,{status:401});
+ for(const suffix of ['?offset=-1','?offset=1000001','?limit=0','?limit=51'])await call(buyerPath+suffix,{token:buyer,status:400});
+ await call('/listings/property/property-'+'0'.repeat(64)+'/profiles',{token:buyer,status:404});
+ const own=await call(buyerPath,{token:seller});assert.equal(own.unavailableReason,'own_listing');assert.equal(own.total,0);assert.deepEqual(own.items,[]);
+ const current=await call('/me/entities',{token:buyer}),wanted=current.searchRequests.find(row=>row.id===searchId);assert.ok(wanted);
+ const created=[];
+ const snapshot=async token=>{
+  const entities=await call('/me/entities',{token}),ledger=await call('/credits/ledger',{token});
+  return {active:entities.active,decisions:entities.decisions,ledger};
+ };
+ const privateFree=value=>{
+  const visit=item=>{if(!item||typeof item!=='object')return;for(const [key,child]of Object.entries(item)){assert.ok(!['ownerId','userId','street','houseNumber','address','addressDetails','latitude','longitude','email','phone','provider','geocodingPlaceId','geocodingAddressKey','creationRequestId','creationRequestHash'].includes(key),'Profile picker leaked '+key);visit(child);}};
+  visit(value);
+ };
+ try{
+  // A page genuinely spans more than fifty live owned rows. Search creation
+  // needs no geocoder and reuses this suite's accounts rather than auth bursts.
+  for(let index=0;index<51;index++)created.push(await call('/searches',{token:buyer,method:'POST',status:201,body:{
+   title:'Profilválasztó próba '+String(index).padStart(2,'0'),city:index===0?'Debrecen':wanted.city,
+   locationIds:index===0?['city:Debrecen']:wanted.locationIds,type:index===1?'Ház':wanted.type,
+   maxPrice:90_000_000,publicMaxPrice:70_000_000,balcony:false,elevator:false}}));
+  const archived=created.at(-1);await call('/searches/'+archived.id,{token:buyer,method:'DELETE',status:204});archived.archived=true;
+  const before=await snapshot(buyer),owned=(await call('/me/entities',{token:buyer})).searchRequests.filter(row=>!row.archived);
+  const first=await call(buyerPath,{token:buyer});assert.equal(first.kind,'search');assert.equal(first.offset,0);assert.equal(first.limit,50);
+  assert.equal(first.items.length,50);assert.equal(first.total,owned.length);assert.equal(first.hasMore,true);
+  assert.equal(first.items[0].profile.id,searchId);assert.equal(first.items[0].isActive,true);assert.equal(first.items[0].score,100);
+  assert.equal(first.items[0].profile.maxPrice,90_000_000,'A buyer may see its own actual maximum');
+  const all=[...first.items];let offset=first.items.length;
+  while(offset<first.total){const page=await call(buyerPath+'?offset='+offset+'&limit=50',{token:buyer});assert.equal(page.total,first.total);assert.equal(page.offset,offset);all.push(...page.items);offset+=page.items.length;assert.ok(page.items.length>0);assert.equal(page.hasMore,offset<first.total);}
+  assert.equal(new Set(all.map(item=>item.profile.id)).size,first.total,'Stable pages never repeat or omit an owned choice');
+  assert.deepEqual(all.map(item=>item.profile.id).sort(),owned.map(item=>item.id).sort());
+  assert.ok(all.every(item=>item.profile.kind==='search'&&item.profile.id!==archived.id));
+  const wrongType=all.find(item=>item.profile.id===created[1].id);assert.ok(wrongType);assert.equal(wrongType.compatible,false);assert.equal(wrongType.score,0);
+  const outside=all.find(item=>item.profile.id===created[0].id);assert.ok(outside);assert.equal(outside.compatible,true);assert.ok(outside.score<100,'Batched geography evaluates an outside-town owned search without inventing a perfect match');
+  privateFree(first);assert.deepEqual(await snapshot(buyer),before,'Listing choices never activate, debit, decide or mutate the ledger');
+  const empty=await call(buyerPath+'?offset='+first.total,{token:buyer});assert.deepEqual(empty.items,[]);assert.equal(empty.hasMore,false);
+  const prior=await call('/listings/property/'+propertyKey+'/context',{token:buyer});assert.equal(prior.active.id,searchId);assert.equal(prior.compatibilityScore,first.items[0].score);
+  // Seller scores must use the counterpart's public cap. The displayed own
+  // property summary never carries that counterpart's private maximum.
+  const sellerBefore=await snapshot(seller),properties=await call(sellerPath,{token:seller});assert.equal(properties.kind,'property');
+  const high=properties.items.find(item=>item.profile.id===propertyId);assert.ok(high);assert.equal(high.isActive,true);assert.equal(high.compatible,true);assert.equal(high.isExact,false);assert.ok(high.score<100);
+  privateFree(properties);assert.ok(!JSON.stringify(properties).includes('90000000'));assert.ok(!JSON.stringify(properties).includes('80000000'));
+  assert.deepEqual(await snapshot(seller),sellerBefore);
+  const sellerContext=await call('/listings/search/'+searchKey+'/context',{token:seller});assert.equal(high.score,sellerContext.compatibilityScore);
+  await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:created[1].id}});
+  const alternate=await call('/listings/property/'+propertyKey+'/context',{token:buyer});assert.equal(alternate.active.id,created[1].id);assert.equal(alternate.compatible,false);
+  const selected=await call(buyerPath,{token:buyer});assert.equal(selected.items[0].profile.id,created[1].id);assert.equal(selected.items[0].isActive,true);assert.equal(selected.items[0].score,0);
+  const archiveKey=source('search',archived.id);await call('/listings/search/'+archiveKey+'/profiles',{token:seller,status:404});
+ }finally{
+  await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:searchId}});
+  for(const row of created)if(!row.archived)await call('/searches/'+row.id,{token:buyer,method:'DELETE',status:204});
+ }
+ console.log('Listing profile picker API checks passed: owned opposite kinds, paginated 50+ choices, exact/partial/public-budget scores, read-only state, activation refresh and coordinate/contact privacy.');
 }
 
 export async function verifyPublicListingRefinements(fixture,call){

@@ -37,3 +37,9 @@ export function normalizeIncomingPagination({offset=0,limit=50}={}) {
   if(!Number.isInteger(offset)||offset<0||offset>1000000||!Number.isInteger(limit)||limit<1||limit>100)throw new Error('Érvénytelen lapozási paraméter.');
   return {offset,limit};
 }
+
+export function normalizeListingProfilePagination(options={}) {
+  const page=normalizeIncomingPagination(options);
+  if(page.limit>50)throw new Error('Érvénytelen lapozási beállítás.');
+  return page;
+}

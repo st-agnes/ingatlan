@@ -6,7 +6,7 @@ import { regions } from './regions-data.js';
 import {searchSpecificity} from './matching.js';
 import { getLocation, MAX_SEARCH_LOCATIONS, resolveLegacyLocations, isPropertyLocation, registerLocations, isStreetId, streetBelongsToLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
-import {normalizeAccountType,likeCost,normalizeReportReason,normalizeIncomingPagination,REPORT_REASON_OPTIONS} from './accounts.js';
+import {normalizeAccountType,likeCost,normalizeReportReason,normalizeListingProfilePagination,normalizeIncomingPagination,REPORT_REASON_OPTIONS} from './accounts.js';
 import {sanitizeTeaserPrefill,originFromListing,prefillFromSearchClone} from './onboarding.js';
 
 export const API_CONFIG_KEY = 'otthonra.api';
@@ -433,6 +433,13 @@ export class ApiModel {
     requireCurrentRead(signal);
     return listingContextFromApi(kind,value);
   }
+  async getListingProfiles(kind,key,{offset=0,limit=50,signal}={}) {
+    if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
+    const page=normalizeListingProfilePagination({offset,limit}),query=new URLSearchParams({offset:String(page.offset),limit:String(page.limit)});
+    const value=await this.call(`/listings/${kind}/${key}/profiles?${query}`,'GET',undefined,{signal});
+    requireCurrentRead(signal);
+    return listingProfilesFromApi(kind,value,page);
+  }
   async getListingMap(kind,key,{signal}={}) {
     if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
     const value=await request(this.baseUrl,null,`/public/listings/${kind}/${key}/map`,'GET',undefined,{signal});
@@ -640,6 +647,25 @@ export async function getListingContext(kind,key,options={}) {
   if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
   const model=getModel();
   return typeof model?.getListingContext==='function'?model.getListingContext(kind,key,options):null;
+}
+export function listingProfilesFromApi(kind,value={},page={offset:0,limit:50}) {
+  const expected=kind==='property'?'search':'property',items=[];
+  for(const row of rows(value).slice(0,50)){
+    const raw=row?.profile;
+    if(!raw||raw.kind!==expected||typeof raw.id!=='string'||!raw.id)continue;
+    const profile=listingContextFromApi(kind,{active:raw}).active;if(!profile)continue;
+    const score=nullableNumber(row.score);
+    items.push({profile,score:row.compatible===true&&score!=null?Math.max(0,Math.min(100,Math.round(score))):0,isExact:row.compatible===true&&row.isExact===true,compatible:row.compatible===true,isActive:row.isActive===true});
+  }
+  const offset=Number.isSafeInteger(value.offset)&&value.offset>=0?value.offset:page.offset,limit=Number.isSafeInteger(value.limit)&&value.limit>0&&value.limit<=50?value.limit:page.limit;
+  const total=Number.isSafeInteger(value.total)&&value.total>=0?value.total:offset+items.length;
+  return {kind:expected,items,total,offset,limit,hasMore:value.hasMore===true&&items.length>0&&offset+items.length<total,unavailableReason:['own_listing','agent_pair_forbidden'].includes(value.unavailableReason)?value.unavailableReason:null};
+}
+export async function getListingProfiles(kind,key,options={}) {
+  if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
+  const model=getModel();
+  if(typeof model?.getListingProfiles!=='function')throw new Error('A profilválasztó most nem érhető el.');
+  return model.getListingProfiles(kind,key,options);
 }
 function listingMapFromApi(kind,value) {
   const locationIds=[...new Set((Array.isArray(value?.locationIds)?value.locationIds:[]).filter(id=>typeof id==='string'&&getLocation(id)&&!isStreetId(id)))];
