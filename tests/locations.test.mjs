@@ -89,6 +89,26 @@ test('legacy fields resolve to canonical choices and malformed locations never b
   assert.deepEqual(resolveLegacyLocations({ city: 'Debrecn' }), []);
 });
 
+test('legacy municipality identity preserves accents before an unambiguous folded fallback', () => {
+  const cases = [
+    ['Komló', 'city:Komló'], ['komló', 'city:Komló'], ['KOMLÓ', 'city:Komló'], [' Komló ', 'city:Komló'], ['Komlo\u0301', 'city:Komló'],
+    ['Kömlő', 'city:Kömlő'], ['kömlő', 'city:Kömlő'], ['KÖMLŐ', 'city:Kömlő'], ['Ko\u0308mlo\u030b', 'city:Kömlő']
+  ];
+  for (const [city, id] of cases) {
+    assert.deepEqual(resolveLegacyLocations({city}).map(location => location.id), [id], city);
+    assert.equal(matchesLocations({city}, {locationIds:[id]}), true, city);
+    const other = id === 'city:Komló' ? 'city:Kömlő' : 'city:Komló';
+    assert.equal(matchesLocations({city}, {locationIds:[other]}), false, city);
+  }
+  for (const city of ['Komlo', 'komlo', 'KOMLO']) {
+    assert.deepEqual(resolveLegacyLocations({city}), [], city);
+    assert.equal(matchesLocations({city}, {locationIds:['city:Komló', 'city:Kömlő']}), false, city);
+  }
+  assert.deepEqual(resolveLegacyLocations({city:'hajdusamson'}).map(location => location.id), ['city:Hajdúsámson']);
+  for (const city of ['Budapest V.', 'budapest v. kerulet', 'BUDAPEST 5'])
+    assert.deepEqual(resolveLegacyLocations({city}).map(location => location.id), ['district:Budapest:5'], city);
+});
+
 test('selected towns and Budapest districts match with OR semantics', () => {
   const search = { locationIds: ['district:Budapest:5', 'district:Budapest:9', 'city:Solymár', 'city:Pilisvörösvár'] };
   for (const id of search.locationIds) assert.equal(matchesLocations({ locationId: id }, search), true, id);

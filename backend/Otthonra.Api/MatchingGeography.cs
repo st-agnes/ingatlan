@@ -21,6 +21,7 @@ public static class MatchingGeography
     public const string MunicipalityResource = "Otthonra.Api.MunicipalityBoundaries.json.gz";
     public const int ExpectedAreaCount = 3155 + NeighborhoodCatalog.ExpectedCount + 23;
     public const string IdentityCollation = "utf8mb4_bin";
+    public const string CityLabelCollation = "utf8mb4_0900_as_ci";
     private const string Policy = "20261126-matching-geography-v2-binary-identities";
     private const string PointPolicy = "20261126-matching-property-points-v1";
     private const int BatchRows = 40;
@@ -41,9 +42,9 @@ public static class MatchingGeography
         {
             acquired = Convert.ToInt32(await Scalar(connection, null, "SELECT GET_LOCK(@name,120)", cancellationToken, ("name", lockName))) == 1;
             if (!acquired) throw new InvalidOperationException("Could not acquire the matching geography schema lock.");
-            // Labels may retain the installation's human-text collation, but
-            // canonical IDs must distinguish Komló from Kömlő. Identity columns
-            // are always binary, independent of the old location-link schema.
+            // Canonical IDs are binary. Legacy city labels need case-insensitive
+            // but accent-sensitive lookup so "komló" resolves to Komló without
+            // merging it with Kömlő. Other labels retain the old text collation.
             var collation = Convert.ToString(await Scalar(connection, null,
                 "SELECT COLLATION_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='SearchLocations' AND COLUMN_NAME='LocationId'", cancellationToken));
             if (string.IsNullOrEmpty(collation)) collation = "utf8mb4_0900_ai_ci";
@@ -52,7 +53,7 @@ public static class MatchingGeography
             await Execute(connection, null, $"""
                 CREATE TABLE IF NOT EXISTS `MatchingLocationAreas` (
                     `Id` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE {IdentityCollation} NOT NULL PRIMARY KEY,
-                    `City` VARCHAR(128) NOT NULL,
+                    `City` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE {CityLabelCollation} NOT NULL,
                     `District` VARCHAR(8) NULL,
                     `Kind` VARCHAR(16) NOT NULL,
                     `West` DOUBLE NOT NULL, `South` DOUBLE NOT NULL,
@@ -130,6 +131,12 @@ public static class MatchingGeography
             ALTER TABLE `MatchingLocationMembers` ADD CONSTRAINT `FK_MatchingLocationMembers_Area`
                 FOREIGN KEY (`AreaId`) REFERENCES `MatchingLocationAreas` (`Id`) ON DELETE CASCADE
             """, cancellationToken);
+        var cityCollation = Convert.ToString(await Scalar(connection, null, """
+            SELECT COLLATION_NAME FROM information_schema.COLUMNS
+            WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='MatchingLocationAreas' AND COLUMN_NAME='City'
+            """, cancellationToken));
+        if (cityCollation != CityLabelCollation)
+            await Execute(connection, null, $"ALTER TABLE `MatchingLocationAreas` MODIFY `City` VARCHAR(128) CHARACTER SET utf8mb4 COLLATE {CityLabelCollation} NOT NULL", cancellationToken);
     }
 
     /// <summary>Run after the original neighborhood dataset has been imported.</summary>

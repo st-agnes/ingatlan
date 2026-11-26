@@ -4,6 +4,7 @@ import { neighborhoods } from './neighborhoods-data.js';
 
 // IDs are stable and shared by the browser, demo model, and .NET API.
 const normalize = value => String(value ?? '').normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('hu').trim().replace(/\s+/g, ' ');
+const identityName = value => String(value ?? '').normalize('NFC').toLocaleLowerCase('hu').trim().replace(/\s+/g, ' ');
 const roman = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII'];
 const cities = settlements.map(city => Object.freeze({ id: 'city:' + city, label: city, city, district: null, kind: 'city', settlementCount: null }));
 const districts = roman.map((number, index) => Object.freeze({ id: 'district:Budapest:' + (index + 1), label: 'Budapest ' + number + '. kerület', city: 'Budapest', district: number + '.', kind: 'district', settlementCount: null }));
@@ -36,8 +37,13 @@ export const locations = Object.freeze([...cities, ...districts, ...areas, ...qu
 const byId = new Map(locations.map(location => [location.id, location]));
 const streetLocations = new Map();
 if (byId.size !== locations.length) throw new Error('A helyszínazonosítók nem egyediek.');
-const byCity = new Map(cities.map(location => [normalize(location.city), location]));
-const byLabel = new Map(locations.map(location => [normalize(location.label), location]));
+const byCity = new Map();
+for (const location of cities) {
+  const key = normalize(location.city);
+  // A colliding folded name is ambiguous, never whichever row was read last.
+  byCity.set(key, byCity.has(key) ? null : location);
+}
+const byLabel = new Map([...cities, ...districts].map(location => [identityName(location.label), location]));
 const indexed = locations.map((location, index) => ({ location, index,
   label: normalize(location.kind === 'area' ? `${location.city} és környéke` : location.label),
   terms: location.kind === 'neighborhood'
@@ -180,9 +186,13 @@ export function searchLocations(query, limit = 8, {kind = 'search', streets = [.
 /** Interpret old city/district fields without inventing a municipality. */
 export function resolveLegacyLocations(value = {}) {
   const cityText = normalize(value.city);
-  const exact = byLabel.get(cityText);
+  const exact = byLabel.get(identityName(value.city));
   if (exact?.kind === 'district') return [exact];
-  const city = byCity.get(cityText);
+  if (cityText.startsWith('budapest ')) {
+    const number = districtNumber(value.city);
+    return number ? [byId.get('district:Budapest:' + number)] : [];
+  }
+  const city = exact ?? byCity.get(cityText);
   if (!city) return [];
   if (city.city !== 'Budapest') return [city];
   const raw = value.districts ?? value.district;

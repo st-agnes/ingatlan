@@ -113,6 +113,45 @@ public class LocationTests
         Assert.False(Rules.Compatible(property, search));
     }
 
+    [Theory]
+    [InlineData("Komló", "city:Komló")]
+    [InlineData("komló", "city:Komló")]
+    [InlineData("KOMLÓ", "city:Komló")]
+    [InlineData(" Komló ", "city:Komló")]
+    [InlineData("Komlo\u0301", "city:Komló")]
+    [InlineData("Kömlő", "city:Kömlő")]
+    [InlineData("kömlő", "city:Kömlő")]
+    [InlineData("KÖMLŐ", "city:Kömlő")]
+    [InlineData("Ko\u0308mlo\u030b", "city:Kömlő")]
+    public void LegacyMunicipalitiesKeepAccentSensitiveCanonicalIdentity(string city, string expected)
+    {
+        Assert.Equal(expected, Assert.Single(LocationCatalog.ResolveLegacy(city)).Id);
+        var property = PropertyAt("", city);
+        Assert.True(LocationCatalog.Matches(property, SearchAt(expected)));
+        var other = expected == "city:Komló" ? "city:Kömlő" : "city:Komló";
+        Assert.False(LocationCatalog.Matches(property, SearchAt(other)));
+    }
+
+    [Theory]
+    [InlineData("Komlo")]
+    [InlineData("komlo")]
+    [InlineData("KOMLO")]
+    public void AmbiguousFoldedLegacyMunicipalitiesFailClosed(string city)
+    {
+        Assert.Empty(LocationCatalog.ResolveLegacy(city));
+        Assert.False(LocationCatalog.Matches(PropertyAt("", city), SearchAt("city:Komló", "city:Kömlő")));
+        Assert.Throws<ApiException>(() => LocationCatalog.ResolvePropertyInput(null, city, null));
+    }
+
+    [Theory]
+    [InlineData("Budapest V.")]
+    [InlineData("budapest v. kerulet")]
+    [InlineData("BUDAPEST 5")]
+    public void LegacyDistrictParserRemainsAvailableAfterAccentIdentityResolution(string city)
+    {
+        Assert.Equal("district:Budapest:5", Assert.Single(LocationCatalog.ResolveLegacy(city)).Id);
+    }
+
     [Fact]
     public void AutocompleteReturnsCanonicalAccentInsensitiveSuggestions()
     {

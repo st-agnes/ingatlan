@@ -43,6 +43,8 @@ public class RecommendationQueryTests
         // partial discovery cannot rescue duplicate city/area memberships.
         Assert.Matches(@"candidate_searches\s+AS\s*\(\s*SELECT\s+DISTINCT\s+sl\.`SearchRequestId`\s+AS\s+`Id`", sql);
         Assert.Contains("j.`Value` COLLATE utf8mb4_bin", sql);
+        Assert.Contains("legacy_city.`City`=TRIM(p.`City`) COLLATE utf8mb4_0900_as_ci LIMIT 1", sql);
+        Assert.Contains("folded_city.`City` COLLATE utf8mb4_0900_ai_ci=TRIM(p.`City`) COLLATE utf8mb4_0900_ai_ci HAVING COUNT(*)=1", sql);
         Assert.DoesNotContain("JSON_OVERLAPS", sql);
         Assert.Contains("NOT EXISTS", sql);
         Assert.Contains("JOIN", sql);

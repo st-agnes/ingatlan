@@ -41,9 +41,23 @@ def normalize(value):
                    if unicodedata.category(character) != 'Mn').upper().strip()
 
 
-CITIES = {normalize(city): city for city in SETTLEMENTS}
+CITIES_EXACT = {unicodedata.normalize('NFC', city).upper(): city for city in SETTLEMENTS}
+CITIES_NORMALIZED = {}
+for city in SETTLEMENTS:
+    CITIES_NORMALIZED.setdefault(normalize(city), set()).add(city)
 DISTRICTS = {normalize('Budapest ' + roman + '. kerület'): index
              for index, roman in enumerate(ROMANS, 1)}
+
+
+def canonical_city(value):
+    # Prefer case-insensitive but accent-sensitive identity. Komló and Kömlő
+    # share an accent-stripped key, so only an unambiguous legacy alias may
+    # fall back to that key; catalogue order must never choose a municipality.
+    exact = CITIES_EXACT.get(unicodedata.normalize('NFC', (value or '').strip()).upper())
+    if exact is not None:
+        return exact
+    choices = CITIES_NORMALIZED.get(normalize(value), set())
+    return next(iter(choices)) if len(choices) == 1 else None
 
 
 def strings(value):
@@ -70,7 +84,7 @@ def expected_ids(search):
     try:
         explicit = strings(search['locationIdsJson'])
         if explicit:
-            if any(item not in KNOWN_IDS for item in explicit):
+            if len(explicit) > 50 or any(item not in KNOWN_IDS for item in explicit):
                 return ['@invalid']
             result = sorted(set(explicit))
             return result if 0 < len(result) <= 50 else ['@invalid']
@@ -82,7 +96,7 @@ def expected_ids(search):
         if city.startswith('BUDAPEST '):
             number = district_number(city)
             return ['district:Budapest:' + str(number)] if number is not None else ['@invalid']
-        canonical = CITIES.get(city)
+        canonical = canonical_city(search['city'])
         if canonical is None:
             return ['@invalid']
         if canonical != 'Budapest':
@@ -97,6 +111,28 @@ def expected_ids(search):
         return result if 0 < len(result) <= 50 else ['@invalid']
     except (ValueError, TypeError):
         return ['@invalid']
+
+
+def verify_legacy_identity_resolution():
+    def legacy(city, districts=None):
+        return expected_ids({'city': city, 'districtsJson': json.dumps(districts or []), 'locationIdsJson': '[]'})
+
+    assert legacy('Komló') == ['city:Komló']
+    assert legacy('Kömlő') == ['city:Kömlő']
+    assert legacy('komló') == ['city:Komló']
+    assert legacy('  KöMlŐ  ') == ['city:Kömlő']
+    assert legacy(unicodedata.normalize('NFD', 'Komló')) == ['city:Komló']
+    assert legacy(unicodedata.normalize('NFD', 'Kömlő')) == ['city:Kömlő']
+    assert legacy('Komlo') == ['@invalid'], 'An ambiguous accent-free name must not select either municipality.'
+    assert legacy('Gyor') == ['city:Győr'], 'Unique accent-free legacy names remain compatible.'
+    assert legacy('debrecen') == ['city:Debrecen']
+    assert legacy('Budapest') == ['city:Budapest']
+    assert legacy('Budapest V. kerület') == ['district:Budapest:5']
+    assert legacy('Budapest', ['V.', 'IX.']) == ['district:Budapest:5', 'district:Budapest:9']
+    explicit = {'city': 'Komló', 'districtsJson': '[]', 'locationIdsJson': json.dumps(['city:Komló', 'city:Kömlő'])}
+    assert expected_ids(explicit) == ['city:Komló', 'city:Kömlő']
+    explicit['locationIdsJson'] = json.dumps(['city:Komló'] * 51)
+    assert expected_ids(explicit) == ['@invalid'], 'The raw selection cap applies before duplicate removal.'
 
 
 def query(container_id, sql):
@@ -116,6 +152,7 @@ def main():
     container_id = sys.argv[1]
     if not re.fullmatch(r'[a-f0-9]{12,64}', container_id):
         raise SystemExit('Invalid disposable MySQL container ID.')
+    verify_legacy_identity_resolution()
     indexes = query(container_id, """
         SELECT INDEX_NAME,COLUMN_NAME,SEQ_IN_INDEX
         FROM information_schema.STATISTICS

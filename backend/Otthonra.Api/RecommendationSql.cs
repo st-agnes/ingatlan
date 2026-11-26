@@ -393,9 +393,35 @@ public static class RecommendationSql
 
     private static string PropertyLocationSql()
     {
+        // Current rows always use their strict canonical identity. For old
+        // free-text rows prefer a case-insensitive, accent-sensitive city name
+        // through the (City,Kind) index. Accent folding is only a fallback and
+        // may resolve exactly one city: bare "Komlo" must not choose between
+        // Komló and Kömlő arbitrarily.
+        var cityLabel=$"TRIM(p.`City`) COLLATE {MatchingGeography.CityLabelCollation}";
+        var exactCity=$"(SELECT legacy_city.`Id` FROM `MatchingLocationAreas` legacy_city WHERE legacy_city.`Kind`='city' AND legacy_city.`City`={cityLabel} LIMIT 1)";
+        var uniqueFoldedCity="(SELECT MIN(folded_city.`Id`) FROM `MatchingLocationAreas` folded_city WHERE folded_city.`Kind`='city' AND folded_city.`City` COLLATE utf8mb4_0900_ai_ci=TRIM(p.`City`) COLLATE utf8mb4_0900_ai_ci HAVING COUNT(*)=1)";
+        var city=$"COALESCE({exactCity},{uniqueFoldedCity})";
+        var fromCity=LegacyDistrictSql("p.`City`");
+        var fromDistrict=LegacyDistrictSql("p.`District`");
+        var legacy=$"CASE WHEN TRIM(p.`City`) COLLATE utf8mb4_0900_ai_ci LIKE _utf8mb4'Budapest %' COLLATE utf8mb4_0900_ai_ci THEN {fromCity} WHEN {city}='city:Budapest' AND TRIM(COALESCE(p.`District`,''))<>'' THEN {fromDistrict} ELSE {city} END";
+        return $"CASE WHEN TRIM(COALESCE(p.`LocationId`,''))<>'' THEN p.`LocationId` ELSE {legacy} END";
+    }
+
+    private static string LegacyDistrictSql(string expression)
+    {
+        // Same accepted legacy vocabulary as DistrictNumber: Roman or numeric
+        // wards, optional Budapest/kerület text and periods (including the old
+        // city label "Budapest II." without the word kerület).
+        var marks=Literal("["+'\u0300'+"-"+'\u036f'+"]");
+        var normalized=$"REGEXP_REPLACE(UPPER(TRIM(COALESCE({expression},''))),{marks},'')";
+        foreach(var (accent,plain) in new[]{("Á","A"),("É","E"),("Í","I"),("Ó","O"),("Ö","O"),("Ő","O"),("Ú","U"),("Ü","U"),("Ű","U")})
+            normalized=$"REPLACE({normalized},{Literal(accent)},{Literal(plain)})";
+        var clean=$"TRIM(REPLACE(REPLACE(REPLACE({normalized},_utf8mb4'BUDAPEST',''),_utf8mb4'KERULET',''),'.',''))";
         var districts=LocationCatalog.All.Where(location=>location.Kind=="district").Select(location=>
-            $"WHEN ((p.`City`='Budapest' AND (p.`District`={Literal(location.District!)} OR p.`District`={Literal(location.District!.TrimEnd('.'))} OR p.`District`={Literal(location.Id.Split(':')[2])})) OR {Equal("p.`City`",location.Label)}) THEN {Literal(location.Id)}");
-        return "CASE WHEN TRIM(COALESCE(p.`LocationId`,''))<>'' THEN p.`LocationId` ELSE CASE "+string.Join(" ",districts)+" ELSE CONCAT('city:',p.`City`) END END";
+            $"WHEN {Literal(location.District!.TrimEnd('.'))} THEN {Literal(location.Id)}");
+        var numeric=$"CASE WHEN REGEXP_LIKE({clean},'^[0-9]+$') AND CAST({clean} AS UNSIGNED) BETWEEN 1 AND 23 THEN CONCAT('district:Budapest:',CAST({clean} AS UNSIGNED)) ELSE NULL END";
+        return "(CASE "+clean+" COLLATE utf8mb4_0900_ai_ci "+string.Join(" ",districts)+" ELSE "+numeric+" END)";
     }
 
     private static string[] AcceptedLocations(Property property)
