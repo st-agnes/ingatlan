@@ -59,6 +59,8 @@ test('real criteria, a typed location query or a custom title start a search dra
   const storage=store(),seed=createDraft('search',{title:'Automatikus cím',locationIds:[city.id],city:city.city,locations:[city]},{now:NOW,editor:{titleGenerated:true,locations:[city]}});
   saveDraft(seed,storage);saveDraft(updateDraft(seed,{data:{locationIds:[]},editor:{locations:[]}},{now:NOW}),storage);
   assert.equal(loadDraft(storage,{now:NOW}),null,'Clearing canonical locations also ignores stale seed metadata');
+  const metadataOnly=createDraft('search',{locations:[city]},{now:NOW,editor:{titleGenerated:true}});
+  saveDraft(metadataOnly,storage);assert.equal(loadDraft(storage,{now:NOW}).id,metadataOnly.id,'Older drafts that contain only canonical location metadata still represent entered input');
 });
 
 test('empty cleanup never removes a replacement or a frozen creation receipt from another tab',()=>{
