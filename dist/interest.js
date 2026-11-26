@@ -1,5 +1,5 @@
 /** Shared presentation for expressing interest; billing still uses ordinary decisions. */
-export const INTEREST_LABEL = 'Érdeklődöm';
+export const INTEREST_LABEL = 'Vegyük fel a kapcsolatot!';
 export const PASS_LABEL = 'Nem az igazi';
 export const INTEREST_SENT_MESSAGE = 'Elküldtük érdeklődésedet! Most a másik félen a sor, hogy felvegyétek a kapcsolatot.';
 

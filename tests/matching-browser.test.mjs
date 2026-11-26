@@ -49,8 +49,8 @@ async function compactCriteria(page,selector){
 }
 async function sellerCaption(page){
  const button=await page.locator('.card-actions [data-action="like"]').boundingBox(),label=page.locator('.decision-like-caption');
- assert.match(await label.innerText(),/Érdeklődöm\s+2 kredit/);
- assert.match(await page.locator('.card-actions [data-action="like"]').getAttribute('aria-label'),/^Érdeklődöm/);assert.equal(await page.locator('.card-actions [data-action="like"] svg[data-icon="contact"]').count(),1,'The positive decision uses a contact icon instead of a heart');
+ assert.match(await label.innerText(),/Vegyük fel a kapcsolatot!\s+2 kredit/);
+ assert.match(await page.locator('.card-actions [data-action="like"]').getAttribute('aria-label'),/^Vegyük fel a kapcsolatot!/);assert.equal(await page.locator('.card-actions [data-action="like"] svg[data-icon="contact"]').count(),1,'The positive decision uses a contact icon instead of a heart');
  const main=await label.locator('span').first().boundingBox(),cost=await label.locator('small').boundingBox();
  assert.ok(button&&main&&cost);assert.ok(cost.y>=main.y+main.height-1,'Credit cost belongs below the main caption');
  assert.ok(Math.abs(cost.x+cost.width/2-main.x-main.width/2)<=2,'Credit cost stays centered below the caption');
@@ -65,7 +65,7 @@ async function verify(browser,viewport,kind){
   await configure(page,kind);
   assert.match(await page.locator('#candidate .score').innerText(),/100%/);assert.doesNotMatch(await page.locator('#app').innerText(),/Másik város/);
   const exactExplanation=await page.locator('#candidate .feature-tags').innerText();assert.doesNotMatch(exactExplanation,/Helyszín|Ingatlantípus|Keresés:|Ingatlan:|M Ft|m²/);assert.equal(await page.locator('#candidate .feature-tags [data-criterion="location"],#candidate .feature-tags [data-criterion="type"]').count(),0);await compactCriteria(page,'#candidate .match-passed ul');
-  assert.match(await page.locator('.keyboard-hint').innerText(),/→\s*Érdeklődöm/,'The keyboard hint names the same contact action as the button');
+  assert.match(await page.locator('.keyboard-hint').innerText(),/→\s*Vegyük fel a kapcsolatot!/,'The keyboard hint names the same contact action as the button');
   assert.equal(await page.locator('.decision-labels>span').first().innerText(),'Nem az igazi');
   const contactIcon=page.locator('.card-actions [data-action="like"] svg[data-icon="contact"]');assert.equal(await contactIcon.locator('path[data-part="phone"]').count(),1);assert.equal(await contactIcon.locator('path[data-part="message"]').count(),1,'Interest uses a combined telephone and message icon');
   const place=page.locator('#candidate .listing-location-link'),placePresentation=await place.evaluate(element=>({size:parseFloat(getComputedStyle(element).fontSize),decoration:getComputedStyle(element.querySelector('.listing-location-name')).textDecorationLine}));assert.ok(placePresentation.size>=14,'A clickable location is readable on every viewport');assert.match(placePresentation.decoration,/underline/);assert.match(await place.innerText(),/Térképen/);
@@ -74,7 +74,7 @@ async function verify(browser,viewport,kind){
   const titleHref=await page.locator('#candidate h2 .listing-title-link').getAttribute('href');assert.match(titleHref,/^#listing\/(property|search)\//);
   await interact(page.locator('.card-actions [data-action="details"]'));await page.locator('#public-listing').waitFor();
   assert.match(new URL(page.url()).hash,new RegExp(`^#listing/${kind==='search'?'property':'search'}/`));assert.equal(await page.locator('.modal').count(),0,'Details is a separate public listing page');
-  const detailContact=page.locator('#public-listing [data-action="public-listing-decision"][data-liked="true"]').first();assert.match(await detailContact.innerText(),/^Érdeklődöm/,'Both free buyer and paid seller detail actions use the contact caption');assert.equal(await detailContact.locator('svg').count(),1,'The detailed recommendation keeps a contact icon alongside its caption');
+  const detailContact=page.locator('#public-listing [data-action="public-listing-decision"][data-liked="true"]').first();assert.match(await detailContact.innerText(),/^Vegyük fel a kapcsolatot!/,'Both free buyer and paid seller detail actions use the contact caption');assert.equal(await detailContact.locator('svg').count(),1,'The detailed recommendation keeps a contact icon alongside its caption');
   await interact(page.locator('[data-action="public-listing-back"]').first());await page.locator('#candidate').waitFor();assert.equal(new URL(page.url()).hash,'#discover');assert.equal(await page.locator('#candidate h2').innerText(),candidateTitle,'Returning from details keeps the same recommendation');
   await interact(page.locator('#candidate h2 .listing-title-link'));await page.locator('#public-listing').waitFor();assert.equal(new URL(page.url()).hash,titleHref,'The recommendation title opens the same shared detail route as Details');await page.goBack();await page.locator('#candidate').waitFor();assert.equal(await page.locator('#candidate h2').innerText(),candidateTitle);
   const afterDetails=await readState(page);assert.deepEqual(afterDetails.active,beforeDetails.active);assert.deepEqual(afterDetails.decisions,beforeDetails.decisions);assert.equal(afterDetails.credits,beforeDetails.credits,'Viewing details cannot bill or decide about a candidate');

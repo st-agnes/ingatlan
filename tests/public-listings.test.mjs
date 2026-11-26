@@ -77,7 +77,7 @@ const activeContext={active:{kind:'search',id:'my-search',title:'Kertre néző l
 test('signed-in detail pages show the authoritative active-profile score and available decision actions',()=>{
  const markup=publicListingMarkup(property,{signedIn:true,context:activeContext,returnPage:'discover'});
  assert.match(markup,/Aktív keresésed/);assert.match(markup,/Kertre néző lakás &lt;jó&gt;/);assert.match(markup,/100% <span>egyezés/);
- assert.match(markup,/data-action="public-listing-back"/);assert.match(markup,/data-action="public-listing-decision" data-liked="false"/);assert.match(markup,/data-liked="true"/);assert.match(markup,/Érdeklődöm<small>2 kredit/);
+ assert.match(markup,/data-action="public-listing-back"/);assert.match(markup,/data-action="public-listing-decision" data-liked="false"/);assert.match(markup,/data-liked="true"/);assert.match(markup,/Vegyük fel a kapcsolatot!<small>2 kredit/);
  assert.doesNotMatch(markup,/secret-contact|data-action="auth-mode"/);
  assert.equal((markup.match(/id="public-listing-profile"/g)||[]).length,1,'The active profile is mounted once');
  assert.ok(markup.indexOf('id="public-listing-profile"')>markup.indexOf('<h1>'),'The active profile replaces the CTA beneath the listing heading');
