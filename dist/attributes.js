@@ -9,8 +9,8 @@ export const PARKING_OPTIONS = Object.freeze(['Utcai parkolás','Udvari beálló
 export const CEILING_HEIGHT_OPTIONS = Object.freeze(['3 m alatti','3 m feletti']);
 export const FLOOR_OPTIONS = Object.freeze([
   {value:-1,label:'Szuterén'}, {value:0,label:'Földszint'}, {value:0.5,label:'Magasföldszint'},
-  ...Array.from({length:8},(_,index)=>({value:index+1,label:String(index+1)})),
-  {value:9,label:'9 vagy afölötti'}
+  ...Array.from({length:7},(_,index)=>({value:index+1,label:String(index+1)})),
+  {value:8,label:'8 vagy afölötti'}
 ].map(Object.freeze));
 
 const normalized = value => String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLocaleLowerCase('hu');
@@ -170,12 +170,13 @@ export function normalizeSearchAttributes(value = {}, {strict = false} = {}) {
   const floors = (strict && value.type === 'Ház') || value.floors == null || value.floors === '' ? [] : value.floors;
   if (strict && !Array.isArray(floors)) throw new Error('Az emeleteket listaként add meg.');
   const rawFloors = (Array.isArray(floors) ? floors : [floors]).map(floor=>floor == null || typeof floor === 'boolean' || (typeof floor === 'string' && !floor.trim()) ? NaN : Number(floor));
-  if (strict && rawFloors.some(floor=>!FLOOR_OPTIONS.some(option=>option.value === floor) && floor !== 10 && floor !== 11)) throw new Error('Érvénytelen emeletválasztás.');
+  if (strict && rawFloors.some(floor=>!FLOOR_OPTIONS.some(option=>option.value === floor) && ![9,10,11].includes(floor))) throw new Error('Érvénytelen emeletválasztás.');
   const atticPreference = text(value.atticPreference);
   if (strict && !['','only','exclude'].includes(atticPreference)) throw new Error('Válassz érvényes tetőtéri feltételt.');
   const minEnergyRating = text(value.minEnergyRating);
   if (strict && minEnergyRating && energyIndex(minEnergyRating)<0) throw new Error('Válassz érvényes minimum energetikai kategóriát.');
-  const normalizedFloors = [...new Set(rawFloors.map(floor=>Number.isInteger(floor) && floor >= 9 && floor <= 11 ? 9 : floor))];
+  // Canonicalize old search buckets on read/save, without changing raw creation receipts.
+  const normalizedFloors = [...new Set(rawFloors.map(floor=>Number.isInteger(floor) && floor >= 8 && floor <= 11 ? 8 : floor))];
   return {
     ...value,
     conditions:choices(legacy('conditions','condition'),CONDITION_OPTIONS,normalizeCondition,strict),
@@ -206,13 +207,14 @@ export function attributesCompatible(property, search) {
     if (s[searchField].length && (!options.includes(p[propertyField]) || !s[searchField].includes(p[propertyField]))) return false;
   }
   if (s.ceilingHeight && (!CEILING_HEIGHT_OPTIONS.includes(p.ceilingHeight) || s.ceilingHeight !== p.ceilingHeight)) return false;
-  if (s.type !== 'Ház' && s.floors.length) {
-    const bucket = p.floor == null ? null : p.floor >= 9 ? 9 : p.floor;
-    if (bucket == null || !FLOOR_OPTIONS.some(option=>option.value === bucket) || !s.floors.includes(bucket)) return false;
+  if (s.type !== 'Ház' && (s.floors.length || s.atticPreference === 'only')) {
+    const bucket = p.floor == null ? null : p.floor >= 8 ? 8 : p.floor;
+    const floorMatches = bucket != null && FLOOR_OPTIONS.some(option=>option.value === bucket) && s.floors.includes(bucket);
+    if (!floorMatches && !(s.atticPreference === 'only' && p.isAttic === true)) return false;
   }
   if (s.type !== 'Ház' && s.excludeTopFloor && (p.floor == null || p.floorIsUpperRange || p.buildingFloors == null || p.floor >= (p.floor === 0.5 && p.buildingFloors === 0 ? 0.5 : p.buildingFloors))) return false;
   if (s.type !== 'Ház' && s.excludeGroundFloorAndBelow && (p.floor == null || p.floor <= 0)) return false;
-  if (s.type!=='Ház' && s.atticPreference && (p.isAttic == null || p.isAttic !== (s.atticPreference==='only'))) return false;
+  if (s.type!=='Ház' && s.atticPreference === 'exclude' && p.isAttic !== false) return false;
   if (!meetsEnergyMinimum(p,s.minEnergyRating)) return false;
   if (s.airConditioning && p.airConditioning !== true) return false;
   if (s.privateGarden && p.privateGarden !== true) return false;

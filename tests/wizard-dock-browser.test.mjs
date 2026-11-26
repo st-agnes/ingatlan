@@ -226,7 +226,7 @@ async function verifyCriteriaSummary(page,interact,kind,viewport){
  }else{
   await summaryIncludes(page,'locationIds','Debrecen','Hajdúszoboszló','Budapest','V.');
   for(const [key,value,unit]of [['minPrice',/^0\s*M Ft$/,'M Ft'],['maxPrice',/120[,.]5/,'M Ft'],['minArea',/^0\s*m²$/,'m²'],['maxArea',/95[,.]5/,'m²'],['minRooms',/^0\s*szoba$/,'szoba'],['maxRooms',/4[,.]5/,'szoba']])await summaryIncludes(page,key,value,unit);
-  await summaryIncludes(page,'conditions','Átlagos','Jó','Új/felújított');await summaryIncludes(page,'buildings','Tégla','Panel');await summaryIncludes(page,'constructionAges','10 évnél fiatalabb','10–30 év közötti');await summaryIncludes(page,'views','Kertre néző','Panorámás');await summaryIncludes(page,'heatingTypes','Nincs fűtés','Hőszivattyú');await summaryIncludes(page,'ceilingHeight','3 m alatti');await summaryIncludes(page,'floors','Szuterén','Földszint','9');await summaryIncludes(page,'balcony','Szükséges');await summaryIncludes(page,'elevator','Nem feltétel');await summaryIncludes(page,'moveIn','3 hónapon belül');await summaryIncludes(page,'financing','Teszt saját forrás és hitel');
+  await summaryIncludes(page,'conditions','Átlagos','Jó','Új/felújított');await summaryIncludes(page,'buildings','Tégla','Panel');await summaryIncludes(page,'constructionAges','10 évnél fiatalabb','10–30 év közötti');await summaryIncludes(page,'views','Kertre néző','Panorámás');await summaryIncludes(page,'heatingTypes','Nincs fűtés','Hőszivattyú');await summaryIncludes(page,'ceilingHeight','3 m alatti');await summaryIncludes(page,'floors','Szuterén','Földszint','8 vagy afölötti');await summaryIncludes(page,'balcony','Szükséges');await summaryIncludes(page,'elevator','Nem feltétel');await summaryIncludes(page,'moveIn','3 hónapon belül');await summaryIncludes(page,'financing','Teszt saját forrás és hitel');
  }
  await summaryIncludes(page,'description',`${kind==='property'?'Eladói':'Keresői'} összesítő <b>szöveg</b>`);assert.equal(await page.locator('.criteria-summary b,.criteria-summary script').count(),0,'Summary values must be escaped as text');
  assert.deepEqual(coreState(await state(page)),coreState(before),'Opening and scrolling an overview cannot save or bill anything');
@@ -270,16 +270,22 @@ async function verifyDock(page,interact,kind,viewport){
   await page.evaluate(async fraction=>{window.scrollTo({top:(document.documentElement.scrollHeight-innerHeight)*fraction,behavior:'instant'});await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));},fraction);
   await assertReachable(page);
  }
- await interact(page.locator('.card-actions [data-action="details"]'));await page.locator('.modal').waitFor();assert.equal(await page.locator('.discovery-decision-dock').isVisible(),false,'Background decisions must not sit over a detail dialog');
- const modalActions=page.locator('.modal-actions [data-action="pass"],.modal-actions [data-action="like"]');assert.equal(await modalActions.count(),2);
+ const beforeDetails=await state(page),candidateTitle=await page.locator('#candidate h2').innerText();
+ await interact(page.locator('.card-actions [data-action="details"]'));await page.locator('#public-listing').waitFor();
+ assert.match(new URL(page.url()).hash,new RegExp(`^#listing/${kind==='search'?'property':'search'}/`));assert.equal(await page.locator('.modal').count(),0,'Details opens a separate public page');
+ const detailActions=page.locator('#public-listing [data-action="public-listing-decision"]');assert.equal(await detailActions.count(),2,'The public page retains pass and contact actions for the active profile');
  for(const fraction of [0,.5,1]){
-  await page.locator('.modal').evaluate(async(element,fraction)=>{element.scrollTo({top:(element.scrollHeight-element.clientHeight)*fraction,behavior:'instant'});await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));},fraction);
-  for(const button of await modalActions.all()){
-   const proof=await button.evaluate(element=>{const b=element.getBoundingClientRect(),top=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);return{top:b.top,bottom:b.bottom,height:innerHeight,hit:element===top||element.contains(top)};});
-   assert.ok(proof.top>=0&&proof.bottom<=proof.height+1,'Detail-dialog decisions must remain in view at every modal scroll position');assert.equal(proof.hit,true,'Detail-dialog decisions must remain unobstructed');
-  }
+  await page.evaluate(async fraction=>{window.scrollTo({top:(document.documentElement.scrollHeight-innerHeight)*fraction,behavior:'instant'});await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));},fraction);
+  assert.equal(await page.locator('.discovery-decision-dock').count(),0,'Discovery decisions must not overlay the public detail page at any scroll position');
  }
- await interact(page.locator('.modal [data-action="close"]').first());await page.locator('.modal').waitFor({state:'detached'});await assertReachable(page);
+ for(const button of await detailActions.all()){
+  await button.scrollIntoViewIfNeeded();
+  const proof=await button.evaluate(element=>{const b=element.getBoundingClientRect(),top=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);return{top:b.top,bottom:b.bottom,height:innerHeight,hit:element===top||element.contains(top)};});
+  assert.ok(proof.top>=0&&proof.bottom<=proof.height+1,'Public detail decisions must be reachable in the document');assert.equal(proof.hit,true,'Public detail decisions must remain unobstructed');
+ }
+ await interact(page.locator('[data-action="public-listing-back"]').first());await page.locator('#candidate').waitFor();await assertReachable(page);
+ assert.equal(new URL(page.url()).hash,'#discover');assert.equal(await page.locator('#candidate h2').innerText(),candidateTitle,'Returning from details restores the same candidate');
+ const afterDetails=await state(page);assert.deepEqual(afterDetails.active,beforeDetails.active);assert.deepEqual(afterDetails.decisions,beforeDetails.decisions);assert.equal(afterDetails.credits,beforeDetails.credits,'Viewing and returning from details cannot bill or decide');
  if(viewport.width<=720){
   await interact(page.locator('.mobile-menu'));assert.equal(await page.locator('.discovery-decision-dock').isVisible(),false,'The mobile navigation must own its click targets');
   await page.setViewportSize({width:800,height:1100});await assertReachable(page);
@@ -290,7 +296,7 @@ async function verifyDock(page,interact,kind,viewport){
  const next=await state(page);await interact(page.locator('.card-actions [data-action="like"]'));await page.waitForFunction(async count=>(await import('/model.js')).model.getState().decisions.length===count+1,next.decisions.length);
  const after=await state(page);assert.equal(after.credits,next.credits-(kind==='property'?2:0),'Fixed decisions must retain the ordinary billing rules');
  if(await page.locator('.modal').count())await interact(page.locator('.modal [data-action="close"]').last());
- console.log(`Decision dock ${kind} ${viewport.name}: top/middle/bottom viewport reachability, unobstructed clicks, modal/menu layering and normal pass/like billing passed.`);
+ console.log(`Decision dock ${kind} ${viewport.name}: top/middle/bottom viewport reachability, public-detail navigation and return, unobstructed page/menu controls and normal pass/like billing passed.`);
 }
 
 async function verify(browser,viewport){

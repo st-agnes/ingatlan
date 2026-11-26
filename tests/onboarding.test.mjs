@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createDraft,updateDraft,saveDraft,loadDraft,clearDraft,prepareDraftForAuth,bindDraft,prepareDraftSave,markDraftSaved,prefillFromTeaser,suggestEntityTitle,sanitizeTeaserPrefill,normalizeDraftOrigin,originFromListing,originFromSearchCopy,prefillFromSearchClone,originFromLocations,originBlank,sameDraftOrigin,DRAFT_STORAGE_KEY,DRAFT_TTL_MS,DRAFT_EDITOR_LAYOUT_VERSION} from '../dist/onboarding.js';
-import {getLocation,locations} from '../dist/locations.js';
+import {createDraft,updateDraft,saveDraft,loadDraft,clearDraft,prepareDraftForAuth,bindDraft,prepareDraftSave,markDraftSaved,prefillFromTeaser,suggestEntityTitle,sanitizeTeaserPrefill,normalizeDraftOrigin,originFromListing,originFromSearchCopy,prefillFromSearchClone,originFromLocations,originBlank,sameDraftOrigin,isEmptySearchDraft,DRAFT_STORAGE_KEY,DRAFT_TTL_MS,DRAFT_EDITOR_LAYOUT_VERSION} from '../dist/onboarding.js';
+import {getLocation,locations,MAX_SEARCH_LOCATIONS} from '../dist/locations.js';
 import {createModel,STORAGE_KEY,demoLanding} from '../dist/model.js';
 import {ApiModel,findPublicLocations,findPublicStreets,fetchLanding,getModel,connectApi,disconnectApi,API_CONFIG_KEY,AUTH_ATTEMPT_KEY} from '../dist/api.js';
 
@@ -34,6 +34,62 @@ test('draft reload preserves incomplete form, exact owner-entered address, selec
   assert.deepEqual(reloaded.data,draft.data);assert.equal(reloaded.data.price,'-');assert.equal(reloaded.data.insulated,false);
   assert.deepEqual(reloaded.editor,{layoutVersion:DRAFT_EDITOR_LAYOUT_VERSION,query:'Debre',streetQuery:'Kossuth',titleGenerated:false,completedSteps:[0,1],locations:[{id:city.id,label:city.label,city:city.city,district:null,kind:'city',settlementCount:null}]});
   assert.equal(Date.parse(reloaded.expiresAt)-Date.parse(reloaded.updatedAt),DRAFT_TTL_MS);
+});
+
+test('an untouched search stays usable in memory without leaving a draft after reload',()=>{
+  const storage=store(),blank=createDraft('search',{title:suggestEntityTitle('search',{}),type:'',locationIds:[],maxPrice:null,minArea:'',minRooms:null,balcony:false,elevator:'false',excludeTopFloor:false,conditions:[],floors:[],atticPreference:''},{now:NOW,origin:originBlank('search'),editor:{titleGenerated:true}});
+  const moved=saveDraft(updateDraft(blank,{step:1,editor:{completedSteps:[0]}},{now:NOW}),storage);
+  assert.equal(moved.id,blank.id);assert.equal(moved.step,1);assert.equal(isEmptySearchDraft(moved),true);
+  assert.equal(storage.getItem(DRAFT_STORAGE_KEY),null);assert.equal(loadDraft(storage,{now:NOW}),null);
+  storage.setItem(DRAFT_STORAGE_KEY,JSON.stringify(moved));
+  assert.equal(loadDraft(storage,{now:NOW}),null,'Previously stored empty searches are cleaned on read');
+  assert.equal(storage.getItem(DRAFT_STORAGE_KEY),null);
+  const property=saveDraft(createDraft('property',{}, {now:NOW}),storage);
+  assert.equal(loadDraft(storage,{now:NOW}).id,property.id,'Property draft persistence stays unchanged');
+});
+
+test('real criteria, a typed location query or a custom title start a search draft and clearing all fields removes it',()=>{
+  for(const [data,editor] of [[{type:'Lakás'},{}],[{maxPrice:'0'},{}],[{minRooms:'1.5'},{}],[{floors:[0]},{}],[{elevator:true},{}],[{description:'Kertkapcsolatot szeretnék.'},{}],[{title:'Saját cím'},{titleGenerated:false}],[{}, {query:'Debre'}],[{locationIds:[city.id]},{}]]){
+    const storage=store(),blank=createDraft('search',{title:suggestEntityTitle('search',{}),locationIds:[]},{now:NOW,editor:{titleGenerated:true}});
+    const started=saveDraft(updateDraft(blank,{data,editor},{now:NOW}),storage);
+    assert.equal(loadDraft(storage,{now:NOW})?.id,started.id,JSON.stringify([data,editor]));
+    const empty=updateDraft(started,{data:Object.fromEntries(Object.keys(started.data).map(field=>[field,Array.isArray(started.data[field])?[]:typeof started.data[field]==='boolean'?false:null])),editor:{query:'',titleGenerated:true,locations:[]}},{now:NOW});
+    saveDraft(empty,storage);assert.equal(loadDraft(storage,{now:NOW}),null,'Cleared input must not survive a reload');
+  }
+  const storage=store(),seed=createDraft('search',{title:'Automatikus cím',locationIds:[city.id],city:city.city,locations:[city]},{now:NOW,editor:{titleGenerated:true,locations:[city]}});
+  saveDraft(seed,storage);saveDraft(updateDraft(seed,{data:{locationIds:[]},editor:{locations:[]}},{now:NOW}),storage);
+  assert.equal(loadDraft(storage,{now:NOW}),null,'Clearing canonical locations also ignores stale seed metadata');
+  const metadataOnly=createDraft('search',{locations:[city]},{now:NOW,editor:{titleGenerated:true}});
+  saveDraft(metadataOnly,storage);assert.equal(loadDraft(storage,{now:NOW}).id,metadataOnly.id,'Older drafts that contain only canonical location metadata still represent entered input');
+});
+
+test('empty cleanup never removes a replacement or a frozen creation receipt from another tab',()=>{
+  const storage=store(),first=createDraft('search',{locationIds:[city.id]},{now:NOW}),replacement=createDraft('search',{description:'Másik lapon szerkesztett keresés'},{now:NOW});
+  saveDraft(first,storage);saveDraft(replacement,storage);
+  saveDraft(updateDraft(first,{data:{locationIds:[]},editor:{titleGenerated:true}},{now:NOW}),storage);
+  assert.equal(loadDraft(storage,{now:NOW}).id,replacement.id);
+  const completed=prepareDraftForAuth(createDraft('search',{}, {now:NOW}),USER.email,{now:NOW});
+  for(const pending of [completed,prepareDraftSave(completed,USER,{now:NOW}),markDraftSaved(prepareDraftSave(completed,USER,{now:NOW}),'created-search',{now:NOW})]){
+    saveDraft(pending,storage);const restored=loadDraft(storage,{now:NOW});
+    assert.equal(restored.id,pending.id);assert.equal(restored.phase,pending.phase);assert.deepEqual(restored.completedData,pending.completedData);assert.equal(restored.creationRequestId,pending.creationRequestId);
+    saveDraft(updateDraft(first,{data:{locationIds:[]}},{now:NOW}),storage);
+    assert.equal(loadDraft(storage,{now:NOW}).id,pending.id,'A stale empty editor cannot acknowledge a different receipt');
+    const staleSameIdentity=updateDraft(pending,{phase:'editing',data:{},editor:{titleGenerated:true}},{now:NOW});
+    saveDraft(staleSameIdentity,storage);
+    assert.deepEqual(loadDraft(storage,{now:NOW}),restored,'Empty cleanup cannot erase a finalized receipt with the same identity');
+  }
+  const newer=updateDraft(first,{data:{description:'Másik lapon már módosítva'}},{now:Date.parse(NOW)+1000});
+  saveDraft(newer,storage);saveDraft(updateDraft(first,{data:{locationIds:[]}},{now:NOW}),storage);
+  assert.equal(loadDraft(storage,{now:NOW}).data.description,newer.data.description,'Stale empty cleanup cannot erase newer user input');
+});
+
+test('expanded map selections preserve every supported location through save, reload and origin matching',()=>{
+  const entries=locations.filter(location=>location.kind==='city').slice(0,MAX_SEARCH_LOCATIONS);
+  const storage=store(),draft=createDraft('search',{locationIds:entries.map(item=>item.id),conditions:Array(60).fill('Jó'),images:Array(20).fill('https://example.hu/home.jpg')},{now:NOW,origin:originFromLocations(entries),editor:{locations:entries}});
+  saveDraft(draft,storage);const restored=loadDraft(storage,{now:NOW});
+  assert.equal(restored.data.locationIds.length,MAX_SEARCH_LOCATIONS);assert.equal(restored.editor.locations.length,MAX_SEARCH_LOCATIONS);
+  assert.equal(sameDraftOrigin(restored,'search',originFromLocations([...entries].reverse())),true);
+  assert.equal(restored.data.conditions.length,50);assert.equal(restored.data.images.length,12);
 });
 
 test('legacy five-topic drafts migrate only navigation and stay stable across tabs and repeated reloads',()=>{
@@ -190,7 +246,7 @@ test('origin sanitization rejects positional keys and private IDs while preservi
   assert.equal(normalizeDraftOrigin({kind:'property',key:opaque},'property'),null,'A property draft originates from a search teaser, never another property');
   assert.equal(normalizeDraftOrigin({kind:'locations',locationIds:[city.id]},'property'),null);
   assert.equal(originFromLocations([]),null);assert.equal(originFromLocations([city.id,'unknown-location']),null);assert.equal(originFromLocations(new Array(1)),null);
-  assert.equal(originFromLocations(Array(51).fill(city.id)),null);
+  assert.equal(originFromLocations(Array(MAX_SEARCH_LOCATIONS+1).fill(city.id)),null);
   const storage=store(),draft=createDraft('search',{title:'Régebbi piszkozat',locationIds:[city.id],origin:{key:sourceId},sourceKey:sourceId},{now:NOW,origin:{kind:'property',key:opaque,id:sourceId,ownerId:USER.id,street:'Titkos utca',latitude:47}});
   saveDraft(draft,storage);const raw=JSON.parse(storage.getItem(DRAFT_STORAGE_KEY));
   assert.deepEqual(raw.origin,{kind:'property',key:opaque});assert.equal(JSON.stringify(raw).includes(sourceId),false);assert.equal('origin' in raw.data,false);assert.equal('sourceKey' in raw.data,false);
@@ -214,7 +270,7 @@ test('property teaser seeds a relaxed search using chosen canonical locations an
   const source={prefill:{locations:[district],type:'Lakás',price:72.9,area:64,rooms:3,condition:'Felújított',building:'Tégla',constructionAge:'10–30 év közötti',view:'Kertre néző',ceilingHeight:'3 m feletti',floor:14,heatingType:'Hőszivattyú',balcony:true,elevator:false},title:'Más címe',description:'Más leírása',address:'Titkos cím',id:'source'};
   const data=prefillFromTeaser('search',source,{locations:[city,district]});
   assert.deepEqual(data.locationIds,[city.id,district.id]);assert.deepEqual([data.minPrice,data.maxPrice,data.minRooms,data.maxRooms],[null,85,3,null]);assert.deepEqual([data.minArea,data.maxArea],[55,null]);
-  assert.deepEqual(data.conditions,['Új/felújított']);assert.deepEqual(data.buildings,['Tégla']);assert.deepEqual(data.heatingTypes,['Hőszivattyú']);assert.deepEqual(data.floors,[9]);
+  assert.deepEqual(data.conditions,['Új/felújított']);assert.deepEqual(data.buildings,['Tégla']);assert.deepEqual(data.heatingTypes,['Hőszivattyú']);assert.deepEqual(data.floors,[8]);
   assert.equal(data.balcony,true);assert.equal(data.elevator,false);assert.equal('address' in data,false);assert.equal('description' in data,false);assert.notEqual(data.title,source.title);assert.ok(data.title.includes('+1'));
 });
 
@@ -266,7 +322,7 @@ test('public seed normalization converts HUF once, strips private data and gener
 
 test('demo creation requests survive reload and another tab without duplicating or accepting changed payload',()=>{
   const storage=store(),first=createModel(storage),otherTab=createModel(storage),data={title:'Új keresési igény',locationIds:[city.id],maxPrice:80,minRooms:null,floors:[11]};
-  const before=first.getState().searches.length,saved=first.saveEntity('search',data,undefined,{creationRequestId:requestId});assert.deepEqual(saved.floors,[9],'Persisted current selection changes without changing the original creation signature');
+  const before=first.getState().searches.length,saved=first.saveEntity('search',data,undefined,{creationRequestId:requestId});assert.deepEqual(saved.floors,[8],'Persisted current selection changes without changing the original creation signature');
   const replay=otherTab.saveEntity('search',{...data},undefined,{creationRequestId:requestId});assert.equal(replay.id,saved.id);assert.equal(otherTab.getState().searches.length,before+1);
   assert.equal(createModel(storage).saveEntity('search',data,undefined,{creationRequestId:requestId}).id,saved.id);
   assert.throws(()=>otherTab.saveEntity('search',{...data,maxPrice:81},undefined,{creationRequestId:requestId}),/másik kitöltés/);
@@ -385,9 +441,19 @@ test('raised and upper-range floor metadata persist in drafts while interval-onl
  const frozen=prepareDraftForAuth(restored,USER.email,{now:NOW});assert.equal(frozen.completedData.floorIsUpperRange,true);
  const raised=sanitizeTeaserPrefill('property',{type:'Lakás',locations:[city],floor:0.5,buildingFloors:0});assert.equal(raised.floor,0.5);assert.equal(raised.buildingFloors,0);
  assert.deepEqual(prefillFromTeaser('search',{prefill:{...raised,rooms:2}}).floors,[0.5]);
- assert.deepEqual(prefillFromTeaser('search',{prefill:{type:'Lakás',locations:[city],floor:12,floorIsUpperRange:false}}).floors,[9]);
- const grouped=prefillFromTeaser('property',{prefill:{type:'Lakás',locations:[city],floors:[9]}});assert.equal('floor' in grouped,false,'A ninth-plus preference is not a known exact property floor');
+ assert.deepEqual(prefillFromTeaser('search',{prefill:{type:'Lakás',locations:[city],floor:12,floorIsUpperRange:false}}).floors,[8]);
+ const grouped=prefillFromTeaser('property',{prefill:{type:'Lakás',locations:[city],floors:[8]}});assert.equal('floor' in grouped,false,'An eighth-plus preference is not a known exact property floor');
  const exact=prefillFromTeaser('property',{prefill:{type:'Lakás',locations:[city],floors:[0.5]}});assert.equal(exact.floor,0.5);assert.equal(d.creationRequestId,frozen.creationRequestId);
+});
+
+test('alternative floors or attic criteria never invent one branch when seeding a seller draft',()=>{
+ for(const floors of [[3],[0.5,2]]){
+  const seed=prefillFromTeaser('property',{prefill:{type:'Lakás',locations:[city],floors,atticPreference:'only'}});
+  assert.equal(seed.floor,undefined);assert.equal(seed.isAttic,undefined,'Floors OR attic does not establish that the offered property is an attic');
+ }
+ assert.equal(prefillFromTeaser('property',{prefill:{type:'Lakás',locations:[city],floors:[],atticPreference:'only'}}).isAttic,true);
+ const excluded=prefillFromTeaser('property',{prefill:{type:'Lakás',locations:[city],floors:[3],atticPreference:'exclude'}});
+ assert.equal(excluded.floor,3);assert.equal(excluded.isAttic,false);
 });
 
 
@@ -410,7 +476,8 @@ test('copying a public search has a distinct resumable origin and clones every o
  assert.equal(normalizeDraftOrigin({kind:'search',key:sourceKey},'search'),null);
  const original={locations:[city],type:'Lakás',minPrice:45,maxPrice:90,minArea:45,maxArea:120,minRooms:1.5,maxRooms:4.5,conditions:['Jó'],buildings:['Panel','Tégla'],floors:[0.5,9],heatingTypes:['Gázcirkó'],atticPreference:'exclude',minEnergyRating:'B',description:'Világos otthont keresünk.',moveIn:'Azonnal',financing:'Önerő',balcony:true,airConditioning:true,privateGarden:true};
  const data=prefillFromSearchClone({clonePrefill:original});
- for(const field of ['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','conditions','buildings','floors','atticPreference','minEnergyRating','description','moveIn','financing','balcony','airConditioning','privateGarden'])assert.deepEqual(data[field],original[field],field);
+ for(const field of ['minPrice','maxPrice','minArea','maxArea','minRooms','maxRooms','conditions','buildings','atticPreference','minEnergyRating','description','moveIn','financing','balcony','airConditioning','privateGarden'])assert.deepEqual(data[field],original[field],field);
+ assert.deepEqual(data.floors,[0.5,8],'Legacy ninth-plus criteria clone into the current eighth-plus control');
  assert.deepEqual(data.heatingTypes,['Gázkazán / cirkó']);assert.deepEqual(data.locationIds,[city.id]);assert.match(data.title,/Debrecen/);
  const draft=createDraft('search',data,{origin,now:NOW});assert.equal(sameDraftOrigin(draft,'search',origin),true);
  assert.equal(sameDraftOrigin(draft,'property',origin),false);

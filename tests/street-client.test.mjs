@@ -2,7 +2,7 @@ import test, {afterEach} from 'node:test';
 import assert from 'node:assert/strict';
 import {ApiModel} from '../dist/api.js';
 import {createModel,STORAGE_KEY} from '../dist/model.js';
-import {locations,getLocation,registerLocations,searchLocations,searchStreets,resolveStreetLocation,matchesLocations,isPropertyLocation} from '../dist/locations.js';
+import {locations,getLocation,registerLocations,searchLocations,searchStreets,resolveStreetLocation,matchesLocations,isPropertyLocation,MAX_SEARCH_LOCATIONS} from '../dist/locations.js';
 import {evaluateMatch,prepareSearch,searchSpecificity} from '../dist/matching.js';
 import {streetDemoData} from '../dist/street-demo-data.js';
 
@@ -70,10 +70,10 @@ test('street selections are exact hard gates with town, district, neighborhood a
   assert.equal(evaluateMatch(home,query).score,100);
 });
 
-test('direct location matching enforces the raw 50-selection cap even for duplicate IDs',()=>{
+test('direct location matching enforces the raw 200-selection cap even for duplicate IDs',()=>{
   const home={locationId:'city:Debrecen'};
-  assert.equal(matchesLocations(home,{locationIds:Array(50).fill(home.locationId)}),true);
-  assert.equal(matchesLocations(home,{locationIds:Array(51).fill(home.locationId)}),false);
+  assert.equal(matchesLocations(home,{locationIds:Array(MAX_SEARCH_LOCATIONS).fill(home.locationId)}),true);
+  assert.equal(matchesLocations(home,{locationIds:Array(MAX_SEARCH_LOCATIONS+1).fill(home.locationId)}),false);
 });
 
 test('nearby distances cannot relax street-only searches while mixed choices retain area-based proximity',()=>{
@@ -123,8 +123,8 @@ test('API search DTO metadata hydrates street IDs before reading and malformed u
   assert.equal(evaluateMatch({...property,price:60},broken).eligible,false);
 });
 
-test('over fifty raw location IDs stay invalid before duplicate removal in API and demo reads and saves',async()=>{
-  const chosen=streetDemoData.find(street=>street.streetName==='Pozsonyi út'),invalid=Array(51).fill(chosen.id);
+test('over 200 raw location IDs stay invalid before duplicate removal in API and demo reads and saves',async()=>{
+  const chosen=streetDemoData.find(street=>street.streetName==='Pozsonyi út'),invalid=Array(MAX_SEARCH_LOCATIONS+1).fill(chosen.id);
   const query={id:'search',ownerId:'viewer',title:'Érvénytelen ismételt helyszínek',city:'Budapest',locationIds:invalid,locations:[chosen]};
   accountRoutes({properties:[],searchRequests:[query]});
   const remoteModel=api(),remote=(await remoteModel.getState()).searches[0];

@@ -85,7 +85,7 @@ async function verifyViewport(browser, viewport) {
     await page.getByRole('heading', {name: 'Hozd létre a fiókodat.', exact: true}).waitFor();
     await page.locator('#f-name').fill(`Felhős Teszt ${viewport.name}`);
     assert.equal(await page.locator('#f-phone').evaluate(element=>element.required),true);
-    assert.match(await page.locator('#hosted-auth-form').innerText(),/csak azok számára válik láthatóvá, akikkel úgy döntesz, hogy fel akarod venni a kapcsolatot/i);
+    assert.match(await page.locator('#hosted-auth-form').innerText(),/Telefonszámod csak azok számára válik láthatóvá, akikkel Te úgy döntesz, hogy fel akarod venni a kapcsolatot\./);
     await page.locator('#f-phone').fill('+36 30 555 0147');
     await page.locator('#f-email').fill(email);
     await page.locator('#f-password').fill(password);

@@ -23,7 +23,7 @@ public static class SearchLocationIndex
         try
         {
             var ids = LocationCatalog.ForSearch(search).Select(location => location.Id).Distinct(StringComparer.Ordinal).ToArray();
-            return ids.Length is > 0 and <= 50 ? ids : [InvalidLocation];
+            return ids.Length is > 0 and <= LocationCatalog.MaxSearchLocations ? ids : [InvalidLocation];
         }
         catch (JsonException) { return [InvalidLocation]; }
     }

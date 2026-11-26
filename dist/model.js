@@ -1,5 +1,5 @@
 import {assertDescriptionContactFree} from './contact-policy.js';
-import { getLocation, resolveLegacyLocations, isPropertyLocation, registerLocations, searchLocations, searchStreets, resolveStreetLocation, isStreetId } from './locations.js';
+import { MAX_SEARCH_LOCATIONS, getLocation, resolveLegacyLocations, isPropertyLocation, registerLocations, searchLocations, searchStreets, resolveStreetLocation, isStreetId } from './locations.js';
 import {neighborhoodDemoPoints} from './neighborhood-demo-points.js';
 import {streetDemoData} from './street-demo-data.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
@@ -36,7 +36,7 @@ function withLocations(entity, kind, strict = false) {
     }
   } else if (kind === 'search' && Object.hasOwn(entity, 'locationIds') && (strict || entity.locationIds != null)) {
     const ids = Array.isArray(entity.locationIds) ? [...new Set(entity.locationIds)] : [];
-    const tooMany = Array.isArray(entity.locationIds) && entity.locationIds.length > 50;
+    const tooMany = Array.isArray(entity.locationIds) && entity.locationIds.length > MAX_SEARCH_LOCATIONS;
     locations=ids.map(getLocation).filter(Boolean);
     if(strict&&(!ids.length||tooMany||locations.length!==ids.length))throw locationError();
     if(!strict){
@@ -79,6 +79,7 @@ const privatePropertyFields = ['streetId','streetMetadata','streetLocation','str
 const visibleEntity = (entity,users,specificity,viewerId) => {
   if(!entity)return null;
   const result = clone(entity);
+  result.publicListingKey=demoSourceKey(Array.isArray(entity.locationIds)?'search':'property',entity.id);
   delete result.email; delete result.phone;
   for(const field of privatePropertyFields)if(field!=='addressDetails')delete result[field];
   if(entity.ownerId!==viewerId){
@@ -581,6 +582,38 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     feed(options={}) {
       processRefunds();
       return recommendationSnapshot(state,options).items;
+    },
+    getListingContext(kind,key) {
+      processRefunds();
+      const active=own(state,state.active?.kind,state.active?.id),activeKind=state.active?.kind;
+      const candidate=(kind==='property'?state.properties:kind==='search'?state.searches:[]).find(entity=>!entity.archived&&demoSourceKey(kind,entity.id)===key);
+      const empty={active:null,item:null,myDecision:null,matchId:null,compatible:false,isExact:false,compatibilityScore:0,likeCost:0,credits:state.credits,canDecide:false,requiresApproximateConsent:false,hasUnseenExact:false,unavailableReason:null};
+      if(!candidate||!active||active.archived||activeKind===kind||candidate.ownerId===state.userId)return empty;
+      const property=kind==='property'?candidate:active,search=kind==='search'?candidate:active;
+      if(!ownersCanInteract(state,property,search))return empty;
+      const prepared=prepareSearch(search,{perspective:activeKind==='property'?'seller':'buyer'}),evaluation=evaluateDemoMatch(property,prepared);
+      const mine=state.decisions.find(decision=>decision.propertyId===property.id&&decision.searchId===search.id&&decision.actorKind===activeKind);
+      const other=state.decisions.find(decision=>decision.propertyId===property.id&&decision.searchId===search.id&&decision.actorKind!==activeKind&&decision.liked);
+      const match=state.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id),cost=likeCost(state.users.find(user=>user.id===state.userId)?.accountType,activeKind);
+      const item={...visibleEntity(candidate,state.users),kind,pair:{propertyId:property.id,searchId:search.id},score:evaluation.score,isExact:evaluation.isExact,compatible:evaluation.eligible,likedYou:!!other,searchSpecificity:searchSpecificity(prepared),reasons:evaluation.reasons,matchDetails:evaluation.matchDetails};
+      const hasUnseenExact=!evaluation.isExact&&recommendationSnapshot(state).stage==='exact';
+      // Only the owner's active search is copied here; the candidate above is already public-price sanitized.
+      const activeView={...visibleEntity(active,state.users,undefined,state.userId),kind:activeKind};
+      return {...empty,active:activeView,item,myDecision:mine?(mine.liked?'liked':'passed'):null,matchId:match&&getMatch(state,match)?match.id:null,compatible:evaluation.eligible,isExact:evaluation.isExact,compatibilityScore:evaluation.score,likeCost:cost,canDecide:evaluation.eligible&&!mine&&!hasUnseenExact,requiresApproximateConsent:evaluation.eligible&&!evaluation.isExact&&!mine,hasUnseenExact};
+    },
+    getListingMap(kind,key) {
+      const detail=demoPublicListing(kind,key),candidate=(kind==='property'?state.properties:state.searches).find(entity=>demoSourceKey(kind,entity.id)===key);
+      if(kind==='search'){
+        const ids=(candidate?.locationIds||detail.prefill?.locationIds||[]).filter(id=>getLocation(id)&&!isStreetId(id));
+        return {kind,available:ids.length>0,locationIds:ids,externalUrl:null};
+      }
+      const listing=detail.listing;
+      if(listing.hideStreet===false&&listing.hideHouseNumber===false&&listing.street&&listing.houseNumber){
+        const address=[listing.city,listing.district,listing.street,listing.houseNumber,'Magyarország'].filter(Boolean).join(', ');
+        return {kind,available:true,locationIds:[],externalUrl:'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(address)};
+      }
+      const id=candidate?.neighborhoodIds?.find(id=>getLocation(id))||detail.prefill?.locationIds?.find(id=>getLocation(id))||candidate?.locationId;
+      return {kind,available:!!id,locationIds:id?[id]:[],externalUrl:null};
     },
     incomingLikes(options={}) {
       const {offset,limit}=normalizeIncomingPagination(options);

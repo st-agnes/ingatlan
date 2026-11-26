@@ -189,7 +189,7 @@ public sealed class StreetMatchingTests
     }
 
     [Fact]
-    public void InvalidExplicitChoicesNeverBroadenThroughTheLegacyCityAndTheFiftyChoiceCapStillApplies()
+    public void InvalidExplicitChoicesNeverBroadenThroughTheLegacyCityAndTheBoundedChoiceCapStillApplies()
     {
         var street = Street;
         var property = Home(street);
@@ -197,13 +197,13 @@ public sealed class StreetMatchingTests
         invalid.City = street.City;
         Assert.Throws<ApiException>(() => LocationCatalog.ResolveSearchInput(new[] { street.Id, UnknownStreet }, street.City, null));
         Assert.False(Evaluate(property, invalid).Eligible);
-        var fiftyOne = Streets.Take(51).Select(value => value.Id).ToArray();
-        Assert.Throws<ApiException>(() => LocationCatalog.ResolveSearchInput(fiftyOne, street.City, null));
-        Assert.Empty(LocationCatalog.ForSearch(Wanted(fiftyOne)));
-        Assert.False(Evaluate(property, Wanted(fiftyOne)).Eligible);
-        var fifty = fiftyOne.Take(50).ToArray();
-        Assert.Equal(50, LocationCatalog.ResolveSearchInput(fifty, street.City, null).Length);
-        Assert.Equal(fifty, SearchLocationIndex.SelectedIds(Wanted(fifty)));
+        var oversized = Streets.Take(201).Select(value => value.Id).ToArray();
+        Assert.Throws<ApiException>(() => LocationCatalog.ResolveSearchInput(oversized, street.City, null));
+        Assert.Empty(LocationCatalog.ForSearch(Wanted(oversized)));
+        Assert.False(Evaluate(property, Wanted(oversized)).Eligible);
+        var accepted = oversized.Take(200).ToArray();
+        Assert.Equal(200, LocationCatalog.ResolveSearchInput(accepted, street.City, null).Length);
+        Assert.Equal(accepted, SearchLocationIndex.SelectedIds(Wanted(accepted)));
     }
 
     [Fact]
@@ -211,7 +211,7 @@ public sealed class StreetMatchingTests
     {
         var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
         var street = Street;
-        foreach (var ids in new[] { new[] { UnknownStreet }, new[] { street.Id, UnknownStreet }, Streets.Take(51).Select(value => value.Id).ToArray(), Enumerable.Repeat(street.Id, 51).ToArray() })
+        foreach (var ids in new[] { new[] { UnknownStreet }, new[] { street.Id, UnknownStreet }, Streets.Take(201).Select(value => value.Id).ToArray(), Enumerable.Repeat(street.Id, 201).ToArray() })
         {
             var search = Wanted(ids);
             var dto = JsonSerializer.SerializeToElement(Dto.Search(search), options);

@@ -50,7 +50,7 @@ internal static class LandingPrefill
             return document.RootElement.EnumerateArray().Where(value => value.ValueKind == JsonValueKind.Number)
                 .Select(value => value.TryGetDecimal(out var floor) ? floor : decimal.MinValue)
                 .Where(value => value == .5m || value is >= -1 and <= 11 && decimal.Truncate(value) == value)
-                .Select(value => value >= 9m ? 9m : value).Distinct().Take(12).ToArray();
+                .Select(PropertyAttributes.FloorBucket).Distinct().Take(11).ToArray();
         }
         catch (JsonException) { return []; }
     }

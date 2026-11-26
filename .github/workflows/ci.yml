@@ -110,6 +110,7 @@ jobs:
           node tests/attributes.test.mjs
           node tests/contact-policy.test.mjs
           node tests/public-listings.test.mjs
+          node tests/listing-navigation.test.mjs
           node tests/gcp-deployment.test.mjs
           node tests/gcp-verification.test.mjs
           node tests/gcp-ci-validation.test.mjs

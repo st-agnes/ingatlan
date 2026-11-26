@@ -1,7 +1,7 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import {locations} from '../dist/locations.js';
-import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment, fetchLanding, fetchPublicListing, publicListingFromApi, detectLandingRegion } from '../dist/api.js';
+import {locations,MAX_SEARCH_LOCATIONS} from '../dist/locations.js';
+import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment, fetchLanding, fetchPublicListing, publicListingFromApi, detectLandingRegion, getListingMap, listingContextFromApi } from '../dist/api.js';
 
 const creditsTarget={page:'credits',entityKind:null,entityId:null,propertyId:null,searchRequestId:null,matchId:null};
 const exactAddress={street:'Fiktív teszt utca',houseNumber:'12',postalCode:'1234'};
@@ -284,7 +284,7 @@ test('multiselect search attributes serialize as deduplicated arrays and can all
  const calls=routes({'/api/searches':options=>response({id:ids.search,...JSON.parse(options.body)},201)});
  const result=await adapter().saveEntity('search',{title:'Szűrt keresés',locationIds:['city:Budapest'],conditions:['Jó','Felújított','Jó'],buildings:['Panel','Tégla'],constructionAges:['10 évnél fiatalabb','10–30 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m alatti',floors:['-1','0','11']});
  const body=JSON.parse(calls[0].body);
- assert.deepEqual(body.conditions,['Jó','Új/felújított']);assert.deepEqual(body.buildings,['Panel','Tégla']);assert.deepEqual(body.floors,[-1,0,9]);
+ assert.deepEqual(body.conditions,['Jó','Új/felújított']);assert.deepEqual(body.buildings,['Panel','Tégla']);assert.deepEqual(body.floors,[-1,0,8]);
  for(const field of ['conditions','buildings','constructionAges','views','ceilingHeight','floors'])assert.deepEqual(result[field],body[field],field);
  const cleared=await adapter().saveEntity('search',{...result,conditions:[],buildings:[],constructionAges:[],views:[],ceilingHeight:'',floors:[]});
  assert.deepEqual([cleared.conditions,cleared.buildings,cleared.constructionAges,cleared.views,cleared.floors],[[],[],[],[],[]]);assert.equal(cleared.ceilingHeight,'');
@@ -313,10 +313,10 @@ test('area searches post stable compact IDs and retain counted labels on API rea
  assert.equal(saved.locations[1].settlementCount,13);assert.match(saved.locations[1].label,/Debrecen és környéke \(13 település\)/);
 });
 
-test('the API adapter rejects area property locations and over fifty choices before a request',async()=>{
+test('the API adapter rejects area property locations and selections above the shared location limit before a request',async()=>{
  const calls=routes({});const api=adapter();const data={title:'Lakás pontos településsel',locationId:'area:Budapest',city:'Budapest',price:60,area:60,rooms:3};
  await assert.rejects(api.saveEntity('property',{...exactAddress,...data}),/találati listából/);
- const towns=locations.filter(value=>value.kind==='city').slice(0,50).map(value=>value.id);
+ const towns=locations.filter(value=>value.kind==='city').slice(0,MAX_SEARCH_LOCATIONS).map(value=>value.id);
  await assert.rejects(api.saveEntity('search',{title:'Túl sok hely',locationIds:['area:Budapest',...towns]}),/találati listából/);
  assert.equal(calls.length,0);
 });
@@ -799,8 +799,8 @@ test('raised floor and an upper-range choice round-trip without losing old exact
  await assert.rejects(adapter().saveEntity('property',{...base,floor:8,floorIsUpperRange:true}),/9 vagy/);
  const q={title:'Régebbi emeleti keresés',locationIds:['city:Debrecen'],type:'Lakás',floors:[11]};
  const key='1252f520-aefe-4a9c-b1b6-932ef64fe38a';
- const replay=await adapter().saveEntity('search',q,undefined,{creationRequestId:key});assert.deepEqual(JSON.parse(calls[3].body).floors,[11],'A frozen old input keeps its original wire hash');assert.deepEqual(replay.floors,[9]);
- await adapter().saveEntity('search',q);assert.deepEqual(JSON.parse(calls[4].body).floors,[9],'Ordinary writes use the current ninth-plus key');
+ const replay=await adapter().saveEntity('search',q,undefined,{creationRequestId:key});assert.deepEqual(JSON.parse(calls[3].body).floors,[11],'A frozen old input keeps its original wire hash');assert.deepEqual(replay.floors,[8]);
+ await adapter().saveEntity('search',q);assert.deepEqual(JSON.parse(calls[4].body).floors,[8],'Ordinary writes use the current eighth-plus key');
 });
 
 test('ordinary entity writes reject obfuscated description contacts before sending requests while old keyed receipts remain replayable',async()=>{
@@ -903,4 +903,47 @@ test('registration and profile writes require a trimmed phone without sending em
  assert.equal(calls.length,before);
  await api.updateProfile({name:'Telefonszámos Anna',email:'phone@example.hu',phone:' +36 30 555 0188 '});
  assert.equal(JSON.parse(calls.at(-1).body).phone,'+36 30 555 0188');
+});
+
+test('listing context retains authoritative scores, pair identifiers and safe public links',async()=>{
+ const key='property-'+'e'.repeat(64),searchKey='search-'+'d'.repeat(64);
+ const raw={available:true,active:{kind:'search',id:ids.search,title:'Saját keresésem',type:'Lakás',locations:['Budapest'],locationIds:['city:Budapest'],maxPrice:85000000,minArea:50,phone:'PRIVATE-CONTEXT'},
+  item:{property:{...property,publicListingKey:key,addressDetails:{latitude:47.5,provider:'PRIVATE-PROVIDER'}},searchRequest:{...search,publicListingKey:searchKey},compatibilityScore:73,isExact:false,propertyId:ids.property,searchRequestId:ids.search},
+  compatible:true,isExact:false,compatibilityScore:73,myDecision:null,matchId:null,likeCost:2,credits:12,canDecide:true,requiresApproximateConsent:true,hasUnseenExact:false};
+ const calls=routes({['/api/listings/property/'+key+'/context']:raw});
+ const context=await adapter().getListingContext('property',key);
+ assert.equal(context.active.maxPrice,85);assert.equal(context.compatibilityScore,73);assert.equal(context.item.score,73);assert.equal(context.item.price,72.9);
+ assert.equal(context.item.publicListingKey,key);assert.deepEqual(context.item.pair,{propertyId:ids.property,searchId:ids.search});assert.equal(context.canDecide,true);assert.equal(context.requiresApproximateConsent,true);
+ assert.equal(calls[0].headers.Authorization,'Bearer sample-token');assert.doesNotMatch(JSON.stringify(context),/PRIVATE-CONTEXT|PRIVATE-PROVIDER|latitude/);
+ assert.equal(listingContextFromApi('property',{...raw,hasUnseenExact:true}).canDecide,false);
+ assert.equal(listingContextFromApi('property',{...raw,myDecision:'liked'}).canDecide,false);
+ assert.equal(listingContextFromApi('property',{...raw,available:false}).canDecide,false);
+ assert.equal(listingContextFromApi('property',{...raw,item:{...raw.item,property:{...property,publicListingKey:searchKey}}}).item.publicListingKey,null);
+ assert.equal(listingContextFromApi('property',{...raw,active:{...raw.active,kind:'property'}}).canDecide,false);
+ await assert.rejects(adapter().getListingContext('property','search-'+'d'.repeat(64)),/hirdetés/);
+});
+
+test('listing map descriptors use an anonymous endpoint and whitelist geometry references or a Google address link',async()=>{
+ globalThis.OTTHONRA_CONFIG={mode:'api'};globalThis.location={origin:'https://dev.otthonra.hu'};
+ const key='property-'+'e'.repeat(64),place=locations.find(item=>item.kind==='city');
+ assert.ok(place);
+ let value={kind:'property',available:true,locationIds:[place.id,place.id,'street-not-public','not-a-location'],externalUrl:null,latitude:47.5,privateAddress:'PRIVATE-ADDRESS'};
+ const calls=routes({['/api/public/listings/property/'+key+'/map']:()=>response(value)});
+ let map=await getListingMap('property',key);assert.deepEqual(map,{kind:'property',available:true,locationIds:[place.id],externalUrl:null});assert.equal(calls[0].headers.Authorization,undefined);
+ value={...value,locationIds:[],externalUrl:'https://www.google.com/maps/search/?api=1&query=Budapest%20N%C3%A1dor%20utca%2012'};
+ map=await getListingMap('property',key);assert.equal(map.available,true);assert.match(map.externalUrl,/google\.com\/maps\/search/);
+ for(const externalUrl of ['javascript:alert(1)','https://evil.test/maps?token=PRIVATE','https://www.google.com.evil.test/maps','https://user:secret@www.google.com/maps','https://www.google.com/search']){
+  value={...value,externalUrl};assert.equal((await getListingMap('property',key)).available,false);
+ }
+ value={kind:'search',available:false,locationIds:[]};assert.equal((await getListingMap('property',key)).available,false);
+ await assert.rejects(getListingMap('property','../secret'),/hirdetés/);
+});
+
+test('configured API map reads retain their API origin without attaching the private session token',async()=>{
+ const key='property-'+'e'.repeat(64),place=locations.find(item=>item.kind==='city');
+ let captured;
+ globalThis.OTTHONRA_CONFIG=undefined;
+ globalThis.fetch=async(url,options)=>{captured={url,options};return response({kind:'property',available:true,locationIds:[place.id]});};
+ const map=await adapter().getListingMap('property',key);
+ assert.equal(captured.url,`https://api.example.hu/api/public/listings/property/${key}/map`);assert.equal(captured.options.headers.Authorization,undefined);assert.equal(map.available,true);
 });

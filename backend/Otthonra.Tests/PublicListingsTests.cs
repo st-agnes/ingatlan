@@ -100,7 +100,7 @@ public class PublicListingsTests
         Assert.Equal(JsonValueKind.Null, clone.GetProperty("maxArea").ValueKind);
         Assert.Equal(2.5m, clone.GetProperty("minRooms").GetDecimal());
         Assert.Equal(JsonValueKind.Null, clone.GetProperty("maxRooms").ValueKind);
-        Assert.Equal(new[] { .5m, 9m }, clone.GetProperty("floors").EnumerateArray().Select(value => value.GetDecimal()));
+        Assert.Equal(new[] { .5m, 8m }, clone.GetProperty("floors").EnumerateArray().Select(value => value.GetDecimal()));
         Assert.Equal(new[] { "Gázkazán / cirkó" }, clone.GetProperty("heatingTypes").EnumerateArray().Select(value => value.GetString()));
         Assert.Equal("exclude", clone.GetProperty("atticPreference").GetString());
         Assert.Equal("C", clone.GetProperty("minEnergyRating").GetString());

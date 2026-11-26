@@ -6,5 +6,12 @@
 .location-map-list{margin:0 14px 9px;font-size:12px}.location-map-list>summary{cursor:pointer;padding:5px 0;color:#315443;min-height:30px}.location-map-options{display:flex;flex-wrap:wrap;gap:6px;max-height:180px;overflow:auto;padding:5px 2px 7px}.location-map-list-note{font-size:12px;color:var(--muted,#69766f);margin:4px 0}
 .location-map .location-map-option{display:block;max-width:100%;min-height:34px;padding:7px 10px;border:1px solid #b8cbbc;border-radius:8px;background:#fff;color:#315443;font:inherit;font-size:12px;line-height:1.45;text-align:left;overflow-wrap:anywhere;cursor:pointer}.location-map .location-map-option:hover{background:#edf3ed}.location-map .location-map-option.is-selected{border-color:#c6623e;background:#fae5d9;color:#914a31}.location-map .location-map-option.is-selected:before{content:'✓ ';font-weight:700}.location-map .location-map-option:focus-visible{outline:3px solid #d47750;outline-offset:2px}
 .landing-location-layout .location-map-canvas{height:310px}
+.listing-location-page .location-map{margin:0;display:flex;flex-direction:column;height:100%;min-height:440px}
+.listing-location-page .location-map .location-map-canvas{height:min(65dvh,660px);min-height:320px;flex:1}
+.listing-location-page .location-map-heading,.listing-location-page .location-map-status{flex:none}
+.location-map-readonly .location-map-overlay{position:absolute;z-index:2;top:54px;left:58px;right:12px;display:grid;justify-items:start;gap:8px;pointer-events:none}
+.location-map-readonly .location-map-overlay .location-map-status{width:fit-content;max-width:100%;min-height:0;padding:8px 10px;border:1px solid #d8e0d4;border-radius:8px;background:#fffdf4f2;box-shadow:0 2px 9px #263c251a}
+.location-map-readonly .location-map-overlay .location-map-status:empty{display:none}
+.location-map-readonly .location-map-overlay .location-map-retry{max-width:100%;margin:0;pointer-events:auto;box-shadow:0 2px 9px #263c251a}
 @media(max-width:600px){.location-map .location-map-canvas{height:270px}.landing-location-layout .location-map-canvas{height:270px}.location-map-heading{padding:10px 11px}.location-map-status{padding:9px 11px}}
 @media(prefers-reduced-motion:reduce){.location-map *{scroll-behavior:auto!important}}

@@ -253,7 +253,7 @@ public class PublicLandingTests
         Assert.Equal(search.MaxPrice, seed.MaxPrice); Assert.Equal(search.MinArea, seed.MinArea);
         Assert.Equal(new[] { "Jó" }, seed.Conditions); Assert.Equal(new[] { "Panel" }, seed.Buildings);
         Assert.Equal(new[] { "10–30 év közötti" }, seed.ConstructionAges); Assert.Equal(new[] { "Udvari" }, seed.Views);
-        Assert.Equal(new[] { -1m, 0m, 9m }, seed.Floors); Assert.Equal(new[] { "Gázkazán / cirkó" }, seed.HeatingTypes);
+        Assert.Equal(new[] { -1m, 0m, 8m }, seed.Floors); Assert.Equal(new[] { "Gázkazán / cirkó" }, seed.HeatingTypes);
         Assert.True(seed.Balcony); Assert.False(seed.Elevator);
         Assert.DoesNotContain("private@example.test", JsonSerializer.Serialize(seed));
     }
@@ -282,14 +282,14 @@ public class PublicLandingTests
     [Fact]
     public void PrefillNestedListsStayBoundedAndMalformedOptionalDataDoesNotBreakTheLanding()
     {
-        var ids = LocationCatalog.All.Where(location => location.Kind == "city").Take(50).Select(location => location.Id).ToArray();
+        var ids = LocationCatalog.All.Where(location => location.Kind == "city").Take(LocationCatalog.MaxSearchLocations).Select(location => location.Id).ToArray();
         var search = SearchAt(ids);
         search.ConditionsJson = JsonSerializer.Serialize(Enumerable.Repeat("Jó", 200));
         search.BuildingsJson = "{broken"; search.ConstructionAgesJson = "null"; search.ViewsJson = "42";
         search.HeatingTypesJson = JsonSerializer.Serialize(new[] { new string('x', 9000) });
         search.FloorsJson = JsonSerializer.Serialize(Enumerable.Range(-100, 300));
         var seed = PublicLanding.SearchTeaser(search, AccountTypes.Private)!.Value.Teaser.Prefill!;
-        Assert.Equal(50, seed.Locations.Length); Assert.Single(seed.Conditions);
+        Assert.Equal(LocationCatalog.MaxSearchLocations, seed.Locations.Length); Assert.Single(seed.Conditions);
         Assert.Empty(seed.Buildings); Assert.Empty(seed.ConstructionAges); Assert.Empty(seed.Views); Assert.Empty(seed.HeatingTypes);
         Assert.InRange(seed.Floors.Length, 0, 12);
         search.LocationIdsJson = JsonSerializer.Serialize(ids.Append("district:Budapest:5"));

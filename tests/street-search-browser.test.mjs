@@ -5,7 +5,7 @@ import {mkdir,readFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {editorField,editorSave,editorStep,choosePropertyType,selectedLocationText,fillRoomBound} from './editor-browser-helpers.mjs';
-import {getLocation,searchLocations,registerLocations} from '../dist/locations.js';
+import {getLocation,searchLocations,registerLocations,MAX_SEARCH_LOCATIONS} from '../dist/locations.js';
 
 const street=(digit,streetName,city,postalCodes,district=null)=>({id:`street:${digit.repeat(24)}`,label:`${streetName} (${city}${district?' '+district+' kerület':''})`,city,district,kind:'street',streetName,postalCodes,settlementCount:null});
 const csapo=street('a','Csapó utca','Debrecen',['4024','4029']);
@@ -13,6 +13,7 @@ const sameName=street('b','Csapó utca','Nyíregyháza',['4400']);
 const unique=street('c','Fő utca','Debrecen',['4024']);
 const budapest=street('d','Teszt köz','Budapest',['1051'],'V.');
 const fixtures=[csapo,sameName,unique,budapest];
+const boundedStreets=Array.from({length:MAX_SEARCH_LOCATIONS+1},(_,index)=>({...csapo,id:`street:${(index+1).toString(16).padStart(24,'0')}`,label:`Teszt ${index+1} utca (Debrecen)`}));
 const settle=async()=>{for(let index=0;index<24;index++)await Promise.resolve();};
 
 // The offline mode reuses the existing small DOM fixture without running its
@@ -59,9 +60,13 @@ async function offline(){
  capital.ui.openEditor('property');chooseLocation(capital,'city:Budapest');type(capital.document.getElementById('f-street'),'Teszt');capital.runTimers();await settle();pick(capital.document.getElementById('street-options'),budapest.id);assert.match(capital.document.getElementById('location-chips').innerHTML,/Budapest V\. kerület/);submitEntity(capital,{...values,street:budapest.streetName,postalCode:'1051'});await settle();assert.equal(saved.locationId,'district:Budapest:5');assert.equal(saved.streetId,budapest.id);
 
  const bounded=await setup({hosted:true,authenticated:true,captureTimers:true,apiOverrides:{findLocations:async query=>[{...csapo,id:`street:${Number(query).toString(16).padStart(24,'0')}`,label:`Teszt ${query} utca (Debrecen)`}]}});
- bounded.ui.openEditor('search');const boundedInput=bounded.document.getElementById('location-input'),boundedList=bounded.document.getElementById('location-options');
- for(let index=1;index<=51;index++){type(boundedInput,String(index));bounded.runTimers();await settle();pick(boundedList,`street:${index.toString(16).padStart(24,'0')}`);}
- assert.equal((bounded.document.getElementById('location-chips').innerHTML.match(/data-remove-location=/g)||[]).length,50);assert.match(bounded.document.getElementById('location-error').textContent,/50/);
+ registerLocations(boundedStreets);
+ const boundedState=bounded.ui.getModelState(),preloaded=boundedStreets.slice(0,MAX_SEARCH_LOCATIONS-1);
+ boundedState.searches.push({id:'bounded-search',ownerId:boundedState.user.id,title:'Majdnem kétszáz utca',type:'Lakás',locationIds:preloaded.map(item=>item.id),locations:preloaded});bounded.model.getState=()=>boundedState;
+ bounded.ui.openEditor('search','bounded-search');const boundedInput=bounded.document.getElementById('location-input'),boundedList=bounded.document.getElementById('location-options');
+ assert.equal((bounded.document.getElementById('location-chips').innerHTML.match(/data-remove-location=/g)||[]).length,MAX_SEARCH_LOCATIONS-1,'Existing street metadata hydrates without hundreds of repeated DOM updates');
+ for(const index of [MAX_SEARCH_LOCATIONS,MAX_SEARCH_LOCATIONS+1]){type(boundedInput,String(index));bounded.runTimers();await settle();pick(boundedList,`street:${index.toString(16).padStart(24,'0')}`);}
+ assert.equal((bounded.document.getElementById('location-chips').innerHTML.match(/data-remove-location=/g)||[]).length,MAX_SEARCH_LOCATIONS);assert.ok(bounded.document.getElementById('location-error').textContent.includes(String(MAX_SEARCH_LOCATIONS)));
 
  let requests=0,releaseClosed;
  const failure=await setup({hosted:true,authenticated:true,captureTimers:true,apiOverrides:{findLocations:()=>++requests===1?Promise.reject(new Error('offline')):new Promise(resolve=>{releaseClosed=resolve;})}});
@@ -98,7 +103,7 @@ async function browserTests(){
     const query=url.searchParams.get('q')||'',scope=url.searchParams.get('locationId'),kind=url.searchParams.get('kind');lookupCalls.push({path,query,scope,kind});
     if(query==='lassú')return new Promise(resolve=>pending.push(async()=>{await reply([csapo]);resolve();}));
     if(query==='hiba'&&failNext){failNext=false;return reply({message:'Átmeneti teszthiba'},503);}
-    if(path==='/api/locations')return reply(/csap|hiba/i.test(query)?[csapo,sameName]:searchLocations(query,12,{kind:kind||'search'}));
+    if(path==='/api/locations')return reply(query==='kapacitás'?[boundedStreets.at(-1)]:/csap|hiba/i.test(query)?[csapo,sameName]:searchLocations(query,12,{kind:kind||'search'}));
     const location=getLocation(scope),candidates=fixtures.filter(item=>item.city===location?.city&&(!location.district||item.district===location.district));
     return reply(candidates.filter(item=>item.streetName.toLocaleLowerCase('hu').includes(query.toLocaleLowerCase('hu'))));
    }
@@ -134,7 +139,13 @@ async function browserTests(){
    await interact(page.locator('[data-action="edit"][data-kind="property"][data-id="property-1"]'));assert.equal(await page.locator('#f-street').inputValue(),'Fő utca');await query('lassú',true);await page.waitForTimeout(250);await query('Nyíregyháza');await choose('city:Nyíregyháza');for(const release of pending.splice(0))await release();assert.equal(await page.locator('#street-options').isHidden(),true);assert.equal(await page.locator('#f-street').inputValue(),'lassú');assert.equal(await page.locator('#f-houseNumber').inputValue(),'12/A');
    await query('Csapó',true);await choose(sameName.id,true);await query('Szabadon megadott új köz',true);await page.locator('#f-street').press('Escape');assert.equal(await page.locator('#street-options').isHidden(),true);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});assert.equal(writes.at(-1).streetId??null,null);assert.equal(writes.at(-1).street,'Szabadon megadott új köz');assert.equal(writes.at(-1).locationId,'city:Nyíregyháza');
    await open('property');await query('Budapest');await choose('city:Budapest');await query('Teszt',true);await choose(budapest.id,true);assert.match(await page.locator('#location-chips').innerText(),/Budapest V\. kerület/);assert.equal(await page.locator('#f-postalCode').inputValue(),'1051');await query('lassú',true);await page.waitForTimeout(250);await close();for(const release of pending.splice(0))await release();assert.equal(await page.locator('#entity-form').count(),0);
-   assert.ok(lookupCalls.filter(call=>call.path==='/api/streets').every(call=>call.scope),'Every street request must have an exact selected location scope');assert.deepEqual(errors,[]);console.log(`Street browser ${viewport.name}: search selection/hydration, races/retry, canonical/private address payloads, city and Budapest district scope, postcodes and free text passed.`);
+   searches.push({...searches[0],id:'bounded-search',title:'Kétszáz kiválasztott utca',locationIds:boundedStreets.slice(0,MAX_SEARCH_LOCATIONS).map(item=>item.id),locations:boundedStreets.slice(0,MAX_SEARCH_LOCATIONS)});
+   await page.goto(`${origin}/#searches`,{waitUntil:'domcontentloaded'});await interact(page.locator('[data-action="edit"][data-kind="search"][data-id="bounded-search"]'));
+   assert.equal(await page.locator('#location-chips [data-remove-location]').count(),MAX_SEARCH_LOCATIONS,'An existing 200-location search hydrates every selected street');
+   await query('kapacitás');await choose(boundedStreets.at(-1).id);
+   assert.equal(await page.locator('#location-chips [data-remove-location]').count(),MAX_SEARCH_LOCATIONS,'The 201st street cannot bypass the bounded selection');
+   assert.ok((await page.locator('#location-error').innerText()).includes(String(MAX_SEARCH_LOCATIONS)));await close();
+   assert.ok(lookupCalls.filter(call=>call.path==='/api/streets').every(call=>call.scope),'Every street request must have an exact selected location scope');assert.deepEqual(errors,[]);console.log(`Street browser ${viewport.name}: search selection/hydration, races/retry, canonical/private address payloads, city and Budapest district scope, postcodes, free text and 200-location cap passed.`);
   }catch(error){await mkdir(resolve('.local/browser-tests/screenshots'),{recursive:true});await page.screenshot({path:resolve(`.local/browser-tests/screenshots/street-search-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;}
   finally{for(const release of pending.splice(0))await release().catch(()=>{});await context.close();}
  }}finally{await browser.close();}

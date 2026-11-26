@@ -14,8 +14,8 @@ test('attribute choices cover every requested category and the floor buckets inc
   assert.deepEqual(CONDITION_OPTIONS,['Felújítandó','Átlagos','Jó','Új/felújított']);
   assert.equal(BUILDING_OPTIONS.length,12);assert.equal(CONSTRUCTION_AGE_OPTIONS.length,5);
   assert.equal(VIEW_OPTIONS.length,4);assert.equal(CEILING_HEIGHT_OPTIONS.length,2);
-  assert.deepEqual(FLOOR_OPTIONS.map(option=>option.value),[-1,0,0.5,1,2,3,4,5,6,7,8,9]);
-  assert.equal(FLOOR_OPTIONS.at(-1).label,'9 vagy afölötti');
+  assert.deepEqual(FLOOR_OPTIONS.map(option=>option.value),[-1,0,0.5,1,2,3,4,5,6,7,8]);
+  assert.equal(FLOOR_OPTIONS.at(-1).label,'8 vagy afölötti');
 });
 
 test('legacy known condition labels normalize while unknown old text is retained on reads',()=>{
@@ -43,9 +43,9 @@ test('unselected filters accept old incomplete property data, but selected ones 
   }
 });
 
-test('floor buckets preserve zero, reject unknown floors and include every floor above nine',()=>{
-  for(const floor of [9,10,11,12,20,200])assert.equal(attributesCompatible({floor},{floors:[11]}),true);
-  for(const floor of [null,undefined,-2,0,8])assert.equal(attributesCompatible({floor},{floors:[11]}),false);
+test('floor buckets preserve zero, reject unknown floors and include every floor at or above eight',()=>{
+  for(const selected of [8,9,10,11])for(const floor of [8,9,10,11,12,20,200])assert.equal(attributesCompatible({floor},{floors:[selected]}),true);
+  for(const floor of [null,undefined,-2,0,7])assert.equal(attributesCompatible({floor},{floors:[11]}),false);
   assert.equal(attributesCompatible({floor:0},{floors:[0]}),true);
   assert.equal(attributesCompatible({floor:-1},{floors:[-1]}),true);
   assert.equal(attributesCompatible({floor:null},{floors:[0]}),false);
@@ -56,7 +56,7 @@ test('normalizers deduplicate selections, canonicalize aliases, preserve unrelat
   const before=structuredClone(input),result=normalizeSearchAttributes(input,{strict:true});
   assert.deepEqual(input,before);assert.equal(result.id,'same-id');
   assert.deepEqual(result.conditions,['Jó','Új/felújított']);assert.deepEqual(result.buildings,['Panel']);
-  assert.deepEqual(result.views,['Udvari']);assert.deepEqual(result.floors,[0,9]);
+  assert.deepEqual(result.views,['Udvari']);assert.deepEqual(result.floors,[0,8]);
   assert.equal(normalizeSearchAttributes({condition:'Bármilyen'}).conditions.length,0);
 });
 
@@ -226,7 +226,7 @@ test('raised ground and grouped upper floors preserve exact legacy values and to
  assert.equal(normalizePropertyAttributes({floor:12},{strict:true}).floorIsUpperRange,false);
  assert.throws(()=>normalizePropertyAttributes({floor:8,floorIsUpperRange:true},{strict:true}),/9 vagy/);
  assert.throws(()=>normalizePropertyAttributes({floor:1.5},{strict:true}),/emelet/);
- assert.deepEqual(normalizeSearchAttributes({floors:[9,10,11,0.5]},{strict:true}).floors,[9,0.5]);
+ assert.deepEqual(normalizeSearchAttributes({floors:[8,9,10,11,0.5]},{strict:true}).floors,[8,0.5]);
  assert.equal(normalizePropertyAttributes({type:'Ház',floor:9,floorIsUpperRange:true},{strict:true}).floorIsUpperRange,false);
 });
 
@@ -271,4 +271,14 @@ test('attic restrictions require an explicit seller fact and are ignored for a w
   assert.equal(attributesCompatible({type:'Lakás',isAttic},{type:'Lakás',atticPreference}),expected);
  assert.equal(normalizeSearchAttributes({type:'Ház',atticPreference:'only'},{strict:true}).atticPreference,'');
  assert.throws(()=>normalizeSearchAttributes({atticPreference:'maybe'},{strict:true}),/tetőtéri/);
+});
+
+test('an attic choice is an alternative to selected floors while exclusions remain independent',()=>{
+ const search={type:'Lakás',floors:[3],atticPreference:'only'};
+ for(const property of [{floor:3,isAttic:false},{floor:3,isAttic:null},{floor:7,isAttic:true},{isAttic:true}])assert.equal(attributesCompatible(property,search),true,JSON.stringify(property));
+ for(const property of [{floor:2,isAttic:false},{floor:2},{isAttic:null}])assert.equal(attributesCompatible(property,search),false,JSON.stringify(property));
+ assert.equal(attributesCompatible({floor:3,isAttic:true},{...search,atticPreference:'exclude'}),false);
+ assert.equal(attributesCompatible({floor:3,isAttic:false},{...search,atticPreference:'exclude'}),true);
+ assert.equal(attributesCompatible({floor:0,isAttic:true},{...search,excludeGroundFloorAndBelow:true}),false);
+ assert.equal(attributesCompatible({floor:7,buildingFloors:7,isAttic:true},{...search,excludeTopFloor:true}),false);
 });

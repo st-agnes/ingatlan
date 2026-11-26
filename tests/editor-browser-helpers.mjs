@@ -96,11 +96,18 @@ export async function setConstructionAge(page, value, interact) {
 }
 
 export async function setAtticPreference(page, value, interact) {
-  const choice = await editorField(page, `input[name="atticPreference"][value="${value || ''}"]`, interact);
-  assert.equal(await choice.getAttribute('type'), 'radio');
-  await press(page, page.locator('label').filter({has: choice}), interact);
-  assert.equal(await choice.isChecked(), true);
-  assert.equal(await page.locator('input[name="atticPreference"]:checked').count(), 1, 'Only/except attic restrictions are mutually exclusive');
+  await editorStep(page, 3, interact);
+  const backing = page.locator('#f-atticPreference');
+  const choice = value ? page.locator(value === 'only' ? '#f-atticOnly' : '#f-atticExclude') : backing;
+  for (const [id, wanted] of [['f-atticOnly', value === 'only'], ['f-atticExclude', value === 'exclude']]) {
+    const checkbox = page.locator('#' + id);
+    assert.equal(await checkbox.getAttribute('type'), 'checkbox');
+    if (await checkbox.isChecked() !== wanted) await press(page, page.locator('label').filter({has: checkbox}), interact);
+  }
+  assert.equal(await backing.inputValue(), value || '');
+  assert.equal(await page.locator('#f-atticOnly:checked,#f-atticExclude:checked').count(), value ? 1 : 0, 'Attic inclusion and exclusion remain mutually exclusive');
+  assert.equal(await page.locator('#floors-group .attribute-choices label:last-child input').getAttribute('id'), 'f-atticOnly', 'Attic is the final choice in the floor grid');
+  assert.equal(await page.locator('#floors-group input[type="radio"]').count(), 0, 'No extra no-restriction radio occupies the floor section');
   return choice;
 }
 
@@ -172,6 +179,14 @@ export async function assertBuildingSelectors(page, interact) {
   assert.deepEqual((await values('buildingFloors')).sort(), ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'other'].sort());
   assert.equal(await page.locator('.building-selector-height .building-stack').evaluate(element=>getComputedStyle(element).borderLeftStyle),'dashed','Building height uses a dashed outline');
   assert.equal(await page.locator('.building-selector-floor .building-stack').evaluate(element=>getComputedStyle(element).borderLeftStyle),'solid','The exact floor is drawn within a solid building');
+  assert.equal(await page.locator('.building-selector-height .building-stack').evaluate(element=>getComputedStyle(element).borderBottomStyle),'solid','Only the sides and upper outline are dashed');
+  assert.equal(await page.locator('.building-selector-roof svg').count(),2,'Both buildings have a drawn roof');
+  assert.equal(await page.locator('.building-selector .building-ground-tree').count(),6,'Both diagrams illustrate the ground level with trees');
+  const surfaceBounds=await page.locator('.building-ground-line').evaluateAll(lines=>lines.map(line=>{const surface=line.getBoundingClientRect(),column=line.closest('.numbered-building-group').getBoundingClientRect();return {left:surface.left,right:surface.right,columnLeft:column.left,columnRight:column.right};}));
+  assert.ok(surfaceBounds.every(box=>box.left>=box.columnLeft-1&&box.right<=box.columnRight+1),'Surface lines and trees have reserved side gutters, including beside the tablet sidebar');
+  const ground=await page.locator('.building-selector-floor .building-ground-level').boundingBox(),basement=await rows('floor').filter({hasText:'Szuterén'}).boundingBox();
+  assert.ok(ground&&basement&&basement.y>=ground.y+ground.height-1,'The basement sits below the surface line');
+  if(page.viewportSize().width>720){const heightGround=await page.locator('.building-selector-height .building-ground-level').boundingBox();assert.ok(heightGround&&Math.abs(heightGround.y-ground.y)<=1,'Side-by-side diagrams share one ground level');}
   for (const name of ['floor', 'buildingFloors']) {
     const boxes = await rows(name).evaluateAll(buttons => buttons.map(button => {const box = button.getBoundingClientRect(); return {value:button.dataset.buildingNumberValue, tag:button.tagName, left:box.left, top:box.top, right:box.right, bottom:box.bottom, width:box.width, text:button.innerText};}));
     assert.ok(boxes.every(box => box.tag === 'BUTTON' && box.width > 50 && box.bottom - box.top >= 24), 'Every drawn floor is a real, readable click target');

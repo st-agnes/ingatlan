@@ -21,6 +21,26 @@ test('buyer like is free; contacts appear only after a reciprocal like',()=>{
  assert.ok(result.match.partner.email);assert.equal(m.matches().length,4);
  const noReciprocal=m.feed().find(p=>!p.likedYou);assert.equal(m.decide(noReciprocal,true).match,null);
 });
+test('a public detail context evaluates its own pair and retains the decision and price perspective',()=>{
+ const m=setup(),card=m.feed()[1],context=m.getListingContext('property',card.publicListingKey);
+ assert.deepEqual(context.item.pair,card.pair);assert.equal(context.compatibilityScore,card.score);assert.equal(context.canDecide,true);assert.equal(context.likeCost,0);
+ assert.equal(context.active.kind,'search');assert.equal(context.active.id,m.getState().active.id);
+ m.decide(context.item,false);const handled=m.getListingContext('property',card.publicListingKey);
+ assert.equal(handled.myDecision,'passed');assert.equal(handled.canDecide,false);
+ m.activate('property','own-p1');const incoming=m.feed()[0],seller=m.getListingContext('search',incoming.publicListingKey);
+ assert.equal(seller.active.kind,'property');assert.equal(seller.item.maxPrice,incoming.maxPrice);assert.equal(seller.likeCost,2);
+ assert.equal(m.getListingContext('property',card.publicListingKey).active,null,'An active same-kind profile cannot decide against the listing');
+});
+test('a detail context honors exact-first consent, agent restrictions and address visibility',()=>{
+ const storage=store(),m=createModel(storage),initial=m.feed()[0];m.activate('search',m.getState().active.id);const raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ const property=raw.properties.find(item=>item.id===initial.id);property.price=500;property.hideStreet=true;property.hideHouseNumber=true;
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));const current=createModel(storage),partial=current.getListingContext('property',initial.publicListingKey);
+ assert.equal(partial.isExact,false);assert.equal(partial.hasUnseenExact,true);assert.equal(partial.canDecide,false);assert.equal(partial.requiresApproximateConsent,true);
+ const outline=current.getListingMap('property',initial.publicListingKey);assert.equal(outline.available,true);assert.equal(outline.externalUrl,null);assert.ok(outline.locationIds.length);
+ assert.doesNotMatch(JSON.stringify(outline),/99999|latitude|longitude|addressDetails|formattedAddress|provider/i);
+ const street=raw.properties.find(item=>item.id===initial.id);street.hideStreet=false;street.hideHouseNumber=false;storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+ const unchanged=createModel(storage).getListingMap('property',initial.publicListingKey);assert.equal(unchanged.externalUrl,null,'The fictional public catalogue never exposes an address from a visitor-private demo mutation');
+});
 test('seller is charged exactly once for a compatible like and passing is free',()=>{
  const m=setup();m.activate('property','own-p1');const first=m.feed()[0];assert.ok(first);
  const before=m.getState().credits;assert.equal(m.decide(first,true).charged,2);assert.equal(m.getState().credits,before-2);
@@ -118,7 +138,7 @@ test('new optional property data and multiselect filters persist without turning
  const q=m.saveEntity('search',{title:'Részletes keresési igény',locationIds:['district:Budapest:13'],conditions:['Jó','Átlagos'],buildings:['Panel','Tégla'],constructionAges:['10–30 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',floors:[0,11]});
  const again=createModel(storage),saved=again.getState().properties.find(item=>item.id===p.id),savedSearch=again.getState().searches.find(item=>item.id===q.id);
  for(const field of ['condition','building','constructionAge','view','ceilingHeight','floor','heatingType','insulated','energyRating','airConditioning','solarPanels','parkingType'])assert.deepEqual(saved[field],p[field],field);
- assert.deepEqual(savedSearch.conditions,['Jó','Átlagos']);assert.deepEqual(savedSearch.floors,[0,9]);
+ assert.deepEqual(savedSearch.conditions,['Jó','Átlagos']);assert.deepEqual(savedSearch.floors,[0,8]);
  const blank=again.saveEntity('property',{...exactAddress,title:'Opcionális mezők nélkül',locationId:'city:Debrecen',type:'Lakás',price:40,area:50,rooms:2});
  assert.deepEqual([blank.condition,blank.building,blank.floor,blank.insulated,blank.airConditioning,blank.solarPanels],['','',null,null,null,null]);
  const cleared=again.saveEntity('property',{...exactAddress,...p,condition:'',building:'',constructionAge:'',view:'',ceilingHeight:'',floor:'',insulated:'',airConditioning:'',solarPanels:''},p.id);
@@ -166,11 +186,11 @@ test('city areas remain compact saved search choices and reload without resettin
  assert.equal(isCompatible({ownerId:'seller',type:'Lakás',locationId:'city:Szeged',price:101,area:60,rooms:3},q),false);
 });
 
-test('a region is one of at most fifty search selections and cannot be saved as a property',()=>{
- const m=setup(),towns=locations.filter(value=>value.kind==='city').slice(0,50).map(value=>value.id);
- const fifty=['area:Budapest',...towns.slice(0,49)];
- const q=m.saveEntity('search',{title:'Ötven kiválasztott hely',locationIds:fifty});assert.deepEqual(q.locationIds,fifty);
- assert.throws(()=>m.saveEntity('search',{title:'Túl sok hely',locationIds:[...fifty,towns[49]]}),/találati listából/);
+test('a region can expand into up to two hundred search selections and cannot be a property',()=>{
+ const m=setup(),towns=locations.filter(value=>value.kind==='city').slice(0,200).map(value=>value.id);
+ const fifty=['area:Budapest',...towns.slice(0,199)];
+ const q=m.saveEntity('search',{title:'Kétszáz kiválasztott hely',locationIds:fifty});assert.deepEqual(q.locationIds,fifty);
+ assert.throws(()=>m.saveEntity('search',{title:'Túl sok hely',locationIds:[...fifty,towns[199]]}),/találati listából/);
  assert.throws(()=>m.saveEntity('property',{...exactAddress,title:'Nem pontos hirdetési hely',locationId:'area:Budapest',city:'Budapest',district:'XIII.',price:80,area:60,rooms:3}),/találati listából/);
  assert.equal(getLocation('area:Budapest').settlementCount,81);
 });
@@ -794,7 +814,7 @@ test('demo raised and upper-range floors survive storage while a cleared move-in
  const exact=m.saveEntity('property',{...base,title:'Pontos magas emelet',floor:12,buildingFloors:12});
  const q=m.saveEntity('search',{title:'Emeleti otthont keresek',locationIds:['city:Debrecen'],type:'Lakás',floors:[0.5,11],moveIn:''});
  const state=createModel(storage).getState();assert.equal(state.properties.find(x=>x.id===p.id).floor,0.5);assert.equal(state.properties.find(x=>x.id===upper.id).floorIsUpperRange,true);assert.equal(state.properties.find(x=>x.id===exact.id).floor,12);
- assert.deepEqual(state.searches.find(x=>x.id===q.id).floors,[0.5,9]);assert.equal(state.searches.find(x=>x.id===q.id).moveIn,'');
+ assert.deepEqual(state.searches.find(x=>x.id===q.id).floors,[0.5,8]);assert.equal(state.searches.find(x=>x.id===q.id).moveIn,'');
  const before=state.searches.length;assert.throws(()=>m.saveEntity('search',{title:'Kapcsolatos hibás keresés',locationIds:['city:Debrecen'],description:'Anna kukac pelda pont hu'}),/Elérhetőséget/);assert.equal(m.getState().searches.length,before);
 });
 

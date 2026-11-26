@@ -10,6 +10,7 @@ public sealed record Location(string Id, string Label, string City, string? Dist
 /// <summary>The same versioned, local municipality and city-area catalogues are used by the web and API.</summary>
 public static class LocationCatalog
 {
+    public const int MaxSearchLocations = 200;
     private static readonly string[] Romans = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII"];
     private sealed record CatalogueData(Location[] Locations, Dictionary<string, HashSet<string>> AreaMembers);
     private static readonly Lazy<CatalogueData> Catalogue = new(Load);
@@ -110,7 +111,7 @@ public static class LocationCatalog
             if (legacy.Length == 0) throw new ApiException(400, "Válassz legalább egy helyszínt a listából.");
             return legacy;
         }
-        if (ids.Length is 0 or > 50) throw new ApiException(400, "Legalább egy, legfeljebb 50 helyszínt választhatsz.");
+        if (ids.Length is 0 or > MaxSearchLocations) throw new ApiException(400, $"Legalább egy, legfeljebb {MaxSearchLocations} helyszínt választhatsz.");
         var result = ids.Select(Get).ToArray();
         if (result.Any(x => x is null)) throw new ApiException(400, "A kiválasztott helyszín nem található a településlistában.");
         return result.Select(x => x!).DistinctBy(x => x.Id).ToArray();
@@ -129,7 +130,7 @@ public static class LocationCatalog
     public static Location[] ForSearch(SearchRequest search)
     {
         var ids = Dto.Strings(search.LocationIdsJson);
-        if (ids.Length > 50) return [];
+        if (ids.Length > MaxSearchLocations) return [];
         if (ids.Length > 0)
         {
             var result = ids.Select(Get).ToArray();

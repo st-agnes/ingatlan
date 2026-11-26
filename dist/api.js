@@ -4,7 +4,7 @@ import {publicFirstName,publicTitle} from './public-profile.js';
 import {FEEDBACK_OPTIONS,FEEDBACK_PACKAGE_SIZES,FEEDBACK_QUESTION,feedbackTitle} from './feedback.js';
 import { regions } from './regions-data.js';
 import {searchSpecificity} from './matching.js';
-import { getLocation, resolveLegacyLocations, isPropertyLocation, registerLocations, isStreetId, streetBelongsToLocation } from './locations.js';
+import { getLocation, MAX_SEARCH_LOCATIONS, resolveLegacyLocations, isPropertyLocation, registerLocations, isStreetId, streetBelongsToLocation } from './locations.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,normalizeReportReason,normalizeIncomingPagination,REPORT_REASON_OPTIONS} from './accounts.js';
 import {sanitizeTeaserPrefill,originFromListing,prefillFromSearchClone} from './onboarding.js';
@@ -126,13 +126,13 @@ function entityLocations(value, kind, strict = false) {
   const uniqueIds = ids == null ? null : [...new Set(ids)];
   const legacyEmpty = !strict && uniqueIds != null && (uniqueIds.length === 0 || kind === 'property' && uniqueIds.length === 1 && (uniqueIds[0] == null || typeof uniqueIds[0] === 'string' && !uniqueIds[0].trim()));
   const malformedSearchIds = kind === 'search' && value.locationIds != null
-    && (!Array.isArray(value.locationIds) || value.locationIds.length > 50);
+    && (!Array.isArray(value.locationIds) || value.locationIds.length > MAX_SEARCH_LOCATIONS);
   let selected = malformedSearchIds ? [] : uniqueIds == null || legacyEmpty
     ? resolveLegacyLocations(kind === 'search' ? {...value, districts:inputStrings(value.districts)} : value)
     : uniqueIds.map(getLocation).filter(Boolean);
   if(kind === 'search' && uniqueIds?.length && selected.length !== uniqueIds.length) selected=[];
   const locations = kind === 'property' ? selected.filter(isPropertyLocation) : selected;
-  if (strict && (!locations.length || (kind === 'search' && locations.length > 50)
+  if (strict && (!locations.length || (kind === 'search' && locations.length > MAX_SEARCH_LOCATIONS)
       || (uniqueIds != null && locations.length !== uniqueIds.length))) throw new Error('Válassz érvényes települést vagy budapesti kerületet a találati listából.');
   return locations;
 }
@@ -154,7 +154,7 @@ function propertyFromApi(value, own = false) {
   const visibleStreet=!hideStreet?inputText(value.street):'',visibleNumber=!hideHouseNumber?inputText(value.houseNumber):'';
   const publicAddress=visibleStreet?[visibleStreet,visibleNumber].filter(Boolean).join(' '):!hideStreet&&!hideHouseNumber?inputText(value.address):'';
   return normalizePropertyAttributes({
-    id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType), ownerFirstName:publicFirstName(value.ownerFirstName),
+    id: String(value.id), publicListingKey:originFromListing('property',value.publicListingKey)?.key??null, ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType), ownerFirstName:publicFirstName(value.ownerFirstName),
     title: value.title || '', locationId:location?.id ?? declaredId ?? '', location:clone(location), city: location?.city ?? value.city ?? '', district: location ? location.district || '' : value.district ?? '', neighborhood: value.neighborhood || '', address: own ? value.address || '' : publicAddress,hideStreet,hideHouseNumber,...(!own&&!hideStreet?{street:visibleStreet,...(!hideHouseNumber?{houseNumber:visibleNumber}:{})}:{}), description: value.description || '', createdAt: value.createdAt,
     neighborhoodIds: [...new Set((Array.isArray(value.neighborhoodIds) ? value.neighborhoodIds : []).filter(id => getLocation(id)?.kind === 'neighborhood'))],
     ...(own ? {addressDetails:privateAddressFromApi(value.addressDetails)} : {}),
@@ -177,7 +177,7 @@ function searchFromApi(value,own=false) {
   const declaredIds = value.locationIds != null ? clone(value.locationIds) : Array.isArray(value.locations) ? value.locations.map(location=>location?.id) : null;
   const locationIds = declaredIds == null || Array.isArray(declaredIds) && !declaredIds.length ? locations.map(location=>location.id) : declaredIds;
   const search = normalizeSearchAttributes({
-    id: String(value.id), ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType), ownerFirstName:publicFirstName(value.ownerFirstName),
+    id: String(value.id), publicListingKey:originFromListing('search',value.publicListingKey)?.key??null, ownerId: String(value.ownerId ?? value.userId ?? ''), ownerAccountType:normalizeAccountType(value.ownerAccountType), ownerFirstName:publicFirstName(value.ownerFirstName),
     title: value.title || '', locationIds, locations:clone(locations), city: locations[0]?.city ?? value.city ?? '', districts: locations.filter(location=>location.city===locations[0]?.city&&location.district).map(location=>location.district), description: value.description || '', moveIn: value.moveIn || '', buyerName: value.buyerName || '', financing: value.financing || '', avatar: value.avatar || '', createdAt: value.createdAt,
     type: value.type || value.propertyType || 'Lakás',
     minPrice: millions(value.minPriceHuf ?? value.minPrice ?? null), maxPrice: millions(!own&&value.publicMaxPrice!=null?value.publicMaxPrice:value.maxPriceHuf ?? value.maxPrice ?? null),
@@ -427,6 +427,18 @@ export class ApiModel {
       stage:['exact','approximate','empty'].includes(response?.stage)?response.stage:items.length?'exact':'empty'};
   }
   async feed(options={}) { return (await this.recommendations(options)).items; }
+  async getListingContext(kind,key,{signal}={}) {
+    if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
+    const value=await this.call(`/listings/${kind}/${key}/context`,'GET',undefined,{signal});
+    requireCurrentRead(signal);
+    return listingContextFromApi(kind,value);
+  }
+  async getListingMap(kind,key,{signal}={}) {
+    if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
+    const value=await request(this.baseUrl,null,`/public/listings/${kind}/${key}/map`,'GET',undefined,{signal});
+    requireCurrentRead(signal);
+    return listingMapFromApi(kind,value);
+  }
   async incomingLikes(options={}) {
     const {offset,limit}=normalizeIncomingPagination(options);
     const query=new URLSearchParams({offset:String(offset),limit:String(limit)});
@@ -587,7 +599,7 @@ export function publicListingFromApi(kind,key,value,{pricesInHuf=true}={}) {
       images:(Array.isArray(source.images)?source.images:[]).slice(0,12).map(value=>!pricesInHuf&&typeof value==='string'&&/^\/assets\/[a-z0-9._/-]+$/i.test(value)?value:publicImage(value)).filter(Boolean)};
   }else{
     const s=normalizeSearchAttributes(source);
-    const locations=Array.isArray(source.locations)?source.locations.slice(0,50):[];
+    const locations=Array.isArray(source.locations)?source.locations.slice(0,MAX_SEARCH_LOCATIONS):[];
     listing={...common,locations:locations.map(item=>typeof item==='string'?item:inputText(item?.label)).filter(Boolean),minPrice:price(source.minPrice),maxPrice:price(source.publicMaxPrice??source.maxPrice),minArea:nullableNumber(source.minArea),maxArea:nullableNumber(source.maxArea),minRooms:nullableNumber(source.minRooms),maxRooms:nullableNumber(source.maxRooms),
       conditions:s.conditions,buildings:s.buildings,constructionAges:s.constructionAges,views:s.views,ceilingHeight:s.ceilingHeight,floors:s.floors,heatingTypes:s.heatingTypes,atticPreference:s.atticPreference,minEnergyRating:s.minEnergyRating,
       excludeTopFloor:s.excludeTopFloor,excludeGroundFloorAndBelow:s.excludeGroundFloorAndBelow,airConditioning:s.airConditioning,privateGarden:s.privateGarden,balcony:source.balcony===true,elevator:source.elevator===true,moveIn:inputText(source.moveIn),financing:inputText(source.financing)};
@@ -605,12 +617,53 @@ export async function fetchPublicListing(kind,key,{signal}={}) {
   return publicListingFromApi(kind,key,await request(hostedApiBase(),null,`/public/listings/${kind}/${key}`,'GET',undefined,{signal}));
 }
 
+/** The authenticated endpoint computes eligibility and scores; public details cannot be rescored safely. */
+export function listingContextFromApi(kind,value={}) {
+  const raw=value.active,active=raw&&['property','search'].includes(raw.kind)&&typeof raw.id==='string'&&raw.id?{
+    kind:raw.kind,id:raw.id,title:inputText(raw.title),type:inputText(raw.type),
+    locations:(Array.isArray(raw.locations)?raw.locations:[]).map(location=>typeof location==='string'?location:inputText(location?.label)).filter(Boolean),
+    locationIds:(Array.isArray(raw.locationIds)?raw.locationIds:[]).filter(id=>typeof id==='string'&&getLocation(id)),
+    price:millions(nullableNumber(raw.price)),minPrice:millions(nullableNumber(raw.minPrice)),maxPrice:millions(nullableNumber(raw.maxPrice)),
+    minArea:nullableNumber(raw.minArea),maxArea:nullableNumber(raw.maxArea),minRooms:nullableNumber(raw.minRooms),maxRooms:nullableNumber(raw.maxRooms)
+  }:null;
+  const item=active&&active.kind!==kind&&value.item?candidateFromApi(value.item,active.kind):null;
+  const hasPair=!!(item?.pair.propertyId&&item?.pair.searchId),myDecision=['liked','passed'].includes(value.myDecision)?value.myDecision:null;
+  const score=nullableNumber(value.compatibilityScore??item?.score),hasUnseenExact=value.hasUnseenExact===true;
+  const reasons=new Set(['no_active_profile','opposite_profile_required','own_listing','agent_pair_forbidden','incompatible','exact_matches_remaining','already_liked','already_passed','already_matched']);
+  return {active,item,available:value.available!==false,myDecision,matchId:typeof value.matchId==='string'?value.matchId:null,
+    compatible:value.compatible===true,isExact:value.isExact===true,compatibilityScore:score==null?null:Math.max(0,Math.min(100,Math.round(score))),
+    likeCost:Math.max(0,nullableNumber(value.likeCost)??0),credits:Math.max(0,nullableNumber(value.credits)??0),
+    canDecide:value.available!==false&&value.canDecide===true&&value.compatible===true&&!!active&&active.kind!==kind&&hasPair&&!myDecision&&!hasUnseenExact,
+    requiresApproximateConsent:value.requiresApproximateConsent===true,hasUnseenExact,unavailableReason:reasons.has(value.unavailableReason)?value.unavailableReason:null};
+}
+export async function getListingContext(kind,key,options={}) {
+  if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
+  const model=getModel();
+  return typeof model?.getListingContext==='function'?model.getListingContext(kind,key,options):null;
+}
+function listingMapFromApi(kind,value) {
+  const locationIds=[...new Set((Array.isArray(value?.locationIds)?value.locationIds:[]).filter(id=>typeof id==='string'&&getLocation(id)&&!isStreetId(id)))];
+  let externalUrl=null;
+  if(typeof value?.externalUrl==='string')try{
+    const url=new URL(value.externalUrl);
+    if(url.protocol==='https:'&&['google.com','www.google.com','maps.google.com'].includes(url.hostname)&&!url.username&&!url.password&&url.pathname.startsWith('/maps'))externalUrl=url.href;
+  }catch{/* An invalid external URL never becomes a navigation target. */}
+  return {kind,available:value?.available===true&&!!(externalUrl||locationIds.length),locationIds,externalUrl};
+}
+export async function getListingMap(kind,key,{signal}={}) {
+  if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
+  const value=hostedMode()?await request(hostedApiBase(),null,`/public/listings/${kind}/${key}/map`,'GET',undefined,{signal})
+    :typeof demoModel.getListingMap==='function'?await demoModel.getListingMap(kind,key,{signal}):null;
+  requireCurrentRead(signal);
+  return listingMapFromApi(kind,value);
+}
+
 function landingFromApi(value) {
   const region=regionById(value?.region?.id);
   const publicType=value=>['Lakás','Ház','Telek','Nyaraló','Garázs','Iroda','Üzlethelyiség','Egyéb'].includes(value)?value:'Ingatlan';
   return {
     regions:regions.map(region=>({...region})),region:clone(region),scope:region?'region':'national',
-    searches:rows(value?.searches).slice(0,16).map((item,index)=>({key:String(item.key??`search-${index+1}`),sourceKey:originFromListing('search',item.sourceKey)?.key??null,href:publicListingHref('search',item.sourceKey),title:publicTitle(item.title,'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,50),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.publicMaxPrice??item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('search',item.prefill,{pricesInHuf:true})})),
+    searches:rows(value?.searches).slice(0,16).map((item,index)=>({key:String(item.key??`search-${index+1}`),sourceKey:originFromListing('search',item.sourceKey)?.key??null,href:publicListingHref('search',item.sourceKey),title:publicTitle(item.title,'Ingatlant keresnek'),type:publicType(item.type),locations:(Array.isArray(item.locations)?item.locations:[]).filter(location=>typeof location==='string').slice(0,MAX_SEARCH_LOCATIONS),minPrice:millions(nullableNumber(item.minPrice)),maxPrice:millions(nullableNumber(item.publicMaxPrice??item.maxPrice)),minArea:nullableNumber(item.minArea),maxArea:nullableNumber(item.maxArea),minRooms:nullableNumber(item.minRooms),maxRooms:nullableNumber(item.maxRooms),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('search',item.prefill,{pricesInHuf:true})})),
     properties:rows(value?.properties).slice(0,8).map((item,index)=>({key:String(item.key??`property-${index+1}`),sourceKey:originFromListing('property',item.sourceKey)?.key??null,href:publicListingHref('property',item.sourceKey),image:publicImage(item.image),title:publicTitle(item.title,'Eladó ingatlan'),type:publicType(item.type),location:String(item.location||''),price:millions(nullableNumber(item.price)),area:nullableNumber(item.area),wholeRooms:nullableNumber(item.wholeRooms),halfRooms:nullableNumber(item.halfRooms),rooms:nullableNumber(item.rooms),lotArea:nullableNumber(item.lotArea),ownerAccountType:normalizeAccountType(item.ownerAccountType),ownerFirstName:publicFirstName(item.ownerFirstName),prefill:sanitizeTeaserPrefill('property',item.prefill,{pricesInHuf:true})}))
   };
 }

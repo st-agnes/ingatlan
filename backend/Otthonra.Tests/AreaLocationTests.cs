@@ -93,7 +93,28 @@ public class AreaLocationTests
         var accepted = LocationCatalog.ResolveSearchInput(
             new[] { "area:Budapest" }.Concat(LocationCatalog.All.Where(place => place.Kind == "city").Take(49).Select(place => place.Id)).ToArray(), null, null);
         Assert.Equal(50, accepted.Length);
-        Assert.Throws<ApiException>(() => LocationCatalog.ResolveSearchInput(Enumerable.Repeat("area:Budapest", 51).ToArray(), null, null));
+        Assert.Throws<ApiException>(() => LocationCatalog.ResolveSearchInput(Enumerable.Repeat("area:Budapest", 201).ToArray(), null, null));
+    }
+
+    [Fact]
+    public void ExpandingBudapestAreaKeepsAllEightyOneConcreteTownsSearchableAndIndexed()
+    {
+        using var data = Data();
+        var members = data.RootElement.GetProperty("areas").EnumerateArray()
+            .Single(area => area.GetProperty("id").GetString() == "area:Budapest")
+            .GetProperty("settlements").EnumerateArray().Select(value => "city:" + value.GetString()).ToArray();
+        Assert.Equal(81, members.Length);
+        Assert.Equal(members, LocationCatalog.ResolveSearchInput(members, null, null).Select(row => row.Id));
+        var search = new SearchRequest { OwnerId = Buyer };
+        Rules.Apply(search, InputAt(members));
+        Assert.Equal(members, SearchLocationIndex.SelectedIds(search));
+        Assert.Equal(81, LocationCatalog.ForSearch(search).Length);
+        Assert.All(members, id => Assert.True(Rules.Compatible(PropertyAt(id), search)));
+        Assert.False(Rules.Compatible(PropertyAt("city:Debrecen"), search));
+        var reduced = members.Where(id => id != "city:Solymár").ToArray();
+        Rules.Apply(search, InputAt(reduced));
+        Assert.False(Rules.Compatible(PropertyAt("city:Solymár"), search));
+        Assert.True(Rules.Compatible(PropertyAt("city:Budapest"), search));
     }
 
     [Fact]

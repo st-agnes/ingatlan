@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdir, readFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {getLocation, searchLocations} from '../dist/locations.js';
+import {getLocation, searchLocations, locations, MAX_SEARCH_LOCATIONS, expandLocationSelections} from '../dist/locations.js';
 import {neighborhoods} from '../dist/neighborhoods-data.js';
 import {editorField, editorSave, editorStep, choosePropertyType,fillRoomBound} from './editor-browser-helpers.mjs';
 import {mockMapTiles} from './map-browser-network.mjs';
@@ -587,14 +587,15 @@ async function failuresAndStaleReads(browser, viewport) {
 async function narrowingAtLimit(browser, viewport) {
   const f = await fixture(browser, viewport, {authenticated: true}), {page, server} = f;
   await inspect(f, viewport, 'limit', async () => {
-    const others = extraLocations.map(item => item.id); server.searches[0].locationIds = [city.id, ...others]; server.searches[0].locations = server.searches[0].locationIds.map(getLocation);
+    const mappedTowns=new Set(towns.map(town=>town.id));
+    const others = [...extraLocations.map(item => item.id),...locations.filter(item=>item.kind==='city'&&!mappedTowns.has(item.id)).slice(0,MAX_SEARCH_LOCATIONS-1-extraLocations.length).map(item=>item.id)]; server.searches[0].locationIds = [city.id, ...others]; server.searches[0].locations = server.searches[0].locationIds.map(getLocation);
     await page.goto(`${origin}/#searches`, {waitUntil: 'domcontentloaded'}); await interact(viewport, page.locator(`[data-action="edit"][data-kind="search"][data-id="${searchId}"]`)); const map = await readyMap(page, '#search-location-map'); await zoomTo(map, viewport, 13); await centerTarget(map, tocoskert.id);
-    assert.equal(await page.locator('#location-chips .location-chip').count(), 50); await clickLabel(map, tocoskert.id, viewport);
-    assert.equal(await page.locator('#location-chips .location-chip').count(), 50); assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, tocoskert.id).count(), 1); assert.equal(await page.locator('#location-error').innerText(), '');
-    await removeChip(page, viewport, others[0]); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); await centerTarget(map, tocoskert.id); assert.equal(await page.locator('#location-chips .location-chip').count(), 50);
-    await clickLabel(map, tocoskert.id, viewport); assert.equal(await page.locator('#location-chips .location-chip').count(), 49); assert.equal(await chip(page, tocoskert.id).count(), 0); assert.equal(await chip(page, city.id).count(), 1);
-    await clickLabel(map, tocoskert.id, viewport); assert.equal(await page.locator('#location-chips .location-chip').count(), 49); assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, tocoskert.id).count(), 1); assert.equal(await chip(page, others[1]).count(), 1);
-    console.log('Neighborhood map limit desktop: named replacement at50, exact removal, retained offscreen choices and re-add narrowing passed.');
+    assert.equal(await page.locator('#location-chips .location-chip').count(), MAX_SEARCH_LOCATIONS); await clickLabel(map, tocoskert.id, viewport);
+    assert.equal(await page.locator('#location-chips .location-chip').count(), MAX_SEARCH_LOCATIONS); assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, tocoskert.id).count(), 1); assert.equal(await page.locator('#location-error').innerText(), '');
+    await removeChip(page, viewport, others[0]); await chooseText(page, viewport, city.id, 'Debrecen'); await zoomTo(map, viewport, 13); await centerTarget(map, tocoskert.id); assert.equal(await page.locator('#location-chips .location-chip').count(), MAX_SEARCH_LOCATIONS);
+    await clickLabel(map, tocoskert.id, viewport); assert.equal(await page.locator('#location-chips .location-chip').count(), MAX_SEARCH_LOCATIONS-1); assert.equal(await chip(page, tocoskert.id).count(), 0); assert.equal(await chip(page, city.id).count(), 1);
+    await clickLabel(map, tocoskert.id, viewport); assert.equal(await page.locator('#location-chips .location-chip').count(), MAX_SEARCH_LOCATIONS-1); assert.equal(await chip(page, city.id).count(), 0); assert.equal(await chip(page, tocoskert.id).count(), 1); assert.equal(await chip(page, others[1]).count(), 1);
+    console.log('Neighborhood map limit desktop: named replacement at200, exact removal, retained offscreen choices and re-add narrowing passed.');
   });
 }
 
@@ -685,6 +686,7 @@ async function responsiveSelections(browser, viewport) {
       const map = await readyMap(page, landing ? '#landing-location-map' : '#search-location-map');
       if (landing) await chooseText(page, viewport, city.id, 'Debrecen', {landing});
       const initial = await assertPickerLayout(page, viewport, {landing});
+      if(viewport.width<768)assert.equal(await page.locator(inputChips(landing)+' .location-selection-more').isVisible(),false,'A single fitting location has no redundant count');
       for (const id of ids.slice(1)) await chooseText(page, viewport, id, getLocation(id).city, {landing});
       await waitMapPaint(map);
       const filled = await assertPickerLayout(page, viewport, {landing}), chips = page.locator(inputChips(landing));
@@ -692,7 +694,7 @@ async function responsiveSelections(browser, viewport) {
       if (viewport.width < 768) {
         assert.ok(Math.abs(initial.mapTop - filled.mapTop) <= 1, 'Adding many mobile places never pushes the working map downward');
         const toggle = chips.locator('[data-location-selection-toggle]'), more = chips.locator('.location-selection-more');
-        assert.equal(await toggle.isVisible(), true); assert.equal(await more.isVisible(), true); assert.match(await more.innerText(), /\+\s*\d+\s+helyszín/);
+        assert.equal(await toggle.isVisible(), true); assert.equal(await more.isVisible(), true); assert.match(await more.innerText(), /\(\d+\s+helyszín\)/);
         const names = chips.locator('.location-selection-names');
         assert.equal(await names.evaluate(element => getComputedStyle(element).whiteSpace), 'nowrap', 'Selected names never wrap onto a second mobile row');
         assert.ok(await names.evaluate(element => parseFloat(getComputedStyle(element).fontSize)) <= 12, 'The mobile selection summary uses compact text');
@@ -718,9 +720,67 @@ async function responsiveSelections(browser, viewport) {
   }
 }
 
+async function agglomerationSelection(browser, viewport) {
+  const f=await fixture(browser,viewport,{authenticated:true}),{page,server}=f;
+  await inspect(f,viewport,'agglomeration',async()=>{
+    const group='area:Debrecen',member='city:Hajdúsámson',unrelated='city:Solymár';
+    server.searches[0].locationIds=[group,unrelated];server.searches[0].locations=[group,unrelated].map(getLocation);
+    await page.goto(`${origin}/#searches`,{waitUntil:'domcontentloaded'});
+    await interact(viewport,page.locator(`[data-action="edit"][data-kind="search"][data-id="${searchId}"]`));
+    const map=await readyMap(page,'#search-location-map');
+    assert.equal(await page.locator('#location-chips .location-chip').count(),2,'Unedited groups remain compact in the picker');
+    await centerTarget(map,member);await zoomTo(map,viewport,17);await assertOutline(map,member);
+    const selected=await map.locator('.location-map-canvas').evaluate((element,id)=>element.__mapBrowserInstance.getFeatureState({source:'otthonra-places',id}).selected,member);
+    assert.equal(selected,true,'A member label is selected through its compact agglomeration');
+    await clickLabel(map,member,viewport);
+    const expected=expandLocationSelections([group,unrelated]).filter(id=>id!==member).sort();
+    assert.deepEqual((await page.locator('#location-chips [data-remove-location]').evaluateAll(nodes=>nodes.map(node=>node.dataset.removeLocation))).sort(),expected);
+    await assertOutline(map,member,false);await clickLabel(map,member,viewport);await assertOutline(map,member);
+    assert.equal(await chip(page,group).count(),0,'Adding a removed town back retains concrete editable choices');
+    assert.equal(await chip(page,unrelated).count(),1,'Map group edits preserve unrelated choices');
+    console.log(`Neighborhood map agglomeration ${viewport.name}: selected member label/outline, materialized removal and restoration passed.`);
+  });
+}
+
+async function readOnlyListingMap(browser,viewport){
+  const f=await fixture(browser,viewport),{page}=f;
+  await inspect(f,viewport,'readonly-listing',async()=>{
+    await page.goto(`${origin}/#landing`,{waitUntil:'domcontentloaded'});await page.locator('#landing-results[aria-busy="false"]').waitFor();
+    await page.evaluate(async()=>{
+      document.getElementById('app').innerHTML='<main class="listing-location-page"><div id="readonly-listing-map" style="height:600px"></div></main>';
+      const [{createLocationMap},{getLocation}]=await Promise.all([import('/location-map.js'),import('/locations.js')]);
+      window.__readonlyListingMap=createLocationMap(document.getElementById('readonly-listing-map'),{selectedIds:['area:Debrecen','city:Solymár'],getLocation,readOnly:true});
+    });
+    const map=await readyMap(page,'#readonly-listing-map');
+    for(const id of [city.id,'city:Hajdúsámson',solymar.id])await assertOutline(map,id);
+    const framed=await map.locator('.location-map-canvas').evaluate((element,{boxes})=>{
+      const map=element.__mapBrowserInstance,bounds=map.getBounds();
+      return {allVisible:boxes.every(box=>bounds.contains([box[0],box[1]])&&bounds.contains([box[2],box[3]])),text:map.getLayoutProperty('otthonra-place-labels','text-field')};
+    },{boxes:[debrecenBounds,solymarBounds]});
+    assert.equal(framed.allVisible,true,'A read-only map initially frames every chosen region, including an unrelated town');
+    assert.deepEqual(framed.text,['get','name'],'Read-only labels do not offer an add affordance');
+    assert.equal(await map.locator('.location-map-list').isVisible(),false);
+    const transientHeights=await map.evaluate(element=>{
+      const canvas=element.querySelector('.location-map-canvas'),status=element.querySelector('.location-map-status'),retry=element.querySelector('.location-map-retry'),previous=status.textContent;
+      const height=()=>canvas.getBoundingClientRect().height,empty=height();
+      status.textContent='A kiválasztott helyszínek körvonalának betöltése folyamatban van. '.repeat(5);
+      const loading=height(),message=status.getBoundingClientRect().height;retry.hidden=false;const error=height();
+      retry.hidden=true;status.textContent=previous;return{empty,loading,error,restored:height(),message};
+    });
+    assert.ok(transientHeights.message>18,'The real loading overlay has measurable multiline content');
+    for(const state of ['loading','error','restored'])assert.ok(Math.abs(transientHeights[state]-transientHeights.empty)<=1,`${state} status must not change canvas height or start a resize/fetch cycle`);
+    const settledHeight=(await map.locator('.location-map-canvas').boundingBox()).height;
+    await centerTarget(map,city.id);await zoomTo(map,viewport,17);await clickLabel(map,city.id,viewport);await assertOutline(map,city.id);
+    assert.ok(Math.abs((await map.locator('.location-map-canvas').boundingBox()).height-settledHeight)<=1,'Loading and clearing read-only map status preserves canvas height, avoiding resize/fetch loops');
+    assert.doesNotMatch(await map.innerText(),/hozzáadva|eltávolítva|sikerült hozzáadni/,'Viewing a public listing never edits the viewer\'s search selection');
+    await page.evaluate(()=>window.__readonlyListingMap.destroy());
+    console.log('Neighborhood map readonly desktop: all selected regions framed, group member boundaries and non-mutating labels passed.');
+  });
+}
+
 const browser = await chromium.launch({headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE ? {executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE} : {}), args: ['--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader']}); let failed = 0;
 try {
-  for (const viewport of viewports) for (const test of [landingSelection, disjointZoomLevels, budapestZoomLevels, ownedWizard, anonymousDraft, responsiveSelections]) try {await test(browser, viewport);} catch (error) {failed++; console.error(`${test.name} ${viewport.name}: ${error.stack || error}`);}
-  for (const test of [failuresAndStaleReads, narrowingAtLimit, realLibertyStyle, allSelectedTownOutlines, coincidentCityAndQuarter]) try {await test(browser, viewports[0]);} catch (error) {failed++; console.error(`${test.name} desktop: ${error.stack || error}`);}
+  for (const viewport of viewports) for (const test of [landingSelection, disjointZoomLevels, budapestZoomLevels, ownedWizard, anonymousDraft, responsiveSelections, agglomerationSelection]) try {await test(browser, viewport);} catch (error) {failed++; console.error(`${test.name} ${viewport.name}: ${error.stack || error}`);}
+  for (const test of [failuresAndStaleReads, narrowingAtLimit, realLibertyStyle, allSelectedTownOutlines, coincidentCityAndQuarter, readOnlyListingMap]) try {await test(browser, viewports[0]);} catch (error) {failed++; console.error(`${test.name} desktop: ${error.stack || error}`);}
 } finally {await browser.close();}
 if (failed) process.exitCode = 1;
