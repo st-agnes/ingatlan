@@ -561,6 +561,10 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     container.classList.add('location-map-readonly');
     container.querySelector('.location-map-heading strong').textContent = 'A hirdetés helyszínei';
     canvas.setAttribute('aria-label', 'A hirdetés helyszíneinek térképe');
+    // Loading/error UI must not resize the canvas and trigger another outline
+    // request, particularly when a large selection exceeds the file LRU.
+    const overlay = document.createElement('div'); overlay.className = 'location-map-overlay';
+    status.before(overlay); overlay.append(status, retry);
   }
   const visible = () => !disposed && !document.hidden && canvas.getBoundingClientRect().width > 0 && canvas.getBoundingClientRect().height > 0;
   const tell = message => { if (!disposed && status.textContent !== message) status.textContent = message; };

@@ -49,6 +49,7 @@ if (process.argv[3] === '--verify') {
   const searchBody={title:'Több opcionális választás API-próbája',city:'Budapest',locationIds:['district:Budapest:13'],type:'Lakás',minPrice:null,maxPrice:100000000,minArea:40,maxArea:null,minRooms:2.5,maxRooms:null,balcony:false,elevator:false,conditions:['Átlagos','Jó'],buildings:['Tégla','Panel'],constructionAges:['10–30 év közötti','31–40 év közötti'],views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',floors:[11],excludeTopFloor:true,excludeGroundFloorAndBelow:true,airConditioning:true,privateGarden:true,sharedGarden:true};
   const property=await call('/properties',{token:seller,method:'POST',body:propertyBody,status:201});
   const search=await call('/searches',{token:buyer,method:'POST',body:searchBody,status:201});
+  assert.deepEqual(search.floors,[8],'A legacy upper-floor selection must normalize to the current eighth-or-above bucket');
   assert.equal(property.sharedGarden,null);assert.equal(search.sharedGarden,false,'Legacy clients may send the removed field without restricting the search');
   const excluded=[];
   for(const change of [{condition:'Felújítandó'},{building:'Vályog'},{constructionAge:'Több mint 50 éves'},{view:'Udvari'},{ceilingHeight:'3 m alatti'},{floor:3},{buildingFloors:12},{buildingFloors:null},{airConditioning:false},{privateGarden:false}]) {
@@ -75,7 +76,7 @@ if (process.argv[3] === '--verify') {
   assert.ok(upperFeed.items.every(item=>![unknown,...lower].some(home=>home.id===item.propertyId)),'Unknown, ground and basement floors cannot be perfect matches for the exclusion');
   await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:search.id}});
   const duplicate=await call('/searches/'+search.id,{token:buyer,method:'PUT',body:{...searchBody,conditions:['Jó','Jó'],floors:[11,11]}});
-  assert.deepEqual(duplicate.conditions,['Jó']);assert.deepEqual(duplicate.floors,[9]);
+  assert.deepEqual(duplicate.conditions,['Jó']);assert.deepEqual(duplicate.floors,[8]);
   await call('/searches/'+search.id,{token:buyer,method:'PUT',body:searchBody});
   for(const field of ['condition','building','constructionAge','view','ceilingHeight']) await call('/properties',{token:seller,method:'POST',body:{...propertyBody,[field]:'Ismeretlen opció'},status:400});
   for(const buildingFloors of [-1,201,1.5,11])await call('/properties',{token:seller,method:'POST',body:{...propertyBody,buildingFloors},status:400});
@@ -93,5 +94,5 @@ if (process.argv[3] === '--verify') {
   await verify(fixture);
   await mkdir(dirname(fixturePath),{recursive:true});
   await writeFile(fixturePath,JSON.stringify(fixture),{mode:0o600});await chmod(fixturePath,0o600);
-  console.log('Attribute API integration passed: optional persistence, OR/AND filters, missing data exclusion, validation, clearing, false/null and floor 11+; incompatible decisions rejected.');
+  console.log('Attribute API integration passed: optional persistence, OR/AND filters, missing data exclusion, validation, clearing, false/null and the 8+ search bucket; incompatible decisions rejected.');
 }

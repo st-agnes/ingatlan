@@ -760,6 +760,15 @@ async function readOnlyListingMap(browser,viewport){
     assert.equal(framed.allVisible,true,'A read-only map initially frames every chosen region, including an unrelated town');
     assert.deepEqual(framed.text,['get','name'],'Read-only labels do not offer an add affordance');
     assert.equal(await map.locator('.location-map-list').isVisible(),false);
+    const transientHeights=await map.evaluate(element=>{
+      const canvas=element.querySelector('.location-map-canvas'),status=element.querySelector('.location-map-status'),retry=element.querySelector('.location-map-retry'),previous=status.textContent;
+      const height=()=>canvas.getBoundingClientRect().height,empty=height();
+      status.textContent='A kiválasztott helyszínek körvonalának betöltése folyamatban van. '.repeat(5);
+      const loading=height(),message=status.getBoundingClientRect().height;retry.hidden=false;const error=height();
+      retry.hidden=true;status.textContent=previous;return{empty,loading,error,restored:height(),message};
+    });
+    assert.ok(transientHeights.message>18,'The real loading overlay has measurable multiline content');
+    for(const state of ['loading','error','restored'])assert.ok(Math.abs(transientHeights[state]-transientHeights.empty)<=1,`${state} status must not change canvas height or start a resize/fetch cycle`);
     const settledHeight=(await map.locator('.location-map-canvas').boundingBox()).height;
     await centerTarget(map,city.id);await zoomTo(map,viewport,17);await clickLabel(map,city.id,viewport);await assertOutline(map,city.id);
     assert.ok(Math.abs((await map.locator('.location-map-canvas').boundingBox()).height-settledHeight)<=1,'Loading and clearing read-only map status preserves canvas height, avoiding resize/fetch loops');

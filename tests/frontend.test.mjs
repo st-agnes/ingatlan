@@ -13,6 +13,7 @@ import * as onboardingHelpers from '../dist/onboarding.js';
 import * as contactPolicy from '../dist/contact-policy.js';
 import * as energyRatingHelpers from '../dist/energy-rating.js';
 import * as publicListingHelpers from '../dist/public-listings.js';
+import {fetchPublicListing as fetchApiPublicListing} from '../dist/api.js';
 
 
 const publicSourceKey=(kind,character='a')=>kind+'-'+character.repeat(64);
@@ -2415,6 +2416,25 @@ test('a public search can seed either a full matching search draft or a distinct
  const identity=draft.id;t.document.getElementById('f-maxPrice').value='135';formInputEvent(t,t.document.getElementById('f-maxPrice'),'input');assert.equal(storedOnboarding(t).data.maxPrice,'135');
  t.ctx.location.hash='#listing/search/'+key;await t.ui.render();await t.click({action:'onboarding-copy-search',source:key});draft=storedOnboarding(t);assert.equal(draft.id,identity);assert.equal(draft.data.maxPrice,'135');
  t.ctx.location.hash='#listing/search/'+key;await t.ui.render();await t.click({action:'onboarding-start',kind:'property',source:key});draft=storedOnboarding(t);assert.equal(draft.kind,'property');assert.notEqual(draft.id,identity);assert.equal(draft.data.type,'Ház');assert.ok(draft.data.price==null||draft.data.price==='','A ranged search cannot invent an exact seller price');assert.deepEqual(draft.origin,onboardingHelpers.originFromListing('search',key));
+});
+
+test('adapted public floor-or-attic criteria stay unknown throughout seller draft autosave and completion until explicitly chosen',async()=>{
+ const key=publicSourceKey('search','d'),city=getLocation('city:Debrecen'),criteria={locations:[city],type:'Lakás',minPrice:50000000,maxPrice:70000000,minArea:45,maxArea:90,minRooms:2,maxRooms:4,floors:[0.5,2],atticPreference:'only',conditions:['Jó','Új/felújított'],buildings:['Tégla'],heatingTypes:['Hőszivattyú']};
+ const previous={fetch:globalThis.fetch,config:globalThis.OTTHONRA_CONFIG,location:globalThis.location};let detail;
+ try{
+  globalThis.OTTHONRA_CONFIG={mode:'api',environment:'test'};globalThis.location={origin:'https://public-fixture.example'};
+  globalThis.fetch=async(url,options)=>{assert.equal(new URL(url).pathname,'/api/public/listings/search/'+key);assert.equal(options.headers.Authorization,undefined);return{ok:true,status:200,text:async()=>JSON.stringify({kind:'search',key,sourceKey:key,title:'Emeleten vagy tetőtérben keresünk',listing:{...criteria,locations:[city.label]},prefill:criteria})};};
+  detail=await fetchApiPublicListing('search',key);
+ }finally{globalThis.fetch=previous.fetch;globalThis.OTTHONRA_CONFIG=previous.config;globalThis.location=previous.location;}
+ assert.deepEqual(detail.prefill.floors,[0.5,2]);assert.equal(detail.prefill.atticPreference,'only');
+ const seed=onboardingHelpers.prefillFromTeaser('property',detail);assert.equal(seed.floor,undefined);assert.equal(seed.isAttic,undefined);
+ const t=await setup({hosted:true,hash:'#listing/search/'+key,fetchPublicListing:async()=>detail});await t.click({action:'onboarding-start',kind:'property',source:key});
+ assert.equal(storedOnboarding(t).data.isAttic,null,'Initial wizard autosave must preserve ambiguous attic state');assert.equal(t.document.getElementById('f-isAttic').checked,false);assert.equal(t.document.getElementById('f-floor').value,'');
+ setEditorValues(t,{street:'Teszt utca',houseNumber:'12',price:'65',area:'60',wholeRooms:'2',halfRooms:''});await advanceEditor(t,5);submitEditor(t);await settle();
+ let completed=storedOnboarding(t);assert.equal(completed.phase,'awaiting-auth');assert.equal(completed.completedData.isAttic,null,'Untouched unknown attic is still unknown in the final creation payload');const receipt=completed.creationRequestId;
+ await t.click({action:'onboarding-edit'});await editorAction(t,'editor-step-button-3');const checkbox=t.document.getElementById('f-isAttic');
+ changeChoice(t,checkbox,true);assert.equal(storedOnboarding(t).data.isAttic,true);changeChoice(t,checkbox,false);assert.equal(storedOnboarding(t).data.isAttic,false,'An explicit uncheck records a known non-attic property');
+ await advanceEditor(t,5);submitEditor(t);await settle();completed=storedOnboarding(t);assert.equal(completed.completedData.isAttic,false);assert.equal(completed.creationRequestId,receipt);
 });
 
 test('a legacy energy certificate can be cleared directly while its slider remains unspecified',async()=>{
