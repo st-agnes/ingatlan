@@ -10,6 +10,7 @@ COPY dist/data/settlements.json dist/data/settlements.json
 COPY dist/data/agglomerations.json dist/data/agglomerations.json
 COPY dist/data/neighborhoods.json.gz dist/data/neighborhoods.json.gz
 COPY dist/data/streets.json.gz dist/data/streets.json.gz
+COPY data/neighborhoods/sources/country-osm/municipalities.geojson.gz data/neighborhoods/sources/country-osm/municipalities.geojson.gz
 RUN dotnet publish backend/Otthonra.Api/Otthonra.Api.csproj -c Release -o /app --no-restore
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app

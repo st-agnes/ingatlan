@@ -213,13 +213,14 @@ public sealed class NeighborhoodMatchingTests
     {
         using var db = Context();
         var user = new User { Id = Buyer, ActiveKind = "search" };
-        var sql = RecommendationFeed.CandidateQuerySql(db, user, search: Wanted(Venkert));
+        var query = RecommendationSql.Build(user, search: Wanted(Venkert));
+        var sql = query.Text;
         Assert.Contains("PropertyNeighborhoods", sql);
         Assert.Contains("EXISTS", sql);
-        Assert.Contains(Venkert, sql);
+        Assert.Contains(Venkert, Assert.IsType<string>(query.Parameters["exactNeighborhoods"]));
         Assert.DoesNotContain("'Debrecen'", sql);
         Assert.DoesNotContain("JSON_OVERLAPS", sql);
-        Assert.DoesNotContain("LIMIT 50", sql);
+        Assert.Contains("LIMIT 50", sql);
         foreach (var column in new[] { "Street", "HouseNumber", "PostalCode", "Address", "Latitude", "Longitude", "Description", "ImagesJson" })
             Assert.DoesNotContain("`" + column + "`", sql);
         Assert.Equal(ConnectionState.Closed, db.Database.GetDbConnection().State);
@@ -231,17 +232,19 @@ public sealed class NeighborhoodMatchingTests
         using var db = Context();
         var property = Home("city:Szeged", Venkert);
         var user = new User { Id = Seller, ActiveKind = "property" };
-        var sql = RecommendationFeed.CandidateQuerySql(db, user, property: property);
+        var query = RecommendationSql.Build(user, property: property);
+        var sql = query.Text;
         Assert.Contains("SearchLocations", sql);
         Assert.Contains("DISTINCT", sql);
-        Assert.Contains(Venkert, sql);
-        Assert.DoesNotContain(Sestakert, sql);
-        Assert.DoesNotContain("city:Debrecen", sql);
+        var accepted = Assert.IsType<string>(query.Parameters["acceptedLocations"]);
+        Assert.Contains(Venkert, accepted);
+        Assert.DoesNotContain(Sestakert, accepted);
+        Assert.DoesNotContain("city:Debrecen", accepted);
         Assert.DoesNotContain("JSON_OVERLAPS", sql);
-        Assert.DoesNotContain("LIMIT 50", sql);
+        Assert.Contains("LIMIT 50", sql);
 
         property.NeighborhoodIdsJson = "[]";
-        Assert.DoesNotContain(Venkert, RecommendationFeed.CandidateQuerySql(db, user, property: property));
+        Assert.DoesNotContain(Venkert, Assert.IsType<string>(RecommendationSql.Build(user, property: property).Parameters["acceptedLocations"]));
         Assert.Equal(ConnectionState.Closed, db.Database.GetDbConnection().State);
     }
 

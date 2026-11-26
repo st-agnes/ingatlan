@@ -11,7 +11,7 @@ public class RecommendationQueryTests
         new MySqlServerVersion(new Version(8, 0, 36))).Options);
 
     [Fact]
-    public void BuyerRankingQueryFiltersBeforeStreamingAndOmitsListingBodies()
+    public void BuyerRankingQueryScoresAndLimitsInMySqlWithoutSelectingListingBodies()
     {
         using var db = Context();
         var user = new User { Id = Guid.NewGuid(), AccountType = AccountTypes.Agent, ActiveKind = "search" };
@@ -25,7 +25,10 @@ public class RecommendationQueryTests
         Assert.DoesNotContain("`Description`", sql);
         Assert.DoesNotContain("`ImagesJson`", sql);
         Assert.DoesNotContain("`Address`", sql);
-        Assert.DoesNotContain("LIMIT 50", sql); // No truncation before the complete candidate ranking.
+        Assert.Contains("DistanceSquared", sql);
+        Assert.Contains("ORDER BY", sql);
+        Assert.Contains("LIMIT 50", sql);
+        Assert.True(sql.LastIndexOf("LIMIT 50", StringComparison.Ordinal) > sql.LastIndexOf("FROM ranked", StringComparison.Ordinal));
     }
 
     [Fact]
@@ -42,7 +45,9 @@ public class RecommendationQueryTests
         Assert.Contains("JOIN", sql);
         Assert.DoesNotContain("`Description`", sql);
         Assert.DoesNotContain("`Financing`", sql);
-        Assert.DoesNotContain("LIMIT 50", sql);
+        Assert.Contains("DistanceSquared", sql);
+        Assert.Contains("ORDER BY", sql);
+        Assert.Contains("LIMIT 50", sql);
     }
 
     [Fact]
@@ -57,5 +62,39 @@ public class RecommendationQueryTests
         Assert.Contains("PK_SearchLocations", sql);
         Assert.Contains("IX_Decisions_SearchRequestId_ActorKind_PropertyId", sql);
         Assert.Equal("20261110-ranked-recommendation-indexes", SchemaUpgrade.RecommendationIndexesVersion);
+    }
+
+    [Fact]
+    public void ExactDiscoveryAvoidsSpatialDistanceWhilePartialDiscoveryScoresOnlyInMySql()
+    {
+        var user = new User { Id = Guid.NewGuid(), ActiveKind = "search" };
+        var search = new SearchRequest { OwnerId = user.Id, Type = "Lakás", LocationIdsJson = "[\"city:Debrecen\"]" };
+        var exact = RecommendationSql.Build(user, search: search);
+        var partial = RecommendationSql.Build(user, search: search, exact: false);
+        Assert.DoesNotContain("ST_Distance(", exact.Text);
+        Assert.Contains("ST_Distance(", partial.Text);
+        Assert.Contains("MatchingPropertyPoints", partial.Text);
+        Assert.Contains("MatchingLocationAreas", partial.Text);
+        Assert.Contains("DistanceSquared", partial.Text);
+        Assert.Contains("POW(", partial.Text);
+        Assert.Contains("EXP(-SQRT(", partial.Text);
+        Assert.Contains("LIMIT 50", partial.Text);
+        Assert.Contains("city:Debrecen", Assert.IsType<string>(partial.Parameters["targetAreas"]));
+        foreach (var column in new[] { "Description", "ImagesJson", "Street", "HouseNumber", "Address" })
+            Assert.DoesNotContain("`" + column + "`", partial.Text);
+    }
+
+    [Fact]
+    public void FinalSqlOrderingPreservesRoundedScoreTiesAndIncomingInterestForEachRole()
+    {
+        var buyer = new User { Id = Guid.NewGuid(), ActiveKind = "search" };
+        var search = new SearchRequest { OwnerId = buyer.Id, Type = "Lakás", LocationIdsJson = "[\"city:Debrecen\"]" };
+        var buyerSql = RecommendationSql.Build(buyer, search: search, exact: false).Text;
+        Assert.Matches(@"ORDER BY\s+Score DESC\s*,\s*LikedYou DESC\s*,\s*ValueForMoney DESC", buyerSql);
+        var seller = new User { Id = Guid.NewGuid(), ActiveKind = "property" };
+        var property = new Property { OwnerId = seller.Id, Type = "Lakás", LocationId = "city:Debrecen", City = "Debrecen" };
+        var sellerSql = RecommendationSql.Build(seller, property: property, exact: false).Text;
+        Assert.Matches(@"ORDER BY\s+LikedYou DESC\s*,\s*Score DESC\s*,\s*Specificity DESC", sellerSql);
+        Assert.Contains("COALESCE(s.`PublicMaxPrice`,s.`MaxPrice`)", sellerSql);
     }
 }

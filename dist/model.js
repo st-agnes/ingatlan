@@ -4,7 +4,7 @@ import {neighborhoodDemoPoints} from './neighborhood-demo-points.js';
 import {streetDemoData} from './street-demo-data.js';
 import {normalizePropertyAttributes, normalizeSearchAttributes} from './attributes.js';
 import {normalizeAccountType,likeCost,canInteract,normalizeReportReason,normalizeIncomingPagination} from './accounts.js';
-import {prepareSearch,evaluateMatch,valueForMoney,searchSpecificity,publicMaxPrice} from './matching.js';
+import {prepareSearch,evaluateMatch,exactLocationMatch,valueForMoney,searchSpecificity,publicMaxPrice} from './matching.js';
 import {publicFirstName,publicTitle} from './public-profile.js';
 import {FEEDBACK_OPTIONS,FEEDBACK_QUESTION,FEEDBACK_PACKAGE_SIZES,FEEDBACK_DURATION_DAYS,FEEDBACK_PROMPT_SPACING,FEEDBACK_INVITATION_MINUTES,feedbackTitle} from './feedback.js';
 import {sanitizeDraftData,sanitizeTeaserPrefill} from './onboarding.js';
@@ -343,7 +343,21 @@ async function loadPublicStreetCatalog() {
   return publicStreetCatalog;
 }
 
-export function createModel(storage=globalThis.localStorage, now=()=>new Date().toISOString(), {streetCatalog,streetLoader=loadPublicStreetCatalog}={}) {
+async function loadDemoMatchingGeography(ids,options) {
+  // Offline model consumers remain synchronous and need no network. Only a
+  // mounted browser demo prepares public, simplified map geometry on demand.
+  if(typeof window==='undefined')return null;
+  const module=await import('./location-map.js');
+  return {geometries:await module.loadDemoMatchingGeometries(ids,getLocation,options),distance:module.demoDistanceToGeometryKm};
+}
+function demoCoordinates(property) {
+  const latitude=property?.addressDetails?.latitude??property?.latitude,longitude=property?.addressDetails?.longitude??property?.longitude;
+  return typeof latitude==='number'&&typeof longitude==='number'&&Number.isFinite(latitude)&&Number.isFinite(longitude)
+    &&latitude>=-90&&latitude<=90&&longitude>=-180&&longitude<=180?[longitude,latitude]:null;
+}
+const demoAreaIds=prepared=>[...[...prepared.cities].map(city=>'city:'+city),...prepared.districtIds,...prepared.neighborhoodIds];
+
+export function createModel(storage=globalThis.localStorage, now=()=>new Date().toISOString(), {streetCatalog,streetLoader=loadPublicStreetCatalog,geographyLoader=loadDemoMatchingGeography}={}) {
   if (streetCatalog) registerLocations(streetCatalog);
   let modelStreetCatalog=streetCatalog;
   const findStreetCatalog=async()=>modelStreetCatalog??(modelStreetCatalog=await streetLoader());
@@ -353,6 +367,21 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
   synchronizeActivityNotifications(state);
   const own = (s,kind,id) => (kind==='property'?s.properties:s.searches).find(e=>e.id===id&&e.ownerId===s.userId);
   const ownersCanInteract=(s,property,search)=>canInteract(s.users.find(user=>user.id===property?.ownerId)?.accountType,s.users.find(user=>user.id===search?.ownerId)?.accountType);
+  let demoGeography=null;
+  const distanceCache=new Map();
+  const demoLocationDistance=(property,prepared)=>{
+    if(exactLocationMatch(property,prepared))return 0;
+    const point=demoCoordinates(property),ids=demoAreaIds(prepared);
+    if(!point||!prepared.hasNonStreetLocations||!demoGeography||!ids.length||ids.some(id=>!demoGeography.geometries.has(id)))return null;
+    const key=JSON.stringify([point,[...ids].sort()]);
+    if(distanceCache.has(key))return distanceCache.get(key);
+    const distances=ids.map(id=>demoGeography.distance(point,demoGeography.geometries.get(id)));
+    const distance=distances.every(value=>typeof value==='number'&&Number.isFinite(value)&&value>=0)?Math.min(...distances):null;
+    distanceCache.set(key,distance);
+    if(distanceCache.size>256)distanceCache.delete(distanceCache.keys().next().value);
+    return distance;
+  };
+  const evaluateDemoMatch=(property,prepared,options={})=>evaluateMatch(property,prepared,{...options,locationDistanceKm:demoLocationDistance(property,prepared)});
   const transact = fn => {
     const draft=clone(state);
     const result=fn(draft);
@@ -451,7 +480,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     const candidate=kind==='search'?property:search,prepared=prepareSearch(search,{perspective:kind==='property'?'seller':'buyer'}),specificity=searchSpecificity(prepared);
     const data=visibleEntity(candidate,s.users,specificity);
     const mine=s.decisions.find(item=>item.propertyId===property.id&&item.searchId===search.id&&item.actorKind===kind);
-    const evaluation=evaluateMatch(property,prepared),match=s.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id);
+    const evaluation=evaluateDemoMatch(property,prepared),match=s.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id);
     return {...data,kind:kind==='search'?'property':'search',pair:{propertyId:property.id,searchId:search.id},score:evaluation.score,isExact:evaluation.isExact,reasons:evaluation.reasons,matchDetails:evaluation.matchDetails,searchSpecificity:specificity,valueForMoney:valueForMoney(property),likedYou:true,likedAt:decision.createdAt,myDecision:mine?(mine.liked?'liked':'passed'):null,matchId:match&&getMatch(s,match)?match.id:null,compatible:evaluation.eligible};
   };
   const recommendationSnapshot = (s, options={}) => {
@@ -477,7 +506,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       const property=buyer?candidate:active,search=buyer?active:candidate;
       if(!ownersCanInteract(s,property,search))continue;
       const preparedCandidate=prepared||prepareSearch(search,{perspective:buyer?'buyer':'seller'});
-      const evaluation=evaluateMatch(property,preparedCandidate,{includeReasons:false});
+      const evaluation=evaluateDemoMatch(property,preparedCandidate,{includeReasons:false});
       if(!evaluation.eligible)continue;
       const item={candidate,property,search,score:evaluation.score,isExact:evaluation.isExact,reasons:evaluation.reasons,matchDetails:evaluation.matchDetails,
         likedYou:liked.has(candidate.id),valueForMoney:activeValue??valueForMoney(property),
@@ -497,13 +526,36 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         data.buyerName ||= person?.name?.split(' ').at(-1)||'Érdeklődő';
         data.avatar=person?.avatar;
       }
-      const explained=evaluateMatch(property,prepared||prepareSearch(search,{perspective:buyer?'buyer':'seller'}));
+      const explained=evaluateDemoMatch(property,prepared||prepareSearch(search,{perspective:buyer?'buyer':'seller'}));
       return {...data,...ranking,reasons:explained.reasons,matchDetails:explained.matchDetails,kind:buyer?'property':'search',pair:{propertyId:property.id,searchId:search.id}};
     }),hasApproximate:approximate.length>0,
       requiresApproximateConsent:!exact.length&&approximate.length>0&&!includeApproximate,
       stage:exact.length?'exact':includeApproximate&&approximate.length?'approximate':'empty'};
   };
   return {
+    prepareRecommendations(options={}) {
+      if(options.signal?.aborted)return false;
+      if(geographyLoader===loadDemoMatchingGeography&&typeof window==='undefined')return false;
+      const active=own(state,state.active?.kind,state.active?.id);
+      if(!active||active.archived)return false;
+      const buyer=state.active.kind==='search',targets=new Set(),activePrepared=buyer?prepareSearch(active):null;
+      for(const candidate of buyer?state.properties:state.searches){
+        const property=buyer?candidate:active,search=buyer?active:candidate;
+        if(candidate.archived||candidate.ownerId===state.userId||!ownersCanInteract(state,property,search)||!demoCoordinates(property))continue;
+        const prepared=activePrepared||prepareSearch(search,{perspective:'seller'});
+        if(prepared.type&&prepared.type!==String(property.type??'').normalize('NFD').replace(/\p{M}/gu,'').trim().toUpperCase())continue;
+        if(!prepared.hasNonStreetLocations||exactLocationMatch(property,prepared))continue;
+        for(const id of demoAreaIds(prepared))targets.add(id);
+      }
+      if(!targets.size)return true;
+      if(demoGeography&&[...targets].every(id=>demoGeography.geometries.has(id)))return true;
+      return (async()=>{try{
+        const result=await geographyLoader([...targets],options);
+        if(options.signal?.aborted||!(result?.geometries instanceof Map)||typeof result.distance!=='function')return false;
+        demoGeography=result;distanceCache.clear();
+        return true;
+      }catch{return false;}})(); // Missing demo assets never invent coordinates or make an outside location exact.
+    },
     async findLocations(query,limit=8,{kind='search'}={}) {
       if(!['search','property'].includes(kind))throw new Error('Érvénytelen helyszínválasztó-típus.');
       if(kind==='property')return searchLocations(query,limit,{kind});
@@ -546,7 +598,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const prepared=preparedActive||prepareSearch(search,{perspective:activeKind==='property'?'seller':'buyer'}),specificity=searchSpecificity(prepared);
         const data=visibleEntity(candidate,state.users,specificity);
         const mine=state.decisions.find(item=>item.propertyId===property.id&&item.searchId===search.id&&item.actorKind===activeKind);
-        const evaluation=evaluateMatch(property,prepared),compatible=evaluation.eligible;
+        const evaluation=evaluateDemoMatch(property,prepared),compatible=evaluation.eligible;
         const match=state.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id);
         return {...data,kind:activeKind==='search'?'property':'search',pair:{propertyId:property.id,searchId:search.id},
           score:evaluation.score,isExact:evaluation.isExact,reasons:evaluation.reasons,matchDetails:evaluation.matchDetails,searchSpecificity:specificity,valueForMoney:valueForMoney(property),
@@ -565,7 +617,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const property=s.properties.find(p=>p.id===pair.propertyId),search=s.searches.find(q=>q.id===pair.searchId);
         if(!active||active.archived||!property||!search||property.archived||search.archived
           ||(s.active.kind==='property'?property.id:search.id)!==active.id||!ownersCanInteract(s,property,search))throw new Error('Ez az ajánlás már nem érhető el az aktív profilodhoz.');
-        const evaluation=evaluateMatch(property,prepareSearch(search,{perspective:s.active.kind==='property'?'seller':'buyer'}));
+        const evaluation=evaluateDemoMatch(property,prepareSearch(search,{perspective:s.active.kind==='property'?'seller':'buyer'}));
         if(!evaluation.eligible)throw new Error('Ez az ajánlás már nem érhető el az aktív profilodhoz.');
         if(s.decisions.some(d=>d.propertyId===pair.propertyId&&d.searchId===pair.searchId&&d.actorKind===s.active.kind))throw new Error('Erről az ajánlásról már döntöttél.');
         if(!evaluation.isExact&&(options?.allowApproximate!==true||recommendationSnapshot(s).items.length))
@@ -634,7 +686,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     recordImpression(propertyId,searchRequestId) {
       const property=state.properties.find(item=>item.id===propertyId),search=own(state,'search',searchRequestId);
       if(state.active?.kind!=='search'||state.active.id!==searchRequestId||!search||!property||!ownersCanInteract(state,property,search)
-        ||!evaluateMatch(property,prepareSearch(search),{includeReasons:false}).eligible)throw new Error('Ez az ingatlan nem érhető el az aktív keresésedhez.');
+        ||!evaluateDemoMatch(property,prepareSearch(search),{includeReasons:false}).eligible)throw new Error('Ez az ingatlan nem érhető el az aktív keresésedhez.');
       if(state.propertyImpressions.some(item=>item.propertyId===propertyId&&item.viewerUserId===state.userId))return {recorded:false};
       return transact(s=>{s.propertyImpressions.push({id:uid('impression'),propertyId,viewerUserId:s.userId,searchRequestId,createdAt:now()});return {recorded:true};});
     },

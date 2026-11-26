@@ -487,7 +487,7 @@ function recommendationScopeFor(next){const active=next?.active,entity=(active?.
 function specialization(entity){const value=Number(entity?.searchSpecificity);return Number.isFinite(value)?`<span class="specialization"><span>${num(Math.max(0,Math.min(100,value)))}%-ban fókuszált keresés</span><button class="focus-info" type="button" data-action="focus-info" aria-label="Mit jelent a fókuszált keresés?">${icon('info')}</button></span>`:'';}
 function openFocusInfo(){openModal(`<h2>Mit jelent a fókuszált keresés?</h2><p class="detail-copy">A százalék azt mutatja, mennyire szűkítette a kereső a megadott igényeit. A pontosabb helyszín, a szűkebb ár-, méret- és szobatartomány, valamint a több kiválasztott feltétel magasabb értéket eredményez.</p><p class="detail-copy">Az ingatlanoddal való egyezést a kártya tetején látható egyezési százalék jelzi.</p><div class="modal-actions"><button class="btn btn-dark" data-action="close">Értem</button></div>`);}
 function matchingTags(item){
- const details=Array.isArray(item.matchDetails)?item.matchDetails.filter(detail=>detail&&!['location','type','sharedGarden'].includes(detail.key)&&typeof detail.label==='string'&&typeof detail.expected==='string'&&typeof detail.actual==='string'&&typeof detail.matches==='boolean'):[];
+ const details=Array.isArray(item.matchDetails)?item.matchDetails.filter(detail=>detail&&!['type','sharedGarden'].includes(detail.key)&&(detail.key!=='location'||detail.matches===false)&&typeof detail.label==='string'&&typeof detail.expected==='string'&&typeof detail.actual==='string'&&typeof detail.matches==='boolean'):[];
  if(Array.isArray(item.matchDetails)&&item.matchDetails.length){
   const passedLabels={price:'Árban megfelelő',rooms:'Megfelelő szobaszám',area:'Megfelelő alapterület',condition:'Megfelelő állapot',floor:'Megfelelő emelet',elevator:'Van lift',balcony:'Van erkély',building:'Megfelelő falazat',heatingType:'Megfelelő fűtés',constructionAge:'Megfelelő építési kor',ceilingHeight:'Megfelelő belmagasság',view:'Megfelelő kilátás'};
   const otherIsSearch=item.kind==='search'||(!item.kind&&isSeller());
@@ -533,9 +533,12 @@ async function render(options={}){
    const owned=nextState.properties||[];
    const selected=owned.some(item=>item.id===insightsPropertyId)?insightsPropertyId:nextState.active?.kind==='property'&&owned.some(item=>item.id===nextState.active.id)?nextState.active.id:owned.find(item=>!item.archived)?.id||owned[0]?.id||'';
    const needsDiscovery=targetPage==='discover'&&targetTab==='recommended',needsMatches=!matchesInitialized||['matches','messages'].includes(targetPage)||targetPage==='discover'&&targetTab==='liked'||!!options.resolveMatchId,needsScenario=hostedTest&&['discover','insights','settings'].includes(targetPage);
+   // Only the browser demo has a geometry preparation hook. Hosted API scores
+   // remain authoritative and never depend on public display-map data.
+   const readDiscovery=read=>{const prepared=currentModel.mode!=='api'&&typeof currentModel.prepareRecommendations==='function'?currentModel.prepareRecommendations(readOptions):null;return prepared?.then?prepared.then(()=>current()?read():null):read();};
    const data=await Promise.all([
-    needsDiscovery?(currentModel.recommendations?currentModel.recommendations({includeApproximate:approximateConsent,...readOptions}):Promise.resolve(currentModel.feed(readOptions)).then(items=>({items,stage:items.length?'exact':'empty'}))):null,
-    needsMatches?currentModel.matches(readOptions):null,targetPage==='incoming'?currentModel.incomingLikes(readOptions):null,targetPage==='notifications'?currentModel.notifications(readOptions):null,
+    needsDiscovery?readDiscovery(()=>currentModel.recommendations?currentModel.recommendations({includeApproximate:approximateConsent,...readOptions}):Promise.resolve(currentModel.feed(readOptions)).then(items=>({items,stage:items.length?'exact':'empty'}))):null,
+    needsMatches?currentModel.matches(readOptions):null,targetPage==='incoming'?readDiscovery(()=>currentModel.incomingLikes(readOptions)):null,targetPage==='notifications'?currentModel.notifications(readOptions):null,
     needsDiscovery&&typeof currentModel.pendingFeedback==='function'?currentModel.pendingFeedback(readOptions):undefined,
     targetPage==='insights'&&selected&&typeof currentModel.getPropertyInsights==='function'?currentModel.getPropertyInsights(selected,readOptions):null,
     needsScenario&&typeof currentModel.getFeedbackScenario==='function'?currentModel.getFeedbackScenario(readOptions):undefined

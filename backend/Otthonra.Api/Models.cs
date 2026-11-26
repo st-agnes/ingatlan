@@ -222,13 +222,15 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
     {
         PreparePublicListingKeys();
         return ActivityNotifications.SaveAsync(this, () => PropertyNeighborhoodIndex.SaveAsync(this,
-            () => SearchLocationIndex.SaveAsync(this, () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken), cancellationToken), cancellationToken), cancellationToken);
+            () => SearchLocationIndex.SaveAsync(this, () => MatchingGeography.SaveAsync(this,
+                () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken), cancellationToken), cancellationToken), cancellationToken), cancellationToken);
     }
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
         PreparePublicListingKeys();
         return ActivityNotifications.SaveAsync(this, () => PropertyNeighborhoodIndex.SaveAsync(this,
-            () => SearchLocationIndex.SaveAsync(this, () => Task.FromResult(base.SaveChanges(acceptAllChangesOnSuccess)), CancellationToken.None), CancellationToken.None), CancellationToken.None)
+            () => SearchLocationIndex.SaveAsync(this, () => MatchingGeography.SaveAsync(this,
+                () => Task.FromResult(base.SaveChanges(acceptAllChangesOnSuccess)), CancellationToken.None), CancellationToken.None), CancellationToken.None), CancellationToken.None)
             .GetAwaiter().GetResult();
     }
     protected override void OnModelCreating(ModelBuilder b)

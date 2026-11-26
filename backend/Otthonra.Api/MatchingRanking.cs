@@ -8,6 +8,8 @@ public sealed record MatchCriterion(string Key, string Label, string Expected, s
 public sealed record MatchEvaluation(bool Eligible, bool IsExact, int Score, string[] Reasons)
 {
     public MatchCriterion[] MatchDetails { get; init; } = [];
+    public double DistanceSquared { get; init; }
+    public double? LocationDistanceKm { get; init; }
 }
 
 /// <summary>Parsed search filters are reused for every candidate in one request.</summary>
@@ -19,6 +21,7 @@ public sealed class CompiledSearch
     public IReadOnlySet<string> DistrictIds { get; }
     public IReadOnlySet<string> NeighborhoodIds { get; }
     public IReadOnlySet<string> StreetIds { get; }
+    public bool HasNonStreetLocations => Cities.Count > 0 || DistrictIds.Count > 0 || NeighborhoodIds.Count > 0;
     public int Specificity { get; internal set; }
     internal bool House => NormalizedType == "HAZ";
     internal bool Flat => NormalizedType == "LAKAS";
@@ -60,15 +63,26 @@ public sealed class CompiledSearch
     }
 }
 
-/// <summary>Location/type are hard gates. Remaining explicitly selected criteria determine a weighted percentage.</summary>
+/// <summary>Weighted distance from the accepted criteria; only verified geographic distances can widen locations.</summary>
 public static class MatchingRanking
 {
     // Keep these formulas and weights aligned with dist/matching.js; tests cover both implementations.
-    private const decimal MaxPriceWeight = 32m, MinRoomsWeight = 22m, MinAreaWeight = 16m,
-        ConditionWeight = 10m, FloorWeight = 7m, ElevatorWeight = 5m, BalconyWeight = 4m,
-        BuildingWeight = 3m, HeatingWeight = 2.5m, AgeWeight = 2m, CeilingWeight = 1.5m,
-        MaxAreaWeight = 1.25m, MaxRoomsWeight = 1m, MinPriceWeight = .75m, ViewWeight = .5m,
-        AirConditioningWeight = 3m, PrivateGardenWeight = 3m, EnergyWeight = 3m;
+    public const decimal MaxPriceWeight = 1.2m, MinRoomsWeight = 1.1m, MinAreaWeight = 1m,
+        ConditionWeight = .36m, FloorWeight = .25m, ElevatorWeight = .09m, BalconyWeight = .04m,
+        BuildingWeight = .0225m, HeatingWeight = .0169m, AgeWeight = .0144m, CeilingWeight = .01m,
+        MaxAreaWeight = .16m, MaxRoomsWeight = .16m, MinPriceWeight = .09m, ViewWeight = .01m,
+        AirConditioningWeight = .04m, PrivateGardenWeight = .04m, EnergyWeight = .04m, LocationWeight = 1.5m;
+    public const double LocationDistanceScaleKm = 20d;
+
+    // Search focus measures narrowness rather than compatibility. Keep its
+    // established weights stable when changing the independent distance model.
+    private static readonly Dictionary<string, decimal> FocusWeights = new(StringComparer.Ordinal) {
+        ["maxPrice"] = 32m, ["minRooms"] = 22m, ["minArea"] = 16m, ["condition"] = 10m,
+        ["floor"] = 7m, ["elevator"] = 5m, ["balcony"] = 4m, ["building"] = 3m,
+        ["heatingType"] = 2.5m, ["constructionAge"] = 2m, ["ceilingHeight"] = 1.5m, ["maxArea"] = 1.25m,
+        ["maxRooms"] = 1m, ["minPrice"] = .75m, ["view"] = .5m,
+        ["airConditioning"] = 3m, ["privateGarden"] = 3m, ["minEnergyRating"] = 3m
+    };
     private static readonly Lazy<Dictionary<string, string[]>> AreaMembers = new(() => {
         using var stream = typeof(LocationCatalog).Assembly.GetManifestResourceStream("Otthonra.Api.Agglomerations.json")
             ?? throw new InvalidOperationException("The embedded city-area catalogue is missing.");
@@ -136,34 +150,58 @@ public static class MatchingRanking
             && (street.District is null || location.District is null || street.District == location.District) ? street.Id : null;
     }
 
-    private static bool Eligible(Property property, CompiledSearch search)
+    public static bool BaseEligible(Property property, CompiledSearch search)
     {
         if (property.Archived || search.Source.Archived || property.OwnerId == search.Source.OwnerId) return false;
         if (search.NormalizedType.Length > 0 && Rules.Normalize(property.Type) != search.NormalizedType) return false;
         if (!string.IsNullOrWhiteSpace(property.LocationId) && LocationCatalog.Get(property.LocationId) is null) return false;
         var location = LocationCatalog.ForProperty(property);
-        return location is not null && location.Kind != "area"
+        return location is not null && (location.Kind is "city" or "district");
+    }
+
+    public static bool ExactLocation(Property property, CompiledSearch search)
+    {
+        var location = LocationCatalog.ForProperty(property);
+        return location is not null && (location.Kind is "city" or "district")
             && (search.Cities.Contains(location.City) || search.DistrictIds.Contains(location.Id)
                 || Dto.Strings(property.NeighborhoodIdsJson).Any(search.NeighborhoodIds.Contains)
                 || search.StreetIds.Count > 0 && VerifiedStreetId(property, location) is { } streetId && search.StreetIds.Contains(streetId));
     }
 
-    public static bool CanRecommend(Property property, SearchRequest search) => Eligible(property, Prepare(search));
-    public static MatchEvaluation Evaluate(Property property, CompiledSearch search, bool includeReasons = true)
+    public static bool CanRecommend(Property property, SearchRequest search, double? locationDistanceKm = null)
     {
-        if (!Eligible(property, search)) return new(false, false, 0, []);
+        var prepared = Prepare(search);
+        return BaseEligible(property, prepared) && (ExactLocation(property, prepared)
+            || prepared.HasNonStreetLocations && locationDistanceKm is { } km && double.IsFinite(km) && km >= 0);
+    }
+
+    public static MatchEvaluation Evaluate(Property property, CompiledSearch search, bool includeReasons = true,
+        double? locationDistanceKm = null)
+    {
+        if (!BaseEligible(property, search)) return new(false, false, 0, []);
+        var exactLocation = ExactLocation(property, search);
+        // Street identity is deliberately not expanded to its town or inferred
+        // from another street's coordinates. A supplied distance is server-owned.
+        if (!exactLocation && (!search.HasNonStreetLocations || locationDistanceKm is not { } km || !double.IsFinite(km) || km < 0))
+            return new(false, false, 0, []);
         var s = search.Source;
-        decimal weight = 0m, loss = 0m;
-        var different = false;
+        double distanceSquared = 0d;
+        var different = !exactLocation;
         List<string>? differences = includeReasons ? [] : null;
         void Add(decimal criterionWeight, bool active, decimal penalty, string label)
         {
             if (!active) return;
-            var amount = Unit(penalty);
-            weight += criterionWeight; loss += criterionWeight * amount;
+            var amount = (double)Math.Max(0m, penalty);
+            distanceSquared += (double)criterionWeight * amount * amount;
             if (amount <= 0) return;
             different = true;
             differences?.Add(label + ": eltérés a kereséstől");
+        }
+        if (!exactLocation)
+        {
+            var distance = locationDistanceKm!.Value / LocationDistanceScaleKm;
+            distanceSquared += (double)LocationWeight * distance * distance;
+            differences?.Add("Helyszín: eltérés a kereséstől");
         }
         void Minimum(decimal value, decimal? minimum, decimal criterionWeight, string label) =>
             Add(criterionWeight, minimum is > 0, ((minimum ?? 0) - value) / (minimum is > 0 ? minimum.Value : 1m), label);
@@ -198,12 +236,18 @@ public static class MatchingRanking
         Add(CeilingWeight, !string.IsNullOrEmpty(s.CeilingHeight), PropertyAttributes.CeilingHeights.Contains(ceiling) && ceiling == s.CeilingHeight ? 0 : 1, "Belmagasság");
         Add(ViewWeight, search.Views.Count > 0, CategoryLoss(Canonical(property.View, PropertyAttributes.Views), search.Views, PropertyAttributes.Views), "Kilátás");
         var exact = !different;
-        var score = exact ? 100 : Math.Clamp((int)Math.Round(100m * (1m - loss / (weight > 0m ? weight : 1m)), MidpointRounding.AwayFromZero), 0, 99);
+        var score = exact ? 100 : ScoreFromDistanceSquared(distanceSquared);
         return new(true, exact, score, !includeReasons ? [] : exact
             ? ["Megfelelő elhelyezkedés", "A megadott árkereten belül", "Megfelelő alapterület és szobaszám"] : differences!.ToArray()) {
-                MatchDetails = includeReasons ? Explain(property, search) : []
+                DistanceSquared = distanceSquared,
+                LocationDistanceKm = exactLocation ? 0d : locationDistanceKm,
+                MatchDetails = includeReasons ? Explain(property, search, exactLocation, locationDistanceKm) : []
             };
     }
+
+    public static int ScoreFromDistanceSquared(double distanceSquared) =>
+        double.IsNaN(distanceSquared) || distanceSquared < 0 ? 0
+            : Math.Clamp((int)Math.Round(100d * Math.Exp(-Math.Sqrt(distanceSquared)), MidpointRounding.AwayFromZero), 0, 99);
 
     private static readonly CultureInfo Hungarian = CultureInfo.GetCultureInfo("hu-HU");
     private static string Number(decimal value) => value.ToString("0.######", Hungarian);
@@ -215,7 +259,7 @@ public static class MatchingRanking
     // Built only for cards actually returned, never during the lean ranking scan.
     // The requested value remains separate from the listing's value so both
     // successful and unsuccessful criteria can be rendered without guessing.
-    private static MatchCriterion[] Explain(Property p, CompiledSearch q)
+    private static MatchCriterion[] Explain(Property p, CompiledSearch q, bool exactLocation, double? locationDistanceKm)
     {
         var s = q.Source;
         var details = new List<MatchCriterion>();
@@ -239,7 +283,10 @@ public static class MatchingRanking
                 Known(actual, options), options.Contains(actual) && selected.Contains(actual));
         }
         var location = LocationCatalog.ForProperty(p)!;
-        Add("location", "Helyszín", string.Join(" vagy ", LocationCatalog.ForSearch(s).Select(value => value.Label)), location.Label, true);
+        var actualLocation = location.Label;
+        if (!exactLocation && locationDistanceKm is { } distance)
+            actualLocation += " (kb. " + distance.ToString("0.#", Hungarian) + " km-re a keresett területtől)";
+        Add("location", "Helyszín", string.Join(" vagy ", LocationCatalog.ForSearch(s).Select(value => value.Label)), actualLocation, exactLocation);
         if (q.NormalizedType.Length > 0) Add("type", "Ingatlantípus", s.Type, p.Type, true);
         Bounds("price", "Ár", p.Price / 1_000_000m, s.MinPrice / 1_000_000m, s.MaxPrice / 1_000_000m, "M Ft");
         Bounds("rooms", "Szobaszám", p.Rooms, s.MinRooms, s.MaxRooms, "szoba");
@@ -315,6 +362,8 @@ public static class MatchingRanking
         return effectiveArea / (p.Price / 1_000_000m) * (1m + Math.Min(.25m, quality));
     }
 
+    public static decimal SpecificityWeight(string criterion) => FocusWeights[criterion];
+
     public static int Specificity(SearchRequest search, bool sellerPerspective = false) => Prepare(search, sellerPerspective).Specificity;
     private static int SpecificityOf(CompiledSearch search)
     {
@@ -330,25 +379,25 @@ public static class MatchingRanking
             Add(minWeight, min ? strength : 0m); Add(maxWeight, max ? strength : 0m);
         }
         static decimal Category(int count, int options) => count == 0 ? 0m : (decimal)(1d / Math.Sqrt(Math.Min(count, options)));
-        Bounds(s.MinPrice, s.MaxPrice, MinPriceWeight, MaxPriceWeight);
-        Bounds(s.MinArea, s.MaxArea, MinAreaWeight, MaxAreaWeight);
-        Bounds(s.MinRooms, s.MaxRooms, MinRoomsWeight, MaxRoomsWeight);
-        Add(ConditionWeight, search.ConditionMinimum.HasValue ? (search.ConditionMinimum.Value + 1m) / 4m : 0m);
-        Add(BuildingWeight, Category(search.Buildings.Count, PropertyAttributes.Buildings.Length));
-        Add(HeatingWeight, Category(search.Heating.Count, PropertyAttributes.HeatingTypes.Length));
-        Add(EnergyWeight, EnergyCertificates.Rank(s.MinEnergyRating) >= 0 ? (EnergyCertificates.Rank(s.MinEnergyRating) + 1m) / 12m : 0m);
-        Add(AgeWeight, Category(search.Ages.Count, PropertyAttributes.ConstructionAges.Length));
-        Add(ViewWeight, Category(search.Views.Count, PropertyAttributes.Views.Length));
-        Add(CeilingWeight, string.IsNullOrEmpty(s.CeilingHeight) ? 0m : 1m);
-        Add(AirConditioningWeight, s.AirConditioning ? 1m : 0m);
+        Bounds(s.MinPrice, s.MaxPrice, FocusWeights["minPrice"], FocusWeights["maxPrice"]);
+        Bounds(s.MinArea, s.MaxArea, FocusWeights["minArea"], FocusWeights["maxArea"]);
+        Bounds(s.MinRooms, s.MaxRooms, FocusWeights["minRooms"], FocusWeights["maxRooms"]);
+        Add(FocusWeights["condition"], search.ConditionMinimum.HasValue ? (search.ConditionMinimum.Value + 1m) / 4m : 0m);
+        Add(FocusWeights["building"], Category(search.Buildings.Count, PropertyAttributes.Buildings.Length));
+        Add(FocusWeights["heatingType"], Category(search.Heating.Count, PropertyAttributes.HeatingTypes.Length));
+        Add(FocusWeights["minEnergyRating"], EnergyCertificates.Rank(s.MinEnergyRating) >= 0 ? (EnergyCertificates.Rank(s.MinEnergyRating) + 1m) / 12m : 0m);
+        Add(FocusWeights["constructionAge"], Category(search.Ages.Count, PropertyAttributes.ConstructionAges.Length));
+        Add(FocusWeights["view"], Category(search.Views.Count, PropertyAttributes.Views.Length));
+        Add(FocusWeights["ceilingHeight"], string.IsNullOrEmpty(s.CeilingHeight) ? 0m : 1m);
+        Add(FocusWeights["airConditioning"], s.AirConditioning ? 1m : 0m);
         if (search.Flat)
         {
-            Add(PrivateGardenWeight, s.PrivateGarden ? 1m : 0m);
+            Add(FocusWeights["privateGarden"], s.PrivateGarden ? 1m : 0m);
         }
         if (!search.House)
         {
-            Add(FloorWeight, Math.Max(Category(search.Floors.Length, 12), s.ExcludeTopFloor || s.ExcludeGroundFloorAndBelow || s.AtticPreference.Length > 0 ? 1m : 0m));
-            Add(ElevatorWeight, s.Elevator ? 1m : 0m); Add(BalconyWeight, s.Balcony ? 1m : 0m);
+            Add(FocusWeights["floor"], Math.Max(Category(search.Floors.Length, 12), s.ExcludeTopFloor || s.ExcludeGroundFloorAndBelow || s.AtticPreference.Length > 0 ? 1m : 0m));
+            Add(FocusWeights["elevator"], s.Elevator ? 1m : 0m); Add(FocusWeights["balcony"], s.Balcony ? 1m : 0m);
         }
         return Math.Clamp((int)Math.Round(100m * selected / total, MidpointRounding.AwayFromZero), 0, 100);
     }

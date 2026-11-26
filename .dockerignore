@@ -1,7 +1,11 @@
 .git
 .openai
 .local
-/data/
+/data/**
+!/data/neighborhoods/
+!/data/neighborhoods/sources/
+!/data/neighborhoods/sources/country-osm/
+!/data/neighborhoods/sources/country-osm/municipalities.geojson.gz
 .env
 .env.*
 !.env.example

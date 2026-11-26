@@ -100,10 +100,15 @@ public sealed class ListingPrivacyEnergyTests
         p.EnergyRatingScheme = "2023"; Assert.True(Rules.Compatible(p, s));
         p.EnergyRating = "C";
         var near = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s)).Score;
+        Assert.Equal(98, near); // One grade: round(100 * exp(-sqrt(0.04) / 11)).
         p.EnergyRating = "H";
-        Assert.True(MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s)).Score < near);
+        var far = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s)).Score;
+        Assert.Equal(90, far); // Six grades: round(100 * exp(-sqrt(0.04) * 6 / 11)).
+        Assert.True(far < near);
         p.EnergyRating = "I"; s.MinEnergyRating = "I"; Assert.True(Rules.Compatible(p, s));
         p.EnergyRating = "AA"; Assert.False(Rules.Compatible(p, s));
+        // Unknown legacy certificates incur the full loss instead of proving the minimum.
+        Assert.Equal(82, MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s)).Score);
         Assert.Equal(0, EnergyCertificates.Rank("I")); Assert.Equal(11, EnergyCertificates.Rank("A+++"));
     }
 

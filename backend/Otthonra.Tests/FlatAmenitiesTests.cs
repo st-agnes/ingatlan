@@ -103,7 +103,7 @@ public class FlatAmenitiesTests
         var p = Home(); p.Floor = floor; p.BuildingFloors = height;
         var q = Wanted(); q.ExcludeTopFloor = true;
         var result = Match(p, q);
-        Assert.True(result.Eligible); Assert.Equal(exact, result.IsExact); Assert.Equal(exact ? 100 : 0, result.Score);
+        Assert.True(result.Eligible); Assert.Equal(exact, result.IsExact); Assert.Equal(exact ? 100 : 61, result.Score);
         Assert.Equal(exact, Assert.Single(result.MatchDetails.Where(d => d.Key == "excludeTopFloor")).Matches);
     }
 
@@ -129,7 +129,7 @@ public class FlatAmenitiesTests
         var q = Wanted(); q.MaxPrice = 100_000_000m;
         q.ExcludeTopFloor = q.ExcludeGroundFloorAndBelow = true; q.FloorsJson = "[5]";
         var result = Match(p, q);
-        Assert.Equal(82, result.Score); // One failed floor weight7 against a satisfied price weight32.
+        Assert.Equal(61, result.Score); // One full floor loss: round(100 * exp(-sqrt(0.25))).
         Assert.Equal(3, result.MatchDetails.Count(d => d.Key is "floor" or "excludeTopFloor" or "excludeGroundFloorAndBelow"));
         Assert.Equal(result.Score, MatchingRanking.Evaluate(p, MatchingRanking.Prepare(q), includeReasons: false).Score);
         q.ExcludeTopFloor = q.ExcludeGroundFloorAndBelow = false;
@@ -150,7 +150,7 @@ public class FlatAmenitiesTests
         else { p.PrivateGarden = available; q.PrivateGarden = true; }
         var result = Match(p, q);
         Assert.True(result.Eligible); Assert.Equal(available == true, result.IsExact);
-        Assert.Equal(available == true ? 100 : 0, result.Score);
+        Assert.Equal(available == true ? 100 : 82, result.Score);
         var detail = Assert.Single(result.MatchDetails.Where(d => d.Key == key));
         Assert.Equal(available == true, detail.Matches);
         if (available is null) Assert.Equal("Nincs megadva", detail.Actual);
@@ -161,8 +161,8 @@ public class FlatAmenitiesTests
     public void ActiveAmenityWeightsRemainSmallAndRetiredSharedGardenAddsNoRequirement()
     {
         var p = Home(); var q = Wanted(); q.MaxPrice = 100_000_000m;
-        q.AirConditioning = true; Assert.Equal(91, Match(p, q).Score); // 32/(32+3).
-        q.AirConditioning = false; q.PrivateGarden = true; Assert.Equal(91, Match(p, q).Score);
+        q.AirConditioning = true; Assert.Equal(82, Match(p, q).Score); // round(100 * exp(-sqrt(0.04))).
+        q.AirConditioning = false; q.PrivateGarden = true; Assert.Equal(82, Match(p, q).Score);
         q.PrivateGarden = false; q.SharedGarden = true; Assert.Equal(100, Match(p, q).Score);
         q.AirConditioning = q.PrivateGarden = true;
         p.AirConditioning = p.PrivateGarden = true;

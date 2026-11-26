@@ -147,6 +147,54 @@ def main():
              GROUP BY SearchRequestId HAVING COUNT(*)>50) excessive)
         """)
     assert invalid_counts == '0\t0\t0', 'Missing, orphaned or excessively expanded location links.'
+
+    geography_counts = query(container_id, """
+        SELECT
+          (SELECT COUNT(*) FROM MatchingLocationAreas WHERE Kind='city'),
+          (SELECT COUNT(*) FROM MatchingLocationAreas WHERE Kind='neighborhood'),
+          (SELECT COUNT(*) FROM MatchingLocationAreas WHERE Kind='district'),
+          (SELECT COUNT(*) FROM MatchingLocationMembers WHERE SelectionId LIKE 'street:%')
+        """)
+    assert geography_counts == '3155\t4308\t23\t0', \
+        'Distance matching requires every original municipality, neighborhood and district boundary, without street proximity anchors.'
+    spatial_indexes = query(container_id, """
+        SELECT TABLE_NAME,INDEX_NAME,INDEX_TYPE FROM information_schema.STATISTICS
+        WHERE TABLE_SCHEMA=DATABASE() AND (
+          TABLE_NAME='MatchingPropertyPoints' AND INDEX_NAME='SX_MatchingPropertyPoints_Position'
+          OR TABLE_NAME='MatchingLocationAreas' AND INDEX_NAME='SX_MatchingLocationAreas_Boundary')
+        ORDER BY TABLE_NAME
+        """)
+    assert spatial_indexes.splitlines() == [
+        'MatchingLocationAreas\tSX_MatchingLocationAreas_Boundary\tSPATIAL',
+        'MatchingPropertyPoints\tSX_MatchingPropertyPoints_Position\tSPATIAL'
+    ], 'Distance matching must retain both property-point and original-boundary spatial indexes.'
+    point_consistency = query(container_id, """
+        SELECT
+          (SELECT COUNT(*) FROM Properties p LEFT JOIN MatchingPropertyPoints g ON g.PropertyId=p.Id
+           WHERE p.Latitude IS NOT NULL AND p.Longitude IS NOT NULL AND g.PropertyId IS NULL),
+          (SELECT COUNT(*) FROM MatchingPropertyPoints g LEFT JOIN Properties p ON p.Id=g.PropertyId
+           WHERE p.Id IS NULL OR p.Latitude IS NULL OR p.Longitude IS NULL
+             OR ST_SRID(g.Position)<>4326
+             OR ABS(ST_Longitude(g.Position)-p.Longitude)>0.0000000001
+             OR ABS(ST_Latitude(g.Position)-p.Latitude)>0.0000000001),
+          (SELECT COUNT(*) FROM information_schema.KEY_COLUMN_USAGE
+           WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='MatchingPropertyPoints'
+             AND COLUMN_NAME='PropertyId' AND REFERENCED_TABLE_NAME='Properties')
+        """)
+    assert point_consistency == '0\t0\t1', \
+        'Spatial property points must stay synchronized with authoritative saved coordinates and retain their parent foreign key.'
+    # Exercise the actual MySQL 8.0/8.4 geographic point-to-polygon operation.
+    # The outside point is close to the eastern edge, far from the center.
+    boundary_distance = query(container_id, """
+        SELECT
+          ST_Distance(ST_GeomFromText('POINT(19.9 47.5)',4326,'axis-order=long-lat'),
+            ST_GeomFromText('POLYGON((19 47,20 47,20 48,19 48,19 47))',4326,'axis-order=long-lat')),
+          ST_Distance(ST_GeomFromText('POINT(20.1 47.5)',4326,'axis-order=long-lat'),
+            ST_GeomFromText('POLYGON((19 47,20 47,20 48,19 48,19 47))',4326,'axis-order=long-lat'))
+        """)
+    inside, outside = map(float, boundary_distance.split('\t'))
+    assert inside == 0 and 7000 < outside < 8000, \
+        'Geographic matching must use distance to the selected area, zero inside and about7.5km outside this edge.'
     searches = query(container_id, """
         SELECT JSON_OBJECT('id',Id,'city',City,'districtsJson',DistrictsJson,'locationIdsJson',LocationIdsJson)
         FROM SearchRequests ORDER BY Id

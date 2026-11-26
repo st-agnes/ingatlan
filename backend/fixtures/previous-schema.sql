@@ -1,5 +1,9 @@
 -- CI ONLY: simulate the initial release in the disposable otthonra_ci database.
 -- No application deployment executes this file.
+DROP TABLE IF EXISTS `MatchingPropertyPoints`;
+DROP TABLE IF EXISTS `MatchingLocationMembers`;
+DROP TABLE IF EXISTS `MatchingLocationAreas`;
+DROP TABLE IF EXISTS `__OtthonraMatchingGeography`;
 DROP TABLE IF EXISTS `SearchLocations`;
 DROP TABLE IF EXISTS `PropertyNeighborhoods`;
 ALTER TABLE `Properties` DROP INDEX `IX_Properties_PublicListingKey`;

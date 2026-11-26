@@ -600,6 +600,41 @@ function rankedFixture({seller=false, manyExact=0}={}) {
  return {m:createModel(storage,clock),storage,property,search};
 }
 
+test('demo discovery prepares nearby areas once and enforces partial consent and ordinary billing in both roles',async()=>{
+ for(const seller of [false,true]){
+  const fixture=rankedFixture({seller}),raw=JSON.parse(fixture.storage.getItem(STORAGE_KEY));
+  if(seller){
+   raw.properties=raw.properties.filter(property=>property.id==='own-home');
+   raw.searches=raw.searches.filter(search=>search.id==='wrong-place-query');
+  }else{
+   raw.properties=raw.properties.filter(property=>property.id==='wrong-place');
+   raw.searches=raw.searches.filter(search=>search.id==='own-query');
+   raw.searches[0].locationIds=['city:Debrecen','city:Budapest'];
+  }
+  raw.decisions=[];
+  for(const property of raw.properties)property.addressDetails={latitude:47.5,longitude:20.1};
+  fixture.storage.setItem(STORAGE_KEY,JSON.stringify(raw));
+  const calls=[],model=createModel(fixture.storage,()=> '2026-11-10T12:00:00.000Z',{
+   geographyLoader:async ids=>{
+    calls.push([...ids]);
+    return {geometries:new Map(ids.map(id=>[id,{id}])),distance:(_point,geometry)=>geometry.id==='city:Budapest'?100:5};
+   }
+  });
+  assert.deepEqual(model.feed({includeApproximate:true}),[],'Missing geometry cannot silently invent nearby matches');
+  assert.equal(await model.prepareRecommendations(),true);
+  assert.equal(calls.length,1);assert.equal(await model.prepareRecommendations(),true);assert.equal(calls.length,1);
+  assert.equal(model.recommendations().requiresApproximateConsent,true);assert.deepEqual(model.feed(),[]);
+  const card=model.feed({includeApproximate:true})[0];
+  assert.ok(card);assert.equal(card.isExact,false);assert.equal(card.score,74,'The closest of all selected areas determines the location loss');
+  assert.equal(card.matchDetails.find(detail=>detail.key==='location').matches,false);
+  const before=model.getState().credits;
+  assert.throws(()=>model.decide(card,false),/engedélyezd/);
+  const decision=model.decide(card,true,{allowApproximate:true});
+  assert.equal(decision.charged,seller?2:0);assert.equal(model.getState().credits,before-(seller?2:0));
+  assert.deepEqual(model.feed({includeApproximate:true}),[]);
+ }
+});
+
 test('exact buyer recommendations are all 100 percent and exhaust before consent-only partial recommendations',()=>{
  const {m,storage}=rankedFixture();
  const exact=m.recommendations({includeApproximate:true});

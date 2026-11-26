@@ -15,6 +15,8 @@ const featureAreas = new WeakMap();
 const hierarchyDepths = new WeakMap();
 const EMPTY_PARENTS = Object.freeze(Object.create(null));
 let manifestPromise, mapLibrePromise;
+let demoRegistryPromise;
+const demoGeometryLayers = new Map();
 let moduleAttempt = 0;
 const LABEL_SOURCE = 'otthonra-places';
 const LABEL_LAYERS = ['otthonra-place-labels'];
@@ -370,6 +372,82 @@ export function validatePlaceLabels(value, manifest, getLocation) {
   const coverage = value.coverage ?? value.countryGeometry ?? null;
   if (coverage && (geometryPointCount(coverage) < 0 || geometryPointCount(coverage) > 20000)) throw new Error('A térkép lefedettsége nem érvényes.');
   return {version: value.version, features, byId, towns, districtBoundaries: value.districtBoundaries, coverage};
+}
+
+/** Browser-demo distance to a display polygon; the hosted API uses full MySQL geometry. */
+export function demoDistanceToGeometryKm(point, geometry) {
+  if (!Array.isArray(point) || point.length !== 2 || !point.every(finite)
+    || point[0] < -180 || point[0] > 180 || point[1] < -90 || point[1] > 90
+    || !geometry || !['Polygon', 'MultiPolygon'].includes(geometry.type)) return null;
+  if (pointInGeometry(point, geometry)) return 0;
+  const radians = Math.PI / 180, radius = 6371.0088;
+  const angle = (a, b) => {
+    const lat = (b[1] - a[1]) * radians, lon = (b[0] - a[0]) * radians;
+    const value = Math.sin(lat / 2) ** 2 + Math.cos(a[1] * radians) * Math.cos(b[1] * radians) * Math.sin(lon / 2) ** 2;
+    return 2 * Math.asin(Math.sqrt(Math.max(0, Math.min(1, value))));
+  };
+  const bearing = (a, b) => {
+    const lon = (b[0] - a[0]) * radians, start = a[1] * radians, end = b[1] * radians;
+    return Math.atan2(Math.sin(lon) * Math.cos(end), Math.cos(start) * Math.sin(end) - Math.sin(start) * Math.cos(end) * Math.cos(lon));
+  };
+  const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
+  if (!Array.isArray(polygons) || !polygons.length || polygons.some(polygon => !Array.isArray(polygon)
+    || !polygon.length || polygon.some(ring => !Array.isArray(ring) || ring.length < 4))) return null;
+  let closest = Infinity;
+  for (const polygon of polygons || []) for (const ring of polygon || []) for (let i = 1; i < (ring?.length || 0); i++) {
+    const start = ring[i - 1], end = ring[i];
+    if (!Array.isArray(start) || !Array.isArray(end) || !start.every(finite) || !end.every(finite)) return null;
+    const segment = angle(start, end), fromStart = angle(start, point);
+    const direction = bearing(start, point) - bearing(start, end);
+    const along = Math.atan2(Math.sin(fromStart) * Math.cos(direction), Math.cos(fromStart));
+    const distance = segment === 0 || along <= 0 ? fromStart : along >= segment ? angle(end, point)
+      : Math.abs(Math.asin(Math.max(-1, Math.min(1, Math.sin(fromStart) * Math.sin(direction)))));
+    closest = Math.min(closest, distance);
+  }
+  return finite(closest) ? closest * radius : null;
+}
+
+/** Load only the demo's requested nonstreet target boundaries, never the map renderer. */
+export async function loadDemoMatchingGeometries(ids, getLocation, {signal} = {}) {
+  if (signal?.aborted) return new Map();
+  if (!demoRegistryPromise) demoRegistryPromise = getManifest().then(manifest => ({manifest,
+    registry: validatePlaceLabels(manifest.labels, manifest, getLocation)})).catch(error => {demoRegistryPromise = null; throw error;});
+  const {manifest, registry} = await demoRegistryPromise;
+  if (signal?.aborted) return new Map();
+  const requests = new Map(), choices = [];
+  for (const id of new Set(ids || [])) {
+    const location = getLocation(id);
+    if (!location || !['city', 'district', 'neighborhood'].includes(location.kind)) continue;
+    const boundaryId = registry.districtBoundaries[id] || id;
+    const row = location.kind === 'city' ? registry.towns.get(id)
+      : manifest.cities.find(item => item.city === location.city);
+    if (!row) continue;
+    choices.push({id, boundaryId, file: row.file});
+    requests.set(row.file, {...row, town: location.kind === 'city'});
+  }
+  const rows = [...requests.values()], loaded = new Map();
+  let cursor = 0;
+  async function worker() {
+    while (cursor < rows.length && !signal?.aborted) {
+      const row = rows[cursor++];
+      let features = demoGeometryLayers.get(row.file);
+      if (!features) {
+        const value = await requestJSON(new URL(row.file, DATA_ROOT), signal);
+        if (row.town) {
+          if (!value || value.type !== 'Feature' || value.version !== registry.version || value.mapVersion !== manifest.version
+            || value.id !== row.id || !validBounds(value.bbox) || geometryPointCount(value.geometry) < 0) throw new Error('A településhatár nem érvényes.');
+          features = [value];
+        } else features = readCityFeatures(row, value, manifest, getLocation);
+        if (signal?.aborted) return;
+      }
+      demoGeometryLayers.delete(row.file); demoGeometryLayers.set(row.file, features);
+      while (demoGeometryLayers.size > MAX_CITIES) demoGeometryLayers.delete(demoGeometryLayers.keys().next().value);
+      loaded.set(row.file, new Map(features.map(feature => [feature.id, feature.geometry])));
+    }
+  }
+  await Promise.all(Array.from({length: Math.min(OUTLINE_CONCURRENCY, rows.length)}, worker));
+  if (signal?.aborted) return new Map();
+  return new Map(choices.map(choice => [choice.id, loaded.get(choice.file)?.get(choice.boundaryId)]).filter(([, geometry]) => geometry));
 }
 
 /** Labels, rather than polygon areas, determine which named choices are shown. */
