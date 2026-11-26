@@ -69,7 +69,7 @@ public static class RecommendationSql
         {
             var accepted = AcceptedLocations(property!);
             var acceptedSql = Array("acceptedLocations", accepted);
-            sellerExactIds=$"SELECT sl.`SearchRequestId` AS `Id` FROM `SearchLocations` sl WHERE sl.`LocationId` IN ({acceptedSql})";
+            sellerExactIds=$"SELECT DISTINCT sl.`SearchRequestId` AS `Id` FROM `SearchLocations` sl WHERE sl.`LocationId` IN ({acceptedSql})";
             exactLocation = $"EXISTS (SELECT 1 FROM `SearchLocations` sl WHERE sl.`SearchRequestId`=s.`Id` AND sl.`LocationId` IN ({acceptedSql}))";
             geography = $"(SELECT MIN(ST_Distance({PointSql}, a.`Boundary`))/1000.0 FROM `SearchLocations` gl JOIN `MatchingLocationMembers` lm ON lm.`SelectionId`=gl.`LocationId` COLLATE utf8mb4_bin JOIN `MatchingLocationAreas` a ON a.`Id`=lm.`AreaId` WHERE gl.`SearchRequestId`=s.`Id`)";
             geographicTargetExists="EXISTS(SELECT 1 FROM `SearchLocations` gl JOIN `MatchingLocationMembers` lm ON lm.`SelectionId`=gl.`LocationId` COLLATE utf8mb4_bin JOIN `MatchingLocationAreas` a ON a.`Id`=lm.`AreaId` WHERE gl.`SearchRequestId`=s.`Id`)";

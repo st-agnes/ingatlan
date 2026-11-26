@@ -328,4 +328,41 @@ const distinctTownChoices=await search('Distinct accented canonical town identit
 });
 assert.deepEqual([...distinctTownChoices.locationIds].sort(),['city:Komló','city:Kömlő'].sort(),
   'One search must preserve both accent-distinct municipality selections');
+
+// Exercise the actual SQL scorer across every nonflat attribute family. The
+// existing feed helper compares its returned score with the independently
+// executed shared JS evaluator; this pair has categorical, ordinal, numeric,
+// grouped-floor, nullable-amenity and current-certificate failures together.
+const attributeHome=await property('Complete SQL distance parity property',{
+  price:110_000_000,area:260,rooms:4,condition:'Átlagos',building:'Panel',
+  floor:2,buildingFloors:2,isAttic:true,balcony:false,elevator:false,airConditioning:false,
+  constructionAge:'41–50 év közötti',view:'Utcai',ceilingHeight:'3 m alatti',
+  heatingType:'Gázkonvektor',energyRating:'G',energyRatingScheme:'2023'
+});
+const attributeSearch=await search('Complete SQL distance parity search',{
+  minPrice:90_000_000,maxPrice:100_000_000,minArea:250,maxArea:255,minRooms:4.5,maxRooms:5,
+  conditions:['Jó','Új/felújított'],buildings:['Tégla','Kő és tégla'],floors:[4,5],
+  excludeTopFloor:true,excludeGroundFloorAndBelow:true,atticPreference:'exclude',
+  balcony:true,elevator:true,airConditioning:true,constructionAges:['10 évnél fiatalabb'],
+  views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',
+  heatingTypes:['Hőszivattyú','Távfűtés'],minEnergyRating:'A'
+});
+await activate(buyer,'search',attributeSearch.id);
+const attributeGate=await feed(buyer);
+assert.equal(attributeGate.requiresApproximateConsent,true);
+const attributePage=await feed(buyer,true);
+assert.equal(attributePage.stage,'approximate');
+const attributeCard=attributePage.items.find(item=>propertyId(item)===attributeHome.id);
+assert.ok(attributeCard,'The all-criteria property must survive full-pool SQL ranking');
+const attributeExpected=evaluateMatch(attributeCard.property,attributeCard.searchRequest);
+assert.equal(score(attributeCard),attributeExpected.score);assert.equal(attributeCard.isExact,false);
+assert.ok(attributeExpected.score>0&&attributeExpected.score<100);
+const attributeDetails=Object.fromEntries(attributeCard.matchDetails.map(detail=>[detail.key,detail]));
+for(const key of ['location','type','price','rooms','area','condition','floor','excludeTopFloor',
+  'excludeGroundFloorAndBelow','atticPreference','elevator','balcony','airConditioning','building',
+  'heatingType','constructionAge','view','ceilingHeight','minEnergyRating'])assert.ok(attributeDetails[key],key);
+assert.equal(attributeDetails.location.matches,true);assert.equal(attributeDetails.excludeGroundFloorAndBelow.matches,true);
+for(const key of ['price','rooms','area','condition','floor','excludeTopFloor','atticPreference',
+  'elevator','balcony','airConditioning','building','heatingType','constructionAge','view',
+  'ceilingHeight','minEnergyRating'])assert.equal(attributeDetails[key].matches,false,key);
 console.log(`Matching API smoke passed: exact 100% and >50-candidate exhaustion, value/specialization ordering, nearby location partials and hard type filters, explicit partial consent, graded distances, privacy, mutual matches, exactly-once billing and indexed location edits/overlaps. ${feedTimes.length} real feed reads; maximum observed ${Math.round(Math.max(...feedTimes))} ms.`);

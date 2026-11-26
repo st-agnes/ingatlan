@@ -39,7 +39,10 @@ public class RecommendationQueryTests
         var property = new Property { OwnerId = user.Id, LocationId = "district:Budapest:13", City = "Budapest", Type = "Lakás" };
         var sql = RecommendationFeed.CandidateQuerySql(db, user, property: property);
         Assert.Contains("SearchLocations", sql);
-        Assert.Contains("DISTINCT", sql);
+        // The exact stage has only this one candidate branch, so a UNION in
+        // partial discovery cannot rescue duplicate city/area memberships.
+        Assert.Matches(@"candidate_searches\s+AS\s*\(\s*SELECT\s+DISTINCT\s+sl\.`SearchRequestId`\s+AS\s+`Id`", sql);
+        Assert.Contains("j.`Value` COLLATE utf8mb4_bin", sql);
         Assert.DoesNotContain("JSON_OVERLAPS", sql);
         Assert.Contains("NOT EXISTS", sql);
         Assert.Contains("JOIN", sql);
