@@ -222,13 +222,15 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
     {
         PreparePublicListingKeys();
         return ActivityNotifications.SaveAsync(this, () => PropertyNeighborhoodIndex.SaveAsync(this,
-            () => SearchLocationIndex.SaveAsync(this, () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken), cancellationToken), cancellationToken), cancellationToken);
+            () => SearchLocationIndex.SaveAsync(this, () => MatchingGeography.SaveAsync(this,
+                () => base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken), cancellationToken), cancellationToken), cancellationToken), cancellationToken);
     }
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
         PreparePublicListingKeys();
         return ActivityNotifications.SaveAsync(this, () => PropertyNeighborhoodIndex.SaveAsync(this,
-            () => SearchLocationIndex.SaveAsync(this, () => Task.FromResult(base.SaveChanges(acceptAllChangesOnSuccess)), CancellationToken.None), CancellationToken.None), CancellationToken.None)
+            () => SearchLocationIndex.SaveAsync(this, () => MatchingGeography.SaveAsync(this,
+                () => Task.FromResult(base.SaveChanges(acceptAllChangesOnSuccess)), CancellationToken.None), CancellationToken.None), CancellationToken.None), CancellationToken.None)
             .GetAwaiter().GetResult();
     }
     protected override void OnModelCreating(ModelBuilder b)
@@ -238,6 +240,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<User>().ToTable("Users");
         b.Entity<UserReport>().ToTable("UserReports");
         b.Entity<Property>().ToTable("Properties");
+        b.Entity<Property>().Property(property => property.LocationId).UseCollation("utf8mb4_bin");
         b.Entity<Property>().Property(property => property.HideStreet).HasDefaultValue(true).HasSentinel(true);
         b.Entity<Property>().Property(property => property.HideHouseNumber).HasDefaultValue(true).HasSentinel(true);
         b.Entity<Property>().Property(property => property.CreationRequestHashVersion).HasDefaultValue(1);
@@ -246,6 +249,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<Property>().Property(property => property.FloorIsUpperRange).HasDefaultValue(false);
         b.Entity<SearchRequest>().ToTable("SearchRequests");
         b.Entity<SearchLocation>().ToTable("SearchLocations");
+        b.Entity<SearchLocation>().Property(location => location.LocationId).UseCollation("utf8mb4_bin");
         b.Entity<SearchLocation>().HasKey(location => new { location.SearchRequestId, location.LocationId });
         b.Entity<SearchLocation>().HasIndex(location => new { location.LocationId, location.SearchRequestId });
         b.Entity<PropertyNeighborhood>().ToTable("PropertyNeighborhoods");

@@ -146,7 +146,10 @@ public static class RefundEndpoints
         var own = await db.Decisions.AsNoTracking().SingleOrDefaultAsync(d => d.PropertyId == property.Id && d.SearchRequestId == search.Id
             && d.ActorKind == row.EntityKind && d.ActorUserId == userId, ct);
         var match = await db.Matches.AsNoTracking().SingleOrDefaultAsync(m => m.PropertyId == property.Id && m.SearchRequestId == search.Id, ct);
-        var prepared = MatchingRanking.Prepare(search, sellerPerspective: row.EntityKind == "property"); var evaluation = MatchingRanking.Evaluate(property, prepared); var compatible = evaluation.Eligible;
+        var prepared = MatchingRanking.Prepare(search, sellerPerspective: row.EntityKind == "property");
+        var evaluation = await MatchingPairEvaluation.EvaluateAsync(db, property, search,
+            sellerPerspective: row.EntityKind == "property", cancellationToken: ct);
+        var compatible = evaluation.Eligible;
         var item = new IncomingLikeItem(Dto.Property(property, ownerAccountType: seller.AccountType, ownerName: seller.Name),
             Dto.Search(search, buyer.AccountType, buyer.Name, own: row.EntityKind == "search"), property.Id, search.Id, compatible ? evaluation.Score : 0,
             compatible ? evaluation.Reasons : [], true, incoming.CreatedAt, own is null ? null : own.Liked ? "liked" : "passed", match?.Id,

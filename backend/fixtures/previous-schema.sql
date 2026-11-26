@@ -1,5 +1,9 @@
 -- CI ONLY: simulate the initial release in the disposable otthonra_ci database.
 -- No application deployment executes this file.
+DROP TABLE IF EXISTS `MatchingPropertyPoints`;
+DROP TABLE IF EXISTS `MatchingLocationMembers`;
+DROP TABLE IF EXISTS `MatchingLocationAreas`;
+DROP TABLE IF EXISTS `__OtthonraMatchingGeography`;
 DROP TABLE IF EXISTS `SearchLocations`;
 DROP TABLE IF EXISTS `PropertyNeighborhoods`;
 ALTER TABLE `Properties` DROP INDEX `IX_Properties_PublicListingKey`;
@@ -58,4 +62,4 @@ ALTER TABLE `SearchRequests`
   DROP COLUMN `AirConditioning`, DROP COLUMN `PrivateGarden`, DROP COLUMN `SharedGarden`,
   DROP COLUMN `PublicListingKey`, DROP COLUMN `AtticPreference`, DROP COLUMN `MinEnergyRating`, DROP COLUMN `PublicMaxPrice`;
 DELETE FROM `__OtthonraSchemaVersions`
-  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search', '20261118-postal-street-search', '20261118-idempotent-entity-creation', '20261119-account-activity-notifications', '20261123-floor-and-garden-amenities', '20261124-raised-and-upper-floor-range', '20261124-public-listings-and-energy', '20261124-search-public-budget');
+  WHERE `Version` IN ('20261102-locations-and-lot-area', '20261105-property-attributes', '20261106-seller-form-details', '20261107-account-types-and-reports', '20261107-interactions-and-report-reasons', '20261108-public-landing-and-like-refunds', '20261110-ranked-recommendation-indexes', '20261110-seller-feedback-and-insights', '20261111-continuous-seller-feedback', '20261116-neighborhood-address-search', '20261118-postal-street-search', '20261118-idempotent-entity-creation', '20261119-account-activity-notifications', '20261123-floor-and-garden-amenities', '20261124-raised-and-upper-floor-range', '20261124-public-listings-and-energy', '20261124-search-public-budget', '20261126-binary-canonical-location-keys');

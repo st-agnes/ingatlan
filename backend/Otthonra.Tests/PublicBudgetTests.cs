@@ -111,7 +111,7 @@ public sealed class PublicBudgetTests
         var sql = RecommendationFeed.CandidateQuerySql(db, new User { Id = Guid.NewGuid(), ActiveKind = "property" }, property: Home());
         Assert.Contains("COALESCE", sql); Assert.Contains("`PublicMaxPrice`", sql);
         Assert.Contains("SearchLocations", sql); Assert.DoesNotContain("`Description`", sql);
-        Assert.DoesNotContain("`ImagesJson`", sql); Assert.DoesNotContain("LIMIT 50", sql);
+        Assert.DoesNotContain("`ImagesJson`", sql); Assert.Contains("LIMIT 50", sql);
         var column = db.Model.FindEntityType(typeof(SearchRequest))!.FindProperty(nameof(SearchRequest.PublicMaxPrice))!;
         Assert.True(column.IsNullable); Assert.Equal(18, column.GetPrecision()); Assert.Equal(2, column.GetScale());
         Assert.Equal("20261124-search-public-budget", SchemaUpgrade.PublicBudgetVersion);

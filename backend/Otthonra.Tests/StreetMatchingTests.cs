@@ -59,6 +59,34 @@ public sealed class StreetMatchingTests
         Assert.False(Evaluate(property, search).Eligible);
     }
 
+    [Fact]
+    public void StreetOnlySearchesCannotUseNearbyDistanceToBypassTheExactStreetGate()
+    {
+        var street = Street; var property = Home(street);
+        var another = Streets.First(value => value.City == street.City && value.Id != street.Id);
+        foreach (var distance in new[] { 0d, .01d, 1d, 20d })
+        {
+            var wrongStreet = MatchingRanking.Evaluate(property, MatchingRanking.Prepare(Wanted(another.Id)), locationDistanceKm: distance);
+            Assert.False(wrongStreet.Eligible); Assert.Equal(0, wrongStreet.Score);
+            var exactStreet = MatchingRanking.Evaluate(property, MatchingRanking.Prepare(Wanted(street.Id)), locationDistanceKm: distance);
+            Assert.True(exactStreet.IsExact); Assert.Equal(100, exactStreet.Score);
+        }
+        property.HideStreet = true;
+        Assert.False(MatchingRanking.Evaluate(property, MatchingRanking.Prepare(Wanted(street.Id)), locationDistanceKm: 0).Eligible);
+    }
+
+    [Fact]
+    public void MixedStreetAndAreaChoicesAllowNearbyResultsOnlyThroughTheNonstreetChoice()
+    {
+        var street = Street; var property = Home(street); property.StreetId = null;
+        var search = Wanted(street.Id, "city:Szeged");
+        Assert.False(Evaluate(property, search).Eligible);
+        var nearby = MatchingRanking.Evaluate(property, MatchingRanking.Prepare(search), locationDistanceKm: 1);
+        Assert.True(nearby.Eligible); Assert.False(nearby.IsExact); Assert.Equal(94, nearby.Score);
+        property.HideStreet = true;
+        Assert.Equal(94, MatchingRanking.Evaluate(property, MatchingRanking.Prepare(search), locationDistanceKm: 1).Score);
+    }
+
     [Theory]
     [InlineData(null)]
     [InlineData("")]
@@ -208,13 +236,14 @@ public sealed class StreetMatchingTests
         using var db = Context();
         var street = Street;
         var user = new User { Id = Buyer, AccountType = AccountTypes.Agent, ActiveKind = "search" };
-        var sql = RecommendationFeed.CandidateQuerySql(db, user, search: Wanted(street.Id));
-        Assert.Contains(street.Id, sql);
+        var query = RecommendationSql.Build(user, search: Wanted(street.Id));
+        var sql = query.Text;
+        Assert.Contains(street.Id, Assert.IsType<string>(query.Parameters["exactStreets"]));
         Assert.Contains("`StreetId`", sql[sql.IndexOf("WHERE", StringComparison.Ordinal)..]);
         Assert.DoesNotContain("'" + street.City + "'", sql);
         Assert.Contains("NOT EXISTS", sql);
         Assert.Contains("AccountType", sql);
-        Assert.DoesNotContain("LIMIT 50", sql);
+        Assert.Contains("LIMIT 50", sql);
         Assert.DoesNotContain("JSON_OVERLAPS", sql);
         foreach (var column in new[] { "Street", "HouseNumber", "PostalCode", "Address", "Latitude", "Longitude", "Description", "ImagesJson" })
             Assert.DoesNotContain("`" + column + "`", sql);
@@ -226,14 +255,16 @@ public sealed class StreetMatchingTests
     public void BuyerSqlCombinesStreetAndOtherLocationChoicesBeforeRanking()
     {
         using var db = Context();
-        var sql = RecommendationFeed.CandidateQuerySql(db, new User { Id = Buyer, ActiveKind = "search" },
+        var query = RecommendationSql.Build(new User { Id = Buyer, ActiveKind = "search" },
             search: Wanted(Street.Id, "city:Szeged", "district:Budapest:13", Venkert));
+        var sql = query.Text;
         Assert.Contains("`StreetId`", sql);
         Assert.Contains("PropertyNeighborhoods", sql);
-        Assert.Contains("city:Szeged", sql);
-        Assert.Contains("district:Budapest:13", sql);
+        var exactPlaces = Assert.IsType<string>(query.Parameters["exactPlaces"]);
+        Assert.Contains("city:Szeged", exactPlaces);
+        Assert.Contains("district:Budapest:13", exactPlaces);
         Assert.Contains(" OR ", sql);
-        Assert.DoesNotContain("LIMIT 50", sql);
+        Assert.Contains("LIMIT 50", sql);
     }
 
     [Fact]
@@ -243,22 +274,24 @@ public sealed class StreetMatchingTests
         var street = Street;
         var property = Home(street);
         var user = new User { Id = Seller, AccountType = AccountTypes.Agent, ActiveKind = "property" };
-        var sql = RecommendationFeed.CandidateQuerySql(db, user, property: property);
+        var query = RecommendationSql.Build(user, property: property);
+        var sql = query.Text;
         Assert.Contains("SearchLocations", sql);
         Assert.Contains("DISTINCT", sql);
-        Assert.Contains(street.Id, sql);
-        Assert.Contains("city:" + street.City, sql);
+        var accepted = Assert.IsType<string>(query.Parameters["acceptedLocations"]);
+        Assert.Contains(street.Id, accepted);
+        Assert.Contains("city:" + street.City, accepted);
         Assert.Contains("NOT EXISTS", sql);
         Assert.Contains("AccountType", sql);
-        Assert.DoesNotContain("LIMIT 50", sql);
+        Assert.Contains("LIMIT 50", sql);
         Assert.DoesNotContain("JSON_OVERLAPS", sql);
         property.StreetId = null;
-        Assert.DoesNotContain(street.Id, RecommendationFeed.CandidateQuerySql(db, user, property: property));
+        Assert.DoesNotContain(street.Id, Assert.IsType<string>(RecommendationSql.Build(user, property: property).Parameters["acceptedLocations"]));
         property.StreetId = street.Id;
         property.LocationId = LocationCatalog.All.First(value => value.Kind == "city" && value.City != street.City).Id;
-        Assert.DoesNotContain(street.Id, RecommendationFeed.CandidateQuerySql(db, user, property: property));
+        Assert.DoesNotContain(street.Id, Assert.IsType<string>(RecommendationSql.Build(user, property: property).Parameters["acceptedLocations"]));
         property.StreetId = UnknownStreet;
-        Assert.DoesNotContain(UnknownStreet, RecommendationFeed.CandidateQuerySql(db, user, property: property));
+        Assert.DoesNotContain(UnknownStreet, Assert.IsType<string>(RecommendationSql.Build(user, property: property).Parameters["acceptedLocations"]));
         Assert.Equal(ConnectionState.Closed, db.Database.GetDbConnection().State);
     }
 

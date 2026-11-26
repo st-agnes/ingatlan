@@ -76,6 +76,21 @@ test('direct location matching enforces the raw 50-selection cap even for duplic
   assert.equal(matchesLocations(home,{locationIds:Array(51).fill(home.locationId)}),false);
 });
 
+test('nearby distances cannot relax street-only searches while mixed choices retain area-based proximity',()=>{
+  const selected=registerLocations([street('e',{id:'street:1234567890abcdef01234567',streetName:'Közelség fixture utca',label:'Budapest XI. kerület, Közelség fixture utca'})])[0];
+  const home={ownerId:'seller',locationId:'district:Budapest:11',streetId:null,hideStreet:false,type:'Lakás',price:60,area:60,rooms:3};
+  const query={ownerId:'buyer',type:'Lakás',locationIds:[selected.id]};
+  for(const distance of [0,.01,1,20]){
+    assert.equal(evaluateMatch(home,query,{locationDistanceKm:distance}).eligible,false);
+    assert.equal(evaluateMatch({...home,streetId:selected.id},query,{locationDistanceKm:distance}).score,100);
+  }
+  assert.equal(evaluateMatch({...home,streetId:selected.id,hideStreet:true},query,{locationDistanceKm:0}).eligible,false);
+  const mixed={...query,locationIds:[selected.id,'city:Szeged']};
+  const nearby=evaluateMatch(home,mixed,{locationDistanceKm:1});
+  assert.equal(nearby.eligible,true);assert.equal(nearby.isExact,false);assert.equal(nearby.score,94);
+  assert.equal(evaluateMatch({...home,hideStreet:true},mixed,{locationDistanceKm:1}).score,94);
+});
+
 test('API suggestion methods use bounded scoped endpoints and register only valid public metadata',async()=>{
   const selected=street('5');const calls=[];
   globalThis.fetch=async url=>{const parsed=new URL(url);calls.push(parsed);return response({items:parsed.pathname.endsWith('/streets')?[selected,street('6',{city:'Szeged',district:null})]:[{id:'city:Budapest'},selected]});};

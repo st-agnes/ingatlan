@@ -62,8 +62,8 @@ public class MatchingRankingTests
 
     [Theory]
     [InlineData(100_000_000, 100)] [InlineData(110_000_000, 90)]
-    [InlineData(120_000_000, 80)] [InlineData(150_000_000, 50)] [InlineData(200_000_000, 0)]
-    public void PriceDeviationIsProportionalAndInclusive(int price, int expected)
+    [InlineData(120_000_000, 80)] [InlineData(150_000_000, 58)] [InlineData(200_000_000, 33)]
+    public void PriceDeviationUsesRelativeDistanceAndKeepsInclusiveBounds(int price, int expected)
     {
         var p = Home(); p.Price = price; var q = Wanted(); q.MaxPrice = 100_000_000;
         Assert.Equal(expected, Match(p, q).Score);
@@ -76,9 +76,9 @@ public class MatchingRankingTests
         var p = Home(); var q = Wanted(); q.MaxPrice = 100_000_000m; p.Price = 100_000_001m;
         Assert.Equal(99, Match(p, q).Score);
         q.MaxPrice = 500_000m; p.Price = 600_000m; Assert.Equal(80, Match(p, q).Score);
-        q.MaxPrice = 0; Assert.Equal(0, Match(p, q).Score);
+        q.MaxPrice = 0; Assert.Equal(33, Match(p, q).Score);
         q.MaxPrice = null; q.MinPrice = 500_000m; p.Price = 400_000m;
-        Assert.Equal(80, Match(p, q).Score); // A sole weight below 1 must still normalize to 100%.
+        Assert.Equal(94, Match(p, q).Score); // Fixed weights are not renormalized by the selected criteria.
     }
 
     [Fact]
@@ -96,20 +96,69 @@ public class MatchingRankingTests
     public void MinimumRoomAndAreaShortfallsUseTheirOwnRelativeDeviation()
     {
         var p = Home(); p.Rooms = 2; var q = Wanted(); q.MinRooms = 3;
-        Assert.Equal(67, Match(p, q).Score);
-        p.Rooms = 2.5m; q.MinRooms = 4; Assert.Equal(63, Match(p, q).Score);
-        q.MinRooms = null; q.MinArea = 50; p.Area = 40; Assert.Equal(80, Match(p, q).Score);
+        Assert.Equal(70, Match(p, q).Score);
+        p.Rooms = 2.5m; q.MinRooms = 4; Assert.Equal(67, Match(p, q).Score);
+        q.MinRooms = null; q.MinArea = 50; p.Area = 40; Assert.Equal(82, Match(p, q).Score);
+    }
+
+    [Fact]
+    public void SevereAreaShortageCannotBeDilutedByOtherwiseSatisfiedCriteria()
+    {
+        var p = Home(); p.Area = 50; p.Condition = "Jó"; p.Building = "Tégla";
+        p.Floor = 2; p.Balcony = p.Elevator = true;
+        var q = Wanted(); q.MinArea = 250;
+        var onlyArea = Match(p, q);
+        Assert.Equal(45, onlyArea.Score);
+        Assert.InRange(Math.Abs(onlyArea.DistanceSquared - .64d), 0d, 1e-12);
+        q.MaxPrice = 100_000_000; q.MinRooms = 1; q.MaxArea = 300;
+        q.ConditionsJson = "[\"Jó\"]"; q.BuildingsJson = "[\"Tégla\"]";
+        q.FloorsJson = "[2]"; q.Balcony = q.Elevator = true;
+        var withSatisfiedCriteria = Match(p, q);
+        Assert.Equal(onlyArea.Score, withSatisfiedCriteria.Score);
+        Assert.Equal(onlyArea.DistanceSquared, withSatisfiedCriteria.DistanceSquared);
+        Assert.All(withSatisfiedCriteria.MatchDetails.Where(value => value.Key != "area"), value => Assert.True(value.Matches));
+    }
+
+    [Fact]
+    public void NumericOverrunsContinueToGrowRatherThanSaturatingAtOneHundredPercent()
+    {
+        var p = Home(); var q = Wanted(); q.MaxPrice = 100_000_000;
+        p.Price = 200_000_000; var twice = Match(p, q);
+        p.Price = 400_000_000; var fourTimes = Match(p, q);
+        Assert.Equal(33, twice.Score); Assert.Equal(4, fourTimes.Score);
+        Assert.True(fourTimes.DistanceSquared > twice.DistanceSquared);
+        q = Wanted(); q.MaxArea = 50; p.Area = 250;
+        Assert.Equal(20, Match(p, q).Score);
+    }
+
+    [Fact]
+    public void VerifiedNearbyDistanceAddsAnIndependentLocationPenaltyWithoutCreatingPerfectMatches()
+    {
+        var p = Home(); p.LocationId = "city:Szeged"; p.City = "Szeged";
+        var prepared = MatchingRanking.Prepare(Wanted());
+        var near = MatchingRanking.Evaluate(p, prepared, locationDistanceKm: 1);
+        var far = MatchingRanking.Evaluate(p, prepared, locationDistanceKm: 20);
+        Assert.True(near.Eligible); Assert.False(near.IsExact);
+        Assert.Equal(94, near.Score); Assert.Equal(29, far.Score);
+        Assert.True(near.DistanceSquared < far.DistanceSquared);
+        var detail = Assert.Single(near.MatchDetails.Where(value => value.Key == "location"));
+        Assert.False(detail.Matches); Assert.Contains("Debrecen", detail.Expected);
+        Assert.Equal(99, MatchingRanking.Evaluate(p, prepared, locationDistanceKm: 0).Score);
+        foreach (var invalid in new[] { -1d, double.NaN, double.PositiveInfinity })
+            Assert.False(MatchingRanking.Evaluate(p, prepared, locationDistanceKm: invalid).Eligible);
+        p.LocationId = "city:missing";
+        Assert.False(MatchingRanking.Evaluate(p, prepared, locationDistanceKm: 1).Eligible);
     }
 
     [Fact]
     public void ConditionUsesTheWorstAllowedThresholdAndUnknownDataIsNotExact()
     {
         var q = Wanted(); q.ConditionsJson = "[\"Jó\",\"Új/felújított\"]";
-        var p = Home(); var scores = new[] { 33, 67, 100, 100 };
+        var p = Home(); var scores = new[] { 67, 82, 100, 100 };
         for (var i = 0; i < PropertyAttributes.Conditions.Length; i++)
         { p.Condition = PropertyAttributes.Conditions[i]; Assert.Equal(scores[i], Match(p, q).Score); }
         p.Condition = "Felújított"; Assert.Equal(100, Match(p, q).Score);
-        p.Condition = ""; Assert.Equal(0, Match(p, q).Score);
+        p.Condition = ""; Assert.Equal(55, Match(p, q).Score);
         q.ConditionsJson = "[\"Átlagos\"]"; p.Condition = "Jó";
         Assert.True(Rules.Compatible(p, q)); Assert.Equal(100, Rules.Score(p, q));
     }
@@ -118,11 +167,11 @@ public class MatchingRankingTests
     public void FloorUsesNearestSelectedLevelAndNormalizesTheOldElevenPlusBucket()
     {
         var q = Wanted(); q.FloorsJson = "[1,5]"; var p = Home();
-        p.Floor = 4; Assert.Equal(80, Match(p, q).Score);
-        p.Floor = 3; Assert.Equal(60, Match(p, q).Score);
-        p.Floor = null; Assert.Equal(0, Match(p, q).Score);
+        p.Floor = 4; Assert.Equal(90, Match(p, q).Score);
+        p.Floor = 3; Assert.Equal(82, Match(p, q).Score);
+        p.Floor = null; Assert.Equal(61, Match(p, q).Score);
         q.FloorsJson = "[11]"; p.Floor = 27; Assert.Equal(100, Match(p, q).Score);
-        q.FloorsJson = "[0]"; p.Floor = -1; Assert.Equal(80, Match(p, q).Score);
+        q.FloorsJson = "[0]"; p.Floor = -1; Assert.Equal(90, Match(p, q).Score);
     }
 
     [Fact]
@@ -135,7 +184,7 @@ public class MatchingRankingTests
         p.Building = "panel"; p.HeatingType = "gázkazán"; p.ConstructionAge = "10 évnél fiatalabb";
         p.View = "kertre néző"; p.CeilingHeight = "3 m alatti"; Assert.Equal(100, Match(p, q).Score);
         q = Wanted(); q.ConstructionAgesJson = "[\"10 évnél fiatalabb\"]"; p.ConstructionAge = "10–30 év közötti";
-        Assert.Equal(75, Match(p, q).Score);
+        Assert.Equal(97, Match(p, q).Score);
     }
 
     [Fact]
@@ -152,10 +201,10 @@ public class MatchingRankingTests
     public void OtherExistingSearchBoundsAndViewsStillAffectThePercentage()
     {
         var p = Home(); var q = Wanted(); p.Price = 40_000_000m; q.MinPrice = 50_000_000m;
-        Assert.Equal(80, Match(p, q).Score);
-        q = Wanted(); p.Area = 90; q.MaxArea = 60; Assert.Equal(50, Match(p, q).Score);
-        q = Wanted(); p.Rooms = 6; q.MaxRooms = 3; Assert.Equal(0, Match(p, q).Score);
-        q = Wanted(); q.ViewsJson = "[\"Kertre néző\"]"; p.View = "Utcai"; Assert.Equal(0, Match(p, q).Score);
+        Assert.Equal(94, Match(p, q).Score);
+        q = Wanted(); p.Area = 90; q.MaxArea = 60; Assert.Equal(82, Match(p, q).Score);
+        q = Wanted(); p.Rooms = 6; q.MaxRooms = 3; Assert.Equal(67, Match(p, q).Score);
+        q = Wanted(); q.ViewsJson = "[\"Kertre néző\"]"; p.View = "Utcai"; Assert.Equal(90, Match(p, q).Score);
     }
 
     [Fact]
@@ -264,7 +313,8 @@ public class MatchingRankingTests
             if (rawSearch.TryGetProperty("views", out var views)) search.ViewsJson = views.GetRawText();
             if (rawSearch.TryGetProperty("floors", out var floors)) search.FloorsJson = floors.GetRawText();
             var sellerPerspective = item.TryGetProperty("perspective", out var perspective) && perspective.GetString() == "seller";
-            var result = MatchingRanking.Evaluate(property, MatchingRanking.Prepare(search, sellerPerspective));
+            var locationDistanceKm = item.TryGetProperty("locationDistanceKm", out var distance) ? distance.GetDouble() : (double?)null;
+            var result = MatchingRanking.Evaluate(property, MatchingRanking.Prepare(search, sellerPerspective), locationDistanceKm: locationDistanceKm);
             if (item.TryGetProperty("eligible", out var eligible)) Assert.Equal(eligible.GetBoolean(), result.Eligible);
             if (item.TryGetProperty("score", out var score))
             {

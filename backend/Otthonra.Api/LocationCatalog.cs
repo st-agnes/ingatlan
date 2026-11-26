@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text;
 using System.Text.Json;
 
 namespace Otthonra.Api;
@@ -68,15 +69,24 @@ public static class LocationCatalog
     public static Location[] ResolveLegacy(string? city, IEnumerable<string?>? districts = null)
     {
         var normalized = Normalize(city);
-        var direct = All.FirstOrDefault(x => (x.Kind is "city" or "district") && Normalize(x.Label) == normalized);
+        // Accent folding is useful for legacy input, but cannot determine
+        // identity where distinct official names collapse (Komló / Kömlő).
+        var identity = (city ?? "").Trim().Normalize(NormalizationForm.FormC);
+        var direct = All.FirstOrDefault(x => (x.Kind is "city" or "district")
+            && string.Equals(x.Label.Normalize(NormalizationForm.FormC), identity, StringComparison.OrdinalIgnoreCase));
         if (direct?.District is not null) return [direct];
         if (normalized.StartsWith("BUDAPEST ", StringComparison.Ordinal))
         {
             var districtNumber = DistrictNumber(city);
             return districtNumber.HasValue ? [Get($"district:Budapest:{districtNumber}")!] : [];
         }
-        var place = All.FirstOrDefault(x => x.Kind == "city" && Normalize(x.City) == normalized);
-        if (place is null) return [];
+        var place = direct;
+        if (place is null)
+        {
+            var candidates = All.Where(x => x.Kind == "city" && Normalize(x.City) == normalized).Take(2).ToArray();
+            if (candidates.Length != 1) return [];
+            place = candidates[0];
+        }
         if (place.City != "Budapest") return [place];
         var requested = districts?.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray() ?? [];
         if (requested.Length == 0) return [place];

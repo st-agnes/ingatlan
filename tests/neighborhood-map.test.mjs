@@ -2,11 +2,27 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {boundsIntersect,chooseVisibleCities,pointInGeometry,geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature,validateNeighborhoodHierarchy,neighborhoodAncestors,validatePlaceLabels,chooseVisiblePlaceLabels,chooseLabelHit,selectablePlaceLabelLayout} from '../dist/location-map.js';
+import {boundsIntersect,chooseVisibleCities,pointInGeometry,geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature,validateNeighborhoodHierarchy,neighborhoodAncestors,validatePlaceLabels,chooseVisiblePlaceLabels,chooseLabelHit,selectablePlaceLabelLayout,demoDistanceToGeometryKm} from '../dist/location-map.js';
 
 // Synthetic WGS84 rectangles exercise display picking, never address geocoding.
 const ring=(west,south,east,north)=>[[west,south],[east,south],[east,north],[west,north],[west,south]];
 const polygon={type:'Polygon',coordinates:[ring(19,47,20,48)]};
+
+test('demo proximity measures distance to the polygon boundary rather than its center',()=>{
+ assert.equal(demoDistanceToGeometryKm([19.01,47.5],polygon),0,'Any point inside the chosen area has no location penalty');
+ assert.equal(demoDistanceToGeometryKm([20,47.5],polygon),0,'The selected polygon boundary belongs to the selected area');
+ const outside=demoDistanceToGeometryKm([20.1,47.5],polygon);
+ assert.ok(outside>7&&outside<8,'A point just beyond the eastern edge is about7.5km away, not its distance to the city center');
+ const multiple={type:'MultiPolygon',coordinates:[polygon.coordinates,[ring(22,47,23,48)]]};
+ assert.equal(demoDistanceToGeometryKm([22.5,47.5],multiple),0);
+ const nearSecond=demoDistanceToGeometryKm([21.9,47.5],multiple);
+ assert.ok(nearSecond>7&&nearSecond<8,'The nearest detached component determines proximity');
+ const withHole={type:'Polygon',coordinates:[ring(19,47,20,48),ring(19.2,47.2,19.8,47.8)]};
+ const inHole=demoDistanceToGeometryKm([19.5,47.5],withHole);
+ assert.ok(inHole>20&&inHole<25,'A point inside a hole is outside the selected area and uses the nearest inner boundary');
+ for(const point of [[NaN,47],[19,91],[181,47],null])assert.equal(demoDistanceToGeometryKm(point,polygon),null);
+ assert.equal(demoDistanceToGeometryKm([19,47],{type:'Point',coordinates:[19,47]}),null);
+});
 
 test('the preserved legacy Leaflet assets retain their verified release and license',async()=>{
  for(const [file,expected]of Object.entries({

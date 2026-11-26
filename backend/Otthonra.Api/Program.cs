@@ -63,8 +63,10 @@ if (builder.Configuration.GetValue<bool>("Database:Initialize"))
     await using var scope = app.Services.CreateAsyncScope();
     var db = scope.ServiceProvider.GetRequiredService<AppDb>();
     await db.Database.EnsureCreatedAsync();
+    await MatchingGeography.EnsureSchemaAsync(db);
     await SchemaUpgrade.ApplyAsync(db);
     await NeighborhoodData.InitializeAsync(db);
+    await MatchingGeography.InitializeAsync(db);
     await StreetData.InitializeAsync(db);
     if (deployment.IsTest && builder.Configuration.GetValue<bool>("Database:SeedTestFixtures"))
     {
@@ -278,11 +280,13 @@ api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPr
         && decision.ActorKind == kind && (kind == "property" ? decision.PropertyId == activeId : decision.SearchRequestId == activeId)).ToListAsync();
     var matches = await db.Matches.AsNoTracking().Where(match => kind == "property"
         ? match.PropertyId == activeId : match.SearchRequestId == activeId).ToListAsync();
+    var evaluations = await MatchingPairEvaluation.EvaluateManyAsync(db,
+        rows.Select(row => (row.Property, row.Search)), sellerPerspective: kind == "property");
     var items = rows.Select(row => {
         var own = ownDecisions.SingleOrDefault(decision => decision.PropertyId == row.Property.Id && decision.SearchRequestId == row.Search.Id);
         var match = matches.SingleOrDefault(item => item.PropertyId == row.Property.Id && item.SearchRequestId == row.Search.Id);
         var prepared = MatchingRanking.Prepare(row.Search, sellerPerspective: kind == "property");
-        var evaluation = MatchingRanking.Evaluate(row.Property, prepared);
+        var evaluation = evaluations[(row.Property.Id, row.Search.Id)];
         var compatible = evaluation.Eligible;
         return new IncomingLikeItem(Dto.Property(row.Property, ownerAccountType: row.PropertyOwnerType, ownerName: row.PropertyOwnerName),
             Dto.Search(row.Search, row.SearchOwnerType, row.SearchOwnerName, own: kind == "search"), row.Property.Id, row.Search.Id,
@@ -327,7 +331,8 @@ api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal 
         var previousPrompt = kind == "search" && !input.Liked ? await SellerFeedback.PendingAsync(db, uid, clock.GetUtcNow().UtcDateTime, cancellationToken) : null;
         await tx.CommitAsync(); return Results.Ok(new { matchId = previousMatch?.Id, charged = 0, credits = user.Credits, feedbackPrompt = previousPrompt });
     }
-    var evaluation = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s, sellerPerspective: kind == "property"), includeReasons: false);
+    var evaluation = await MatchingPairEvaluation.EvaluateAsync(db, p, s,
+        sellerPerspective: kind == "property", includeReasons: false, cancellationToken: cancellationToken);
     if (!evaluation.Eligible) throw new ApiException(400, "Az ingatlan helyszíne vagy típusa nem felel meg az aktív keresésnek.");
     if (!evaluation.IsExact)
     {

@@ -41,9 +41,23 @@ def normalize(value):
                    if unicodedata.category(character) != 'Mn').upper().strip()
 
 
-CITIES = {normalize(city): city for city in SETTLEMENTS}
+CITIES_EXACT = {unicodedata.normalize('NFC', city).upper(): city for city in SETTLEMENTS}
+CITIES_NORMALIZED = {}
+for city in SETTLEMENTS:
+    CITIES_NORMALIZED.setdefault(normalize(city), set()).add(city)
 DISTRICTS = {normalize('Budapest ' + roman + '. kerület'): index
              for index, roman in enumerate(ROMANS, 1)}
+
+
+def canonical_city(value):
+    # Prefer case-insensitive but accent-sensitive identity. Komló and Kömlő
+    # share an accent-stripped key, so only an unambiguous legacy alias may
+    # fall back to that key; catalogue order must never choose a municipality.
+    exact = CITIES_EXACT.get(unicodedata.normalize('NFC', (value or '').strip()).upper())
+    if exact is not None:
+        return exact
+    choices = CITIES_NORMALIZED.get(normalize(value), set())
+    return next(iter(choices)) if len(choices) == 1 else None
 
 
 def strings(value):
@@ -70,7 +84,7 @@ def expected_ids(search):
     try:
         explicit = strings(search['locationIdsJson'])
         if explicit:
-            if any(item not in KNOWN_IDS for item in explicit):
+            if len(explicit) > 50 or any(item not in KNOWN_IDS for item in explicit):
                 return ['@invalid']
             result = sorted(set(explicit))
             return result if 0 < len(result) <= 50 else ['@invalid']
@@ -82,7 +96,7 @@ def expected_ids(search):
         if city.startswith('BUDAPEST '):
             number = district_number(city)
             return ['district:Budapest:' + str(number)] if number is not None else ['@invalid']
-        canonical = CITIES.get(city)
+        canonical = canonical_city(search['city'])
         if canonical is None:
             return ['@invalid']
         if canonical != 'Budapest':
@@ -97,6 +111,28 @@ def expected_ids(search):
         return result if 0 < len(result) <= 50 else ['@invalid']
     except (ValueError, TypeError):
         return ['@invalid']
+
+
+def verify_legacy_identity_resolution():
+    def legacy(city, districts=None):
+        return expected_ids({'city': city, 'districtsJson': json.dumps(districts or []), 'locationIdsJson': '[]'})
+
+    assert legacy('Komló') == ['city:Komló']
+    assert legacy('Kömlő') == ['city:Kömlő']
+    assert legacy('komló') == ['city:Komló']
+    assert legacy('  KöMlŐ  ') == ['city:Kömlő']
+    assert legacy(unicodedata.normalize('NFD', 'Komló')) == ['city:Komló']
+    assert legacy(unicodedata.normalize('NFD', 'Kömlő')) == ['city:Kömlő']
+    assert legacy('Komlo') == ['@invalid'], 'An ambiguous accent-free name must not select either municipality.'
+    assert legacy('Gyor') == ['city:Győr'], 'Unique accent-free legacy names remain compatible.'
+    assert legacy('debrecen') == ['city:Debrecen']
+    assert legacy('Budapest') == ['city:Budapest']
+    assert legacy('Budapest V. kerület') == ['district:Budapest:5']
+    assert legacy('Budapest', ['V.', 'IX.']) == ['district:Budapest:5', 'district:Budapest:9']
+    explicit = {'city': 'Komló', 'districtsJson': '[]', 'locationIdsJson': json.dumps(['city:Komló', 'city:Kömlő'])}
+    assert expected_ids(explicit) == ['city:Komló', 'city:Kömlő']
+    explicit['locationIdsJson'] = json.dumps(['city:Komló'] * 51)
+    assert expected_ids(explicit) == ['@invalid'], 'The raw selection cap applies before duplicate removal.'
 
 
 def query(container_id, sql):
@@ -116,6 +152,7 @@ def main():
     container_id = sys.argv[1]
     if not re.fullmatch(r'[a-f0-9]{12,64}', container_id):
         raise SystemExit('Invalid disposable MySQL container ID.')
+    verify_legacy_identity_resolution()
     indexes = query(container_id, """
         SELECT INDEX_NAME,COLUMN_NAME,SEQ_IN_INDEX
         FROM information_schema.STATISTICS
@@ -147,6 +184,64 @@ def main():
              GROUP BY SearchRequestId HAVING COUNT(*)>50) excessive)
         """)
     assert invalid_counts == '0\t0\t0', 'Missing, orphaned or excessively expanded location links.'
+
+    geography_counts = query(container_id, """
+        SELECT
+          (SELECT COUNT(*) FROM MatchingLocationAreas WHERE Kind='city'),
+          (SELECT COUNT(*) FROM MatchingLocationAreas WHERE Kind='neighborhood'),
+          (SELECT COUNT(*) FROM MatchingLocationAreas WHERE Kind='district'),
+          (SELECT COUNT(*) FROM MatchingLocationMembers WHERE SelectionId LIKE 'street:%')
+        """)
+    assert geography_counts == '3155\t4308\t23\t0', \
+        'Distance matching requires every original municipality, neighborhood and district boundary, without street proximity anchors.'
+    assert query(container_id, "SELECT COUNT(*) FROM MatchingLocationAreas WHERE Id IN ('city:Komló','city:Kömlő')") == '2', \
+        'Accent-distinct canonical municipalities must retain separate polygons.'
+    identity_collations = query(container_id, """
+        SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE()
+          AND ((TABLE_NAME='MatchingLocationAreas' AND COLUMN_NAME='Id')
+            OR (TABLE_NAME='MatchingLocationMembers' AND COLUMN_NAME IN ('SelectionId','AreaId'))
+            OR (TABLE_NAME IN ('Properties','SearchLocations') AND COLUMN_NAME='LocationId'))
+          AND COLLATION_NAME='utf8mb4_bin'
+        """)
+    assert identity_collations == '5', 'All canonical location identity keys must preserve accents and indexed equality.'
+    spatial_indexes = query(container_id, """
+        SELECT TABLE_NAME,INDEX_NAME,INDEX_TYPE FROM information_schema.STATISTICS
+        WHERE TABLE_SCHEMA=DATABASE() AND (
+          TABLE_NAME='MatchingPropertyPoints' AND INDEX_NAME='SX_MatchingPropertyPoints_Position'
+          OR TABLE_NAME='MatchingLocationAreas' AND INDEX_NAME='SX_MatchingLocationAreas_Boundary')
+        ORDER BY TABLE_NAME
+        """)
+    assert spatial_indexes.splitlines() == [
+        'MatchingLocationAreas\tSX_MatchingLocationAreas_Boundary\tSPATIAL',
+        'MatchingPropertyPoints\tSX_MatchingPropertyPoints_Position\tSPATIAL'
+    ], 'Distance matching must retain both property-point and original-boundary spatial indexes.'
+    point_consistency = query(container_id, """
+        SELECT
+          (SELECT COUNT(*) FROM Properties p LEFT JOIN MatchingPropertyPoints g ON g.PropertyId=p.Id
+           WHERE p.Latitude IS NOT NULL AND p.Longitude IS NOT NULL AND g.PropertyId IS NULL),
+          (SELECT COUNT(*) FROM MatchingPropertyPoints g LEFT JOIN Properties p ON p.Id=g.PropertyId
+           WHERE p.Id IS NULL OR p.Latitude IS NULL OR p.Longitude IS NULL
+             OR ST_SRID(g.Position)<>4326
+             OR ABS(ST_Longitude(g.Position)-p.Longitude)>0.0000000001
+             OR ABS(ST_Latitude(g.Position)-p.Latitude)>0.0000000001),
+          (SELECT COUNT(*) FROM information_schema.KEY_COLUMN_USAGE
+           WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='MatchingPropertyPoints'
+             AND COLUMN_NAME='PropertyId' AND REFERENCED_TABLE_NAME='Properties')
+        """)
+    assert point_consistency == '0\t0\t1', \
+        'Spatial property points must stay synchronized with authoritative saved coordinates and retain their parent foreign key.'
+    # Exercise the actual MySQL 8.0/8.4 geographic point-to-polygon operation.
+    # The outside point is close to the eastern edge, far from the center.
+    boundary_distance = query(container_id, """
+        SELECT
+          ST_Distance(ST_GeomFromText('POINT(19.9 47.5)',4326,'axis-order=long-lat'),
+            ST_GeomFromText('POLYGON((19 47,20 47,20 48,19 48,19 47))',4326,'axis-order=long-lat')),
+          ST_Distance(ST_GeomFromText('POINT(20.1 47.5)',4326,'axis-order=long-lat'),
+            ST_GeomFromText('POLYGON((19 47,20 47,20 48,19 48,19 47))',4326,'axis-order=long-lat'))
+        """)
+    inside, outside = map(float, boundary_distance.split('\t'))
+    assert inside == 0 and 7000 < outside < 8000, \
+        'Geographic matching must use distance to the selected area, zero inside and about7.5km outside this edge.'
     searches = query(container_id, """
         SELECT JSON_OBJECT('id',Id,'city',City,'districtsJson',DistrictsJson,'locationIdsJson',LocationIdsJson)
         FROM SearchRequests ORDER BY Id

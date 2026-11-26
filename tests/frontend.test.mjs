@@ -726,6 +726,14 @@ test('legacy arbitrary room totals are never rounded and existing heating or par
 
 function chooseReport(t,reason){for(const option of accountHelpers.REPORT_REASON_OPTIONS){const input=t.document.getElementById('f-reportReason-'+option.value);if(input)input.checked=option.value===reason;}}
 function accountFixture(mutate){let raw;const local=createModel({getItem:()=>null,setItem:(_key,value)=>{raw=JSON.parse(value);}});local.activate('search','own-s1');mutate(raw);return raw;}
+async function advanceToRecommendation(t,predicate){
+ for(let attempts=0;attempts<50;attempts++){
+  const candidate=t.model.feed()[0];assert.ok(candidate,'The expected recommendation must remain reachable before exhausting the feed');
+  if(predicate(candidate))return;
+  t.model.decide(candidate,false);await t.ui.render();
+ }
+ assert.fail('The expected recommendation was not reached within one full feed page');
+}
 test('hosted and settings registration both offer account types and send the selected agent role',async()=>{
  const hosted=await setup({hosted:true});await hosted.click({action:'auth-mode',mode:'register'});
  const registration=hosted.document.getElementById('app').innerHTML;assert.match(registration,/id="f-accountType"/);assert.match(registration,/name="accountType" value="private" type="radio"/);assert.match(registration,/name="accountType" value="agent" type="radio"/);assert.match(registration,/Magánszemély/);assert.match(registration,/Ingatlanközvetítő/);assert.doesNotMatch(registration,/<select[^>]*accountType/);
@@ -736,7 +744,7 @@ test('hosted and settings registration both offer account types and send the sel
 });
 test('foreign owner labels are explicit while agent-owned workspace cards, summaries and activation choices hide them',async()=>{
  const t=await setup();assert.match(t.document.getElementById('app').innerHTML,/account-badge private-badge/);
- while(t.model.feed()[0]?.ownerAccountType!=='agent'){t.model.decide(t.model.feed()[0],false);await t.ui.render();}
+ await advanceToRecommendation(t,candidate=>candidate.ownerAccountType==='agent');
  assert.match(t.document.getElementById('app').innerHTML,/account-badge agent-badge/);t.ui.openDetails();assert.match(t.document.getElementById('modal-root').innerHTML,/Ingatlanközvetítő/);await t.click({action:'close'});
  await t.click({action:'like'});await t.click({action:'close'});await t.click({action:'tab',tab:'liked'});assert.match(t.document.getElementById('app').innerHTML,/account-badge agent-badge/);await t.click({page:'matches'});assert.match(t.document.getElementById('app').innerHTML,/account-badge agent-badge/);
  const raw=accountFixture(raw=>{raw.users.find(user=>user.id==='me').accountType='agent';});const agent=await setup({initialRaw:raw});assert.ok(agent.model.feed().every(item=>item.ownerAccountType==='private'));
@@ -757,7 +765,7 @@ test('reporting requires one reason, awaits persistence and allows another reaso
 });
 test('agent listings offer applicable report reasons and failed saves retain the selected reason for retry',async()=>{
  const t=await setup(),original=t.model.reportAccount;await t.click({action:'report-account',kind:'property',id:'own-p1'});assert.equal(t.document.getElementById('modal-root').innerHTML,'');
- while(t.model.feed()[0]?.id!=='p2'){t.model.decide(t.model.feed()[0],false);await t.ui.render();}
+ await advanceToRecommendation(t,candidate=>candidate.id==='p2');
  await t.click({action:'report-account',kind:'property',id:'p2'});const html=t.document.getElementById('modal-root').innerHTML;assert.doesNotMatch(html,/value="suspected_agent"/);assert.match(html,/value="misleading_content"/);assert.match(html,/value="other_violation"/);
  chooseReport(t,'misleading_content');t.model.reportAccount=async()=>{throw new Error('A jelentés mentése most nem sikerült.');};await t.click({action:'confirm-report',kind:'property',id:'p2'});assert.match(t.document.getElementById('modal-root').innerHTML,/Jelentés elküldése/);assert.match(t.document.getElementById('toast').textContent,/mentése most nem sikerült/);assert.equal(t.document.getElementById('f-reportReason-misleading_content').checked,true);assert.deepEqual(t.model.getState().reportedEntities,[]);
  t.model.reportAccount=original;await t.click({action:'confirm-report',kind:'property',id:'p2'});assert.deepEqual(t.model.getState().reportedEntities,[{entityKind:'property',entityId:'p2',reason:'misleading_content'}]);
@@ -974,6 +982,21 @@ test('hard-only match details do not produce a fulfilled condition section or re
   {key:'location',label:'Helyszín',expected:'Debrecen',actual:'Debrecen',matches:true},
   {key:'type',label:'Ingatlantípus',expected:'Lakás',actual:'Lakás',matches:true}]};
  assert.equal(t.ui.matchingTags(card),'');
+});
+
+test('nearby location mismatches show only the other party location and escape both role-specific values',async()=>{
+ const t=await setup();
+ const location={key:'location',label:'Helyszín',expected:'Vénkert <keresett> & környéke',actual:'Másik városrész <ingatlan> & környéke',matches:false};
+ for(const kind of ['property','search']){
+  const html=t.ui.matchingTags({kind,isExact:false,matchDetails:[location,{key:'type',label:'Típus',expected:'PRIVATE-TYPE',actual:'PRIVATE-TYPE',matches:true}]});
+  assert.match(html,/Eltérő feltételek/);assert.match(html,/data-criterion="location"/);
+  assert.doesNotMatch(html,/<keresett>|<ingatlan>|PRIVATE-TYPE/);
+  if(kind==='property'){
+   assert.match(html,/Másik városrész &lt;ingatlan&gt; &amp; környéke/);assert.doesNotMatch(html,/Vénkert/);
+  }else{
+   assert.match(html,/Vénkert &lt;keresett&gt; &amp; környéke/);assert.doesNotMatch(html,/Másik városrész/);
+  }
+ }
 });
 
 test('public cards display listing titles, discreet types and first names',async()=>{

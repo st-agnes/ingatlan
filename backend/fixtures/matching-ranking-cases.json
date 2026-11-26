@@ -39,7 +39,7 @@
       "maxPrice": 0
     },
     "eligible": true,
-    "score": 0
+    "score": 33
   },
   {
     "name": "sole-low-weight-minimum",
@@ -50,7 +50,7 @@
       "minPrice": 50
     },
     "eligible": true,
-    "score": 80
+    "score": 94
   },
   {
     "name": "half-room-relative-shortage",
@@ -61,7 +61,7 @@
       "minRooms": 0.5
     },
     "eligible": true,
-    "score": 50
+    "score": 59
   },
   {
     "name": "condition-better-than-minimum",
@@ -87,7 +87,7 @@
       ]
     },
     "eligible": true,
-    "score": 33
+    "score": 67
   },
   {
     "name": "floor-nearest-selection",
@@ -101,7 +101,7 @@
       ]
     },
     "eligible": true,
-    "score": 80
+    "score": 90
   },
   {
     "name": "floor-unknown",
@@ -112,7 +112,7 @@
       ]
     },
     "eligible": true,
-    "score": 0
+    "score": 61
   },
   {
     "name": "age-adjacent",
@@ -125,7 +125,7 @@
       ]
     },
     "eligible": true,
-    "score": 75
+    "score": 97
   },
   {
     "name": "weighted-price",
@@ -140,7 +140,7 @@
       "minArea": 80
     },
     "eligible": true,
-    "score": 77
+    "score": 58
   },
   {
     "name": "weighted-rooms",
@@ -155,7 +155,7 @@
       "minArea": 80
     },
     "eligible": true,
-    "score": 84
+    "score": 59
   },
   {
     "name": "weighted-area",
@@ -170,7 +170,7 @@
       "minArea": 80
     },
     "eligible": true,
-    "score": 89
+    "score": 61
   },
   {
     "name": "unknown-category",
@@ -181,7 +181,7 @@
       ]
     },
     "eligible": true,
-    "score": 0
+    "score": 86
   },
   {
     "name": "house-irrelevant-fields-and-land-cap",
@@ -368,7 +368,7 @@
       "excludeTopFloor": true
     },
     "eligible": true,
-    "score": 82
+    "score": 61
   },
   {
     "name": "three-floor-failures-share-one-weight",
@@ -385,7 +385,7 @@
       "excludeGroundFloorAndBelow": true
     },
     "eligible": true,
-    "score": 82
+    "score": 61
   },
   {
     "name": "floor-twelve-below-top-and-above-ground",
@@ -423,7 +423,7 @@
       "airConditioning": true
     },
     "eligible": true,
-    "score": 91
+    "score": 82
   },
   {
     "name": "private-garden-missing-weighted",
@@ -435,7 +435,7 @@
       "privateGarden": true
     },
     "eligible": true,
-    "score": 91
+    "score": 82
   },
   {
     "name": "retired-shared-garden-does-not-penalize",
@@ -488,7 +488,7 @@
       "airConditioning": true
     },
     "eligible": true,
-    "score": 0
+    "score": 82
   },
   {
     "name": "private-garden-limited-value-bonus",
@@ -517,7 +517,7 @@
       "sharedGarden": true
     },
     "eligible": true,
-    "score": 77,
+    "score": 82,
     "specificity": 14,
     "matchDetails": [
       {
@@ -603,7 +603,7 @@
       ]
     },
     "eligible": true,
-    "score": 90
+    "score": 95
   },
   {
     "name": "raised-only-building-is-top-floor",
@@ -615,7 +615,7 @@
       "excludeTopFloor": true
     },
     "eligible": true,
-    "score": 0
+    "score": 61
   },
   {
     "name": "raised-ground-below-first-floor-top",
@@ -657,7 +657,7 @@
       "excludeTopFloor": true
     },
     "eligible": true,
-    "score": 82
+    "score": 61
   },
   {
     "name": "old-eleventh-selection-now-ninth-plus",
@@ -699,7 +699,7 @@
       ]
     },
     "eligible": true,
-    "score": 0,
+    "score": 61,
     "valueForMoney": 0.75375
   },
   {
@@ -724,7 +724,7 @@
       "minEnergyRating": "C"
     },
     "eligible": true,
-    "score": 64
+    "score": 93
   },
   {
     "name": "current-energy-one-grade-below",
@@ -736,7 +736,7 @@
       "minEnergyRating": "A"
     },
     "eligible": true,
-    "score": 91
+    "score": 98
   },
   {
     "name": "unknown-energy-does-not-meet-minimum",
@@ -745,7 +745,7 @@
       "minEnergyRating": "C"
     },
     "eligible": true,
-    "score": 0
+    "score": 82
   },
   {
     "name": "legacy-energy-cannot-prove-current-minimum",
@@ -756,7 +756,7 @@
       "minEnergyRating": "C"
     },
     "eligible": true,
-    "score": 0
+    "score": 82
   },
   {
     "name": "attic-only-true",
@@ -778,7 +778,7 @@
       "atticPreference": "only"
     },
     "eligible": true,
-    "score": 0
+    "score": 61
   },
   {
     "name": "attic-only-unknown",
@@ -787,7 +787,7 @@
       "atticPreference": "only"
     },
     "eligible": true,
-    "score": 0
+    "score": 61
   },
   {
     "name": "attic-excluded-false",
@@ -809,7 +809,7 @@
       "atticPreference": "exclude"
     },
     "eligible": true,
-    "score": 0
+    "score": 61
   },
   {
     "name": "attic-excluded-unknown",
@@ -818,7 +818,7 @@
       "atticPreference": "exclude"
     },
     "eligible": true,
-    "score": 0
+    "score": 61
   },
   {
     "name": "house-ignores-attic",
@@ -845,7 +845,7 @@
       "minEnergyRating": "A"
     },
     "eligible": true,
-    "score": 27
+    "score": 86
   },
   {
     "name": "private-budget-buyer-within-real-ceiling",
@@ -871,7 +871,7 @@
       "publicMaxPrice": 70
     },
     "eligible": true,
-    "score": 93
+    "score": 92
   },
   {
     "name": "private-budget-seller-hidden-ceiling-invariant",
@@ -884,7 +884,7 @@
       "publicMaxPrice": 70
     },
     "eligible": true,
-    "score": 93
+    "score": 92
   },
   {
     "name": "private-budget-legacy-public-fallback",
@@ -924,5 +924,152 @@
     },
     "eligible": true,
     "score": 99
+  },
+  {
+    "name": "severe-area-shortage-no-dilution",
+    "property": {
+      "area": 50
+    },
+    "search": {
+      "minArea": 250
+    },
+    "eligible": true,
+    "score": 45
+  },
+  {
+    "name": "severe-area-shortage-many-fulfilled-criteria",
+    "property": {
+      "area": 50,
+      "condition": "Jó",
+      "building": "Tégla",
+      "floor": 2,
+      "balcony": true,
+      "elevator": true,
+      "airConditioning": true,
+      "privateGarden": true,
+      "constructionAge": "10 évnél fiatalabb",
+      "ceilingHeight": "3 m alatti",
+      "view": "Utcai",
+      "heatingType": "Gázkazán / cirkó",
+      "energyRating": "A",
+      "energyRatingScheme": "2023"
+    },
+    "search": {
+      "maxPrice": 100,
+      "minRooms": 1,
+      "maxRooms": 4,
+      "minArea": 250,
+      "maxArea": 300,
+      "conditions": [
+        "Jó"
+      ],
+      "buildings": [
+        "Tégla"
+      ],
+      "floors": [
+        2
+      ],
+      "balcony": true,
+      "elevator": true,
+      "airConditioning": true,
+      "privateGarden": true,
+      "constructionAges": [
+        "10 évnél fiatalabb"
+      ],
+      "ceilingHeight": "3 m alatti",
+      "views": [
+        "Utcai"
+      ],
+      "heatingTypes": [
+        "Gázkazán / cirkó"
+      ],
+      "minEnergyRating": "A"
+    },
+    "eligible": true,
+    "score": 45
+  },
+  {
+    "name": "maximum-area-severe-overrun-not-clamped",
+    "property": {
+      "area": 250
+    },
+    "search": {
+      "maxArea": 50
+    },
+    "eligible": true,
+    "score": 20
+  },
+  {
+    "name": "price-severe-overrun-not-clamped",
+    "property": {
+      "price": 400
+    },
+    "search": {
+      "maxPrice": 100
+    },
+    "eligible": true,
+    "score": 4
+  },
+  {
+    "name": "nearby-location-one-kilometre",
+    "property": {
+      "locationId": "city:Szeged",
+      "city": "Szeged"
+    },
+    "search": {},
+    "locationDistanceKm": 1,
+    "eligible": true,
+    "score": 94
+  },
+  {
+    "name": "nearby-location-five-kilometres",
+    "property": {
+      "locationId": "city:Szeged",
+      "city": "Szeged"
+    },
+    "search": {},
+    "locationDistanceKm": 5,
+    "eligible": true,
+    "score": 74
+  },
+  {
+    "name": "nearby-location-twenty-kilometres",
+    "property": {
+      "locationId": "city:Szeged",
+      "city": "Szeged"
+    },
+    "search": {},
+    "locationDistanceKm": 20,
+    "eligible": true,
+    "score": 29
+  },
+  {
+    "name": "outside-canonical-location-never-rounds-to-perfect",
+    "property": {
+      "locationId": "city:Szeged",
+      "city": "Szeged"
+    },
+    "search": {},
+    "locationDistanceKm": 0,
+    "eligible": true,
+    "score": 99
+  },
+  {
+    "name": "exact-location-ignores-provided-distance",
+    "property": {},
+    "search": {},
+    "locationDistanceKm": 100,
+    "eligible": true,
+    "score": 100
+  },
+  {
+    "name": "explicit-invalid-location-rejects-even-provided-distance",
+    "property": {
+      "locationId": "city:missing"
+    },
+    "search": {},
+    "locationDistanceKm": 1,
+    "eligible": false,
+    "score": 0
   }
 ]

@@ -244,6 +244,9 @@ public class TestDataSeedTests
         Assert.DoesNotContain("NeighborhoodSearchAreas", order); Assert.DoesNotContain("__OtthonraNeighborhoodDataset", order);
         Assert.DoesNotContain("StreetCatalog", order); Assert.DoesNotContain("__OtthonraStreetDataset", order);
         Assert.DoesNotContain("__OtthonraStreetAssociation", order);
+        Assert.DoesNotContain("MatchingLocationAreas", order); Assert.DoesNotContain("MatchingLocationMembers", order);
+        Assert.DoesNotContain("__OtthonraMatchingGeography", order);
+        Assert.DoesNotContain("MatchingPropertyPoints", order); // Native child points follow Properties via ON DELETE CASCADE.
         foreach (var entity in db.Model.GetEntityTypes())
         foreach (var foreignKey in entity.GetForeignKeys())
             Assert.True(order.IndexOf(entity.GetTableName()!) < order.IndexOf(foreignKey.PrincipalEntityType.GetTableName()!),

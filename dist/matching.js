@@ -6,8 +6,11 @@ import {CONDITION_OPTIONS,BUILDING_OPTIONS,CONSTRUCTION_AGE_OPTIONS,VIEW_OPTIONS
 
 import {energyIndex,knownEnergyRating} from './energy-rating.js';
 
-export const MATCH_WEIGHTS=Object.freeze({maxPrice:32,minRooms:22,minArea:16,condition:10,floor:7,elevator:5,balcony:4,
+const FOCUS_WEIGHTS=Object.freeze({maxPrice:32,minRooms:22,minArea:16,condition:10,floor:7,elevator:5,balcony:4,
   building:3,heatingType:2.5,minEnergyRating:3,constructionAge:2,ceilingHeight:1.5,maxArea:1.25,maxRooms:1,minPrice:.75,view:.5,airConditioning:3,privateGarden:3});
+export const MATCH_WEIGHTS=Object.freeze({maxPrice:1.2,minRooms:1.1,minArea:1,condition:.36,floor:.25,elevator:.09,balcony:.04,
+  building:.0225,heatingType:.0169,minEnergyRating:.04,constructionAge:.0144,ceilingHeight:.01,maxArea:.16,maxRooms:.16,minPrice:.09,view:.01,airConditioning:.04,privateGarden:.04,location:1.5});
+export const LOCATION_DISTANCE_SCALE_KM=20;
 const norm=value=>String(value??'').normalize('NFD').replace(/\p{M}/gu,'').trim().toUpperCase();
 const clamp=value=>Math.min(1,Math.max(0,value));
 const members=new Map(agglomerations.map(area=>[area.id,area.settlements]));
@@ -43,6 +46,7 @@ export function prepareSearch(input={}, {perspective='buyer'}={}) {
   for(const id of districtIds)if(cities.has(getLocation(id).city))districtIds.delete(id);
   const type=norm(search.type);
   const prepared={[compiledMarker]:true,search,cities,districtIds,neighborhoodIds,streetIds,locationLabels:chosen.map(location=>location.label),type,house:type==='HAZ',flat:type==='LAKAS',
+    hasNonStreetLocations:cities.size>0||districtIds.size>0||neighborhoodIds.size>0,
     conditions:new Set(search.conditions.map(normalizeCondition)),buildings:new Set(search.buildings.map(normalizeBuilding)),
     heating:new Set(search.heatingTypes),ages:new Set(search.constructionAges),views:new Set(search.views),floors:search.floors};
   prepared.conditionMinimum=prepared.conditions.size?Math.min(...[...prepared.conditions].map(conditionIndex)):null;
@@ -76,15 +80,27 @@ const knownTopFloor = p => knownFloor(p) && p.floorIsUpperRange !== true && p.bu
 const belowTopFloor = p => knownTopFloor(p) && Number(p.floor) < effectiveTopFloor(p);
 const aboveGroundFloor = p => knownFloor(p) && Number(p.floor) > 0;
 
-export function evaluateMatch(property,input,{includeReasons=true,perspective='buyer'}={}){
+export function exactLocationMatch(property,input){
+  const q=input?.[compiledMarker]?input:prepareSearch(input),place=property&&propertyPlace(property);
+  return !!place&&(q.cities.has(place.city)||q.districtIds.has(place.id)
+    ||Array.isArray(property.neighborhoodIds)&&property.neighborhoodIds.some(id=>q.neighborhoodIds.has(id))
+    ||q.streetIds.size>0&&matchesStreet(property,place,q.streetIds));
+}
+
+export function evaluateMatch(property,input,{includeReasons=true,perspective='buyer',locationDistanceKm=null}={}){
   const p=property,q=input?.[compiledMarker]?input:prepareSearch(input,{perspective}),s=q.search,place=p&&propertyPlace(p);
-  const neighborhoodMatches=place&&Array.isArray(p?.neighborhoodIds)&&p.neighborhoodIds.some(id=>q.neighborhoodIds.has(id));
-  const streetMatches=place&&q.streetIds.size>0&&matchesStreet(p,place,q.streetIds);
-  if(!p||p.archived||s.archived||p.ownerId===s.ownerId||!place||(!q.cities.has(place.city)&&!q.districtIds.has(place.id)&&!neighborhoodMatches&&!streetMatches)
+  const exactLocation=exactLocationMatch(p,q);
+  const knownDistance=typeof locationDistanceKm==='number'&&Number.isFinite(locationDistanceKm)&&locationDistanceKm>=0;
+  if(!p||p.archived||s.archived||p.ownerId===s.ownerId||!place||(!exactLocation&&(!q.hasNonStreetLocations||!knownDistance))
       ||q.type&&norm(p.type)!==q.type||!Number.isFinite(Number(p.price))||!Number.isFinite(Number(p.area))||!Number.isFinite(roomTotal(p)))
     return {eligible:false,isExact:false,score:0,reasons:[],matchDetails:[]};
-  let weight=0,loss=0;const differences=[];
-  function add(key,active,penalty,label){if(!active)return;const amount=clamp(penalty);weight+=MATCH_WEIGHTS[key];loss+=MATCH_WEIGHTS[key]*amount;if(amount>0)differences.push(label);}
+  let distanceSquared=0;const differences=[];
+  function add(key,active,penalty,label){if(!active)return;const amount=Math.max(0,penalty);distanceSquared+=MATCH_WEIGHTS[key]*amount*amount;if(amount>0)differences.push(label);}
+  if(!exactLocation){
+    const distance=locationDistanceKm/LOCATION_DISTANCE_SCALE_KM;
+    distanceSquared+=MATCH_WEIGHTS.location*distance*distance;
+    differences.push('Helyszín');
+  }
   for(const [field,minimum,maximum,minLabel,maxLabel] of [['price','minPrice','maxPrice','Minimumár','Maximumár'],['rooms','minRooms','maxRooms','Minimum szobaszám','Maximum szobaszám'],['area','minArea','maxArea','Minimum alapterület','Maximum alapterület']]){
     const value=field==='rooms'?roomTotal(p):Number(p[field]);
     add(minimum,s[minimum]!=null&&Number(s[minimum])>0,(Number(s[minimum])-value)/(Number(s[minimum])>0?Number(s[minimum]):1),minLabel);
@@ -111,9 +127,10 @@ export function evaluateMatch(property,input,{includeReasons=true,perspective='b
   add('ceilingHeight',!!s.ceilingHeight,known(canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS),CEILING_HEIGHT_OPTIONS)&&canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS)===s.ceilingHeight?0:1,'Belmagasság');
   add('view',q.views.size,categoryLoss(canon(p.view,VIEW_OPTIONS),q.views,VIEW_OPTIONS),'Kilátás');
   const isExact=differences.length===0;
-  const score=isExact?100:Math.min(99,Math.max(0,Math.round(100*(1-loss/(weight>0?weight:1)))));
+  const score=isExact?100:Math.min(99,Math.max(0,Math.round(100*Math.exp(-Math.sqrt(distanceSquared)))));
   return {eligible:true,isExact,score,reasons:!includeReasons?[]:isExact?['Megfelelő elhelyezkedés','A megadott árkereten belül','Megfelelő alapterület és szobaszám']:differences.map(label=>`${label}: eltérés a kereséstől`),
-    matchDetails:includeReasons?explainMatch(p,q,place):[]};
+    distanceSquared,locationDistanceKm:exactLocation?0:locationDistanceKm,
+    matchDetails:includeReasons?explainMatch(p,q,place,exactLocation,locationDistanceKm):[]};
 }
 
 const explanationNumber=new Intl.NumberFormat('hu-HU',{useGrouping:false,maximumFractionDigits:6});
@@ -122,7 +139,7 @@ const detailFloor=(value,bucket=false)=>value===-1?'Szuterén':value===0?'Földs
 const knownDetail=(value,options)=>options.includes(value)?value:'Nincs megadva';
 
 /** Concrete requested/actual values, only built for cards that need presentation. */
-function explainMatch(p,q,place){
+function explainMatch(p,q,place,exactLocation,locationDistanceKm){
   const s=q.search,details=[];
   const add=(key,label,expected,actual,matches)=>details.push({key,label,expected,actual,matches});
   function bounds(key,label,actual,minimum,maximum,unit){
@@ -137,7 +154,8 @@ function explainMatch(p,q,place){
     const expected=options.filter(value=>selected.has(value));
     add(key,label,expected.length?expected.join(' vagy '):'Ismeretlen feltétel',knownDetail(actual,options),options.includes(actual)&&selected.has(actual));
   }
-  add('location','Helyszín',q.locationLabels.join(' vagy '),place.label,true);
+  const actualLocation=exactLocation?place.label:`${place.label} (kb. ${detailNumber(Number(locationDistanceKm.toFixed(1)))} km-re a keresett területtől)`;
+  add('location','Helyszín',q.locationLabels.join(' vagy '),actualLocation,exactLocation);
   if(q.type)add('type','Ingatlantípus',s.type,p.type,true);
   bounds('price','Ár',Number(p.price),s.minPrice,s.maxPrice,'M Ft');
   bounds('rooms','Szobaszám',roomTotal(p),s.minRooms,s.maxRooms,'szoba');
@@ -203,19 +221,19 @@ function specificityOf(q){
   for(const [minimum,maximum] of [['minPrice','maxPrice'],['minArea','maxArea'],['minRooms','maxRooms']]){
     const min=s[minimum]!=null&&Number(s[minimum])>0,max=s[maximum]!=null;
     const strength=min&&max?.5+.5*clamp(Number(s[maximum])>0?Number(s[minimum])/Number(s[maximum]):1):.5;
-    add(MATCH_WEIGHTS[minimum],min?strength:0);add(MATCH_WEIGHTS[maximum],max?strength:0);
+    add(FOCUS_WEIGHTS[minimum],min?strength:0);add(FOCUS_WEIGHTS[maximum],max?strength:0);
   }
   const category=(count,choices)=>count?1/Math.sqrt(Math.min(count,choices)):0;
-  add(MATCH_WEIGHTS.condition,q.conditionMinimum==null?0:(q.conditionMinimum+1)/4);
-  add(MATCH_WEIGHTS.building,category(q.buildings.size,BUILDING_OPTIONS.length));
-  add(MATCH_WEIGHTS.heatingType,category(q.heating.size,HEATING_OPTIONS.length));
-  const energyMinimum=energyIndex(s.minEnergyRating);add(MATCH_WEIGHTS.minEnergyRating,energyMinimum<0?0:(energyMinimum+1)/12);
-  add(MATCH_WEIGHTS.constructionAge,category(q.ages.size,CONSTRUCTION_AGE_OPTIONS.length));
-  add(MATCH_WEIGHTS.view,category(q.views.size,VIEW_OPTIONS.length));
-  add(MATCH_WEIGHTS.ceilingHeight,s.ceilingHeight?1:0);
-  add(MATCH_WEIGHTS.airConditioning,s.airConditioning?1:0);
-  if(q.flat)add(MATCH_WEIGHTS.privateGarden,s.privateGarden?1:0);
-  if(!q.house){add(MATCH_WEIGHTS.floor,Math.max(category(q.floors.length,FLOOR_OPTIONS.length),s.excludeTopFloor||s.excludeGroundFloorAndBelow||s.atticPreference?1:0));add(MATCH_WEIGHTS.elevator,s.elevator?1:0);add(MATCH_WEIGHTS.balcony,s.balcony?1:0);}
+  add(FOCUS_WEIGHTS.condition,q.conditionMinimum==null?0:(q.conditionMinimum+1)/4);
+  add(FOCUS_WEIGHTS.building,category(q.buildings.size,BUILDING_OPTIONS.length));
+  add(FOCUS_WEIGHTS.heatingType,category(q.heating.size,HEATING_OPTIONS.length));
+  const energyMinimum=energyIndex(s.minEnergyRating);add(FOCUS_WEIGHTS.minEnergyRating,energyMinimum<0?0:(energyMinimum+1)/12);
+  add(FOCUS_WEIGHTS.constructionAge,category(q.ages.size,CONSTRUCTION_AGE_OPTIONS.length));
+  add(FOCUS_WEIGHTS.view,category(q.views.size,VIEW_OPTIONS.length));
+  add(FOCUS_WEIGHTS.ceilingHeight,s.ceilingHeight?1:0);
+  add(FOCUS_WEIGHTS.airConditioning,s.airConditioning?1:0);
+  if(q.flat)add(FOCUS_WEIGHTS.privateGarden,s.privateGarden?1:0);
+  if(!q.house){add(FOCUS_WEIGHTS.floor,Math.max(category(q.floors.length,FLOOR_OPTIONS.length),s.excludeTopFloor||s.excludeGroundFloorAndBelow||s.atticPreference?1:0));add(FOCUS_WEIGHTS.elevator,s.elevator?1:0);add(FOCUS_WEIGHTS.balcony,s.balcony?1:0);}
   return Math.max(0,Math.min(100,Math.round(100*selected/total)));
 }
 export function searchSpecificity(search,options){return search?.[compiledMarker]?search.specificity:prepareSearch(search,options).specificity;}

@@ -3,6 +3,7 @@ import {withTestAddress} from './smoke-address.mjs';
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {assertNoContactData} from './smoke-privacy.mjs';
+import {evaluateMatch} from '../dist/matching.js';
 
 const origin = new URL(process.argv[2] || 'http://127.0.0.1:3000');
 if (process.env.CI !== 'true' || origin.protocol !== 'http:'
@@ -36,18 +37,19 @@ async function register(name) {
 const buyer = await register('Buyer'), seller = await register('Seller'), secondBuyer = await register('SecondBuyer');
 await api('/credits/demo-topup', {token:seller.token, method:'POST', body:{amount:100}});
 
-// This town has no baseline demo fixture; all recommendation candidates below
-// are created by this test, without editing the database or mocking API replies.
+// This type has no baseline or preceding smoke fixture. Location is now soft
+// for partial discovery, so town-only isolation would no longer be sufficient.
+// All candidates remain real API writes, never mocked replies or database edits.
 const town = 'Abádszalók';
 const propertyBase = {
   title:'Matching property fixture', city:town, district:'', locationId:`city:${town}`,
-  type:'Lakás', price:80_000_000, area:80, rooms:3, floor:2,
+  type:'Nyaraló', price:80_000_000, area:80, rooms:3, floor:2,
   condition:'Jó', building:'Tégla', address:'OTTHONRA TEST 1',
   description:'Kitalált integrációs tesztadat.', balcony:false, elevator:false, images:[]
 };
 const searchBase = {
   title:'Matching search fixture', city:town, districts:[], locationIds:[`city:${town}`],
-  type:'Lakás', minPrice:null, maxPrice:100_000_000, minArea:60, maxArea:null,
+  type:'Nyaraló', minPrice:null, maxPrice:100_000_000, minArea:60, maxArea:null,
   minRooms:3, maxRooms:null, balcony:false, elevator:false
 };
 const property = (name, changes={}, owner=seller) => api('/properties', {
@@ -57,7 +59,18 @@ const search = (name, changes={}, owner=buyer) => api('/searches', {
   token:owner.token, method:'POST', status:201, body:{...searchBase, title:name, ...changes}
 });
 const activate = (owner, kind, id) => api('/me/active', {token:owner.token, method:'PUT', body:{kind,id}});
-const feed = (owner, approximate=false) => api('/feed'+(approximate ? '?includeApproximate=true' : ''), {token:owner.token});
+const feed = async (owner, approximate=false) => {
+  const page=await api('/feed'+(approximate ? '?includeApproximate=true' : ''), {token:owner.token});
+  for(const item of page.items){
+    // Exact-location pairs exercise independent browser/.NET/MySQL score
+    // parity without exposing the private coordinates used for nearby pairs.
+    if(!item.matchDetails.some(detail=>detail.key==='location'&&detail.matches))continue;
+    const expected=evaluateMatch(item.property,item.searchRequest,{perspective:page.active.kind==='search'?'buyer':'seller'});
+    assert.equal(expected.eligible,true);assert.equal(score(item),expected.score,'MySQL and the shared distance evaluator must agree');
+    assert.equal(item.isExact,expected.isExact);
+  }
+  return page;
+};
 const decide = (owner, home, request, liked, allowApproximate=false, status=200) => api('/decisions', {
   token:owner.token, method:'POST', status,
   body:{propertyId:home.id, searchRequestId:request.id, liked, allowApproximate}
@@ -73,7 +86,7 @@ const liked = await property('Exact already interested seller', {price:99_000_00
 const close = await property('Small numeric deviations', {price:102_000_000,area:59,rooms:2.5});
 const far = await property('Larger numeric deviations', {price:140_000_000,area:40,rooms:1});
 const areaOnly = await property('Only a small area deviation', {price:80_000_000,area:58});
-const wrongTown = await property('Wrong town must never be suggested', {city:'Poroszló',locationId:'city:Poroszló'});
+const wrongTown = await property('Nearby town is a partial location match', {city:'Poroszló',locationId:'city:Poroszló'});
 const wrongType = await property('Wrong type must never be suggested', {type:'Ház',lotArea:500,floor:null});
 const archived = await property('Archived property must never be suggested', {archived:true});
 const own = await property('Own property must never be suggested', {}, buyer);
@@ -84,8 +97,8 @@ for(let index=0;index<52;index++) fillers.push(await property(`Exact pagination 
   price:98_000_000+index*1000, area:60
 }));
 const exactIds = new Set([poor,good,liked,...fillers].map(item=>item.id));
-const nearIds = new Set([close,far,areaOnly].map(item=>item.id));
-const excludedIds = new Set([wrongTown,wrongType,archived,own].map(item=>item.id));
+const nearIds = new Set([close,far,areaOnly,wrongTown].map(item=>item.id));
+const excludedIds = new Set([wrongType,archived,own].map(item=>item.id));
 await activate(seller,'property',liked.id);
 assert.equal((await decide(seller,liked,primary,true)).charged,2);
 // A low-scoring partial like must not outrank a better unliked partial for a buyer.
@@ -127,7 +140,7 @@ assert.equal(consent.items.length,0);assert.equal(consent.hasApproximate,true);
 assert.equal(consent.requiresApproximateConsent,true);
 const approximate = await feed(buyer,true);
 assert.equal(approximate.stage,'approximate');assert.equal(approximate.requiresApproximateConsent,false);
-assert.equal(approximate.items.length,3);
+assert.equal(approximate.items.length,4);
 assert.deepEqual(new Set(approximate.items.map(propertyId)),nearIds);
 for(const item of approximate.items){
   assert.equal(item.isExact,false);assert.ok(score(item)>=0&&score(item)<100);
@@ -151,12 +164,18 @@ assert.match(closeDetails.area.actual,/59.*m²/);
 assert.equal(closeDetails.price.matches,false);assert.match(closeDetails.price.expected,/100.*M Ft/);
 assert.match(closeDetails.price.actual,/102.*M Ft/);
 assert.equal(closeDetails.location.matches,true);assert.ok(closeDetails.location.expected.includes(town));
-assert.equal(closeDetails.type.matches,true);assert.equal(closeDetails.type.expected,'Lakás');
+assert.equal(closeDetails.type.matches,true);assert.equal(closeDetails.type.expected,'Nyaraló');
+const nearbyTownItem=approximate.items.find(item=>propertyId(item)===wrongTown.id);
+const nearbyLocation=nearbyTownItem.matchDetails.find(detail=>detail.key==='location');
+assert.equal(nearbyLocation.matches,false);assert.ok(nearbyLocation.expected.includes(town));
+assert.ok(score(nearbyTownItem)>0&&score(nearbyTownItem)<100);
+assertNoContactData(nearbyTownItem,['latitude','longitude','addressDetails','geocodingPlaceId']);
 assert.ok(score(closeItem)>score(farItem),'Greater bound deviations must lose more percentage points');
 assert.equal(farItem.likedYou,true);
 assert.ok(approximate.items.indexOf(closeItem)<approximate.items.indexOf(farItem),
   'Buyer percentage takes precedence over a lower-scoring existing like');
-await decide(buyer,wrongTown,primary,true,true,400);
+assert.equal((await decide(buyer,wrongTown,primary,false,true)).charged,0,
+  'The server must permit a nearby-location partial decision after exact matches are exhausted');
 await decide(buyer,wrongType,primary,true,true,400);
 await decide(buyer,close,primary,true,false,400);
 assert.equal((await decide(buyer,close,primary,true,true)).charged,0);
@@ -233,12 +252,15 @@ assert.equal((await feed(seller,true)).items.length,0);
 // search only once when both its city and its area match, and preserve links
 // across an ordinary title-only update. This type has no baseline fixtures.
 const mappingHome = await property('Location-index holiday property', {
-  type:'Nyaraló',city:'Solymár',locationId:'city:Solymár'
+  type:'Telek',city:'Solymár',locationId:'city:Solymár'
 });
-const mappingBody = {...searchBase,type:'Nyaraló',title:'Location-index holiday search'};
+const mappingBody = {...searchBase,type:'Telek',title:'Location-index holiday search'};
 const mappingSearch = await search(mappingBody.title,mappingBody,secondBuyer);
 await activate(seller,'property',mappingHome.id);
-assert.deepEqual((await feed(seller,true)).items,[],'A search outside the property location must not enter the reverse index result');
+assert.equal((await feed(seller)).requiresApproximateConsent,true);
+const initialMapping=await feed(seller,true);
+assert.equal(initialMapping.items.length,1);assert.equal(searchId(initialMapping.items[0]),mappingSearch.id);
+assert.equal(initialMapping.items[0].isExact,false,'A search outside the property location is partial, not an exact reverse-index result');
 async function editMapping(locationIds,title=mappingBody.title){
   await api('/searches/'+mappingSearch.id,{token:secondBuyer.token,method:'PUT',body:{...mappingBody,locationIds,title}});
 }
@@ -250,10 +272,97 @@ async function oneMappedSearch(){
 await editMapping(['area:Budapest','city:Solymár']);
 await oneMappedSearch();
 await editMapping([`city:${town}`]);
-assert.deepEqual((await feed(seller,true)).items,[],'Editing locations must remove the previous reverse-index links');
+const remapped=await feed(seller,true);
+assert.equal(remapped.items.length,1);assert.equal(searchId(remapped.items[0]),mappingSearch.id);
+assert.equal(remapped.items[0].isExact,false,'Editing locations must remove the previous exact reverse-index match');
 const mappedLocations=['city:Solymár','city:Tiszafüred'];
 await editMapping(mappedLocations);
 await oneMappedSearch();
 await editMapping(mappedLocations,'Location-index title edited without changing places');
 await oneMappedSearch();
-console.log(`Matching API smoke passed: exact 100% and >50-candidate exhaustion, value/specialization ordering, hard location/type filters, explicit partial consent, graded deviations, privacy, mutual matches, exactly-once billing and indexed location edits/overlaps. ${feedTimes.length} real feed reads; maximum observed ${Math.round(Math.max(...feedTimes))} ms.`);
+
+// A severe size failure must keep exactly the same score after adding several
+// satisfied criteria. This runs through MySQL ranking, not just the pure engines.
+const severeHome=await property('Severe size distance regression',{type:'Telek',area:50,price:80_000_000,rooms:3});
+const severeBody={...searchBase,type:'Telek',title:'Severe size distance search',minArea:250,maxPrice:null,minRooms:null};
+const severeSearch=await search(severeBody.title,severeBody);
+await activate(buyer,'search',severeSearch.id);
+const sizeOnly=(await feed(buyer,true)).items.find(item=>propertyId(item)===severeHome.id);
+assert.ok(sizeOnly);assert.equal(sizeOnly.isExact,false);assert.equal(score(sizeOnly),45);
+await api('/searches/'+severeSearch.id,{token:buyer.token,method:'PUT',body:{...severeBody,maxPrice:100_000_000,minRooms:1,conditions:['Jó'],buildings:['Tégla']}});
+const moreSatisfied=(await feed(buyer,true)).items.find(item=>propertyId(item)===severeHome.id);
+assert.ok(moreSatisfied);assert.equal(score(moreSatisfied),45,
+  'Satisfied price, rooms, condition and wall constraints cannot dilute an80% size shortage');
+
+// A visible legitimate free-text street has no postal StreetId. Its NULL
+// street comparison must not turn the otherwise-false location expression into
+// SQL NULL and suppress proximity availability or the eventual partial card.
+const freeTextSearch=await search('Free-text street proximity availability',{
+  type:'Ház',maxPrice:1_000_000_000,minArea:1,minRooms:1
+});
+await activate(buyer,'search',freeTextSearch.id);
+for(let page=0;page<20;page++){
+  const previous=await feed(buyer,true);
+  if(!previous.items.length)break;
+  assert.ok(page<19,'The isolated free-text regression must exhaust the existing house fixtures');
+  for(const item of previous.items)await decide(buyer,{id:item.propertyId},freeTextSearch,false,!item.isExact);
+}
+assert.equal((await feed(buyer)).hasApproximate,false);
+const freeTextOutside=await property('Visible free-text street outside the selected town',{
+  type:'Ház',lotArea:500,area:300,city:'Poroszló',locationId:'city:Poroszló',
+  street:'OTTHONRA TEST',streetId:null,hideStreet:false,hideHouseNumber:true
+});
+assert.equal(freeTextOutside.addressDetails.streetId,null);
+const freeTextGate=await feed(buyer);
+assert.equal(freeTextGate.items.length,0);assert.equal(freeTextGate.hasApproximate,true);
+assert.equal(freeTextGate.requiresApproximateConsent,true);
+const freeTextPage=await feed(buyer,true);
+assert.equal(freeTextPage.items.length,1);const freeTextCard=freeTextPage.items[0];
+assert.equal(propertyId(freeTextCard),freeTextOutside.id);assert.equal(freeTextCard.isExact,false);
+assert.ok(score(freeTextCard)>0&&score(freeTextCard)<100);
+assert.equal(freeTextCard.matchDetails.find(detail=>detail.key==='location').matches,false);
+assert.equal(freeTextCard.property.street,'OTTHONRA TEST');assert.equal(freeTextCard.property.houseNumber,'');
+assert.equal(freeTextCard.property.addressDetails,null);
+const distinctTownChoices=await search('Distinct accented canonical town identities',{
+  type:'Telek',locationIds:['city:Komló','city:Kömlő'],maxPrice:1_000_000_000,minArea:1,minRooms:null
+});
+assert.deepEqual([...distinctTownChoices.locationIds].sort(),['city:Komló','city:Kömlő'].sort(),
+  'One search must preserve both accent-distinct municipality selections');
+
+// Exercise the actual SQL scorer across every nonflat attribute family. The
+// existing feed helper compares its returned score with the independently
+// executed shared JS evaluator; this pair has categorical, ordinal, numeric,
+// grouped-floor, nullable-amenity and current-certificate failures together.
+const attributeHome=await property('Complete SQL distance parity property',{
+  price:110_000_000,area:260,rooms:4,condition:'Átlagos',building:'Panel',
+  floor:2,buildingFloors:2,isAttic:true,balcony:false,elevator:false,airConditioning:false,
+  constructionAge:'41–50 év közötti',view:'Utcai',ceilingHeight:'3 m alatti',
+  heatingType:'Gázkonvektor',energyRating:'G',energyRatingScheme:'2023'
+});
+const attributeSearch=await search('Complete SQL distance parity search',{
+  minPrice:90_000_000,maxPrice:100_000_000,minArea:250,maxArea:255,minRooms:4.5,maxRooms:5,
+  conditions:['Jó','Új/felújított'],buildings:['Tégla','Kő és tégla'],floors:[4,5],
+  excludeTopFloor:true,excludeGroundFloorAndBelow:true,atticPreference:'exclude',
+  balcony:true,elevator:true,airConditioning:true,constructionAges:['10 évnél fiatalabb'],
+  views:['Kertre néző','Panorámás'],ceilingHeight:'3 m feletti',
+  heatingTypes:['Hőszivattyú','Távfűtés'],minEnergyRating:'A'
+});
+await activate(buyer,'search',attributeSearch.id);
+const attributeGate=await feed(buyer);
+assert.equal(attributeGate.requiresApproximateConsent,true);
+const attributePage=await feed(buyer,true);
+assert.equal(attributePage.stage,'approximate');
+const attributeCard=attributePage.items.find(item=>propertyId(item)===attributeHome.id);
+assert.ok(attributeCard,'The all-criteria property must survive full-pool SQL ranking');
+const attributeExpected=evaluateMatch(attributeCard.property,attributeCard.searchRequest);
+assert.equal(score(attributeCard),attributeExpected.score);assert.equal(attributeCard.isExact,false);
+assert.ok(attributeExpected.score>0&&attributeExpected.score<100);
+const attributeDetails=Object.fromEntries(attributeCard.matchDetails.map(detail=>[detail.key,detail]));
+for(const key of ['location','type','price','rooms','area','condition','floor','excludeTopFloor',
+  'excludeGroundFloorAndBelow','atticPreference','elevator','balcony','airConditioning','building',
+  'heatingType','constructionAge','view','ceilingHeight','minEnergyRating'])assert.ok(attributeDetails[key],key);
+assert.equal(attributeDetails.location.matches,true);assert.equal(attributeDetails.excludeGroundFloorAndBelow.matches,true);
+for(const key of ['price','rooms','area','condition','floor','excludeTopFloor','atticPreference',
+  'elevator','balcony','airConditioning','building','heatingType','constructionAge','view',
+  'ceilingHeight','minEnergyRating'])assert.equal(attributeDetails[key].matches,false,key);
+console.log(`Matching API smoke passed: exact 100% and >50-candidate exhaustion, value/specialization ordering, nearby location partials and hard type filters, explicit partial consent, graded distances, privacy, mutual matches, exactly-once billing and indexed location edits/overlaps. ${feedTimes.length} real feed reads; maximum observed ${Math.round(Math.max(...feedTimes))} ms.`);
