@@ -241,7 +241,7 @@ public static class RecommendationSql
         return await ExecuteAsync(db,query,async reader => {
             var result = new List<RankedPair>(RecommendationFeed.PageSize);
             while (await reader.ReadAsync(cancellationToken))
-                result.Add(new(Guid.Parse(reader.GetString(0)),Guid.Parse(reader.GetString(1)),Convert.ToInt32(reader.GetValue(2)),
+                result.Add(new(reader.GetGuid(0),reader.GetGuid(1),Convert.ToInt32(reader.GetValue(2)),
                     Convert.ToBoolean(reader.GetValue(3)),Convert.ToBoolean(reader.GetValue(4)),Convert.ToDecimal(reader.GetValue(5)),
                     Convert.ToInt32(reader.GetValue(6)),Convert.ToDouble(reader.GetValue(7)),Convert.ToDouble(reader.GetValue(8))));
             return result.ToArray();
