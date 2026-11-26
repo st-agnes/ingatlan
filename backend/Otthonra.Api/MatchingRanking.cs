@@ -216,11 +216,12 @@ public static class MatchingRanking
         var condition = ConditionIndex(property.Condition);
         Add(ConditionWeight, search.Conditions.Count > 0, condition < 0 || search.ConditionMinimum < 0 ? 1m
             : ((search.ConditionMinimum ?? 0) - condition) / 3m, "Állapot");
-        var floorLoss = search.Floors.Length == 0 ? 0m : KnownFloor(property)
-            ? search.Floors.Min(wanted => wanted == 9m && property.Floor!.Value >= 9m ? 0m : Math.Abs(wanted - property.Floor!.Value) / 5m) : 1m;
+        var floorLoss = search.Floors.Length == 0 ? (s.AtticPreference == "only" ? 1m : 0m) : KnownFloor(property)
+            ? search.Floors.Min(wanted => wanted == 8m && property.Floor!.Value >= 8m ? 0m : Math.Abs(wanted - property.Floor!.Value) / 5m) : 1m;
+        if (s.AtticPreference == "only") floorLoss = Math.Min(floorLoss, property.IsAttic == true ? 0m : 1m);
         if (s.ExcludeTopFloor && !BelowTopFloor(property)) floorLoss = Math.Max(floorLoss, 1m);
         if (s.ExcludeGroundFloorAndBelow && !AboveGroundFloor(property)) floorLoss = Math.Max(floorLoss, 1m);
-        if (!PropertyAttributes.AtticSatisfied(property, s.AtticPreference)) floorLoss = Math.Max(floorLoss, 1m);
+        if (s.AtticPreference == "exclude" && !PropertyAttributes.AtticSatisfied(property, "exclude")) floorLoss = Math.Max(floorLoss, 1m);
         Add(FloorWeight, !search.House && (search.Floors.Length > 0 || s.ExcludeTopFloor || s.ExcludeGroundFloorAndBelow || s.AtticPreference.Length > 0), floorLoss, "Emelet");
         Add(ElevatorWeight, !search.House && s.Elevator, property.Elevator ? 0 : 1, "Lift");
         Add(BalconyWeight, !search.House && s.Balcony, property.Balcony == true ? 0 : 1, "Erkély");
@@ -228,7 +229,7 @@ public static class MatchingRanking
         Add(PrivateGardenWeight, search.Flat && s.PrivateGarden, property.PrivateGarden == true ? 0 : 1, "Saját kert");
         Add(BuildingWeight, search.Buildings.Count > 0, CategoryLoss(Canonical(property.Building, PropertyAttributes.Buildings), search.Buildings, PropertyAttributes.Buildings), "Falazat");
         Add(HeatingWeight, search.Heating.Count > 0, CategoryLoss(PropertyAttributes.NormalizeHeating(property.HeatingType), search.Heating, PropertyAttributes.HeatingTypes), "Fűtés típusa");
-        Add(EnergyWeight, s.MinEnergyRating.Length > 0, EnergyCertificates.Loss(property, s.MinEnergyRating), "Energetikai tanúsítvány");
+        Add(EnergyWeight, s.MinEnergyRating.Length > 0, EnergyCertificates.Loss(property, s.MinEnergyRating), "Minimum energetikai besorolás");
         var age = Array.IndexOf(PropertyAttributes.ConstructionAges, Canonical(property.ConstructionAge, PropertyAttributes.ConstructionAges));
         var ageLoss = age < 0 || search.Ages.Count == 0 ? 1m : search.Ages.Min(value => Math.Abs(Array.IndexOf(PropertyAttributes.ConstructionAges, value) - age) / 4m);
         Add(AgeWeight, search.Ages.Count > 0, ageLoss, "Építési kor");
@@ -252,7 +253,7 @@ public static class MatchingRanking
     private static readonly CultureInfo Hungarian = CultureInfo.GetCultureInfo("hu-HU");
     private static string Number(decimal value) => value.ToString("0.######", Hungarian);
     private static string Floor(decimal value, bool bucket = false) => value switch {
-        -1m => "Szuterén", 0m => "Földszint", .5m => "Magasföldszint", 9m when bucket => "9. emelet vagy afölötti", _ => Number(value) + ". emelet"
+        -1m => "Szuterén", 0m => "Földszint", .5m => "Magasföldszint", 8m when bucket => "8. emelet vagy afölötti", 9m when bucket => "9. emelet vagy afölötti", _ => Number(value) + ". emelet"
     };
     private static string Known(string value, string[] options) => options.Contains(value) ? value : "Nincs megadva";
 
@@ -299,16 +300,21 @@ public static class MatchingRanking
                 actual >= 0 ? PropertyAttributes.Conditions[actual] : "Nincs megadva", actual >= 0 && minimum >= 0 && actual >= minimum);
         }
         if (!q.House && q.Floors.Length > 0)
-            Add("floor", "Emelet", string.Join(" vagy ", q.Floors.Select(value => Floor(value, bucket: true))),
-                KnownFloor(p) ? Floor(p.Floor!.Value, p.FloorIsUpperRange) : "Nincs megadva",
-                KnownFloor(p) && q.Floors.Any(value => value == p.Floor!.Value || value == 9m && p.Floor!.Value >= 9m));
+        {
+            var choices = q.Floors.Select(value => Floor(value, bucket: true));
+            if (s.AtticPreference == "only") choices = choices.Append("Tetőtéri ingatlan");
+            var actual = KnownFloor(p) ? Floor(p.Floor!.Value, p.FloorIsUpperRange) : "Nincs megadva";
+            if (s.AtticPreference == "only" && p.IsAttic == true) actual += " (tetőtéri ingatlan)";
+            Add("floor", "Emelet", string.Join(" vagy ", choices), actual,
+                PropertyAttributes.FloorSelectionSatisfied(p, q.Floors, s.AtticPreference));
+        }
         if (!q.House && s.Elevator) Add("elevator", "Lift", "Van lift", p.Elevator ? "Van lift" : "Nincs lift", p.Elevator);
         if (!q.House && s.Balcony) Add("balcony", "Erkély", "Van erkély", p.Balcony is null ? "Nincs megadva" : p.Balcony == true ? "Van erkély" : "Nincs erkély", p.Balcony == true);
         if (!q.House && s.ExcludeTopFloor) Add("excludeTopFloor", "Legfelső emelet", "Nem legfelső emelet",
             !KnownTopFloor(p) ? "Nincs megadva" : BelowTopFloor(p) ? "Nem legfelső emelet" : "Legfelső emelet", BelowTopFloor(p));
         if (!q.House && s.ExcludeGroundFloorAndBelow) Add("excludeGroundFloorAndBelow", "Földszint és szuterén", "Földszint felett",
             KnownFloor(p) ? Floor(p.Floor!.Value, p.FloorIsUpperRange) : "Nincs megadva", AboveGroundFloor(p));
-        if (!q.House && s.AtticPreference.Length > 0) Add("atticPreference", "Tetőtér", s.AtticPreference == "only" ? "Tetőtéri ingatlan" : "Nem tetőtéri ingatlan",
+        if (!q.House && s.AtticPreference.Length > 0 && (s.AtticPreference == "exclude" || q.Floors.Length == 0)) Add("atticPreference", "Tetőtér", s.AtticPreference == "only" ? "Tetőtéri ingatlan" : "Nem tetőtéri ingatlan",
             p.IsAttic is null ? "Nincs megadva" : p.IsAttic == true ? "Tetőtéri ingatlan" : "Nem tetőtéri ingatlan", PropertyAttributes.AtticSatisfied(p, s.AtticPreference));
         if (s.AirConditioning) Add("airConditioning", "Légkondi", "Van légkondi",
             p.AirConditioning is null ? "Nincs megadva" : p.AirConditioning == true ? "Van légkondi" : "Nincs légkondi", p.AirConditioning == true);
@@ -316,7 +322,7 @@ public static class MatchingRanking
             p.PrivateGarden is null ? "Nincs megadva" : p.PrivateGarden == true ? "Van saját kert" : "Nincs saját kert", p.PrivateGarden == true);
         Category("building", "Falazat", Canonical(p.Building, PropertyAttributes.Buildings), q.Buildings, PropertyAttributes.Buildings);
         Category("heatingType", "Fűtés típusa", PropertyAttributes.NormalizeHeating(p.HeatingType), q.Heating, PropertyAttributes.HeatingTypes);
-        if (s.MinEnergyRating.Length > 0) Add("minEnergyRating", "Energetikai tanúsítvány", s.MinEnergyRating + " vagy jobb",
+        if (s.MinEnergyRating.Length > 0) Add("minEnergyRating", "Minimum energetikai besorolás", s.MinEnergyRating + " vagy jobb",
             EnergyCertificates.IsCurrent(p) ? p.EnergyRating : "Nincs megadva", EnergyCertificates.MinimumSatisfied(p, s.MinEnergyRating));
         Category("constructionAge", "Építési kor", Canonical(p.ConstructionAge, PropertyAttributes.ConstructionAges), q.Ages, PropertyAttributes.ConstructionAges);
         if (!string.IsNullOrEmpty(s.CeilingHeight))
@@ -396,7 +402,7 @@ public static class MatchingRanking
         }
         if (!search.House)
         {
-            Add(FocusWeights["floor"], Math.Max(Category(search.Floors.Length, 12), s.ExcludeTopFloor || s.ExcludeGroundFloorAndBelow || s.AtticPreference.Length > 0 ? 1m : 0m));
+            Add(FocusWeights["floor"], Math.Max(Category(search.Floors.Length, 11), s.ExcludeTopFloor || s.ExcludeGroundFloorAndBelow || s.AtticPreference.Length > 0 ? 1m : 0m));
             Add(FocusWeights["elevator"], s.Elevator ? 1m : 0m); Add(FocusWeights["balcony"], s.Balcony ? 1m : 0m);
         }
         return Math.Clamp((int)Math.Round(100m * selected / total, MidpointRounding.AwayFromZero), 0, 100);

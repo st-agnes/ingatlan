@@ -89,6 +89,11 @@ public class PropertyAttributeTests
     [InlineData(0, -1, false)]
     [InlineData(-1, 0, false)]
     [InlineData(0, 0, true)]
+    [InlineData(8, 8, true)]
+    [InlineData(8, 9, true)]
+    [InlineData(8, 10, true)]
+    [InlineData(8, 11, true)]
+    [InlineData(7, 8, false)]
     [InlineData(10, 11, true)]
     [InlineData(11, 11, true)]
     [InlineData(12, 11, true)]
@@ -152,7 +157,7 @@ public class PropertyAttributeTests
         Rules.Apply(search, SearchInput() with { Conditions = ["jó", "Jó"], Buildings = ["tegla", "Tégla"], Floors = [0, 0, 11] });
         Assert.Equal(new[] { "Jó" }, Dto.Strings(search.ConditionsJson));
         Assert.Equal(new[] { "Tégla" }, Dto.Strings(search.BuildingsJson));
-        Assert.Equal(new[] { 0m, 9m }, PropertyAttributes.Floors(search.FloorsJson));
+        Assert.Equal(new[] { 0m, 8m }, PropertyAttributes.Floors(search.FloorsJson));
         Assert.Throws<ApiException>(() => Rules.Apply(new SearchRequest(), SearchInput() with { Views = ["Ismeretlen"] }));
         Assert.Throws<ApiException>(() => Rules.Apply(new SearchRequest(), SearchInput() with { Conditions = [""] }));
         Assert.Throws<ApiException>(() => Rules.Apply(new SearchRequest(), SearchInput() with { Buildings = [null!] }));
@@ -204,7 +209,7 @@ public class PropertyAttributeTests
         Assert.Equal("41–50 év közötti", Field(dto.RootElement, "constructionAges")[0].GetString());
         Assert.Equal("Udvari", Field(dto.RootElement, "views")[0].GetString());
         Assert.Equal("3 m alatti", Field(dto.RootElement, "ceilingHeight").GetString());
-        Assert.Equal(9m, Field(dto.RootElement, "floors")[2].GetDecimal());
+        Assert.Equal(8m, Field(dto.RootElement, "floors")[2].GetDecimal());
         Rules.Apply(search, SearchInput());
         Assert.True(Rules.Compatible(property, search));
     }

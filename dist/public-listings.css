@@ -7,6 +7,59 @@
 
 .landing-property-card.compact-listing-card>.listing-card-owner{padding:2px 5px 2px 8px;border-radius:15px;background:#fffffff0;box-shadow:0 2px 7px #2737251c}
 
+/* Detail pages retain their public content while offering the active profile's actions. */
+.public-listing-actions{justify-content:center}
+.public-listing-actions .btn,.public-listing-actions .landing-card-cta{flex:0 1 auto;width:auto;max-width:100%;margin-bottom:0}
+.public-listing-invitation{padding:0;background:transparent;border-radius:0}
+.public-listing-context{border:1px solid #dce5d5;border-radius:14px;background:#f3f6ef;padding:17px 20px;margin:0 0 14px}
+.public-listing-context-summary{display:flex;align-items:center;justify-content:space-between;gap:18px;min-width:0}
+.public-listing-context-summary>div{min-width:0}
+.public-listing-context-summary small{font-size:12px;color:#6e7b65}
+.public-listing-context-summary h2{font-size:18px;line-height:1.35;margin:4px 0;overflow-wrap:anywhere}
+.public-listing-context-summary p{font-size:13px;line-height:1.6;margin:4px 0 0;color:#65715e;overflow-wrap:anywhere}
+.public-listing-match-score{flex:none;font-size:25px;line-height:1.1;text-align:center;color:#344d34}
+.public-listing-match-score span{display:block;font-size:11px;font-weight:400;margin-top:4px}
+.public-listing-decisions{display:flex;justify-content:flex-end;align-items:stretch;flex-wrap:wrap;gap:10px;margin-top:14px}
+.public-listing-decisions .btn{min-height:46px;gap:8px;padding:10px 17px;justify-content:center}
+.public-listing-pass>span{font-size:23px;line-height:1}
+.public-listing-contact>span{display:flex;flex-direction:column;align-items:center;gap:2px}
+.public-listing-contact small{display:block;font-size:10px;line-height:1.3;opacity:.85}
+.public-listing-contact svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.public-listing-decision-state,.public-listing-context-note,.public-listing-partial-consent p{font-size:13px;line-height:1.6;margin:13px 0 0;color:#53674c}
+.public-listing-partial-consent .btn{margin-top:9px;font-size:13px}
+.public-listing-map-link{border:0;background:transparent;padding:0;text-align:left;font-family:inherit;cursor:pointer;max-width:100%}
+.public-listing-map-link>span{min-width:0;overflow-wrap:anywhere}
+.public-listing-map-link:hover{color:#344d34}
+.public-listing-map-link:focus-visible{outline:2px solid #78916e;outline-offset:5px;border-radius:3px}
+.public-listing-map-label{display:inline-flex;align-items:center;gap:5px;font-size:12px;text-decoration:underline;text-underline-offset:3px;color:#415f39;white-space:nowrap}
+.public-listing-map-label svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7}
+.listing-location-page{--listing-map-height:clamp(440px,72dvh,760px);max-width:1320px;margin:0 auto;padding:25px 28px 40px;color:#344d34}
+.listing-location-page>header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:20px}
+.listing-location-page>header h1{font-size:clamp(22px,3vw,30px);line-height:1.3;margin:0}
+.listing-location-page>header .btn{display:inline-flex;align-items:center;gap:7px;flex:none}
+.listing-location-page>header .btn svg{width:17px;height:17px}
+.listing-location-layout{display:grid;grid-template-columns:minmax(180px,240px) minmax(0,1fr);gap:20px;align-items:stretch}
+.listing-location-layout>aside{max-height:var(--listing-map-height);overflow:auto;min-width:0;padding:15px;background:#f0f4eb;border-radius:12px}
+.listing-location-layout ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.listing-location-layout #listing-location-map{height:var(--listing-map-height);min-height:0}
+@media(max-width:720px){
+ .public-listing-actions .btn,.public-listing-actions .landing-card-cta{flex:0 1 auto;width:auto}
+ .public-listing-invitation{padding:0}
+ .public-listing-context{padding:13px 14px}
+ .public-listing-context-summary{gap:10px;align-items:flex-start}
+ .public-listing-context-summary h2{font-size:16px}
+ .public-listing-context-summary p{font-size:12px}
+ .public-listing-match-score{font-size:22px}
+ .public-listing-decisions{justify-content:center}
+ .public-listing-decisions .btn{font-size:12px;padding:10px 12px}
+ .public-listing-header nav>[data-action="public-listing-back"]{font-size:10px;padding:8px 10px;max-width:135px;line-height:1.35}
+ .listing-location-page{padding:18px 15px 25px;--listing-map-height:clamp(440px,65dvh,650px)}
+ .listing-location-page>header{gap:10px;margin-bottom:14px}
+ .listing-location-layout{grid-template-columns:minmax(0,1fr);gap:12px}
+ .listing-location-layout>aside{max-height:120px;padding:11px 13px}
+ .listing-location-layout ul{display:flex;flex-wrap:wrap;gap:5px 14px;font-size:13px}
+}
+
 /* The call to action stays at each card's bottom, independently of its copy. */
 .landing-showcase .compact-listing-card{display:flex;flex-direction:column;height:100%}
 .landing-showcase .compact-listing-card .landing-property-image{flex:none}

@@ -20,20 +20,22 @@ async function configure(page,kind){
   const model=createModel({getItem:()=>null,setItem:(_key,value)=>{raw=JSON.parse(value);}},()=> '2026-11-10T10:00:00.000Z');model.activate('search','own-s1');
   raw.decisions=[];raw.matches=[];raw.reports=[];raw.credits=100;
   const baseProperty=raw.properties.find(item=>item.id==='p1');
-  const property=(id,title,price,extra={})=>({...baseProperty,id,title,ownerId:id==='near-property'?'u2':'u1',locationId:'district:Budapest:13',city:'Budapest',district:'XIII.',price,area:60,rooms:3,wholeRooms:3,halfRooms:0,floor:1,...extra});
+  const property=(id,title,price,extra={})=>({...baseProperty,id,title,ownerId:id==='p2'?'u2':'u1',locationId:'district:Budapest:13',city:'Budapest',district:'XIII.',price,area:60,rooms:3,wholeRooms:3,halfRooms:0,floor:1,...extra});
   // A different town needs its own fictional point. Keeping the cloned
   // Budapest coordinates would produce a near-zero geographic mismatch and
   // legitimately outrank the multi-criterion layout fixture below.
   const distantPoint=neighborhoodDemoPoints.find(point=>point.synthetic&&point.city==='Debrecen'&&point.name==='Sestakert');
   if(!distantPoint)throw new Error('A távoli böngészős tesztpont hiányzik.');
   const distantAddress={...baseProperty.addressDetails,street:'Fiktív debreceni tesztutca',streetId:null,houseNumber:'99999',postalCode:'4027',latitude:distantPoint.latitude,longitude:distantPoint.longitude};
-  raw.properties=raw.properties.filter(item=>item.ownerId==='me');raw.properties.push(property('exact-property','Tökéletes tesztotthon',70),property('near-property','Részleges tesztotthon',88,{rooms:1,wholeRooms:1,halfRooms:0,floor:3}),property('wrong-place','Másik város',5,{locationId:'city:Debrecen',city:'Debrecen',district:'',neighborhood:'Sestakert',neighborhoodIds:[...distantPoint.membershipIds],streetId:null,addressDetails:distantAddress}));
+  // Keep catalogue identities so Details opens a genuine public demo page;
+  // the ranking-specific parameters below remain private to this browser test.
+  raw.properties=raw.properties.filter(item=>item.ownerId==='me');raw.properties.push(property('p1','Tökéletes tesztotthon',70),property('p2','Részleges tesztotthon',88,{rooms:1,wholeRooms:1,halfRooms:0,floor:3}),property('p3','Másik város',5,{locationId:'city:Debrecen',city:'Debrecen',district:'',neighborhood:'Sestakert',neighborhoodIds:[...distantPoint.membershipIds],streetId:null,addressDetails:distantAddress}));
   const criteria={locationIds:['district:Budapest:13'],city:'Budapest',districts:['XIII.'],type:'Lakás',minPrice:null,maxPrice:80,minArea:50,maxArea:85,minRooms:2,maxRooms:4,conditions:[],buildings:[],constructionAges:[],views:[],floors:[1],heatingTypes:[],ceilingHeight:'',balcony:false,elevator:false};
   for(const id of ['own-s1','own-s2'])Object.assign(raw.searches.find(item=>item.id===id),criteria,{title:id==='own-s1'?'Aktív tesztkeresés':'Másik tesztkeresés'});
   Object.assign(raw.properties.find(item=>item.id==='own-p1'),property('own-p1','Saját tesztotthon',80),{ownerId:'me'});
   raw.searches=raw.searches.filter(item=>item.ownerId==='me');
-  const request=(id,title,extra)=>({...criteria,id,title,ownerId:id==='near-search'?'u3':'u1',description:'Kitalált böngészős tesztkeresés.',...extra});
-  raw.searches.push(request('narrow-search','Szűk tesztkeresés',{minPrice:75,maxPrice:85,minArea:58,maxArea:65,minRooms:3,maxRooms:3}),request('broad-search','Tág tesztkeresés',{maxPrice:100,minArea:20,maxArea:200,minRooms:1,maxRooms:10}),request('near-search','Részleges tesztkeresés',{maxPrice:70,floors:[0]}));
+  const request=(id,title,extra)=>({...criteria,id,title,ownerId:id==='s3'?'u3':'u1',description:'Kitalált böngészős tesztkeresés.',...extra});
+  raw.searches.push(request('s1','Szűk tesztkeresés',{minPrice:75,maxPrice:85,minArea:58,maxArea:65,minRooms:3,maxRooms:3}),request('s2','Tág tesztkeresés',{maxPrice:100,minArea:20,maxArea:200,minRooms:1,maxRooms:10}),request('s3','Részleges tesztkeresés',{maxPrice:70,floors:[0]}));
   raw.active={kind,id:kind==='property'?'own-p1':'own-s1'};localStorage.setItem(STORAGE_KEY,JSON.stringify(raw));
  },kind);
  await page.reload({waitUntil:'domcontentloaded'});await page.locator('#candidate').waitFor();
@@ -64,9 +66,12 @@ async function verify(browser,viewport,kind){
   assert.match(await page.locator('#candidate .score').innerText(),/100%/);assert.doesNotMatch(await page.locator('#app').innerText(),/Másik város/);
   const exactExplanation=await page.locator('#candidate .feature-tags').innerText();assert.doesNotMatch(exactExplanation,/Helyszín|Ingatlantípus|Keresés:|Ingatlan:|M Ft|m²/);assert.equal(await page.locator('#candidate .feature-tags [data-criterion="location"],#candidate .feature-tags [data-criterion="type"]').count(),0);await compactCriteria(page,'#candidate .match-passed ul');
   assert.match(await page.locator('.keyboard-hint').innerText(),/→\s*Kapcsolatfelvétel/,'The keyboard hint names the same contact action as the button');
-  await interact(page.locator('.card-actions [data-action="details"]'));await page.locator('.modal').waitFor();
-  const detailContact=page.locator('.modal [data-action="like"]');assert.match(await detailContact.innerText(),/^Kapcsolatfelvétel/,'Both free buyer and paid seller detail actions use the contact caption');assert.equal(await detailContact.locator('svg[data-icon="contact"]').count(),1,'The detailed recommendation uses the same contact icon as the discovery dock');
-  await interact(page.locator('.modal [data-action="close"]').last());await page.locator('.modal').waitFor({state:'detached'});
+  const beforeDetails=await readState(page),candidateTitle=await page.locator('#candidate h2').innerText();
+  await interact(page.locator('.card-actions [data-action="details"]'));await page.locator('#public-listing').waitFor();
+  assert.match(new URL(page.url()).hash,new RegExp(`^#listing/${kind==='search'?'property':'search'}/`));assert.equal(await page.locator('.modal').count(),0,'Details is a separate public listing page');
+  const detailContact=page.locator('#public-listing [data-action="public-listing-decision"][data-liked="true"]').first();assert.match(await detailContact.innerText(),/^Kapcsolatfelvétel/,'Both free buyer and paid seller detail actions use the contact caption');assert.equal(await detailContact.locator('svg').count(),1,'The detailed recommendation keeps a contact icon alongside its caption');
+  await interact(page.locator('[data-action="public-listing-back"]').first());await page.locator('#candidate').waitFor();assert.equal(new URL(page.url()).hash,'#discover');assert.equal(await page.locator('#candidate h2').innerText(),candidateTitle,'Returning from details keeps the same recommendation');
+  const afterDetails=await readState(page);assert.deepEqual(afterDetails.active,beforeDetails.active);assert.deepEqual(afterDetails.decisions,beforeDetails.decisions);assert.equal(afterDetails.credits,beforeDetails.credits,'Viewing details cannot bill or decide about a candidate');
   if(kind==='property'){
    assert.match(await page.locator('#candidate').innerText(),/Szűk tesztkeresés/);assert.match(await page.locator('#candidate .specialization').innerText(),/[\d,]+%-ban fókuszált keresés/);assert.doesNotMatch(await page.locator('#candidate .specialization').innerText(),/\/100/);await sellerCaption(page);await interact(page.locator('#candidate [data-action="focus-info"]'));await page.getByRole('heading',{name:'Mit jelent a fókuszált keresés?',exact:true}).waitFor();assert.match(await page.locator('.modal').innerText(),/feltétel|helyszín|szűk/i);await interact(page.locator('.modal [data-action="close"]').last());await page.locator('.modal').waitFor({state:'detached'});
    await interact(page.locator('.card-actions [data-action="pass"]'));await page.getByRole('heading',{name:'Tág tesztkeresés',exact:true}).waitFor();assert.match(await page.locator('#candidate .score').innerText(),/100%/);
@@ -93,7 +98,7 @@ async function verify(browser,viewport,kind){
    await page.getByRole('heading',{name:'Elfogytak a tökéletes egyezések.',exact:true}).waitFor();assert.equal(await page.locator('#candidate').count(),0,'Editing criteria resets consent');
    // Keep this zero-score fixture independent of the floor criterion used above
    // to exercise wrapping: its partial floor credit would otherwise yield 5%.
-   const zeroScore=await page.evaluate(async()=>{const {STORAGE_KEY}=await import('/model.js');const {evaluateMatch}=await import('/matching.js');const raw=JSON.parse(localStorage.getItem(STORAGE_KEY));const search=raw.searches.find(item=>item.id===raw.active.id);Object.assign(search,{maxPrice:1,minArea:1000000,maxArea:null,minRooms:1000,maxRooms:null,floors:[]});localStorage.setItem(STORAGE_KEY,JSON.stringify(raw));return evaluateMatch(raw.properties.find(item=>item.id==='near-property'),search).score;});
+   const zeroScore=await page.evaluate(async()=>{const {STORAGE_KEY}=await import('/model.js');const {evaluateMatch}=await import('/matching.js');const raw=JSON.parse(localStorage.getItem(STORAGE_KEY));const search=raw.searches.find(item=>item.id===raw.active.id);Object.assign(search,{maxPrice:1,minArea:1000000,maxArea:null,minRooms:1000,maxRooms:null,floors:[]});localStorage.setItem(STORAGE_KEY,JSON.stringify(raw));return evaluateMatch(raw.properties.find(item=>item.id==='p2'),search).score;});
    assert.equal(zeroScore,0,'The display regression must receive a real zero score from the matching algorithm');
    await page.reload({waitUntil:'domcontentloaded'});await page.getByRole('heading',{name:'Elfogytak a tökéletes egyezések.',exact:true}).waitFor();await interact(page.locator('[data-action="approximate-accept"]'));await page.locator('#candidate').waitFor();assert.match(await page.locator('#candidate .score').innerText(),/^0%/,'A real zero-percent partial score must never become the former 97-percent fallback');
   }else{
@@ -132,7 +137,13 @@ async function verifyPublicBudget(browser,viewport){
   await interact(page.locator('[data-action="approximate-accept"]'));await page.locator('#candidate').waitFor();
   const score=Number((await page.locator('#candidate .score').innerText()).match(/\d+/)?.[0]);assert.ok(score<100);assert.match(await page.locator('#candidate .price').innerText(),/70/);assert.doesNotMatch(await page.locator('#candidate').innerText(),/80\s*M\s*Ft|80\s*millió/,'The seller card cannot reveal the private budget');
   assert.match(await page.locator('#candidate [data-criterion="price"]').innerText(),/70/);assert.doesNotMatch(JSON.stringify(await page.evaluate(async()=>(await import('/model.js')).model.feed({includeApproximate:true}))),/"maxPrice":80|"publicMaxPrice":80|"privateMaxPrice"/,'Even the seller feed object contains only the public cap');
-  await interact(page.locator('.card-actions [data-action="details"]'));await page.locator('.modal').waitFor();assert.match(await page.locator('.modal').innerText(),/70\s*M\s*Ft/);assert.doesNotMatch(await page.locator('.modal').innerText(),/80\s*M\s*Ft/);await interact(page.locator('.modal [data-action="close"]').last());
+  // This isolated budget fixture intentionally has no public catalogue row.
+  // An unavailable detail must still navigate safely and let browser Back
+  // restore the consented partial card without billing or exposing its cap.
+  const beforeDetails=await readState(page);
+  await interact(page.locator('.card-actions [data-action="details"]'));await page.locator('.public-listing-error').waitFor();assert.match(new URL(page.url()).hash,/^#listing\/search\//);assert.equal(await page.locator('.modal').count(),0);assert.doesNotMatch(await page.locator('.public-listing-error').innerText(),/80\s*M\s*Ft/);
+  await page.goBack();await page.locator('#candidate').waitFor();assert.equal(new URL(page.url()).hash,'#discover');assert.match(await page.locator('.matching-stage').innerText(),/Részleges egyezések/);assert.match(await page.locator('#candidate .price').innerText(),/70/);
+  const afterDetails=await readState(page);assert.deepEqual(afterDetails.active,beforeDetails.active);assert.deepEqual(afterDetails.decisions,beforeDetails.decisions);assert.equal(afterDetails.credits,beforeDetails.credits);
   await interact(page.locator('.card-actions [data-action="like"]'));await page.waitForFunction(async()=>(await import('/model.js')).model.getState().decisions.length===1);const final=await readState(page);assert.equal(final.credits,98);assert.equal(final.decisions[0].liked,true);assert.doesNotMatch(JSON.stringify(final.decisions[0].search),/"maxPrice":80|"publicMaxPrice":80|"privateMaxPrice"/,'Saved seller history keeps the same price privacy');
   assert.deepEqual(errors,[]);console.log(`Public budget ${viewport.name}: buyer-private exactness, seller-public partial consent, private owner summary, hidden foreign cap and ordinary billing passed.`);
  }catch(error){await mkdir(screenshots,{recursive:true});await page.screenshot({path:resolve(screenshots,`public-budget-${viewport.name}-failure.png`),fullPage:true}).catch(()=>{});throw error;}finally{await context.close();}

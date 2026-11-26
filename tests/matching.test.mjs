@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {MATCH_WEIGHTS,prepareSearch,evaluateMatch,valueForMoney,searchSpecificity} from '../dist/matching.js';
+import {locations,MAX_SEARCH_LOCATIONS} from '../dist/locations.js';
 
 const home=(extra={})=>({ownerId:'seller',locationId:'city:Debrecen',city:'Debrecen',type:'Lakás',price:80,area:60,rooms:3,...extra});
 const wanted=(extra={})=>({ownerId:'buyer',locationIds:['city:Debrecen'],city:'Debrecen',type:'Lakás',...extra});
@@ -28,6 +29,15 @@ test('canonical areas, selected alternatives and Budapest districts retain their
   const buda=home({locationId:'district:Budapest:2',city:'Budapest',district:'II.'});
   assert.equal(evaluateMatch(buda,wanted({locationIds:['city:Budapest']})).score,100);
   assert.equal(evaluateMatch(buda,wanted({locationIds:['district:Budapest:13']})).eligible,false);
+});
+
+test('expanded surroundings keep every selected town matchable up to the shared location limit',()=>{
+ const selected=locations.filter(location=>location.kind==='city').slice(0,MAX_SEARCH_LOCATIONS+1);
+ const request=wanted({locationIds:selected.slice(0,MAX_SEARCH_LOCATIONS).map(location=>location.id)});
+ const prepared=prepareSearch(request),last=selected[MAX_SEARCH_LOCATIONS-1];
+ assert.equal(prepared.cities.size,MAX_SEARCH_LOCATIONS);
+ assert.equal(evaluateMatch(home({locationId:last.id,city:last.city}),prepared).score,100);
+ assert.equal(prepareSearch({...request,locationIds:selected.map(location=>location.id)}).cities.size,0,'Over-limit stored choices remain invalid rather than becoming a partial selection');
 });
 
 test('numeric deviation grows continuously, respects inclusive boundaries and remains below 100 when tiny',()=>{
@@ -64,7 +74,7 @@ test('condition is an ordered minimum and better conditions remain exact',()=>{
   assert.equal(evaluateMatch(home({condition:'Jó'}),wanted({conditions:['Átlagos']})).score,100);
 });
 
-test('floor loss uses the nearest allowed floor, supports basement and 9-or-higher and penalizes unknown floors',()=>{
+test('floor loss uses the nearest allowed floor, supports basement and 8-or-higher and penalizes unknown floors',()=>{
   const q=wanted({floors:[1,5]});
   assert.equal(evaluateMatch(home({floor:4}),q).score,90);
   assert.equal(evaluateMatch(home({floor:3}),q).score,82);
@@ -147,12 +157,12 @@ test('partial explanations contain concrete requested and actual values plus met
   for(const key of ['location','type','area','building','heatingType'])assert.equal(details[key].matches,true,key);
 });
 
-test('explanations respect bounds, aliases, 9+ floors, unknown values and applicable criteria',()=>{
+test('explanations respect bounds, aliases, 8+ floors, unknown values and applicable criteria',()=>{
   let result=evaluateMatch(home({price:80.5,rooms:3.5,area:60}),wanted({minPrice:60,maxPrice:100,minRooms:2.5,maxRooms:4,minArea:50,maxArea:70}));
   assert.equal(result.matchDetails.find(item=>item.key==='rooms').expected,'2,5–4 szoba');
   assert.equal(result.matchDetails.find(item=>item.key==='price').actual,'80,5 M Ft');
   result=evaluateMatch(home({floor:27,condition:'Felújított'}),wanted({floors:[11],conditions:['Jó']}));
-  assert.equal(result.matchDetails.find(item=>item.key==='floor').expected,'9. emelet vagy afölötti');
+  assert.equal(result.matchDetails.find(item=>item.key==='floor').expected,'8. emelet vagy afölötti');
   assert.equal(result.matchDetails.find(item=>item.key==='floor').actual,'27. emelet');
   assert.ok(result.matchDetails.every(item=>item.matches));
   result=evaluateMatch(home(),wanted({buildings:['Panel','Tégla'],heatingTypes:['Nincs fűtés']}));
@@ -231,7 +241,7 @@ test('raised-ground ordering and upper ranges distinguish known levels from unkn
  assert.equal(evaluateMatch(range,wanted({floors:[11]})).score,100);
  assert.equal(evaluateMatch(range,wanted({excludeTopFloor:true})).score,61);
  const detail=evaluateMatch(range,wanted({floors:[8]})).matchDetails.find(x=>x.key==='floor');
- assert.equal(detail.actual,'9. emelet vagy afölötti');assert.equal(detail.matches,false);
+ assert.equal(detail.actual,'9. emelet vagy afölötti');assert.equal(detail.expected,'8. emelet vagy afölötti');assert.equal(detail.matches,true);
  assert.equal(evaluateMatch(home({floor:12,buildingFloors:13}),wanted({floors:[9],excludeTopFloor:true})).score,100);
 });
 
@@ -242,7 +252,7 @@ test('certificate minimum applies its ordered deviation only to a known current 
  const far=evaluateMatch(home({energyRating:'I',energyRatingScheme:'2023'}),q);
  assert.equal(high.score,100);assert.equal(near.score,98);assert.equal(far.score,86);
  assert.equal(evaluateMatch(home({energyRating:'A+'}),q).score,82);
- const detail=near.matchDetails.find(item=>item.key==='minEnergyRating');assert.equal(detail.expected,'A vagy jobb');assert.equal(detail.actual,'B');assert.equal(detail.matches,false);
+ const detail=near.matchDetails.find(item=>item.key==='minEnergyRating');assert.equal(detail.label,'Minimum energetikai besorolás');assert.equal(detail.expected,'A vagy jobb');assert.equal(detail.actual,'B');assert.equal(detail.matches,false);
  assert.ok(searchSpecificity(wanted({minEnergyRating:'A'}))>=searchSpecificity(wanted({minEnergyRating:'C'})));
  assert.ok(searchSpecificity(wanted({minEnergyRating:'A+++'}))>searchSpecificity(wanted()));
 });
@@ -255,6 +265,22 @@ test('attic facts share the existing floor penalty budget and explicit false dif
  assert.equal(single.score,combined.score,'Adding another failed floor fact does not spend another independent penalty budget');
  assert.equal(combined.matchDetails.find(item=>item.key==='atticPreference').expected,'Nem tetőtéri ingatlan');
  assert.equal(evaluateMatch(home({type:'Ház',isAttic:true}),wanted({type:'Ház',atticPreference:'exclude'})).score,100);
+});
+
+test('selected floors and attic are OR alternatives in scores and displayed requirements',()=>{
+ const request=wanted({floors:[3],atticPreference:'only'});
+ for(const property of [home({floor:3,isAttic:false}),home({floor:3}),home({floor:7,isAttic:true}),home({isAttic:true})]){
+  const result=evaluateMatch(property,request);
+  assert.equal(result.score,100);assert.equal(result.isExact,true);
+  const floor=result.matchDetails.find(item=>item.key==='floor');
+  assert.equal(floor.expected,'3. emelet vagy Tetőtéri ingatlan');assert.equal(floor.matches,true);
+  assert.equal(result.matchDetails.some(item=>item.key==='atticPreference'),false,'The attic alternative cannot appear as an independent unmet requirement');
+ }
+ const near=evaluateMatch(home({floor:2,isAttic:false}),request),far=evaluateMatch(home({floor:10,isAttic:false}),request);
+ assert.equal(near.score,90);assert.equal(far.score,61,'An unmet attic alternative bounds the combined floor loss at one');
+ assert.equal(evaluateMatch(home({floor:7,buildingFloors:7,isAttic:true}),{...request,excludeTopFloor:true}).score,61);
+ assert.equal(evaluateMatch(home({floor:0,isAttic:true}),{...request,excludeGroundFloorAndBelow:true}).score,61);
+ assert.equal(evaluateMatch(home({floor:3,isAttic:true}),{...request,atticPreference:'exclude'}).score,61);
 });
 
 

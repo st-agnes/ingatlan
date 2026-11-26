@@ -86,15 +86,49 @@ public sealed class ListingPrivacyEnergyTests
         var first = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s)).Score;
         Assert.Equal(61, first); // Full attic loss: exp(-sqrt(0.25)).
         s.FloorsJson = "[8]";
-        // Floor2 versus8 is a6/5=1.2 deviation. The shared floor term takes
-        // max(1.2,1), never their sum, and numeric deviations are not capped.
+        // Floor2 versus8 is a6/5=1.2 deviation, but attic is an OR
+        // alternative whose unmet loss is1, so the shared term takes min(1.2,1).
         var combined = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s));
-        Assert.Equal(55, combined.Score); // exp(-sqrt(0.25 * 1.2^2)).
-        Assert.InRange(Math.Abs(combined.DistanceSquared - .36d), 0d, 1e-12);
+        Assert.Equal(61, combined.Score); // exp(-sqrt(0.25)).
+        Assert.InRange(Math.Abs(combined.DistanceSquared - .25d), 0d, 1e-12);
         p.Type = s.Type = "Ház"; p.LotArea = 500m;
         Assert.True(Rules.Compatible(p, s));
         Rules.Apply(s, Wanted() with { Type = "Ház", AtticPreference = "only" });
         Assert.Equal("", s.AtticPreference);
+    }
+
+    [Theory]
+    [InlineData(3, false, true)]
+    [InlineData(3, null, true)]
+    [InlineData(7, true, true)]
+    [InlineData(null, true, true)]
+    [InlineData(2, false, false)]
+    [InlineData(2, null, false)]
+    [InlineData(null, null, false)]
+    public void AtticIsAnAlternativeToSelectedFloorsInCompatibilityScoringAndExplanations(int? floor, bool? attic, bool exact)
+    {
+        var (p, s) = Pair(); p.Floor = floor; p.IsAttic = attic;
+        s.FloorsJson = "[3]"; s.AtticPreference = "only";
+        var match = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s));
+        Assert.Equal(exact, match.IsExact); Assert.Equal(exact, Rules.Compatible(p, s));
+        var detail = Assert.Single(match.MatchDetails, item => item.Key == "floor");
+        Assert.Equal("3. emelet vagy Tetőtéri ingatlan", detail.Expected);
+        Assert.Equal(exact, detail.Matches);
+        Assert.DoesNotContain(match.MatchDetails, item => item.Key == "atticPreference");
+    }
+
+    [Fact]
+    public void OtherFloorExclusionsAndElevatorStillApplyToAtticAlternatives()
+    {
+        var (p, s) = Pair(); p.IsAttic = true; p.Floor = 7; p.BuildingFloors = 7;
+        s.FloorsJson = "[3]"; s.AtticPreference = "only";
+        Assert.True(Rules.Compatible(p, s));
+        s.ExcludeTopFloor = true;
+        Assert.False(Rules.Compatible(p, s)); Assert.Equal(61, MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s)).Score);
+        s.ExcludeTopFloor = false; s.ExcludeGroundFloorAndBelow = true; p.Floor = 0;
+        Assert.False(Rules.Compatible(p, s));
+        s.ExcludeGroundFloorAndBelow = false; s.Elevator = true;
+        Assert.False(Rules.Compatible(p, s)); Assert.False(MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s)).IsExact);
     }
 
     [Fact]

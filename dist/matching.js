@@ -1,5 +1,5 @@
 /** Deterministic matching and ordering. Keep weights/formulas aligned with MatchingRanking.cs. */
-import {getLocation,resolveLegacyLocations,isPropertyLocation} from './locations.js';
+import {getLocation,resolveLegacyLocations,isPropertyLocation,MAX_SEARCH_LOCATIONS} from './locations.js';
 import {agglomerations} from './agglomerations-data.js';
 import {CONDITION_OPTIONS,BUILDING_OPTIONS,CONSTRUCTION_AGE_OPTIONS,VIEW_OPTIONS,HEATING_OPTIONS,CEILING_HEIGHT_OPTIONS,
   FLOOR_OPTIONS,normalizeCondition,normalizeBuilding,normalizeHeating,normalizeSearchAttributes} from './attributes.js';
@@ -34,7 +34,7 @@ export function prepareSearch(input={}, {perspective='buyer'}={}) {
   // Save-time validation still rejects empty choices; explicit unknown IDs never fall back.
   let chosen=input.locationIds==null||Array.isArray(input.locationIds)&&input.locationIds.length===0
     ?resolveLegacyLocations(input):Array.isArray(input.locationIds)?input.locationIds.map(getLocation):[];
-  if(chosen.length>50||chosen.some(location=>!location))chosen=[];
+  if(chosen.length>MAX_SEARCH_LOCATIONS||chosen.some(location=>!location))chosen=[];
   const cities=new Set(),districtIds=new Set(),neighborhoodIds=new Set(),streetIds=new Set();
   for(const location of chosen){
     if(location.kind==='street')streetIds.add(location.id);
@@ -109,10 +109,11 @@ export function evaluateMatch(property,input,{includeReasons=true,perspective='b
   const actualCondition=conditionIndex(p.condition);
   add('condition',q.conditions.size,actualCondition<0||q.conditionMinimum<0?1:(q.conditionMinimum-actualCondition)/3,'Állapot');
   const floor=!knownFloor(p)?null:Number(p.floor);
-  let floorLoss=q.floors.length?(floor==null?1:Math.min(...q.floors.map(wanted=>wanted===9&&floor>=9?0:Math.abs(wanted-floor)))/5):0;
+  let floorLoss=q.floors.length?(floor==null?1:Math.min(...q.floors.map(wanted=>wanted===8&&floor>=8?0:Math.abs(wanted-floor)))/5):s.atticPreference==='only'?1:0;
+  if(s.atticPreference==='only')floorLoss=Math.min(floorLoss,p.isAttic===true?0:1);
   if(s.excludeTopFloor&&!belowTopFloor(p))floorLoss=Math.max(floorLoss,1);
   if(s.excludeGroundFloorAndBelow&&!aboveGroundFloor(p))floorLoss=Math.max(floorLoss,1);
-  if(s.atticPreference&&(p.isAttic==null||p.isAttic!==(s.atticPreference==='only')))floorLoss=Math.max(floorLoss,1);
+  if(s.atticPreference==='exclude'&&p.isAttic!==false)floorLoss=Math.max(floorLoss,1);
   add('floor',!q.house&&(q.floors.length||s.excludeTopFloor||s.excludeGroundFloorAndBelow||s.atticPreference),floorLoss,'Emelet');
   add('elevator',!q.house&&s.elevator,p.elevator?0:1,'Lift');
   add('balcony',!q.house&&s.balcony,p.balcony?0:1,'Erkély');
@@ -121,7 +122,7 @@ export function evaluateMatch(property,input,{includeReasons=true,perspective='b
   add('building',q.buildings.size,categoryLoss(normalizeBuilding(p.building),q.buildings,BUILDING_OPTIONS),'Falazat');
   add('heatingType',q.heating.size,categoryLoss(normalizeHeating(p.heatingType),q.heating,HEATING_OPTIONS),'Fűtés típusa');
   const energyMinimum=energyIndex(s.minEnergyRating),energyActual=knownEnergyRating(p);
-  add('minEnergyRating',energyMinimum>=0,energyActual<0?1:(energyMinimum-energyActual)/11,'Energetikai tanúsítvány');
+  add('minEnergyRating',energyMinimum>=0,energyActual<0?1:(energyMinimum-energyActual)/11,'Minimum energetikai besorolás');
   const age=CONSTRUCTION_AGE_OPTIONS.indexOf(canon(p.constructionAge,CONSTRUCTION_AGE_OPTIONS));
   add('constructionAge',q.ages.size,age<0?1:Math.min(...[...q.ages].map(value=>Math.abs(CONSTRUCTION_AGE_OPTIONS.indexOf(value)-age)))/4,'Építési kor');
   add('ceilingHeight',!!s.ceilingHeight,known(canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS),CEILING_HEIGHT_OPTIONS)&&canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS)===s.ceilingHeight?0:1,'Belmagasság');
@@ -135,7 +136,7 @@ export function evaluateMatch(property,input,{includeReasons=true,perspective='b
 
 const explanationNumber=new Intl.NumberFormat('hu-HU',{useGrouping:false,maximumFractionDigits:6});
 const detailNumber=value=>explanationNumber.format(value);
-const detailFloor=(value,bucket=false)=>value===-1?'Szuterén':value===0?'Földszint':value===0.5?'Magasföldszint':value>=9&&bucket?'9. emelet vagy afölötti':`${value}. emelet`;
+const detailFloor=(value,bucket=false)=>value===-1?'Szuterén':value===0?'Földszint':value===0.5?'Magasföldszint':bucket&&value===8?'8. emelet vagy afölötti':bucket&&value>=9?'9. emelet vagy afölötti':`${value}. emelet`;
 const knownDetail=(value,options)=>options.includes(value)?value:'Nincs megadva';
 
 /** Concrete requested/actual values, only built for cards that need presentation. */
@@ -167,20 +168,23 @@ function explainMatch(p,q,place,exactLocation,locationDistanceKm){
   }
   if(!q.house&&q.floors.length){
     const floor=!knownFloor(p)?null:Number(p.floor);
-    add('floor','Emelet',q.floors.map(value=>detailFloor(value,true)).join(' vagy '),floor==null?'Nincs megadva':detailFloor(floor,p.floorIsUpperRange===true),
-      floor!=null&&q.floors.some(value=>value===floor||value===9&&floor>=9));
+    const choices=q.floors.map(value=>detailFloor(value,true));
+    if(s.atticPreference==='only')choices.push('Tetőtéri ingatlan');
+    const actual=floor==null?'Nincs megadva':detailFloor(floor,p.floorIsUpperRange===true);
+    add('floor','Emelet',choices.join(' vagy '),s.atticPreference==='only'&&p.isAttic===true?`${actual} (tetőtéri ingatlan)`:actual,
+      floor!=null&&q.floors.some(value=>value===floor||value===8&&floor>=8)||s.atticPreference==='only'&&p.isAttic===true);
   }
   if(!q.house&&s.elevator)add('elevator','Lift','Van lift',p.elevator?'Van lift':'Nincs lift',!!p.elevator);
   if(!q.house&&s.balcony)add('balcony','Erkély','Van erkély',p.balcony==null?'Nincs megadva':p.balcony===true?'Van erkély':'Nincs erkély',p.balcony===true);
   if(!q.house&&s.excludeTopFloor)add('excludeTopFloor','Legfelső emelet','Nem legfelső emelet',!knownTopFloor(p)?'Nincs megadva':belowTopFloor(p)?'Nem legfelső emelet':'Legfelső emelet',belowTopFloor(p));
   if(!q.house&&s.excludeGroundFloorAndBelow)add('excludeGroundFloorAndBelow','Földszint és szuterén','Földszint felett',knownFloor(p)?detailFloor(Number(p.floor),p.floorIsUpperRange===true):'Nincs megadva',aboveGroundFloor(p));
-  if(!q.house&&s.atticPreference)add('atticPreference','Tetőtér',s.atticPreference==='only'?'Tetőtéri ingatlan':'Nem tetőtéri ingatlan',p.isAttic==null?'Nincs megadva':p.isAttic?'Tetőtéri ingatlan':'Nem tetőtéri ingatlan',p.isAttic!=null&&p.isAttic===(s.atticPreference==='only'));
+  if(!q.house&&s.atticPreference&&(s.atticPreference==='exclude'||!q.floors.length))add('atticPreference','Tetőtér',s.atticPreference==='only'?'Tetőtéri ingatlan':'Nem tetőtéri ingatlan',p.isAttic==null?'Nincs megadva':p.isAttic?'Tetőtéri ingatlan':'Nem tetőtéri ingatlan',p.isAttic!=null&&p.isAttic===(s.atticPreference==='only'));
   if(s.airConditioning)add('airConditioning','Légkondi','Van légkondi',p.airConditioning==null?'Nincs megadva':p.airConditioning===true?'Van légkondi':'Nincs légkondi',p.airConditioning===true);
   if(q.flat&&s.privateGarden)add('privateGarden','Saját kert','Van saját kert',p.privateGarden==null?'Nincs megadva':p.privateGarden===true?'Van saját kert':'Nincs saját kert',p.privateGarden===true);
   category('building','Falazat',normalizeBuilding(p.building),q.buildings,BUILDING_OPTIONS);
   category('heatingType','Fűtés típusa',normalizeHeating(p.heatingType),q.heating,HEATING_OPTIONS);
   const energyMinimum=energyIndex(s.minEnergyRating),energyActual=knownEnergyRating(p);
-  if(energyMinimum>=0)add('minEnergyRating','Energetikai tanúsítvány',`${s.minEnergyRating} vagy jobb`,energyActual<0?'Nincs megadva':p.energyRating,energyActual>=energyMinimum);
+  if(energyMinimum>=0)add('minEnergyRating','Minimum energetikai besorolás',`${s.minEnergyRating} vagy jobb`,energyActual<0?'Nincs megadva':p.energyRating,energyActual>=energyMinimum);
   category('constructionAge','Építési kor',canon(p.constructionAge,CONSTRUCTION_AGE_OPTIONS),q.ages,CONSTRUCTION_AGE_OPTIONS);
   if(s.ceilingHeight){
     const actual=canon(p.ceilingHeight,CEILING_HEIGHT_OPTIONS);

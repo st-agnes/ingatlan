@@ -1,12 +1,14 @@
 // Public, display-only neighborhood map. Search membership still uses the full
 // canonical boundaries in MySQL; this module never handles property addresses.
+import {MAX_SEARCH_LOCATIONS, expandLocationSelections, toggleMapLocation} from './locations.js';
+
 const DATA_ROOT = new URL('./data/map/', import.meta.url);
 const MIN_AREA_ZOOM = 8;
 const MAX_CITIES = 8;
 const MAX_FEATURES = 650;
 const MAX_OPTIONS = 120;
 const MAX_CITY_POINTS = 200000;
-const MAX_SELECTED = 50;
+const MAX_SELECTED = MAX_SEARCH_LOCATIONS;
 const OUTLINE_CONCURRENCY = 4;
 const MAX_SELECTED_POINTS = 2000000;
 const REQUEST_TIMEOUT = 15000;
@@ -39,6 +41,14 @@ const finite = value => typeof value === 'number' && Number.isFinite(value);
 const validBounds = bounds => Array.isArray(bounds) && bounds.length === 4 && bounds.every(finite)
   && bounds[0] <= bounds[2] && bounds[1] <= bounds[3]
   && bounds[0] >= -180 && bounds[2] <= 180 && bounds[1] >= -90 && bounds[3] <= 90;
+
+/** Union public catalogue extents only; exact property coordinates are excluded. */
+export function selectedBounds(ids, focus) {
+  const boxes = expandLocationSelections(ids).map(id => focus?.[id]).filter(validBounds);
+  if (!boxes.length) return null;
+  return boxes.reduce((bounds, box) => [Math.min(bounds[0], box[0]), Math.min(bounds[1], box[1]),
+    Math.max(bounds[2], box[2]), Math.max(bounds[3], box[3])], [...boxes[0]]);
+}
 
 export function boundsIntersect(left, right) {
   return validBounds(left) && validBounds(right)
@@ -530,11 +540,13 @@ function suppressDuplicatePlaceLabels(map, coverage) {
  * Public canonical labels are the selectable controls. Geometry is loaded only
  * for selected outlines; no exact property address ever reaches this module.
  */
-export function createLocationMap(container, {selectedIds = [], getLocation, onSelect, onError} = {}) {
-  if (!container || typeof getLocation !== 'function' || typeof onSelect !== 'function') throw new TypeError('A térképes helyszínválasztó beállításai hiányoznak.');
-  let selected = new Set(Array.isArray(selectedIds) ? selectedIds.slice(0, MAX_SELECTED) : []), disposed = false, selectionRevision = 0;
+export function createLocationMap(container, {selectedIds = [], getLocation, onSelect, onError, readOnly = false} = {}) {
+  if (!container || typeof getLocation !== 'function' || !readOnly && typeof onSelect !== 'function') throw new TypeError('A térképes helyszínválasztó beállításai hiányoznak.');
+  let choices = Array.isArray(selectedIds) ? selectedIds.slice(0, MAX_SELECTED) : [];
+  let selected = new Set(expandLocationSelections(choices)), disposed = false, selectionRevision = 0;
   let map, library, manifest, registry, parents = EMPTY_PARENTS, ready = false, booting = false;
   let pendingFocus = [...selected][0] || null, viewportAbort, bootAbort, timer, generation = 0;
+  let pendingFitSelection = readOnly && selected.size > 0;
   let currentLabels = [], currentOutlines = [], failed = false, backgroundUnavailable = false, loading = false;
   let lastOptions = null, lastLabelPayload = '', lastOutlinePayload = '';
   let camera = {center: [19.5, 47.16], zoom: 7};
@@ -545,12 +557,17 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
   const canvas = container.querySelector('.location-map-canvas'), status = container.querySelector('.location-map-status');
   const retry = container.querySelector('.location-map-retry'), options = container.querySelector('.location-map-options');
   const details = container.querySelector('.location-map-list'), summary = details.querySelector('summary'), note = container.querySelector('.location-map-list-note');
+  if (readOnly) {
+    container.classList.add('location-map-readonly');
+    container.querySelector('.location-map-heading strong').textContent = 'A hirdetés helyszínei';
+    canvas.setAttribute('aria-label', 'A hirdetés helyszíneinek térképe');
+  }
   const visible = () => !disposed && !document.hidden && canvas.getBoundingClientRect().width > 0 && canvas.getBoundingClientRect().height > 0;
   const tell = message => { if (!disposed && status.textContent !== message) status.textContent = message; };
   const fail = () => {
     if (disposed) return;
     failed = true; loading = false; retry.hidden = false;
-    tell('A térkép most nem tölthető be. A helyszíneket a keresőmezőben továbbra is kiválaszthatod.');
+    tell(readOnly ? 'A térkép most nem tölthető be. Próbáld újra később.' : 'A térkép most nem tölthető be. A helyszíneket a keresőmezőben továbbra is kiválaszthatod.');
     try { onError?.(new Error('A térképes helyszínválasztó most nem érhető el.')); } catch {}
   };
   const bounds = () => {
@@ -587,6 +604,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
   }
   function refreshOptions() {
     if (!ready || !visible()) return;
+    if (readOnly) { details.hidden = true; if (!failed && !loading) tell(backgroundUnavailable ? 'A háttértérkép egy része most nem érhető el.' : ''); return; }
     const features = renderedLabels().sort((left, right) => left.properties.label.localeCompare(right.properties.label, 'hu'));
     const key = features.map(feature => `${feature.id}:${Number(selected.has(feature.id))}`).join('|');
     if (key !== lastOptions) {
@@ -619,14 +637,15 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     return [...ancestors, ...aliases];
   }
   function choose(id) {
-    if (!ready || disposed || !registry?.byId.has(id)) return;
+    if (!ready || disposed || readOnly || !registry?.byId.has(id)) return;
     const location = getLocation(id), wasSelected = selected.has(id), revision = selectionRevision;
     const ancestorIds = selectAncestors(id);
+    const nextIds = toggleMapLocation(choices, id, {ancestorIds});
+    if (!nextIds) { tell(`Legfeljebb ${MAX_SELECTED} helyszínt választhatsz.`); return; }
     try {
-      if (onSelect(id, {ancestorIds}) === false || disposed) return;
+      if (onSelect(id, {ancestorIds, selectedIds: nextIds}) === false || disposed) return;
       if (selectionRevision === revision) {
-        if (wasSelected) selected.delete(id);
-        else { for (const ancestor of ancestorIds) selected.delete(ancestor); selected.add(id); }
+        choices = nextIds; selected = new Set(expandLocationSelections(choices));
       }
       syncSelection(); tell(`${location.label} ${wasSelected ? 'eltávolítva a keresésből.' : 'hozzáadva a kereséshez.'}`);
     } catch { tell('A helyszínt most nem sikerült hozzáadni. Próbáld újra, vagy válaszd ki a keresőmezőben.'); }
@@ -678,7 +697,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
           const row = rows[next++], features = await loadOutline(row, signal);
           if (disposed || signal.aborted || request !== generation) return;
           // Keep at most eight whole files in the LRU. Results retain only the
-          // explicitly requested geometries, not fifty complete city layers.
+          // explicitly requested geometries, not complete city layers per choice.
           for (const feature of features) if (requested.has(feature.id) && !allFeatures.has(feature.id)) {
             points += geometryPointCount(feature.geometry);
             if (points > MAX_SELECTED_POINTS) throw new Error('A kiválasztott körvonalak túl nagyok.');
@@ -705,7 +724,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     const location = getLocation(id); if (!location) return;
     pendingFocus = id;
     if (!ready || !visible()) return;
-    let target = manifest.focus[id];
+    let target = location.kind === 'area' ? selectedBounds(expandLocationSelections([id]), manifest.focus) : manifest.focus[id];
     if (!target && location.city === 'Budapest' && location.district) {
       const roman = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII'];
       const number = roman.indexOf(String(location.district).replace(/\./g, '').trim()) + 1;
@@ -717,13 +736,23 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     map.fitBounds([[target[0], target[1]], [target[2], target[3]]], {padding: 20, maxZoom: location.kind === 'neighborhood' ? 17 : 14, duration: 0});
     scheduleViewport();
   }
+  function fitSelection() {
+    if (disposed) return;
+    pendingFitSelection = true;
+    if (!ready || !visible()) return;
+    const target = selectedBounds([...selected], manifest.focus);
+    pendingFitSelection = false; pendingFocus = null;
+    if (!target) return;
+    map.fitBounds([[target[0], target[1]], [target[2], target[3]]], {padding: 28, maxZoom: 15, duration: 0});
+    scheduleViewport();
+  }
   function resize() {
     if (!map || !visible()) return;
     map.resize();
-    if (pendingFocus) focus(pendingFocus); else scheduleViewport();
+    if (pendingFitSelection) fitSelection(); else if (pendingFocus) focus(pendingFocus); else scheduleViewport();
   }
   function click(event) {
-    if (!ready) return;
+    if (!ready || readOnly) return;
     const point = event.point, coarse = event.originalEvent?.pointerType === 'touch' || window.matchMedia?.('(pointer: coarse)').matches;
     const slop = coarse ? 12 : 4;
     // Search outward from the actual drawn glyph bounds. Town and quarter names
@@ -737,7 +766,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
     if (chosen) choose(chosen.properties.id);
   }
   function hover(event) {
-    if (!ready) return;
+    if (!ready || readOnly) return;
     map.getCanvas().style.cursor = map.queryRenderedFeatures(event.point, {layers: LABEL_LAYERS}).length ? 'pointer' : '';
   }
   const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(resize) : null;
@@ -808,6 +837,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
         paint: {'line-color': '#c6623e', 'line-width': 2.5, 'line-opacity': 0.95}});
       map.addSource(LABEL_SOURCE, {type: 'geojson', data: emptyCollection(), promoteId: 'id'});
       const layout = selectablePlaceLabelLayout();
+      if (readOnly) layout['text-field'] = ['get', 'name'];
       const selectedStyle = ['boolean', ['feature-state', 'selected'], false];
       map.addLayer({id: LABEL_LAYERS[0], type: 'symbol', source: LABEL_SOURCE, layout,
         paint: {'text-color': ['case', selectedStyle, '#a64c2c', '#284b41'],
@@ -815,7 +845,7 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
       ready = true; failed = false; booting = false;
       map.on('moveend', scheduleViewport); map.on('idle', refreshOptions); map.on('click', click); map.on('mousemove', hover);
       map.on('movestart', () => { viewportAbort?.abort(); generation++; loading = false; });
-      if (pendingFocus) focus(pendingFocus); else scheduleViewport();
+      if (pendingFitSelection) fitSelection(); else if (pendingFocus) focus(pendingFocus); else scheduleViewport();
       resize();
     } catch { if (!disposed) fail(); }
     finally { booting = false; }
@@ -828,13 +858,14 @@ export function createLocationMap(container, {selectedIds = [], getLocation, onS
   };
   retry.addEventListener('click', retryClick); void boot();
   return {
-    setSelection(ids, {focusId} = {}) {
+    setSelection(ids, {focusId, fitSelection: fitAll = false} = {}) {
       if (disposed) return;
-      selectionRevision++; selected = new Set(Array.isArray(ids) ? ids.slice(0, MAX_SELECTED) : []);
+      selectionRevision++; choices = Array.isArray(ids) ? ids.slice(0, MAX_SELECTED) : []; selected = new Set(expandLocationSelections(choices));
       if (pendingFocus && !selected.has(pendingFocus)) pendingFocus = null;
-      syncSelection(); if (focusId) focus(focusId);
+      syncSelection(); if (fitAll) fitSelection(); else if (focusId) focus(focusId);
     },
     focus,
+    fitSelection,
     destroy() {
       if (disposed) return;
       disposed = true; generation++; clearTimeout(timer); viewportAbort?.abort(); bootAbort?.abort(); observer?.disconnect();

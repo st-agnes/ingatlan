@@ -2,11 +2,20 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {boundsIntersect,chooseVisibleCities,pointInGeometry,geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature,validateNeighborhoodHierarchy,neighborhoodAncestors,validatePlaceLabels,chooseVisiblePlaceLabels,chooseLabelHit,selectablePlaceLabelLayout,demoDistanceToGeometryKm} from '../dist/location-map.js';
+import {boundsIntersect,chooseVisibleCities,pointInGeometry,geometryArea,neighborhoodZoom,chooseVisibleNeighborhoods,chooseSmallestFeature,validateNeighborhoodHierarchy,neighborhoodAncestors,validatePlaceLabels,chooseVisiblePlaceLabels,chooseLabelHit,selectablePlaceLabelLayout,demoDistanceToGeometryKm,selectedBounds} from '../dist/location-map.js';
 
 // Synthetic WGS84 rectangles exercise display picking, never address geocoding.
 const ring=(west,south,east,north)=>[[west,south],[east,south],[east,north],[west,north],[west,south]];
 const polygon={type:'Polygon',coordinates:[ring(19,47,20,48)]};
+
+test('map framing combines every selected public extent including all available agglomeration members',()=>{
+ const focus={'city:Debrecen':[21.5,47.4,21.7,47.6],'city:Hajdúsámson':[21.7,47.5,21.9,47.7],
+  'city:Solymár':[18.8,47.5,19,47.7],'city:Szeged':[20,46,20.2,46.3]};
+ assert.deepEqual(selectedBounds(['area:Debrecen'],focus),[21.5,47.4,21.9,47.7], 'Group framing reaches beyond the central municipality');
+ assert.deepEqual(selectedBounds(['area:Debrecen','city:Solymár','city:Szeged'],focus),[18.8,46,21.9,47.7]);
+ assert.equal(selectedBounds(['street:'+'a'.repeat(24)],focus),null,'Street identifiers never manufacture coordinates');
+ assert.equal(selectedBounds(['city:Debrecen'],{'city:Debrecen':[NaN,47,22,48]}),null);
+});
 
 test('demo proximity measures distance to the polygon boundary rather than its center',()=>{
  assert.equal(demoDistanceToGeometryKm([19.01,47.5],polygon),0,'Any point inside the chosen area has no location penalty');

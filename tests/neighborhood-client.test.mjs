@@ -2,7 +2,7 @@ import test, {afterEach} from 'node:test';
 import assert from 'node:assert/strict';
 import {neighborhoods} from '../dist/neighborhoods-data.js';
 import {neighborhoodDemoPoints} from '../dist/neighborhood-demo-points.js';
-import {locations, getLocation} from '../dist/locations.js';
+import {locations, getLocation, MAX_SEARCH_LOCATIONS} from '../dist/locations.js';
 import {evaluateMatch, prepareSearch, searchSpecificity} from '../dist/matching.js';
 import {createModel, STORAGE_KEY, demoLanding} from '../dist/model.js';
 import {ApiModel} from '../dist/api.js';
@@ -34,14 +34,16 @@ test('verified neighborhood membership is a hard gate before exact and partial s
   assert.ok(prepareSearch(search).neighborhoodIds.has(quarter.id));
 });
 
-test('neighborhood choices preserve canonical IDs, validate the fifty-choice cap, and cannot become property locations',()=>{
+test('neighborhood choices preserve canonical IDs, validate the 200-choice cap, and cannot become property locations',()=>{
   const model=createModel(storage());
   const selected=[quarter.id,'city:Solymár','area:Budapest'];
   const saved=model.saveEntity('search',{title:'Több lehetséges környék',locationIds:selected});
   assert.deepEqual(saved.locationIds,selected);
   assert.equal(saved.locations[0].label,`${quarter.name} (${quarter.city})`);
   assert.throws(()=>model.saveEntity('search',{title:'Ismeretlen környék',locationIds:[quarter.id,'neighborhood:unknown']}),/találati listából/);
-  assert.throws(()=>model.saveEntity('search',{title:'Túl sok környék',locationIds:neighborhoods.slice(0,51).map(value=>value.id)}),/találati listából/);
+  const full=neighborhoods.slice(0,MAX_SEARCH_LOCATIONS).map(value=>value.id);
+  assert.equal(model.saveEntity('search',{title:'Sok környék',locationIds:full}).locationIds.length,MAX_SEARCH_LOCATIONS);
+  assert.throws(()=>model.saveEntity('search',{title:'Túl sok környék',locationIds:neighborhoods.slice(0,MAX_SEARCH_LOCATIONS+1).map(value=>value.id)}),/találati listából/);
   assert.throws(()=>model.saveEntity('property',{title:'Nem pontos helyszín',locationId:quarter.id,price:60,area:60,rooms:3,...address}),/találati listából/);
   assert.equal(locations.filter(value=>value.kind==='neighborhood').length,4308);
   assert.equal(getLocation(quarter.id).id,quarter.id);
@@ -143,7 +145,7 @@ test('API sends address inputs only and accepts server-owned membership and priv
 });
 
 test('malformed server location selections cannot revive a legacy city or become valid neighborhood choices',async()=>{
-  for(const locationIds of [quarter.id,{id:quarter.id},neighborhoods.slice(0,51).map(value=>value.id)]){
+  for(const locationIds of [quarter.id,{id:quarter.id},neighborhoods.slice(0,MAX_SEARCH_LOCATIONS+1).map(value=>value.id)]){
     globalThis.fetch=async(url)=>response(new URL(url).pathname==='/api/me'?{id:'buyer'}:new URL(url).pathname==='/api/credits/ledger'?[]:{properties:[],searchRequests:[{...search,city:'Debrecen',locationIds}]});
     const saved=(await api().getState()).searches[0];
     assert.deepEqual(saved.locationIds,locationIds);

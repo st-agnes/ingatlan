@@ -2,6 +2,9 @@ import { settlements } from './locations-data.js';
 import { agglomerations } from './agglomerations-data.js';
 import { neighborhoods } from './neighborhoods-data.js';
 
+// Expanded city groups must fit the same bounded selection in every client.
+export const MAX_SEARCH_LOCATIONS = 200;
+
 // IDs are stable and shared by the browser, demo model, and .NET API.
 const normalize = value => String(value ?? '').normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('hu').trim().replace(/\s+/g, ' ');
 const identityName = value => String(value ?? '').normalize('NFC').toLocaleLowerCase('hu').trim().replace(/\s+/g, ' ');
@@ -51,6 +54,42 @@ const indexed = locations.map((location, index) => ({ location, index,
 
 export function getLocation(id) {
   return typeof id === 'string' ? byId.get(id) ?? null : null;
+}
+
+/** A group remains one stored choice until edited; map paint uses its towns. */
+export function expandLocationSelections(ids) {
+  const expanded = new Set();
+  for (const id of Array.isArray(ids) ? ids : []) {
+    const members = areaMembers.get(id);
+    if (members) for (const city of members) expanded.add(`city:${city}`);
+    else if (getLocation(id)) expanded.add(id);
+  }
+  return [...expanded];
+}
+
+/** Materialize only groups affected by this map edit, preserving other choices. */
+export function toggleMapLocation(ids, id, {ancestorIds = []} = {}) {
+  const location = getLocation(id);
+  if (!['city', 'district', 'neighborhood'].includes(location?.kind)) return null;
+  const original = [...new Set((Array.isArray(ids) ? ids : []).filter(value => getLocation(value)))];
+  const selected = new Set();
+  for (const current of original) {
+    const members = areaMembers.get(current);
+    if (members?.has(location.city)) for (const city of members) selected.add(`city:${city}`);
+    else selected.add(current);
+  }
+  if (selected.has(id)) selected.delete(id);
+  else {
+    // A named part narrows an existing whole city and its containing parts.
+    if (location.kind !== 'city') selected.delete(`city:${location.city}`);
+    for (const ancestorId of Array.isArray(ancestorIds) ? ancestorIds : []) {
+      const ancestor = getLocation(ancestorId);
+      if (ancestor?.city === location.city && ancestorId !== id
+          && ['district', 'neighborhood'].includes(ancestor.kind)) selected.delete(ancestorId);
+    }
+    selected.add(id);
+  }
+  return selected.size <= MAX_SEARCH_LOCATIONS ? [...selected] : null;
 }
 
 export const isStreetId = id => typeof id === 'string' && /^street:[a-f0-9]{24}$/.test(id);
@@ -211,7 +250,7 @@ function propertyLocation(property) {
 
 function searchLocationList(search) {
   if (search.locationIds != null) {
-    if (!Array.isArray(search.locationIds) || !search.locationIds.length || search.locationIds.length > 50) return [];
+    if (!Array.isArray(search.locationIds) || !search.locationIds.length || search.locationIds.length > MAX_SEARCH_LOCATIONS) return [];
     const selected = search.locationIds.map(getLocation);
     return selected.some(location => !location) ? [] : selected;
   }

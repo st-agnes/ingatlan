@@ -202,7 +202,7 @@ public sealed class NeighborhoodMatchingTests
         var property = Home("city:Debrecen", Venkert);
         Assert.Throws<ApiException>(() => LocationCatalog.ResolveSearchInput(new[] { Venkert, "neighborhood:unknown" }, "Debrecen", null));
         Assert.False(Evaluate(property, Wanted(Venkert, "neighborhood:unknown")).Eligible);
-        var tooMany = NeighborhoodCatalog.All.Take(51).Select(value => value.Id).ToArray();
+        var tooMany = NeighborhoodCatalog.All.Take(201).Select(value => value.Id).ToArray();
         Assert.Throws<ApiException>(() => LocationCatalog.ResolveSearchInput(tooMany, "Debrecen", null));
         Assert.Empty(LocationCatalog.ForSearch(Wanted(tooMany)));
         Assert.False(Evaluate(property, Wanted(tooMany)).Eligible);

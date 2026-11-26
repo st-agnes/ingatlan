@@ -660,7 +660,7 @@
     "score": 61
   },
   {
-    "name": "old-eleventh-selection-now-ninth-plus",
+    "name": "old-eleventh-selection-now-eighth-plus",
     "property": {
       "floor": 9
     },
@@ -1071,5 +1071,242 @@
     "locationDistanceKm": 1,
     "eligible": false,
     "score": 0
+  },
+  {
+    "eligible": true,
+    "name": "eighth-or-above-starts-on-eighth",
+    "property": {
+      "floor": 8
+    },
+    "search": {
+      "floors": [
+        8
+      ]
+    },
+    "score": 100
+  },
+  {
+    "eligible": true,
+    "name": "old-ninth-bucket-includes-eighth",
+    "property": {
+      "floor": 8
+    },
+    "search": {
+      "floors": [
+        9
+      ]
+    },
+    "score": 100
+  },
+  {
+    "eligible": true,
+    "name": "old-tenth-bucket-includes-eighth",
+    "property": {
+      "floor": 8
+    },
+    "search": {
+      "floors": [
+        10
+      ]
+    },
+    "score": 100
+  },
+  {
+    "eligible": true,
+    "name": "old-eleventh-bucket-includes-eighth",
+    "property": {
+      "floor": 8
+    },
+    "search": {
+      "floors": [
+        11
+      ]
+    },
+    "score": 100
+  },
+  {
+    "eligible": true,
+    "name": "eighth-or-above-seventh-is-one-floor-away",
+    "property": {
+      "floor": 7
+    },
+    "search": {
+      "floors": [
+        8
+      ]
+    },
+    "score": 90
+  },
+  {
+    "eligible": true,
+    "name": "attic-or-third-floor-accepts-third-nonattic",
+    "property": {
+      "floor": 3,
+      "isAttic": false
+    },
+    "search": {
+      "floors": [
+        3
+      ],
+      "atticPreference": "only"
+    },
+    "score": 100
+  },
+  {
+    "eligible": true,
+    "name": "attic-or-third-floor-accepts-third-unknown-attic",
+    "property": {
+      "floor": 3
+    },
+    "search": {
+      "floors": [
+        3
+      ],
+      "atticPreference": "only"
+    },
+    "score": 100
+  },
+  {
+    "eligible": true,
+    "name": "attic-or-third-floor-accepts-seventh-attic",
+    "property": {
+      "floor": 7,
+      "isAttic": true
+    },
+    "search": {
+      "floors": [
+        3
+      ],
+      "atticPreference": "only"
+    },
+    "score": 100,
+    "matchDetails": [
+      {
+        "key": "location",
+        "label": "Helyszín",
+        "expected": "Debrecen",
+        "actual": "Debrecen",
+        "matches": true
+      },
+      {
+        "key": "type",
+        "label": "Ingatlantípus",
+        "expected": "Lakás",
+        "actual": "Lakás",
+        "matches": true
+      },
+      {
+        "key": "floor",
+        "label": "Emelet",
+        "expected": "3. emelet vagy Tetőtéri ingatlan",
+        "actual": "7. emelet (tetőtéri ingatlan)",
+        "matches": true
+      }
+    ]
+  },
+  {
+    "eligible": true,
+    "name": "attic-or-third-floor-accepts-unknown-floor-attic",
+    "property": {
+      "isAttic": true
+    },
+    "search": {
+      "floors": [
+        3
+      ],
+      "atticPreference": "only"
+    },
+    "score": 100
+  },
+  {
+    "eligible": true,
+    "name": "attic-or-third-floor-nearest-alternative-is-second-floor",
+    "property": {
+      "floor": 2,
+      "isAttic": false
+    },
+    "search": {
+      "floors": [
+        3
+      ],
+      "atticPreference": "only"
+    },
+    "score": 90
+  },
+  {
+    "eligible": true,
+    "name": "attic-or-third-floor-nearest-alternative-is-unmet-attic",
+    "property": {
+      "floor": 10,
+      "isAttic": false
+    },
+    "search": {
+      "floors": [
+        3
+      ],
+      "atticPreference": "only"
+    },
+    "score": 61
+  },
+  {
+    "eligible": true,
+    "name": "attic-or-third-floor-unknown-facts-do-not-prove-match",
+    "property": {},
+    "search": {
+      "floors": [
+        3
+      ],
+      "atticPreference": "only"
+    },
+    "score": 61
+  },
+  {
+    "eligible": true,
+    "name": "attic-or-third-floor-exclude-top-still-applies",
+    "property": {
+      "floor": 7,
+      "buildingFloors": 7,
+      "isAttic": true
+    },
+    "search": {
+      "floors": [
+        3
+      ],
+      "atticPreference": "only",
+      "excludeTopFloor": true
+    },
+    "score": 61
+  },
+  {
+    "eligible": true,
+    "name": "attic-or-third-floor-exclude-ground-still-applies",
+    "property": {
+      "floor": 0,
+      "isAttic": true
+    },
+    "search": {
+      "floors": [
+        3
+      ],
+      "atticPreference": "only",
+      "excludeGroundFloorAndBelow": true
+    },
+    "score": 61
+  },
+  {
+    "eligible": true,
+    "name": "attic-or-third-floor-lift-still-applies",
+    "property": {
+      "floor": 7,
+      "isAttic": true
+    },
+    "search": {
+      "floors": [
+        3
+      ],
+      "atticPreference": "only",
+      "elevator": true
+    },
+    "score": 74
   }
 ]

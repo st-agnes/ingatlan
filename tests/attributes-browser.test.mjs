@@ -30,7 +30,7 @@ async function verify(browser,viewport){
   await openNew(page,interact,'search');await location(page,interact);
   const searchTitle=`Opcionális keresési szempontok – ${viewport.name}`;await choosePropertyType(page,'Lakás',interact);assert.equal(await page.locator('#f-sharedGarden').count(),0,'Shared garden is no longer an available form criterion');
   await (await editorField(page,'#f-maxPrice')).fill('100');await (await editorField(page,'#f-minArea')).fill('40');await fillRoomBound(page,'minRooms','1',interact);
-  for(const [name,values] of Object.entries({conditions:['Jó','Új/felújított'],buildings:['Tégla','Panel'],constructionAges:['10 évnél fiatalabb','10–30 év közötti'],views:['Kertre néző','Panorámás'],floors:['-1','0','0.5','9']})){
+  for(const [name,values] of Object.entries({conditions:['Jó','Új/felújított'],buildings:['Tégla','Panel'],constructionAges:['10 évnél fiatalabb','10–30 év közötti'],views:['Kertre néző','Panorámás'],floors:['-1','0','0.5','8']})){
    for(const value of values)await (await editorField(page,`input[name="${name}"][value="${value}"]`)).check();
   }
   await setAttributeChoice(page,'ceilingHeight','3 m feletti',interact);await setAtticPreference(page,'exclude',interact);await setAtticPreference(page,'only',interact);await setEnergyRating(page,'B',interact,{search:true});
@@ -40,7 +40,7 @@ async function verify(browser,viewport){
   assert.ok(geometry.scrollWidth<=geometry.width+1,'Attribute choices must fit the modal without horizontal scrolling');
   await (await editorField(page,'#f-title')).fill(searchTitle);await save(page,interact,true);
   let saved=(await state(page)).searches.find(value=>value.title===searchTitle);assert.ok(saved);
-  assert.equal(saved.atticPreference,'only');assert.equal(saved.minEnergyRating,'B');assert.deepEqual(saved.conditions,['Jó','Új/felújított']);assert.deepEqual(saved.buildings,['Tégla','Panel']);assert.deepEqual(saved.views,['Kertre néző','Panorámás']);assert.deepEqual(saved.floors,[-1,0,0.5,9]);assert.equal(saved.ceilingHeight,'3 m feletti');assert.equal(saved.sharedGarden,false,'A retired criterion cannot silently constrain the saved search');for(const name of ['balcony','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])assert.equal(saved[name],true);
+  assert.equal(saved.atticPreference,'only');assert.equal(saved.minEnergyRating,'B');assert.deepEqual(saved.conditions,['Jó','Új/felújított']);assert.deepEqual(saved.buildings,['Tégla','Panel']);assert.deepEqual(saved.views,['Kertre néző','Panorámás']);assert.deepEqual(saved.floors,[-1,0,0.5,8]);assert.equal(saved.ceilingHeight,'3 m feletti');assert.equal(saved.sharedGarden,false,'A retired criterion cannot silently constrain the saved search');for(const name of ['balcony','excludeTopFloor','excludeGroundFloorAndBelow','airConditioning','privateGarden'])assert.equal(saved[name],true);
   await edit(page,interact,'search',saved.id);
   assert.equal(await page.locator('input[name="conditions"][value="Jó"]').isChecked(),true);
   assert.equal(await page.locator('input[name="floors"][value="-1"]').isChecked(),true);

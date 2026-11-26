@@ -81,10 +81,13 @@ public static class RecommendationSql
         var top = "(CASE WHEN p.`Floor`=0.5 AND p.`BuildingFloors`=0 THEN 0.5 ELSE p.`BuildingFloors` END)";
         var belowTop = $"({floorKnown} AND NOT p.`FloorIsUpperRange` AND p.`BuildingFloors` BETWEEN 0 AND 200 AND p.`Floor`<{top})";
         var aboveGround = $"({floorKnown} AND p.`Floor`>0)";
-        var attic = "(s.`AtticPreference` NOT IN ('only','exclude') OR (s.`AtticPreference`='only' AND p.`IsAttic`=1) OR (s.`AtticPreference`='exclude' AND p.`IsAttic`=0))";
         var floorCount = Count("s.`FloorsJson`", "Floor");
-        var floorMinimum = $"COALESCE((SELECT MIN(CASE WHEN f.`Value` BETWEEN 9 AND 11 AND p.`Floor`>=9 THEN 0 ELSE ABS((CASE WHEN f.`Value` BETWEEN 9 AND 11 THEN 9 ELSE f.`Value` END)-p.`Floor`)/5.0 END) FROM JSON_TABLE(COALESCE(s.`FloorsJson`,'[]'),'$[*]' COLUMNS (`Value` DECIMAL(10,2) PATH '$')) f),0)";
-        var floorLoss = $"CASE WHEN {house} THEN 0 ELSE GREATEST(CASE WHEN {floorCount}=0 THEN 0 WHEN {floorKnown} THEN {floorMinimum} ELSE 1 END,CASE WHEN s.`ExcludeTopFloor` AND NOT COALESCE({belowTop},0) THEN 1 ELSE 0 END,CASE WHEN s.`ExcludeGroundFloorAndBelow` AND NOT COALESCE({aboveGround},0) THEN 1 ELSE 0 END,CASE WHEN NOT COALESCE({attic},0) THEN 1 ELSE 0 END) END";
+        var floorMinimum = $"COALESCE((SELECT MIN(CASE WHEN f.`Value` BETWEEN 8 AND 11 AND p.`Floor`>=8 THEN 0 ELSE ABS((CASE WHEN f.`Value` BETWEEN 8 AND 11 THEN 8 ELSE f.`Value` END)-p.`Floor`)/5.0 END) FROM JSON_TABLE(COALESCE(s.`FloorsJson`,'[]'),'$[*]' COLUMNS (`Value` DECIMAL(10,2) PATH '$')) f),0)";
+        var numberedFloorLoss = $"CASE WHEN {floorCount}>0 THEN CASE WHEN {floorKnown} THEN {floorMinimum} ELSE 1 END WHEN s.`AtticPreference`='only' THEN 1 ELSE 0 END";
+        // An attic is an alternative to the selected floors. Exclusion flags
+        // still apply to both alternatives and share the same floor weight.
+        var floorChoiceLoss = $"CASE WHEN s.`AtticPreference`='only' THEN LEAST(({numberedFloorLoss}),CASE WHEN p.`IsAttic`=1 THEN 0 ELSE 1 END) ELSE ({numberedFloorLoss}) END";
+        var floorLoss = $"CASE WHEN {house} THEN 0 ELSE GREATEST({floorChoiceLoss},CASE WHEN s.`ExcludeTopFloor` AND NOT COALESCE({belowTop},0) THEN 1 ELSE 0 END,CASE WHEN s.`ExcludeGroundFloorAndBelow` AND NOT COALESCE({aboveGround},0) THEN 1 ELSE 0 END,CASE WHEN s.`AtticPreference`='exclude' AND COALESCE(p.`IsAttic`,1)<>0 THEN 1 ELSE 0 END) END";
         var condition = Rank("p.`Condition`", PropertyAttributes.Conditions, "Condition");
         var conditionMin = MinimumRank("s.`ConditionsJson`", PropertyAttributes.Conditions, "Condition");
         var energy = Rank("p.`EnergyRating`", PropertyAttributes.EnergyRatings, binary: true);
@@ -353,11 +356,11 @@ public static class RecommendationSql
     private static string Count(string json,string kind="")
     {
         // Match CompiledSearch's sets, rather than counting raw legacy JSON:
-        // 9/10/11 are one floor bucket, and heating/condition aliases can name
+        // 8/9/10/11 are one floor bucket, and heating/condition aliases can name
         // the same choice more than once. BINARY preserves ordinal identity of
         // unknown legacy labels after known choices have been canonicalized.
         if(kind=="Floor" || json.Contains("FloorsJson",StringComparison.Ordinal))
-            return $"(SELECT COUNT(DISTINCT CASE WHEN counted.`Value` BETWEEN 9 AND 11 THEN 9 ELSE counted.`Value` END) FROM JSON_TABLE(COALESCE({json},'[]'),'$[*]' COLUMNS (`Value` DECIMAL(10,2) PATH '$')) counted)";
+            return $"(SELECT COUNT(DISTINCT CASE WHEN counted.`Value` BETWEEN 8 AND 11 THEN 8 ELSE counted.`Value` END) FROM JSON_TABLE(COALESCE({json},'[]'),'$[*]' COLUMNS (`Value` DECIMAL(10,2) PATH '$')) counted)";
         var options=kind=="Condition" || json.Contains("ConditionsJson",StringComparison.Ordinal)?PropertyAttributes.Conditions
             :json.Contains("BuildingsJson",StringComparison.Ordinal)?PropertyAttributes.Buildings
             :json.Contains("HeatingTypesJson",StringComparison.Ordinal)?PropertyAttributes.HeatingTypes
@@ -472,7 +475,7 @@ public static class RecommendationSql
         Add("ceilingHeight","CASE WHEN TRIM(s.`CeilingHeight`)<>'' THEN 1 ELSE 0 END");
         Add("airConditioning","s.`AirConditioning`");
         Add("privateGarden","s.`PrivateGarden`",flat);
-        Add("floor",$"GREATEST({Category("s.`FloorsJson`",12)},CASE WHEN s.`ExcludeTopFloor` OR s.`ExcludeGroundFloorAndBelow` OR s.`AtticPreference`<>'' THEN 1 ELSE 0 END)","NOT "+house);
+        Add("floor",$"GREATEST({Category("s.`FloorsJson`",11)},CASE WHEN s.`ExcludeTopFloor` OR s.`ExcludeGroundFloorAndBelow` OR s.`AtticPreference`<>'' THEN 1 ELSE 0 END)","NOT "+house);
         Add("elevator","s.`Elevator`","NOT "+house);
         Add("balcony","s.`Balcony`","NOT "+house);
         return $"LEAST(100,GREATEST(0,ROUND(CAST(100.0*({string.Join("+",selected)})/({string.Join("+",total)}) AS DECIMAL(30,12)),0)))";

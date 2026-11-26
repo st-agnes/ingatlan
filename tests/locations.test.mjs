@@ -4,7 +4,58 @@ import fs from 'node:fs/promises';
 import { settlements } from '../dist/locations-data.js';
 import { agglomerations } from '../dist/agglomerations-data.js';
 import { neighborhoods } from '../dist/neighborhoods-data.js';
-import { locations, getLocation, searchLocations, resolveLegacyLocations, matchesLocations, isPropertyLocation } from '../dist/locations.js';
+import { locations, getLocation, searchLocations, resolveLegacyLocations, matchesLocations, isPropertyLocation, MAX_SEARCH_LOCATIONS, expandLocationSelections, toggleMapLocation } from '../dist/locations.js';
+
+test('map group expansion selects every canonical town without mutating compact choices', () => {
+  const compact = ['area:Budapest', 'city:Solymár', 'area:Debrecen'];
+  const before = [...compact], expanded = expandLocationSelections(compact);
+  const expected = new Set(agglomerations.filter(area => compact.includes(area.id)).flatMap(area => area.settlements.map(city => `city:${city}`)));
+  assert.deepEqual(new Set(expanded), expected);
+  assert.equal(expanded.length, expected.size, 'Overlapping groups and explicit members are deduplicated');
+  assert.deepEqual(compact, before, 'Viewing a group on the map does not change stored search origins');
+  assert.deepEqual(expandLocationSelections(expanded), expanded);
+  assert.equal(MAX_SEARCH_LOCATIONS, 200);
+  assert.ok(agglomerations.every(area => area.settlements.length <= MAX_SEARCH_LOCATIONS));
+  assert.equal(agglomerations.find(area => area.id === 'area:Budapest').settlements.length, 81);
+});
+
+test('editing a group member materializes the affected group and preserves unrelated selections', () => {
+  const group = agglomerations.find(area => area.id === 'area:Budapest');
+  const initial = ['area:Budapest', 'city:Solymár', 'area:Debrecen', 'district:Budapest:5'];
+  const removed = toggleMapLocation(initial, 'city:Solymár');
+  assert.ok(!removed.includes('area:Budapest') && !removed.includes('city:Solymár'));
+  assert.ok(removed.includes('area:Debrecen') && removed.includes('district:Budapest:5'));
+  assert.deepEqual(new Set(removed.filter(id => getLocation(id).kind === 'city')), new Set(group.settlements.filter(city => city !== 'Solymár').map(city => `city:${city}`)));
+  assert.equal(matchesLocations({locationId:'city:Solymár'}, {locationIds:removed}), false);
+  assert.equal(matchesLocations({locationId:'city:Budapest'}, {locationIds:removed}), true);
+  const restored = toggleMapLocation(removed, 'city:Solymár');
+  assert.ok(restored.includes('city:Solymár') && !restored.includes('area:Budapest'), 'An edited group stays a concrete editable list');
+  const child = neighborhoods.find(area => area.city === 'Debrecen');
+  const narrowed = toggleMapLocation(['area:Debrecen', 'city:Solymár'], child.id);
+  assert.ok(narrowed.includes(child.id) && !narrowed.includes('city:Debrecen') && narrowed.includes('city:Solymár'));
+  assert.ok(narrowed.includes('city:Hajdúsámson'), 'Choosing a quarter narrows only its city, retaining the neighboring towns');
+  assert.deepEqual(initial, ['area:Budapest', 'city:Solymár', 'area:Debrecen', 'district:Budapest:5']);
+});
+
+test('duplicate OR choices lose a toggled member, and replacements work at the cap', () => {
+  let overlap;
+  for (const left of agglomerations) {
+    const right = agglomerations.find(area => area.id !== left.id && area.settlements.some(city => left.settlements.includes(city)));
+    if (right) { overlap = [left, right, right.settlements.find(city => left.settlements.includes(city))]; break; }
+  }
+  // Current regional groups are disjoint; duplicate group/member alternatives
+  // still exercise the same OR rule. Future overlapping groups use both IDs.
+  const [left, right, city] = overlap ?? [agglomerations.find(area => area.id === 'area:Budapest'), agglomerations.find(area => area.id === 'area:Budapest'), 'Solymár'];
+  const concrete = toggleMapLocation([left.id, right.id, `city:${city}`], `city:${city}`);
+  assert.ok(!expandLocationSelections(concrete).includes(`city:${city}`), 'OR semantics cannot leave the removed town selected through another group');
+  const child = neighborhoods.find(area => area.city === 'Debrecen');
+  const full = ['city:Debrecen', ...locations.filter(location => location.kind === 'city' && location.city !== 'Debrecen').slice(0, MAX_SEARCH_LOCATIONS - 1).map(location => location.id)];
+  const narrowed = toggleMapLocation(full, child.id);
+  assert.equal(narrowed.length, MAX_SEARCH_LOCATIONS);
+  assert.ok(narrowed.includes(child.id) && !narrowed.includes('city:Debrecen'));
+  assert.equal(toggleMapLocation(full, 'city:Zsámbék'), null, 'An unrelated 201st choice cannot bypass the bounded search cap');
+  assert.equal(toggleMapLocation(full, 'unknown'), null);
+});
 
 test('complete municipality catalogue and generated browser data agree', async () => {
   const master = JSON.parse(await fs.readFile(new URL('../dist/data/settlements.json', import.meta.url), 'utf8'));

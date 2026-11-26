@@ -253,7 +253,7 @@ public class PublicLandingTests
         Assert.Equal(search.MaxPrice, seed.MaxPrice); Assert.Equal(search.MinArea, seed.MinArea);
         Assert.Equal(new[] { "Jó" }, seed.Conditions); Assert.Equal(new[] { "Panel" }, seed.Buildings);
         Assert.Equal(new[] { "10–30 év közötti" }, seed.ConstructionAges); Assert.Equal(new[] { "Udvari" }, seed.Views);
-        Assert.Equal(new[] { -1m, 0m, 9m }, seed.Floors); Assert.Equal(new[] { "Gázkazán / cirkó" }, seed.HeatingTypes);
+        Assert.Equal(new[] { -1m, 0m, 8m }, seed.Floors); Assert.Equal(new[] { "Gázkazán / cirkó" }, seed.HeatingTypes);
         Assert.True(seed.Balcony); Assert.False(seed.Elevator);
         Assert.DoesNotContain("private@example.test", JsonSerializer.Serialize(seed));
     }

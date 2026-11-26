@@ -73,13 +73,13 @@ public class FloorRefinementTests
     }
 
     [Fact]
-    public void OldNineTenAndElevenSelectionsBecomeOneNineOrHigherBucketWithoutMutatingInput()
+    public void OldNineTenAndElevenSelectionsBecomeOneEightOrHigherBucketWithoutMutatingInput()
     {
         var input = SearchInput() with { Floors = [9m, 10m, 11m, .5m] };
         var search = Wanted(); Rules.Apply(search, input);
-        Assert.Equal(new[] { 9m, .5m }, PropertyAttributes.Floors(search.FloorsJson));
+        Assert.Equal(new[] { 8m, .5m }, PropertyAttributes.Floors(search.FloorsJson));
         Assert.Equal(new[] { 9m, 10m, 11m, .5m }, input.Floors!);
-        foreach (var actual in new[] { 9m, 10m, 11m, 12m, 200m })
+        foreach (var actual in new[] { 8m, 9m, 10m, 11m, 12m, 200m })
         {
             var home = Home(); home.Floor = actual;
             Assert.True(Match(home, search).IsExact);
@@ -87,7 +87,7 @@ public class FloorRefinementTests
         search.FloorsJson = "[11]";
         var upper = Home(); upper.Floor = 9m;
         Assert.True(Match(upper, search).IsExact);
-        Assert.Equal("9. emelet vagy afölötti", Assert.Single(Match(upper, search).MatchDetails.Where(d => d.Key == "floor")).Expected);
+        Assert.Equal("8. emelet vagy afölötti", Assert.Single(Match(upper, search).MatchDetails.Where(d => d.Key == "floor")).Expected);
     }
 
     [Fact]

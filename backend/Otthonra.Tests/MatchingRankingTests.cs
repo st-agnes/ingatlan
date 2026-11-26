@@ -280,7 +280,7 @@ public class MatchingRankingTests
         Assert.Equal("2,5–4 szoba", details["rooms"].Expected); Assert.Equal("80,5 M Ft", details["price"].Actual);
         q = Wanted(); q.FloorsJson = "[11]"; q.ConditionsJson = "[\"Jó\"]"; p.Floor = 27; p.Condition = "Felújított";
         var result = Match(p, q); details = result.MatchDetails.ToDictionary(value => value.Key);
-        Assert.Equal("9. emelet vagy afölötti", details["floor"].Expected); Assert.Equal("27. emelet", details["floor"].Actual);
+        Assert.Equal("8. emelet vagy afölötti", details["floor"].Expected); Assert.Equal("27. emelet", details["floor"].Actual);
         Assert.All(result.MatchDetails, value => Assert.True(value.Matches));
         q = Wanted(); q.BuildingsJson = "[\"Panel\",\"Tégla\"]"; q.HeatingTypesJson = "[\"Nincs fűtés\"]";
         details = Match(p, q).MatchDetails.ToDictionary(value => value.Key);

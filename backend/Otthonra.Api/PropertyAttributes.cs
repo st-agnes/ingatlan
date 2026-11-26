@@ -71,7 +71,7 @@ public static class PropertyAttributes
     }
     public static bool KnownFloor(decimal? floor) => floor is >= -5m and <= 200m
         && (floor == .5m || decimal.Truncate(floor.Value) == floor.Value);
-    public static decimal FloorBucket(decimal floor) => floor is >= 9m and <= 11m ? 9m : floor;
+    public static decimal FloorBucket(decimal floor) => floor is >= 8m and <= 11m ? 8m : floor;
     public static decimal? EffectiveTopFloor(Property property) => property.BuildingFloors == 0 && property.Floor == .5m
         ? .5m : property.BuildingFloors;
     public static bool KnownTopFloor(Property property) => !property.FloorIsUpperRange && KnownFloor(property.Floor)
@@ -81,8 +81,8 @@ public static class PropertyAttributes
     public static decimal[] FloorSelections(decimal[]? values)
     {
         if (values is null) return [];
-        // Old callers can still echo 10/11. The visible search category now
-        // combines every floor at or above nine, without changing raw receipts.
+        // Old callers can still echo 9/10/11. The visible search category now
+        // combines every floor at or above eight, without changing raw receipts.
         if (values.Length > 14 || values.Any(value => value != .5m
             && (value < -1m || value > 11m || decimal.Truncate(value) != value)))
             throw new ApiException(400, "Érvénytelen emeletlista.");
@@ -109,12 +109,18 @@ public static class PropertyAttributes
             && EnergyCertificates.MinimumSatisfied(property, search.MinEnergyRating)
             && (!search.AirConditioning || property.AirConditioning == true)
             && (type != "LAKAS" || !search.PrivateGarden || property.PrivateGarden == true)
-            && (type == "HAZ" || (floors.Length == 0 || KnownFloor(property.Floor)
-                && floors.Any(floor => floor == 9m ? property.Floor.Value >= 9m : floor == property.Floor.Value))
+            && (type == "HAZ" || FloorSelectionSatisfied(property, floors, search.AtticPreference)
                 && (!search.ExcludeTopFloor || BelowTopFloor(property))
                 && (!search.ExcludeGroundFloorAndBelow || AboveGroundFloor(property))
-                && AtticSatisfied(property, search.AtticPreference));
+                && (search.AtticPreference != "exclude" || AtticSatisfied(property, "exclude")));
     }
+
+    // "only" is the retained wire value for the attic choice: it is an
+    // alternative to selected floors, while the exclusion flags stay conjunctive.
+    public static bool FloorSelectionSatisfied(Property property, decimal[] floors, string? atticPreference) =>
+        floors.Length == 0 && atticPreference != "only"
+        || KnownFloor(property.Floor) && floors.Any(floor => floor == 8m ? property.Floor!.Value >= 8m : floor == property.Floor!.Value)
+        || atticPreference == "only" && property.IsAttic == true;
 
     public static bool AtticSatisfied(Property property, string? preference) => preference switch {
         "only" => property.IsAttic == true, "exclude" => property.IsAttic == false, _ => true
@@ -171,6 +177,6 @@ public static class PropertyAttributes
         var attic = Rules.Optional(input.AtticPreference, 20);
         if (attic is not ("" or "only" or "exclude")) throw new ApiException(400, "Érvénytelen tetőtér-feltétel.");
         search.AtticPreference = Rules.Normalize(search.Type) == "HAZ" ? "" : attic;
-        search.MinEnergyRating = Choice(input.MinEnergyRating, EnergyRatings, "minimum energetikai tanúsítvány");
+        search.MinEnergyRating = Choice(input.MinEnergyRating, EnergyRatings, "minimum energetikai besorolás");
     }
 }
