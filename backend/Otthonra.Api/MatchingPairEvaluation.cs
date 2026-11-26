@@ -78,7 +78,7 @@ public static class MatchingPairEvaluation
                     JOIN `SearchRequests` s ON s.`Id`=requested.SearchRequestId AND s.`Archived`=0
                     JOIN `MatchingPropertyPoints` pp ON pp.`PropertyId`=p.`Id`
                     JOIN `SearchLocations` location ON location.`SearchRequestId`=s.`Id`
-                    JOIN `MatchingLocationMembers` lm ON lm.`SelectionId`=location.`LocationId`
+                    JOIN `MatchingLocationMembers` lm ON lm.`SelectionId`=location.`LocationId` COLLATE utf8mb4_bin
                     JOIN `MatchingLocationAreas` area ON area.`Id`=lm.`AreaId`
                     GROUP BY requested.PropertyId,requested.SearchRequestId
                     """;

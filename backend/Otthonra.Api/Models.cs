@@ -240,6 +240,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<User>().ToTable("Users");
         b.Entity<UserReport>().ToTable("UserReports");
         b.Entity<Property>().ToTable("Properties");
+        b.Entity<Property>().Property(property => property.LocationId).UseCollation("utf8mb4_bin");
         b.Entity<Property>().Property(property => property.HideStreet).HasDefaultValue(true).HasSentinel(true);
         b.Entity<Property>().Property(property => property.HideHouseNumber).HasDefaultValue(true).HasSentinel(true);
         b.Entity<Property>().Property(property => property.CreationRequestHashVersion).HasDefaultValue(1);
@@ -248,6 +249,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
         b.Entity<Property>().Property(property => property.FloorIsUpperRange).HasDefaultValue(false);
         b.Entity<SearchRequest>().ToTable("SearchRequests");
         b.Entity<SearchLocation>().ToTable("SearchLocations");
+        b.Entity<SearchLocation>().Property(location => location.LocationId).UseCollation("utf8mb4_bin");
         b.Entity<SearchLocation>().HasKey(location => new { location.SearchRequestId, location.LocationId });
         b.Entity<SearchLocation>().HasIndex(location => new { location.LocationId, location.SearchRequestId });
         b.Entity<PropertyNeighborhood>().ToTable("PropertyNeighborhoods");

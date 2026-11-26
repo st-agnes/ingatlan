@@ -16,11 +16,18 @@ async function configure(page,kind){
  await page.goto(origin+'/#discover',{waitUntil:'domcontentloaded'});await page.locator('.page-heading').waitFor();
  await page.evaluate(async kind=>{
   const {createModel,STORAGE_KEY}=await import('/model.js');let raw;
+  const {neighborhoodDemoPoints}=await import('/neighborhood-demo-points.js');
   const model=createModel({getItem:()=>null,setItem:(_key,value)=>{raw=JSON.parse(value);}},()=> '2026-11-10T10:00:00.000Z');model.activate('search','own-s1');
   raw.decisions=[];raw.matches=[];raw.reports=[];raw.credits=100;
   const baseProperty=raw.properties.find(item=>item.id==='p1');
   const property=(id,title,price,extra={})=>({...baseProperty,id,title,ownerId:id==='near-property'?'u2':'u1',locationId:'district:Budapest:13',city:'Budapest',district:'XIII.',price,area:60,rooms:3,wholeRooms:3,halfRooms:0,floor:1,...extra});
-  raw.properties=raw.properties.filter(item=>item.ownerId==='me');raw.properties.push(property('exact-property','Tökéletes tesztotthon',70),property('near-property','Részleges tesztotthon',88,{rooms:1,wholeRooms:1,halfRooms:0,floor:3}),property('wrong-place','Másik város',5,{locationId:'city:Debrecen',city:'Debrecen',district:''}));
+  // A different town needs its own fictional point. Keeping the cloned
+  // Budapest coordinates would produce a near-zero geographic mismatch and
+  // legitimately outrank the multi-criterion layout fixture below.
+  const distantPoint=neighborhoodDemoPoints.find(point=>point.synthetic&&point.city==='Debrecen'&&point.name==='Sestakert');
+  if(!distantPoint)throw new Error('A távoli böngészős tesztpont hiányzik.');
+  const distantAddress={...baseProperty.addressDetails,street:'Fiktív debreceni tesztutca',streetId:null,houseNumber:'99999',postalCode:'4027',latitude:distantPoint.latitude,longitude:distantPoint.longitude};
+  raw.properties=raw.properties.filter(item=>item.ownerId==='me');raw.properties.push(property('exact-property','Tökéletes tesztotthon',70),property('near-property','Részleges tesztotthon',88,{rooms:1,wholeRooms:1,halfRooms:0,floor:3}),property('wrong-place','Másik város',5,{locationId:'city:Debrecen',city:'Debrecen',district:'',neighborhood:'Sestakert',neighborhoodIds:[...distantPoint.membershipIds],streetId:null,addressDetails:distantAddress}));
   const criteria={locationIds:['district:Budapest:13'],city:'Budapest',districts:['XIII.'],type:'Lakás',minPrice:null,maxPrice:80,minArea:50,maxArea:85,minRooms:2,maxRooms:4,conditions:[],buildings:[],constructionAges:[],views:[],floors:[1],heatingTypes:[],ceilingHeight:'',balcony:false,elevator:false};
   for(const id of ['own-s1','own-s2'])Object.assign(raw.searches.find(item=>item.id===id),criteria,{title:id==='own-s1'?'Aktív tesztkeresés':'Másik tesztkeresés'});
   Object.assign(raw.properties.find(item=>item.id==='own-p1'),property('own-p1','Saját tesztotthon',80),{ownerId:'me'});
@@ -69,6 +76,7 @@ async function verify(browser,viewport,kind){
   const before=await readState(page);assert.equal(await page.locator('[data-action="approximate-decline"]').count(),0);assert.equal(await page.locator('.approximate-offer button').count(),1);await page.waitForTimeout(120);assert.equal(await page.locator('#candidate').count(),0);assert.deepEqual(await readState(page),before,'Leaving partial matches closed does not consume or bill a candidate');
   const geometry=await page.locator('.approximate-offer').evaluate(element=>({width:element.clientWidth,scrollWidth:element.scrollWidth}));assert.ok(geometry.scrollWidth<=geometry.width+1,'Consent controls must fit on screen');
   await interact(page.locator('[data-action="approximate-accept"]'));await page.locator('#candidate').waitFor();const score=Number((await page.locator('#candidate .score').innerText()).match(/\d+/)?.[0]);assert.ok(score<100);assert.match(await page.locator('.matching-stage').innerText(),/Részleges egyezések/);
+  await page.getByRole('heading',{name:kind==='search'?'Részleges tesztotthon':'Részleges tesztkeresés',exact:true}).waitFor();
   assert.ok(await page.locator('#candidate .criterion-different').count()>0);assert.ok(await page.locator('#candidate .criterion-passed').count()>0);await compactCriteria(page,'#candidate .match-different ul');if(kind==='property')await sellerCaption(page);
   const explanation=await page.locator('#candidate .feature-tags').innerText(),priceExplanation=await page.locator('#candidate [data-criterion="price"]').innerText();
   assert.equal(await page.locator('#candidate .feature-tags [data-criterion="location"],#candidate .feature-tags [data-criterion="type"]').count(),0);

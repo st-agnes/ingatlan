@@ -31,7 +31,10 @@ public static class RecommendationSql
         string Array(string name, IEnumerable<string> values)
         {
             parameters[name] = JsonSerializer.Serialize(values.Distinct(StringComparer.Ordinal).ToArray());
-            return $"SELECT j.`Value` FROM JSON_TABLE(@{name}, '$[*]' COLUMNS (`Value` VARCHAR(191) PATH '$')) AS j";
+            // These are canonical identities, not accent-insensitive labels.
+            // Komló and Kömlő must remain different even on an older database
+            // whose Properties/SearchLocations columns still use an AI collation.
+            return $"SELECT j.`Value` COLLATE utf8mb4_bin FROM JSON_TABLE(@{name}, '$[*]' COLUMNS (`Value` VARCHAR(191) PATH '$')) AS j";
         }
         var activePrepared = buyer ? MatchingRanking.Prepare(search!) : null;
         string exactLocation;
@@ -56,7 +59,7 @@ public static class RecommendationSql
             buyerExactBranches.Add($"SELECT p.`Id` FROM `Properties` p WHERE p.`Archived`=0 {typeGate} AND p.`LocationId` IN ({places})");
             buyerExactBranches.Add($"SELECT pn.`PropertyId` AS `Id` FROM `PropertyNeighborhoods` pn WHERE pn.`NeighborhoodId` IN ({neighborhoods})");
             buyerExactBranches.Add($"SELECT p.`Id` FROM `Properties` p WHERE p.`Archived`=0 {typeGate} AND NOT p.`HideStreet` AND p.`StreetId` IN ({streets})");
-            buyerExactBranches.Add($"SELECT p.`Id` FROM `Properties` p JOIN `MatchingLocationAreas` place ON place.`Id`={PropertyLocationSql()} AND place.`Kind` IN ('city','district') LEFT JOIN `StreetCatalog` street ON street.`Id`=p.`StreetId` AND street.`City` COLLATE utf8mb4_0900_ai_ci=place.`City` COLLATE utf8mb4_0900_ai_ci AND (street.`District` IS NULL OR place.`District` IS NULL OR street.`District` COLLATE utf8mb4_0900_ai_ci=place.`District` COLLATE utf8mb4_0900_ai_ci) WHERE p.`Archived`=0 {typeGate} AND TRIM(COALESCE(p.`LocationId`,''))='' AND {exactLocation}");
+            buyerExactBranches.Add($"SELECT p.`Id` FROM `Properties` p JOIN `MatchingLocationAreas` place ON place.`Id`=({PropertyLocationSql()}) COLLATE utf8mb4_bin AND place.`Kind` IN ('city','district') LEFT JOIN `StreetCatalog` street ON street.`Id`=p.`StreetId` AND street.`City` COLLATE utf8mb4_bin=place.`City` COLLATE utf8mb4_bin AND (street.`District` IS NULL OR place.`District` IS NULL OR street.`District` COLLATE utf8mb4_bin=place.`District` COLLATE utf8mb4_bin) WHERE p.`Archived`=0 {typeGate} AND TRIM(COALESCE(p.`LocationId`,''))='' AND {exactLocation}");
             var targets = Array("targetAreas", MatchingGeography.SelectedAreaIds(search!));
             geography = $"(SELECT MIN(ST_Distance({PointSql}, a.`Boundary`))/1000.0 FROM `MatchingLocationAreas` a WHERE a.`Id` IN ({targets}))";
             geographicTargetExists=$"EXISTS(SELECT 1 FROM `MatchingLocationAreas` a WHERE a.`Id` IN ({targets}))";
@@ -68,8 +71,8 @@ public static class RecommendationSql
             var acceptedSql = Array("acceptedLocations", accepted);
             sellerExactIds=$"SELECT sl.`SearchRequestId` AS `Id` FROM `SearchLocations` sl WHERE sl.`LocationId` IN ({acceptedSql})";
             exactLocation = $"EXISTS (SELECT 1 FROM `SearchLocations` sl WHERE sl.`SearchRequestId`=s.`Id` AND sl.`LocationId` IN ({acceptedSql}))";
-            geography = $"(SELECT MIN(ST_Distance({PointSql}, a.`Boundary`))/1000.0 FROM `SearchLocations` gl JOIN `MatchingLocationMembers` lm ON lm.`SelectionId`=gl.`LocationId` JOIN `MatchingLocationAreas` a ON a.`Id`=lm.`AreaId` WHERE gl.`SearchRequestId`=s.`Id`)";
-            geographicTargetExists="EXISTS(SELECT 1 FROM `SearchLocations` gl JOIN `MatchingLocationMembers` lm ON lm.`SelectionId`=gl.`LocationId` JOIN `MatchingLocationAreas` a ON a.`Id`=lm.`AreaId` WHERE gl.`SearchRequestId`=s.`Id`)";
+            geography = $"(SELECT MIN(ST_Distance({PointSql}, a.`Boundary`))/1000.0 FROM `SearchLocations` gl JOIN `MatchingLocationMembers` lm ON lm.`SelectionId`=gl.`LocationId` COLLATE utf8mb4_bin JOIN `MatchingLocationAreas` a ON a.`Id`=lm.`AreaId` WHERE gl.`SearchRequestId`=s.`Id`)";
+            geographicTargetExists="EXISTS(SELECT 1 FROM `SearchLocations` gl JOIN `MatchingLocationMembers` lm ON lm.`SelectionId`=gl.`LocationId` COLLATE utf8mb4_bin JOIN `MatchingLocationAreas` a ON a.`Id`=lm.`AreaId` WHERE gl.`SearchRequestId`=s.`Id`)";
         }
         var maxPrice = buyer ? "s.`MaxPrice`" : "COALESCE(s.`PublicMaxPrice`,s.`MaxPrice`)";
         var house = Equal("s.`Type`", "Ház");
@@ -157,7 +160,7 @@ public static class RecommendationSql
                 // Original-geodesic padded bounds contain every polygon edge.
                 // A metadata-only pass over ~7.5k places selects search IDs
                 // before touching their criteria or expensive shape distance.
-                branches.Add("SELECT sl.`SearchRequestId` AS `Id` FROM `MatchingLocationAreas` a JOIN `MatchingLocationMembers` lm ON lm.`AreaId`=a.`Id` JOIN `SearchLocations` sl ON sl.`LocationId`=lm.`SelectionId` WHERE a.`West`<=@east AND a.`East`>=@west AND a.`South`<=@north AND a.`North`>=@south");
+                branches.Add("SELECT sl.`SearchRequestId` AS `Id` FROM `MatchingLocationAreas` a JOIN `MatchingLocationMembers` lm ON lm.`AreaId`=a.`Id` JOIN `SearchLocations` sl ON sl.`LocationId` COLLATE utf8mb4_bin=lm.`SelectionId` WHERE a.`West`<=@east AND a.`East`>=@west AND a.`South`<=@north AND a.`North`>=@south");
             }
             coarseCte=$"candidate_searches AS ({string.Join(" UNION ",branches)}),";
             coarseSearchJoin="JOIN candidate_searches candidates ON candidates.`Id`=s.`Id`";
@@ -172,9 +175,9 @@ public static class RecommendationSql
                 JOIN `SearchRequests` s ON {activeGate}
                 {coarseSearchJoin}
                 JOIN `Users` owner ON owner.`Id`={owner}.`OwnerId`
-                JOIN `MatchingLocationAreas` place ON place.`Id`={PropertyLocationSql()} AND place.`Kind` IN ('city','district')
-                LEFT JOIN `StreetCatalog` street ON street.`Id`=p.`StreetId` AND street.`City` COLLATE utf8mb4_0900_ai_ci=place.`City` COLLATE utf8mb4_0900_ai_ci
-                    AND (street.`District` IS NULL OR place.`District` IS NULL OR street.`District` COLLATE utf8mb4_0900_ai_ci=place.`District` COLLATE utf8mb4_0900_ai_ci)
+                JOIN `MatchingLocationAreas` place ON place.`Id`=({PropertyLocationSql()}) COLLATE utf8mb4_bin AND place.`Kind` IN ('city','district')
+                LEFT JOIN `StreetCatalog` street ON street.`Id`=p.`StreetId` AND street.`City` COLLATE utf8mb4_bin=place.`City` COLLATE utf8mb4_bin
+                    AND (street.`District` IS NULL OR place.`District` IS NULL OR street.`District` COLLATE utf8mb4_bin=place.`District` COLLATE utf8mb4_bin)
                 LEFT JOIN `MatchingPropertyPoints` pp ON pp.`PropertyId`=p.`Id`
                 WHERE p.`Archived`=0 AND s.`Archived`=0 AND p.`OwnerId`<>s.`OwnerId`
                     AND {activeOwner}.`OwnerId`=@userId AND {owner}.`OwnerId`<>@userId AND (s.`Type`='' OR p.`Type`=s.`Type`)
@@ -265,7 +268,7 @@ public static class RecommendationSql
     }
     private static async Task<Bounds[]> ReadBoundsAsync(AppDb db,string[] ids,CancellationToken cancellationToken)
     {
-        var query=new Query("SELECT `West`,`South`,`East`,`North` FROM `MatchingLocationAreas` WHERE `Id` IN (SELECT j.`Value` FROM JSON_TABLE(@ids,'$[*]' COLUMNS (`Value` VARCHAR(255) PATH '$')) j)",
+        var query=new Query("SELECT `West`,`South`,`East`,`North` FROM `MatchingLocationAreas` WHERE `Id` IN (SELECT j.`Value` COLLATE utf8mb4_bin FROM JSON_TABLE(@ids,'$[*]' COLUMNS (`Value` VARCHAR(255) PATH '$')) j)",
             new Dictionary<string,object?>{["ids"]=JsonSerializer.Serialize(ids)});
         return await ExecuteAsync(db,query,async reader=>{
             var rows=new List<Bounds>();
@@ -410,8 +413,8 @@ public static class RecommendationSql
 
     private static string SpecificitySql(string maximum,string house,string flat,string conditionMinimum)
     {
-        var cityCount="(SELECT COUNT(DISTINCT m.`AreaId`) FROM `SearchLocations` x JOIN `MatchingLocationMembers` m ON m.`SelectionId`=x.`LocationId` WHERE x.`SearchRequestId`=s.`Id` AND m.`AreaId` LIKE 'city:%')";
-        var budapest="EXISTS(SELECT 1 FROM `SearchLocations` x JOIN `MatchingLocationMembers` m ON m.`SelectionId`=x.`LocationId` WHERE x.`SearchRequestId`=s.`Id` AND m.`AreaId`='city:Budapest')";
+        var cityCount="(SELECT COUNT(DISTINCT m.`AreaId`) FROM `SearchLocations` x JOIN `MatchingLocationMembers` m ON m.`SelectionId`=x.`LocationId` COLLATE utf8mb4_bin WHERE x.`SearchRequestId`=s.`Id` AND m.`AreaId` LIKE 'city:%')";
+        var budapest="EXISTS(SELECT 1 FROM `SearchLocations` x JOIN `MatchingLocationMembers` m ON m.`SelectionId`=x.`LocationId` COLLATE utf8mb4_bin WHERE x.`SearchRequestId`=s.`Id` AND m.`AreaId`='city:Budapest')";
         var districts=$"(SELECT COUNT(*) FROM `SearchLocations` x WHERE x.`SearchRequestId`=s.`Id` AND x.`LocationId` LIKE 'district:%' AND NOT {budapest})";
         string Locations(string prefix)=>$"(SELECT COUNT(*) FROM `SearchLocations` x WHERE x.`SearchRequestId`=s.`Id` AND x.`LocationId` LIKE '{prefix}:%')";
         var coverage=$"({cityCount}+{districts}/23.0+{Locations("neighborhood")}/100.0+{Locations("street")}/10000.0)";

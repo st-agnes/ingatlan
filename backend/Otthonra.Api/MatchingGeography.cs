@@ -20,7 +20,8 @@ public static class MatchingGeography
 {
     public const string MunicipalityResource = "Otthonra.Api.MunicipalityBoundaries.json.gz";
     public const int ExpectedAreaCount = 3155 + NeighborhoodCatalog.ExpectedCount + 23;
-    private const string Policy = "20261126-matching-geography-v1";
+    public const string IdentityCollation = "utf8mb4_bin";
+    private const string Policy = "20261126-matching-geography-v2-binary-identities";
     private const string PointPolicy = "20261126-matching-property-points-v1";
     private const int BatchRows = 40;
     private const int BatchBytes = 768 * 1024;
@@ -40,9 +41,9 @@ public static class MatchingGeography
         {
             acquired = Convert.ToInt32(await Scalar(connection, null, "SELECT GET_LOCK(@name,120)", cancellationToken, ("name", lockName))) == 1;
             if (!acquired) throw new InvalidOperationException("Could not acquire the matching geography schema lock.");
-            // Match the existing location-link key's collation for indexed joins
-            // on both fresh and upgraded installations. Only server metadata is
-            // interpolated; a strict identifier whitelist precedes SQL creation.
+            // Labels may retain the installation's human-text collation, but
+            // canonical IDs must distinguish Komló from Kömlő. Identity columns
+            // are always binary, independent of the old location-link schema.
             var collation = Convert.ToString(await Scalar(connection, null,
                 "SELECT COLLATION_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='SearchLocations' AND COLUMN_NAME='LocationId'", cancellationToken));
             if (string.IsNullOrEmpty(collation)) collation = "utf8mb4_0900_ai_ci";
@@ -50,7 +51,7 @@ public static class MatchingGeography
                 throw new InvalidOperationException("The location key collation is not supported.");
             await Execute(connection, null, $"""
                 CREATE TABLE IF NOT EXISTS `MatchingLocationAreas` (
-                    `Id` VARCHAR(255) NOT NULL PRIMARY KEY,
+                    `Id` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE {IdentityCollation} NOT NULL PRIMARY KEY,
                     `City` VARCHAR(128) NOT NULL,
                     `District` VARCHAR(8) NULL,
                     `Kind` VARCHAR(16) NOT NULL,
@@ -63,14 +64,13 @@ public static class MatchingGeography
                 """, cancellationToken);
             await Execute(connection, null, $"""
                 CREATE TABLE IF NOT EXISTS `MatchingLocationMembers` (
-                    `SelectionId` VARCHAR(255) NOT NULL,
-                    `AreaId` VARCHAR(255) NOT NULL,
+                    `SelectionId` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE {IdentityCollation} NOT NULL,
+                    `AreaId` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE {IdentityCollation} NOT NULL,
                     PRIMARY KEY (`SelectionId`,`AreaId`),
-                    KEY `IX_MatchingLocationMembers_AreaId_SelectionId` (`AreaId`,`SelectionId`),
-                    CONSTRAINT `FK_MatchingLocationMembers_Area` FOREIGN KEY (`AreaId`)
-                        REFERENCES `MatchingLocationAreas` (`Id`) ON DELETE CASCADE
+                    KEY `IX_MatchingLocationMembers_AreaId_SelectionId` (`AreaId`,`SelectionId`)
                 ) ENGINE=InnoDB CHARACTER SET utf8mb4 COLLATE {collation}
                 """, cancellationToken);
+            await RepairIdentityCollations(connection, cancellationToken);
             await Execute(connection, null, """
                 CREATE TABLE IF NOT EXISTS `MatchingPropertyPoints` (
                     `PropertyId` CHAR(36) COLLATE ascii_general_ci NOT NULL PRIMARY KEY,
@@ -96,6 +96,40 @@ public static class MatchingGeography
             try { if (acquired) await Scalar(connection, null, "SELECT RELEASE_LOCK(@name)", CancellationToken.None, ("name", lockName)); }
             finally { if (opened) await db.Database.CloseConnectionAsync(); }
         }
+    }
+
+    /// <summary>Preserve rows while repairing a previous accent-insensitive native schema.</summary>
+    private static async Task RepairIdentityCollations(DbConnection connection, CancellationToken cancellationToken)
+    {
+        var needsRepair = Convert.ToInt32(await Scalar(connection, null, """
+            SELECT COUNT(*) FROM information_schema.COLUMNS
+            WHERE TABLE_SCHEMA=DATABASE()
+              AND ((TABLE_NAME='MatchingLocationAreas' AND COLUMN_NAME='Id')
+                OR (TABLE_NAME='MatchingLocationMembers' AND COLUMN_NAME IN ('SelectionId','AreaId')))
+              AND COLLATION_NAME<>@collation
+            """, cancellationToken, ("collation", IdentityCollation))) > 0;
+        async Task<bool> HasForeignKey() => Convert.ToInt32(await Scalar(connection, null, """
+            SELECT COUNT(*) FROM information_schema.TABLE_CONSTRAINTS
+            WHERE CONSTRAINT_SCHEMA=DATABASE() AND TABLE_NAME='MatchingLocationMembers'
+              AND CONSTRAINT_NAME='FK_MatchingLocationMembers_Area' AND CONSTRAINT_TYPE='FOREIGN KEY'
+            """, cancellationToken)) > 0;
+        if (needsRepair)
+        {
+            if (await HasForeignKey()) await Execute(connection, null,
+                "ALTER TABLE `MatchingLocationMembers` DROP FOREIGN KEY `FK_MatchingLocationMembers_Area`", cancellationToken);
+            await Execute(connection, null, $"ALTER TABLE `MatchingLocationAreas` MODIFY `Id` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE {IdentityCollation} NOT NULL", cancellationToken);
+            await Execute(connection, null, $"""
+                ALTER TABLE `MatchingLocationMembers`
+                    MODIFY `SelectionId` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE {IdentityCollation} NOT NULL,
+                    MODIFY `AreaId` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE {IdentityCollation} NOT NULL
+                """, cancellationToken);
+        }
+        // An interrupted ALTER can leave the FK absent even after every column
+        // was changed. Restore it on every retry, without disabling FK checks.
+        if (!await HasForeignKey()) await Execute(connection, null, """
+            ALTER TABLE `MatchingLocationMembers` ADD CONSTRAINT `FK_MatchingLocationMembers_Area`
+                FOREIGN KEY (`AreaId`) REFERENCES `MatchingLocationAreas` (`Id`) ON DELETE CASCADE
+            """, cancellationToken);
     }
 
     /// <summary>Run after the original neighborhood dataset has been imported.</summary>

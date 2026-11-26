@@ -84,8 +84,13 @@ public sealed class ListingPrivacyEnergyTests
     {
         var (p, s) = Pair(); p.IsAttic = false; s.AtticPreference = "only"; s.MaxPrice = p.Price;
         var first = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s)).Score;
+        Assert.Equal(61, first); // Full attic loss: exp(-sqrt(0.25)).
         s.FloorsJson = "[8]";
-        Assert.Equal(first, MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s)).Score);
+        // Floor2 versus8 is a6/5=1.2 deviation. The shared floor term takes
+        // max(1.2,1), never their sum, and numeric deviations are not capped.
+        var combined = MatchingRanking.Evaluate(p, MatchingRanking.Prepare(s));
+        Assert.Equal(55, combined.Score); // exp(-sqrt(0.25 * 1.2^2)).
+        Assert.InRange(Math.Abs(combined.DistanceSquared - .36d), 0d, 1e-12);
         p.Type = s.Type = "Ház"; p.LotArea = 500m;
         Assert.True(Rules.Compatible(p, s));
         Rules.Apply(s, Wanted() with { Type = "Ház", AtticPreference = "only" });

@@ -29,6 +29,7 @@ public static class SchemaUpgrade
     public const string RaisedAndUpperFloorVersion = "20261124-raised-and-upper-floor-range";
     public const string PublicListingsVersion = "20261124-public-listings-and-energy";
     public const string PublicBudgetVersion = "20261124-search-public-budget";
+    public const string CanonicalLocationKeysVersion = "20261126-binary-canonical-location-keys";
     private static readonly (string Table, string Column, string Definition)[] Additions =
     [
         ("Properties", "LocationId", "varchar(255) NOT NULL DEFAULT ''"),
@@ -138,13 +139,26 @@ public static class SchemaUpgrade
             await Execute(connection, """
                 CREATE TABLE IF NOT EXISTS `SearchLocations` (
                     `SearchRequestId` char(36) COLLATE ascii_general_ci NOT NULL,
-                    `LocationId` varchar(255) NOT NULL,
+                    `LocationId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
                     CONSTRAINT `PK_SearchLocations` PRIMARY KEY (`SearchRequestId`, `LocationId`),
                     KEY `IX_SearchLocations_LocationId_SearchRequestId` (`LocationId`, `SearchRequestId`),
                     CONSTRAINT `FK_SearchLocations_SearchRequests_SearchRequestId` FOREIGN KEY (`SearchRequestId`)
                         REFERENCES `SearchRequests` (`Id`) ON DELETE RESTRICT
                 ) CHARACTER SET=utf8mb4
                 """, cancellationToken);
+            // Canonical identifiers are not display names. Accent-insensitive
+            // equality merges distinct towns such as Komló and Kömlő, and the
+            // composite selection key must permit selecting both at once.
+            foreach (var (table, definition) in new[] {
+                ("Properties", "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT ''"),
+                ("SearchLocations", "varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL") })
+            {
+                var keyCollation = Convert.ToString(await Scalar(connection,
+                    "SELECT COLLATION_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME=@table AND COLUMN_NAME='LocationId'",
+                    cancellationToken, ("table", table)));
+                if (keyCollation != "utf8mb4_bin")
+                    await Execute(connection, $"ALTER TABLE `{table}` MODIFY COLUMN `LocationId` {definition}", cancellationToken);
+            }
             await SearchLocationIndex.BackfillAsync(db, cancellationToken);
             await Execute(connection, """
                 CREATE TABLE IF NOT EXISTS `PropertyNeighborhoods` (
@@ -285,6 +299,7 @@ public static class SchemaUpgrade
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", RaisedAndUpperFloorVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PublicListingsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PublicBudgetVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", CanonicalLocationKeysVersion));
             if (Convert.ToInt32(await Scalar(connection,
                     "SELECT COUNT(*) FROM `__OtthonraSchemaVersions` WHERE `Version` = @version",
                     cancellationToken, ("version", ContinuousFeedbackVersion))) == 0)

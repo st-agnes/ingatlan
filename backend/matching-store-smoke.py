@@ -157,6 +157,16 @@ def main():
         """)
     assert geography_counts == '3155\t4308\t23\t0', \
         'Distance matching requires every original municipality, neighborhood and district boundary, without street proximity anchors.'
+    assert query(container_id, "SELECT COUNT(*) FROM MatchingLocationAreas WHERE Id IN ('city:Komló','city:Kömlő')") == '2', \
+        'Accent-distinct canonical municipalities must retain separate polygons.'
+    identity_collations = query(container_id, """
+        SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE()
+          AND ((TABLE_NAME='MatchingLocationAreas' AND COLUMN_NAME='Id')
+            OR (TABLE_NAME='MatchingLocationMembers' AND COLUMN_NAME IN ('SelectionId','AreaId'))
+            OR (TABLE_NAME IN ('Properties','SearchLocations') AND COLUMN_NAME='LocationId'))
+          AND COLLATION_NAME='utf8mb4_bin'
+        """)
+    assert identity_collations == '5', 'All canonical location identity keys must preserve accents and indexed equality.'
     spatial_indexes = query(container_id, """
         SELECT TABLE_NAME,INDEX_NAME,INDEX_TYPE FROM information_schema.STATISTICS
         WHERE TABLE_SCHEMA=DATABASE() AND (

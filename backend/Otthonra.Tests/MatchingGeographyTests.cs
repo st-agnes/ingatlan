@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text.Json;
+using MySqlConnector;
 using Otthonra.Api;
 using Xunit;
 
@@ -39,6 +40,40 @@ public sealed class MatchingGeographyTests
     {
         Assert.Empty(MatchingGeography.SelectedAreaIds(Search("city:unknown")));
         Assert.Empty(MatchingGeography.SelectedAreaIds(Search("city:Debrecen", "city:unknown")));
+    }
+
+    [Fact]
+    public void CanonicalTownIdentitiesPreserveDistinctHungarianAccents()
+    {
+        Assert.NotNull(LocationCatalog.Get("city:Komló"));
+        Assert.NotNull(LocationCatalog.Get("city:Kömlő"));
+        Assert.Equal(new[] { "city:Komló", "city:Kömlő" },
+            MatchingGeography.SelectedAreaIds(Search("city:Komló", "city:Kömlő")));
+        Assert.Equal("utf8mb4_bin", MatchingGeography.IdentityCollation);
+    }
+
+    [MySqlCachingSha2Fact]
+    public async Task MySqlCanonicalPrimaryKeysKeepKomloAndKomloDistinct()
+    {
+        // Exercise the actual MySQL identity collation on both CI engine
+        // versions without creating permanent tables or changing fixture data.
+        var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__MySql");
+        Assert.False(string.IsNullOrWhiteSpace(connectionString));
+        using var deadline = new CancellationTokenSource(TimeSpan.FromSeconds(20));
+        await using var connection = new MySqlConnection(connectionString);
+        await connection.OpenAsync(deadline.Token);
+        await using var command = connection.CreateCommand();
+        command.CommandText = $"CREATE TEMPORARY TABLE `MatchingCanonicalIdentityRegression` (`Id` VARCHAR(255) CHARACTER SET utf8mb4 COLLATE {MatchingGeography.IdentityCollation} NOT NULL PRIMARY KEY) ENGINE=InnoDB";
+        await command.ExecuteNonQueryAsync(deadline.Token);
+        command.CommandText = "INSERT INTO `MatchingCanonicalIdentityRegression` (`Id`) VALUES (@first),(@second)";
+        command.Parameters.AddWithValue("@first", "city:Komló");
+        command.Parameters.AddWithValue("@second", "city:Kömlő");
+        Assert.Equal(2, await command.ExecuteNonQueryAsync(deadline.Token));
+        command.Parameters.Clear();
+        command.CommandText = "SELECT COUNT(*) FROM `MatchingCanonicalIdentityRegression`";
+        Assert.Equal(2, Convert.ToInt32(await command.ExecuteScalarAsync(deadline.Token)));
+        command.CommandText = "SELECT COLLATION(`Id`) FROM `MatchingCanonicalIdentityRegression` LIMIT 1";
+        Assert.Equal(MatchingGeography.IdentityCollation, Convert.ToString(await command.ExecuteScalarAsync(deadline.Token)));
     }
 
     [Fact]

@@ -293,4 +293,39 @@ await api('/searches/'+severeSearch.id,{token:buyer.token,method:'PUT',body:{...
 const moreSatisfied=(await feed(buyer,true)).items.find(item=>propertyId(item)===severeHome.id);
 assert.ok(moreSatisfied);assert.equal(score(moreSatisfied),45,
   'Satisfied price, rooms, condition and wall constraints cannot dilute an80% size shortage');
+
+// A visible legitimate free-text street has no postal StreetId. Its NULL
+// street comparison must not turn the otherwise-false location expression into
+// SQL NULL and suppress proximity availability or the eventual partial card.
+const freeTextSearch=await search('Free-text street proximity availability',{
+  type:'Ház',maxPrice:1_000_000_000,minArea:1,minRooms:1
+});
+await activate(buyer,'search',freeTextSearch.id);
+for(let page=0;page<20;page++){
+  const previous=await feed(buyer,true);
+  if(!previous.items.length)break;
+  assert.ok(page<19,'The isolated free-text regression must exhaust the existing house fixtures');
+  for(const item of previous.items)await decide(buyer,{id:item.propertyId},freeTextSearch,false,!item.isExact);
+}
+assert.equal((await feed(buyer)).hasApproximate,false);
+const freeTextOutside=await property('Visible free-text street outside the selected town',{
+  type:'Ház',lotArea:500,area:300,city:'Poroszló',locationId:'city:Poroszló',
+  street:'OTTHONRA TEST',streetId:null,hideStreet:false,hideHouseNumber:true
+});
+assert.equal(freeTextOutside.addressDetails.streetId,null);
+const freeTextGate=await feed(buyer);
+assert.equal(freeTextGate.items.length,0);assert.equal(freeTextGate.hasApproximate,true);
+assert.equal(freeTextGate.requiresApproximateConsent,true);
+const freeTextPage=await feed(buyer,true);
+assert.equal(freeTextPage.items.length,1);const freeTextCard=freeTextPage.items[0];
+assert.equal(propertyId(freeTextCard),freeTextOutside.id);assert.equal(freeTextCard.isExact,false);
+assert.ok(score(freeTextCard)>0&&score(freeTextCard)<100);
+assert.equal(freeTextCard.matchDetails.find(detail=>detail.key==='location').matches,false);
+assert.equal(freeTextCard.property.street,'OTTHONRA TEST');assert.equal(freeTextCard.property.houseNumber,'');
+assert.equal(freeTextCard.property.addressDetails,null);
+const distinctTownChoices=await search('Distinct accented canonical town identities',{
+  type:'Telek',locationIds:['city:Komló','city:Kömlő'],maxPrice:1_000_000_000,minArea:1,minRooms:null
+});
+assert.deepEqual([...distinctTownChoices.locationIds].sort(),['city:Komló','city:Kömlő'].sort(),
+  'One search must preserve both accent-distinct municipality selections');
 console.log(`Matching API smoke passed: exact 100% and >50-candidate exhaustion, value/specialization ordering, nearby location partials and hard type filters, explicit partial consent, graded distances, privacy, mutual matches, exactly-once billing and indexed location edits/overlaps. ${feedTimes.length} real feed reads; maximum observed ${Math.round(Math.max(...feedTimes))} ms.`);
