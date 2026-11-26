@@ -69,3 +69,31 @@
 .landing-showcase .landing-property-card.compact-listing-card{--listing-accent:#8b9f7c;border-color:var(--listing-accent)}
 .landing-showcase .landing-property-card .landing-card-cta{background:var(--listing-accent);border-color:var(--listing-accent);color:#203326;box-shadow:0 2px 5px #5268451c}
 .landing-showcase .landing-property-card .landing-card-cta:hover{background:#7f946f;border-color:#7f946f}
+
+/* The chosen profile replaces the creation CTA, directly beneath the ad heading. */
+.public-listing-heading>.public-listing-context{margin:20px 0 0;text-align:left}
+.public-listing-profile-tools{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:13px}
+.public-listing-profile-tools .btn{min-height:39px;padding:8px 13px;font-size:13px}
+.public-listing-new-profile{border:0;background:transparent;color:#3e6237;min-height:39px;padding:8px 0;font:inherit;font-size:13px;font-weight:600;cursor:pointer;text-align:left}
+.public-listing-new-profile:hover{text-decoration:underline;text-underline-offset:3px}
+.public-listing-new-profile:focus-visible{outline:2px solid #78916e;outline-offset:3px;border-radius:3px}
+.public-listing-profile-prompt h2{font-size:18px;line-height:1.4;margin:0}
+.public-listing-invitation[aria-label="Aktív profil"]{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.public-listing-invitation[aria-label="Aktív profil"]>.btn{width:auto;max-width:100%}
+.listing-profile-options{display:grid;gap:10px;max-height:min(52dvh,480px);overflow:auto;min-height:0;padding:3px 2px}
+.listing-profile-option{width:100%;min-width:0;display:flex;align-items:center;gap:15px;justify-content:space-between;padding:14px 16px;border:1px solid #d9e1d4;border-radius:10px;background:#fff;color:#344d34;font:inherit;text-align:left;cursor:pointer}
+.listing-profile-option:hover{background:#f4f7f0;border-color:#8ba47f}
+.listing-profile-option:focus-visible{outline:3px solid #d47750;outline-offset:2px}
+.listing-profile-option.is-active{background:#edf4e7;border-color:#78916e}
+.listing-profile-option:disabled{cursor:wait;opacity:.7}
+.listing-profile-option-copy{min-width:0;display:grid;gap:5px;overflow-wrap:anywhere}
+.listing-profile-option-copy>strong{font-size:15px;line-height:1.4}
+.listing-profile-option-copy>small{font-size:12px;line-height:1.5;color:#66755e}
+.listing-profile-current{font-size:11px;font-weight:600;color:#496b3d}
+.listing-profile-option-score{flex:none;min-width:58px;text-align:center;font-size:24px;font-weight:600;line-height:1.2}
+.listing-profile-option-score>small{display:block;font-size:11px;font-weight:400;margin-top:3px}
+.listing-profile-create{margin-top:14px;font-size:13px}
+.listing-profile-options-status{font-size:13px;line-height:1.5;margin:13px 0 0;color:#66755e}
+.listing-profile-options-status.is-error{color:#9d3a2b}
+.listing-profile-options-actions{margin-top:18px}
+@media(max-width:720px){.public-listing-profile-tools{gap:7px 11px}.public-listing-profile-tools .btn,.public-listing-new-profile{font-size:12px}.public-listing-profile-prompt h2{font-size:16px}.listing-profile-option{padding:12px;gap:10px}.listing-profile-option-copy>strong{font-size:14px}.listing-profile-option-score{font-size:21px;min-width:50px}.listing-profile-options{max-height:49dvh}}

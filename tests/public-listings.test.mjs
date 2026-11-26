@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {listingHref,parsePublicListingRoute,publicAuthorMarkup,publicSearchCard,publicPropertyCard,publicListingMarkup,publicListingError,visibleListingAddress,safeListingImages,listingContextMarkup} from '../dist/public-listings.js';
+import {listingHref,parsePublicListingRoute,publicAuthorMarkup,publicSearchCard,publicPropertyCard,publicListingMarkup,publicListingError,visibleListingAddress,safeListingImages,listingContextMarkup,listingProfileOptionsMarkup} from '../dist/public-listings.js';
+import {interestIconMarkup,INTEREST_SENT_MESSAGE} from '../dist/interest.js';
 
 const key='property-'+'a'.repeat(64),searchKey='search-'+'b'.repeat(64);
 const property={kind:'property',key,sourceKey:key,title:'Világos otthon <szöveg>',ownerFirstName:'Anna',ownerAccountType:'private',listing:{
@@ -76,14 +77,21 @@ const activeContext={active:{kind:'search',id:'my-search',title:'Kertre néző l
 test('signed-in detail pages show the authoritative active-profile score and available decision actions',()=>{
  const markup=publicListingMarkup(property,{signedIn:true,context:activeContext,returnPage:'discover'});
  assert.match(markup,/Aktív keresésed/);assert.match(markup,/Kertre néző lakás &lt;jó&gt;/);assert.match(markup,/100% <span>egyezés/);
- assert.match(markup,/data-action="public-listing-back"/);assert.match(markup,/data-action="public-listing-decision" data-liked="false"/);assert.match(markup,/data-liked="true"/);assert.match(markup,/Kapcsolatfelvétel<small>2 kredit/);
+ assert.match(markup,/data-action="public-listing-back"/);assert.match(markup,/data-action="public-listing-decision" data-liked="false"/);assert.match(markup,/data-liked="true"/);assert.match(markup,/Vegyük fel a kapcsolatot!<small>2 kredit/);
  assert.doesNotMatch(markup,/secret-contact|data-action="auth-mode"/);
+ assert.equal((markup.match(/id="public-listing-profile"/g)||[]).length,1,'The active profile is mounted once');
+ assert.ok(markup.indexOf('id="public-listing-profile"')>markup.indexOf('<h1>'),'The active profile replaces the CTA beneath the listing heading');
+ assert.equal((markup.match(/data-action="public-listing-profiles"/g)||[]).length,1);
+ assert.match(markup,/data-action="public-listing-new-profile" data-kind="search"/);
+ assert.match(markup,/data-action="public-listing-profile-top"/);assert.doesNotMatch(markup,/href="#public-listing-profile"/,'A scroll control must not replace the SPA route');
+ assert.doesNotMatch(markup,/data-action="onboarding-start"/,'A relevant active profile replaces the generic creation CTA');
+ assert.match(markup,/Nem az igazi/);assert.match(markup,/data-part="phone"/);assert.match(markup,/data-part="message"/);
  assert.match(publicListingMarkup(property,{signedIn:true,context:{...activeContext,compatibilityScore:0}}),/0% <span>egyezés/);
  assert.doesNotMatch(publicListingMarkup(property,{context:activeContext}),/public-listing-context|public-listing-decision/);
  assert.equal(listingContextMarkup({...activeContext,active:{...activeContext.active,kind:'property'}},{kind:'property'}),'');
 });
 test('prior decisions and mutual matches stay visible without allowing another charge',()=>{
- for(const [state,text] of [[{myDecision:'liked'},'Már kezdeményezted a kapcsolatfelvételt.'],[{myDecision:'passed'},'Ezt az ajánlatot már elutasítottad.'],[{matchId:'match-id'},'Már kapcsolatban vagytok.']]){
+ for(const [state,text] of [[{myDecision:'liked'},INTEREST_SENT_MESSAGE],[{myDecision:'passed'},'Ezt az ajánlatot már elutasítottad.'],[{matchId:'match-id'},'Már kapcsolatban vagytok.']]){
   const markup=listingContextMarkup({...activeContext,...state},{kind:'property'});
   assert.ok(markup.includes(text));assert.doesNotMatch(markup,/data-action="public-listing-decision"/);
  }
@@ -114,4 +122,49 @@ test('floor alternatives and attic choices are described with their actual OR se
  const markup=publicListingMarkup({kind:'search',key:searchKey,listing:{type:'Lakás',floors:[3],atticPreference:'only'}});
  assert.match(markup,/3\. emelet vagy tetőtér/);assert.doesNotMatch(markup,/Tetőtéri ingatlant keres|Csak tetőtéri/);
  assert.match(publicListingMarkup({kind:'search',key:searchKey,listing:{type:'Lakás',floors:[],atticPreference:'only'}}),/Csak tetőtéri ingatlan/);
+});
+
+test('interest presentation combines phone and message and preserves the requested sent copy',()=>{
+ const markup=interestIconMarkup('large " contact');
+ assert.equal((markup.match(/<svg\b/g)||[]).length,1);assert.equal((markup.match(/<path\b/g)||[]).length,2);
+ assert.match(markup,/data-icon="contact"/);assert.match(markup,/data-part="phone"/);assert.match(markup,/data-part="message"/);
+ assert.match(markup,/class="large &quot; contact"/);
+ assert.equal(INTEREST_SENT_MESSAGE,'Elküldtük érdeklődésedet! Most a másik félen a sor, hogy felvegyétek a kapcsolatot.');
+});
+test('signed-in missing or wrong-kind active profiles offer selecting or creating the opposite kind',()=>{
+ for(const context of [{unavailableReason:'no_active_profile',active:null,item:null},{unavailableReason:'opposite_profile_required',active:{kind:'property',title:'Másik ingatlan'},item:null}]){
+  const markup=publicListingMarkup(property,{signedIn:true,context});
+  assert.match(markup,/data-action="public-listing-profiles"/);assert.match(markup,/data-action="public-listing-new-profile" data-kind="search"/);
+  assert.doesNotMatch(markup,/data-action="public-listing-decision"/);assert.doesNotMatch(markup,/data-action="auth-mode"/);
+ }
+ const protectedMarkup=publicListingMarkup(property,{signedIn:true,context:{unavailableReason:'own_listing',active:activeContext.active,item:null}});
+ assert.doesNotMatch(protectedMarkup,/data-action="public-listing-decision"|data-action="public-listing-profiles"/);
+});
+test('search detail replacement preserves the separate search-cloning action',()=>{
+ const detail={kind:'search',key:searchKey,sourceKey:searchKey,title:'Házat keresek',listing:{type:'Ház',locations:['Debrecen'],maxPrice:90}};
+ const context={...activeContext,active:{kind:'property',id:'own-property',title:'Saját házam',type:'Ház',locations:['Debrecen'],price:80}};
+ const markup=publicListingMarkup(detail,{signedIn:true,context});
+ assert.match(markup,/Aktív ingatlanod/);assert.match(markup,/Saját házam/);assert.match(markup,/data-action="public-listing-new-profile" data-kind="property"/);
+ assert.doesNotMatch(markup,/data-action="onboarding-start"/);assert.equal((markup.match(/data-action="onboarding-copy-search"/g)||[]).length,1);
+});
+test('profile choices show only the expected owned kind with each score, active state and pagination',()=>{
+ const page={kind:'search',hasMore:true,items:[
+  {profile:{kind:'search',id:'mine-1',title:'Pontos keresés <jó>',locations:['Debrecen'],maxPrice:75,minRooms:2},score:94,isActive:true,compatible:true},
+  {profile:{kind:'search',id:'mine-2',title:'Másik keresés',locations:['Szeged']},score:0,isActive:false,compatible:false},
+  {profile:{kind:'property',id:'wrong-kind',title:'Másik oldali profil'},score:100}
+ ]};
+ const markup=listingProfileOptionsMarkup(page);
+ assert.equal((markup.match(/data-action="public-listing-select-profile"/g)||[]).length,2);
+ assert.match(markup,/94%/);assert.match(markup,/0%/);assert.match(markup,/aria-pressed="true"/);assert.match(markup,/Aktív/);
+ assert.match(markup,/Pontos keresés &lt;jó&gt;/);assert.doesNotMatch(markup,/wrong-kind|Másik oldali profil/);
+ assert.match(markup,/data-action="public-listing-profiles-more"/);assert.match(markup,/data-action="public-listing-new-profile" data-kind="search"/);
+ const busy=listingProfileOptionsMarkup(page,{switchingId:'mine-1'});assert.match(busy,/data-id="mine-1" aria-pressed="true" disabled/);assert.match(busy,/Profilváltás/);
+});
+test('profile picker errors remain text and unavailable pair gates do not offer activating a profile',()=>{
+ const failure=listingProfileOptionsMarkup({kind:'property',items:[]},{error:'<img src=x onerror=alert(1)>'});
+ assert.match(failure,/data-action="public-listing-profiles-retry"/);assert.match(failure,/role="alert"/);assert.doesNotMatch(failure,/<img/);assert.match(failure,/&lt;img/);
+ for(const reason of ['own_listing','agent_pair_forbidden']){
+  const markup=listingProfileOptionsMarkup({kind:'search',items:[],unavailableReason:reason});
+  assert.doesNotMatch(markup,/data-action="public-listing-select-profile"|data-action="public-listing-new-profile"/);assert.match(markup,/data-action="close"/);
+ }
 });

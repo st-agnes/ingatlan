@@ -80,6 +80,7 @@ app.MapLikeRefunds();
 app.MapPublicLanding();
 app.MapPublicListings();
 app.MapListingContextEndpoints();
+app.MapListingProfileOptionsEndpoints();
 app.MapGet("/api/locations", (string? q, int? limit, string? kind) => Results.Ok(new { items = LocationCatalog.Search(q, limit ?? 8, kind) }));
 app.MapGet("/api/streets", (string? q, int? limit, string? locationId) => Results.Ok(new {
     items = StreetCatalog.Search(q, limit ?? 12, locationId).Select(LocationCatalog.FromStreet)

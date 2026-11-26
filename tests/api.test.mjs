@@ -1,7 +1,7 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import {locations,MAX_SEARCH_LOCATIONS} from '../dist/locations.js';
-import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment, fetchLanding, fetchPublicListing, publicListingFromApi, detectLandingRegion, getListingMap, listingContextFromApi } from '../dist/api.js';
+import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment, fetchLanding, fetchPublicListing, publicListingFromApi, detectLandingRegion, getListingMap, listingContextFromApi,listingProfilesFromApi } from '../dist/api.js';
 
 const creditsTarget={page:'credits',entityKind:null,entityId:null,propertyId:null,searchRequestId:null,matchId:null};
 const exactAddress={street:'Fiktív teszt utca',houseNumber:'12',postalCode:'1234'};
@@ -921,6 +921,38 @@ test('listing context retains authoritative scores, pair identifiers and safe pu
  assert.equal(listingContextFromApi('property',{...raw,item:{...raw.item,property:{...property,publicListingKey:searchKey}}}).item.publicListingKey,null);
  assert.equal(listingContextFromApi('property',{...raw,active:{...raw.active,kind:'property'}}).canDecide,false);
  await assert.rejects(adapter().getListingContext('property','search-'+'d'.repeat(64)),/hirdetés/);
+});
+
+test('listing profile pages keep owner budgets, authoritative scores and bounded authenticated pagination',async()=>{
+ const key='property-'+'e'.repeat(64),calls=[],controller=new AbortController();
+ globalThis.fetch=async(url,options)=>{calls.push({url,...options});return response({kind:'search',offset:50,limit:50,total:101,hasMore:true,items:[
+  {profile:{kind:'search',id:ids.search,title:'Másik saját keresésem',type:'Lakás',locations:['Budapest'],locationIds:['city:Budapest'],minPrice:55000000,maxPrice:85000000,minArea:50,phone:'PRIVATE PROFILE PHONE',privateAddress:'PRIVATE ADDRESS'},score:73,isExact:false,compatible:true,isActive:false},
+  {profile:{kind:'search',id:'house-search',title:'Saját házkeresésem',type:'Ház'},score:99,isExact:true,compatible:false,isActive:false},
+  {profile:{kind:'property',id:ids.property,title:'Wrong kind'},score:100,isExact:true,compatible:true,isActive:true}
+ ]});};
+ const page=await adapter().getListingProfiles('property',key,{offset:50,limit:50,signal:controller.signal});
+ assert.equal(calls.length,1);assert.equal(calls[0].url,`https://api.example.hu/api/listings/property/${key}/profiles?offset=50&limit=50`);assert.equal(calls[0].method,'GET');assert.equal(calls[0].headers.Authorization,'Bearer sample-token');assert.ok(calls[0].signal instanceof AbortSignal);assert.equal(calls[0].signal.aborted,false);
+ assert.equal(page.kind,'search');assert.equal(page.offset,50);assert.equal(page.limit,50);assert.equal(page.total,101);assert.equal(page.hasMore,true);assert.equal(page.items.length,2);
+ assert.equal(page.items[0].profile.minPrice,55);assert.equal(page.items[0].profile.maxPrice,85);assert.equal(page.items[0].score,73);assert.equal(page.items[0].isExact,false);assert.equal(page.items[1].score,0);assert.equal(page.items[1].isExact,false);assert.doesNotMatch(JSON.stringify(page),/PRIVATE PROFILE PHONE|PRIVATE ADDRESS/);
+ const before=calls.length;await assert.rejects(adapter().getListingProfiles('property','../private'),/hirdetés/);await assert.rejects(adapter().getListingProfiles('property',key,{offset:-1}),/lapozás|offset|érvényes/i);assert.equal(calls.length,before,'Invalid listing keys and pagination fail before network access');
+});
+
+test('property profile summaries and malformed profile pages cannot leak arbitrary fields or pagination',()=>{
+ const page=listingProfilesFromApi('search',{kind:'property',offset:-10,limit:1000,total:-5,hasMore:true,items:[
+  {profile:{kind:'property',id:ids.property,title:'Saját lakás',type:'Lakás',price:72900000,email:'PRIVATE EMAIL',latitude:47.5},score:1000,isExact:true,compatible:true,isActive:true},
+  {profile:{kind:'property',id:'second',title:'Másik lakás'},score:-10,isExact:false,compatible:true},
+  {profile:{kind:'property',title:'Missing ID'},score:100,compatible:true}
+ ]},{offset:0,limit:50});
+ assert.equal(page.kind,'property');assert.equal(page.items.length,2);assert.equal(page.items[0].profile.price,72.9);assert.equal(page.items[0].score,100);assert.equal(page.items[1].score,0);assert.equal(page.items[0].isActive,true);assert.equal(page.offset,0);assert.equal(page.limit,50);assert.equal(page.total,2);assert.equal(page.hasMore,false);assert.doesNotMatch(JSON.stringify(page),/PRIVATE EMAIL|latitude/);
+ for(const unavailableReason of ['own_listing','agent_pair_forbidden'])assert.equal(listingProfilesFromApi('property',{items:[],unavailableReason}).unavailableReason,unavailableReason);
+ assert.equal(listingProfilesFromApi('property',{items:[],unavailableReason:'ARBITRARY PRIVATE REASON'}).unavailableReason,null);
+});
+
+test('listing profile reads preserve expired-session and cancellation semantics without activation',async()=>{
+ const key='property-'+'e'.repeat(64);let calls=0;
+ globalThis.fetch=async()=>{calls++;return response({message:'A munkamenet lejárt.'},401);};
+ await assert.rejects(adapter().getListingProfiles('property',key),error=>error.status===401);
+ const controller=new AbortController();controller.abort();await assert.rejects(adapter().getListingProfiles('property',key,{signal:controller.signal}),error=>error.code==='API_READ_CANCELLED');assert.equal(calls,1);
 });
 
 test('listing map descriptors use an anonymous endpoint and whitelist geometry references or a Google address link',async()=>{
