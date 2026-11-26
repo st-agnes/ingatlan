@@ -282,14 +282,14 @@ public class PublicLandingTests
     [Fact]
     public void PrefillNestedListsStayBoundedAndMalformedOptionalDataDoesNotBreakTheLanding()
     {
-        var ids = LocationCatalog.All.Where(location => location.Kind == "city").Take(50).Select(location => location.Id).ToArray();
+        var ids = LocationCatalog.All.Where(location => location.Kind == "city").Take(LocationCatalog.MaxSearchLocations).Select(location => location.Id).ToArray();
         var search = SearchAt(ids);
         search.ConditionsJson = JsonSerializer.Serialize(Enumerable.Repeat("Jó", 200));
         search.BuildingsJson = "{broken"; search.ConstructionAgesJson = "null"; search.ViewsJson = "42";
         search.HeatingTypesJson = JsonSerializer.Serialize(new[] { new string('x', 9000) });
         search.FloorsJson = JsonSerializer.Serialize(Enumerable.Range(-100, 300));
         var seed = PublicLanding.SearchTeaser(search, AccountTypes.Private)!.Value.Teaser.Prefill!;
-        Assert.Equal(50, seed.Locations.Length); Assert.Single(seed.Conditions);
+        Assert.Equal(LocationCatalog.MaxSearchLocations, seed.Locations.Length); Assert.Single(seed.Conditions);
         Assert.Empty(seed.Buildings); Assert.Empty(seed.ConstructionAges); Assert.Empty(seed.Views); Assert.Empty(seed.HeatingTypes);
         Assert.InRange(seed.Floors.Length, 0, 12);
         search.LocationIdsJson = JsonSerializer.Serialize(ids.Append("district:Budapest:5"));

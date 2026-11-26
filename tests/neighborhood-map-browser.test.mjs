@@ -760,7 +760,9 @@ async function readOnlyListingMap(browser,viewport){
     assert.equal(framed.allVisible,true,'A read-only map initially frames every chosen region, including an unrelated town');
     assert.deepEqual(framed.text,['get','name'],'Read-only labels do not offer an add affordance');
     assert.equal(await map.locator('.location-map-list').isVisible(),false);
+    const settledHeight=(await map.locator('.location-map-canvas').boundingBox()).height;
     await centerTarget(map,city.id);await zoomTo(map,viewport,17);await clickLabel(map,city.id,viewport);await assertOutline(map,city.id);
+    assert.ok(Math.abs((await map.locator('.location-map-canvas').boundingBox()).height-settledHeight)<=1,'Loading and clearing read-only map status preserves canvas height, avoiding resize/fetch loops');
     assert.doesNotMatch(await map.innerText(),/hozzáadva|eltávolítva|sikerült hozzáadni/,'Viewing a public listing never edits the viewer\'s search selection');
     await page.evaluate(()=>window.__readonlyListingMap.destroy());
     console.log('Neighborhood map readonly desktop: all selected regions framed, group member boundaries and non-mutating labels passed.');

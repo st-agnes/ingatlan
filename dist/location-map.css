@@ -9,6 +9,5 @@
 .listing-location-page .location-map{margin:0;display:flex;flex-direction:column;height:100%;min-height:440px}
 .listing-location-page .location-map .location-map-canvas{height:min(65dvh,660px);min-height:320px;flex:1}
 .listing-location-page .location-map-heading,.listing-location-page .location-map-status{flex:none}
-.location-map-readonly .location-map-status:empty{display:none}
 @media(max-width:600px){.location-map .location-map-canvas{height:270px}.landing-location-layout .location-map-canvas{height:270px}.location-map-heading{padding:10px 11px}.location-map-status{padding:9px 11px}}
 @media(prefers-reduced-motion:reduce){.location-map *{scroll-behavior:auto!important}}

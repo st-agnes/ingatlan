@@ -182,6 +182,8 @@ export async function assertBuildingSelectors(page, interact) {
   assert.equal(await page.locator('.building-selector-height .building-stack').evaluate(element=>getComputedStyle(element).borderBottomStyle),'solid','Only the sides and upper outline are dashed');
   assert.equal(await page.locator('.building-selector-roof svg').count(),2,'Both buildings have a drawn roof');
   assert.equal(await page.locator('.building-selector .building-ground-tree').count(),6,'Both diagrams illustrate the ground level with trees');
+  const surfaceBounds=await page.locator('.building-ground-line').evaluateAll(lines=>lines.map(line=>{const surface=line.getBoundingClientRect(),column=line.closest('.numbered-building-group').getBoundingClientRect();return {left:surface.left,right:surface.right,columnLeft:column.left,columnRight:column.right};}));
+  assert.ok(surfaceBounds.every(box=>box.left>=box.columnLeft-1&&box.right<=box.columnRight+1),'Surface lines and trees have reserved side gutters, including beside the tablet sidebar');
   const ground=await page.locator('.building-selector-floor .building-ground-level').boundingBox(),basement=await rows('floor').filter({hasText:'Szuterén'}).boundingBox();
   assert.ok(ground&&basement&&basement.y>=ground.y+ground.height-1,'The basement sits below the surface line');
   if(page.viewportSize().width>720){const heightGround=await page.locator('.building-selector-height .building-ground-level').boundingBox();assert.ok(heightGround&&Math.abs(heightGround.y-ground.y)<=1,'Side-by-side diagrams share one ground level');}
