@@ -76,7 +76,10 @@ public class RecommendationQueryTests
         var search = new SearchRequest { OwnerId = user.Id, Type = "Lakás", LocationIdsJson = "[\"city:Debrecen\"]" };
         var exact = RecommendationSql.Build(user, search: search);
         var partial = RecommendationSql.Build(user, search: search, exact: false);
+        var availability = RecommendationSql.Build(user, search: search, exact: false, existsOnly: true);
         Assert.DoesNotContain("ST_Distance(", exact.Text);
+        Assert.DoesNotContain("ST_Distance(", availability.Text);
+        Assert.Contains("SELECT 1 FROM ranked LIMIT 1", availability.Text);
         Assert.Contains("ST_Distance(", partial.Text);
         Assert.Contains("MatchingPropertyPoints", partial.Text);
         Assert.Contains("MatchingLocationAreas", partial.Text);

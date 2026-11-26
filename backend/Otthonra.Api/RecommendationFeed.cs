@@ -35,10 +35,13 @@ public static class RecommendationFeed
         var buyer=active.Search is not null;
         var selected=await RecommendationSql.SelectAsync(db,user,active.Property,active.Search,exact:true,cancellationToken);
         var stage=selected.Length>0?"exact":"empty";
-        // Partial results are intentionally not scanned while exact results
-        // remain. Their availability is resolved when the consent is relevant.
+        // Preserve the availability flag even while exact cards remain. The
+        // existence query does not calculate spatial distance or rank partial
+        // candidates; actual partial ranking still waits for exact exhaustion.
         var hasApproximate=false;
-        if(selected.Length==0)
+        if(selected.Length>0)
+            hasApproximate=await RecommendationSql.ExistsAsync(db,user,active.Property,active.Search,exact:false,cancellationToken);
+        else
         {
             if(includeApproximate)
             {

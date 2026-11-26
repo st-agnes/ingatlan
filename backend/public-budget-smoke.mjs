@@ -4,17 +4,25 @@ import {createHash,randomUUID} from 'node:crypto';
 
 const source=(kind,id)=>kind+'-'+createHash('sha256').update(`otthonra:landing-source:v1:${kind}:${id.replaceAll('-','').toLowerCase()}`).digest('hex');
 const privateBudgets=[80_000_000,90_000_000,120_000_000];
-function publicBudget(value){
- if(Array.isArray(value)){value.forEach(publicBudget);return;}
+function publicBudget(value,checkValues=true){
+ if(Array.isArray(value)){value.forEach(item=>publicBudget(item,checkValues));return;}
  if(value&&typeof value==='object'){
   for(const [key,child]of Object.entries(value)){
    assert.ok(!['publicMaxPrice','privateMaxPrice','actualMaxPrice','trueMaxPrice'].includes(key),'A foreign response exposed owner budget metadata: '+key);
-   publicBudget(child);
+   publicBudget(child,checkValues);
   }
   return;
  }
- if(typeof value==='number')assert.ok(!privateBudgets.includes(value),'A foreign response exposed the buyer-only budget');
- if(typeof value==='string')assert.doesNotMatch(value,/(?:\b(?:80|90|120)(?:[,.]0+)?\s*M\s*Ft\b|\b(?:80|90|120)[\s\u00a0]000[\s\u00a0]000\b|\b(?:80000000|90000000|120000000)\b)/u,'A foreign explanation exposed the buyer-only budget');
+ if(checkValues&&typeof value==='number')assert.ok(!privateBudgets.includes(value),'A foreign response exposed the buyer-only budget');
+ if(checkValues&&typeof value==='string')assert.doesNotMatch(value,/(?:\b(?:80|90|120)(?:[,.]0+)?\s*M\s*Ft\b|\b(?:80|90|120)[\s\u00a0]000[\s\u00a0]000\b|\b(?:80000000|90000000|120000000)\b)/u,'A foreign explanation exposed the buyer-only budget');
+}
+function publicFeedBudgets(page,protectedSearchIds){
+ // Nearby discovery can include unrelated towns and their legitimate public
+ // 80/90/120M budgets. Forbid private metadata everywhere, and check the known
+ // secret values on every card belonging to the protected fixture searches.
+ publicBudget(page,false);
+ const ids=new Set(protectedSearchIds);
+ publicBudget(page.items.filter(item=>ids.has(item.searchRequestId)));
 }
 
 export async function checkPublicBudgets(call,{buyer,seller}){
@@ -54,7 +62,8 @@ export async function checkPublicBudgets(call,{buyer,seller}){
  assert.equal(buyerFeed.items.some(row=>row.propertyId===higher.id),false,'The real maximum remains the buyer recommendation bound');
  await call('/impressions',{token:buyer,method:'POST',body:{propertyId:primary.id,searchRequestId:search.id}});
  await activate(seller,'property',primary.id);
- let sellerFeed=await feed(seller,true);publicBudget(sellerFeed);
+ const protectedSearchIds=[search.id,visible.id,exact.id];
+ let sellerFeed=await feed(seller,true);publicFeedBudgets(sellerFeed,protectedSearchIds);
  assert.equal(sellerFeed.stage,'exact');assert.deepEqual(sellerFeed.items.map(row=>row.searchRequestId),[exact.id]);
  assert.equal(sellerFeed.items[0].compatibilityScore,100);assert.equal(sellerFeed.items[0].searchRequest.maxPrice,75_000_000);
  assert.equal(sellerFeed.hasApproximate,true,'A buyer-only larger budget cannot turn a public over-budget search into an exact seller match');
@@ -72,7 +81,7 @@ export async function checkPublicBudgets(call,{buyer,seller}){
  assert.equal(context.item.searchRequest.maxPrice,70_000_000);
  await decide(seller,primary,exact,false);
  const consent=await feed(seller);assert.equal(consent.items.length,0);assert.equal(consent.requiresApproximateConsent,true);
- sellerFeed=await feed(seller,true);publicBudget(sellerFeed);
+ sellerFeed=await feed(seller,true);publicFeedBudgets(sellerFeed,protectedSearchIds);
  const protectedRow=sellerFeed.items.find(row=>row.searchRequestId===search.id),samePublic=sellerFeed.items.find(row=>row.searchRequestId===visible.id);
  assert.ok(protectedRow&&samePublic);assert.ok(protectedRow.compatibilityScore<100);
  assert.equal(protectedRow.compatibilityScore,samePublic.compatibilityScore,'Seller percentages use the same public limit regardless of hidden capacity');
@@ -107,7 +116,7 @@ export async function verifyPublicBudgets(fixture,call){
  const detail=await call(fixture.searchPath);publicBudget(detail);assert.equal(detail.listing.maxPrice,fixture.publicMaxPrice);assert.equal(detail.clonePrefill.maxPrice,fixture.publicMaxPrice);
  const matches=await call('/matches',{token:fixture.seller});const match=matches.find(row=>row.id===fixture.matchId);assert.ok(match);publicBudget(match.searchRequest);assert.equal(match.searchRequest.maxPrice,fixture.publicMaxPrice);
  const buyerFeed=await call('/feed',{token:fixture.buyer});const buyerRow=buyerFeed.items.find(row=>row.propertyId===fixture.propertyId);assert.ok(buyerRow);assert.equal(buyerRow.compatibilityScore,100);
- const sellerFeed=await call('/feed?includeApproximate=true',{token:fixture.seller});publicBudget(sellerFeed);
+ const sellerFeed=await call('/feed?includeApproximate=true',{token:fixture.seller});publicFeedBudgets(sellerFeed,[fixture.searchId]);
  const sellerRow=sellerFeed.items.find(row=>row.searchRequestId===fixture.searchId);assert.ok(sellerRow);assert.ok(sellerRow.compatibilityScore<100);assert.equal(sellerRow.searchRequest.maxPrice,fixture.publicMaxPrice);
  console.log('Public budget restart preservation passed: the owner retains the private cap, foreign/public responses retain only the public cap, and both recommendation perspectives remain distinct.');
 }
