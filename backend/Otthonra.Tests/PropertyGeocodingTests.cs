@@ -45,6 +45,12 @@ public class PropertyGeocodingTests
             Enumerable.Range(0, resultCount).Select(_ => (JsonNode?)result.DeepClone()).ToArray()) }.ToJsonString();
     }
 
+    private static string CandidateResponse(params JsonObject[] results) => new JsonObject
+    {
+        ["status"] = "OK",
+        ["results"] = new JsonArray(results.Select(result => (JsonNode?)result.DeepClone()).ToArray())
+    }.ToJsonString();
+
     private static JsonObject Component(JsonObject result, string type) => result["address_components"]!.AsArray()
         .Select(node => node!.AsObject()).Single(node => node["types"]!.AsArray().Any(value => value!.GetValue<string>() == type));
 
@@ -103,11 +109,11 @@ public class PropertyGeocodingTests
     }
 
     [Fact]
-    public async Task RejectsPartialMatchesStreetCentroidsAndAmbiguousResults()
+    public async Task RejectsActualPartialMatchesStreetCentroidsAndAmbiguousResults()
     {
         foreach (var body in new[]
         {
-            Response(result => result["partial_match"] = true),
+            Response(result => { result["partial_match"] = true; Component(result, "street_number")["long_name"] = "20"; }),
             Response(result => result["types"] = new JsonArray("route")),
             Response(result => result["geometry"]!["location"]!["lat"] = 0),
             Response(resultCount: 2), Response(resultCount: 0),
@@ -117,6 +123,138 @@ public class PropertyGeocodingTests
             var (google, _) = Google(body);
             Assert.Equal(400, (await Assert.ThrowsAsync<ApiException>(() => google.GeocodeAsync(Address))).Status);
         }
+    }
+
+    [Theory]
+    [InlineData("1/C")]
+    [InlineData("1C")]
+    [InlineData("1 c")]
+    public async Task AcceptsReportedHatvanStreetAddressWhenAllComponentsAgreeDespitePartialFlag(string providerHouseNumber)
+    {
+        var address = Address with { Street = "Hatvan utca", HouseNumber = "1/c", PostalCode = "4025" };
+        var (google, handler) = Google(Response(result =>
+        {
+            result["partial_match"] = true;
+            Component(result, "route")["long_name"] = "Hatvan utca";
+            Component(result, "street_number")["long_name"] = providerHouseNumber;
+            Component(result, "postal_code")["long_name"] = "4025";
+        }));
+
+        var result = await google.GeocodeAsync(address);
+
+        Assert.Equal("google-property-place", result.PlaceId);
+        Assert.Equal("rooftop", result.Quality);
+        Assert.Equal(1, handler.Calls);
+        Assert.Contains("Hatvan utca 1/c", Uri.UnescapeDataString(handler.RequestUri!.Query));
+    }
+
+    [Theory]
+    [InlineData("1")]
+    [InlineData("1/B")]
+    [InlineData("1/3")]
+    [InlineData("11/C")]
+    public async Task PartialFlagCannotAuthorizeAMissingOrDifferentHouseSuffix(string providerHouseNumber)
+    {
+        var address = Address with { HouseNumber = "1/c" };
+        var (google, handler) = Google(Response(result =>
+        {
+            result["partial_match"] = true;
+            Component(result, "street_number")["long_name"] = providerHouseNumber;
+        }));
+
+        var error = await Assert.ThrowsAsync<ApiException>(() => google.GeocodeAsync(address));
+
+        Assert.Equal(400, error.Status);
+        AssertSanitized(error);
+        Assert.Equal(1, handler.Calls);
+    }
+
+    [Theory]
+    [InlineData("country", "Ausztria", "AT")]
+    [InlineData("locality", "Szeged", "Szeged")]
+    [InlineData("route", "Hatvan utca", "Hatvan u.")]
+    [InlineData("postal_code", "4025", "4025")]
+    public async Task PartialFlagStillRequiresEverySuppliedAddressComponent(string type, string longName, string shortName)
+    {
+        var (google, _) = Google(Response(result =>
+        {
+            result["partial_match"] = true;
+            Component(result, type)["long_name"] = longName;
+            Component(result, type)["short_name"] = shortName;
+        }));
+        Assert.Equal(400, (await Assert.ThrowsAsync<ApiException>(() => google.GeocodeAsync(Address))).Status);
+    }
+
+    [Fact]
+    public async Task PartialFlagDoesNotAllowMissingHouseNumberOrImpreciseLocation()
+    {
+        foreach (var body in new[]
+        {
+            Response(result =>
+            {
+                result["partial_match"] = true;
+                var component = Component(result, "street_number");
+                result["address_components"]!.AsArray().Remove(component);
+            }),
+            Response(result => { result["partial_match"] = true; result["geometry"]!["location_type"] = "APPROXIMATE"; }),
+            Response(result => { result["partial_match"] = true; result["types"] = new JsonArray("route"); }),
+            Response(result => result["partial_match"] = "true"),
+            Response(result => result["partial_match"] = null)
+        })
+        {
+            var (google, _) = Google(body);
+            Assert.Equal(400, (await Assert.ThrowsAsync<ApiException>(() => google.GeocodeAsync(Address))).Status);
+        }
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public async Task SelectsTheOnlyPreciselyMatchingCandidateWithoutDependingOnProviderOrder(bool exactFirst)
+    {
+        var exact = SuccessfulResult();
+        exact["partial_match"] = true;
+        var wrongHouse = SuccessfulResult();
+        Component(wrongHouse, "street_number")["long_name"] = "20/B";
+        var wrongStreet = SuccessfulResult();
+        Component(wrongStreet, "route")["long_name"] = "Hatvan utca";
+        var approximate = SuccessfulResult();
+        approximate["geometry"]!["location_type"] = "GEOMETRIC_CENTER";
+        var candidates = exactFirst ? new[] { exact, wrongHouse, wrongStreet, approximate } : new[] { approximate, wrongStreet, wrongHouse, exact };
+        var (google, handler) = Google(CandidateResponse(candidates));
+
+        Assert.Equal("google-property-place", (await google.GeocodeAsync(Address)).PlaceId);
+        Assert.Equal(1, handler.Calls);
+    }
+
+    [Fact]
+    public async Task RejectsMultiplePreciselyMatchingPlacesOrAnEntirelyMismatchingCandidateSet()
+    {
+        var first = SuccessfulResult();
+        var second = SuccessfulResult();
+        second["place_id"] = "another-distinct-google-place";
+        second["geometry"]!["location"]!["lat"] = 47.5294;
+        var wrongHouse = SuccessfulResult();
+        Component(wrongHouse, "street_number")["long_name"] = "20/B";
+        var wrongCity = SuccessfulResult();
+        Component(wrongCity, "locality")["long_name"] = "Szeged";
+        foreach (var body in new[] { CandidateResponse(first, second), CandidateResponse(wrongHouse, wrongCity) })
+        {
+            var (google, _) = Google(body);
+            Assert.Equal(400, (await Assert.ThrowsAsync<ApiException>(() => google.GeocodeAsync(Address))).Status);
+        }
+    }
+
+    [Fact]
+    public async Task PartialFlagAndMultipleCandidatesCannotBypassTheSelectedBudapestDistrict()
+    {
+        var address = Address with { City = "Budapest", LocationId = "district:Budapest:5", PostalCode = "" };
+        var wrongDistrict = SuccessfulResult();
+        wrongDistrict["partial_match"] = true;
+        Component(wrongDistrict, "locality")["long_name"] = "Budapest";
+        Component(wrongDistrict, "postal_code")["long_name"] = "1061";
+        var (google, _) = Google(CandidateResponse(wrongDistrict, SuccessfulResult()));
+        Assert.Equal(400, (await Assert.ThrowsAsync<ApiException>(() => google.GeocodeAsync(address))).Status);
     }
 
     [Fact]
