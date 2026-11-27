@@ -102,8 +102,10 @@ async function seededLanding(){
     assert.ok(labels.some(label=>labelRegions.get(label).has(region.id)),`${region.id}: a teaser leaked from another county`);
    }
   }
-  const serialized=JSON.stringify(page);
-  for(const user of DEMO_USERS){assert.ok(!serialized.includes(user.email));if(user.phone)assert.ok(!serialized.includes(user.phone));assert.ok(!serialized.includes(user.name),'Anonymous cards must expose first names without full registered names');}
+  const serialized=JSON.stringify(page),ownerFirstNames=[...page.searches,...page.properties].map(card=>card.ownerFirstName);
+  // A user-written advertisement title may contain a name; identity comes only from ownerFirstName.
+  // The per-card check above still requires the exact given name of that advertisement's actual owner.
+  for(const user of DEMO_USERS){assert.ok(!serialized.includes(user.email));if(user.phone)assert.ok(!serialized.includes(user.phone));assert.ok(!ownerFirstNames.includes(user.name),'Anonymous advertiser identity must expose first names without full registered names');}
  }
  for(const region of regions)check(await api('/public/landing?region='+region.id),region);
  const region=regions.find(region=>region.id==='HU321'),searchSamples=new Set(),propertySamples=new Set(),allSearches=[],allProperties=[];
