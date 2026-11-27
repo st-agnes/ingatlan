@@ -188,21 +188,36 @@ public sealed class GooglePropertyGeocoder(IHttpClientFactory clients, IConfigur
         if (status is "OVER_QUERY_LIMIT" or "OVER_DAILY_LIMIT" or "REQUEST_DENIED") throw Unavailable();
         if (status != "OK") throw ProviderFailure();
         if (!root.TryGetProperty("results", out var results) || results.ValueKind != JsonValueKind.Array) throw ProviderFailure();
-        if (results.GetArrayLength() != 1) throw PropertyGeocodingAddress.InvalidAddress();
-        var result = results[0];
-        if (result.TryGetProperty("partial_match", out var partial) && partial.ValueKind != JsonValueKind.False
-            || !HasType(result, "street_address", "premise", "subpremise")) throw PropertyGeocodingAddress.InvalidAddress();
+        PropertyGeocodeResult? exact = null;
+        foreach (var candidate in results.EnumerateArray())
+        {
+            var verified = VerifyAddress(candidate, address);
+            if (verified is null) continue;
+            if (exact is not null) throw PropertyGeocodingAddress.InvalidAddress();
+            exact = verified;
+        }
+        return exact ?? throw PropertyGeocodingAddress.InvalidAddress();
+    }
+
+    private static PropertyGeocodeResult? VerifyAddress(JsonElement result, PropertyGeocodingRequest address)
+    {
+        // Google's partial_match flag is a hint, not a substitute for comparing the complete address.
+        // Formatting can trigger it even when every component (including 1/C versus 1C) agrees.
+        // Never accept a missing suffix, street midpoint or another town as an address correction.
+        if (result.ValueKind != JsonValueKind.Object
+            || result.TryGetProperty("partial_match", out var partial) && partial.ValueKind is not (JsonValueKind.True or JsonValueKind.False)
+            || !HasType(result, "street_address", "premise", "subpremise")) return null;
         if (!result.TryGetProperty("address_components", out var components) || components.ValueKind != JsonValueKind.Array)
-            throw PropertyGeocodingAddress.InvalidAddress();
+            return null;
         var all = components.EnumerateArray().ToArray();
         var country = all.Where(component => HasType(component, "country")).ToArray();
         if (country.Length != 1 || !String(country[0], "short_name", out var countryCode) || countryCode != "HU")
-            throw PropertyGeocodingAddress.InvalidAddress();
+            return null;
         if (!Matches(all, "locality", address.City, PropertyGeocodingAddress.Canonical)
             || !Matches(all, "route", address.Street, PropertyGeocodingAddress.Canonical)
             || !Matches(all, "street_number", address.HouseNumber, PropertyGeocodingAddress.HouseKey)
             || !string.IsNullOrEmpty(address.PostalCode) && !Matches(all, "postal_code", address.PostalCode, PropertyGeocodingAddress.Canonical))
-            throw PropertyGeocodingAddress.InvalidAddress();
+            return null;
         if (address.LocationId?.StartsWith("district:Budapest:", StringComparison.Ordinal) == true)
         {
             var district = int.Parse(address.LocationId["district:Budapest:".Length..], CultureInfo.InvariantCulture);
@@ -211,14 +226,16 @@ public sealed class GooglePropertyGeocoder(IHttpClientFactory clients, IConfigur
                 .Select(component => String(component, "long_name", out var code) ? code : "").ToArray();
             if (postcodes.Length != 1 || !Regex.IsMatch(postcodes[0], @"^1[0-9]{3}$")
                 || !int.TryParse(postcodes[0].Substring(1, 2), out var postalDistrict) || postalDistrict != district)
-                throw PropertyGeocodingAddress.InvalidAddress();
+                return null;
         }
         if (!result.TryGetProperty("geometry", out var geometry) || !String(geometry, "location_type", out var quality)
-            || quality is not ("ROOFTOP" or "RANGE_INTERPOLATED")) throw PropertyGeocodingAddress.InvalidAddress();
-        if (!geometry.TryGetProperty("location", out var position) || !position.TryGetProperty("lat", out var latitudeElement)
-            || !position.TryGetProperty("lng", out var longitudeElement) || !latitudeElement.TryGetDouble(out var latitude)
+            || quality is not ("ROOFTOP" or "RANGE_INTERPOLATED")) return null;
+        if (!geometry.TryGetProperty("location", out var position) || position.ValueKind != JsonValueKind.Object
+            || !position.TryGetProperty("lat", out var latitudeElement) || latitudeElement.ValueKind != JsonValueKind.Number
+            || !position.TryGetProperty("lng", out var longitudeElement) || longitudeElement.ValueKind != JsonValueKind.Number
+            || !latitudeElement.TryGetDouble(out var latitude)
             || !longitudeElement.TryGetDouble(out var longitude) || !PropertyGeocodingAddress.ValidCoordinates(latitude, longitude))
-            throw PropertyGeocodingAddress.InvalidAddress();
+            return null;
         if (!String(result, "place_id", out var placeId) || string.IsNullOrWhiteSpace(placeId) || placeId.Length > 255) throw ProviderFailure();
         return new(latitude, longitude, "google", placeId, quality == "ROOFTOP" ? "rooftop" : "range-interpolated");
     }
