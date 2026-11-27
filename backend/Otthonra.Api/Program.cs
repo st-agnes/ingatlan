@@ -124,7 +124,8 @@ api.MapGet("/me", async (AppDb db, ClaimsPrincipal principal, LikeRefundService 
     await refunds.RunAsync(userId, cancellationToken);
     var user = await CurrentUser(db, principal);
     var unreadNotificationCount = await db.UserNotifications.CountAsync(item => item.UserId == userId && item.ReadAt == null, cancellationToken);
-    return Results.Ok(Dto.Profile(user, unreadNotificationCount));
+    var newNotificationCount = await NotificationVisits.Since(db.UserNotifications.AsNoTracking(), userId, user.NotificationLastVisitAt).CountAsync(cancellationToken);
+    return Results.Ok(Dto.Profile(user, unreadNotificationCount, newNotificationCount));
 });
 api.MapPut("/me", async (ProfileInput input, AppDb db, ClaimsPrincipal principal) =>
 {
@@ -272,21 +273,18 @@ api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPr
             && decision.ActorUserId == (opposite == "property" ? property.OwnerId : search.OwnerId)
             && property.OwnerId != search.OwnerId && !property.Archived && !search.Archived
             && !(propertyOwner.AccountType == AccountTypes.Agent && searchOwner.AccountType == AccountTypes.Agent)
+            && !db.Decisions.Any(own => own.PropertyId == property.Id && own.SearchRequestId == search.Id
+                && own.ActorKind == kind && own.ActorUserId == user.Id)
+            && !db.Matches.Any(match => match.PropertyId == property.Id && match.SearchRequestId == search.Id)
         select new { Decision = decision, Property = property, Search = search,
             PropertyOwnerType = propertyOwner.AccountType, SearchOwnerType = searchOwner.AccountType,
             PropertyOwnerName = propertyOwner.Name, SearchOwnerName = searchOwner.Name };
     var total = await incoming.CountAsync();
     var rows = await incoming.OrderByDescending(row => row.Decision.CreatedAt).ThenByDescending(row => row.Decision.Id)
         .Skip(page.Offset).Take(page.Limit).ToListAsync();
-    var ownDecisions = await db.Decisions.AsNoTracking().Where(decision => decision.ActorUserId == user.Id
-        && decision.ActorKind == kind && (kind == "property" ? decision.PropertyId == activeId : decision.SearchRequestId == activeId)).ToListAsync();
-    var matches = await db.Matches.AsNoTracking().Where(match => kind == "property"
-        ? match.PropertyId == activeId : match.SearchRequestId == activeId).ToListAsync();
     var evaluations = await MatchingPairEvaluation.EvaluateManyAsync(db,
         rows.Select(row => (row.Property, row.Search)), sellerPerspective: kind == "property");
     var items = rows.Select(row => {
-        var own = ownDecisions.SingleOrDefault(decision => decision.PropertyId == row.Property.Id && decision.SearchRequestId == row.Search.Id);
-        var match = matches.SingleOrDefault(item => item.PropertyId == row.Property.Id && item.SearchRequestId == row.Search.Id);
         var prepared = MatchingRanking.Prepare(row.Search, sellerPerspective: kind == "property");
         var evaluation = evaluations[(row.Property.Id, row.Search.Id)];
         var compatible = evaluation.Eligible;
@@ -294,7 +292,7 @@ api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPr
             Dto.Search(row.Search, row.SearchOwnerType, row.SearchOwnerName, own: kind == "search"), row.Property.Id, row.Search.Id,
             compatible ? evaluation.Score : 0,
             compatible ? evaluation.Reasons : [], true, row.Decision.CreatedAt,
-            own is null ? null : own.Liked ? "liked" : "passed", match?.Id, compatible,
+            null, null, compatible,
             evaluation.IsExact, MatchingRanking.ValueForMoney(row.Property), prepared.Specificity,
             compatible ? evaluation.MatchDetails : []);
     }).ToArray();
@@ -320,6 +318,7 @@ api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal 
     var kind = user.ActiveKind;
     var ownsActive = kind == "property" && p.OwnerId == uid && user.ActiveEntityId == p.Id || kind == "search" && s.OwnerId == uid && user.ActiveEntityId == s.Id;
     if (!ownsActive) throw new ApiException(403, "A döntéshez előbb aktiváld a saját ingatlanodat vagy keresésedet.");
+    var directListing = PublicListingContext.IsDirectDecision(input.ListingKey, kind, p, s);
     var counterpartId = kind == "property" ? s.OwnerId : p.OwnerId;
     var counterpartType = await db.Users.AsNoTracking().Where(owner => owner.Id == counterpartId)
         .Select(owner => owner.AccountType).SingleAsync();
@@ -336,7 +335,7 @@ api.MapPost("/decisions", async (DecisionInput input, AppDb db, ClaimsPrincipal 
     var evaluation = await MatchingPairEvaluation.EvaluateAsync(db, p, s,
         sellerPerspective: kind == "property", includeReasons: false, cancellationToken: cancellationToken);
     if (!evaluation.Eligible) throw new ApiException(400, "Az ingatlan helyszíne vagy típusa nem felel meg az aktív keresésnek.");
-    if (!evaluation.IsExact)
+    if (!evaluation.IsExact && !directListing)
     {
         if (!input.AllowApproximate) throw new ApiException(400, "Előbb engedélyezd az alacsonyabb egyezésű találatokat.");
         if (await RecommendationFeed.HasExactUnseenAsync(db, user, cancellationToken))

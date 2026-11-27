@@ -269,7 +269,7 @@ async function verifyCriteriaSummary(page,interact,kind,viewport){
 }
 
 async function assertReachable(page){
- const dock=page.locator('.discovery-decision-dock');assert.equal(await dock.isVisible(),true);
+ const dock=page.locator('.discovery-decision-dock');assert.equal(await dock.isVisible(),true);assert.equal(await dock.locator('.card-actions>button').count(),2);assert.equal(await dock.locator('[data-action="details"]').count(),0);
  const details=await dock.evaluate(element=>({position:getComputedStyle(element).position,width:element.clientWidth,scroll:element.scrollWidth}));assert.equal(details.position,'fixed');assert.ok(details.scroll<=details.width+1);
  for(const action of ['pass','like']){
   const proof=await dock.locator(`[data-action="${action}"]`).evaluate(element=>{const b=element.getBoundingClientRect();const top=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);return{left:b.left,right:b.right,top:b.top,bottom:b.bottom,width:innerWidth,height:innerHeight,hit:element===top||element.contains(top)};});
@@ -285,17 +285,18 @@ async function verifyDock(page,interact,kind,viewport){
   await assertReachable(page);
  }
  const beforeDetails=await state(page),candidateTitle=await page.locator('#candidate h2').innerText();
- await interact(page.locator('.card-actions [data-action="details"]'));await page.locator('#public-listing').waitFor();
+ await interact(page.locator('#candidate .listing-title-link'));await page.locator('#public-listing').waitFor();
  assert.match(new URL(page.url()).hash,new RegExp(`^#listing/${kind==='search'?'property':'search'}/`));assert.equal(await page.locator('.modal').count(),0,'Details opens a separate public page');
- const detailActions=page.locator('#public-listing [data-action="public-listing-decision"]');assert.equal(await detailActions.count(),2,'The public page retains pass and contact actions for the active profile');
+ const publicDock=page.locator('.public-listing-decision-dock'),detailActions=publicDock.locator('[data-action="public-listing-decision"]');
+ assert.equal(await detailActions.count(),2,'The public page retains the same two decision actions as discovery');
+ assert.equal(await publicDock.evaluate(element=>getComputedStyle(element).position),'fixed');assert.equal(await page.locator('.public-listing-context [data-action="public-listing-decision"]').count(),0,'The fixed actions belong to the viewed listing, outside the active-profile block');
  for(const fraction of [0,.5,1]){
   await page.evaluate(async fraction=>{window.scrollTo({top:(document.documentElement.scrollHeight-innerHeight)*fraction,behavior:'instant'});await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));},fraction);
   assert.equal(await page.locator('.discovery-decision-dock').count(),0,'Discovery decisions must not overlay the public detail page at any scroll position');
- }
- for(const button of await detailActions.all()){
-  await button.scrollIntoViewIfNeeded();
-  const proof=await button.evaluate(element=>{const b=element.getBoundingClientRect(),top=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);return{top:b.top,bottom:b.bottom,height:innerHeight,hit:element===top||element.contains(top)};});
-  assert.ok(proof.top>=0&&proof.bottom<=proof.height+1,'Public detail decisions must be reachable in the document');assert.equal(proof.hit,true,'Public detail decisions must remain unobstructed');
+  for(const button of await detailActions.all()){
+   const proof=await button.evaluate(element=>{const b=element.getBoundingClientRect(),top=document.elementFromPoint(b.x+b.width/2,b.y+b.height/2);return{left:b.left,right:b.right,top:b.top,bottom:b.bottom,width:innerWidth,height:innerHeight,hit:element===top||element.contains(top)};});
+   assert.ok(proof.left>=0&&proof.right<=proof.width+1&&proof.top>=0&&proof.bottom<=proof.height+1,'Public decisions stay visible without scrolling to them');assert.equal(proof.hit,true,'Public decisions remain directly tappable at the top, middle and bottom');
+  }
  }
  await interact(page.locator('[data-action="public-listing-back"]').first());await page.locator('#candidate').waitFor();await assertReachable(page);
  assert.equal(new URL(page.url()).hash,'#discover');assert.equal(await page.locator('#candidate h2').innerText(),candidateTitle,'Returning from details restores the same candidate');

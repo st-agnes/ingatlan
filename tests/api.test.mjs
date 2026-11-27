@@ -430,15 +430,26 @@ test('incoming pagination uses encoded query parameters, validates before reques
  for(const options of [{offset:-1},{offset:1000001},{offset:'1'},{limit:0},{limit:101}])await assert.rejects(api.incomingLikes(options),/lapozási/);assert.equal(calls.length,1);
 });
 
-test('notification pages map only recipient-safe fields, retain pagination and expose the profile unread count',async()=>{
+test('notification pages map recipient-safe fields and keep unread and since-visit counts separate',async()=>{
  const notification={id:'refund-notification',kind:'like_refund',amount:2,text:'2 kredit visszatérítve.',decisionId:'paid-decision',createdAt:'2026-11-15T12:00:00Z',readAt:null,userId:'PRIVATE-OWNER',privateField:'PRIVATE-AUDIT'};
- const calls=routes(accountRoutes({'/api/me':{...profile,unreadNotificationCount:3},'/api/notifications':{items:[notification],total:8,unreadCount:3,offset:2,limit:1,hasMore:true}}));
- const api=adapter();assert.equal((await api.getState()).unreadNotificationCount,3);
+ const through='2026-11-15T13:00:00Z',calls=routes(accountRoutes({'/api/me':{...profile,unreadNotificationCount:3,newNotificationCount:5,notificationLastVisitAt:'2026-11-14T13:00:00Z'},'/api/notifications':{items:[notification],total:8,unreadCount:3,newCount:5,visitThrough:through,visitedAt:'2026-11-14T13:00:00Z',offset:2,limit:1,hasMore:true}}));
+ const api=adapter(),state=await api.getState();assert.equal(state.unreadNotificationCount,3);assert.equal(state.newNotificationCount,5);assert.equal(state.notificationLastVisitAt,'2026-11-14T13:00:00Z');
  const page=await api.notifications({offset:2,limit:1});
- assert.deepEqual(page,{items:[{id:notification.id,kind:'like_refund',amount:2,text:notification.text,decisionId:'paid-decision',feedbackPackageId:null,createdAt:notification.createdAt,readAt:null,target:creditsTarget}],total:8,unreadCount:3,offset:2,limit:1,hasMore:true});
+ assert.deepEqual(page,{items:[{id:notification.id,kind:'like_refund',amount:2,text:notification.text,decisionId:'paid-decision',feedbackPackageId:null,createdAt:notification.createdAt,readAt:null,target:creditsTarget}],total:8,unreadCount:3,newCount:5,visitThrough:through,visitedAt:'2026-11-14T13:00:00Z',offset:2,limit:1,hasMore:true});
  assert.equal(JSON.stringify(page).includes('PRIVATE-'),false);
  const request=calls.find(call=>call.path==='/api/notifications');assert.equal(request.headers.Authorization,'Bearer sample-token');
+ assert.ok(calls.every(call=>!call.method||call.method==='GET'),'Fetching state and a page must not record a visit');
  const before=calls.length;for(const options of [{offset:-1},{limit:0},{limit:101}])await assert.rejects(api.notifications(options),/lapozási/);assert.equal(calls.length,before);
+});
+
+test('notification visits send only the captured boundary and preserve the server remaining-new count',async()=>{
+ const through='2026-11-15T13:00:00Z',calls=routes({'/api/notifications/visit':{newCount:2,visitedAt:through,unreadCount:99,ownerId:'PRIVATE-OWNER'}}),api=adapter();
+ assert.deepEqual(await api.markNotificationsVisited({through}),{newCount:2,visitedAt:through});
+ assert.equal(calls[0].method,'POST');assert.equal(calls[0].headers.Authorization,'Bearer sample-token');assert.deepEqual(JSON.parse(calls[0].body),{through});
+ for(const value of ['',null,1,'not a date'])await assert.rejects(api.markNotificationsVisited({through:value}),/értesítési időpont/);
+ assert.equal(calls.length,1);
+ routes({'/api/notifications/visit':()=>response({message:'A munkameneted lejárt.'},401)});
+ await assert.rejects(api.markNotificationsVisited({through}),error=>error.status===401);
 });
 
 test('notification read calls are authenticated and encoded, preserve the server timestamp, and surface access failures',async()=>{
@@ -568,6 +579,15 @@ test('approximate decision authorization is sent only with an explicit boolean o
  await api.decide(candidate,false);assert.equal('allowApproximate' in JSON.parse(calls[0].body),false);
  await api.decide(candidate,true,{allowApproximate:true});assert.equal(JSON.parse(calls[1].body).allowApproximate,true);
  await api.decide(candidate,true,{allowApproximate:'false'});assert.equal('allowApproximate' in JSON.parse(calls[2].body),false);
+});
+
+test('direct detail decisions bind an explicit validated opposite listing key without changing discovery requests',async()=>{
+ const calls=routes({'/api/decisions':{charged:0}}),api=adapter(),key='property-'+'a'.repeat(64),candidate={kind:'property',pair:{propertyId:ids.property,searchId:ids.search}};
+ await api.decide(candidate,false,{resolveMatch:false});assert.equal('listingKey' in JSON.parse(calls[0].body),false);
+ await api.decide(candidate,true,{listingKey:key,resolveMatch:false});
+ assert.equal(JSON.parse(calls[1].body).listingKey,key);assert.equal('allowApproximate' in JSON.parse(calls[1].body),false);
+ for(const invalid of ['../private','search-'+'a'.repeat(64),'property-short',''])await assert.rejects(api.decide(candidate,true,{listingKey:invalid,resolveMatch:false}),/hirdetésazonosító/);
+ assert.equal(calls.length,2,'Invalid or wrong-kind public keys are rejected before network access');
 });
 
 test('recommendations keep the requested active kind while a later activation changes the adapter',async()=>{
@@ -915,7 +935,8 @@ test('listing context retains authoritative scores, pair identifiers and safe pu
  assert.equal(context.active.maxPrice,85);assert.equal(context.compatibilityScore,73);assert.equal(context.item.score,73);assert.equal(context.item.price,72.9);
  assert.equal(context.item.publicListingKey,key);assert.deepEqual(context.item.pair,{propertyId:ids.property,searchId:ids.search});assert.equal(context.canDecide,true);assert.equal(context.requiresApproximateConsent,true);
  assert.equal(calls[0].headers.Authorization,'Bearer sample-token');assert.doesNotMatch(JSON.stringify(context),/PRIVATE-CONTEXT|PRIVATE-PROVIDER|latitude/);
- assert.equal(listingContextFromApi('property',{...raw,hasUnseenExact:true}).canDecide,false);
+ assert.equal(listingContextFromApi('property',{...raw,hasUnseenExact:true}).canDecide,true,'Legacy discovery metadata does not block a valid direct-detail decision');
+ assert.equal(listingContextFromApi('property',{...raw,matchId:'already-matched'}).canDecide,false);
  assert.equal(listingContextFromApi('property',{...raw,myDecision:'liked'}).canDecide,false);
  assert.equal(listingContextFromApi('property',{...raw,available:false}).canDecide,false);
  assert.equal(listingContextFromApi('property',{...raw,item:{...raw.item,property:{...property,publicListingKey:searchKey}}}).item.publicListingKey,null);

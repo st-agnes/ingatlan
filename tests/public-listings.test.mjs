@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {listingHref,parsePublicListingRoute,publicAuthorMarkup,publicSearchCard,publicPropertyCard,publicListingMarkup,publicListingError,visibleListingAddress,safeListingImages,listingContextMarkup,listingProfileOptionsMarkup} from '../dist/public-listings.js';
-import {interestIconMarkup,INTEREST_SENT_MESSAGE} from '../dist/interest.js';
+import {interestIconMarkup,decisionDockMarkup,INTEREST_SENT_MESSAGE} from '../dist/interest.js';
 
 const key='property-'+'a'.repeat(64),searchKey='search-'+'b'.repeat(64);
 const property={kind:'property',key,sourceKey:key,title:'Világos otthon <szöveg>',ownerFirstName:'Anna',ownerAccountType:'private',listing:{
@@ -77,37 +77,40 @@ const activeContext={active:{kind:'search',id:'my-search',title:'Kertre néző l
 test('signed-in detail pages show the authoritative active-profile score and available decision actions',()=>{
  const markup=publicListingMarkup(property,{signedIn:true,context:activeContext,returnPage:'discover'});
  assert.match(markup,/Aktív keresésed/);assert.match(markup,/Kertre néző lakás &lt;jó&gt;/);assert.match(markup,/100% <span>egyezés/);
- assert.match(markup,/data-action="public-listing-back"/);assert.match(markup,/data-action="public-listing-decision" data-liked="false"/);assert.match(markup,/data-liked="true"/);assert.match(markup,/Vegyük fel a kapcsolatot!<small>2 kredit/);
+ assert.match(markup,/data-action="public-listing-back"/);assert.doesNotMatch(markup,/href="#discover"/);assert.match(markup,/data-action="public-listing-decision" data-liked="false"/);assert.match(markup,/data-liked="true"/);assert.match(markup,/Vegyük fel a kapcsolatot!<\/span><small>2 kredit/);
  assert.doesNotMatch(markup,/secret-contact|data-action="auth-mode"/);
  assert.equal((markup.match(/id="public-listing-profile"/g)||[]).length,1,'The active profile is mounted once');
  assert.ok(markup.indexOf('id="public-listing-profile"')>markup.indexOf('<h1>'),'The active profile replaces the CTA beneath the listing heading');
  assert.equal((markup.match(/data-action="public-listing-profiles"/g)||[]).length,1);
  assert.match(markup,/data-action="public-listing-new-profile" data-kind="search"/);
- assert.match(markup,/data-action="public-listing-profile-top"/);assert.doesNotMatch(markup,/href="#public-listing-profile"/,'A scroll control must not replace the SPA route');
+ assert.doesNotMatch(markup,/data-action="public-listing-profile-top"|Vissza az aktív profilodhoz/);
  assert.doesNotMatch(markup,/data-action="onboarding-start"/,'A relevant active profile replaces the generic creation CTA');
  assert.match(markup,/Nem az igazi/);assert.match(markup,/data-part="phone"/);assert.match(markup,/data-part="message"/);
- const ownProfile=markup.split('<div class="public-listing-active-profile">')[1]?.split('<section class="public-listing-target-response"')[0],target=markup.split('<section class="public-listing-target-response"')[1]?.split('</section>')[0];
- assert.ok(ownProfile&&target);assert.match(ownProfile,/Kertre néző lakás &lt;jó&gt;/);assert.doesNotMatch(ownProfile,/data-action="public-listing-decision"/,'The active profile only owns its management controls');
- assert.match(target,/Erről az ingatlanról döntesz/);assert.match(target,/<strong>Világos otthon<\/strong>/);assert.match(target,/data-action="public-listing-decision"/);assert.doesNotMatch(target,/Kertre néző lakás/,'Decision controls describe the viewed listing rather than the owner profile');
+ const ownProfile=listingContextMarkup(activeContext,{kind:'property'}),dock=markup.slice(markup.indexOf('</main>')+7);
+ assert.match(ownProfile,/Kertre néző lakás &lt;jó&gt;/);assert.doesNotMatch(ownProfile,/data-action="public-listing-decision"/,'The active profile only owns its management controls');
+ assert.match(dock,/public-listing-decision-dock public-listing-decisions/);assert.equal((dock.match(/data-action="public-listing-decision"/g)||[]).length,2);
+ assert.doesNotMatch(markup,/Erről az ingatlanról döntesz|public-listing-target-response/);assert.match(markup,/<h1>Világos otthon<\/h1>/);assert.doesNotMatch(dock,/Világos otthon/,'The viewed listing title is not repeated above the dock');
  assert.match(publicListingMarkup(property,{signedIn:true,context:{...activeContext,compatibilityScore:0}}),/0% <span>egyezés/);
  assert.doesNotMatch(publicListingMarkup(property,{context:activeContext}),/public-listing-context|public-listing-decision/);
  assert.equal(listingContextMarkup({...activeContext,active:{...activeContext.active,kind:'property'}},{kind:'property'}),'');
 });
 test('prior decisions and mutual matches stay visible without allowing another charge',()=>{
  for(const [state,text] of [[{myDecision:'liked'},INTEREST_SENT_MESSAGE],[{myDecision:'passed'},'Ezt az ajánlatot már elutasítottad.'],[{matchId:'match-id'},'Már kapcsolatban vagytok.']]){
-  const markup=listingContextMarkup({...activeContext,...state},{kind:'property'});
-  assert.ok(markup.includes(text));assert.doesNotMatch(markup,/data-action="public-listing-decision"/);
+  const markup=publicListingMarkup(property,{signedIn:true,context:{...activeContext,...state}}),buttons=markup.match(/<button\b[^>]*data-action="public-listing-decision"[^>]*>/g)||[];
+  assert.ok(markup.includes(text));assert.equal(buttons.length,2);assert.ok(buttons.every(button=>/ disabled>/.test(button)),'Both choices become read-only');
+  const selected=buttons.filter(button=>/is-selected/.test(button));assert.equal(selected.length,1);assert.match(selected[0],/aria-pressed="true"/);assert.match(selected[0],new RegExp(`data-liked="${state.myDecision==='passed'?'false':'true'}"`));assert.match(markup,/Ezt választottad/);
  }
- const lowCredits=listingContextMarkup({...activeContext,credits:1},{kind:'property'});
- assert.match(lowCredits,/data-liked="true" disabled/);assert.match(lowCredits,/data-liked="false">/);
+ const lowCredits=publicListingMarkup(property,{signedIn:true,context:{...activeContext,credits:1}});
+ assert.match(lowCredits,/<button[^>]*data-liked="true"[^>]* disabled>/);assert.match(lowCredits,/<button[^>]*data-liked="false"[^>]*aria-pressed="false">/);
 });
-test('partial public listing decisions require consent and cannot jump ahead of unseen exact matches',()=>{
+test('direct partial public listing decisions need no discovery consent or exact-first prompt',()=>{
  const partial={...activeContext,isExact:false,compatibilityScore:74,requiresApproximateConsent:true};
- const prompt=listingContextMarkup(partial,{kind:'property'});
- assert.match(prompt,/data-action="public-listing-approximate"/);assert.doesNotMatch(prompt,/data-action="public-listing-decision"/);
- assert.match(listingContextMarkup(partial,{kind:'property',includeApproximate:true}),/data-action="public-listing-decision"/);
- const exactFirst=listingContextMarkup({...partial,hasUnseenExact:true},{kind:'property',includeApproximate:true});
- assert.match(exactFirst,/Előbb nézd meg/);assert.doesNotMatch(exactFirst,/data-action="public-listing-decision"|data-action="public-listing-approximate"/);
+ for(const hasUnseenExact of [false,true]){
+  const markup=publicListingMarkup(property,{signedIn:true,context:{...partial,hasUnseenExact}});
+  assert.equal((markup.match(/data-action="public-listing-decision"/g)||[]).length,2);
+  assert.doesNotMatch(markup,/data-action="public-listing-approximate"|Előbb nézd meg|Részleges találatok megjelenítése/);
+ }
+ for(const denied of [{compatible:false},{canDecide:false}])assert.doesNotMatch(publicListingMarkup(property,{signedIn:true,context:{...partial,...denied}}),/data-action="public-listing-decision"/);
 });
 test('public locations link to the map only when a safe map descriptor is available',()=>{
  const linked=publicListingMarkup(property,{mapAvailable:true});assert.match(linked,/data-action="public-listing-map"/);assert.match(linked,/data-kind="property" data-key="property-/);
@@ -134,6 +137,12 @@ test('interest presentation combines phone and message and preserves the request
  assert.match(markup,/class="large &quot; contact"/);
  assert.equal(INTEREST_SENT_MESSAGE,'Elküldtük érdeklődésedet! Most a másik félen a sor, hogy felvegyétek a kapcsolatot.');
 });
+test('shared decision docks always offer the same two choices and escape listing metadata',()=>{
+ const markup=decisionDockMarkup({likeAction:'incoming-like',passAction:'incoming-pass',data:{id:'unsafe" onclick="bad',kind:'search','invalid"':'ignored'},cost:2,decision:'passed',message:'<untrusted>'});
+ assert.equal((markup.match(/<button\b/g)||[]).length,2);assert.equal((markup.match(/ disabled>/g)||[]).length,2);
+ assert.match(markup,/decision is-selected[^>]*data-action="incoming-pass"[^>]*aria-pressed="true"/);assert.match(markup,/data-part="phone"/);assert.match(markup,/data-part="message"/);
+ assert.match(markup,/data-id="unsafe&quot; onclick=&quot;bad"/);assert.doesNotMatch(markup,/data-invalid|<untrusted>|Részletek/);assert.match(markup,/&lt;untrusted&gt;/);
+});
 test('signed-in missing or wrong-kind active profiles offer selecting or creating the opposite kind',()=>{
  for(const context of [{unavailableReason:'no_active_profile',active:null,item:null},{unavailableReason:'opposite_profile_required',active:{kind:'property',title:'Másik ingatlan'},item:null}]){
   const markup=publicListingMarkup(property,{signedIn:true,context});
@@ -148,7 +157,7 @@ test('search detail replacement preserves the separate search-cloning action',()
  const context={...activeContext,active:{kind:'property',id:'own-property',title:'Saját házam',type:'Ház',locations:['Debrecen'],price:80}};
  const markup=publicListingMarkup(detail,{signedIn:true,context});
  assert.match(markup,/Aktív ingatlanod/);assert.match(markup,/Saját házam/);assert.match(markup,/data-action="public-listing-new-profile" data-kind="property"/);
- assert.match(markup,/Erről a keresési igényről döntesz<strong>Házat keresek<\/strong>/);
+ assert.doesNotMatch(markup,/Erről a keresési igényről döntesz|public-listing-target-response/);assert.match(markup,/<h1>Házat keresek<\/h1>/);assert.equal((markup.match(/data-action="public-listing-decision"/g)||[]).length,2);
  assert.doesNotMatch(markup,/data-action="onboarding-start"/);assert.equal((markup.match(/data-action="onboarding-copy-search"/g)||[]).length,1);
 });
 test('profile choices show only the expected owned kind with each score, active state and pagination',()=>{

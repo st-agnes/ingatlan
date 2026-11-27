@@ -357,6 +357,25 @@ form label[for],.entity-wizard .location-search-controls>label{font-size:14px}
 .discovery-decision-dock .decision-like-caption{min-width:0;max-width:100%;text-align:center}
 .discovery-decision-dock .decision-like-caption>span{min-width:0;max-width:100%;padding-inline:1px;white-space:normal;overflow-wrap:anywhere;hyphens:auto;line-height:1.3}
 .discovery-decision-dock .decision-like-caption small{max-width:100%;white-space:nowrap}
+
+/* Discovery, public listings and incoming interests share the same two choices. */
+.decision-dock .card-actions,.decision-dock .decision-labels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:0;width:260px;max-width:100%;margin-left:auto;margin-right:auto;justify-items:center}
+.decision-dock .card-actions{align-items:center;margin-top:0;margin-bottom:5px}
+.decision-dock .decision-labels{align-items:start;margin-top:0;line-height:1.4;color:#65755a;font-size:10px}
+.decision-dock .decision-labels>span{min-width:0;justify-self:stretch;display:flex;flex-direction:column;align-items:center;gap:1px;text-align:center}
+.decision-dock .decision-labels>span>span{max-width:100%;white-space:normal;overflow-wrap:anywhere;line-height:1.3}
+.decision-dock .decision-labels small{max-width:100%;font-size:9px;line-height:1.3;white-space:nowrap}
+.decision-dock .decision{width:50px;height:50px;display:grid;place-items:center;border:1px solid #e6e9e0;border-radius:50%;background:#fff;color:#8f9b86;box-shadow:0 3px 12px #35433105}
+.decision-dock .decision.like{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 5px 15px #d577522c}
+.decision-dock .decision svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.decision-dock .decision.is-selected{opacity:1;outline:3px solid #64785b;outline-offset:4px}
+.decision-dock .decision.like.is-selected{outline-color:#bd6849}
+.decision-dock .decision:disabled:hover{transform:none}
+.decision-dock .decision-choice-mark{color:#3e5834;font-weight:650}
+.decision-dock .decision-dock-message{font-size:11px;line-height:1.45;margin:0 0 10px;color:#53674c;text-align:center;overflow-wrap:anywhere}
+.incoming-actions>.incoming-decision-dock{flex:1 1 260px;width:260px;max-width:100%;margin-inline:auto}
+.modal .incoming-actions:has(.notification-decision-dock){position:sticky;bottom:-30px;z-index:12;margin-top:15px;padding:13px 0 5px;background:var(--bg);border-top:1px solid var(--line)}
+@media(max-width:720px){.modal .incoming-actions:has(.notification-decision-dock){bottom:-25px}}
 #candidate .listing-title-link{color:#315b42;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;transition:color .15s,text-decoration-color .15s}
 #candidate .listing-title-link:hover{color:#1f4530;text-decoration-thickness:2px}
 #candidate .listing-title-link:focus-visible{outline:3px solid #cc996d;outline-offset:4px;border-radius:3px}

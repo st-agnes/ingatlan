@@ -361,7 +361,7 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
       city:'Abádszalók',locationIds:['city:Abádszalók'],type:'Nyaraló',maxPrice:50_000_000,minArea:50,maxArea:80,minRooms:2,maxRooms:4,
       description:fictional + 'Az első Nem az igazi gombbal azonnal kipróbálható a visszajelzési ablak.'}}
   );
-  // Small named workspaces contain real test activity immediately after a
+  // Named workspaces contain real test activity immediately after a
   // startup seed. The optional API importer still imports these profiles only.
   const activityUsers = [
     {key:'activitybuyer',name:'Teszt Dóra',email:'aktivitas-kereso',accountType:'private',activeKind:'search'},
@@ -372,7 +372,7 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
   for (const [index, definition] of activityUsers.entries()) {
     const owner=activityKey(definition.key);
     users.push({key:owner,name:definition.name+titleSuffix,email:`${definition.email}${batch === DEFAULT_BATCH ? '' : `+${batch}`}@otthonra.local`,
-      phone:`+36 30 555 03${index+1}0`,accountType:definition.accountType,
+      phone:`+36 30 555 03${index+1}0`,accountType:definition.accountType,startingCredits:500,
       active:{kind:definition.activeKind,key:activityKey(`${definition.key}-${definition.activeKind}-1`)}});
     for (const number of [1,2]) {
       fixtures.push({key:activityKey(`${definition.key}-property-${number}`),owner,kind:'property',input:{...copy(propertyDefaults),
@@ -395,6 +395,27 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
     {key:'activity-buyer-agent-match',property:'activitybuyer-property-2',search:'activityagent-search-2',actors:['property','search'],
       propertyMessage:'Szia Nóra! Az ingatlanom illik a keresésedhez, egyeztessünk!',searchMessage:'Szia Dóra! Köszönöm a megkeresést, érdekelnek a részletek.'}
   ].map(item=>({...item,key:activityKey(item.key),property:activityKey(item.property),search:activityKey(item.search)}));
+  // Sixty additional one-sided interests per active activity workspace make
+  // pending inboxes and their fifty-row pagination immediately testable.
+  for (let number=1; number<=60; number++) {
+    const suffix=String(number).padStart(2,'0');
+    const home=(key,owner,label)=>({key:activityKey(key),owner:activityKey(owner),kind:'property',input:{...copy(propertyDefaults),
+      title:`Aktivitás-próba · ${label} ${suffix}${titleSuffix}`,city:'Budapest',district:'XIII.',locationId:'district:Budapest:13',neighborhood:'Újlipótváros',
+      price:52_000_000+(number*7%22)*2_000_000,area:40+(number*3%26)*2,wholeRooms:2+number%3,halfRooms:number%2,rooms:2+number%3+(number%2)/2,
+      floor:1+number%7,balcony:true,elevator:true,description:fictional+'Válaszra váró érdeklődés a hosszabb beérkező lista kipróbálásához.'}});
+    const buyerHome=home(`activityseller-buyer-property-${number}`,'activityseller','Dórának ajánlott lakás');
+    const agentHome=home(`activitybuyer-agent-property-${number}`,'activitybuyer','Nórának ajánlott lakás');
+    const sellerSearch={key:activityKey(`activitybuyer-seller-search-${number}`),owner:activityKey('activitybuyer'),kind:'search',input:{...copy(searchDefaults),
+      title:`Aktivitás-próba · Áron lakása iránt érdeklődő keresés ${suffix}${titleSuffix}`,city:'Budapest',districts:['XIII.'],locationIds:['district:Budapest:13'],
+      maxPrice:75_000_000+number%8*5_000_000,minArea:30+number%6*5,minRooms:1+number%5/2,
+      description:fictional+'Előkészített, még nem viszonzott keresői érdeklődés.'}};
+    fixtures.push(buyerHome,sellerSearch,agentHome);
+    activityScenarios.push(
+      {key:activityKey(`activity-buyer-pending-${number}`),property:buyerHome.key,search:activityKey('activitybuyer-search-1'),actors:['property']},
+      {key:activityKey(`activity-seller-pending-${number}`),property:activityKey('activityseller-property-1'),search:sellerSearch.key,actors:['search']},
+      {key:activityKey(`activity-agent-pending-${number}`),property:agentHome.key,search:activityKey('activityagent-search-1'),actors:['property']}
+    );
+  }
   // These fictional street/house identifiers never represent a real address.
   // Startup assigns explicitly synthetic catalogue points, then asks MySQL for
   // polygon membership; it never invokes Google to manufacture fixture data.

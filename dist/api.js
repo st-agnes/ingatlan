@@ -406,6 +406,8 @@ export class ApiModel {
       ledger: rows(ledgerResponse.ledger || ledgerResponse).map(entry => ({ ...clone(entry), amount: Number(entry.amount ?? entry.delta ?? 0), description: entry.description || entry.reason || '', createdAt: entry.createdAt })),
       createdAt: user.createdAt,
       unreadNotificationCount:Number(profile.unreadNotificationCount??user.unreadNotificationCount??0),
+      newNotificationCount:Math.max(0,Number(profile.newNotificationCount??user.newNotificationCount??0)||0),
+      notificationLastVisitAt:typeof profile.notificationLastVisitAt==='string'?profile.notificationLastVisitAt:null,
       likeCost:active?.id?likeCost(user.accountType,active.kind):0,
       reportedOwnerIds:[...new Set((Array.isArray(entities.reportedOwnerIds)?entities.reportedOwnerIds:[]).map(String))],
       reportedEntities:reportSummaries(entities.reportedEntities)
@@ -464,7 +466,12 @@ export class ApiModel {
     const query=new URLSearchParams({offset:String(offset),limit:String(limit)});
     const response=await this.call('/notifications?'+query,'GET',undefined,{signal:options.signal});
     const items=rows(response).map(notificationFromApi);
-    return {items,total:Number(response?.total??items.length),unreadCount:Number(response?.unreadCount??0),offset:Number(response?.offset??offset),limit:Number(response?.limit??limit),hasMore:!!response?.hasMore};
+    return {items,total:Number(response?.total??items.length),unreadCount:Number(response?.unreadCount??0),newCount:Math.max(0,Number(response?.newCount??0)||0),visitThrough:typeof response?.visitThrough==='string'?response.visitThrough:null,visitedAt:typeof response?.visitedAt==='string'?response.visitedAt:null,offset:Number(response?.offset??offset),limit:Number(response?.limit??limit),hasMore:!!response?.hasMore};
+  }
+  async markNotificationsVisited({through}={}) {
+    if(typeof through!=='string'||!Number.isFinite(Date.parse(through)))throw new Error('Érvénytelen értesítési időpont.');
+    const response=await this.call('/notifications/visit','POST',{through});
+    return {newCount:Math.max(0,Number(response?.newCount??0)||0),visitedAt:typeof response?.visitedAt==='string'?response.visitedAt:null};
   }
   async markNotificationRead(id) {
     if(typeof id!=='string'||!id.trim())throw new Error('Érvénytelen értesítés.');
@@ -515,8 +522,10 @@ export class ApiModel {
     const result=await this.call(`/feedback/${encodeURIComponent(id)}`,'POST',{reason});
     return {accepted:result.accepted===true,alreadyAnswered:result.alreadyAnswered===true};
   }
-  async decide(item, liked, {allowApproximate=false,resolveMatch=true}={}) {
-    const result = await this.call('/decisions', 'POST', { propertyId: item.pair.propertyId, searchRequestId: item.pair.searchId, liked: inputBoolean(liked), ...(allowApproximate===true?{allowApproximate:true}:{}) });
+  async decide(item, liked, {allowApproximate=false,resolveMatch=true,listingKey}={}) {
+    const counterpartKind=item.kind||(this.active?.kind==='property'?'search':'property');
+    if(listingKey!=null&&!originFromListing(counterpartKind,listingKey))throw new Error('Érvénytelen hirdetésazonosító.');
+    const result = await this.call('/decisions', 'POST', { propertyId: item.pair.propertyId, searchRequestId: item.pair.searchId, liked: inputBoolean(liked), ...(allowApproximate===true?{allowApproximate:true}:{}), ...(listingKey!=null?{listingKey}:{}) });
     let match = result.match ? matchFromApi(result.match,this.userId) : null;
     const matchId = match?.id ?? (result.matchId == null ? null : String(result.matchId).trim() || null);
     if (!match && matchId && resolveMatch !== false) match = (await this.matches()).find(m => m.id === matchId) || null;
@@ -640,7 +649,7 @@ export function listingContextFromApi(kind,value={}) {
   return {active,item,available:value.available!==false,myDecision,matchId:typeof value.matchId==='string'?value.matchId:null,
     compatible:value.compatible===true,isExact:value.isExact===true,compatibilityScore:score==null?null:Math.max(0,Math.min(100,Math.round(score))),
     likeCost:Math.max(0,nullableNumber(value.likeCost)??0),credits:Math.max(0,nullableNumber(value.credits)??0),
-    canDecide:value.available!==false&&value.canDecide===true&&value.compatible===true&&!!active&&active.kind!==kind&&hasPair&&!myDecision&&!hasUnseenExact,
+    canDecide:value.available!==false&&value.canDecide===true&&value.compatible===true&&!!active&&active.kind!==kind&&hasPair&&!myDecision&&!value.matchId,
     requiresApproximateConsent:value.requiresApproximateConsent===true,hasUnseenExact,unavailableReason:reasons.has(value.unavailableReason)?value.unavailableReason:null};
 }
 export async function getListingContext(kind,key,options={}) {

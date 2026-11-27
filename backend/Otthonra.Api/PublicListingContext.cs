@@ -62,7 +62,6 @@ public static class PublicListingContext
             var oppositeKind = buyer ? "property" : "search";
             var likedYou = await db.Decisions.AsNoTracking().AnyAsync(row => row.PropertyId == property.Id && row.SearchRequestId == search.Id && row.ActorKind == oppositeKind && row.ActorUserId == targetOwner.Id && row.Liked, cancellationToken);
             var awaitingDecision = prior is null && matchId is null && evaluation.Eligible;
-            var hasUnseenExact = awaitingDecision && !evaluation.IsExact && await RecommendationFeed.HasExactUnseenAsync(db, user, cancellationToken);
             var seller = buyer ? targetOwner : user; var seeker = buyer ? user : targetOwner;
             // Even the owned property is deliberately stripped of coordinates on
             // this compact page context. Its full editor DTO stays owner-only.
@@ -72,10 +71,10 @@ public static class PublicListingContext
                 MatchingRanking.ValueForMoney(property), MatchingRanking.Prepare(search, sellerPerspective: !buyer).Specificity, evaluation.MatchDetails);
             var myDecision = prior is null ? null : prior.Liked ? "liked" : "passed";
             var reason = prior is not null ? "already_" + myDecision : matchId.HasValue ? "already_matched"
-                : !evaluation.Eligible ? "incompatible" : hasUnseenExact ? "exact_matches_remaining" : null;
+                : !evaluation.Eligible ? "incompatible" : null;
             var result = new ListingInteractionContext(true, active, item, myDecision, matchId, evaluation.Eligible,
-                evaluation.IsExact, evaluation.Score, cost, user.Credits, awaitingDecision && !hasUnseenExact,
-                awaitingDecision && !evaluation.IsExact, hasUnseenExact, reason);
+                evaluation.IsExact, evaluation.Score, cost, user.Credits, awaitingDecision,
+                false, false, reason);
             await snapshot.CommitAsync(cancellationToken);
             return Results.Ok(result);
         }).RequireAuthorization();
@@ -104,6 +103,19 @@ public static class PublicListingContext
             return Results.Ok(new PublicListingMap(kind, id is not null, id is null ? [] : [id]));
         }).AllowAnonymous();
         return endpoints;
+    }
+
+    /// <summary>Direct detail actions name the opposite listing; feed actions keep their existing consent gate.</summary>
+    public static bool IsDirectDecision(string? listingKey, string? activeKind, Property property, SearchRequest search)
+    {
+        if (listingKey is null) return false;
+        var kind = activeKind == "property" ? "search" : activeKind == "search" ? "property" : null;
+        var expected = kind == "property" ? property.PublicListingKey ?? PublicLanding.SourceKey("property", property.Id)
+            : kind == "search" ? search.PublicListingKey ?? PublicLanding.SourceKey("search", search.Id) : null;
+        if (kind is null || !PublicListings.ValidKey(kind, listingKey)
+            || !string.Equals(listingKey, expected, StringComparison.Ordinal))
+            throw new ApiException(400, "A döntéshez a megtekintett hirdetés azonosítóját add meg.");
+        return true;
     }
 
     public static ListingActiveSummary? ActiveSummary(Property? property, SearchRequest? search)

@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace Otthonra.Api;
 
-/// <summary>A small, validated activity graph for the disposable hosted test catalog.</summary>
+/// <summary>A bounded, validated activity graph for the disposable hosted test catalog.</summary>
 public static class TestActivitySeed
 {
     public static TestActivityPlan Build(TestActivityScenario[]? scenarios,
@@ -10,7 +10,7 @@ public static class TestActivitySeed
         IReadOnlyDictionary<string, User> users, IReadOnlyCollection<Property> properties,
         IReadOnlyCollection<SearchRequest> searches, List<CreditEntry> credits, DateTime now)
     {
-        if (scenarios is { Length: > 100 }) throw new InvalidOperationException("Too many activity fixture scenarios.");
+        if (scenarios is { Length: > 1000 }) throw new InvalidOperationException("Too many activity fixture scenarios.");
         var decisions = new List<Decision>(); var matches = new List<Match>();
         var messages = new List<Message>(); var notifications = new List<UserNotification>();
         var keys = new HashSet<string>(StringComparer.Ordinal);

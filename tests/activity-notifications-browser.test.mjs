@@ -1,5 +1,5 @@
 /** Account-wide notification navigation at desktop, tablet and mobile sizes.
- * HTTP fixtures keep event identity and unread accounting deterministic; the real
+ * HTTP fixtures keep event identity, menu-visit counts and per-row reads deterministic; the real
  * MySQL companion smoke verifies atomic creation, privacy and restart behavior.
  */
 import {mockMapTiles} from './map-browser-network.mjs';
@@ -44,9 +44,11 @@ async function fixture(browser,viewport){
  await mockMapTiles(context);
  const ownedSearch=search(ids.search,ids.user,'Aktív keresési igény'),foreignSearch=search(ids.foreignSearch,'foreign-search-owner','Régebbi, pontosan ezt az otthont kereső igény');
  foreignSearch.ownerFirstName='Eszter';foreignSearch.ownerAccountType='private';foreignSearch.email='PRIVATE_FOREIGN_CONTACT@example.test';foreignSearch.phone='PRIVATE_FOREIGN_PHONE';
- const server={properties:[property(ids.property,ids.user,'Első eladó ingatlan'),property(ids.inactive,ids.user,'Második, nem aktív ingatlan')],searches:[ownedSearch],foreignSearch,active:{kind:'search',id:ids.search},notifications:initialNotices(),gets:[],writes:[],reads:[],activations:[],incomingOffsets:[],decisions:[],deletions:[],unhandled:[],errors:[],markGate:null,credits:100};
+ const server={properties:[property(ids.property,ids.user,'Első eladó ingatlan'),property(ids.inactive,ids.user,'Második, nem aktív ingatlan')],searches:[ownedSearch],foreignSearch,active:{kind:'search',id:ids.search},notifications:initialNotices(),gets:[],writes:[],reads:[],activations:[],incomingOffsets:[],decisions:[],deletions:[],unhandled:[],errors:[],markGate:null,credits:100,lastVisit:null,visits:[],clock:Date.parse(timestamp)+600000};
  server.matches=[match(ids.match,property(ids.foreignProperty,'foreign-property-owner','Meglévő párosítás ingatlana'),ownedSearch)];
  const unread=()=>server.notifications.filter(item=>!item.readAt).length;
+ const newCount=()=>server.notifications.filter(item=>server.lastVisit==null||Date.parse(item.createdAt)>Date.parse(server.lastVisit)).length;
+ const tick=()=>new Date(server.clock+=1000).toISOString();
  const receipt=item=>({...clone(item),unreadCount:unread()});
  const contextFor=item=>{
   const to=item.target,own=(to?.entityKind==='property'?server.properties:server.searches).find(entity=>entity.id===to?.entityId);
@@ -62,10 +64,11 @@ async function fixture(browser,viewport){
   const request=route.request(),url=new URL(request.url()),path=url.pathname.slice(4),method=request.method();
   const json=async(data,status=200)=>{try{return await route.fulfill({status,contentType:'application/json',body:data==null?'':JSON.stringify(data)});}catch(error){if(!/closed|handled|intercept|abort/i.test(String(error)))throw error;}};
   if(method==='GET')server.gets.push(path);else server.writes.push({path,method,body:request.postData()?request.postDataJSON():null});
-  if(path==='/me'&&method==='GET')return json({id:ids.user,name:'Teszt Tulajdonos',email:'owner@example.test',phone:'',accountType:'private',credits:server.credits,unreadNotificationCount:unread()});
+  if(path==='/me'&&method==='GET')return json({id:ids.user,name:'Teszt Tulajdonos',email:'owner@example.test',phone:'',accountType:'private',credits:server.credits,unreadNotificationCount:unread(),newNotificationCount:newCount(),notificationLastVisitAt:server.lastVisit});
   if(path==='/me/entities')return json({properties:clone(server.properties.filter(item=>!item.archived)),searchRequests:clone(server.searches.filter(item=>!item.archived)),active:clone(server.active),decisions:[],reportedOwnerIds:[],reportedEntities:[]});
   if(path==='/credits/ledger')return json({items:[{id:'initial-credit',amount:100,description:'Kezdő tesztkreditek',createdAt:timestamp}]});
-  if(path==='/notifications')return json({items:clone(server.notifications),total:server.notifications.length,unreadCount:unread(),offset:0,limit:50,hasMore:false});
+  if(path==='/notifications'&&method==='GET')return json({items:clone(server.notifications),total:server.notifications.length,unreadCount:unread(),newCount:newCount(),visitedAt:server.lastVisit,visitThrough:tick(),offset:0,limit:50,hasMore:false});
+  if(path==='/notifications/visit'&&method==='POST'){const {through}=request.postDataJSON();assert.ok(Number.isFinite(Date.parse(through)));assert.ok(Date.parse(through)<=server.clock,'A visit acknowledges only events through the returned page watermark');server.visits.push(through);if(server.lastVisit==null||Date.parse(through)>Date.parse(server.lastVisit))server.lastVisit=through;return json({newCount:newCount(),visitedAt:server.lastVisit});}
   const contextPath=path.match(/^\/notifications\/([^/]+)\/context$/);
   if(contextPath){const item=server.notifications.find(value=>value.id===contextPath[1]);return item?json(contextFor(item)):json({message:'Az értesítés nem található.'},404);}
   const readPath=path.match(/^\/notifications\/([^/]+)\/read$/);
@@ -77,7 +80,7 @@ async function fixture(browser,viewport){
   if(path==='/me/active'&&method==='PUT'){const body=request.postDataJSON();server.activations.push(body);const own=(body.kind==='property'?server.properties:server.searches).find(item=>item.id===body.id&&!item.archived);if(!own)return json({message:'A profil már törölve lett.'},404);server.active={kind:body.kind,id:body.id};return json(server.active);}
   if(path==='/incoming-likes'){
    const offset=Number(url.searchParams.get('offset')||0),limit=Number(url.searchParams.get('limit')||50);server.incomingOffsets.push(offset);
-   const own=server.properties.find(item=>item.id===server.active?.id),pairs=own?.id===ids.inactive?Array.from({length:51},(_,index)=>({property:clone(own),searchRequest:index===50?clone(server.foreignSearch):search(`40000000-0000-4000-8000-${String(index+100).padStart(12,'0')}`,'other-search-owner',`Újabb érdeklődő ${index+1}`),compatibilityScore:100,isExact:true,compatible:true,likedYou:true,likedAt:timestamp,myDecision:null,matchId:null})):[];
+   const own=server.properties.find(item=>item.id===server.active?.id),allPairs=own?.id===ids.inactive?Array.from({length:51},(_,index)=>({property:clone(own),searchRequest:index===50?clone(server.foreignSearch):search(`40000000-0000-4000-8000-${String(index+100).padStart(12,'0')}`,'other-search-owner',`Újabb érdeklődő ${index+1}`),compatibilityScore:100,isExact:true,compatible:true,likedYou:true,likedAt:timestamp,myDecision:null,matchId:null})):[],pairs=allPairs.filter(item=>!server.decisions.some(decision=>decision.propertyId===item.property.id&&decision.searchRequestId===item.searchRequest.id)&&!server.matches.some(value=>value.property.id===item.property.id&&value.searchRequest.id===item.searchRequest.id));
    return json({active:clone(server.active),items:pairs.slice(offset,offset+limit),total:pairs.length,offset,limit,hasMore:offset+limit<pairs.length,likeCost:server.active?.kind==='property'?2:0});
   }
   if(path==='/matches')return json({items:clone(server.matches)});
@@ -100,7 +103,7 @@ async function fixture(browser,viewport){
   server.unhandled.push(method+' '+path);return json({message:'Unexpected notification browser fixture route'},404);
  });
  const page=await context.newPage();page.setDefaultTimeout(10000);page.on('pageerror',error=>server.errors.push(error.message));
- return {context,page,server,unread};
+ return {context,page,server,unread,newCount,tick};
 }
 async function navigate(page,viewport,destination){
  if(viewport.width<=720&&!await page.locator('#sidebar').evaluate(element=>element.classList.contains('open')))await interact(viewport,page.locator('.mobile-menu'));
@@ -109,15 +112,16 @@ async function navigate(page,viewport,destination){
 async function screenshot(page,name){await mkdir(resolve('.local/browser-tests/screenshots'),{recursive:true});await page.screenshot({path:resolve('.local/browser-tests/screenshots',name),fullPage:true}).catch(()=>{});}
 async function inspect(t,verify,name){try{await verify();assert.deepEqual(t.server.unhandled,[]);assert.deepEqual(t.server.errors,[]);}catch(error){await screenshot(t.page,`activity-notifications-${name}-failure.png`);throw error;}finally{t.server.markGate?.release();await t.context.close();}}
 async function readyNotifications(page){await page.locator('#notifications-list').waitFor();await page.locator('#workspace-refresh-status').waitFor({state:'hidden'});}
-async function badge(page,value){await eventually(async()=>value===0?await page.locator('#notifications-nav-count').isHidden()&&await page.locator('#notifications-top-count').isHidden():await page.locator('#notifications-nav-count').innerText()===String(value)&&await page.locator('#notifications-top-count').innerText()===String(value),`Both unread badges should show ${value}`);}
+async function badge(page,value){await eventually(async()=>value===0?await page.locator('#notifications-nav-count').isHidden()&&await page.locator('#notifications-top-count').isHidden():await page.locator('#notifications-nav-count').innerText()===String(value)&&await page.locator('#notifications-top-count').innerText()===String(value),`Both new-event badges should show ${value}`);}
 const card=(page,id)=>page.locator(`[data-notification-id="${id}"]`);
 async function openNotice(page,viewport,id){await interact(viewport,card(page,id).locator('[data-action="notification-open"]'));}
 
 async function accountWideLikes(browser,viewport){
- const t=await fixture(browser,viewport),{page,server,unread}=t;
+ const t=await fixture(browser,viewport),{page,server,unread,tick}=t;
  await inspect(t,async()=>{
-  await page.goto(origin+'/#notifications',{waitUntil:'domcontentloaded'});await readyNotifications(page);
-  assert.equal(await page.locator('[data-notification-id]').count(),9);await badge(page,8);
+  await page.goto(origin+'/#discover',{waitUntil:'domcontentloaded'});await page.locator('.page-heading').waitFor();await badge(page,9);assert.equal(unread(),8,'An already-read event still counts as new until the notifications menu is visited');assert.equal(server.visits.length,0);
+  await navigate(page,viewport,'notifications');await readyNotifications(page);
+  assert.equal(await page.locator('[data-notification-id]').count(),9);await badge(page,0);assert.equal(server.visits.length,1);assert.equal(await page.locator('.notification-card.is-unread').count(),8,'Opening the menu does not read individual notification rows');
   assert.equal(server.reads.length,0,'Viewing the list cannot silently mark every event as read');assert.equal(server.active.id,ids.search);
   for(const label of ['Új kedvelés','Új párosítás','Új üzenet','Új visszajelzés','Kreditjóváírás','Kreditvisszatérítés','Teljesült a visszajelzés-csomagod','Lejárt a visszajelzés-csomagod'])assert.ok((await page.locator('#notifications-list').innerText()).includes(label),label);
   assert.match(await card(page,notices.like).innerText(),/Második, nem aktív ingatlan/);
@@ -125,8 +129,8 @@ async function accountWideLikes(browser,viewport){
   assert.equal(await card(page,notices.credit).locator('b').count(),0,'Notification text must be escaped');
   assert.equal(await card(page,notices.like).locator('.refund-amount').count(),0,'Noncredit activity is not displayed as a refund');
   server.markGate=gate();await interact(viewport,card(page,notices.credit).locator('[data-action="notification-read"]'));
-  await eventually(()=>server.reads.includes(notices.credit),'Mark-read should reach the API');await badge(page,8);assert.match(await card(page,notices.credit).getAttribute('class'),/is-unread/);
-  server.markGate.release();server.markGate=null;await badge(page,7);assert.doesNotMatch(await card(page,notices.credit).getAttribute('class'),/is-unread/);
+  await eventually(()=>server.reads.includes(notices.credit),'Mark-read should reach the API');await badge(page,0);assert.match(await card(page,notices.credit).getAttribute('class'),/is-unread/);
+  server.markGate.release();server.markGate=null;await eventually(async()=>!(await card(page,notices.credit).getAttribute('class')).includes('is-unread'),'The explicit read receipt updates only its notification row');await badge(page,0);
   const firstRead=server.notifications.find(item=>item.id===notices.credit).readAt;
   await openNotice(page,viewport,notices.like);await page.locator(`.modal[data-notification-context="${notices.like}"]`).waitFor();
   assert.deepEqual(server.activations.at(-1),{kind:'property',id:ids.inactive});assert.equal(server.active.id,ids.inactive);
@@ -135,14 +139,21 @@ async function accountWideLikes(browser,viewport){
   assert.doesNotMatch(await page.locator('.modal').innerText(),/PRIVATE_FOREIGN_CONTACT|PRIVATE_FOREIGN_PHONE|mutual-contact@example/);
   assert.ok(server.gets.includes(`/notifications/${notices.like}/context`));assert.ok(server.gets.includes('/incoming-likes'));
   assert.equal(await page.locator('.incoming-card').count(),50);assert.equal(await page.locator(`.incoming-card[data-id="${ids.foreignSearch}"]`).count(),0,'The notified older like is beyond the ordinary first page');assert.ok(server.incomingOffsets.every(offset=>offset===0),'Opening one older event does not scan every incoming page');
-  await badge(page,6);assert.match(await page.locator('.breadcrumb').innerText(),/Téged kedveltek/);
+  await badge(page,0);assert.match(await page.locator('.breadcrumb').innerText(),/Téged kedveltek/);
   await interact(viewport,page.locator('.modal [data-action="incoming-like"]'));await eventually(()=>server.decisions.length===1,'The exact notification context should remain actionable');
   assert.deepEqual([server.decisions[0].propertyId,server.decisions[0].searchRequestId],[ids.inactive,ids.foreignSearch]);
   await page.getByRole('heading',{name:'Egymásra találtatok!',exact:true}).waitFor();await interact(viewport,page.locator('.modal [data-action="close"]').last());
-  await navigate(page,viewport,'notifications');await readyNotifications(page);await badge(page,unread());
+  await navigate(page,viewport,'notifications');await readyNotifications(page);await badge(page,0);
   assert.doesNotMatch(await card(page,notices.like).getAttribute('class'),/is-unread/);assert.equal(server.notifications.find(item=>item.id===notices.credit).readAt,firstRead);
-  await page.reload({waitUntil:'domcontentloaded'});await readyNotifications(page);await badge(page,unread());assert.equal(server.notifications.find(item=>item.id===notices.credit).readAt,firstRead);
-  console.log(`Activity notifications likes ${viewport.name}: account-wide kinds, explicit durable read, authoritative badges, inactive profile activation and exact older-like context/reply passed.`);
+  await page.reload({waitUntil:'domcontentloaded'});await readyNotifications(page);await badge(page,0);assert.equal(server.notifications.find(item=>item.id===notices.credit).readAt,firstRead);
+  // A later event is new even when its row is read without visiting the menu.
+  await navigate(page,viewport,'discover');const laterId='70000000-0000-4000-8000-000000000010';
+  server.notifications.push(notice(laterId,'credit_added','Újabb esemény az előző menümegnyitás után.',target('credits'),{createdAt:tick(),amount:1}));
+  await page.reload({waitUntil:'domcontentloaded'});await page.locator('.page-heading').waitFor();await badge(page,1);const visitsBeforeRead=server.visits.length;
+  await page.evaluate(async id=>{const model=(await import('/api.js')).getModel();await model.getNotificationContext(id);await model.markNotificationRead(id);},laterId);
+  await navigate(page,viewport,'properties');await page.locator('.entity-grid').waitFor();await badge(page,1);assert.equal(server.visits.length,visitsBeforeRead,'Context lookup and explicit per-row read do not acknowledge a menu visit');assert.ok(server.notifications.find(item=>item.id===laterId).readAt);
+  await navigate(page,viewport,'notifications');await readyNotifications(page);await badge(page,0);assert.equal(server.visits.length,visitsBeforeRead+1);assert.doesNotMatch(await card(page,laterId).getAttribute('class'),/is-unread/);
+  console.log(`Activity notifications likes ${viewport.name}: account-wide kinds, independent durable row reads and menu-visit badges, inactive profile activation and exact older-like context/reply passed.`);
  },`likes-${viewport.name}`);
 }
 async function eventTargets(browser,viewport){
@@ -163,7 +174,7 @@ async function deletionAndUnavailable(browser,viewport){
  const t=await fixture(browser,viewport),{page,server}=t;server.notifications=server.notifications.filter(item=>item.id===notices.deleted);
  server.matches=[match(ids.secondMatch,clone(server.properties.find(item=>item.id===ids.inactive)),clone(server.foreignSearch))];
  await inspect(t,async()=>{
-  await page.goto(origin+'/#notifications',{waitUntil:'domcontentloaded'});await readyNotifications(page);await badge(page,1);await openNotice(page,viewport,notices.deleted);
+  await page.goto(origin+'/#notifications',{waitUntil:'domcontentloaded'});await readyNotifications(page);await badge(page,0);assert.equal(server.notifications[0].readAt,null);await openNotice(page,viewport,notices.deleted);
   await page.getByRole('heading',{name:'Az esemény már nem nyitható meg.',exact:true}).waitFor();await badge(page,0);assert.equal(server.activations.length,0);assert.equal(server.decisions.length,0);
   await interact(viewport,page.locator('.modal').getByRole('button',{name:'Rendben',exact:true}));
   await navigate(page,viewport,'properties');const deleting=page.locator(`[data-action="delete"][data-kind="property"][data-id="${ids.inactive}"]`);await deleting.waitFor();
