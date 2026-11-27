@@ -46,7 +46,7 @@ public class ConcurrentRefundCatchUpTests
         completion.SetResult(5); Assert.Equal(5, await second);
         Assert.Equal(6, await catchUp.RunAsync(owner, () => Task.FromResult(6)));
         using var alreadyAborted = new CancellationTokenSource(); alreadyAborted.Cancel();
-        Assert.ThrowsAny<OperationCanceledException>(() => catchUp.RunAsync(owner, () => { calls++; return Task.FromResult(0); }, alreadyAborted.Token));
+        await Assert.ThrowsAnyAsync<OperationCanceledException>(() => catchUp.RunAsync(owner, () => { calls++; return Task.FromResult(0); }, alreadyAborted.Token));
         Assert.Equal(1, calls);
     }
 }
