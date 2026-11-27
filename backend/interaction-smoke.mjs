@@ -3,6 +3,8 @@ import {withTestAddress} from './smoke-address.mjs';
 import assert from 'node:assert/strict';
 import {mkdir,readFile,writeFile,chmod} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
+import {request as httpRequest} from 'node:http';
+import {gunzipSync,brotliDecompressSync} from 'node:zlib';
 const origin=new URL(process.argv[2]||'http://127.0.0.1:3000'),mode=process.argv[3];
 if(origin.protocol!=='http:'||!['localhost','127.0.0.1','[::1]'].includes(origin.hostname)||origin.username||origin.password||origin.pathname!=='/'||origin.search||origin.hash)throw new Error('Use only a disposable loopback API.');
 const fixturePath=resolve('.local/interaction-fixture.json');
@@ -13,14 +15,37 @@ async function api(path,{token,method='GET',body,status=200}={}){
  const text=await response.text();return response.status>=400||!text?null:JSON.parse(text);
 }
 async function save(f){await mkdir(dirname(fixturePath),{recursive:true});await writeFile(fixturePath,JSON.stringify(f),{mode:0o600});await chmod(fixturePath,0o600);}
+function rawApi(path,token,encoding){return new Promise((resolveRequest,reject)=>{
+ const request=httpRequest(new URL('/api'+path,origin),{method:'GET',headers:{Authorization:`Bearer ${token}`,'Accept-Encoding':encoding},timeout:20000},response=>{
+  const chunks=[];response.on('data',chunk=>chunks.push(chunk));response.on('end',()=>resolveRequest({status:response.statusCode,headers:response.headers,body:Buffer.concat(chunks)}));response.on('error',()=>reject(new Error('API compression response failed.')));
+ });request.on('timeout',()=>request.destroy(new Error('API compression probe timed out.')));request.on('error',()=>reject(new Error('API compression probe failed.')));request.end();
+});}
+async function verifyCompression(token,expected){
+ // fetch transparently decompresses; use raw HTTP to prove the actual wire
+ // representation through the web proxy, without printing credentials.
+ const [identity,gzip,brotli]=await Promise.all(['identity','gzip','br'].map(encoding=>rawApi('/me/entities',token,encoding)));
+ for(const reply of [identity,gzip,brotli])assert.equal(reply.status,200);
+ assert.equal(identity.headers['content-encoding'],undefined);assert.deepEqual(JSON.parse(identity.body),expected);
+ for(const [reply,encoding,decompress] of [[gzip,'gzip',gunzipSync],[brotli,'br',brotliDecompressSync]]){
+  assert.equal(reply.headers['content-encoding'],encoding);assert.match(reply.headers.vary||'',/(?:^|,)\s*Accept-Encoding\s*(?:,|$)/i);
+  assert.deepEqual(JSON.parse(decompress(reply.body)),expected,'Negotiated compression preserves the complete API representation');
+  assert.ok(reply.body.length<identity.body.length*.7,'JSON read compression must substantially reduce bytes on the wire');
+ }
+}
 const active=(token,kind,id)=>api('/me/active',{token,method:'PUT',body:{kind,id}});
 const decision=(token,p,s,liked=true,status=200)=>api('/decisions',{token,method:'POST',body:{propertyId:p.id,searchRequestId:s.id,liked},status});
+async function pendingBadge(token,expected){assert.equal((await api('/me',{token})).pendingIncomingLikeCount,expected,'The navigation badge must count only the active owned profile’s unanswered interests');}
 const displayNames={a1:'Nagy Péter',a2:'Tóth Márk',b1:'Kovács Anna',b2:'Szabó Eszter'};
 function privatePage(page){for(const row of page.items){assert.equal(row.property.address,'');assert.equal(row.myDecision,null);assert.equal(row.matchId,null);for(const entity of [row.property,row.searchRequest]){for(const field of ['phone','email','contact','passwordHash','ownerName'])assert.equal(Object.hasOwn(entity,field),false);assert.ok(['Péter','Márk','Anna','Eszter'].includes(entity.ownerFirstName));}assert.ok(row.matchDetails.length>=5);assert.equal(row.likedYou,true);assert.ok(!Number.isNaN(Date.parse(row.likedAt)));}const serialized=JSON.stringify(page);for(const name of Object.values(displayNames))assert.ok(!serialized.includes(name),'Incoming cards must expose only the first name before contact access');}
 async function verify(f){
- for(const key of ['a1','b2']){const page=await api('/incoming-likes',{token:f.tokens[key]});privatePage(page);assert.deepEqual(page,f.incoming[key],'Incoming likes changed after a restart');}
+ for(const key of ['a1','b2']){const page=await api('/incoming-likes',{token:f.tokens[key]});privatePage(page);assert.deepEqual(page,f.incoming[key],'Incoming likes changed after a restart');await pendingBadge(f.tokens[key],page.total);}
  for(const key of Object.keys(f.tokens)){const profile=await api('/me',{token:f.tokens[key]});assert.equal(profile.credits,f.balances[key]);assert.deepEqual(await api('/credits/ledger',{token:f.tokens[key]}),f.ledgers[key]);}
  const rows=await api('/me/entities',{token:f.tokens.b2});assert.equal(rows.reportedEntities.length,7);assert.ok(rows.reportedEntities.every(row=>!Object.hasOwn(row,'createdAt')));
+ const slim=await api('/me/entities?includeDecisions=false',{token:f.tokens.b2}),{decisions,decisionsIncluded,...unchanged}=rows;
+ assert.equal(decisionsIncluded,true);assert.ok(decisions.length>0);assert.deepEqual(slim,{...unchanged,decisions:[],decisionsIncluded:false});
+ assert.ok(JSON.stringify(slim).length<JSON.stringify(rows).length,'Ordinary workspace reads omit full historical counterpart cards');
+ assert.deepEqual(await api('/me/entities?includeDecisions=true',{token:f.tokens.b2}),rows,'Legacy/default full history remains available on demand');
+ await verifyCompression(f.tokens.b2,rows);
 }
 if(mode==='--verify'){
  await verify(JSON.parse(await readFile(fixturePath,'utf8')));console.log('Interaction restart preservation passed: incoming statuses/privacy, contextual report summaries, balances and ledger unchanged.');
@@ -42,7 +67,7 @@ if(mode==='--verify'){
  const property={title:'Interakciós API-próba',locationId:'city:Őriszentpéter',city:'Őriszentpéter',district:'',type:'Lakás',price:55000000,area:77,rooms:3.5,wholeRooms:2,halfRooms:3,floor:2,address:'Private test street 10',images:[],balcony:false,elevator:false};
  const search={title:'Interakciós keresés',locationIds:['city:Őriszentpéter'],city:'Őriszentpéter',type:'Lakás',maxPrice:70000000,minArea:60,maxArea:100,minRooms:3,maxRooms:4,balcony:false,elevator:false};
  const entities={};for(const key of Object.keys(tokens))entities[key]={p:await api('/properties',{token:tokens[key],method:'POST',body:{...property,title:property.title+' '+key},status:201}),s:await api('/searches',{token:tokens[key],method:'POST',body:{...search,title:search.title+' '+key},status:201})};
- const empty=await api('/incoming-likes',{token:tokens.b2});assert.equal(empty.active,null);assert.deepEqual(empty.items,[]);assert.equal(empty.total,0);
+ const empty=await api('/incoming-likes',{token:tokens.b2});assert.equal(empty.active,null);assert.deepEqual(empty.items,[]);assert.equal(empty.total,0);await pendingBadge(tokens.b2,0);
  await api('/incoming-likes',{status:401});
  for(const query of ['offset=-1','offset=1000001','limit=0','limit=101'])await api('/incoming-likes?'+query,{token:tokens.b2,status:400});
  await active(tokens.a1,'search',entities.a1.s.id);await active(tokens.a2,'property',entities.a2.p.id);await active(tokens.b1,'property',entities.b1.p.id);await active(tokens.b2,'search',entities.b2.s.id);
@@ -55,19 +80,25 @@ if(mode==='--verify'){
  await decision(tokens.b1,entities.b1.p,entities.a1.s);await decision(tokens.b1,entities.b1.p,entities.b2.s);await decision(tokens.a2,entities.a2.p,entities.b2.s);
  const beforeAgentView=await api('/me',{token:tokens.a1}),beforeLedger=await api('/credits/ledger',{token:tokens.a1});
  const incomingA=await api('/incoming-likes',{token:tokens.a1});privatePage(incomingA);assert.equal(incomingA.total,1);assert.equal(incomingA.items[0].propertyId,entities.b1.p.id);assert.equal(incomingA.items[0].myDecision,null);assert.equal(incomingA.items[0].compatible,true);assert.equal(incomingA.items[0].isExact,true);assert.equal(incomingA.items[0].compatibilityScore,100);assert.equal(incomingA.likeCost,1);
+ await pendingBadge(tokens.a1,1);await pendingBadge(tokens.b2,2);
  assert.equal((await api('/me',{token:tokens.a1})).credits,beforeAgentView.credits);assert.deepEqual(await api('/credits/ledger',{token:tokens.a1}),beforeLedger,'Viewing incoming likes is free');
  const matchA=await decision(tokens.a1,entities.b1.p,entities.a1.s);assert.equal(matchA.charged,1);assert.ok(matchA.matchId);
  const matchedA=await api('/incoming-likes',{token:tokens.a1});assert.equal(matchedA.total,0);assert.deepEqual(matchedA.items,[]);assert.equal(matchedA.hasMore,false);assert.ok((await api('/matches',{token:tokens.a1})).some(row=>row.id===matchA.matchId));
+ await pendingBadge(tokens.a1,0);
  await decision(tokens.b2,entities.a2.p,entities.b2.s,false);
  const afterPass=await api('/incoming-likes',{token:tokens.b2});assert.equal(afterPass.total,1);assert.deepEqual(afterPass.items.map(row=>row.propertyId),[entities.b1.p.id]);privatePage(afterPass);
+ await pendingBadge(tokens.b2,1);
  const matchB=await decision(tokens.b2,entities.b1.p,entities.b2.s);assert.equal(matchB.charged,0);assert.ok(matchB.matchId);
  const afterMatch=await api('/incoming-likes',{token:tokens.b2});assert.equal(afterMatch.total,0);assert.deepEqual(afterMatch.items,[]);assert.ok((await api('/matches',{token:tokens.b2})).some(row=>row.id===matchB.matchId));
+ await pendingBadge(tokens.b2,0);
  const extras=[];for(let index=0;index<3;index++){const row=await api('/properties',{token:tokens.b1,method:'POST',body:{...property,title:'Később nem illeszkedő ajánlat '+index},status:201});extras.push(row);await active(tokens.b1,'property',row.id);await decision(tokens.b1,row,entities.b2.s);}const extra=extras[0];
  const pages=[];for(let offset=0;offset<3;offset++){const page=await api(`/incoming-likes?offset=${offset}&limit=1`,{token:tokens.b2});assert.equal(page.total,3);assert.equal(page.items.length,1);assert.equal(page.offset,offset);assert.equal(page.hasMore,offset<2);privatePage(page);pages.push(page);}assert.deepEqual(pages.flatMap(page=>page.items.map(row=>row.propertyId)).sort(),extras.map(row=>row.id).sort());
+ await pendingBadge(tokens.b2,3);
  const pastEnd=await api('/incoming-likes?offset=3&limit=1',{token:tokens.b2});assert.equal(pastEnd.total,3);assert.deepEqual(pastEnd.items,[]);assert.equal(pastEnd.hasMore,false);
  let incomingB=await api('/incoming-likes',{token:tokens.b2});assert.equal(incomingB.items.some(row=>row.propertyId===entities.a2.p.id||row.propertyId===entities.b1.p.id),false,'Passed and mutual interests must be excluded before counting and pagination');
  await api('/searches/'+entities.b2.s.id,{token:tokens.b2,method:'PUT',body:{...search,maxPrice:10000000}});
  incomingB=await api('/incoming-likes',{token:tokens.b2});assert.equal(incomingB.total,3);
+ await pendingBadge(tokens.b2,3);
  assert.ok(incomingB.items.every(row=>row.compatible===true&&row.isExact===false&&row.compatibilityScore>=0&&row.compatibilityScore<100),
   'Over-budget incoming likes remain location/type eligible but must be marked as partial matches');
  privatePage(incomingB);
@@ -79,11 +110,14 @@ if(mode==='--verify'){
  }
  assert.equal(incomingB.items.find(row=>row.propertyId===extra.id).myDecision,null);
  await decision(tokens.b2,extra,entities.b2.s,true,400);
- await api('/searches/'+entities.b2.s.id,{token:tokens.b2,method:'PUT',body:search});await api('/properties/'+extra.id,{token:tokens.b1,method:'DELETE',status:204});assert.equal((await api('/incoming-likes',{token:tokens.b2})).total,2);
+ await api('/searches/'+entities.b2.s.id,{token:tokens.b2,method:'PUT',body:search});await api('/properties/'+extra.id,{token:tokens.b1,method:'DELETE',status:204});assert.equal((await api('/incoming-likes',{token:tokens.b2})).total,2);await pendingBadge(tokens.b2,2);
  const secondSearch=await api('/searches',{token:tokens.a1,method:'POST',body:{...search,title:'Másik aktív keresés'},status:201});await active(tokens.a1,'search',secondSearch.id);assert.equal((await api('/incoming-likes',{token:tokens.a1})).total,0);await active(tokens.a1,'search',entities.a1.s.id);assert.equal((await api('/incoming-likes',{token:tokens.a1})).total,0);
+ await pendingBadge(tokens.a1,0);
  await decision(tokens.b2,entities.a1.p,entities.b2.s);await active(tokens.a1,'property',entities.a1.p.id);const sellerIncoming=await api('/incoming-likes',{token:tokens.a1});assert.equal(sellerIncoming.total,1);assert.equal(sellerIncoming.items[0].searchRequestId,entities.b2.s.id);assert.equal(sellerIncoming.likeCost,2);privatePage(sellerIncoming);
+ await pendingBadge(tokens.a1,1);
  const sellerResponse=await decision(tokens.a1,entities.a1.p,entities.b2.s);assert.equal(sellerResponse.charged,2);assert.ok(sellerResponse.matchId);
  assert.equal((await api('/incoming-likes',{token:tokens.a1})).total,0);assert.ok((await api('/matches',{token:tokens.a1})).some(row=>row.id===sellerResponse.matchId));
+ await pendingBadge(tokens.a1,0);
  const scoped=await api('/incoming-likes?entityId='+entities.a2.p.id,{token:tokens.b2});assert.equal(scoped.active.id,entities.b2.s.id);assert.equal(scoped.total,2);
  const reportStart=new Date().toISOString(),reports=[];
  const report=async(key,owner,kind,id,reason,status=201)=>{const receipt=await api('/reports',{token:tokens[key],method:'POST',body:{entityKind:kind,entityId:id,reason},status});if(status<400){assert.equal(Object.hasOwn(receipt,'createdAt'),false);assert.equal(receipt.reason,reason);if(!receipt.alreadyReported)reports.push({id:receipt.id,reporterId:ids[key],reportedUserId:ids[owner],entityKind:kind,entityId:id,reason});}return receipt;};

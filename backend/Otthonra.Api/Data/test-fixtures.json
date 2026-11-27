@@ -1,5 +1,5 @@
 {
-  "version": "20261127-test-fixtures-v11",
+  "version": "20261127-test-fixtures-v12",
   "password": "OtthonraDemo2026!",
   "users": [
     {
@@ -31074,7 +31074,7 @@
         "moveIn": "3 hónapon belül",
         "financing": "Tesztként megadott saját forrás",
         "archived": false,
-        "title": "Aktivitás-próba · Áron lakása iránt érdeklődő keresés 01",
+        "title": "Aktivitás-próba · Teszt Dóra 3. keresése",
         "city": "Budapest",
         "locationIds": [
           "district:Budapest:13"
@@ -31939,7 +31939,7 @@
         "lotArea": null,
         "hideStreet": true,
         "hideHouseNumber": true,
-        "title": "Aktivitás-próba · Dórának ajánlott lakás 10",
+        "title": "Aktivitás-próba · Teszt Áron 3. lakása",
         "city": "Budapest",
         "district": "XIII.",
         "locationId": "district:Budapest:13",
@@ -38530,6 +38530,150 @@
       "key": "activity-agent-pending-60",
       "property": "activitybuyer-agent-property-60",
       "search": "activityagent-search-1",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-buyer-second-incoming-1",
+      "property": "activityseller-property-1",
+      "search": "activitybuyer-search-2",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-buyer-second-incoming-2",
+      "property": "activityseller-buyer-property-1",
+      "search": "activitybuyer-search-2",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-buyer-second-incoming-3",
+      "property": "activityagent-property-2",
+      "search": "activitybuyer-search-2",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-buyer-third-incoming-1",
+      "property": "activityseller-property-2",
+      "search": "activitybuyer-seller-search-1",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-buyer-third-incoming-2",
+      "property": "activityseller-buyer-property-2",
+      "search": "activitybuyer-seller-search-1",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-buyer-third-incoming-3",
+      "property": "activityagent-property-2",
+      "search": "activitybuyer-seller-search-1",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-seller-second-incoming-1",
+      "property": "activityseller-property-2",
+      "search": "activitybuyer-search-1",
+      "actors": [
+        "search"
+      ]
+    },
+    {
+      "key": "activity-seller-second-incoming-2",
+      "property": "activityseller-property-2",
+      "search": "activitybuyer-seller-search-4",
+      "actors": [
+        "search"
+      ]
+    },
+    {
+      "key": "activity-seller-second-incoming-3",
+      "property": "activityseller-property-2",
+      "search": "activityagent-search-1",
+      "actors": [
+        "search"
+      ]
+    },
+    {
+      "key": "activity-seller-third-incoming-1",
+      "property": "activityseller-buyer-property-10",
+      "search": "activitybuyer-seller-search-2",
+      "actors": [
+        "search"
+      ]
+    },
+    {
+      "key": "activity-seller-third-incoming-2",
+      "property": "activityseller-buyer-property-10",
+      "search": "activitybuyer-seller-search-3",
+      "actors": [
+        "search"
+      ]
+    },
+    {
+      "key": "activity-seller-third-incoming-3",
+      "property": "activityseller-buyer-property-10",
+      "search": "activityagent-search-1",
+      "actors": [
+        "search"
+      ]
+    },
+    {
+      "key": "activity-agent-second-incoming-1",
+      "property": "activityseller-property-1",
+      "search": "activityagent-search-2",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-agent-second-incoming-2",
+      "property": "activityseller-property-2",
+      "search": "activityagent-search-2",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-agent-second-incoming-3",
+      "property": "activityseller-buyer-property-4",
+      "search": "activityagent-search-2",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-agent-second-incoming-4",
+      "property": "activityseller-buyer-property-5",
+      "search": "activityagent-search-2",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-agent-second-incoming-5",
+      "property": "activitybuyer-property-1",
+      "search": "activityagent-search-2",
+      "actors": [
+        "property"
+      ]
+    },
+    {
+      "key": "activity-agent-second-incoming-6",
+      "property": "activitybuyer-agent-property-1",
+      "search": "activityagent-search-2",
       "actors": [
         "property"
       ]

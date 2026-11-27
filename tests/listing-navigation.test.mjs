@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import fs from 'node:fs/promises';
-import {listingHref,parsePublicListingRoute,publicListingMarkup,publicListingLoading,publicListingError,listingProfileOptionsMarkup} from '../dist/public-listings.js';
+import {listingHref,parsePublicListingRoute,publicListingMarkup,publicListingLoading,publicListingError,listingProfileOptionsMarkup,publicAuthorMarkup} from '../dist/public-listings.js';
 import * as interestHelpers from '../dist/interest.js';
 
 const source=await fs.readFile(new URL('../dist/app.js',import.meta.url),'utf8');
@@ -16,15 +16,15 @@ const deferred=()=>{let resolve,reject;const promise=new Promise((yes,no)=>{reso
 function harness(overrides={}){
  const app={innerHTML:''},inserted=[],buttons=[{disabled:false},{disabled:false}],calls={render:[],decisions:[],toasts:[],push:[],replace:[],back:0,expired:[],credits:0,scroll:0,activations:[],profiles:[],editors:[],modals:[]};let modal=null;
  const ctx=vm.createContext({console,Promise,AbortController,location:{hash:route},session:'session-a',busy:false,state:{user:{id:'viewer'}},modalCleanup:null,incoming:[],incomingPage:null,workspaceCacheModel:null,workspaceCacheSession:null,imageIndex:0,page:'discover',tab:'recommended',feedbackPrompt:null,deferredFeedbackPrompt:null,matches:[],
-  listingHref,parsePublicListingRoute,publicListingMarkup,publicListingLoading,publicListingError,listingProfileOptionsMarkup,...interestHelpers,
+  listingHref,parsePublicListingRoute,publicListingMarkup,publicListingLoading,publicListingError,listingProfileOptionsMarkup,publicAuthorMarkup,...interestHelpers,
   document:{title:'',getElementById(id){if(id==='app')return app;if(id==='public-listing'&&app.innerHTML.includes('id="public-listing"'))return {insertAdjacentHTML:(_position,value)=>inserted.push(value)};return null;},querySelector:selector=>selector==='.modal'?modal:null,querySelectorAll:()=>buttons},
   model:{getState:async()=>({active:{kind:'search',id:'active-search'}}),decide:async(item,liked,options)=>{calls.decisions.push({item,liked,options});return {}; }},
   onboardingSessionKey:()=>ctx.session,sameActive:(a,b)=>a?.id===b?.id&&a?.kind===b?.kind,fetchPublicListing:async()=>detail,getListingContext:async()=>context,getListingProfiles:async(...args)=>{calls.profiles.push(args);return {kind:'search',items:[{profile:context.active,score:100,isExact:true,compatible:true,isActive:true},{profile:{...context.active,id:'second-search',title:'Másik keresésem'},score:73,isExact:false,compatible:true,isActive:false}],total:2,offset:0,limit:50,hasMore:false};},getListingMap:async()=>({kind:'property',available:true,locationIds:['city:Debrecen'],externalUrl:null}),
   toast:(...args)=>calls.toasts.push(args),expireSession:async message=>{calls.expired.push(message);ctx.model=null;},openModal:html=>{modal={innerHTML:html};calls.modals.push(modal);},closeModal:()=>{ctx.modalCleanup?.();ctx.modalCleanup=null;modal=null;},openEditor:(...args)=>calls.editors.push(args),ensureWorkspaceSession:()=>true,resetRecommendations:()=>{},markDiscoveryStale:()=>{},normalizeFeedbackPrompt:()=>null,openFeedbackPrompt:()=>{},openCreditsNeeded:()=>{calls.credits++;},celebrate:()=>{},scrollToNextRecommendation:()=>{calls.scroll++;},render:async options=>{calls.render.push(options);},changePage:async page=>{ctx.page=page;},getLocation:()=>null,icon:()=>'',esc:value=>String(value),
   run:async fn=>{const owner=ctx.model,session=ctx.session,origin=ctx.location.hash,release=()=>ctx.model===owner&&ctx.session===session;release.sameView=()=>release()&&ctx.location.hash===origin;release.closeModal=()=>{if(release())ctx.closeModal();};return fn(release);},
   history:{state:{otthonraListingReturn:'discover'},pushState(state,_title,url){this.state=state;calls.push.push({state,url});ctx.location.hash=url;},replaceState(state,_title,url){this.state=state;calls.replace.push({state,url});ctx.location.hash=url;},back(){calls.back++;}},window:{scrollTo:()=>{},location:{assign:url=>{calls.assigned=url;}}},...overrides});
- ctx.model.activate=async(kind,id)=>{calls.activations.push({kind,id});};
- vm.runInContext(listingSource+`;globalThis.listingTest={publicListingPage,openListingDetails,backFromListing,openListingMap,decidePublicListing,cancelPublicListingRequest,drawPublicListing,openListingProfiles,loadListingProfiles,selectListingProfile,openListingNewProfile,get picker(){return listingProfilePicker;},get view(){return publicListingView;},set view(value){publicListingView=value;}};`,ctx);
+ if(ctx.model)ctx.model.activate=async(kind,id)=>{calls.activations.push({kind,id});};
+ vm.runInContext(listingSource+`;globalThis.listingTest={publicListingPage,openListingDetails,backFromListing,openListingMap,decidePublicListing,cancelPublicListingRequest,drawPublicListing,openListingProfiles,loadListingProfiles,selectListingProfile,openListingNewProfile,get picker(){return listingProfilePicker;},loadPublicListingConnection,openPublicListingContact,openPublicListingChat,get view(){return publicListingView;},set view(value){publicListingView=value;}};`,ctx);
  return {ctx,api:ctx.listingTest,calls,app,buttons,inserted,setView(value={}){ctx.listingTest.view={route,detail,context,model:ctx.model,session:ctx.session,includeApproximate:false,...value};}};
 }
 
@@ -172,4 +172,46 @@ test('new-profile completion from a stale detail never activates a profile in a 
 test('own listings, forbidden agent pairs and signed-out viewers never open a protected profile picker',async()=>{
  const h=harness();for(const unavailableReason of ['own_listing','agent_pair_forbidden']){h.setView({context:{...context,unavailableReason}});await h.api.openListingProfiles();h.api.openListingNewProfile('search');}
  h.ctx.state=null;h.setView();await h.api.openListingProfiles();assert.equal(h.calls.profiles.length,0);assert.equal(h.calls.editors.length,0);assert.equal(h.calls.modals.length,0);
+});
+
+const connectedReceipt=()=>({connected:true,matchId:'existing-match',contact:{id:'partner',name:'Kapcsolat Anna',email:'anna@example.test',phone:'+36 30 555 0191',accountType:'private'},property:{id:'target-property',title:detail.title,publicListingKey:key},searchRequest:{id:'owned-search',title:'A kapcsolódó keresésem',publicListingKey:'search-'+'b'.repeat(64)}});
+const settleConnection=()=>new Promise(resolve=>setImmediate(resolve));
+
+test('an optional slow connection never delays detail actions and only patches the author when ready',async()=>{
+ const pending=deferred(),author={outerHTML:''},stateOptions=[],h=harness();
+ const original=h.ctx.document.getElementById;h.ctx.document.getElementById=id=>id==='public-listing-author'?author:original(id);
+ h.ctx.model.getListingConnection=async()=>pending.promise;h.ctx.model.getState=async options=>{stateOptions.push(options);return {user:{id:'viewer'},active:{kind:'search',id:'active-search'}};};
+ assert.equal(await h.api.publicListingPage(),true);const painted=h.app.innerHTML;
+ assert.match(painted,/data-action="public-listing-decision"/);assert.doesNotMatch(painted,/public-listing-contact-info|anna@example.test/);
+ assert.equal(stateOptions[0].includeLedger,false);assert.equal(stateOptions[0].includeDecisions,false);
+ pending.resolve(connectedReceipt());await settleConnection();
+ assert.equal(h.app.innerHTML,painted,'Author enhancement must not remount the page or its decision controls');
+ assert.match(author.outerHTML,/public-listing-contact-info/);assert.doesNotMatch(author.outerHTML,/anna@example.test|555 0191|Kapcsolat Anna/);
+ assert.equal(h.api.view.connection.matchId,'existing-match');
+});
+
+test('existing connection contacts work independently of active kind but never for a signed-out viewer',async()=>{
+ const h=harness({getListingContext:async()=>({available:false,active:{kind:'property',id:'own-property'},unavailableReason:'opposite_profile_required'})}),contacts=[];
+ h.ctx.model.getState=async()=>({user:{id:'viewer'},active:{kind:'property',id:'own-property'}});h.ctx.model.getListingConnection=async()=>connectedReceipt();h.ctx.openContact=(...args)=>contacts.push(args);
+ await h.api.publicListingPage();await settleConnection();h.api.openPublicListingContact();
+ assert.equal(contacts.length,1);assert.equal(contacts[0][0],'existing-match');assert.equal(contacts[0][1].counterpartKind,'property');assert.equal(contacts[0][1].partner.email,'anna@example.test');assert.equal(h.calls.activations.length,0);
+ const guest=harness({model:null});await guest.api.publicListingPage();assert.equal(guest.api.view.connection,null);assert.doesNotMatch(guest.app.innerHTML,/public-listing-contact-info/);
+});
+
+test('route, session and cancellation fence late optional contacts and unauthorized failures',async()=>{
+ for(const changed of ['route','session','cancel']){
+  const pending=deferred(),author={outerHTML:''},h=harness();const original=h.ctx.document.getElementById;
+  h.ctx.document.getElementById=id=>id==='public-listing-author'?author:original(id);h.ctx.model.getListingConnection=async()=>pending.promise;
+  await h.api.publicListingPage();if(changed==='route')h.ctx.location.hash='#landing';else if(changed==='session')h.ctx.session='another-session';else h.api.cancelPublicListingRequest();
+  pending.resolve(connectedReceipt());await settleConnection();assert.equal(author.outerHTML,'');assert.equal(h.api.view.connection,null);
+ }
+ const pending=deferred(),h=harness();h.ctx.model.getListingConnection=async()=>pending.promise;await h.api.publicListingPage();h.ctx.session='another-session';pending.reject(Object.assign(new Error('Expired old session'),{status:401}));await settleConnection();assert.equal(h.calls.expired.length,0);
+});
+
+test('contact chat navigation loads exactly the authorized existing conversation without activating a profile',async()=>{
+ const h=harness(),reads=[];h.setView({connection:connectedReceipt()});h.ctx.model.markRead=async id=>reads.push(id);
+ await h.api.openPublicListingChat('another-match');assert.equal(reads.length,0);
+ await h.api.openPublicListingChat('existing-match');assert.deepEqual(reads,['existing-match']);assert.equal(h.ctx.location.hash,'messages');assert.equal(h.ctx.page,'messages');assert.equal(h.ctx.chatId,'existing-match');assert.equal(h.calls.render.at(-1).resolveMatchId,'existing-match');assert.equal(h.calls.activations.length,0);
+ const pending=deferred(),late=harness();late.setView({connection:connectedReceipt()});late.ctx.model.markRead=async()=>pending.promise;
+ const opening=late.api.openPublicListingChat('existing-match');late.ctx.session='new-session';pending.resolve();await opening;assert.equal(late.calls.render.length,0);assert.equal(late.ctx.location.hash,route);
 });

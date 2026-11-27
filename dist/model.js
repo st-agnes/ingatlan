@@ -362,6 +362,18 @@ function demoCoordinates(property) {
 }
 const demoAreaIds=prepared=>[...[...prepared.cities].map(city=>'city:'+city),...prepared.districtIds,...prepared.neighborhoodIds];
 
+function pendingIncomingLikeCount(s) {
+ const active=(s.active?.kind==='property'?s.properties:s.active?.kind==='search'?s.searches:[]).find(row=>row.id===s.active?.id&&row.ownerId===s.userId);if(!active||active.archived)return 0;
+ const kind=s.active.kind,pairKey=row=>`${row.propertyId}\0${row.searchId}`;
+ const judged=new Set(s.decisions.filter(row=>row.actorKind===kind).map(pairKey)),matched=new Set(s.matches.map(pairKey));
+ const properties=new Map(s.properties.map(row=>[row.id,row])),searches=new Map(s.searches.map(row=>[row.id,row]));
+ return s.decisions.filter(row=>{
+  if(!row.liked||row.actorKind!==(kind==='property'?'search':'property')||(kind==='property'?row.propertyId:row.searchId)!==active.id||judged.has(pairKey(row))||matched.has(pairKey(row)))return false;
+  const property=properties.get(row.propertyId),search=searches.get(row.searchId);
+  return !!property&&!!search&&!property.archived&&!search.archived&&property.ownerId!==search.ownerId&&canInteract(s.users.find(user=>user.id===property.ownerId)?.accountType,s.users.find(user=>user.id===search.ownerId)?.accountType);
+ }).length;
+}
+
 export function createModel(storage=globalThis.localStorage, now=()=>new Date().toISOString(), {streetCatalog,streetLoader=loadPublicStreetCatalog,geographyLoader=loadDemoMatchingGeography}={}) {
   if (streetCatalog) registerLocations(streetCatalog);
   let modelStreetCatalog=streetCatalog;
@@ -577,7 +589,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     },
     getState() {
       processRefunds();
-      return clone({unreadNotificationCount:state.notifications.filter(item=>item.userId===state.userId&&!item.readAt).length,newNotificationCount:newNotificationCount(state),notificationLastVisitAt:state.users.find(user=>user.id===state.userId)?.notificationLastVisitAt??null,user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users,undefined,state.userId)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users,undefined,state.userId)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users,undefined,state.userId),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users,undefined,state.userId)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))],reportedEntities:state.reports.filter(report=>report.reporterId===state.userId&&['property','search'].includes(report.entityKind)&&typeof report.entityId==='string').map(({entityKind,entityId,reason})=>({entityKind,entityId,reason}))});
+      return clone({pendingIncomingLikeCount:pendingIncomingLikeCount(state),unreadNotificationCount:state.notifications.filter(item=>item.userId===state.userId&&!item.readAt).length,newNotificationCount:newNotificationCount(state),notificationLastVisitAt:state.users.find(user=>user.id===state.userId)?.notificationLastVisitAt??null,user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users,undefined,state.userId)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users,undefined,state.userId)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users,undefined,state.userId),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users,undefined,state.userId)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))],reportedEntities:state.reports.filter(report=>report.reporterId===state.userId&&['property','search'].includes(report.entityKind)&&typeof report.entityId==='string').map(({entityKind,entityId,reason})=>({entityKind,entityId,reason}))});
     },
     recommendations(options={}) {
       processRefunds();
@@ -606,6 +618,20 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       // Only the owner's active search is copied here; the candidate above is already public-price sanitized.
       const activeView={...visibleEntity(active,state.users,undefined,state.userId),kind:activeKind};
       return {...empty,active:activeView,item,myDecision:mine?(mine.liked?'liked':'passed'):null,matchId:match&&getMatch(state,match)?match.id:null,compatible:evaluation.eligible,isExact:evaluation.isExact,compatibilityScore:evaluation.score,likeCost:cost,canDecide:evaluation.eligible&&!mine&&!match};
+    },
+    getListingConnection(kind,key) {
+      const candidate=(kind==='property'?state.properties:kind==='search'?state.searches:[])
+        .find(entity=>!entity.archived&&demoSourceKey(kind,entity.id)===key);
+      if(!candidate||candidate.ownerId===state.userId)return {connected:false};
+      const matches=state.matches.filter(record=>(kind==='property'?record.propertyId:record.searchId)===candidate.id)
+        .sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt))||String(b.id).localeCompare(String(a.id)));
+      for(const record of matches){
+        const match=getMatch(state,record);if(!match)continue;
+        const ownEntity=kind==='property'?match.search:match.property;if(ownEntity.ownerId!==state.userId)continue;
+        const profile=(entity,profileKind)=>({id:entity.id,title:entity.title,publicListingKey:demoSourceKey(profileKind,entity.id)}),contact=match.partner;
+        return clone({connected:true,matchId:match.id,contact:{id:contact.id,name:contact.name,email:contact.email,phone:contact.phone,accountType:normalizeAccountType(contact.accountType)},property:profile(match.property,'property'),searchRequest:profile(match.search,'search')});
+      }
+      return {connected:false};
     },
     getListingMap(kind,key) {
       const detail=demoPublicListing(kind,key),candidate=(kind==='property'?state.properties:state.searches).find(entity=>demoSourceKey(kind,entity.id)===key);

@@ -57,6 +57,34 @@ public static class ReportReasons
 
 public static class IncomingLikes
 {
+    // Both the navigation badge and the paged list use this same pending-only
+    // query. CountAsync keeps it in SQL without loading cards or geography.
+    public static IQueryable<IncomingLikeRow> Awaiting(AppDb db, User user)
+    {
+        var kind = user.ActiveKind;
+        var activeId = user.ActiveEntityId;
+        var opposite = kind == "property" ? "search" : "property";
+        return from decision in db.Decisions.AsNoTracking()
+            join property in db.Properties.AsNoTracking() on decision.PropertyId equals property.Id
+            join search in db.SearchRequests.AsNoTracking() on decision.SearchRequestId equals search.Id
+            join propertyOwner in db.Users.AsNoTracking() on property.OwnerId equals propertyOwner.Id
+            join searchOwner in db.Users.AsNoTracking() on search.OwnerId equals searchOwner.Id
+            where decision.Liked && decision.ActorKind == opposite
+                && (kind == "property" && property.Id == activeId && property.OwnerId == user.Id
+                    || kind == "search" && search.Id == activeId && search.OwnerId == user.Id)
+                && decision.ActorUserId == (opposite == "property" ? property.OwnerId : search.OwnerId)
+                && property.OwnerId != search.OwnerId && !property.Archived && !search.Archived
+                && !(propertyOwner.AccountType == AccountTypes.Agent && searchOwner.AccountType == AccountTypes.Agent)
+                && !db.Decisions.Any(own => own.PropertyId == property.Id && own.SearchRequestId == search.Id
+                    && own.ActorKind == kind && own.ActorUserId == user.Id)
+                && !db.Matches.Any(match => match.PropertyId == property.Id && match.SearchRequestId == search.Id)
+            select new IncomingLikeRow {
+                Decision = decision, Property = property, Search = search,
+                PropertyOwnerType = propertyOwner.AccountType, SearchOwnerType = searchOwner.AccountType,
+                PropertyOwnerName = propertyOwner.Name, SearchOwnerName = searchOwner.Name
+            };
+    }
+
     public static (int Offset, int Limit) Page(int? offset, int? limit)
     {
         var start = offset ?? 0; var count = limit ?? 50;
@@ -64,6 +92,17 @@ public static class IncomingLikes
             throw new ApiException(400, "Érvénytelen lapozási beállítás.");
         return (start, count);
     }
+}
+
+public sealed class IncomingLikeRow
+{
+    public required Decision Decision { get; init; }
+    public required Property Property { get; init; }
+    public required SearchRequest Search { get; init; }
+    public required string PropertyOwnerType { get; init; }
+    public required string SearchOwnerType { get; init; }
+    public required string PropertyOwnerName { get; init; }
+    public required string SearchOwnerName { get; init; }
 }
 
 public record ReportReceipt(Guid Id, bool Reported, Guid ReportedOwnerId, bool AlreadyReported,

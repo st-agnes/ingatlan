@@ -416,6 +416,27 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
       {key:activityKey(`activity-agent-pending-${number}`),property:agentHome.key,search:activityKey('activityagent-search-1'),actors:['property']}
     );
   }
+  // The long inboxes above use several owned profiles as counterparties.
+  // Give additional owned profiles their own unanswered interests as well,
+  // without multiplying accounts or rebuilding the existing activity graph.
+  const extraBuyerSearch=fixtures.find(item=>item.key===activityKey('activitybuyer-seller-search-1'));
+  extraBuyerSearch.input.title=`Aktivitás-próba · Teszt Dóra 3. keresése${titleSuffix}`;
+  const extraSellerProperty=fixtures.find(item=>item.key===activityKey('activityseller-buyer-property-10'));
+  extraSellerProperty.input.title=`Aktivitás-próba · Teszt Áron 3. lakása${titleSuffix}`;
+  const additionalInboxes=[
+    ['buyer-second','activitybuyer-search-2',['activityseller-property-1','activityseller-buyer-property-1','activityagent-property-2'],'property'],
+    ['buyer-third','activitybuyer-seller-search-1',['activityseller-property-2','activityseller-buyer-property-2','activityagent-property-2'],'property'],
+    ['seller-second','activityseller-property-2',['activitybuyer-search-1','activitybuyer-seller-search-4','activityagent-search-1'],'search'],
+    ['seller-third','activityseller-buyer-property-10',['activitybuyer-seller-search-2','activitybuyer-seller-search-3','activityagent-search-1'],'search'],
+    ['agent-second','activityagent-search-2',['activityseller-property-1','activityseller-property-2','activityseller-buyer-property-4','activityseller-buyer-property-5','activitybuyer-property-1','activitybuyer-agent-property-1'],'property']
+  ];
+  for(const [name,recipient,counterparts,actor] of additionalInboxes){
+    counterparts.forEach((counterpart,index)=>activityScenarios.push({
+      key:activityKey(`activity-${name}-incoming-${index+1}`),
+      property:activityKey(actor==='property'?counterpart:recipient),
+      search:activityKey(actor==='property'?recipient:counterpart),actors:[actor]
+    }));
+  }
   // These fictional street/house identifiers never represent a real address.
   // Startup assigns explicitly synthetic catalogue points, then asks MySQL for
   // polygon membership; it never invokes Google to manufacture fixture data.

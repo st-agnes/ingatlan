@@ -242,10 +242,28 @@ function key(input,key){const event={key,preventDefault(){this.defaultPrevented=
 const searchValues=title=>({title,type:'Lakás',minPrice:'',maxPrice:'90',minArea:'40',maxArea:'',minRooms:'2',maxRooms:'',moveIn:'Rugalmas'});
 async function createSearch(t,title='Új keresési igény'){t.ui.openEditor('search');chooseLocation(t,'district:Budapest:13');submitEntity(t,searchValues(title));await settle();return t.model.getState().searches.find(item=>item.title===title);}
 test('initial app renders recommendation without private contacts',async()=>{const t=await setup(),html=t.document.getElementById('app').innerHTML;assert.match(html,/page-heading/);assert.match(html,/A következő fejezeted/);assert.match(html,/72,9/);assert.equal(html.includes('peter@example.hu'),false);assert.equal(html.includes('+36 30 555 0141'),false);});
-test('buyer like opens mutual-match dialog; seller activation and recommendation debit exactly two credits',async()=>{const t=await setup();await t.click({action:'like'});assert.match(t.document.getElementById('modal-root').innerHTML,/Egymásra találtatok/);assert.equal(t.model.getState().credits,24);await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/<span class="decision-like-caption"><span>Vegyük fel a kapcsolatot!<\/span><small>2 kredit<\/small>/);await t.click({action:'like'});assert.equal(t.model.getState().credits,22);assert.equal(t.model.getState().ledger.filter(x=>x.type==='seller_like').length,1);});
+test('buyer like opens mutual-match dialog; seller activation and recommendation debit exactly two credits',async()=>{const t=await setup();await t.click({action:'like'});assert.match(t.document.getElementById('modal-root').innerHTML,/Kölcsönös az érdeklődés/);assert.equal(t.model.getState().credits,24);await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/<span class="decision-like-caption"><span>Vegyük fel a kapcsolatot!<\/span><small>2 kredit<\/small>/);await t.click({action:'like'});assert.equal(t.model.getState().credits,22);assert.equal(t.model.getState().ledger.filter(x=>x.type==='seller_like').length,1);});
 test('passing removes a candidate persistently from current feed',async()=>{const t=await setup(),id=t.model.feed()[0].id;await t.click({action:'pass'});assert.equal(t.model.feed().some(x=>x.id===id),false);assert.equal(t.model.getState().credits,24);});
 test('every navigation page renders, settings inputs have unique IDs',async()=>{const t=await setup();for(const page of ['matches','messages','properties','searches','credits','settings']){await t.click({page});assert.doesNotMatch(t.document.getElementById('app').innerHTML,/Nem érhető el a munkatér/);}const html=t.document.getElementById('app').innerHTML;const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'all IDs within settings must be unique');assert.match(html,/for="api-email"/);});
 test('new search form creates a saved entity and profile form persists changes',async()=>{const t=await setup();await t.click({page:'searches'});await t.click({action:'new',kind:'search'});let form=t.document.getElementById('entity-form');chooseLocation(t,'district:Budapest:11');form.values={title:'Kertvárosi terveink',type:'Lakás',minPrice:'30',maxPrice:'65',minArea:'40',maxArea:'75',minRooms:'2',maxRooms:'4',description:'Zöld környezetben keresünk.',moveIn:'Rugalmas'};submitEntity(t,form.values);await settle();assert.equal(t.model.getState().searches.some(x=>x.title==='Kertvárosi terveink'),true);await t.click({page:'settings'});form=t.document.getElementById('profile-form');form.values={name:'Teszt Anna',email:'anna@test.hu',phone:'+36 30 123 4567'};form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(t.model.getState().user.name,'Teszt Anna');});
+test('matched conversations use sibling controls and link the exact counterpart profile in messages and matches',async()=>{
+ const t=await setup(),rows=t.model.matches(),userId=t.model.getState().user.id;
+ await t.click({page:'messages'});let html=t.document.getElementById('app').innerHTML;
+ assert.match(html,/class="conversation-row /);assert.match(html,/class="conversation-context"/);
+ for(const button of html.matchAll(/<button\b[^>]*class="conversation [^"]*"[^>]*>([\s\S]*?)<\/button>/g))assert.doesNotMatch(button[1],/<button\b|advertiser-info/,'Conversation selection never nests an account-type button');
+ for(const row of rows){const kind=row.property.ownerId===userId?'search':'property',entity=row[kind];assert.ok(html.includes('#listing/'+kind+'/'+entity.publicListingKey));assert.ok(html.includes(entity.title));}
+ assert.match(html,/class="chat" aria-label="Aktuális beszélgetés"/);assert.match(html,/id="chat-messages" role="log"/);
+ await t.click({page:'matches'});html=t.document.getElementById('app').innerHTML;
+ for(const row of rows){const kind=row.property.ownerId===userId?'search':'property',entity=row[kind];assert.ok(html.includes(`class="matched-listing-link" href="#listing/${kind}/${entity.publicListingKey}"`));}
+});
+
+test('mutual interest confirmation uses contact artwork, exact product copy and a shared aligned action row',async()=>{
+ const t=await setup();await t.click({action:'like'});const html=t.document.getElementById('modal-root').innerHTML;
+ assert.match(html,/<h2>Kölcsönös az érdeklődés!<\/h2>/);assert.match(html,/<p>Beszéljétek meg a következő lépést!<\/p>/);
+ assert.match(html,/class="match-connection-art"/);assert.match(html,/data-icon="contact"/);assert.match(html,/class="match-celebrate-actions"/);
+ assert.doesNotMatch(html,/match-hearts|Egymásra találtatok|megismerhetitek egymást/);
+});
+
 test('matched conversation accepts a message through the chat form',async()=>{const t=await setup();await t.click({action:'open-chat',id:'m1'});const form=t.document.getElementById('chat-form');form.values={message:'Vasárnap délután megfelel a megtekintés?'};form.handlers.submit({preventDefault(){},currentTarget:form});await settle();assert.equal(t.model.matches().find(m=>m.id==='m1').messages.at(-1).text,'Vasárnap délután megfelel a megtekintés?');assert.match(t.document.getElementById('app').innerHTML,/Vasárnap délután megfelel/);});
 test('card resets drag transform when a horizontal gesture becomes vertical',async()=>{const t=await setup(),card=t.document.getElementById('candidate');const target={closest:s=>s==='#candidate'?card:null};t.document.handlers.pointerdown({target,clientX:0,clientY:0,pointerId:1});t.document.handlers.pointermove({clientX:40,clientY:0,pointerId:1});assert.notEqual(card.style.transform,'');t.document.handlers.pointermove({clientX:40,clientY:100,pointerId:1});assert.equal(card.style.transform,'');assert.equal(card.style.opacity,'');});
 
@@ -798,11 +816,24 @@ function incomingFixture(type='private') {return accountFixture(raw=>{
 test('Kedveltek uses the active profile and reciprocal actions target the chosen pair instead of the discovery first card',async()=>{
  const t=await setup({initialRaw:incomingFixture()});await t.click({page:'incoming'});let html=t.document.getElementById('app').innerHTML;assert.match(html,/Téged kedveltek/);assert.match(html,/incoming-card/);assert.match(html,/data-id="p1"/);assert.match(html,/data-id="p2"/);assert.doesNotMatch(html,/peter@example.hu|eszter@example.hu|\+36 30/);
  const before=t.model.getState();assert.equal(t.model.feed()[0].id,'p1');await t.click({action:'incoming-details',kind:'property',id:'p2'});await settle();assert.match(t.ctx.location.hash,/^#listing\/property\//);assert.match(t.document.getElementById('app').innerHTML,/Zöldre néző otthon/);assert.equal(t.document.getElementById('modal-root').innerHTML,'');await t.click({action:'public-listing-back'});await settle();assert.equal(t.ctx.location.hash,'#incoming');
- await t.click({action:'incoming-like',kind:'property',id:'p2'});assert.equal(t.model.getState().credits,before.credits);assert.ok(t.model.getState().decisions.some(decision=>decision.actorKind==='search'&&decision.propertyId==='p2'&&decision.liked));assert.equal(t.model.getState().decisions.some(decision=>decision.actorKind==='search'&&decision.propertyId==='p1'),false);assert.match(t.document.getElementById('modal-root').innerHTML,/Egymásra találtatok/);await t.click({action:'close'});assert.doesNotMatch(t.document.getElementById('app').innerHTML,/incoming-card"[^>]*data-id="p2"/);assert.equal(t.model.incomingLikes().items.some(item=>item.id==='p2'),false);assert.ok(t.model.matches().some(match=>match.propertyId==='p2'&&match.searchId==='own-s1'));await t.click({page:'matches'});assert.match(t.document.getElementById('app').innerHTML,/Zöldre néző otthon/);await t.click({page:'incoming'});
+ await t.click({action:'incoming-like',kind:'property',id:'p2'});assert.equal(t.model.getState().credits,before.credits);assert.ok(t.model.getState().decisions.some(decision=>decision.actorKind==='search'&&decision.propertyId==='p2'&&decision.liked));assert.equal(t.model.getState().decisions.some(decision=>decision.actorKind==='search'&&decision.propertyId==='p1'),false);assert.match(t.document.getElementById('modal-root').innerHTML,/Kölcsönös az érdeklődés/);await t.click({action:'close'});assert.doesNotMatch(t.document.getElementById('app').innerHTML,/incoming-card"[^>]*data-id="p2"/);assert.equal(t.model.incomingLikes().items.some(item=>item.id==='p2'),false);assert.ok(t.model.matches().some(match=>match.propertyId==='p2'&&match.searchId==='own-s1'));await t.click({page:'matches'});assert.match(t.document.getElementById('app').innerHTML,/Zöldre néző otthon/);await t.click({page:'incoming'});
  await t.click({action:'incoming-pass',kind:'property',id:'p1'});html=t.document.getElementById('app').innerHTML;assert.doesNotMatch(html,/incoming-card"[^>]*data-id="p1"|korábban elutasítottad/);assert.equal(t.model.incomingLikes().items.some(item=>item.id==='p1'),false);assert.ok(t.model.getState().decisions.some(decision=>decision.actorKind==='search'&&decision.propertyId==='p1'&&!decision.liked));
  await t.click({action:'activate-one',kind:'search',id:'own-s2'});assert.equal(t.ctx.location.hash,'#incoming');assert.match(t.document.getElementById('app').innerHTML,/data-id="p4"/);assert.doesNotMatch(t.document.getElementById('app').innerHTML,/incoming-card"[^>]*data-id="p1"/);
  await t.click({action:'activate-one',kind:'property',id:'own-p1'});assert.match(t.document.getElementById('app').innerHTML,/incoming-card"[^>]*data-id="s1"/);await t.click({action:'incoming-like',kind:'search',id:'s1'});assert.equal(t.model.getState().credits,before.credits-2);
 });
+test('the incoming navigation badge is visible outside its page and titles replace the redundant details button',async()=>{
+ const t=await setup({initialRaw:incomingFixture()});
+ const badgeCount=()=>t.document.getElementById('app').innerHTML.match(/id="incoming-nav-count"[^>]*>([^<]*)/)?.[1];
+ assert.equal(badgeCount(),'2');assert.equal(t.document.getElementById('incoming-nav-count').hidden,false);
+ await t.click({page:'incoming'});let html=t.document.getElementById('app').innerHTML;
+ assert.match(html,/class="listing-title-link incoming-title-link"[^>]*href="#listing\/property\//);
+ assert.doesNotMatch(html,/<button[^>]*data-action="incoming-details"/);
+ await t.click({action:'incoming-pass',kind:'property',id:'p1'});assert.equal(badgeCount(),'1');
+ await t.click({action:'activate-one',kind:'search',id:'own-s2'});assert.equal(badgeCount(),'1');
+ await t.click({action:'incoming-pass',kind:'property',id:'p4'});assert.equal(t.document.getElementById('incoming-nav-count').hidden,true);
+ await t.click({page:'settings'});assert.equal(t.document.getElementById('incoming-nav-count').hidden,true);
+});
+
 test('incoming likes are free to inspect and agent reciprocity checks credit before changing the received pair',async()=>{
  const raw=incomingFixture('agent');raw.credits=0;const t=await setup({initialRaw:raw});await t.click({page:'incoming'});const before=t.model.getState();assert.equal(t.model.incomingLikes().items.length,1);assert.doesNotMatch(t.document.getElementById('app').innerHTML,/incoming-card"[^>]*data-id="p2"/);await t.click({action:'incoming-like',kind:'property',id:'p1'});assert.match(t.document.getElementById('modal-root').innerHTML,/Kreditekre van szükséged/);assert.deepEqual(t.model.getState(),before);await t.click({action:'close'});
  t.model.buyDemoCredits(1);await t.ui.render();await t.click({action:'incoming-like',kind:'property',id:'p1'});assert.equal(t.model.getState().credits,0);assert.equal(t.model.getState().ledger.filter(entry=>entry.amount===-1).length,1);
@@ -1871,6 +1902,51 @@ test('an abandoned save completion cannot unlock a replacement authentication or
  }
 });
 
+test('workspace performance loads credit and interest history only on their own screens without caching balances',async()=>{
+ const local=createModel({getItem:()=>null,setItem:()=>{}}),baseline=local.getState(),calls=[];let balance=baseline.credits;
+ const t=await setup({hosted:true,authenticated:true,hash:'#discover',apiOverrides:{userId:baseline.user.id,getState:async(options={})=>{
+  calls.push(options);return {...baseline,credits:balance,ledger:options.includeLedger===false?[]:baseline.ledger,ledgerLoaded:options.includeLedger!==false,decisions:options.includeDecisions===false?[]:baseline.decisions,decisionsLoaded:options.includeDecisions!==false};
+ }}});
+ assert.equal(calls.at(-1).includeLedger,false);assert.equal(calls.at(-1).includeDecisions,false);
+ balance=17;await t.click({page:'properties'});assert.equal(t.ui.getModelState().credits,17);assert.equal(calls.at(-1).includeLedger,false);assert.equal(calls.at(-1).includeDecisions,false);
+ await t.click({page:'credits'});assert.equal(calls.at(-1).includeLedger,true);assert.equal(calls.at(-1).includeDecisions,false);assert.equal(t.ui.getModelState().ledger.length,baseline.ledger.length);
+ await t.click({page:'discover'});await t.click({action:'tab',tab:'liked'});assert.equal(calls.at(-1).includeLedger,false);assert.equal(calls.at(-1).includeDecisions,true);assert.equal(t.ui.getModelState().decisions.length,baseline.decisions.length);
+});
+
+test('workspace performance labels intentionally omitted credit history while the fresh credit screen is loading',async()=>{
+ const baseline=createModel({getItem:()=>null,setItem:()=>{}}).getState();let release;
+ const t=await setup({hosted:true,authenticated:true,hash:'#settings',apiOverrides:{getState:async(options={})=>{
+  if(options.includeLedger===true)return await new Promise(resolve=>{release=()=>resolve({...baseline,ledgerLoaded:true,decisionsLoaded:false});});
+  return {...baseline,ledger:[],ledgerLoaded:false,decisions:[],decisionsLoaded:false};
+ }}});
+ const opening=t.click({page:'credits'});await settle();
+ assert.match(t.document.getElementById('app').innerHTML,/Kreditmozgások betöltése/);assert.doesNotMatch(t.document.getElementById('app').innerHTML,/Még nincs kreditmozgás/);
+ release();await opening;assert.doesNotMatch(t.document.getElementById('app').innerHTML,/Kreditmozgások betöltése/);assert.equal(t.ui.getModelState().ledger.length,baseline.ledger.length);
+});
+
+test('workspace performance starts known-account conversations alongside state instead of waiting for owned profiles',async()=>{
+ const local=createModel({getItem:()=>null,setItem:()=>{}}),baseline=local.getState(),calls=[];let blocked=false,release;
+ const t=await setup({hosted:true,authenticated:true,hash:'#settings',apiOverrides:{userId:baseline.user.id,getState:async()=>{
+  calls.push('state');if(blocked)return await new Promise(resolve=>{release=()=>resolve(baseline);});return baseline;
+ },matches:async()=>{calls.push('matches');return local.matches();}}});
+ calls.length=0;blocked=true;const opening=t.click({page:'matches'});await settle();
+ assert.deepEqual(calls,['state','matches'],'The account-wide conversation request starts before the owned-profile response finishes');
+ release();await opening;assert.equal(t.ctx.location.hash,'#matches');assert.equal(t.ui.getModelState().user.id,baseline.user.id);
+});
+
+test('workspace performance still verifies a cold account before mapping matched private search bounds',async()=>{
+ const local=createModel({getItem:()=>null,setItem:()=>{}}),baseline=local.getState(),calls=[];let release;
+ const opening=setup({hosted:true,authenticated:true,hash:'#matches',apiOverrides:{getState:async()=>{calls.push('state');return await new Promise(resolve=>{release=()=>resolve(baseline);});},matches:async()=>{calls.push('matches');return local.matches();}}});
+ await settle();assert.deepEqual(calls,['state']);release();const t=await opening;
+ assert.deepEqual(calls,['state','matches']);assert.equal(t.ui.getModelState().user.id,baseline.user.id);
+});
+
+test('workspace performance starts notification reads with the account state and retains cancellation fencing',async()=>{
+ const baseline=createModel({getItem:()=>null,setItem:()=>{}}).getState(),calls=[];let release;
+ const opening=setup({hosted:true,authenticated:true,hash:'#notifications',apiOverrides:{getState:async()=>{calls.push('state');return await new Promise(resolve=>{release=()=>resolve(baseline);});},notifications:async()=>{calls.push('notifications');return{items:[],total:0,unreadCount:0,newCount:0,visitedAt:null,visitThrough:'2026-11-27T12:00:00Z',offset:0,limit:50,hasMore:false};},markNotificationsVisited:async()=>({newCount:0,visitedAt:'2026-11-27T12:00:00Z'})}});
+ await settle();assert.deepEqual(calls,['state','notifications']);release();const t=await opening;await settle();assert.equal(t.ctx.location.hash,'#notifications');assert.ok(t.document.getElementById('notifications-list'));
+});
+
 // A suspended foreground read must not make a navigation click look ignored.
 test('cached workspace navigation responds before a resumed account read completes',async()=>{
  const baseline=await createModel({getItem:()=>null,setItem:()=>{}}).getState();let delayed=false,release;
@@ -2759,7 +2835,7 @@ test('discovery contact buttons use a contact icon and preserve ordinary mutual-
  const positive=()=>t.document.getElementById('app').innerHTML.match(/<button\b[^>]*data-action="like"[^>]*>([\s\S]*?)<\/button>/)?.[1]||'';
  assert.match(html,/decision-like-caption"><span>Vegyük fel a kapcsolatot!<\/span>/);assert.match(positive(),/data-icon="contact"/);assert.doesNotMatch(positive(),/data-icon="heart"/);
  t.ui.openDetails();await settle();const buyerPage=t.document.getElementById('app').innerHTML,buyerDetails=buyerPage.match(/<button\b[^>]*data-action="public-listing-decision"[^>]*data-liked="true"[^>]*>([\s\S]*?)<\/button>/)?.[1]||'';assert.match(buyerPage,/<span class="decision-like-caption"><span>Vegyük fel a kapcsolatot!<\/span>/);assert.match(buyerDetails,/data-icon="contact"/);assert.match(buyerDetails,/data-part="phone"/);assert.match(buyerDetails,/data-part="message"/);assert.doesNotMatch(buyerPage,/Tetszik az ingatlan/);await t.click({action:'public-listing-back'});await settle();
- await t.click({action:'like'});assert.match(t.document.getElementById('modal-root').innerHTML,/Egymásra találtatok/);assert.equal(t.model.getState().credits,24);
+ await t.click({action:'like'});assert.match(t.document.getElementById('modal-root').innerHTML,/Kölcsönös az érdeklődés/);assert.equal(t.model.getState().credits,24);
  await t.click({action:'close'});await t.click({action:'activate-one',kind:'property',id:'own-p1'});html=t.document.getElementById('app').innerHTML;assert.match(html,/Vegyük fel a kapcsolatot!<\/span><small>2 kredit/);assert.match(positive(),/data-icon="contact"/);
  t.ui.openDetails();await settle();assert.match(t.document.getElementById('app').innerHTML,/<span class="decision-like-caption"><span>Vegyük fel a kapcsolatot!<\/span><small>2 kredit<\/small>/);await t.click({action:'public-listing-back'});await settle();
  const before=t.model.getState();await t.click({action:'like'});assert.equal(t.model.getState().credits,before.credits-2);assert.equal(t.model.getState().ledger.filter(row=>row.type==='seller_like').length,1);

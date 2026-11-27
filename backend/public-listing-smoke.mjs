@@ -123,10 +123,52 @@ export async function checkPublicListingRefinements(call,baseProperty){
  const budget=await checkPublicBudgets(call,{buyer,seller});
  await checkListingBudgetContexts(call,budget);
  await checkListingProfileOptions(call,budget);
+ await checkListingConnections(call,budget,baseProperty,accounts);
  const expected={seller,buyer,propertyId:property.id,searchId:search.id,fields:Object.fromEntries(fields.map(key=>[key,property[key]])),
   search:{atticPreference:search.atticPreference,minEnergyRating:search.minEnergyRating,balcony:search.balcony},publicPath,budget};
  console.log('Public listing API checks passed: visibility persistence, nullable amenities, attic/energy criteria, full anonymous details and cloning, archive 404, and version-two null/false idempotency.');
  return expected;
+}
+
+async function checkListingConnections(call,budget,baseProperty,accounts){
+ const {buyer,seller}=budget,path=(kind,id)=>'/listings/'+kind+'/'+source(kind,id)+'/connection';
+ const matched=(await call('/matches',{token:seller})).find(row=>row.id===budget.matchId);assert.ok(matched);
+ const propertyPath=path('property',matched.property.id),searchPath=path('search',matched.searchRequest.id);
+ await call(propertyPath,{status:401});await call(searchPath,{status:401});
+ for(const bad of ['/listings/property/'+source('search',matched.searchRequest.id)+'/connection','/listings/property/property-'+'0'.repeat(64)+'/connection'])await call(bad,{token:buyer,status:404});
+ const stable=async(token)=>{const entity=await call('/me/entities',{token}),me=await call('/me',{token});return{active:entity.active,credits:me.credits,decisions:entity.decisions,ledger:await call('/credits/ledger',{token})};};
+ const minimal=response=>{
+  assert.equal(response.connected,true);assert.ok(response.matchId);assert.ok(response.contact.email);assert.ok(response.contact.phone);
+  assert.deepEqual(Object.keys(response.contact).sort(),['accountType','email','id','name','phone']);
+  for(const kind of ['property','searchRequest'])assert.deepEqual(Object.keys(response[kind]).sort(),['id','publicListingKey','title']);
+  assert.doesNotMatch(JSON.stringify(response),/addressDetails|latitude|longitude|geocoding|creationRequest|ownerId|passwordHash|maxPrice|publicMaxPrice|minPrice|90000000|80000000/);
+ };
+ // Current active profiles point elsewhere. Existing contact authorization is
+ // account/pair-scoped and never silently activates its old owned profile.
+ const beforeBuyer=await stable(buyer),beforeSeller=await stable(seller);
+ const buyerConnection=await call(propertyPath,{token:buyer}),sellerConnection=await call(searchPath,{token:seller});minimal(buyerConnection);minimal(sellerConnection);
+ assert.equal(buyerConnection.matchId,budget.matchId);assert.equal(buyerConnection.contact.id,accounts.seller.id);assert.equal(buyerConnection.contact.email,accounts.seller.email);
+ assert.equal(sellerConnection.matchId,budget.matchId);assert.equal(sellerConnection.contact.id,accounts.buyer.id);assert.equal(sellerConnection.contact.email,accounts.buyer.email);
+ assert.equal(buyerConnection.property.publicListingKey,source('property',matched.property.id));assert.equal(sellerConnection.searchRequest.publicListingKey,source('search',matched.searchRequest.id));
+ for(const [token,url]of [[seller,propertyPath],[buyer,searchPath],[buyer,path('property',budget.propertyId)]]){
+  const missing=await call(url,{token});assert.equal(missing.connected,false);assert.equal(missing.contact,null);assert.equal(missing.matchId,null);
+ }
+ assert.deepEqual(await stable(buyer),beforeBuyer);assert.deepEqual(await stable(seller),beforeSeller,'Read-only connections must not bill, decide or switch the active profile');
+ // A separate disposable pair proves a deleted own profile does not erase
+ // contact history, even when the current selection becomes completely empty.
+ const ownProperty=await call('/properties',{token:seller,method:'POST',status:201,body:{...baseProperty,title:'Törölt saját profil kapcsolatpróbája',street:'OTTHONRA TEST',houseNumber:'92',price:30_000_000,area:50,rooms:2}});
+ const ownSearch=await call('/searches',{token:buyer,method:'POST',status:201,body:{title:'Kapcsolati előzménypróba',city:ownProperty.city,locationIds:[ownProperty.locationId],type:ownProperty.type,maxPrice:40_000_000,balcony:false,elevator:false}});
+ await call('/me/active',{token:seller,method:'PUT',body:{kind:'property',id:ownProperty.id}});await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:ownSearch.id}});
+ await call('/decisions',{token:seller,method:'POST',body:{propertyId:ownProperty.id,searchRequestId:ownSearch.id,liked:true,listingKey:source('search',ownSearch.id)}});
+ const mutual=await call('/decisions',{token:buyer,method:'POST',body:{propertyId:ownProperty.id,searchRequestId:ownSearch.id,liked:true,listingKey:source('property',ownProperty.id)}});assert.ok(mutual.matchId);
+ await call('/properties/'+ownProperty.id,{token:seller,method:'DELETE',status:204});
+ assert.equal((await call('/me/entities',{token:seller})).active,null);
+ const historical=await call(path('search',ownSearch.id),{token:seller});minimal(historical);assert.equal(historical.matchId,mutual.matchId);assert.equal(historical.contact.id,accounts.buyer.id);
+ await call(path('property',ownProperty.id),{token:buyer,status:404});
+ await call('/searches/'+ownSearch.id,{token:buyer,method:'DELETE',status:204});await call(path('search',ownSearch.id),{token:seller,status:404});
+ assert.ok((await call('/matches',{token:seller})).some(row=>row.id===mutual.matchId),'Existing conversations survive removal of their profiles');
+ await call('/me/active',{token:seller,method:'PUT',body:{kind:'property',id:budget.propertyId}});await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:budget.searchId}});
+ console.log('Listing connection checks passed: authenticated exact-entity contacts and linked profiles, unrelated/own listing denial, active-independent read-only access, private-budget/address exclusion and archived-own conversation history.');
 }
 
 async function checkListingBudgetContexts(call,budget){
@@ -259,5 +301,10 @@ export async function verifyPublicListingRefinements(fixture,call){
  for(const [key,value]of Object.entries(fixture.search))assert.deepEqual(search[key],value,key+' search criterion must survive the actual restart');
  const detail=await call(fixture.publicPath);assert.equal(detail.listing.address,'');assert.equal(detail.listing.balcony,true);assert.equal(detail.listing.isAttic,false);assert.equal(detail.listing.energyRatingScheme,'2023');
  await verifyPublicBudgets(fixture.budget,call);
+ const matched=(await call('/matches',{token:fixture.seller})).find(row=>row.id===fixture.budget.matchId);assert.ok(matched);
+ for(const [token,kind,id]of [[fixture.buyer,'property',matched.property.id],[fixture.seller,'search',matched.searchRequest.id]]){
+  const connection=await call('/listings/'+kind+'/'+source(kind,id)+'/connection',{token});assert.equal(connection.connected,true);assert.equal(connection.matchId,matched.id);assert.ok(connection.contact.email);assert.ok(connection.contact.phone);
+  assert.doesNotMatch(JSON.stringify(connection),/addressDetails|latitude|longitude|geocoding|maxPrice|publicMaxPrice/);
+ }
  console.log('Public listing restart preservation passed: address switches, nullable amenities, attic and energy criteria, and stable anonymous URLs.');
 }

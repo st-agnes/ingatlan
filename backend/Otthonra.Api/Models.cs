@@ -342,7 +342,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
 public static class Dto
 {
     public static string[] Strings(string? json) => string.IsNullOrWhiteSpace(json) ? [] : JsonSerializer.Deserialize<string[]>(json) ?? [];
-    public static object Profile(User u, int unreadNotificationCount = 0, int newNotificationCount = 0) => new { u.Id, u.Name, u.Email, u.Phone, u.AccountType, u.Credits, u.ActiveKind, u.ActiveEntityId, u.CreatedAt, unreadNotificationCount, newNotificationCount, notificationLastVisitAt = NotificationVisits.Normalize(u.NotificationLastVisitAt) };
+    public static object Profile(User u, int unreadNotificationCount = 0, int newNotificationCount = 0, int pendingIncomingLikeCount = 0) => new { u.Id, u.Name, u.Email, u.Phone, u.AccountType, u.Credits, u.ActiveKind, u.ActiveEntityId, u.CreatedAt, unreadNotificationCount, newNotificationCount, pendingIncomingLikeCount, notificationLastVisitAt = NotificationVisits.Normalize(u.NotificationLastVisitAt) };
     public static string PublicAddress(Property property) => property.HideStreet ? ""
         : property.Street + (property.HideHouseNumber || string.IsNullOrWhiteSpace(property.HouseNumber) ? "" : " " + property.HouseNumber);
     // Public cards never contain owner contacts or internal geocoding data.

@@ -411,6 +411,27 @@ test('incoming likes filter every own response and mutual match before counting 
  for(const options of [{offset:-1},{limit:101},{offset:1.5}])assert.throws(()=>m.incomingLikes(options),/lapozási/);
 });
 
+test('the pending-interest badge counts the entire current inbox and follows replies, profile switches and deletion',()=>{
+ const storage=store(),initial=createModel(storage);initial.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));
+ raw.matches=[];raw.decisions=[];
+ const source=raw.properties.find(row=>row.id==='p1');
+ for(let index=0;index<63;index++){
+  const id=`badge-property-${index}`;raw.properties.push({...source,id});
+  raw.decisions.push({id:`badge-like-${index}`,actorKind:'property',actorId:id,propertyId:id,searchId:'own-s1',liked:true,createdAt:'2026-11-09T10:00:00Z'});
+ }
+ raw.decisions.push({id:'badge-other-search',actorKind:'property',actorId:'p1',propertyId:'p1',searchId:'own-s2',liked:true,createdAt:'2026-11-09T10:00:00Z'});
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));const m=createModel(storage),before=storage.getItem(STORAGE_KEY);
+ assert.equal(m.getState().pendingIncomingLikeCount,63);assert.equal(m.incomingLikes({limit:50}).items.length,50);assert.equal(m.incomingLikes().total,63);
+ assert.equal(storage.getItem(STORAGE_KEY),before,'Counting does not create decisions, charges or notification receipts');
+ const changed=JSON.parse(before);changed.decisions.push({id:'badge-own-pass',actorKind:'search',actorId:'own-s1',propertyId:'badge-property-0',searchId:'own-s1',liked:false,createdAt:'2026-11-09T11:00:00Z'});
+ changed.matches.push({id:'badge-mutual',propertyId:'badge-property-1',searchId:'own-s1',createdAt:'2026-11-09T11:00:00Z',messages:[]});
+ changed.properties.find(row=>row.id==='badge-property-2').archived=true;storage.setItem(STORAGE_KEY,JSON.stringify(changed));
+ const reloaded=createModel(storage);assert.equal(reloaded.getState().pendingIncomingLikeCount,60);assert.equal(reloaded.incomingLikes().total,60);
+ reloaded.activate('search','own-s2');assert.equal(reloaded.getState().pendingIncomingLikeCount,1);
+ reloaded.deleteEntity('search','own-s2');assert.equal(reloaded.getState().active.id,'own-s1');assert.equal(reloaded.getState().pendingIncomingLikeCount,60);
+ const inactive=JSON.parse(storage.getItem(STORAGE_KEY));inactive.active={kind:'search',id:null};storage.setItem(STORAGE_KEY,JSON.stringify(inactive));assert.equal(createModel(storage).getState().pendingIncomingLikeCount,0);
+});
+
 test('incoming pagination is stable, excludes invalid counterparties and isolates all agent interactions',()=>{
  // Seed existing likes before the equal-time pagination candidates, independent of the wall clock.
  const storage=store(),initial=createModel(storage,()=> '2026-11-09T11:00:00.000Z');initial.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));raw.users.find(user=>user.id==='me').accountType='agent';
@@ -941,4 +962,19 @@ test('demo profile updates require a phone while legacy phone-less profiles rema
  assert.equal(model.getState().user.name,initial.user.name);assert.equal(model.getState().user.phone,'');
  const saved=model.updateProfile({phone:' +36 30 555 0199 '});assert.equal(saved.phone,'+36 30 555 0199');
  assert.equal(createModel(storage).getState().user.phone,'+36 30 555 0199');
+});
+
+test('demo listing connections belong to the viewed reciprocal pair independently of active selection',()=>{
+ const storage=store(),m=createModel(storage);m.activate('property','own-p1');
+ const baseline=JSON.parse(storage.getItem(STORAGE_KEY)),matched=m.matches().find(row=>row.property.ownerId!==baseline.userId);
+ assert.ok(matched);const key=matched.property.publicListingKey;
+ const before=storage.getItem(STORAGE_KEY),connection=m.getListingConnection('property',key);
+ assert.equal(connection.connected,true);assert.equal(connection.matchId,matched.id);assert.equal(connection.contact.email,matched.partner.email);
+ assert.equal(connection.property.publicListingKey,key);assert.deepEqual(m.getState().active,{kind:'property',id:'own-p1'});assert.equal(storage.getItem(STORAGE_KEY),before,'Contact lookup is read-only');
+ const unmatched=m.feed().find(row=>!m.matches().some(match=>match.search.id===row.id));
+ if(unmatched)assert.deepEqual(m.getListingConnection('search',unmatched.publicListingKey),{connected:false});
+ assert.deepEqual(m.getListingConnection('property','property-'+'0'.repeat(64)),{connected:false});
+ const raw=JSON.parse(before),ownSearch=raw.searches.find(row=>row.id===matched.search.id);ownSearch.archived=true;
+ storage.setItem(STORAGE_KEY,JSON.stringify(raw));const archived=createModel(storage);assert.equal(archived.getListingConnection('property',key).connected,true,'Archiving the owned profile preserves the existing conversation');
+ raw.properties.find(row=>row.id===matched.property.id).archived=true;storage.setItem(STORAGE_KEY,JSON.stringify(raw));assert.deepEqual(createModel(storage).getListingConnection('property',key),{connected:false});
 });

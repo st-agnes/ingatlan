@@ -23,6 +23,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     ValidateIssuer = true, ValidIssuer = issuer, ValidateAudience = true, ValidAudience = "otthonra-clients", ValidateLifetime = true, ClockSkew = TimeSpan.FromSeconds(30)
 });
 builder.Services.AddAuthorization();
+builder.Services.AddApiResponseCompression();
 builder.Services.AddLikeRefunds(builder.Configuration);
 builder.Services.AddSellerFeedback();
 builder.Services.AddPublicLanding(builder.Configuration);
@@ -52,6 +53,7 @@ app.Use(async (context, next) =>
     catch (DbUpdateException e) { app.Logger.LogWarning(e, "Database write rejected"); context.Response.StatusCode = 409; await context.Response.WriteAsJsonAsync(new { message = "Az adat közben megváltozott, vagy már létezik. Frissítsd az oldalt, és próbáld újra." }); }
 });
 app.UseCors();
+app.UseWhen(ApiResponseCompression.IsEligible, branch => branch.UseResponseCompression());
 app.UseAuthentication();
 app.UseRateLimiter();
 app.UseAuthorization();
@@ -125,7 +127,8 @@ api.MapGet("/me", async (AppDb db, ClaimsPrincipal principal, LikeRefundService 
     var user = await CurrentUser(db, principal);
     var unreadNotificationCount = await db.UserNotifications.CountAsync(item => item.UserId == userId && item.ReadAt == null, cancellationToken);
     var newNotificationCount = await NotificationVisits.Since(db.UserNotifications.AsNoTracking(), userId, user.NotificationLastVisitAt).CountAsync(cancellationToken);
-    return Results.Ok(Dto.Profile(user, unreadNotificationCount, newNotificationCount));
+    var pendingIncomingLikeCount = await IncomingLikes.Awaiting(db, user).CountAsync(cancellationToken);
+    return Results.Ok(Dto.Profile(user, unreadNotificationCount, newNotificationCount, pendingIncomingLikeCount));
 });
 api.MapPut("/me", async (ProfileInput input, AppDb db, ClaimsPrincipal principal) =>
 {
@@ -134,30 +137,35 @@ api.MapPut("/me", async (ProfileInput input, AppDb db, ClaimsPrincipal principal
     user.Name = Rules.Required(input.Name, "név", 100); user.Email = email; user.Phone = phone;
     await db.SaveChangesAsync(); return Results.Ok(Dto.Profile(user));
 });
-api.MapGet("/me/entities", async (AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
+api.MapGet("/me/entities", async (bool? includeDecisions, AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
 {
     await refunds.RunAsync(principal.UserId(), cancellationToken);
     var user = await CurrentUser(db, principal);
     var properties = await db.Properties.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).OrderByDescending(x => x.CreatedAt).ToListAsync();
     var searches = await db.SearchRequests.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).OrderByDescending(x => x.CreatedAt).ToListAsync();
-    var decisionRows = await (from d in db.Decisions.AsNoTracking()
-        join p in db.Properties.AsNoTracking() on d.PropertyId equals p.Id
-        join s in db.SearchRequests.AsNoTracking() on d.SearchRequestId equals s.Id
-        where d.ActorUserId == user.Id
-        orderby d.CreatedAt descending
-        select new { Decision = d, Property = p, Search = s }).ToListAsync();
-    var ownerProfiles = await OwnerProfiles(db, decisionRows.SelectMany(row => new[] { row.Property.OwnerId, row.Search.OwnerId }));
+    var decisionsIncluded = includeDecisions is not false;
+    object[] decisions = [];
+    if (decisionsIncluded)
+    {
+        var decisionRows = await (from d in db.Decisions.AsNoTracking()
+            join p in db.Properties.AsNoTracking() on d.PropertyId equals p.Id
+            join s in db.SearchRequests.AsNoTracking() on d.SearchRequestId equals s.Id
+            where d.ActorUserId == user.Id
+            orderby d.CreatedAt descending
+            select new { Decision = d, Property = p, Search = s }).ToListAsync(cancellationToken);
+        var ownerProfiles = await OwnerProfiles(db, decisionRows.SelectMany(row => new[] { row.Property.OwnerId, row.Search.OwnerId }));
+        decisions = decisionRows.Select(row => (object)new {
+            row.Decision.Id, row.Decision.ActorKind,
+            actorId = row.Decision.ActorKind == "property" ? row.Decision.PropertyId : row.Decision.SearchRequestId,
+            row.Decision.PropertyId, searchId = row.Decision.SearchRequestId, row.Decision.SearchRequestId,
+            row.Decision.Liked, row.Decision.Charged, row.Decision.RefundedAt, row.Decision.CreatedAt,
+            property = Dto.Property(row.Property, ownerAccountType: ownerProfiles[row.Property.OwnerId].AccountType, ownerName: ownerProfiles[row.Property.OwnerId].Name), search = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name, own: row.Search.OwnerId == user.Id)
+        }).ToArray();
+    }
     var reportedOwnerIds = await db.UserReports.AsNoTracking().Where(report => report.ReporterId == user.Id).Select(report => report.ReportedUserId).Distinct().ToListAsync();
     var reportedEntities = await db.UserReports.AsNoTracking().Where(report => report.ReporterId == user.Id)
         .Select(report => new { report.EntityKind, report.EntityId, report.Reason }).ToListAsync();
-    var decisions = decisionRows.Select(row => new {
-        row.Decision.Id, row.Decision.ActorKind,
-        actorId = row.Decision.ActorKind == "property" ? row.Decision.PropertyId : row.Decision.SearchRequestId,
-        row.Decision.PropertyId, searchId = row.Decision.SearchRequestId, row.Decision.SearchRequestId,
-        row.Decision.Liked, row.Decision.Charged, row.Decision.RefundedAt, row.Decision.CreatedAt,
-        property = Dto.Property(row.Property, ownerAccountType: ownerProfiles[row.Property.OwnerId].AccountType, ownerName: ownerProfiles[row.Property.OwnerId].Name), search = Dto.Search(row.Search, ownerProfiles[row.Search.OwnerId].AccountType, ownerProfiles[row.Search.OwnerId].Name, own: row.Search.OwnerId == user.Id)
-    });
-    return Results.Ok(new { properties = properties.Select(p => Dto.Property(p, true, user.AccountType, user.Name)), searchRequests = searches.Select(s => Dto.Search(s, user.AccountType, user.Name, own: true)), decisions, reportedOwnerIds, reportedEntities, active = user.ActiveKind is null ? null : new { kind = user.ActiveKind, id = user.ActiveEntityId } });
+    return Results.Ok(new { properties = properties.Select(p => Dto.Property(p, true, user.AccountType, user.Name)), searchRequests = searches.Select(s => Dto.Search(s, user.AccountType, user.Name, own: true)), decisions, decisionsIncluded, reportedOwnerIds, reportedEntities, active = user.ActiveKind is null ? null : new { kind = user.ActiveKind, id = user.ActiveEntityId } });
 });
 api.MapPut("/me/active", async (ActiveInput input, AppDb db, ClaimsPrincipal principal) =>
 {
@@ -262,23 +270,7 @@ api.MapGet("/incoming-likes", async (int? offset, int? limit, AppDb db, ClaimsPr
     if (!ownsActive)
         return Results.Ok(new { active = (object?)null, items = Array.Empty<IncomingLikeItem>(), total = 0,
             offset = page.Offset, limit = page.Limit, hasMore = false, likeCost = 0 });
-    var opposite = kind == "property" ? "search" : "property";
-    var incoming = from decision in db.Decisions.AsNoTracking()
-        join property in db.Properties.AsNoTracking() on decision.PropertyId equals property.Id
-        join search in db.SearchRequests.AsNoTracking() on decision.SearchRequestId equals search.Id
-        join propertyOwner in db.Users.AsNoTracking() on property.OwnerId equals propertyOwner.Id
-        join searchOwner in db.Users.AsNoTracking() on search.OwnerId equals searchOwner.Id
-        where decision.Liked && decision.ActorKind == opposite
-            && (kind == "property" ? property.Id == activeId : search.Id == activeId)
-            && decision.ActorUserId == (opposite == "property" ? property.OwnerId : search.OwnerId)
-            && property.OwnerId != search.OwnerId && !property.Archived && !search.Archived
-            && !(propertyOwner.AccountType == AccountTypes.Agent && searchOwner.AccountType == AccountTypes.Agent)
-            && !db.Decisions.Any(own => own.PropertyId == property.Id && own.SearchRequestId == search.Id
-                && own.ActorKind == kind && own.ActorUserId == user.Id)
-            && !db.Matches.Any(match => match.PropertyId == property.Id && match.SearchRequestId == search.Id)
-        select new { Decision = decision, Property = property, Search = search,
-            PropertyOwnerType = propertyOwner.AccountType, SearchOwnerType = searchOwner.AccountType,
-            PropertyOwnerName = propertyOwner.Name, SearchOwnerName = searchOwner.Name };
+    var incoming = IncomingLikes.Awaiting(db, user);
     var total = await incoming.CountAsync();
     var rows = await incoming.OrderByDescending(row => row.Decision.CreatedAt).ThenByDescending(row => row.Decision.Id)
         .Skip(page.Offset).Take(page.Limit).ToListAsync();

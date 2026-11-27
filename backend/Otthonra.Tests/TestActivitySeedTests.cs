@@ -13,12 +13,12 @@ public class TestActivitySeedTests
     [Fact]
     public void ActivityChargesFollowActorRolesAndBalancesEqualTheLedger()
     {
-        Assert.Equal(189, Plan.Decisions.Length);
+        Assert.Equal(207, Plan.Decisions.Length);
         Assert.Equal(2, Plan.Matches.Length);
         Assert.Equal(4, Plan.Messages.Length);
-        Assert.Equal(254, Plan.Decisions.Sum(item => item.Charged));
-        Assert.Equal(128, Plan.Decisions.Count(item => item.Charged > 0));
-        Assert.Equal(189, Plan.Decisions.Select(item => (item.PropertyId, item.SearchRequestId, item.ActorKind)).Distinct().Count());
+        Assert.Equal(280, Plan.Decisions.Sum(item => item.Charged));
+        Assert.Equal(142, Plan.Decisions.Count(item => item.Charged > 0));
+        Assert.Equal(207, Plan.Decisions.Select(item => (item.PropertyId, item.SearchRequestId, item.ActorKind)).Distinct().Count());
         foreach (var decision in Plan.Decisions)
         {
             var property = Plan.Properties.Single(item => item.Id == decision.PropertyId);
@@ -45,9 +45,9 @@ public class TestActivitySeedTests
             }
         }
         Assert.All(Plan.Users, user => Assert.Equal(user.Credits, Plan.Credits.Where(item => item.UserId == user.Id).Sum(item => item.Amount)));
-        Assert.Equal(374, Plan.Users.Single(item => item.Email == "aktivitas-kereso@otthonra.local").Credits);
-        Assert.Equal(376, Plan.Users.Single(item => item.Email == "aktivitas-elado@otthonra.local").Credits);
-        Assert.Equal(496, Plan.Users.Single(item => item.Email == "aktivitas-ingatlanos@otthonra.local").Credits);
+        Assert.Equal(370, Plan.Users.Single(item => item.Email == "aktivitas-kereso@otthonra.local").Credits);
+        Assert.Equal(360, Plan.Users.Single(item => item.Email == "aktivitas-elado@otthonra.local").Credits);
+        Assert.Equal(490, Plan.Users.Single(item => item.Email == "aktivitas-ingatlanos@otthonra.local").Credits);
     }
 
     [Fact]
@@ -66,24 +66,24 @@ public class TestActivitySeedTests
             Assert.All(messages, item => { Assert.True(item.CreatedAt > match.CreatedAt); Assert.False(string.IsNullOrWhiteSpace(item.Text)); });
         }
         Assert.All(Plan.Messages, item => Assert.Contains(Plan.Matches, match => match.Id == item.MatchId));
-        Assert.Equal(185, Plan.Decisions.Count(item => !Plan.Matches.Any(match => match.PropertyId == item.PropertyId && match.SearchRequestId == item.SearchRequestId)));
+        Assert.Equal(203, Plan.Decisions.Count(item => !Plan.Matches.Any(match => match.PropertyId == item.PropertyId && match.SearchRequestId == item.SearchRequestId)));
     }
 
     [Fact]
     public void NotificationsHaveUniqueStableIdsCorrectOwnedTargetsAndReadTimestamps()
     {
-        Assert.Equal(197, Plan.Notifications.Length);
-        Assert.Equal(189, Plan.Notifications.Count(item => item.Kind == "incoming_like"));
+        Assert.Equal(215, Plan.Notifications.Length);
+        Assert.Equal(207, Plan.Notifications.Count(item => item.Kind == "incoming_like"));
         Assert.Equal(4, Plan.Notifications.Count(item => item.Kind == "match_created"));
         Assert.Equal(4, Plan.Notifications.Count(item => item.Kind == "message_received"));
         Assert.Equal(3, Plan.Notifications.Count(item => item.ReadAt is not null));
-        Assert.Equal(194, Plan.Notifications.Count(item => item.ReadAt is null));
+        Assert.Equal(212, Plan.Notifications.Count(item => item.ReadAt is null));
         var ids = Plan.Users.Select(item => item.Id).Concat(Plan.Properties.Select(item => item.Id))
             .Concat(Plan.Searches.Select(item => item.Id)).Concat(Plan.Credits.Select(item => item.Id))
             .Concat(Plan.Decisions.Select(item => item.Id)).Concat(Plan.Matches.Select(item => item.Id))
             .Concat(Plan.Messages.Select(item => item.Id)).Concat(Plan.Notifications.Select(item => item.Id)).ToArray();
         Assert.Equal(ids.Length, ids.Distinct().Count());
-        Assert.Equal(197, Plan.Notifications.Select(item => (item.UserId, item.EventKey)).Distinct().Count());
+        Assert.Equal(215, Plan.Notifications.Select(item => (item.UserId, item.EventKey)).Distinct().Count());
         foreach (var item in Plan.Notifications)
         {
             Assert.Equal(TestDataSeed.StableId($"activity-notification:{item.UserId:D}:{item.EventKey}"), item.Id);
@@ -133,6 +133,33 @@ public class TestActivitySeedTests
         Assert.Equal(count, pending.Length);
         Assert.Equal(count, pending.Select(item => (item.PropertyId, item.SearchRequestId)).Distinct().Count());
         Assert.Equal(count, pending.Select(item => item.CreatedAt).Distinct().Count());
+    }
+
+    [Fact]
+    public void SeveralOwnedProfilesHaveSeparatePendingInboxesWithoutChangingTheInitialSelection()
+    {
+        var expected = new[] {
+            ("activitybuyer", "search", "activitybuyer-search-2", 3),
+            ("activitybuyer", "search", "activitybuyer-seller-search-1", 3),
+            ("activityseller", "property", "activityseller-property-2", 3),
+            ("activityseller", "property", "activityseller-buyer-property-10", 3),
+            ("activityagent", "search", "activityagent-search-2", 6)
+        };
+        foreach (var (ownerKey, kind, fixtureKey, count) in expected)
+        {
+            var owner = Plan.Users.Single(item => item.Id == TestDataSeed.StableId("user:" + ownerKey));
+            var id = TestDataSeed.StableId(kind + ":" + fixtureKey);
+            Assert.NotEqual(owner.ActiveEntityId, id);
+            Assert.True(kind == "property" ? Plan.Properties.Any(item => item.Id == id && item.OwnerId == owner.Id)
+                : Plan.Searches.Any(item => item.Id == id && item.OwnerId == owner.Id));
+            var pending = Plan.Decisions.Where(item => item.ActorUserId != owner.Id
+                && (kind == "property" ? item.PropertyId : item.SearchRequestId) == id
+                && !Plan.Decisions.Any(own => own.ActorUserId == owner.Id && own.ActorKind == kind
+                    && own.PropertyId == item.PropertyId && own.SearchRequestId == item.SearchRequestId)
+                && !Plan.Matches.Any(match => match.PropertyId == item.PropertyId && match.SearchRequestId == item.SearchRequestId)).ToArray();
+            Assert.Equal(count, pending.Length);
+            Assert.Equal(count, pending.Select(item => (item.PropertyId, item.SearchRequestId)).Distinct().Count());
+        }
     }
 
     [Fact]
