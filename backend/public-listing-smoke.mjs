@@ -162,7 +162,7 @@ async function checkListingConnections(call,budget,baseProperty,accounts){
  await call('/decisions',{token:seller,method:'POST',body:{propertyId:ownProperty.id,searchRequestId:ownSearch.id,liked:true,listingKey:source('search',ownSearch.id)}});
  const mutual=await call('/decisions',{token:buyer,method:'POST',body:{propertyId:ownProperty.id,searchRequestId:ownSearch.id,liked:true,listingKey:source('property',ownProperty.id)}});assert.ok(mutual.matchId);
  await call('/properties/'+ownProperty.id,{token:seller,method:'DELETE',status:204});
- assert.equal((await call('/me/entities',{token:seller})).active.id,null);
+ assert.equal((await call('/me/entities',{token:seller})).active,null);
  const historical=await call(path('search',ownSearch.id),{token:seller});minimal(historical);assert.equal(historical.matchId,mutual.matchId);assert.equal(historical.contact.id,accounts.buyer.id);
  await call(path('property',ownProperty.id),{token:buyer,status:404});
  await call('/searches/'+ownSearch.id,{token:buyer,method:'DELETE',status:204});await call(path('search',ownSearch.id),{token:seller,status:404});
