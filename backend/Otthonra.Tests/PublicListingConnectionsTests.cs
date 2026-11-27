@@ -1,5 +1,5 @@
 using System.Text.Json;
-using System.Text.RegularExpressions;
+using Regex = System.Text.RegularExpressions.Regex;
 using Microsoft.EntityFrameworkCore;
 using Otthonra.Api;
 using Xunit;
