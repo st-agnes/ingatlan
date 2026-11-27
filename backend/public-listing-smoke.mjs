@@ -134,7 +134,7 @@ async function checkListingBudgetContexts(call,budget){
  const propertyPath='/listings/property/'+source('property',propertyId)+'/context',searchPath='/listings/search/'+source('search',searchId)+'/context';
  const buyerContext=await call(propertyPath,{token:buyer}),sellerContext=await call(searchPath,{token:seller});
  assert.equal(buyerContext.compatibilityScore,100);assert.equal(buyerContext.isExact,true);assert.equal(buyerContext.active.maxPrice,90_000_000);
- assert.equal(sellerContext.compatible,true);assert.equal(sellerContext.isExact,false);assert.ok(sellerContext.compatibilityScore<100);assert.equal(sellerContext.requiresApproximateConsent,true);
+ assert.equal(sellerContext.compatible,true);assert.equal(sellerContext.isExact,false);assert.ok(sellerContext.compatibilityScore<100);assert.equal(sellerContext.requiresApproximateConsent,false);assert.equal(sellerContext.canDecide,true);
  assert.equal(sellerContext.item.searchRequest.maxPrice,70_000_000);assert.equal(Object.hasOwn(sellerContext.item.searchRequest,'publicMaxPrice'),false);
  const foreign=JSON.stringify(sellerContext);assert.ok(!foreign.includes('90000000'));assert.ok(!foreign.includes('80000000'));
  for(const context of [buyerContext,sellerContext]){
@@ -146,9 +146,37 @@ async function checkListingBudgetContexts(call,budget){
  const prior=await call(searchPath,{token:seller});assert.equal(prior.myDecision,'liked');assert.equal(prior.matchId,matchId);assert.equal(prior.canDecide,false);assert.equal(prior.item.likedYou,true);
  await call('/me/active',{token:seller,method:'PUT',body:{kind:'property',id:propertyId}});
  const ownSearch=(await call('/me/entities',{token:buyer})).searchRequests.find(row=>row.id===searchId);assert.ok(ownSearch);
- const exact=await call('/searches',{token:buyer,method:'POST',body:{title:'Teljes egyezés védi a részleges döntést',city:ownSearch.city,locationIds:ownSearch.locationIds,type:ownSearch.type,maxPrice:100_000_000,publicMaxPrice:85_000_000,balcony:false,elevator:false},status:201});
- const blocked=await call(searchPath,{token:seller});assert.equal(blocked.hasUnseenExact,true);assert.equal(blocked.canDecide,false);assert.equal(blocked.unavailableReason,'exact_matches_remaining');
+ const exact=await call('/searches',{token:buyer,method:'POST',body:{title:'Felfedezésben előbb teljes egyezés',city:ownSearch.city,locationIds:ownSearch.locationIds,type:ownSearch.type,maxPrice:100_000_000,publicMaxPrice:85_000_000,balcony:false,elevator:false},status:201});
+ const direct=await call(searchPath,{token:seller});assert.equal(direct.hasUnseenExact,false);assert.equal(direct.canDecide,true);assert.equal(direct.requiresApproximateConsent,false);assert.equal(direct.unavailableReason,null);
+ // Discovery keeps the exact-first gate, whereas a detail action names and
+ // validates the actual opposite listing and may decide an eligible partial.
  await call('/decisions',{token:seller,method:'POST',body:{propertyId,searchRequestId:searchId,liked:false,allowApproximate:true},status:400});
+ const partial=await call('/searches',{token:buyer,method:'POST',body:{title:'Közvetlen részleges adatlapdöntés',city:ownSearch.city,locationIds:ownSearch.locationIds,type:ownSearch.type,maxPrice:90_000_000,publicMaxPrice:70_000_000,balcony:false,elevator:false},status:201});
+ const partialKey=source('search',partial.id),partialPath='/listings/search/'+partialKey+'/context';
+ const partialContext=await call(partialPath,{token:seller});assert.equal(partialContext.isExact,false);assert.equal(partialContext.canDecide,true);
+ const wrongType=await call('/searches',{token:buyer,method:'POST',body:{title:'Eltérő típus nem engedélyezhető',city:ownSearch.city,locationIds:ownSearch.locationIds,type:'Ház',maxPrice:90_000_000,balcony:false,elevator:false},status:201});
+ const wrongTypeContext=await call('/listings/search/'+source('search',wrongType.id)+'/context',{token:seller});assert.equal(wrongTypeContext.canDecide,false);assert.equal(wrongTypeContext.compatible,false);
+ await call('/decisions',{token:seller,method:'POST',body:{propertyId,searchRequestId:wrongType.id,liked:true,listingKey:source('search',wrongType.id)},status:400});
+ await call('/searches/'+wrongType.id,{token:buyer,method:'DELETE',status:204});
+ const beforeDirect=(await call('/me',{token:seller})).credits,beforeDirectLedger=await call('/credits/ledger',{token:seller});
+ const partialDecision={propertyId,searchRequestId:partial.id,liked:true};
+ await call('/decisions',{token:seller,method:'POST',body:{...partialDecision,allowApproximate:true},status:400});
+ for(const listingKey of ['',source('property',propertyId),source('search',exact.id),'search-'+'0'.repeat(64)])
+  await call('/decisions',{token:seller,method:'POST',body:{...partialDecision,listingKey},status:400});
+ await call('/decisions',{token:seller,method:'POST',body:{...partialDecision,propertyId:matched.property.id,listingKey:partialKey},status:403});
+ assert.equal((await call('/me',{token:seller})).credits,beforeDirect);assert.deepEqual(await call('/credits/ledger',{token:seller}),beforeDirectLedger,'Invalid detail keys and active pairs never debit credits');
+ const accepted=await call('/decisions',{token:seller,method:'POST',body:{...partialDecision,listingKey:partialKey}});assert.equal(accepted.charged,2);assert.equal(accepted.matchId,null);
+ const retry=await call('/decisions',{token:seller,method:'POST',body:{...partialDecision,listingKey:partialKey}});assert.equal(retry.charged,0);assert.equal((await call('/me',{token:seller})).credits,beforeDirect-2);
+ await call('/decisions',{token:seller,method:'POST',body:{...partialDecision,liked:false,listingKey:partialKey},status:409});
+ const decided=await call(partialPath,{token:seller});assert.equal(decided.myDecision,'liked');assert.equal(decided.canDecide,false);
+ const buyerPartial=await call('/searches',{token:buyer,method:'POST',body:{title:'Közvetlen részleges elutasítás',city:ownSearch.city,locationIds:ownSearch.locationIds,type:ownSearch.type,maxPrice:60_000_000,balcony:false,elevator:false},status:201});
+ await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:buyerPartial.id}});
+ const buyerPartialContext=await call(propertyPath,{token:buyer});assert.equal(buyerPartialContext.isExact,false);assert.equal(buyerPartialContext.canDecide,true);
+ await call('/decisions',{token:buyer,method:'POST',body:{propertyId,searchRequestId:buyerPartial.id,liked:false},status:400});
+ const rejected=await call('/decisions',{token:buyer,method:'POST',body:{propertyId,searchRequestId:buyerPartial.id,liked:false,listingKey:source('property',propertyId)}});assert.equal(rejected.charged,0);
+ const passed=await call(propertyPath,{token:buyer});assert.equal(passed.myDecision,'passed');assert.equal(passed.canDecide,false);
+ await call('/me/active',{token:buyer,method:'PUT',body:{kind:'search',id:searchId}});
+ for(const row of [partial,buyerPartial])await call('/searches/'+row.id,{token:buyer,method:'DELETE',status:204});
  await call('/searches/'+exact.id,{token:buyer,method:'DELETE',status:204});
  const selfSearch=await call('/searches',{token:seller,method:'POST',body:{title:'Saját profil nem lehet partner',city:ownSearch.city,locationIds:ownSearch.locationIds,type:ownSearch.type,balcony:false,elevator:false},status:201});
  await call('/me/active',{token:seller,method:'PUT',body:{kind:'search',id:selfSearch.id}});
@@ -162,7 +190,7 @@ async function checkListingBudgetContexts(call,budget){
  await call('/searches/'+streetSearch.id,{token:buyer,method:'PUT',body:{title:streetSearch.title,city:streetSearch.city,locationIds:[streets[0].id,'city:Debrecen'],type:'Lakás',balcony:false,elevator:false}});
  assert.deepEqual((await call(mapPath)).locationIds,['city:Debrecen']);
  await call('/searches/'+streetSearch.id,{token:buyer,method:'DELETE',status:204});
- console.log('Shared listing context checks passed: current owned activation, exact/partial scorer parity, asymmetric private budgets, prior pass/like/match states, and coordinate-free map descriptors.');
+ console.log('Shared listing context checks passed: validated direct partial decisions despite remaining exact discoveries, unchanged feed consent, active-pair enforcement, idempotent charges, asymmetric private budgets, prior pass/like/match states, and coordinate-free map descriptors.');
 }
 
 async function checkListingProfileOptions(call,budget){

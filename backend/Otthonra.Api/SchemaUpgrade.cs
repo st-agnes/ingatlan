@@ -25,6 +25,7 @@ public static class SchemaUpgrade
     public const string StreetsVersion = "20261118-postal-street-search";
     public const string EntityCreationVersion = "20261118-idempotent-entity-creation";
     public const string AccountActivityVersion = ActivityNotifications.Version;
+    public const string NotificationVisitsVersion = NotificationVisits.Version;
     public const string FlatAmenitiesVersion = "20261123-floor-and-garden-amenities";
     public const string RaisedAndUpperFloorVersion = "20261124-raised-and-upper-floor-range";
     public const string PublicListingsVersion = "20261124-public-listings-and-energy";
@@ -61,6 +62,7 @@ public static class SchemaUpgrade
         ("CreditEntries", "FeedbackPackageId", "char(36) COLLATE ascii_general_ci NULL"),
         ("CreditEntries", "RefundedFeedbackPackageId", "char(36) COLLATE ascii_general_ci NULL"),
         ("Users", "FeedbackPassCounter", "int NOT NULL DEFAULT 0"),
+        ("Users", "NotificationLastVisitAt", "datetime(6) NULL"),
         ("Properties", "Street", "varchar(180) NOT NULL DEFAULT ''"),
         ("Properties", "HouseNumber", "varchar(32) NOT NULL DEFAULT ''"),
         ("Properties", "PostalCode", "varchar(4) NOT NULL DEFAULT ''"),
@@ -231,6 +233,8 @@ public static class SchemaUpgrade
                 "CREATE UNIQUE INDEX `IX_UserNotifications_UserId_EventKey` ON `UserNotifications` (`UserId`, `EventKey`)", cancellationToken);
             await EnsureIndex(connection, "UserNotifications", "IX_UserNotifications_UserId_ReadAt_CreatedAt",
                 "CREATE INDEX `IX_UserNotifications_UserId_ReadAt_CreatedAt` ON `UserNotifications` (`UserId`, `ReadAt`, `CreatedAt`)", cancellationToken);
+            await EnsureIndex(connection, "UserNotifications", "IX_UserNotifications_UserId_CreatedAt",
+                "CREATE INDEX `IX_UserNotifications_UserId_CreatedAt` ON `UserNotifications` (`UserId`, `CreatedAt`)", cancellationToken);
             // Existing like-refund receipts keep their IDs and decision links.
             // A package refund uses its own key instead of a synthetic Decision.
             var nullableNotificationDecision = Convert.ToString(await Scalar(connection,
@@ -295,6 +299,7 @@ public static class SchemaUpgrade
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", StreetsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", EntityCreationVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", AccountActivityVersion));
+            await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", NotificationVisitsVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", FlatAmenitiesVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", RaisedAndUpperFloorVersion));
             await Execute(connection, "INSERT IGNORE INTO `__OtthonraSchemaVersions` (`Version`, `AppliedAt`) VALUES (@version, UTC_TIMESTAMP(6))", cancellationToken, ("version", PublicListingsVersion));

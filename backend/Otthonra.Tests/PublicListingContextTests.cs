@@ -72,4 +72,47 @@ public class PublicListingContextTests
             Assert.Equal(PublicLanding.SourceKey("search", search.Id), Json(Dto.Search(search, own: own)).GetProperty("publicListingKey").GetString());
         }
     }
+
+    [Fact]
+    public void DirectDecisionsRequireTheOppositeListingsExactPublicKey()
+    {
+        var property = Home(); var search = new SearchRequest();
+        var propertyKey = PublicLanding.SourceKey("property", property.Id);
+        var searchKey = PublicLanding.SourceKey("search", search.Id);
+        Assert.False(PublicListingContext.IsDirectDecision(null, "search", property, search));
+        Assert.False(PublicListingContext.IsDirectDecision(null, "property", property, search));
+        Assert.True(PublicListingContext.IsDirectDecision(propertyKey, "search", property, search));
+        Assert.True(PublicListingContext.IsDirectDecision(searchKey, "property", property, search));
+        foreach (var (key, kind) in new[] { ("", "search"), (" ", "search"), (searchKey, "search"),
+            (propertyKey, "property"), (propertyKey, "unknown"), ("property-" + new string('g', 64), "search"),
+            (PublicLanding.SourceKey("property", Guid.NewGuid()), "search"),
+            (PublicLanding.SourceKey("search", Guid.NewGuid()), "property") })
+            Assert.Equal(400, Assert.Throws<ApiException>(() => PublicListingContext.IsDirectDecision(key, kind, property, search)).Status);
+    }
+
+    [Fact]
+    public void DirectDecisionUsesThePersistedKeyInsteadOfAcceptingAnUnrelatedOrOldKey()
+    {
+        var property = Home(); var search = new SearchRequest();
+        var oldPropertyKey = PublicLanding.SourceKey("property", property.Id);
+        var oldSearchKey = PublicLanding.SourceKey("search", search.Id);
+        property.PublicListingKey = "property-" + new string('a', 64);
+        search.PublicListingKey = "search-" + new string('b', 64);
+        Assert.True(PublicListingContext.IsDirectDecision(property.PublicListingKey, "search", property, search));
+        Assert.True(PublicListingContext.IsDirectDecision(search.PublicListingKey, "property", property, search));
+        Assert.Equal(400, Assert.Throws<ApiException>(() => PublicListingContext.IsDirectDecision(oldPropertyKey, "search", property, search)).Status);
+        Assert.Equal(400, Assert.Throws<ApiException>(() => PublicListingContext.IsDirectDecision(oldSearchKey, "property", property, search)).Status);
+    }
+
+    [Fact]
+    public void DecisionInputKeepsDiscoveryDefaultsAndAcceptsAnExplicitDetailKey()
+    {
+        var property = Home(); var search = new SearchRequest();
+        var oldBody = Json(new { propertyId = property.Id, searchRequestId = search.Id, liked = true });
+        var discovery = oldBody.Deserialize<DecisionInput>(new JsonSerializerOptions(JsonSerializerDefaults.Web))!;
+        Assert.Null(discovery.ListingKey); Assert.False(discovery.AllowApproximate);
+        var detail = discovery with { ListingKey = PublicLanding.SourceKey("property", property.Id) };
+        Assert.Equal(detail.ListingKey, Json(detail).GetProperty("listingKey").GetString());
+        Assert.False(detail.AllowApproximate);
+    }
 }

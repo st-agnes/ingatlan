@@ -42,7 +42,7 @@ test('default catalog includes seventeen accounts, four agents, a feedback trial
  const catalog=createDemoCatalog();
  assert.equal(DEFAULT_BATCH,'alap');assert.deepEqual(DEMO_USERS,catalog.users);assert.deepEqual(DEMO_FIXTURES,catalog.fixtures);
  assert.equal(catalog.users.length,17);assert.equal(catalog.users.filter(user=>user.accountType==='agent').length,4);
- assert.equal(kind(catalog,'property').length,361);assert.equal(kind(catalog,'search').length,439);
+ assert.equal(kind(catalog,'property').length,481);assert.equal(kind(catalog,'search').length,499);
  assert.equal(new Set(catalog.users.map(user=>user.email)).size,catalog.users.length);
  assert.equal(new Set(catalog.users.map(user=>user.key)).size,catalog.users.length);
  assert.equal(new Set(catalog.fixtures.map(fixture=>fixture.key)).size,catalog.fixtures.length);
@@ -51,7 +51,11 @@ test('default catalog includes seventeen accounts, four agents, a feedback trial
   if(isScenarioUser(user))assert.equal(own.length,1,'Each feedback test account has one unambiguous role');
   else{assert.ok(own.some(fixture=>fixture.kind==='property'));assert.ok(own.some(fixture=>fixture.kind==='search'));}
   assert.ok(own.some(fixture=>fixture.key===user.active.key&&fixture.kind===user.active.kind));
-  if(isActivityUser(user))assert.equal(own.length,4,'Activity accounts have two properties and two searches');
+  if(isActivityUser(user)){
+   const counts={activitybuyer:[62,62],activityseller:[62,2],activityagent:[2,2]}[user.key];
+   assert.equal(own.filter(item=>item.kind==='property').length,counts[0]);assert.equal(own.filter(item=>item.kind==='search').length,counts[1]);
+   assert.equal(user.startingCredits,500,'Long incoming-interest scenarios have an explicit test-only credit allocation');
+  }
   if(!oldUsers.includes(user.key)&&!isScenarioUser(user)&&!isActivityUser(user)){
    assert.equal(own.filter(fixture=>!fixture.key.startsWith('regional-')).length,24,'Keep the existing matching inventory');
    assert.ok(own.length>=76,'Distribute the added regional examples across the existing accounts');
@@ -276,7 +280,7 @@ test('the feedback trial starts with an isolated exact counterpart and canonical
 test('activity catalog links pending interests and message-bearing mutual pairs for three named workspaces',()=>{
  for(const batch of [DEFAULT_BATCH,'activity-trial']){
   const catalog=createDemoCatalog(batch),suffix=batch===DEFAULT_BATCH?'':`--${batch}`;
-  assert.equal(catalog.activityScenarios.length,7);
+  assert.equal(catalog.activityScenarios.length,187);
   if(batch===DEFAULT_BATCH)assert.deepEqual(catalog.activityScenarios,DEMO_ACTIVITY_SCENARIOS);
   const pairs=new Set(),decisions=[];
   for(const scenario of catalog.activityScenarios){
@@ -288,13 +292,15 @@ test('activity catalog links pending interests and message-bearing mutual pairs 
    if(scenario.actors.length===1){assert.equal(scenario.propertyMessage,undefined);assert.equal(scenario.searchMessage,undefined);}
    else{assert.ok(scenario.propertyMessage.length>0&&scenario.searchMessage.length>0);}
   }
-  assert.equal(decisions.length,9);assert.equal(catalog.activityScenarios.filter(item=>item.actors.length===1).length,5);
+  assert.equal(decisions.length,189);assert.equal(catalog.activityScenarios.filter(item=>item.actors.length===1).length,185);
   assert.equal(catalog.activityScenarios.filter(item=>item.actors.length===2).length,2);
-  for(const [key,expected] of [['activitybuyer',94],['activityseller',96],['activityagent',96]]){
+  for(const [key,expected] of [['activitybuyer',374],['activityseller',376],['activityagent',496]]){
    const user=catalog.users.find(item=>item.key===key+suffix);assert.ok(user);
    const charges=decisions.filter(item=>item.owner===user.key).reduce((sum,item)=>sum+(item.actor==='property'?2:user.accountType==='agent'?1:0),0);
-   assert.equal(100-charges,expected);
-   assert.ok(catalog.activityScenarios.some(item=>item.actors.length===1&&(user.active.kind==='property'?item.property:item.search)===user.active.key&&item.actors[0]!==user.active.kind),'Every activity account opens onto a pending incoming interest');
+   assert.equal(user.startingCredits-charges,expected);
+   const pending=catalog.activityScenarios.filter(item=>item.actors.length===1&&(user.active.kind==='property'?item.property:item.search)===user.active.key&&item.actors[0]!==user.active.kind);
+   assert.equal(pending.length,key==='activitybuyer'?62:61,'Each active workspace has more than one full page of unanswered interests');
+   assert.equal(new Set(pending.map(item=>user.active.kind==='property'?item.search:item.property)).size,pending.length);
   }
  }
 });

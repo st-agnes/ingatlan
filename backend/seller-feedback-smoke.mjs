@@ -24,6 +24,9 @@ const removedToggle=(token,p,enabled)=>api(`/properties/${p.id}/feedback`,{token
 const answer=(token,id,reason,status=200)=>api(`/feedback/${id}`,{token,method:'POST',body:{reason},status});
 const pending=token=>api('/feedback/pending',{token});
 async function allNotifications(token){const first=await api('/notifications?limit=100',{token}),items=[...first.items];let page=first;while(page.hasMore){page=await api(`/notifications?offset=${page.offset+page.limit}&limit=100`,{token});items.push(...page.items);}assert.equal(items.length,first.total);return{...first,items};}
+// A fresh menu-opening boundary changes on every GET; persisted receipt and
+// watermark fields must still compare exactly across a restart.
+function notificationSnapshot({visitThrough,...snapshot}){return snapshot;}
 const decide=(token,p,s,liked=false,status=200)=>api('/decisions',{token,method:'POST',body:{propertyId:p.id,searchRequestId:s.id,liked},status});
 const impression=(token,p,s,status=200)=>api('/impressions',{token,method:'POST',body:{propertyId:p.id,searchRequestId:s.id},status});
 const criteria={title:'Pontos otthont keresünk a környéken',locationIds:['city:Kaszaper'],city:'Kaszaper',type:'Lakás',maxPrice:70000000,minArea:40,maxArea:90,minRooms:2,maxRooms:5,balcony:false,elevator:false};
@@ -166,11 +169,11 @@ if(mode==='--setup'){
   assert.equal((await api('/me',{token:f.tokens.seller})).credits,f.beforeRefund-1);
   const expectedMain=await insight(f);assertAnonymousFeedback(expectedMain.feedback);assert.equal(expectedMain.feedback.reasonCounts.find(row=>row.reason==='insufficient_information').count,1);assert.ok(expectedMain.feedback.reasonCounts.every(row=>row.reason!=='decline'));
   const paged=await insight(f,'capacity','?offset=0&limit=3');assert.equal(paged.feedback.items.length,3);assert.equal(paged.feedback.hasMore,true);assertAnonymousFeedback(paged.feedback);
-  f.expected={main:stable(expectedMain),unanswered:stable(await insight(f,'pendingExpiry')),capacity:stable(await insight(f,'capacity')),credits:(await api('/me',{token:f.tokens.seller})).credits,notifications:await allNotifications(f.tokens.seller)};
+  f.expected={main:stable(expectedMain),unanswered:stable(await insight(f,'pendingExpiry')),capacity:stable(await insight(f,'capacity')),credits:(await api('/me',{token:f.tokens.seller})).credits,notifications:notificationSnapshot(await allNotifications(f.tokens.seller))};
   await save(f);console.log('Seller feedback expiry proof passed: late responses rejected, exactly-once9+10credit refunds and private notifications, expired request replay free, next package allowed, anonymous paged feedback.');
  }else if(mode==='--preserved'){
   assert.deepEqual(stable(await insight(f)),f.expected.main);assert.deepEqual(stable(await insight(f,'pendingExpiry')),f.expected.unanswered);assert.deepEqual(stable(await insight(f,'capacity')),f.expected.capacity);
-  assert.equal((await api('/me',{token:f.tokens.seller})).credits,f.expected.credits);assert.deepEqual(await allNotifications(f.tokens.seller),f.expected.notifications);
+  assert.equal((await api('/me',{token:f.tokens.seller})).credits,f.expected.credits);assert.deepEqual(notificationSnapshot(await allNotifications(f.tokens.seller)),f.expected.notifications);
   assert.equal((await answer(f.tokens.buyer,f.firstPrompt.id,reasons[0])).alreadyAnswered,true);await answer(f.tokens.buyer,f.expiredPrompt.id,'other',410);
   console.log('Seller feedback restart proof passed: impressions/statistics, anonymous answers, original package charges/refunds, notifications, current campaign and answer idempotency survive.');
  }else throw new Error('Expected --setup, --responses, --capacity, --expired or --preserved.');

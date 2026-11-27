@@ -71,16 +71,18 @@ public static class TestDataSeed
             var email = Rules.Email(definition.Email);
             if (users.ContainsKey(definition.Key) || !emails.Add(email))
                 throw new InvalidOperationException("Duplicate test account key or email.");
+            var startingCredits = definition.StartingCredits ?? 100;
+            if (startingCredits is < 100 or > 10000) throw new InvalidOperationException("Invalid initial fixture credit allocation.");
             var user = new User {
                 Id = StableId("user:" + definition.Key),
                 Name = Rules.Required(definition.Name, "test account name", 100), Email = email,
                 Phone = Rules.Optional(definition.Phone, 40),
                 AccountType = AccountTypes.RegistrationType(definition.AccountType),
-                PasswordHash = Passwords.Hash(catalog.Password), Credits = 100, CreatedAt = now
+                PasswordHash = Passwords.Hash(catalog.Password), Credits = startingCredits, CreatedAt = now
             };
             users.Add(definition.Key, user);
             credits.Add(new CreditEntry {
-                Id = StableId("credit:" + definition.Key), UserId = user.Id, Amount = 100,
+                Id = StableId("credit:" + definition.Key), UserId = user.Id, Amount = startingCredits,
                 Description = "Kezdő tesztkreditek – valódi fizetés nélkül", CreatedAt = now
             });
         }
@@ -332,7 +334,7 @@ public static class TestDataSeed
 public sealed record TestFixtureCatalog(string Version, string Password, TestFixtureUser[] Users, TestFixture[] Fixtures,
     TestFeedbackScenario[]? FeedbackScenarios = null, TestActivityScenario[]? ActivityScenarios = null);
 public sealed record TestFeedbackScenario(string Key, string Seller, string Buyer, string Property, string Search, int Size);
-public sealed record TestFixtureUser(string Key, string Name, string Email, string? Phone, string? AccountType, TestFixtureActive Active);
+public sealed record TestFixtureUser(string Key, string Name, string Email, string? Phone, string? AccountType, TestFixtureActive Active, int? StartingCredits = null);
 public sealed record TestFixtureActive(string Kind, string Key);
 public sealed record TestFixture(string Key, string Owner, string Kind, JsonElement Input);
 public sealed record TestDataPlan(string Version, User[] Users, Property[] Properties, SearchRequest[] Searches, CreditEntry[] Credits)

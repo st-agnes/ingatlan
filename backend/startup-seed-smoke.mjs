@@ -21,10 +21,16 @@ if(mode==='--production'){assert.equal(health.deployment,'production');assert.eq
 else{assert.equal(health.deployment,'test');assert.equal(health.testDataVersion,version);}
 const agent=DEMO_USERS.find(user=>user.accountType==='agent'),scenario=FEEDBACK_TEST_SCENARIO,scenarioKeys=new Set([scenario.seller,scenario.buyer]);
 const quarterAccountKeys=new Set(['reka','bence','julia','marton']);
-const activityExpected={activitybuyer:{credits:94,decisions:4,matches:2,ledger:4,notifications:9,unread:8,incoming:2},activityseller:{credits:96,decisions:2,matches:1,ledger:3,notifications:6,unread:5,incoming:1},activityagent:{credits:96,decisions:3,matches:1,ledger:4,notifications:5,unread:4,incoming:1}};
+const activityExpected={activitybuyer:{credits:374,decisions:124,matches:2,ledger:64,notifications:69,unread:68,incoming:62},activityseller:{credits:376,decisions:62,matches:1,ledger:63,notifications:66,unread:65,incoming:61},activityagent:{credits:496,decisions:3,matches:1,ledger:4,notifications:65,unread:64,incoming:61}};
 const accounts=[...DEMO_USERS.slice(0,3),agent,...DEMO_USERS.filter(user=>scenarioKeys.has(user.key)||quarterAccountKeys.has(user.key)||Object.hasOwn(activityExpected,user.key))];
 const catalog=key=>DEMO_FIXTURES.find(fixture=>fixture.key===key);
-async function snapshot(f){return Promise.all(accounts.map(async user=>({key:user.key,profile:await api('/me',{token:f.tokens[user.key]}),entities:await api('/me/entities',{token:f.tokens[user.key]}),ledger:await api('/credits/ledger',{token:f.tokens[user.key]}),matches:await api('/matches',{token:f.tokens[user.key]}),...(Object.hasOwn(activityExpected,user.key)?{notifications:await api('/notifications?offset=0&limit=50',{token:f.tokens[user.key]})}:{})})));}
+async function allNotifications(token){
+ const first=await api('/notifications?offset=0&limit=50',{token}),items=[...first.items];let page=first;
+ while(page.hasMore){page=await api(`/notifications?offset=${page.offset+page.limit}&limit=50`,{token});assert.equal(page.total,first.total);items.push(...page.items);}
+ assert.equal(new Set(items.map(item=>item.id)).size,first.total,'Notification pagination has no repeated or missing receipts');
+ const {visitThrough,...stable}=first;return {...stable,items,hasMore:false};
+}
+async function snapshot(f){return Promise.all(accounts.map(async user=>({key:user.key,profile:await api('/me',{token:f.tokens[user.key]}),entities:await api('/me/entities',{token:f.tokens[user.key]}),ledger:await api('/credits/ledger',{token:f.tokens[user.key]}),matches:await api('/matches',{token:f.tokens[user.key]}),...(Object.hasOwn(activityExpected,user.key)?{notifications:await allNotifications(f.tokens[user.key])}:{})})));}
 async function save(f){await mkdir(dirname(fixturePath),{recursive:true});await writeFile(fixturePath,JSON.stringify(f),{mode:0o600});await chmod(fixturePath,0o600);}
 function entity(rows,fixture){return (fixture.kind==='property'?rows.entities.properties:rows.entities.searchRequests).find(item=>item.title===fixture.input.title);}
 const signature=rows=>rows.map(({key,...data})=>JSON.stringify(data)).sort().join('\n');
@@ -140,7 +146,7 @@ async function fresh(f){
   assert.equal(row.entities.searchRequests.length,DEMO_FIXTURES.filter(item=>item.owner===user.key&&item.kind==='search').length);
   if(activity){assert.equal(row.entities.decisions.length,activity.decisions);assert.equal(row.matches.length,activity.matches);}else{assert.deepEqual(row.entities.decisions,[]);assert.deepEqual(row.matches,[]);}assert.deepEqual(row.entities.reportedOwnerIds,[]);
   assert.equal(row.ledger.length,activity?.ledger??(isSeller?2:1));assert.equal(row.ledger.reduce((sum,item)=>sum+item.amount,0),balance);
-  assert.equal(row.ledger.filter(item=>item.amount===100).length,1);
+  assert.equal(row.ledger.filter(item=>item.amount===(activity?500:100)).length,1);
   if(isSeller)assert.equal(row.ledger.filter(item=>item.amount===-10&&item.feedbackPackageId).length,1);
   assert.ok([...row.entities.properties,...row.entities.searchRequests].every(item=>item.ownerAccountType===(user.accountType??'private')));
   const active=entity(row,catalog(user.active.key));assert.ok(active);assert.deepEqual(row.entities.active,{kind:user.active.kind,id:active.id});
@@ -152,7 +158,7 @@ async function fresh(f){
   assert.ok(feed.items.every(item=>publicFirstNames.has(counterpart(item).ownerFirstName)),
    'Seeded discovery must show the owner first name, not the full contact name');
   if(user.accountType==='agent')assert.ok(feed.items.every(item=>counterpart(item).ownerAccountType==='private'),'Agents must see private counterparties only');
-  else if(!isTrial)assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='agent'));
+  else if(!isTrial&&!activity)assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='agent'));
   assert.ok(feed.items.some(item=>counterpart(item).ownerAccountType==='private'));
  }
  await seededNeighborhoods(f,rows);
@@ -162,11 +168,13 @@ async function fresh(f){
 async function seededActivity(f,rows){
  for(const [key,expected] of Object.entries(activityExpected)){
   const row=rows.find(item=>item.key===key),token=f.tokens[key],notices=row.notifications;
-  assert.equal(notices.total,expected.notifications);assert.equal(notices.items.length,expected.notifications);assert.equal(notices.unreadCount,expected.unread);assert.equal(row.profile.unreadNotificationCount,expected.unread);
+  assert.equal(notices.total,expected.notifications);assert.equal(notices.items.length,expected.notifications);assert.equal(notices.unreadCount,expected.unread);assert.equal(row.profile.unreadNotificationCount,expected.unread);assert.equal(notices.newCount,expected.notifications);assert.equal(row.profile.newNotificationCount,expected.notifications);
   assert.equal(notices.items.filter(item=>item.readAt).length,1,'Each activity workspace starts with an already-seen event');
   for(const kind of ['incoming_like','match_created','message_received','credit_added'])assert.ok(notices.items.some(item=>item.kind===kind),key+' needs '+kind);
-  const incoming=await api('/incoming-likes',{token});assert.equal(incoming.total,expected.incoming);assert.deepEqual(incoming.active,row.entities.active);
-  for(const item of incoming.items){assert.equal(item.myDecision,null);assert.equal(item.matchId,null);assert.equal(item.compatible,true);assert.equal(item.isExact,true);}
+  const incoming=await api('/incoming-likes?offset=0&limit=50',{token});assert.equal(incoming.total,expected.incoming);assert.deepEqual(incoming.active,row.entities.active);assert.equal(incoming.items.length,50);assert.equal(incoming.hasMore,true);
+  const rest=await api('/incoming-likes?offset=50&limit=50',{token});assert.equal(rest.total,expected.incoming);assert.equal(rest.items.length,expected.incoming-50);assert.equal(rest.hasMore,false);
+  const pendingItems=[...incoming.items,...rest.items];assert.equal(new Set(pendingItems.map(item=>item.propertyId+':'+item.searchRequestId)).size,expected.incoming,'Pending incoming pages must not repeat or include answered/matched pairs');
+  for(const item of pendingItems){assert.equal(item.myDecision,null);assert.equal(item.matchId,null);assert.equal(item.compatible,true);assert.equal(item.isExact,true);}
   const pending=notices.items.find(item=>item.kind==='incoming_like'&&item.target?.entityId===row.entities.active.id);assert.ok(pending);
   const context=await api('/notifications/'+pending.id+'/context',{token});assert.equal(context.available,true);assert.equal(context.canActivate,true);assert.equal(context.target.entityId,row.entities.active.id);assert.equal(context.item.myDecision,null);
   const raw=JSON.stringify(context);for(const user of DEMO_USERS){assert.ok(!raw.includes(user.email));assert.ok(!raw.includes(user.phone));}
@@ -176,10 +184,10 @@ async function seededActivity(f,rows){
   const unread=notices.items.find(item=>item.kind==='incoming_like'&&!item.readAt);assert.ok(unread);
   const marked=await api('/notifications/'+unread.id+'/read',{token,method:'PUT'});assert.ok(marked.readAt);
   const again=await api('/notifications/'+unread.id+'/read',{token,method:'PUT'});assert.equal(again.readAt,marked.readAt);assert.equal(again.unreadCount,expected.unread-1);
-  assert.equal((await api('/me',{token})).credits,expected.credits,'Reading or resolving an activity cannot debit credits');
+  const afterRead=await api('/me',{token});assert.equal(afterRead.credits,expected.credits,'Reading or resolving an activity cannot debit credits');assert.equal(afterRead.newNotificationCount,expected.notifications,'Reading an individual receipt does not acknowledge a menu visit');
   await api('/notifications/'+pending.id+'/context',{token:f.tokens.anna,status:404});
  }
- console.log('Prepared activity accounts passed: active incoming interests, inactive-profile targets, likes/matches/messages, role-based fees, contacts hidden, durable first-read and unread badges.');
+ console.log('Prepared activity accounts passed: 62/61/61 unanswered incoming interests across multiple pages, inactive-profile targets, likes/matches/messages, role-based fees, contacts hidden and independent first-read/new-since-visit counters.');
 }
 async function seededNeighborhoods(f,rows){
  const quarter=DEMO_NEIGHBORHOOD_SCENARIO,row=key=>rows.find(item=>item.key===key);

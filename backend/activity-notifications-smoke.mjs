@@ -21,6 +21,7 @@ const active=(owner,kind,id)=>api('/me/active',{token:owner.token,method:'PUT',b
 const page=(owner,offset=0)=>api(`/notifications?offset=${offset}&limit=50`,{token:owner.token});
 const context=(owner,id,status=200)=>api(`/notifications/${id}/context`,{token:owner.token,status});
 const mark=(owner,id,status=200)=>api(`/notifications/${id}/read`,{token:owner.token,method:'PUT',status});
+const visit=(owner,through)=>api('/notifications/visit',{token:owner.token,method:'POST',body:{through}});
 const profile=owner=>api('/me',{token:owner.token});
 const decide=(owner,property,search,liked=true)=>api('/decisions',{token:owner.token,method:'POST',body:{propertyId:property.id,searchRequestId:search.id,liked}});
 const hasTarget=(item,kind,id)=>item.target?.entityKind===kind&&item.target?.entityId===id;
@@ -30,7 +31,7 @@ function noContact(value,f){
  const inspect=node=>{if(!node||typeof node!=='object')return;for(const [key,child]of Object.entries(node)){if(key==='addressDetails')assert.equal(child,null,'An unmatched property may expose only a null private-address placeholder');else assert.doesNotMatch(key,/^(?:geocodingPlaceId|latitude|longitude|coordinates|password(?:Hash)?)$/i,'Unmatched notification/context leaked a private field');inspect(child);}};inspect(value);
 }
 function sourceSummary(items){return items.map(item=>({kind:item.kind,amount:item.amount,target:item.target??null,text:item.text,readAt:item.readAt??null})).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b)));}
-async function checkpoint(f){f.snapshots={};for(const owner of f.owners){const notices=await page(owner);const me=await profile(owner);assert.equal(me.unreadNotificationCount,notices.unreadCount);f.snapshots[owner.id]={credits:me.credits,total:notices.total,unreadCount:notices.unreadCount,items:sourceSummary(notices.items)};}await save(f);}
+async function checkpoint(f){f.snapshots={};for(const owner of f.owners){const notices=await page(owner);const me=await profile(owner);assert.equal(me.unreadNotificationCount,notices.unreadCount);assert.equal(me.newNotificationCount,notices.newCount);assert.equal(me.notificationLastVisitAt,notices.visitedAt);assert.ok(Number.isFinite(Date.parse(notices.visitThrough)));f.snapshots[owner.id]={credits:me.credits,total:notices.total,unreadCount:notices.unreadCount,newCount:notices.newCount,visitedAt:notices.visitedAt,items:sourceSummary(notices.items)};}await save(f);}
 
 if(mode==='--verify'||mode==='--verify-upgrade'){
  const f=JSON.parse(await readFile(fixturePath,'utf8'));
@@ -38,14 +39,27 @@ if(mode==='--verify'||mode==='--verify-upgrade'){
   const notices=await page(owner),me=await profile(owner),before=f.snapshots[owner.id];
   assert.equal(me.credits,before.credits,'Notification migration/restart must not change credits');
   assert.equal(me.unreadNotificationCount,notices.unreadCount);
+  assert.equal(me.newNotificationCount,notices.newCount);
+  assert.equal(me.notificationLastVisitAt,notices.visitedAt);
   assert.equal(notices.total,before.total,'Notification catch-up cannot duplicate source events');
   // Legacy refunds retain their exact first-read timestamp even when generic activities are backfilled.
   if(owner.id===f.sender.id){const legacy=notices.items.find(item=>item.id===f.legacyRefund.id);assert.ok(legacy);assert.equal(legacy.kind,'like_refund');assert.equal(legacy.readAt,f.legacyRefund.readAt);assert.equal(legacy.decisionId,f.legacyRefund.decisionId);}
-  if(mode==='--verify')assert.deepEqual(sourceSummary(notices.items),before.items,'Same-source startup must preserve the complete activity/read snapshot');
+  if(mode==='--verify'){
+   assert.equal(notices.newCount,before.newCount,'An ordinary restart must preserve the menu visit watermark');
+   assert.equal(notices.visitedAt,before.visitedAt);
+   assert.deepEqual(sourceSummary(notices.items),before.items,'Same-source startup must preserve the complete activity/read snapshot');
+  }else {assert.equal(notices.visitedAt,null);assert.equal(notices.newCount,notices.total,'An additive upgrade from a schema without a visit watermark starts without hiding any historical activity');}
  }
  if(mode==='--verify-upgrade')f.deletedNoticeId=(await onlyNotice(f.recipient,'incoming_like',item=>hasTarget(item,'search',f.searchC.id))).id;
  const gone=await context(f.recipient,f.deletedNoticeId);assert.equal(gone.available,false);assert.equal(gone.canActivate,false);assert.equal(gone.item??null,null);
- if(mode==='--verify-upgrade')await checkpoint(f);
+ if(mode==='--verify-upgrade'){
+  // Persist a real visit after the additive old-schema upgrade. The next API
+  // restart must preserve it while the independently read refund stays read.
+  const opening=await page(f.sender),receipt=await visit(f.sender,opening.visitThrough);assert.equal(receipt.newCount,0);
+  assert.equal((await page(f.sender)).unreadCount,opening.unreadCount);
+  f.persistedVisit={ownerId:f.sender.id,visitedAt:receipt.visitedAt};
+  await checkpoint(f);
+ }
  console.log(`Activity notifications ${mode.slice(2)}: owner activity count, credit balances, first-read refund state, unavailable deleted context and restart/backfill deduplication passed.`);
  process.exit(0);
 }
@@ -107,6 +121,36 @@ resolved=await context(recipient,deletedNotice.id);assert.equal(resolved.availab
 const credit=await onlyNotice(sender,'credit_added');assert.equal(credit.amount,20);assert.equal(credit.target.page,'credits');
 await api('/credits/demo-topup',{token:recipient.token,method:'POST',body:{amount:20}});
 const campaign=await api(`/properties/${feedbackProperty.id}/feedback-packages`,{token:recipient.token,method:'POST',body:{size:10,requestId:randomUUID()}});assert.ok(campaign.package?.id);
+// The badge means activity since the menu's last opening, not unread items.
+// Merely loading pages/context or acknowledging a row must not clear it.
+await api('/notifications/visit',{method:'POST',body:{through:new Date().toISOString()},status:401});
+await api('/notifications/visit',{token:recipient.token,method:'POST',body:{through:'not-a-date'},status:400});
+await api('/notifications/visit',{token:recipient.token,method:'POST',body:{},status:400});
+await api('/notifications/visit',{token:recipient.token,method:'POST',body:{through:'0001-01-01T00:00:00Z'},status:400});
+const initialPage=await page(recipient),initialUnread=initialPage.unreadCount;
+assert.equal(initialPage.visitedAt,null);
+assert.equal(initialPage.newCount,initialPage.total);assert.ok(initialUnread<initialPage.newCount);
+assert.equal((await profile(recipient)).newNotificationCount,initialPage.total);
+await page(recipient,1);await context(recipient,message.id);await mark(recipient,liked.id);
+assert.equal((await page(recipient)).newCount,initialPage.total);
+const originalReads=new Map(initialPage.items.map(item=>[item.id,item.readAt]));
+const opening=await page(recipient);
+await api(`/matches/${matchId}/messages`,{token:sender.token,method:'POST',body:{text:'Új értesítés a menü megnyitása közben.'},status:201});
+let acknowledged=await visit(recipient,opening.visitThrough);
+assert.equal(acknowledged.visitedAt,opening.visitThrough);assert.equal(acknowledged.newCount,1,'A new event after the captured opening boundary must remain new');
+assert.equal((await page(recipient)).unreadCount,initialUnread+1,'A menu visit must never mark individual notifications read');
+const outsiderReceipt=await visit(outsider,opening.visitThrough);assert.equal(outsiderReceipt.newCount,0);assert.equal((await page(recipient)).newCount,1);
+const futureReceipt=await visit(recipient,'2099-01-01T00:00:00.000000Z');assert.ok(Date.parse(futureReceipt.visitedAt)<=Date.now());assert.equal(futureReceipt.newCount,0);
+await api(`/matches/${matchId}/messages`,{token:sender.token,method:'POST',body:{text:'Egy jövőbeli időbélyeg sem rejtheti el ezt.'},status:201});
+acknowledged=await visit(recipient,opening.visitThrough);assert.equal(acknowledged.visitedAt,futureReceipt.visitedAt);assert.equal(acknowledged.newCount,1,'An old tab must not move the menu watermark backwards');
+const newerOpening=await page(recipient);
+await api(`/matches/${matchId}/messages`,{token:sender.token,method:'POST',body:{text:'Párhuzamos böngészőfülek után is új marad.'},status:201});
+const concurrentVisits=await Promise.all(Array.from({length:8},(_,index)=>visit(recipient,index%2?opening.visitThrough:newerOpening.visitThrough)));
+assert.ok(concurrentVisits.every(item=>item.newCount>=1));
+acknowledged=await visit(recipient,opening.visitThrough);assert.equal(acknowledged.visitedAt,newerOpening.visitThrough);assert.equal(acknowledged.newCount,1);
+const finalPage=await page(recipient);assert.equal(finalPage.newCount,1);assert.equal((await profile(recipient)).newNotificationCount,1);
+assert.equal(finalPage.visitedAt,newerOpening.visitThrough);assert.match(finalPage.visitedAt,/Z$/);assert.equal((await profile(recipient)).notificationLastVisitAt,finalPage.visitedAt);
+for(const item of finalPage.items)if(originalReads.has(item.id))assert.equal(item.readAt,originalReads.get(item.id),'Menu visits must preserve every first-read timestamp');
 const f={owners,recipient,sender,outsider,searchA,searchB,searchC,senderSearch,p1,p2,feedbackProperty,matchId,messageId:sent.id,deletedNoticeId:deletedNotice.id,deletedDecisionId:null,packageId:guid(campaign.package.id),readNotice:{id:liked.id,readAt:reads[0].readAt}};
 await save(f);
 console.log('Account activity MySQL API: inactive profile likes, concurrent idempotent event/billing, owner privacy, exact context, independent first-read states, both match recipients, new message and deleted-subject history passed.');

@@ -13,12 +13,12 @@ public class TestActivitySeedTests
     [Fact]
     public void ActivityChargesFollowActorRolesAndBalancesEqualTheLedger()
     {
-        Assert.Equal(9, Plan.Decisions.Length);
+        Assert.Equal(189, Plan.Decisions.Length);
         Assert.Equal(2, Plan.Matches.Length);
         Assert.Equal(4, Plan.Messages.Length);
-        Assert.Equal(14, Plan.Decisions.Sum(item => item.Charged));
-        Assert.Equal(8, Plan.Decisions.Count(item => item.Charged > 0));
-        Assert.Equal(9, Plan.Decisions.Select(item => (item.PropertyId, item.SearchRequestId, item.ActorKind)).Distinct().Count());
+        Assert.Equal(254, Plan.Decisions.Sum(item => item.Charged));
+        Assert.Equal(128, Plan.Decisions.Count(item => item.Charged > 0));
+        Assert.Equal(189, Plan.Decisions.Select(item => (item.PropertyId, item.SearchRequestId, item.ActorKind)).Distinct().Count());
         foreach (var decision in Plan.Decisions)
         {
             var property = Plan.Properties.Single(item => item.Id == decision.PropertyId);
@@ -45,9 +45,9 @@ public class TestActivitySeedTests
             }
         }
         Assert.All(Plan.Users, user => Assert.Equal(user.Credits, Plan.Credits.Where(item => item.UserId == user.Id).Sum(item => item.Amount)));
-        Assert.Equal(94, Plan.Users.Single(item => item.Email == "aktivitas-kereso@otthonra.local").Credits);
-        Assert.Equal(96, Plan.Users.Single(item => item.Email == "aktivitas-elado@otthonra.local").Credits);
-        Assert.Equal(96, Plan.Users.Single(item => item.Email == "aktivitas-ingatlanos@otthonra.local").Credits);
+        Assert.Equal(374, Plan.Users.Single(item => item.Email == "aktivitas-kereso@otthonra.local").Credits);
+        Assert.Equal(376, Plan.Users.Single(item => item.Email == "aktivitas-elado@otthonra.local").Credits);
+        Assert.Equal(496, Plan.Users.Single(item => item.Email == "aktivitas-ingatlanos@otthonra.local").Credits);
     }
 
     [Fact]
@@ -66,24 +66,24 @@ public class TestActivitySeedTests
             Assert.All(messages, item => { Assert.True(item.CreatedAt > match.CreatedAt); Assert.False(string.IsNullOrWhiteSpace(item.Text)); });
         }
         Assert.All(Plan.Messages, item => Assert.Contains(Plan.Matches, match => match.Id == item.MatchId));
-        Assert.Equal(5, Plan.Decisions.Count(item => !Plan.Matches.Any(match => match.PropertyId == item.PropertyId && match.SearchRequestId == item.SearchRequestId)));
+        Assert.Equal(185, Plan.Decisions.Count(item => !Plan.Matches.Any(match => match.PropertyId == item.PropertyId && match.SearchRequestId == item.SearchRequestId)));
     }
 
     [Fact]
     public void NotificationsHaveUniqueStableIdsCorrectOwnedTargetsAndReadTimestamps()
     {
-        Assert.Equal(17, Plan.Notifications.Length);
-        Assert.Equal(9, Plan.Notifications.Count(item => item.Kind == "incoming_like"));
+        Assert.Equal(197, Plan.Notifications.Length);
+        Assert.Equal(189, Plan.Notifications.Count(item => item.Kind == "incoming_like"));
         Assert.Equal(4, Plan.Notifications.Count(item => item.Kind == "match_created"));
         Assert.Equal(4, Plan.Notifications.Count(item => item.Kind == "message_received"));
         Assert.Equal(3, Plan.Notifications.Count(item => item.ReadAt is not null));
-        Assert.Equal(14, Plan.Notifications.Count(item => item.ReadAt is null));
+        Assert.Equal(194, Plan.Notifications.Count(item => item.ReadAt is null));
         var ids = Plan.Users.Select(item => item.Id).Concat(Plan.Properties.Select(item => item.Id))
             .Concat(Plan.Searches.Select(item => item.Id)).Concat(Plan.Credits.Select(item => item.Id))
             .Concat(Plan.Decisions.Select(item => item.Id)).Concat(Plan.Matches.Select(item => item.Id))
             .Concat(Plan.Messages.Select(item => item.Id)).Concat(Plan.Notifications.Select(item => item.Id)).ToArray();
         Assert.Equal(ids.Length, ids.Distinct().Count());
-        Assert.Equal(17, Plan.Notifications.Select(item => (item.UserId, item.EventKey)).Distinct().Count());
+        Assert.Equal(197, Plan.Notifications.Select(item => (item.UserId, item.EventKey)).Distinct().Count());
         foreach (var item in Plan.Notifications)
         {
             Assert.Equal(TestDataSeed.StableId($"activity-notification:{item.UserId:D}:{item.EventKey}"), item.Id);
@@ -116,6 +116,23 @@ public class TestActivitySeedTests
             Assert.Contains(Plan.Notifications, item => item.UserId == user.Id && item.ReadAt is null);
             Assert.Contains(Plan.Notifications, item => item.UserId == user.Id && item.ReadAt is not null);
         }
+    }
+
+    [Theory]
+    [InlineData("aktivitas-kereso@otthonra.local", 62)]
+    [InlineData("aktivitas-elado@otthonra.local", 61)]
+    [InlineData("aktivitas-ingatlanos@otthonra.local", 61)]
+    public void EveryActivityWorkspaceStartsWithMoreThanAFullPageOfDistinctActionableInterests(string email, int count)
+    {
+        var user = Plan.Users.Single(item => item.Email == email);
+        var pending = Plan.Decisions.Where(item => item.ActorUserId != user.Id
+            && (user.ActiveKind == "property" ? item.PropertyId : item.SearchRequestId) == user.ActiveEntityId
+            && !Plan.Decisions.Any(own => own.ActorUserId == user.Id && own.ActorKind == user.ActiveKind
+                && own.PropertyId == item.PropertyId && own.SearchRequestId == item.SearchRequestId)
+            && !Plan.Matches.Any(match => match.PropertyId == item.PropertyId && match.SearchRequestId == item.SearchRequestId)).ToArray();
+        Assert.Equal(count, pending.Length);
+        Assert.Equal(count, pending.Select(item => (item.PropertyId, item.SearchRequestId)).Distinct().Count());
+        Assert.Equal(count, pending.Select(item => item.CreatedAt).Distinct().Count());
     }
 
     [Fact]
@@ -172,7 +189,7 @@ public class TestActivitySeedTests
             case "duplicate-actor": scenarios = [scenario with { Actors = ["property", "property"] }]; break;
             case "no-actors": scenarios = [scenario with { Actors = [] }]; break;
             case "invalid-key": scenarios = [scenario with { Key = "../invalid" }]; break;
-            case "too-many-scenarios": scenarios = Enumerable.Repeat(scenario, 101).ToArray(); break;
+            case "too-many-scenarios": scenarios = Enumerable.Repeat(scenario, 1001).ToArray(); break;
             case "own-pair": graph.Search.OwnerId = graph.Seller.Id; graph.References["search"] = ("seller", "search", graph.Search.Id); break;
             case "wrong-owner-reference": graph.References["property"] = ("buyer", "property", graph.Property.Id); break;
             case "missing-owner": graph.Search.OwnerId = Guid.NewGuid(); break;

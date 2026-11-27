@@ -34,6 +34,7 @@ sender, recipient = guid(fixture['sender']['id']), guid(fixture['recipient']['id
 owners = [guid(owner['id']) for owner in fixture['owners']]
 owner_sql = ','.join("'" + owner + "'" for owner in owners)
 version = '20261119-account-activity-notifications'
+visits_version = '20261127-notification-menu-visits'
 
 if mode == '--prepare-feedback':
     p2, search = guid(fixture['p2']['id']), guid(fixture['searchC']['id'])
@@ -55,13 +56,14 @@ if mode == '--prepare-upgrade':
           "DROP INDEX IX_UserNotifications_UserId_ReadAt_CreatedAt, "
           "DROP COLUMN EventKey, DROP COLUMN EntityKind, DROP COLUMN EntityId, "
           "DROP COLUMN PropertyId, DROP COLUMN SearchRequestId, DROP COLUMN MatchId; "
+          "ALTER TABLE Users DROP COLUMN NotificationLastVisitAt; "
           "DROP TABLE IF EXISTS __OtthonraNotificationBackfills; "
-          f"DELETE FROM __OtthonraSchemaVersions WHERE Version='{version}'")
+          f"DELETE FROM __OtthonraSchemaVersions WHERE Version IN ('{version}','{visits_version}')")
     legacy = fixture['legacyRefund']
     rows = query(f"SELECT Id,DecisionId,DATE_FORMAT(ReadAt,'%Y-%m-%dT%H:%i:%s.%f') FROM UserNotifications WHERE Id='{guid(legacy['id'])}' AND UserId='{sender}'")
     assert len(rows) == 1 and rows[0].split('\t')[1] == guid(legacy['decisionId'])
     assert rows[0].split('\t')[2] != 'NULL', 'Previous-schema fixture must retain a read legacy refund.'
-    print('Prepared previous notification schema while preserving legacy refund ID, foreign key and first-read timestamp.')
+    print('Prepared previous notification schema without menu visits while preserving legacy refund ID, foreign key and first-read timestamp.')
     raise SystemExit(0)
 
 columns = query("SELECT COLUMN_NAME,IS_NULLABLE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='UserNotifications' AND COLUMN_NAME IN ('EventKey','EntityKind','EntityId','PropertyId','SearchRequestId','MatchId') ORDER BY COLUMN_NAME")
@@ -69,9 +71,19 @@ assert columns == [name + '\tYES' for name in ['EntityId', 'EntityKind', 'EventK
 for name, expected in [
     ('IX_UserNotifications_UserId_EventKey', '0\tUserId,EventKey'),
     ('IX_UserNotifications_UserId_ReadAt_CreatedAt', '1\tUserId,ReadAt,CreatedAt'),
+    ('IX_UserNotifications_UserId_CreatedAt', '1\tUserId,CreatedAt'),
 ]:
     assert query(f"SELECT NON_UNIQUE,GROUP_CONCAT(COLUMN_NAME ORDER BY SEQ_IN_INDEX) FROM information_schema.STATISTICS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='UserNotifications' AND INDEX_NAME='{name}' GROUP BY NON_UNIQUE") == [expected]
 assert query(f"SELECT COUNT(*) FROM __OtthonraSchemaVersions WHERE Version='{version}'") == ['1']
+assert query(f"SELECT COUNT(*) FROM __OtthonraSchemaVersions WHERE Version='{visits_version}'") == ['1']
+assert query("SELECT COLUMN_TYPE,IS_NULLABLE FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='Users' AND COLUMN_NAME='NotificationLastVisitAt'") == ['datetime(6)\tYES']
+for owner in owners:
+    rows = query(f"SELECT COUNT(*) FROM UserNotifications n JOIN Users u ON u.Id=n.UserId WHERE u.Id='{owner}' AND (u.NotificationLastVisitAt IS NULL OR n.CreatedAt>u.NotificationLastVisitAt)")
+    assert rows == [str(fixture['snapshots'][owner]['newCount'])], 'The menu badge must reflect the persisted visit boundary, independently of ReadAt.'
+if 'persistedVisit' in fixture:
+    receipt = fixture['persistedVisit']
+    rows = query(f"SELECT DATE_FORMAT(NotificationLastVisitAt,'%Y-%m-%dT%H:%i:%s.%f') FROM Users WHERE Id='{guid(receipt['ownerId'])}'")
+    assert len(rows) == 1 and rows[0].rstrip('0').rstrip('.') == receipt['visitedAt'].rstrip('Z').rstrip('0').rstrip('.'), 'An ordinary restart must not reset the last menu visit.'
 assert query(f"SELECT COUNT(*) FROM __OtthonraNotificationBackfills WHERE Version LIKE '{version}:%'")[0] != '0'
 assert query("SELECT COUNT(*) FROM (SELECT UserId,EventKey FROM UserNotifications WHERE EventKey IS NOT NULL GROUP BY UserId,EventKey HAVING COUNT(*)<>1) duplicates") == ['0']
 assert query(f"SELECT COUNT(*) FROM UserNotifications WHERE UserId IN ({owner_sql}) AND Kind NOT IN ('like_refund','feedback_refund') AND (DecisionId IS NOT NULL OR FeedbackPackageId IS NOT NULL)") == ['0'], 'Generic activities cannot consume unique legacy refund source keys.'

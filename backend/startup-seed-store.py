@@ -36,7 +36,7 @@ costs = [2 if actor == 'property' else int(users[fixtures[row['search']]['owner'
          for row in scenarios for actor in row['actors']]
 seed_charges = sum(costs)
 seed_entries = len(users) + len(catalog.get('feedbackScenarios', [])) + sum(cost > 0 for cost in costs)
-seed_balance = len(users) * 100 - sum(row['size'] for row in catalog.get('feedbackScenarios', [])) - seed_charges
+seed_balance = sum(user.get('startingCredits', 100) for user in users.values()) - sum(row['size'] for row in catalog.get('feedbackScenarios', [])) - seed_charges
 seed_notices = len(users) + seed_decisions + 2 * seed_matches + seed_messages
 
 expressions = {

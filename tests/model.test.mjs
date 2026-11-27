@@ -31,11 +31,17 @@ test('a public detail context evaluates its own pair and retains the decision an
  assert.equal(seller.active.kind,'property');assert.equal(seller.item.maxPrice,incoming.maxPrice);assert.equal(seller.likeCost,2);
  assert.equal(m.getListingContext('property',card.publicListingKey).active,null,'An active same-kind profile cannot decide against the listing');
 });
-test('a detail context honors exact-first consent, agent restrictions and address visibility',()=>{
+test('a direct detail decision permits partials while discovery keeps exact-first consent and address privacy',()=>{
  const storage=store(),m=createModel(storage),initial=m.feed()[0];m.activate('search',m.getState().active.id);const raw=JSON.parse(storage.getItem(STORAGE_KEY));
  const property=raw.properties.find(item=>item.id===initial.id);property.price=500;property.hideStreet=true;property.hideHouseNumber=true;
  storage.setItem(STORAGE_KEY,JSON.stringify(raw));const current=createModel(storage),partial=current.getListingContext('property',initial.publicListingKey);
- assert.equal(partial.isExact,false);assert.equal(partial.hasUnseenExact,true);assert.equal(partial.canDecide,false);assert.equal(partial.requiresApproximateConsent,true);
+ assert.equal(partial.isExact,false);assert.equal(partial.hasUnseenExact,false);assert.equal(partial.canDecide,true);assert.equal(partial.requiresApproximateConsent,false);
+ const before=current.getState();assert.ok(current.feed().length,'Unseen exact recommendations remain');
+ assert.throws(()=>current.decide(partial.item,false),/tökéletes|részleges|engedély/i,'Discovery still requires exhausting exact matches');
+ assert.throws(()=>current.decide(partial.item,false,{listingKey:'property-'+'0'.repeat(64)}),/hirdetésazonosító/i);
+ assert.equal(current.getState().decisions.length,before.decisions.length,'A mismatched direct listing key cannot create a decision');
+ const reply=current.decide(partial.item,false,{listingKey:initial.publicListingKey});assert.equal(reply.charged,0);
+ assert.equal(current.getListingContext('property',initial.publicListingKey).myDecision,'passed');assert.ok(current.feed().length);
  const outline=current.getListingMap('property',initial.publicListingKey);assert.equal(outline.available,true);assert.equal(outline.externalUrl,null);assert.ok(outline.locationIds.length);
  assert.doesNotMatch(JSON.stringify(outline),/99999|latitude|longitude|addressDetails|formattedAddress|provider/i);
  const street=raw.properties.find(item=>item.id===initial.id);street.hideStreet=false;street.hideHouseNumber=false;storage.setItem(STORAGE_KEY,JSON.stringify(raw));
@@ -388,18 +394,19 @@ test('general report reasons apply to declared agents and legacy reports migrate
  assert.equal(again.reportAccount('property','p1').id,'legacy');assert.equal(JSON.parse(storage.getItem(STORAGE_KEY)).reports.find(report=>report.id==='legacy').createdAt,'2026-11-01T00:00:00Z');
 });
 
-test('incoming likes include only the active entity, expose no contacts, and retain handled and incompatible statuses',()=>{
+test('incoming likes filter every own response and mutual match before counting and pagination',()=>{
  const storage=store(),initial=createModel(storage);initial.buyDemoCredits(1);const raw=JSON.parse(storage.getItem(STORAGE_KEY));
  raw.properties.find(item=>item.id==='p1').address='Private exact street 42';
  for(const decision of raw.decisions)if(decision.actorKind==='property')decision.createdAt=decision.propertyId==='p1'?'2026-11-07T00:00:00Z':'2026-11-01T00:00:00Z';
  raw.decisions.push({id:'newest-incoming',actorKind:'property',actorId:'p3',propertyId:'p3',searchId:'own-s1',liked:true,createdAt:'2026-11-08T00:00:00Z'});
  raw.decisions.push({id:'own-pass',actorKind:'search',actorId:'own-s1',propertyId:'p3',searchId:'own-s1',liked:false,createdAt:'2026-11-08T00:00:01Z'});
  raw.decisions.push({id:'different-active',actorKind:'property',actorId:'p4',propertyId:'p4',searchId:'own-s2',liked:true,createdAt:'2026-11-09T00:00:00Z'});
- raw.searches.find(item=>item.id==='own-s1').maxPrice=70;storage.setItem(STORAGE_KEY,JSON.stringify(raw));const m=createModel(storage),before=storage.getItem(STORAGE_KEY),page=m.incomingLikes({limit:2});
- assert.deepEqual(page.active,{kind:'search',id:'own-s1'});assert.equal(page.total,5);assert.equal(page.offset,0);assert.equal(page.limit,2);assert.equal(page.hasMore,true);assert.equal(page.likeCost,0);assert.equal(page.items[0].id,'p3');assert.equal(page.items[0].myDecision,'passed');assert.equal(page.items[0].compatible,true);assert.equal(page.items[0].isExact,false);assert.ok(page.items[0].score<100);
- assert.equal(page.items[1].id,'p1');assert.equal(page.items[1].address,'');assert.equal(page.items[1].myDecision,null);assert.equal(page.items[1].likedYou,true);assert.deepEqual(page.items[1].pair,{propertyId:'p1',searchId:'own-s1'});
+ raw.decisions.push({id:'other-pending',actorKind:'property',actorId:'p4',propertyId:'p4',searchId:'own-s1',liked:true,createdAt:'2026-11-06T00:00:00Z'});
+ raw.searches.find(item=>item.id==='own-s1').maxPrice=70;storage.setItem(STORAGE_KEY,JSON.stringify(raw));const m=createModel(storage),before=storage.getItem(STORAGE_KEY),page=m.incomingLikes({limit:1});
+ assert.deepEqual(page.active,{kind:'search',id:'own-s1'});assert.equal(page.total,2);assert.equal(page.offset,0);assert.equal(page.limit,1);assert.equal(page.hasMore,true);assert.equal(page.likeCost,0);
+ assert.equal(page.items[0].id,'p1');assert.equal(page.items[0].address,'');assert.equal(page.items[0].myDecision,null);assert.equal(page.items[0].likedYou,true);assert.deepEqual(page.items[0].pair,{propertyId:'p1',searchId:'own-s1'});
  for(const item of page.items){assert.equal('phone' in item,false);assert.equal('email' in item,false);assert.equal('partner' in item,false);assert.equal('contact' in item,false);}
- const rest=m.incomingLikes({offset:2,limit:100});assert.equal(rest.hasMore,false);assert.equal(rest.items.length,3);assert.ok(rest.items.every(item=>item.myDecision==='liked'&&item.matchId));assert.equal(storage.getItem(STORAGE_KEY),before,'Viewing incoming likes is free and read-only');
+ const rest=m.incomingLikes({offset:1,limit:100});assert.equal(rest.hasMore,false);assert.equal(rest.items.length,1);assert.equal(rest.items[0].id,'p4');assert.equal(rest.total,2);assert.ok([...page.items,...rest.items].every(item=>item.myDecision===null&&!item.matchId));assert.equal(storage.getItem(STORAGE_KEY),before,'Viewing incoming likes is free and read-only');
  m.activate('property','own-p1');const seller=m.incomingLikes();assert.deepEqual(seller.active,{kind:'property',id:'own-p1'});assert.equal(seller.items.length,1);assert.equal(seller.items[0].id,'s1');assert.equal(seller.items[0].kind,'search');assert.equal(seller.likeCost,2);
  for(const options of [{offset:-1},{limit:101},{offset:1.5}])assert.throws(()=>m.incomingLikes(options),/lapozási/);
 });
@@ -481,6 +488,31 @@ test('notification reads are owner-scoped and idempotent, with bounded paginatio
  assert.throws(()=>t.m.markNotificationRead('missing'),/nem található/);
  const raw=JSON.parse(t.storage.getItem(STORAGE_KEY));raw.notifications.push({...item,id:'foreign-notification',userId:'u1'});t.storage.setItem(STORAGE_KEY,JSON.stringify(raw));
  const again=t.reload();assert.equal(refunds(again).length,1);assert.throws(()=>again.markNotificationRead('foreign-notification'),/nem található/);
+});
+
+test('notification menu visits persist an owner-scoped monotonic boundary without changing individual read state',()=>{
+ const t=activityFixture(raw=>{raw.notifications=[
+  {id:'new-unread',userId:'me',kind:'credit_added',text:'Első',amount:1,createdAt:'2026-11-19T09:00:00.000Z',readAt:null},
+  {id:'already-read',userId:'me',kind:'credit_added',text:'Második',amount:1,createdAt:'2026-11-19T09:30:00.000Z',readAt:'2026-11-19T09:45:00.000Z'},
+  {id:'other-owner',userId:'u1',kind:'credit_added',text:'Más fiók',amount:1,createdAt:'2026-11-19T09:00:00.000Z',readAt:null}
+ ];});
+ const page=t.model.notifications(),saved=t.storage.getItem(STORAGE_KEY);assert.equal(page.newCount,2);assert.equal(page.unreadCount,1);assert.equal(t.model.getState().newNotificationCount,2);
+ assert.equal(t.model.notifications().visitThrough,'2026-11-19T10:00:00.000Z');assert.equal(t.storage.getItem(STORAGE_KEY),saved,'Page reads do not record a visit');
+ t.model.markNotificationRead('new-unread');assert.equal(t.model.getState().unreadNotificationCount,0);assert.equal(t.model.getState().newNotificationCount,2,'Reading an individual row does not clear new events');
+ t.at('2026-11-19T10:01:00.000Z');t.model.buyDemoCredits(10);
+ const receipt=t.model.markNotificationsVisited({through:page.visitThrough});assert.deepEqual(receipt,{newCount:1,visitedAt:page.visitThrough});assert.equal(t.reload().getState().newNotificationCount,1,'Events after the rendered page boundary stay new');
+ assert.equal(t.reload().notifications().unreadCount,1,'Menu visits do not mark rows read');
+ t.at('2026-11-19T10:02:00.000Z');const second=t.model.markNotificationsVisited({through:t.model.notifications().visitThrough});assert.equal(second.newCount,0);
+ assert.deepEqual(t.model.markNotificationsVisited({through:page.visitThrough}),second,'A late earlier visit cannot roll back the persisted boundary');
+ t.at('2026-11-19T10:03:00.000Z');assert.equal(t.model.markNotificationsVisited({through:'2099-01-01T00:00:00Z'}).visitedAt,'2026-11-19T10:03:00.000Z');
+ for(const through of [null,'',1,'invalid'])assert.throws(()=>t.model.markNotificationsVisited({through}),/értesítési időpont/);
+ t.edit(raw=>{raw.userId='u1';raw.active={kind:'search',id:null};});const other=t.reload();assert.equal(other.getState().newNotificationCount,1);assert.equal(other.getState().user.notificationLastVisitAt,undefined,'The first owner visit does not affect another account');
+});
+
+test('a stale demo tab cannot roll back another tab notification visit boundary',()=>{
+ const t=activityFixture(),earlier=t.reload(),later=t.reload();t.at('2026-11-19T12:00:00.000Z');
+ const latest=later.markNotificationsVisited({through:'2026-11-19T12:00:00.000Z'});
+ assert.deepEqual(earlier.markNotificationsVisited({through:'2026-11-19T11:00:00.000Z'}),latest);assert.equal(t.reload().getState().notificationLastVisitAt,latest.visitedAt);
 });
 
 test('refund storage failure commits neither balance, decision marker, ledger nor notification',()=>{

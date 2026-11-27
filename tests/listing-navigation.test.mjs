@@ -31,7 +31,7 @@ function harness(overrides={}){
 test('a full listing uses its own pair and returns a discovery decision to discovery without consulting feed[0]',async()=>{
  const h=harness();h.setView();h.ctx.feed=[{pair:{propertyId:'wrong-first-property',searchId:'wrong-search'}}];
  await h.api.decidePublicListing(true);
- assert.equal(h.calls.decisions.length,1);assert.equal(h.calls.decisions[0].item,pair);assert.equal(h.calls.decisions[0].liked,true);assert.equal(h.calls.decisions[0].options.allowApproximate,false);assert.equal(h.calls.decisions[0].options.resolveMatch,false);
+ assert.equal(h.calls.decisions.length,1);assert.equal(h.calls.decisions[0].item,pair);assert.equal(h.calls.decisions[0].liked,true);assert.equal(Object.hasOwn(h.calls.decisions[0].options,'allowApproximate'),false);assert.equal(h.calls.decisions[0].options.resolveMatch,false);assert.equal(h.calls.decisions[0].options.listingKey,key);
  assert.equal(h.ctx.location.hash,'#discover');assert.equal(h.calls.replace[0].url,'#discover');assert.equal(h.ctx.page,'discover');assert.equal(h.ctx.tab,'recommended');assert.equal(h.api.view,null);
  assert.deepEqual(h.calls.toasts,[[interestHelpers.INTEREST_SENT_MESSAGE]]);
 });
@@ -41,11 +41,14 @@ test('interest confirmation uses the same exact message when a match is created'
  await h.api.decidePublicListing(true);assert.deepEqual(h.calls.toasts,[[interestHelpers.INTEREST_SENT_MESSAGE]]);
 });
 
-test('partial decisions require explicit consent and remain blocked while exact matches are unseen',async()=>{
- const h=harness(),partial={...context,isExact:false,item:{...pair,isExact:false},requiresApproximateConsent:true};
- h.setView({context:partial});await h.api.decidePublicListing(false);assert.equal(h.calls.decisions.length,0);
- h.setView({context:partial,includeApproximate:true});await h.api.decidePublicListing(false);assert.equal(h.calls.decisions.length,1);assert.equal(h.calls.decisions[0].options.allowApproximate,true);
- h.ctx.location.hash=route;h.setView({context:{...partial,hasUnseenExact:true},includeApproximate:true});await h.api.decidePublicListing(true);assert.equal(h.calls.decisions.length,1);
+test('a directly viewed partial listing is actionable even when unseen exact recommendations remain',async()=>{
+ for(const hasUnseenExact of [false,true]){
+  const h=harness(),partial={...context,isExact:false,item:{...pair,isExact:false},requiresApproximateConsent:true,hasUnseenExact};
+  h.setView({context:partial});await h.api.decidePublicListing(false);
+  assert.equal(h.calls.decisions.length,1,'Public details do not require the discovery partial-results opt-in');
+  assert.equal(h.calls.decisions[0].item,partial.item);assert.equal(h.calls.decisions[0].options.listingKey,key,'The server validates the viewed listing against this exact pair');
+  assert.equal(h.ctx.location.hash,'#discover');
+ }
 });
 
 test('already handled listings, stale sessions and insufficient credits never submit another paid decision',async()=>{

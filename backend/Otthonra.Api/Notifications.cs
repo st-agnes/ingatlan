@@ -80,19 +80,27 @@ public static class RefundEndpoints
     public static RouteGroupBuilder MapNotifications(this RouteGroupBuilder api)
     {
         api.MapGet("/notifications", async (int? offset, int? limit, AppDb db, ClaimsPrincipal principal,
-            LikeRefundService refunds, CancellationToken cancellationToken) =>
+            LikeRefundService refunds, TimeProvider clock, CancellationToken cancellationToken) =>
         {
             var (start, count) = IncomingLikes.Page(offset, limit);
             var userId = principal.UserId();
             await refunds.RunAsync(userId, cancellationToken);
+            var visitThrough = NotificationVisits.Normalize(clock.GetUtcNow().UtcDateTime);
+            var lastVisit = NotificationVisits.Normalize(await db.Users.AsNoTracking().Where(user => user.Id == userId)
+                .Select(user => user.NotificationLastVisitAt).SingleAsync(cancellationToken));
             var query = db.UserNotifications.AsNoTracking().Where(item => item.UserId == userId);
             var total = await query.CountAsync(cancellationToken);
             var unreadCount = await query.CountAsync(item => item.ReadAt == null, cancellationToken);
+            var newCount = await NotificationVisits.Since(query, userId, lastVisit).CountAsync(cancellationToken);
             var rows = await query.OrderByDescending(item => item.CreatedAt).ThenByDescending(item => item.Id)
                 .Skip(start).Take(count).ToListAsync(cancellationToken);
-            return Results.Ok(new { items = rows.Select(row => NotificationItem.From(row)), total, unreadCount,
+            return Results.Ok(new { items = rows.Select(row => NotificationItem.From(row)), total, unreadCount, newCount, visitedAt = lastVisit, visitThrough,
                 offset = start, limit = count, hasMore = start + rows.Count < total });
         });
+        api.MapPost("/notifications/visit", async (NotificationVisitInput input, AppDb db, ClaimsPrincipal principal,
+            TimeProvider clock, CancellationToken cancellationToken) =>
+            Results.Ok(await NotificationVisits.RecordAsync(db, principal.UserId(), input.Through,
+                clock.GetUtcNow().UtcDateTime, cancellationToken)));
         api.MapPut("/notifications/{id:guid}/read", async (Guid id, AppDb db, ClaimsPrincipal principal,
             TimeProvider clock, CancellationToken cancellationToken) =>
         {

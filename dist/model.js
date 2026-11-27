@@ -264,6 +264,10 @@ function safeNotificationTarget(value,kind='') {
 function publicNotification(item) {
   return {id:item.id,kind:item.kind,amount:Number(item.amount||0),text:String(item.text||''),decisionId:item.decisionId??null,feedbackPackageId:item.feedbackPackageId??null,createdAt:item.createdAt,readAt:item.readAt??null,target:safeNotificationTarget(item.target,item.kind)};
 }
+function newNotificationCount(state) {
+  const visited=Date.parse(state.users.find(user=>user.id===state.userId)?.notificationLastVisitAt||'');
+  return state.notifications.filter(item=>item.userId===state.userId&&(!Number.isFinite(visited)||Date.parse(item.createdAt)>visited)).length;
+}
 /** Idempotent migration/live projection of fictional source events, outside the active-profile filter. */
 function synchronizeActivityNotifications(s) {
   s.notifications=Array.isArray(s.notifications)?s.notifications:[];
@@ -573,7 +577,7 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     },
     getState() {
       processRefunds();
-      return clone({unreadNotificationCount:state.notifications.filter(item=>item.userId===state.userId&&!item.readAt).length,user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users,undefined,state.userId)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users,undefined,state.userId)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users,undefined,state.userId),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users,undefined,state.userId)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))],reportedEntities:state.reports.filter(report=>report.reporterId===state.userId&&['property','search'].includes(report.entityKind)&&typeof report.entityId==='string').map(({entityKind,entityId,reason})=>({entityKind,entityId,reason}))});
+      return clone({unreadNotificationCount:state.notifications.filter(item=>item.userId===state.userId&&!item.readAt).length,newNotificationCount:newNotificationCount(state),notificationLastVisitAt:state.users.find(user=>user.id===state.userId)?.notificationLastVisitAt??null,user:state.users.find(u=>u.id===state.userId),credits:state.credits,active:state.active,properties:state.properties.filter(p=>p.ownerId===state.userId).map(p=>visibleEntity(p,state.users,undefined,state.userId)),searches:state.searches.filter(q=>q.ownerId===state.userId).map(q=>visibleEntity(q,state.users,undefined,state.userId)),decisions:state.decisions.filter(d=>own(state,d.actorKind,d.actorId)).map(d=>({...d,property:visibleEntity(state.properties.find(p=>p.id===d.propertyId),state.users,undefined,state.userId),search:visibleEntity(state.searches.find(q=>q.id===d.searchId),state.users,undefined,state.userId)})),ledger:state.ledger,createdAt:state.createdAt,likeCost:state.active?.id?likeCost(state.users.find(user=>user.id===state.userId)?.accountType,state.active.kind):0,reportedOwnerIds:[...new Set(state.reports.filter(report=>report.reporterId===state.userId).map(report=>report.reportedUserId))],reportedEntities:state.reports.filter(report=>report.reporterId===state.userId&&['property','search'].includes(report.entityKind)&&typeof report.entityId==='string').map(({entityKind,entityId,reason})=>({entityKind,entityId,reason}))});
     },
     recommendations(options={}) {
       processRefunds();
@@ -599,10 +603,9 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
       const other=state.decisions.find(decision=>decision.propertyId===property.id&&decision.searchId===search.id&&decision.actorKind!==activeKind&&decision.liked);
       const match=state.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id),cost=likeCost(state.users.find(user=>user.id===state.userId)?.accountType,activeKind);
       const item={...visibleEntity(candidate,state.users),kind,pair:{propertyId:property.id,searchId:search.id},score:evaluation.score,isExact:evaluation.isExact,compatible:evaluation.eligible,likedYou:!!other,searchSpecificity:searchSpecificity(prepared),reasons:evaluation.reasons,matchDetails:evaluation.matchDetails};
-      const hasUnseenExact=!evaluation.isExact&&recommendationSnapshot(state).stage==='exact';
       // Only the owner's active search is copied here; the candidate above is already public-price sanitized.
       const activeView={...visibleEntity(active,state.users,undefined,state.userId),kind:activeKind};
-      return {...empty,active:activeView,item,myDecision:mine?(mine.liked?'liked':'passed'):null,matchId:match&&getMatch(state,match)?match.id:null,compatible:evaluation.eligible,isExact:evaluation.isExact,compatibilityScore:evaluation.score,likeCost:cost,canDecide:evaluation.eligible&&!mine&&!hasUnseenExact,requiresApproximateConsent:evaluation.eligible&&!evaluation.isExact&&!mine,hasUnseenExact};
+      return {...empty,active:activeView,item,myDecision:mine?(mine.liked?'liked':'passed'):null,matchId:match&&getMatch(state,match)?match.id:null,compatible:evaluation.eligible,isExact:evaluation.isExact,compatibilityScore:evaluation.score,likeCost:cost,canDecide:evaluation.eligible&&!mine&&!match};
     },
     getListingMap(kind,key) {
       const detail=demoPublicListing(kind,key),candidate=(kind==='property'?state.properties:state.searches).find(entity=>demoSourceKey(kind,entity.id)===key);
@@ -649,14 +652,14 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         if(!property||!search||property.archived||search.archived||property.ownerId===search.ownerId||!ownersCanInteract(state,property,search))return null;
         const candidate=activeKind==='search'?property:search;
         if(candidate.ownerId===state.userId)return null;
+        const mine=state.decisions.find(item=>item.propertyId===property.id&&item.searchId===search.id&&item.actorKind===activeKind);
+        if(mine||state.matches.some(item=>item.propertyId===property.id&&item.searchId===search.id))return null;
         const prepared=preparedActive||prepareSearch(search,{perspective:activeKind==='property'?'seller':'buyer'}),specificity=searchSpecificity(prepared);
         const data=visibleEntity(candidate,state.users,specificity);
-        const mine=state.decisions.find(item=>item.propertyId===property.id&&item.searchId===search.id&&item.actorKind===activeKind);
         const evaluation=evaluateDemoMatch(property,prepared),compatible=evaluation.eligible;
-        const match=state.matches.find(item=>item.propertyId===property.id&&item.searchId===search.id);
         return {...data,kind:activeKind==='search'?'property':'search',pair:{propertyId:property.id,searchId:search.id},
           score:evaluation.score,isExact:evaluation.isExact,reasons:evaluation.reasons,matchDetails:evaluation.matchDetails,searchSpecificity:specificity,valueForMoney:valueForMoney(property),
-          likedYou:true,likedAt:decision.createdAt,myDecision:mine?(mine.liked?'liked':'passed'):null,matchId:match&&getMatch(state,match)?match.id:null,compatible,_decisionId:String(decision.id)};
+          likedYou:true,likedAt:decision.createdAt,myDecision:null,matchId:null,compatible,_decisionId:String(decision.id)};
       }).filter(Boolean).sort((a,b)=>String(a.likedAt)===String(b.likedAt)?(a._decisionId===b._decisionId?0:a._decisionId>b._decisionId?-1:1):(String(a.likedAt)>String(b.likedAt)?-1:1));
       const total=items.length;
       return {active:{kind:activeKind,id:active.id},items:items.slice(offset,offset+limit).map(({_decisionId,...item})=>item),total,offset,limit,hasMore:offset+limit<total,likeCost:likeCost(state.users.find(user=>user.id===state.userId)?.accountType,activeKind)};
@@ -671,10 +674,13 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
         const property=s.properties.find(p=>p.id===pair.propertyId),search=s.searches.find(q=>q.id===pair.searchId);
         if(!active||active.archived||!property||!search||property.archived||search.archived
           ||(s.active.kind==='property'?property.id:search.id)!==active.id||!ownersCanInteract(s,property,search))throw new Error('Ez az ajánlás már nem érhető el az aktív profilodhoz.');
+        const counterpartKind=s.active.kind==='property'?'search':'property',counterpart=counterpartKind==='property'?property:search;
+        const directListing=options.listingKey!=null;
+        if(directListing&&options.listingKey!==demoSourceKey(counterpartKind,counterpart.id))throw new Error('Érvénytelen hirdetésazonosító.');
         const evaluation=evaluateDemoMatch(property,prepareSearch(search,{perspective:s.active.kind==='property'?'seller':'buyer'}));
         if(!evaluation.eligible)throw new Error('Ez az ajánlás már nem érhető el az aktív profilodhoz.');
         if(s.decisions.some(d=>d.propertyId===pair.propertyId&&d.searchId===pair.searchId&&d.actorKind===s.active.kind))throw new Error('Erről az ajánlásról már döntöttél.');
-        if(!evaluation.isExact&&(options?.allowApproximate!==true||recommendationSnapshot(s).items.length))
+        if(!evaluation.isExact&&!directListing&&(options?.allowApproximate!==true||recommendationSnapshot(s).items.length))
           throw new Error('Előbb nézd végig a tökéletes egyezéseket, majd engedélyezd a részleges találatokat.');
         const charged=liked?likeCost(s.users.find(user=>user.id===s.userId)?.accountType,s.active.kind):0;
         if(s.credits<charged)throw new Error(`Nincs elegendő kredited. A kedveléshez ${charged} kredit szükséges.`);
@@ -762,9 +768,21 @@ export function createModel(storage=globalThis.localStorage, now=()=>new Date().
     },
     notifications(options={}) {
       const {offset,limit}=normalizeIncomingPagination(options);
+      const visitThrough=now();
       processRefunds();
       const items=state.notifications.filter(item=>item.userId===state.userId).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt))||String(b.id).localeCompare(String(a.id)));
-      return clone({items:items.slice(offset,offset+limit).map(publicNotification),total:items.length,unreadCount:items.filter(item=>!item.readAt).length,offset,limit,hasMore:offset+limit<items.length});
+      return clone({items:items.slice(offset,offset+limit).map(publicNotification),total:items.length,unreadCount:items.filter(item=>!item.readAt).length,newCount:newNotificationCount(state),visitThrough,visitedAt:state.users.find(user=>user.id===state.userId)?.notificationLastVisitAt??null,offset,limit,hasMore:offset+limit<items.length});
+    },
+    markNotificationsVisited({through}={}) {
+      if(typeof through!=='string'||!Number.isFinite(Date.parse(through)))throw new Error('Érvénytelen értesítési időpont.');
+      let savedVisit;
+      try{savedVisit=JSON.parse(storage?.getItem(STORAGE_KEY)||'null')?.users?.find(user=>user.id===state.userId)?.notificationLastVisitAt;}catch{}
+      processRefunds();
+      return transact(s=>{
+        const owner=s.users.find(user=>user.id===s.userId),current=Date.parse(owner.notificationLastVisitAt||''),persisted=Date.parse(savedVisit||''),cutoff=Math.max(Math.min(Date.parse(through),Date.parse(now())),Number.isFinite(current)?current:-Infinity,Number.isFinite(persisted)?persisted:-Infinity);
+        owner.notificationLastVisitAt=new Date(cutoff).toISOString();
+        return {newCount:newNotificationCount(s),visitedAt:owner.notificationLastVisitAt};
+      });
     },
     markNotificationRead(id) {
       processRefunds();

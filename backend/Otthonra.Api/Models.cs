@@ -18,6 +18,7 @@ public sealed class User
     public int FeedbackPassCounter { get; set; }
     public string? ActiveKind { get; set; }
     public Guid? ActiveEntityId { get; set; }
+    public DateTime? NotificationLastVisitAt { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
 public sealed class Property
@@ -341,7 +342,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options) : DbContext(options)
 public static class Dto
 {
     public static string[] Strings(string? json) => string.IsNullOrWhiteSpace(json) ? [] : JsonSerializer.Deserialize<string[]>(json) ?? [];
-    public static object Profile(User u, int unreadNotificationCount = 0) => new { u.Id, u.Name, u.Email, u.Phone, u.AccountType, u.Credits, u.ActiveKind, u.ActiveEntityId, u.CreatedAt, unreadNotificationCount };
+    public static object Profile(User u, int unreadNotificationCount = 0, int newNotificationCount = 0) => new { u.Id, u.Name, u.Email, u.Phone, u.AccountType, u.Credits, u.ActiveKind, u.ActiveEntityId, u.CreatedAt, unreadNotificationCount, newNotificationCount, notificationLastVisitAt = NotificationVisits.Normalize(u.NotificationLastVisitAt) };
     public static string PublicAddress(Property property) => property.HideStreet ? ""
         : property.Street + (property.HideHouseNumber || string.IsNullOrWhiteSpace(property.HouseNumber) ? "" : " " + property.HouseNumber);
     // Public cards never contain owner contacts or internal geocoding data.
@@ -374,7 +375,7 @@ public record RegisterInput(string Name, string Email, string Password, string? 
 public record LoginInput(string Email, string Password);
 public record ProfileInput(string Name, string Email, string? Phone);
 public record ActiveInput(string Kind, Guid Id);
-public record DecisionInput(Guid PropertyId, Guid SearchRequestId, bool Liked, bool AllowApproximate = false);
+public record DecisionInput(Guid PropertyId, Guid SearchRequestId, bool Liked, bool AllowApproximate = false, string? ListingKey = null);
 public record ReportInput(string EntityKind, Guid EntityId, string? Reason = null);
 public record MessageInput(string Text);
 public record TopupInput(int Amount);
