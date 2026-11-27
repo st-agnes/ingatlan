@@ -22,6 +22,9 @@ async function save(f){await mkdir(dirname(fixturePath),{recursive:true});await 
 const active=(token,kind,id)=>api('/me/active',{token,method:'PUT',body:{kind,id}});
 const decision=(token,p,s,liked=true)=>api('/decisions',{token,method:'POST',body:{propertyId:p.id,searchRequestId:s.id,liked}});
 const byId=rows=>[...rows].sort((a,b)=>a.id.localeCompare(b.id));
+// Only the per-request menu-opening boundary is volatile. Keep receipt/read
+// timestamps, counts and the persisted visit watermark in restart snapshots.
+function notificationSnapshot({visitThrough,...snapshot}){return snapshot;}
 function noPrivateFields(value,path=[]){
  if(Array.isArray(value)){value.forEach((item,index)=>noPrivateFields(item,[...path,index]));return;}
  if(!value||typeof value!=='object')return;
@@ -133,12 +136,12 @@ if(mode==='--setup'){
   const late=await decision(f.tokens.buyer,f.properties.due,f.search);assert.ok(late.matchId);assert.equal(late.charged,0);
   await active(f.tokens.seller,'property',f.properties.due.id);
   const repeat=await decision(f.tokens.seller,f.properties.due,f.search);assert.equal(repeat.charged,0);assert.equal(repeat.credits,f.balances.seller+6);
-  f.final={};for(const key of Object.keys(f.tokens))f.final[key]={credits:(await api('/me',{token:f.tokens[key]})).credits,notifications:await api('/notifications',{token:f.tokens[key]}),ledger:byId(await api('/credits/ledger',{token:f.tokens[key]}))};
+  f.final={};for(const key of Object.keys(f.tokens))f.final[key]={credits:(await api('/me',{token:f.tokens[key]})).credits,notifications:notificationSnapshot(await api('/notifications',{token:f.tokens[key]})),ledger:byId(await api('/credits/ledger',{token:f.tokens[key]}))};
   await save(f);console.log('Refund API verification passed: exact2/1credits, both timely replies excluded, late replies refunded, free/young decisions excluded, concurrent exactly-once catch-up, private notifications, read state, paging and late match.');
  }else if(mode==='--preserved'){
   for(const key of Object.keys(f.tokens)){
    assert.equal((await api('/me',{token:f.tokens[key]})).credits,f.final[key].credits);
-   assert.deepEqual(await api('/notifications',{token:f.tokens[key]}),f.final[key].notifications);
+   assert.deepEqual(notificationSnapshot(await api('/notifications',{token:f.tokens[key]})),f.final[key].notifications);
    assert.deepEqual(byId(await api('/credits/ledger',{token:f.tokens[key]})),f.final[key].ledger);
   }
   console.log('Refund restart preservation passed: balances, unique credits, original notifications/read timestamps and charge ledger remain unchanged.');
