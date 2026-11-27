@@ -84,7 +84,7 @@ public static class RefundEndpoints
         {
             var (start, count) = IncomingLikes.Page(offset, limit);
             var userId = principal.UserId();
-            await refunds.CatchUpAsync(userId, cancellationToken);
+            await refunds.RunAsync(userId, cancellationToken);
             var visitThrough = NotificationVisits.Normalize(clock.GetUtcNow().UtcDateTime);
             var lastVisit = NotificationVisits.Normalize(await db.Users.AsNoTracking().Where(user => user.Id == userId)
                 .Select(user => user.NotificationLastVisitAt).SingleAsync(cancellationToken));

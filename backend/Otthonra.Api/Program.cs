@@ -123,7 +123,7 @@ if (deployment.IsTest && builder.Configuration.GetValue<bool>("Database:SeedTest
 api.MapGet("/me", async (AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
 {
     var userId = principal.UserId();
-    await refunds.CatchUpAsync(userId, cancellationToken);
+    await refunds.RunAsync(userId, cancellationToken);
     var user = await CurrentUser(db, principal);
     var unreadNotificationCount = await db.UserNotifications.CountAsync(item => item.UserId == userId && item.ReadAt == null, cancellationToken);
     var newNotificationCount = await NotificationVisits.Since(db.UserNotifications.AsNoTracking(), userId, user.NotificationLastVisitAt).CountAsync(cancellationToken);
@@ -139,7 +139,7 @@ api.MapPut("/me", async (ProfileInput input, AppDb db, ClaimsPrincipal principal
 });
 api.MapGet("/me/entities", async (bool? includeDecisions, AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
 {
-    await refunds.CatchUpAsync(principal.UserId(), cancellationToken);
+    await refunds.RunAsync(principal.UserId(), cancellationToken);
     var user = await CurrentUser(db, principal);
     var properties = await db.Properties.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).OrderByDescending(x => x.CreatedAt).ToListAsync();
     var searches = await db.SearchRequests.AsNoTracking().Where(x => x.OwnerId == user.Id && !x.Archived).OrderByDescending(x => x.CreatedAt).ToListAsync();
@@ -390,7 +390,7 @@ api.MapPost("/reports", async Task<IResult> (ReportInput input, AppDb db, Claims
 api.MapGet("/credits/ledger", async (AppDb db, ClaimsPrincipal principal, LikeRefundService refunds, CancellationToken cancellationToken) =>
 {
     var uid = principal.UserId();
-    await refunds.CatchUpAsync(uid, cancellationToken);
+    await refunds.RunAsync(uid, cancellationToken);
     return Results.Ok(await db.CreditEntries.AsNoTracking().Where(x => x.UserId == uid).OrderByDescending(x => x.CreatedAt)
         .Select(x => new { x.Id, x.Amount, x.Description, x.CreatedAt, x.RefundedDecisionId, x.FeedbackPackageId, x.RefundedFeedbackPackageId,
             kind = x.RefundedFeedbackPackageId != null ? "feedback_refund" : x.FeedbackPackageId != null ? "feedback_package"
