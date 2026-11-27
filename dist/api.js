@@ -390,24 +390,30 @@ export class ApiModel {
     return registerLocations(rows(await this.call('/streets?' + parameters)))
       .filter(street => streetBelongsToLocation(street,location)).slice(0,count);
   }
-  async getState({signal}={}) {
-    const [profile, entities, ledgerResponse] = await Promise.all([this.call('/me','GET',undefined,{signal}), this.call('/me/entities','GET',undefined,{signal}), this.call('/credits/ledger','GET',undefined,{signal})]);
+  async getState({signal,includeLedger=true,includeDecisions=true}={}) {
+    // Most pages need a fresh balance and owned profiles, not every historical
+    // interest snapshot or credit entry. Keep the complete snapshot for callers
+    // outside the workspace, and mark intentionally omitted history clearly.
+    const ledgerLoaded=includeLedger!==false,requestDecisions=includeDecisions!==false;
+    const [profile, entities, ledgerResponse] = await Promise.all([this.call('/me','GET',undefined,{signal}), this.call('/me/entities'+(requestDecisions?'':'?includeDecisions=false'),'GET',undefined,{signal}), ledgerLoaded?this.call('/credits/ledger','GET',undefined,{signal}):null]);
     requireCurrentRead(signal);
     const user = profile.user || profile;
     this.userId = String(user.id);
     const rawActive = entities.active || entities.activeEntity || profile.active || profile.activeEntity;
     const active = rawActive ? { kind: String(rawActive.kind).toLowerCase() === 'property' ? 'property' : 'search', id: String(rawActive.id ?? rawActive.entityId ?? '') || null } : { kind: String(profile.activeKind).toLowerCase() === 'property' ? 'property' : 'search', id: profile.activeEntityId == null ? null : String(profile.activeEntityId) };
     this.active = active;
+    const decisionsLoaded=requestDecisions&&entities.decisionsIncluded!==false;
     return {
       user: { accountType:normalizeAccountType(user.accountType), id: String(user.id), name: user.name || user.displayName || '', email: user.email || '', phone: user.phone || user.phoneNumber || '', avatar: user.avatar || initials(user.name || user.displayName) },
       credits: Number(profile.credits ?? profile.creditBalance ?? profile.balance ?? user.credits ?? 0), active,
       properties: rows(entities.properties).map(value=>propertyFromApi(value,String(value.ownerId ?? value.userId ?? '')===this.userId)), searches: rows(entities.searches || entities.searchRequests).map(value=>searchFromApi(value,String(value.ownerId??value.userId??'')===this.userId)),
-      decisions: rows(entities.decisions || profile.decisions).map(d=>({...Object.fromEntries(Object.entries(clone(d)).filter(([key])=>key!=='searchRequest')),id:String(d.id),actorId:String(d.actorId),propertyId:String(d.propertyId),searchId:String(d.searchId??d.searchRequestId),property:propertyFromApi(d.property,String(d.property?.ownerId)===this.userId),search:searchFromApi(d.search??d.searchRequest,String((d.search??d.searchRequest)?.ownerId)===this.userId)})),
-      ledger: rows(ledgerResponse.ledger || ledgerResponse).map(entry => ({ ...clone(entry), amount: Number(entry.amount ?? entry.delta ?? 0), description: entry.description || entry.reason || '', createdAt: entry.createdAt })),
+      decisions: decisionsLoaded?rows(entities.decisions || profile.decisions).map(d=>({...Object.fromEntries(Object.entries(clone(d)).filter(([key])=>key!=='searchRequest')),id:String(d.id),actorId:String(d.actorId),propertyId:String(d.propertyId),searchId:String(d.searchId??d.searchRequestId),property:propertyFromApi(d.property,String(d.property?.ownerId)===this.userId),search:searchFromApi(d.search??d.searchRequest,String((d.search??d.searchRequest)?.ownerId)===this.userId)})):[],decisionsLoaded,
+      ledger: rows(ledgerResponse?.ledger || ledgerResponse).map(entry => ({ ...clone(entry), amount: Number(entry.amount ?? entry.delta ?? 0), description: entry.description || entry.reason || '', createdAt: entry.createdAt })),ledgerLoaded,
       createdAt: user.createdAt,
       unreadNotificationCount:Number(profile.unreadNotificationCount??user.unreadNotificationCount??0),
       newNotificationCount:Math.max(0,Number(profile.newNotificationCount??user.newNotificationCount??0)||0),
       notificationLastVisitAt:typeof profile.notificationLastVisitAt==='string'?profile.notificationLastVisitAt:null,
+      pendingIncomingLikeCount:Math.max(0,Math.trunc(Number(profile.pendingIncomingLikeCount??user.pendingIncomingLikeCount??0)||0)),
       likeCost:active?.id?likeCost(user.accountType,active.kind):0,
       reportedOwnerIds:[...new Set((Array.isArray(entities.reportedOwnerIds)?entities.reportedOwnerIds:[]).map(String))],
       reportedEntities:reportSummaries(entities.reportedEntities)
@@ -434,6 +440,12 @@ export class ApiModel {
     const value=await this.call(`/listings/${kind}/${key}/context`,'GET',undefined,{signal});
     requireCurrentRead(signal);
     return listingContextFromApi(kind,value);
+  }
+  async getListingConnection(kind,key,{signal}={}) {
+    if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
+    const value=await this.call(`/listings/${kind}/${key}/connection`,'GET',undefined,{signal});
+    requireCurrentRead(signal);
+    return listingConnectionFromApi(kind,key,value);
   }
   async getListingProfiles(kind,key,{offset=0,limit=50,signal}={}) {
     if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
@@ -656,6 +668,25 @@ export async function getListingContext(kind,key,options={}) {
   if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
   const model=getModel();
   return typeof model?.getListingContext==='function'?model.getListingContext(kind,key,options):null;
+}
+/** Contact data is admitted only from an explicit matched, listing-bound receipt. */
+export function listingConnectionFromApi(kind,key,value={}) {
+  const absent={connected:false};
+  if(!originFromListing(kind,key)||value?.connected!==true)return absent;
+  const text=(value,max)=>typeof value==='string'?value.trim().slice(0,max):'';
+  const profile=(value,profileKind)=>{
+    if(!value||!text(value.id,150)||!originFromListing(profileKind,value.publicListingKey))return null;
+    return {id:text(value.id,150),title:publicTitle(value.title,profileKind==='property'?'Eladó ingatlan':'Keresési igény'),publicListingKey:value.publicListingKey};
+  };
+  const property=profile(value.property,'property'),searchRequest=profile(value.searchRequest,'search');
+  const target=kind==='property'?property:searchRequest,matchId=text(value.matchId,150),id=text(value.contact?.id,150);
+  if(!matchId||!id||!property||!searchRequest||target.publicListingKey!==key)return absent;
+  return {connected:true,matchId,contact:{id,name:text(value.contact.name,100),email:text(value.contact.email,254),phone:text(value.contact.phone,40),accountType:normalizeAccountType(value.contact.accountType)},property,searchRequest};
+}
+export async function getListingConnection(kind,key,options={}) {
+  if(!originFromListing(kind,key))throw new Error('A hirdetés nem érhető el.');
+  const model=getModel();
+  return typeof model?.getListingConnection==='function'?model.getListingConnection(kind,key,options):{connected:false};
 }
 export function listingProfilesFromApi(kind,value={},page={offset:0,limit:50}) {
   const expected=kind==='property'?'search':'property',items=[];

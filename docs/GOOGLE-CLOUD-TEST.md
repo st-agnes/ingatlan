@@ -205,7 +205,7 @@ A helyi, szerveroldali megfelelő a `Geocoding__Google__ApiKey` környezeti vál
 
 A telepítés az új Cloud Run API-t a Hosting módosítása előtt ellenőrzi. A Firebase közzétételének befejezése után a webes ellenőrzés legfeljebb 12 alkalommal, 5 másodperces várakozással kérdezi le újra az oldalt, a runtime-konfigurációt és az API állapotát. Minden kérés külön URL-paramétert kap, és tiltja a gyorsítótárazást. Átmenetileg még korábbi Hosting-útvonal válaszolhat; siker csak az aktuális beágyazott tesztadat-verzióval lehetséges. Tartós eltérésnél a napló kiírja a hibás útvonalat és feltételt, verzióeltérésnél a kapott és az elvárt verziót is. A 401/403 válasz azonnal megállítja az ellenőrzést. A „release complete” után kapott ellenőrzési hiba nem vonja vissza automatikusan a már közzétett kiadást.
 
-A backendbe beágyazott `20261127-test-fixtures-v11` tesztadatcsomag **17 felhasználót, 481 ingatlant és 499 keresést** hoz létre. Ebből 4 fiók ingatlanközvetítő, 13 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
+A backendbe beágyazott `20261127-test-fixtures-v12` tesztadatcsomag **17 felhasználót, 481 ingatlant és 499 keresést** hoz létre. Ebből 4 fiók ingatlanközvetítő, 13 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
 
 | Fiók | Fióktípus | E-mail-cím |
 |---|---|---|
@@ -235,14 +235,29 @@ A regionális bővítés Budapesthez és mind a 19 vármegyéhez 12 új ingatlan
 
 ### Előkészített kedvelések és értesítések
 
-A három `aktivitas-…` fiók a következő normál teszttelepítéssel jön létre. Dórának 62 ingatlana és 62 keresése, Áronnak 62 ingatlana és két keresése, Nórának két ingatlana és két keresése van. A keresői magánfiók aktív kereséssel és 374 kredittel, az eladói magánfiók aktív ingatlannal és 376 kredittel, a közvetítő aktív kereséssel és 496 kredittel indul. E három, hosszabb próbára szánt fiók 500 kezdő tesztkreditet kap; a már elküldött fizetős érdeklődéseket az egyenlegek és a kreditnapló is tartalmazzák. Az eredeti 14 fiók 100-as kerete, illetve a visszajelzés-eladó előre megvett csomagja és 90-es egyenlege változatlan.
+A három `aktivitas-…` fiók a következő normál teszttelepítéssel jön létre. Dórának 62 ingatlana és 62 keresése, Áronnak 62 ingatlana és két keresése, Nórának két ingatlana és két keresése van. A keresői magánfiók aktív kereséssel és 370 kredittel, az eladói magánfiók aktív ingatlannal és 360 kredittel, a közvetítő aktív kereséssel és 490 kredittel indul. E három, hosszabb próbára szánt fiók 500 kezdő tesztkreditet kap; a már elküldött fizetős érdeklődéseket az egyenlegek és a kreditnapló is tartalmazzák. Az eredeti 14 fiók 100-as kerete, illetve a visszajelzés-eladó előre megvett csomagja és 90-es egyenlege változatlan.
 
 1. Lépj be például az `aktivitas-kereso@otthonra.local` fiókkal, a közös `OtthonraDemo2026!` jelszóval.
 2. A **Téged kedveltek** menüben a kereső aktív profiljához 62, az eladó és a közvetítő aktív profiljához 61–61, még megválaszolatlan érdeklődés tartozik. Az első 50 elem után a lapozás is kipróbálható. A viszonzott érdeklődések innen eltűnnek és a **Párosítások** között találhatók.
 3. Az **Értesítések** oldalon próbáld ki a beérkező kedvelés, az új párosítás és az új üzenet megnyitását. Olvasott és még nem olvasott események is szerepelnek; egyesek az inaktív profilokhoz tartoznak, ezért a megfelelő profilra váltás is kipróbálható.
 4. Az `aktivitas-elado@otthonra.local` és `aktivitas-ingatlanos@otthonra.local` fiókok ugyanezeket az eseménytípusokat kínálják eladói, illetve közvetítői nézőpontból.
 
-A minták összesen 189 döntést, köztük 185 függő érdeklődést és két kölcsönös párosítást, valamint négy üzenetet tartalmaznak. Az értesítések menü jelvénye a legutóbbi megnyitás óta érkezett eseményeket számolja, függetlenül az egyes sorok olvasottságától. Ezeket a backend a beágyazott tesztadatokkal együtt hozza létre. Az azonos revízió újraindítása megőrzi az eseményeket és az olvasottságot; egy új tesztrevízió a mintákat is újra létrehozza.
+A **Téged kedveltek** lista és a menüpont számlálója csak az aktív profilt mutatja. Válts a következő profilokra, és ellenőrizd, hogy a lista és a szám együtt változik:
+
+| Fiók | Saját profil címe | Függő érdeklődés |
+|---|---|---|
+| `aktivitas-kereso` | Aktivitás-próba · Teszt Dóra 1. keresése | 62 |
+| `aktivitas-kereso` | Aktivitás-próba · Teszt Dóra 2. keresése | 3 |
+| `aktivitas-kereso` | Aktivitás-próba · Teszt Dóra 3. keresése | 3 |
+| `aktivitas-elado` | Aktivitás-próba · Teszt Áron 1. lakása | 61 |
+| `aktivitas-elado` | Aktivitás-próba · Teszt Áron 2. lakása | 3 |
+| `aktivitas-elado` | Aktivitás-próba · Teszt Áron 3. lakása | 3 |
+| `aktivitas-ingatlanos` | Aktivitás-próba · Teszt Nóra 1. keresése | 61 |
+| `aktivitas-ingatlanos` | Aktivitás-próba · Teszt Nóra 2. keresése | 6 |
+
+A többi mintaprofil a hosszú listák ellenoldalaként szolgál. Az összes saját profil eseménye továbbra is az **Értesítések** között látható; a fenti további profiloknak külön beérkező mintáik is vannak.
+
+A minták összesen 207 döntést, köztük 203 függő érdeklődést és két kölcsönös párosítást, valamint négy üzenetet tartalmaznak. Az értesítések menü jelvénye a legutóbbi megnyitás óta érkezett eseményeket számolja, függetlenül az egyes sorok olvasottságától. Ezeket a backend a beágyazott tesztadatokkal együtt hozza létre. Az azonos revízió újraindítása megőrzi az eseményeket és az olvasottságot; egy új tesztrevízió a mintákat is újra létrehozza.
 
 ### Automatikus alaphelyzetbe állítás telepítéskor
 

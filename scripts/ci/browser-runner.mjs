@@ -21,7 +21,8 @@ export const BROWSER_GROUPS = Object.freeze({
     'tests/broker-browser.test.mjs',
     'tests/interaction-browser.test.mjs',
     'tests/matching-browser.test.mjs',
-    'tests/seller-feedback-browser.test.mjs'
+    'tests/seller-feedback-browser.test.mjs',
+    'tests/conversation-layout-browser.test.mjs'
   ]),
   onboarding: Object.freeze([
     'tests/onboarding-browser.test.mjs',

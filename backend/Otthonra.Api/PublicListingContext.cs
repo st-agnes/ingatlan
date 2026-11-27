@@ -21,6 +21,7 @@ public static class PublicListingContext
     private static readonly JsonSerializerOptions WebJson = new(JsonSerializerDefaults.Web);
     public static IEndpointRouteBuilder MapListingContextEndpoints(this IEndpointRouteBuilder endpoints)
     {
+        endpoints.MapListingConnectionEndpoints();
         endpoints.MapGet("/api/listings/{kind}/{key}/context", async Task<IResult>
             (string kind, string key, AppDb db, ClaimsPrincipal principal, HttpContext context, CancellationToken cancellationToken) =>
         {

@@ -1,7 +1,7 @@
 import test, { afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import {locations,MAX_SEARCH_LOCATIONS} from '../dist/locations.js';
-import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment, fetchLanding, fetchPublicListing, publicListingFromApi, detectLandingRegion, getListingMap, listingContextFromApi,listingProfilesFromApi } from '../dist/api.js';
+import { ApiModel, API_CONFIG_KEY, connectApi, getModel, disconnectApi, hostedMode, deploymentEnvironment, fetchLanding, fetchPublicListing, publicListingFromApi, detectLandingRegion, getListingMap, listingContextFromApi,listingProfilesFromApi,listingConnectionFromApi } from '../dist/api.js';
 
 const creditsTarget={page:'credits',entityKind:null,entityId:null,propertyId:null,searchRequestId:null,matchId:null};
 const exactAddress={street:'Fiktív teszt utca',houseNumber:'12',postalCode:'1234'};
@@ -90,6 +90,45 @@ test('authentication accepts accessToken and saves no password after verifying a
   disconnectApi();
   assert.equal(globalThis.localStorage.getItem(API_CONFIG_KEY), null);
   assert.notEqual(getModel().mode, 'api');
+});
+
+test('workspace snapshots omit credit history explicitly while balances, ownership and incoming counts remain fresh',async()=>{
+ let credits=24,pending=62;
+ const calls=routes(accountRoutes({'/api/me':()=>response({...profile,credits,pendingIncomingLikeCount:pending}),
+  '/api/me/entities':{properties:[{...property,ownerId:ids.user}],searchRequests:[search],active:{kind:'search',id:ids.search},decisions:[{id:'saved-choice',actorKind:'search',actorId:ids.search,propertyId:ids.property,searchId:ids.search,liked:true,property,search}]}}));
+ const api=adapter(),first=await api.getState({includeLedger:false});
+ assert.deepEqual(calls.map(call=>call.path).sort(),['/api/me','/api/me/entities']);
+ assert.equal(first.credits,24);assert.equal(first.pendingIncomingLikeCount,62);assert.equal(first.ledgerLoaded,false);assert.deepEqual(first.ledger,[]);
+ assert.equal(first.decisions.length,1);assert.equal(first.properties[0].ownerId,ids.user);assert.equal(first.searches[0].maxPrice,85,'Private owned search bounds remain hydrated');
+ credits=21;pending=59;const second=await api.getState({includeLedger:false});
+ assert.equal(second.credits,21);assert.equal(second.pendingIncomingLikeCount,59);assert.equal(calls.length,4,'Omitting unused history never caches the balance or owned profiles');
+ const complete=await api.getState();assert.equal(complete.ledgerLoaded,true);assert.equal(complete.ledger.length,1);assert.equal(complete.credits,21);assert.equal(calls.length,7,'The default complete snapshot still requests fresh credit history');
+});
+
+test('ordinary workspace snapshots omit historical foreign profiles while explicit saved-interest views retain the full contract',async()=>{
+ const calls=[],history={id:'historical-interest',actorKind:'search',actorId:ids.search,propertyId:ids.property,searchRequestId:ids.search,liked:true,property,searchRequest:search};
+ globalThis.fetch=async(url)=>{
+  const target=new URL(url);calls.push(target);
+  if(target.pathname==='/api/me')return response({...profile,pendingIncomingLikeCount:62});
+  if(target.pathname==='/api/credits/ledger')return response([]);
+  assert.equal(target.pathname,'/api/me/entities');const included=target.searchParams.get('includeDecisions')!=='false';
+  return response({properties:[{...property,ownerId:ids.user}],searchRequests:[search],active:{kind:'search',id:ids.search},decisions:included?[history]:[],decisionsIncluded:included});
+ };
+ const api=adapter(),lean=await api.getState({includeLedger:false,includeDecisions:false});
+ assert.equal(calls.length,2);assert.equal(calls.find(item=>item.pathname==='/api/me/entities').search,'?includeDecisions=false');
+ assert.equal(lean.decisionsLoaded,false);assert.deepEqual(lean.decisions,[]);assert.equal(lean.properties.length,1);assert.equal(lean.searches.length,1);assert.equal(lean.searches[0].maxPrice,85);assert.equal(lean.pendingIncomingLikeCount,62);
+ const complete=await api.getState();assert.equal(calls.length,5);assert.equal(complete.decisionsLoaded,true);assert.equal(complete.decisions.length,1);assert.equal(complete.decisions[0].property.price,72.9);assert.equal(complete.decisions[0].search.maxPrice,85);
+ assert.equal(calls.filter(item=>item.pathname==='/api/me/entities').at(-1).search,'','Legacy complete snapshots keep the unmodified endpoint and history semantics');
+});
+
+test('sparse workspace state cancels both actual requests without requesting or inventing a ledger',async()=>{
+ const api=adapter(),controller=new AbortController(),pending=[];
+ globalThis.fetch=(url,options)=>new Promise(resolve=>pending.push({url,options,resolve}));
+ const reading=api.getState({signal:controller.signal,includeLedger:false});assert.equal(pending.length,2);
+ assert.ok(pending.every(item=>!item.url.endsWith('/credits/ledger')));
+ controller.abort();await assert.rejects(reading,error=>error.code==='API_READ_CANCELLED');assert.ok(pending.every(item=>item.options.signal.aborted));assert.equal(api.userId,null);assert.equal(api.active,null);
+ pending.forEach(item=>item.resolve(response(item.url.endsWith('/me')?profile:{properties:[],searchRequests:[search]})));
+ await Promise.resolve();assert.equal(api.userId,null,'A late cancelled state cannot publish a previous account');
 });
 
 test('profile state maps active GUIDs and historical decision snapshots from HUF to UI units', async () => {
@@ -999,4 +1038,23 @@ test('configured API map reads retain their API origin without attaching the pri
  globalThis.fetch=async(url,options)=>{captured={url,options};return response({kind:'property',available:true,locationIds:[place.id]});};
  const map=await adapter().getListingMap('property',key);
  assert.equal(captured.url,`https://api.example.hu/api/public/listings/property/${key}/map`);assert.equal(captured.options.headers.Authorization,undefined);assert.equal(map.available,true);
+});
+
+test('matched listing contacts are authenticated, target-bound and strictly projected',async()=>{
+ const key='property-'+'a'.repeat(64),searchKey='search-'+'b'.repeat(64),raw={connected:true,matchId:ids.match,
+  contact:{id:'other',name:'Kovács Péter',email:'peter@example.test',phone:'+36 30 555 0101',accountType:'agent',passwordHash:'PRIVATE-HASH',token:'PRIVATE-TOKEN'},
+  property:{id:ids.property,title:'A kapcsolódó ingatlan',publicListingKey:key,latitude:47.5,addressDetails:{secret:'PRIVATE-ADDRESS'}},
+  searchRequest:{id:ids.search,title:'Saját keresésem',publicListingKey:searchKey,maxPrice:123456789,privateBudget:'PRIVATE-BUDGET'},
+  ownerPhone:'PRIVATE-OUTSIDE-CONTACT'};
+ const calls=routes({['/api/listings/property/'+key+'/connection']:raw});
+ const connection=await adapter().getListingConnection('property',key);
+ assert.equal(calls.length,1);assert.equal(calls[0].method,'GET');assert.equal(calls[0].headers.Authorization,'Bearer sample-token');
+ assert.equal(connection.connected,true);assert.equal(connection.matchId,ids.match);assert.equal(connection.contact.email,'peter@example.test');assert.equal(connection.contact.accountType,'agent');
+ assert.deepEqual(Object.keys(connection.contact).sort(),['accountType','email','id','name','phone']);
+ assert.deepEqual(Object.keys(connection.property).sort(),['id','publicListingKey','title']);
+ assert.doesNotMatch(JSON.stringify(connection),/PRIVATE|latitude|maxPrice|passwordHash|token/);
+ for(const value of [{...raw,connected:false},{...raw,matchId:null},{...raw,contact:null},{...raw,property:{...raw.property,publicListingKey:'property-'+'c'.repeat(64)}}]){
+  assert.deepEqual(listingConnectionFromApi('property',key,value),{connected:false},'No contact survives an absent, malformed or different-listing receipt');
+ }
+ const count=calls.length;await assert.rejects(adapter().getListingConnection('search',key),/hirdetés/);assert.equal(calls.length,count);
 });

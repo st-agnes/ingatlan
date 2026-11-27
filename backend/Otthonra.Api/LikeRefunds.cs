@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,9 +16,17 @@ public static class LikeRefundPolicy
 }
 
 /// <summary>Durable, replay-safe refunds. Every call uses fresh contexts and database locks.</summary>
-public sealed class LikeRefundService(IServiceScopeFactory scopes, TimeProvider clock, ILogger<LikeRefundService> logger, FeedbackRefundService? feedbackRefunds = null)
+public sealed class LikeRefundService(IServiceScopeFactory scopes, TimeProvider clock, ILogger<LikeRefundService> logger,
+    FeedbackRefundService? feedbackRefunds = null, IHostApplicationLifetime? lifetime = null)
 {
     public const int BatchSize = 500;
+    private readonly ConcurrentRefundCatchUp catchUps = new();
+
+    // A workspace reads profile/entities/ledger in parallel. Share their one
+    // in-flight catch-up without caching its result or delaying the next read.
+    // One aborted HTTP request must not cancel another reader's refund work.
+    public Task<int> CatchUpAsync(Guid userId, CancellationToken cancellationToken = default) =>
+        catchUps.RunAsync(userId, () => RunAsync(userId, lifetime?.ApplicationStopping ?? default), cancellationToken);
 
     public async Task<int> RunAsync(Guid? userId = null, CancellationToken cancellationToken = default)
     {
@@ -88,6 +97,26 @@ public sealed class LikeRefundService(IServiceScopeFactory scopes, TimeProvider 
         await db.SaveChangesAsync(cancellationToken);
         await transaction.CommitAsync(cancellationToken);
         return true;
+    }
+}
+
+/// <summary>Coalesces simultaneous owner reads only; completed results are never retained.</summary>
+public sealed class ConcurrentRefundCatchUp
+{
+    private readonly ConcurrentDictionary<Guid, Lazy<Task<int>>> pending = new();
+
+    public Task<int> RunAsync(Guid userId, Func<Task<int>> work, CancellationToken cancellationToken = default)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        var attempt = new Lazy<Task<int>>(() => ExecuteAsync(userId, work), LazyThreadSafetyMode.ExecutionAndPublication);
+        var shared = pending.GetOrAdd(userId, attempt).Value;
+        return cancellationToken.CanBeCanceled ? shared.WaitAsync(cancellationToken) : shared;
+    }
+
+    private async Task<int> ExecuteAsync(Guid userId, Func<Task<int>> work)
+    {
+        try { return await work(); }
+        finally { pending.TryRemove(userId, out _); }
     }
 }
 

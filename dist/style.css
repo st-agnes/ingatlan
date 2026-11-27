@@ -358,6 +358,12 @@ form label[for],.entity-wizard .location-search-controls>label{font-size:14px}
 .discovery-decision-dock .decision-like-caption>span{min-width:0;max-width:100%;padding-inline:1px;white-space:normal;overflow-wrap:anywhere;hyphens:auto;line-height:1.3}
 .discovery-decision-dock .decision-like-caption small{max-width:100%;white-space:nowrap}
 
+/* Listing titles are navigation, independently of the interest controls. */
+.incoming-card .incoming-title-link{display:inline-flex;align-items:baseline;gap:7px;color:#365330;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;font-weight:650}
+.incoming-card .incoming-title-link svg{width:15px;height:15px;flex:none;align-self:center}
+.incoming-card .incoming-title-link:hover{color:#243e20;text-decoration-thickness:2px}
+.incoming-card .incoming-title-link:focus-visible{outline:3px solid #cc996d;outline-offset:4px;border-radius:3px}
+
 /* Discovery, public listings and incoming interests share the same two choices. */
 .decision-dock .card-actions,.decision-dock .decision-labels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:0;width:260px;max-width:100%;margin-left:auto;margin-right:auto;justify-items:center}
 .decision-dock .card-actions{align-items:center;margin-top:0;margin-bottom:5px}
@@ -414,3 +420,60 @@ form label[for],.entity-wizard .location-search-controls>label{font-size:14px}
 .search-summary .summary-row p{font-size:12px;line-height:1.5;color:#78866f;margin-bottom:4px}
 .search-summary .summary-row strong{font-size:14px;line-height:1.55;font-weight:500;overflow-wrap:anywhere}
 .search-summary .summary-edit button{font-size:12px;line-height:1.5}
+
+/* Conversation controls are siblings: interactive account badges and listing
+   links must never sit inside the conversation-selection button. */
+.messages-layout{grid-template-rows:minmax(0,1fr);min-width:0;min-height:500px;height:620px;max-height:78dvh}
+.messages-layout>.conversation-list{min-width:0;min-height:0;overflow:auto}
+.conversation-row{min-width:0;border-radius:8px;padding-bottom:10px;margin-bottom:7px}
+.conversation-row.active{background:#f1f3eb}
+.conversation-row>.conversation{margin:0;background:transparent;align-items:center;min-width:0}
+.conversation-copy{display:grid;gap:5px;min-width:0;flex:1}
+.conversation-name{font-size:12px;font-weight:600;line-height:1.4;color:var(--ink)}
+.conversation-preview{font-size:10px;color:#7d8b73;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.conversation-context{display:flex;align-items:flex-start;gap:6px;padding:0 9px 0 55px;min-width:0}
+.conversation-context>.advertiser-info{flex:none}
+.conversation-context>.conversation-listing-link{min-width:0;flex:1;font-size:10px}
+.messages-layout>.chat{display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-width:0;min-height:0;height:100%;overflow:hidden}
+.chat-header-copy{min-width:0;flex:1}
+.chat-header-copy>small,.contact-listing-context>small,.match-property-copy>small{display:block;color:#7d8b73;font-size:10px;line-height:1.6}
+.messages-layout>.chat>.chat-header{min-width:0;align-items:flex-start}
+.chat-header>.icon-button{flex:none}
+.messages-layout .chat-messages{min-height:0;max-height:none;overflow:auto;overscroll-behavior:contain}
+.messages-layout .chat-messages>.chat-start,.messages-layout .chat-messages>.bubble{flex-shrink:0}
+.chat-start>svg{display:block;width:21px;height:21px;margin:0 auto 8px;color:#b27e5d}
+.messages-layout .chat-form{min-width:0}
+.matched-listing-link,.conversation-listing-link{display:inline-flex;align-items:center;gap:6px;min-width:0;color:#365b37;text-decoration:underline;text-underline-offset:3px;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+.matched-listing-link{font-size:14px}
+.matched-listing-link>span,.conversation-listing-link>span{min-width:0}
+.matched-listing-link>svg,.conversation-listing-link>svg{height:14px;width:14px;flex:none}
+.matched-listing-link:hover,.conversation-listing-link:hover{color:#a26440}
+.matched-listing-link:focus-visible,.conversation-listing-link:focus-visible{outline:2px solid #b8875b;outline-offset:3px;border-radius:3px}
+.matched-listing-link.is-unavailable,.conversation-listing-link.is-unavailable{text-decoration:none;color:#7c8b72}
+.match-property-copy{min-width:0;flex:1}
+.match-property>img{flex:none}
+.match-connection-tag{flex:none}
+.contact-listing-context{margin:15px 0 18px}
+.match-connection-art{display:flex;align-items:center;justify-content:center;gap:13px;margin-bottom:22px}
+.match-connection-art>.avatar{width:70px;height:70px;font-size:18px;border:4px solid var(--bg)}
+.match-connection-art>svg{width:37px;height:37px;flex:none;color:var(--orange);fill:none}
+.match-celebrate-actions{display:flex;align-items:stretch;justify-content:center;gap:10px;flex-wrap:wrap}
+.match-celebrate .match-celebrate-actions>.btn{display:flex;justify-content:center;align-items:center;margin:0;min-height:46px;line-height:1.4;flex:1 1 190px}
+@media(max-width:940px){.messages-layout{grid-template-columns:220px minmax(0,1fr)}}
+@media(max-width:720px){
+ .messages-layout{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);height:660px;min-height:520px;max-height:82dvh}
+ .messages-layout>.conversation-list{display:flex;max-height:136px;overflow:auto;align-items:stretch}
+ .conversation-row{flex:0 0 220px;width:220px;min-width:0;margin:0;padding-bottom:8px}
+ .conversation-row>.conversation{width:100%;min-width:0;align-items:center}
+ .conversation-context{padding-left:49px}
+ .conversation-copy>.conversation-name{font-size:11px}
+ .conversation-preview{display:none}
+ .messages-layout>.chat{min-height:0;height:100%}
+ .messages-layout .chat-messages{min-height:0;max-height:none;padding:16px}
+ .messages-layout .chat-header{padding:13px;gap:8px}
+ .chat-header-copy>h3{font-size:13px}
+ .chat-header-copy>.conversation-listing-link{font-size:11px}
+ .messages-layout .chat-form{padding:11px}
+ .match-celebrate{padding:15px 0}
+ .match-celebrate h2{font-size:26px}
+}

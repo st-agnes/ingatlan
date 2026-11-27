@@ -280,7 +280,7 @@ test('the feedback trial starts with an isolated exact counterpart and canonical
 test('activity catalog links pending interests and message-bearing mutual pairs for three named workspaces',()=>{
  for(const batch of [DEFAULT_BATCH,'activity-trial']){
   const catalog=createDemoCatalog(batch),suffix=batch===DEFAULT_BATCH?'':`--${batch}`;
-  assert.equal(catalog.activityScenarios.length,187);
+  assert.equal(catalog.activityScenarios.length,205);
   if(batch===DEFAULT_BATCH)assert.deepEqual(catalog.activityScenarios,DEMO_ACTIVITY_SCENARIOS);
   const pairs=new Set(),decisions=[];
   for(const scenario of catalog.activityScenarios){
@@ -292,15 +292,28 @@ test('activity catalog links pending interests and message-bearing mutual pairs 
    if(scenario.actors.length===1){assert.equal(scenario.propertyMessage,undefined);assert.equal(scenario.searchMessage,undefined);}
    else{assert.ok(scenario.propertyMessage.length>0&&scenario.searchMessage.length>0);}
   }
-  assert.equal(decisions.length,189);assert.equal(catalog.activityScenarios.filter(item=>item.actors.length===1).length,185);
+  assert.equal(decisions.length,207);assert.equal(catalog.activityScenarios.filter(item=>item.actors.length===1).length,203);
   assert.equal(catalog.activityScenarios.filter(item=>item.actors.length===2).length,2);
-  for(const [key,expected] of [['activitybuyer',374],['activityseller',376],['activityagent',496]]){
+  for(const [key,expected] of [['activitybuyer',370],['activityseller',360],['activityagent',490]]){
    const user=catalog.users.find(item=>item.key===key+suffix);assert.ok(user);
    const charges=decisions.filter(item=>item.owner===user.key).reduce((sum,item)=>sum+(item.actor==='property'?2:user.accountType==='agent'?1:0),0);
    assert.equal(user.startingCredits-charges,expected);
    const pending=catalog.activityScenarios.filter(item=>item.actors.length===1&&(user.active.kind==='property'?item.property:item.search)===user.active.key&&item.actors[0]!==user.active.kind);
    assert.equal(pending.length,key==='activitybuyer'?62:61,'Each active workspace has more than one full page of unanswered interests');
    assert.equal(new Set(pending.map(item=>user.active.kind==='property'?item.search:item.property)).size,pending.length);
+  }
+  for(const [owner,kind,key,count] of [
+   ['activitybuyer','search','activitybuyer-search-2',3],
+   ['activitybuyer','search','activitybuyer-seller-search-1',3],
+   ['activityseller','property','activityseller-property-2',3],
+   ['activityseller','property','activityseller-buyer-property-10',3],
+   ['activityagent','search','activityagent-search-2',6]
+  ]){
+   const profile=catalog.fixtures.find(item=>item.key===key+suffix);
+   assert.equal(profile.owner,owner+suffix);assert.equal(profile.kind,kind);
+   const pending=catalog.activityScenarios.filter(item=>item.actors.length===1&&item[kind==='property'?'property':'search']===profile.key&&item.actors[0]!==kind);
+   assert.equal(pending.length,count,'Switching to an additional owned profile has its own unanswered inbox');
+   assert.equal(new Set(pending.map(item=>item[kind==='property'?'search':'property'])).size,count);
   }
  }
 });

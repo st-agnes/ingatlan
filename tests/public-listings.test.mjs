@@ -181,3 +181,16 @@ test('profile picker errors remain text and unavailable pair gates do not offer 
   assert.doesNotMatch(markup,/data-action="public-listing-select-profile"|data-action="public-listing-new-profile"/);assert.match(markup,/data-action="close"/);
  }
 });
+
+test('only a connected signed-in advertiser name becomes a contact action without exposing contacts in the page',()=>{
+ const connection={connected:true,matchId:'match-1',contact:{name:'PRIVATE-FULL-NAME',email:'PRIVATE-EMAIL',phone:'PRIVATE-PHONE'}};
+ for(const signedIn of [false,true])for(const connected of [false,true]){
+  const html=publicListingMarkup(property,{signedIn,connection:{...connection,connected}});
+  assert.equal(html.includes('data-action="public-listing-contact-info"'),signedIn&&connected);
+  assert.doesNotMatch(html,/PRIVATE-FULL-NAME|PRIVATE-EMAIL|PRIVATE-PHONE/);
+  if(signedIn&&connected)assert.match(html,/class="owner-first-name public-author-name"/);
+ }
+ const author=publicAuthorMarkup({ownerFirstName:'Anna',ownerAccountType:'private'},{contactAvailable:true});
+ assert.match(author,/Anna elérhetőségei és beszélgetés/);assert.equal((author.match(/<button\b/g)||[]).length,2,'Contact and account explanation are sibling buttons');
+ const ordinary=publicAuthorMarkup({ownerFirstName:'Anna'});assert.equal((ordinary.match(/<span\b/g)||[]).length,(ordinary.match(/<\/span>/g)||[]).length,'Account icons do not close an ancestor span');
+});

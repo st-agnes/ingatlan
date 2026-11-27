@@ -32,11 +32,26 @@ A következő fiókok a következő szokásos tesztdeploy után használhatók, 
 
 | E-mail-cím | Kezdő aktív profil | Tesztkredit |
 |---|---|---|
-| `aktivitas-kereso@otthonra.local` | Magánszemély keresési igénye | 374 |
-| `aktivitas-elado@otthonra.local` | Magánszemély eladó ingatlana | 376 |
-| `aktivitas-ingatlanos@otthonra.local` | Ingatlanközvetítő keresési igénye | 496 |
+| `aktivitas-kereso@otthonra.local` | Magánszemély keresési igénye | 370 |
+| `aktivitas-elado@otthonra.local` | Magánszemély eladó ingatlana | 360 |
+| `aktivitas-ingatlanos@otthonra.local` | Ingatlanközvetítő keresési igénye | 490 |
 
 A **Téged kedveltek** menüben a keresőnek **62**, az eladónak és a közvetítőnek **61–61**, még megválaszolatlan érdeklődése van az aktív profilján; az 50-es lapozás is kipróbálható. A viszonzott párok a **Párosítások** között szerepelnek. Dórának 62 ingatlana és 62 keresése, Áronnak 62 ingatlana és két keresése, Nórának két ingatlana és két keresése van. Az **Értesítések** között beérkező érdeklődés, létrejött párosítás és új üzenet is szerepel, olvasott és még nem olvasott példákkal, inaktív profilokra vonatkozó eseményekkel. A menü jelvénye a legutóbbi megnyitás óta érkezett új eseményeket mutatja. Ezek a fiókok 500 tesztkredites induló keretet kapnak; a fenti egyenlegekből már levontuk a minták fizetős érdeklődéseit, és a kreditnapló ezeket is tartalmazza.
+
+A **Téged kedveltek** lista és a mellette látható szám mindig az **aktív profilhoz** tartozik. A többi profil eseménye az **Értesítések** között is elérhető. A többprofilos működés kipróbálásához válts ezekre a saját profilokra:
+
+| Fiók | Profil címe | Megválaszolatlan érdeklődés |
+|---|---|---|
+| `aktivitas-kereso` | Aktivitás-próba · Teszt Dóra 1. keresése | 62 |
+| `aktivitas-kereso` | Aktivitás-próba · Teszt Dóra 2. keresése | 3 |
+| `aktivitas-kereso` | Aktivitás-próba · Teszt Dóra 3. keresése | 3 |
+| `aktivitas-elado` | Aktivitás-próba · Teszt Áron 1. lakása | 61 |
+| `aktivitas-elado` | Aktivitás-próba · Teszt Áron 2. lakása | 3 |
+| `aktivitas-elado` | Aktivitás-próba · Teszt Áron 3. lakása | 3 |
+| `aktivitas-ingatlanos` | Aktivitás-próba · Teszt Nóra 1. keresése | 61 |
+| `aktivitas-ingatlanos` | Aktivitás-próba · Teszt Nóra 2. keresése | 6 |
+
+A sok további mintaprofil a hosszú beérkező listák ellenoldalát biztosítja. Ezekhez külön nem készítettünk mindenhol érdeklődést; a fenti profilokkal viszont a váltás, a különálló számlálók és a már meglévő párosítás melletti új érdeklődés is kipróbálható.
 
 Azonos tesztrevízió újraindításakor az érdeklődések, beszélgetések és az értesítések olvasottsága megmarad. Új tesztrevízió telepítése a teljes mintakészlettel együtt ezeket is alaphelyzetbe állítja.
 
@@ -54,7 +69,7 @@ A workflow alapból beköti a már létrehozott `otthonra-geocoding-dev` Secret 
 
 **Minden új teszt Cloud Run-revízió friss tesztállapotot kap:** az alkalmazásadatok törlődnek, majd visszaállnak a fenti példafiókok, ingatlanok, keresések és kezdő kreditek. Ez a tesztelés közben létrehozott saját fiókokat, döntéseket, párosításokat és üzeneteket is törli. Azonos revízió új példányának indulásakor vagy újraindításakor az adatok megmaradnak; egy korábban már feltöltött régi revízió újraindítása sem törli az újabb tesztállapotot.
 
-Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261127-test-fixtures-v11`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
+Az automatikus tesztfeltöltés kizárólag `Deployment__Environment=test` és `Database__SeedTestFixtures=true` mellett fut. A csomag verziója `20261127-test-fixtures-v12`; a teszttelepítő bekapcsolja a megfelelő jelzőt. A szokásos éles környezetben ez a törlés és feltöltés nem fut le.
 
 **A visszatérítések ütemezésének első telepítésekor** a teljes `bash scripts/gcp/run-dev.sh` parancs szükséges a Cloud Shellben, a frissített tároló gyökeréből; ez létrehozza az új tesztütemezőt is. A későbbi kiadások a megszokott Actions workflow-val mennek.
 

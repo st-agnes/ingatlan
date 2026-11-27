@@ -25,7 +25,7 @@ const browserFiles=[
  'tests/browser.test.mjs','tests/street-search-browser.test.mjs','tests/attributes-browser.test.mjs',
  'tests/areas-browser.test.mjs','tests/neighborhood-search-browser.test.mjs','tests/neighborhood-map-browser.test.mjs',
  'tests/wizard-dock-browser.test.mjs','tests/seller-form-browser.test.mjs','tests/broker-browser.test.mjs',
- 'tests/interaction-browser.test.mjs','tests/matching-browser.test.mjs','tests/seller-feedback-browser.test.mjs',
+ 'tests/interaction-browser.test.mjs','tests/matching-browser.test.mjs','tests/seller-feedback-browser.test.mjs','tests/conversation-layout-browser.test.mjs',
  'tests/onboarding-browser.test.mjs','tests/landing-refund-browser.test.mjs','tests/tab-resume-browser.test.mjs',
  'tests/activity-notifications-browser.test.mjs','tests/public-listings-browser.test.mjs'
 ];

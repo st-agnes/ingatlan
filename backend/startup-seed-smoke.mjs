@@ -21,7 +21,9 @@ if(mode==='--production'){assert.equal(health.deployment,'production');assert.eq
 else{assert.equal(health.deployment,'test');assert.equal(health.testDataVersion,version);}
 const agent=DEMO_USERS.find(user=>user.accountType==='agent'),scenario=FEEDBACK_TEST_SCENARIO,scenarioKeys=new Set([scenario.seller,scenario.buyer]);
 const quarterAccountKeys=new Set(['reka','bence','julia','marton']);
-const activityExpected={activitybuyer:{credits:374,decisions:124,matches:2,ledger:64,notifications:69,unread:68,incoming:62},activityseller:{credits:376,decisions:62,matches:1,ledger:63,notifications:66,unread:65,incoming:61},activityagent:{credits:496,decisions:3,matches:1,ledger:4,notifications:65,unread:64,incoming:61}};
+const activityExpected={activitybuyer:{credits:370,decisions:130,matches:2,ledger:66,notifications:75,unread:74,incoming:62},activityseller:{credits:360,decisions:70,matches:1,ledger:71,notifications:72,unread:71,incoming:61},activityagent:{credits:490,decisions:7,matches:1,ledger:8,notifications:71,unread:70,incoming:61}};
+const secondaryInboxes={activitybuyer:[['search','activitybuyer-search-2',3],['search','activitybuyer-seller-search-1',3]],
+ activityseller:[['property','activityseller-property-2',3],['property','activityseller-buyer-property-10',3]],activityagent:[['search','activityagent-search-2',6]]};
 const accounts=[...DEMO_USERS.slice(0,3),agent,...DEMO_USERS.filter(user=>scenarioKeys.has(user.key)||quarterAccountKeys.has(user.key)||Object.hasOwn(activityExpected,user.key))];
 const catalog=key=>DEMO_FIXTURES.find(fixture=>fixture.key===key);
 async function allNotifications(token){
@@ -168,6 +170,7 @@ async function fresh(f){
 async function seededActivity(f,rows){
  for(const [key,expected] of Object.entries(activityExpected)){
   const row=rows.find(item=>item.key===key),token=f.tokens[key],notices=row.notifications;
+  assert.equal(row.profile.pendingIncomingLikeCount,expected.incoming,'The navigation badge counts only the current profile unanswered interests');
   assert.equal(notices.total,expected.notifications);assert.equal(notices.items.length,expected.notifications);assert.equal(notices.unreadCount,expected.unread);assert.equal(row.profile.unreadNotificationCount,expected.unread);assert.equal(notices.newCount,expected.notifications);assert.equal(row.profile.newNotificationCount,expected.notifications);
   assert.equal(notices.items.filter(item=>item.readAt).length,1,'Each activity workspace starts with an already-seen event');
   for(const kind of ['incoming_like','match_created','message_received','credit_added'])assert.ok(notices.items.some(item=>item.kind===kind),key+' needs '+kind);
@@ -181,13 +184,24 @@ async function seededActivity(f,rows){
   assert.doesNotMatch(raw,/"(?:latitude|longitude|geocodingPlaceId|provider)"\s*:/i);
   const inactive=notices.items.find(item=>item.target?.entityId&&item.target.entityId!==row.entities.active.id);assert.ok(inactive,'Activity on an inactive profile must remain visible');
   const other=await api('/notifications/'+inactive.id+'/context',{token});assert.equal(other.available,true);assert.equal(other.canActivate,true);assert.equal(other.target.entityId,inactive.target.entityId);
+  for(const [kind,fixtureKey,count] of secondaryInboxes[key]){
+   const profile=entity(row,catalog(fixtureKey));assert.ok(profile);
+   await api('/me/active',{token,method:'PUT',body:{kind,id:profile.id}});
+   const summary=await api('/me',{token}),scoped=await api('/incoming-likes?offset=0&limit=50',{token});
+   assert.equal(summary.pendingIncomingLikeCount,count,'Switching profiles updates the pending-interest badge');
+   assert.equal(scoped.total,count);assert.equal(scoped.items.length,count);assert.equal(scoped.hasMore,false);
+   assert.deepEqual(scoped.active,{kind,id:profile.id});
+   for(const item of scoped.items){assert.equal(kind==='property'?item.propertyId:item.searchRequestId,profile.id);assert.equal(item.myDecision,null);assert.equal(item.matchId,null);assert.equal(item.compatible,true);assert.equal(item.isExact,true);}
+  }
+  await api('/me/active',{token,method:'PUT',body:row.entities.active});
+  assert.equal((await api('/me',{token})).pendingIncomingLikeCount,expected.incoming,'Restoring the initial profile restores its independent badge');
   const unread=notices.items.find(item=>item.kind==='incoming_like'&&!item.readAt);assert.ok(unread);
   const marked=await api('/notifications/'+unread.id+'/read',{token,method:'PUT'});assert.ok(marked.readAt);
   const again=await api('/notifications/'+unread.id+'/read',{token,method:'PUT'});assert.equal(again.readAt,marked.readAt);assert.equal(again.unreadCount,expected.unread-1);
   const afterRead=await api('/me',{token});assert.equal(afterRead.credits,expected.credits,'Reading or resolving an activity cannot debit credits');assert.equal(afterRead.newNotificationCount,expected.notifications,'Reading an individual receipt does not acknowledge a menu visit');
   await api('/notifications/'+pending.id+'/context',{token:f.tokens.anna,status:404});
  }
- console.log('Prepared activity accounts passed: 62/61/61 unanswered incoming interests across multiple pages, inactive-profile targets, likes/matches/messages, role-based fees, contacts hidden and independent first-read/new-since-visit counters.');
+ console.log('Prepared activity accounts passed: 62/61/61 unanswered incoming interests across multiple pages, separate 3/3/2 profile inboxes and matching badges, inactive-profile targets, likes/matches/messages, role-based fees, contacts hidden and independent first-read/new-since-visit counters.');
 }
 async function seededNeighborhoods(f,rows){
  const quarter=DEMO_NEIGHBORHOOD_SCENARIO,row=key=>rows.find(item=>item.key===key);

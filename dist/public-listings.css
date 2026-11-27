@@ -94,3 +94,9 @@ body:has(.modal) .public-listing-decision-dock{visibility:hidden;pointer-events:
 .listing-profile-options-status.is-error{color:#9d3a2b}
 .listing-profile-options-actions{margin-top:18px}
 @media(max-width:720px){.public-listing-active-profile{padding:13px 14px}.public-listing-profile-tools{gap:7px 11px}.public-listing-profile-tools .btn,.public-listing-new-profile{font-size:12px}.public-listing-profile-prompt h2{font-size:16px}.listing-profile-option{padding:12px;gap:10px}.listing-profile-option-copy>strong{font-size:14px}.listing-profile-option-score{font-size:21px;min-width:50px}.listing-profile-options{max-height:49dvh}}
+
+/* Existing matches expose their advertiser contact without another profile switch. */
+.public-listing-author .public-author-name{display:inline-flex;align-items:center;gap:5px;max-width:180px;border:0;padding:2px 0;background:transparent;color:#365a38;font:inherit;font-weight:650;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px;cursor:pointer}
+.public-listing-author .public-author-name svg{flex:none;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7}
+.public-listing-author .public-author-name:hover{color:#1e432b}
+.public-listing-author .public-author-name:focus-visible{outline:3px solid #cc996d;outline-offset:3px;border-radius:3px}
