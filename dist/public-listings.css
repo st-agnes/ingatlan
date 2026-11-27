@@ -72,6 +72,12 @@
 
 /* The chosen profile replaces the creation CTA, directly beneath the ad heading. */
 .public-listing-heading>.public-listing-context{margin:20px 0 0;text-align:left}
+.public-listing-context:not(.public-listing-profile-prompt){padding:0;background:transparent;border:0;border-radius:0}
+.public-listing-active-profile{padding:17px 20px;border:1px solid #dce5d5;border-radius:14px;background:#f3f6ef}
+.public-listing-target-response{margin-top:14px;padding:18px 20px;border:1px solid #e7d4c4;border-left:4px solid #c98b5d;border-radius:12px;background:#fffaf5}
+.public-listing-response-heading{margin:0;color:#83634b;font-size:12px;line-height:1.5}
+.public-listing-response-heading>strong{display:block;margin-top:4px;color:#354b34;font-size:17px;font-weight:650;line-height:1.4;overflow-wrap:anywhere}
+.public-listing-target-response .public-listing-decisions{justify-content:flex-start}
 .public-listing-profile-tools{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-top:13px}
 .public-listing-profile-tools .btn{min-height:39px;padding:8px 13px;font-size:13px}
 .public-listing-new-profile{border:0;background:transparent;color:#3e6237;min-height:39px;padding:8px 0;font:inherit;font-size:13px;font-weight:600;cursor:pointer;text-align:left}
@@ -96,4 +102,4 @@
 .listing-profile-options-status{font-size:13px;line-height:1.5;margin:13px 0 0;color:#66755e}
 .listing-profile-options-status.is-error{color:#9d3a2b}
 .listing-profile-options-actions{margin-top:18px}
-@media(max-width:720px){.public-listing-profile-tools{gap:7px 11px}.public-listing-profile-tools .btn,.public-listing-new-profile{font-size:12px}.public-listing-profile-prompt h2{font-size:16px}.listing-profile-option{padding:12px;gap:10px}.listing-profile-option-copy>strong{font-size:14px}.listing-profile-option-score{font-size:21px;min-width:50px}.listing-profile-options{max-height:49dvh}}
+@media(max-width:720px){.public-listing-active-profile{padding:13px 14px}.public-listing-target-response{padding:15px 14px;margin-top:12px}.public-listing-response-heading>strong{font-size:16px}.public-listing-target-response .public-listing-decisions{justify-content:center}.public-listing-profile-tools{gap:7px 11px}.public-listing-profile-tools .btn,.public-listing-new-profile{font-size:12px}.public-listing-profile-prompt h2{font-size:16px}.listing-profile-option{padding:12px;gap:10px}.listing-profile-option-copy>strong{font-size:14px}.listing-profile-option-score{font-size:21px;min-width:50px}.listing-profile-options{max-height:49dvh}}

@@ -1311,6 +1311,39 @@ function configuredCriteriaRaw(kind){
  });
  return raw;
 }
+test('discovery sidebar gives configured criteria distinct semantic icons and keeps private and public budgets read-only',async()=>{
+ const raw=configuredCriteriaRaw('search');Object.assign(raw.searches.find(item=>item.id==='own-s1'),{
+  publicMaxPrice:90,excludeTopFloor:true,excludeGroundFloorAndBelow:true,atticPreference:'exclude',minEnergyRating:'B',airConditioning:true,privateGarden:true
+ });
+ const t=await setup({initialRaw:raw}),before=t.model.getState(),html=t.document.getElementById('app').innerHTML;
+ const aside=html.match(/<aside class="aside">([\s\S]*?)<\/aside>/)?.[1]||'';
+ const rows=[...aside.matchAll(/<div class="summary-row" data-summary-icon="([^"]+)">([\s\S]*?)<div><p>(.*?)<\/p><strong class="districts">([\s\S]*?)<\/strong><\/div><\/div>/g)];
+ const expected={Elhelyezkedés:'pin','Privát árkeret':'lock','Publikus maximum ár':'eye',Alapterület:'area','Szobák száma':'bed','Ingatlan típusa':'home',Állapot:'tools',Falazat:'brick','Építés éve':'calendar',Kilátás:'window','Fűtés típusa':'flame',Belmagasság:'height',Emelet:'stairs','Legfelső emelet':'topFloor','Földszint és szuterén':'groundFloor',Tetőtér:'roof','Minimum energetikai besorolás':'leaf',Légkondi:'snowflake','Saját kert':'garden',Erkély:'balcony',Lift:'elevator',Költözés:'clock',Finanszírozás:'coins'};
+ assert.equal(rows.length,Object.keys(expected).length);
+ for(const [label,name]of Object.entries(expected)){
+  const row=rows.find(value=>value[3]===label);assert.ok(row,`Configured ${label} belongs in the sidebar`);assert.equal(row[1],name,`${label} has its own semantic icon`);
+  assert.equal((row[2].match(/<svg\b/g)||[]).length,1);assert.match(row[2],/aria-hidden="true"/);assert.match(row[2],/<path d="[^"]+"/);
+ }
+ assert.equal(new Set(rows.map(row=>row[1])).size,rows.length,'Different parameters do not all reuse a house icon');
+ assert.match(rows.find(row=>row[3]==='Privát árkeret')[4],/120,5/);assert.match(rows.find(row=>row[3]==='Publikus maximum ár')[4],/90/);
+ assert.match(rows.find(row=>row[3]==='Falazat')[4],/Tégla, Panel/);assert.match(rows.find(row=>row[3]==='Emelet')[4],/Szuterén, Földszint, 8 vagy afölötti/);
+ assert.match(rows.find(row=>row[3]==='Erkély')[4],/Szükséges/);assert.match(rows.find(row=>row[3]==='Lift')[4],/Szükséges/);assert.match(rows.find(row=>row[3]==='Költözés')[4],/Azonnal/);assert.match(rows.find(row=>row[3]==='Finanszírozás')[4],/Saját forrásból/);
+ assert.deepEqual(t.model.getState(),before,'Displaying the enlarged criteria summary never changes the profile or credits');
+});
+
+test('seller sidebar uses building, amenity and plot icons without inventing unknown values or house-only apartment fields',async()=>{
+ for(const house of [false,true]){
+  const raw=configuredCriteriaRaw('property'),property=raw.properties.find(item=>item.id==='own-p1');Object.assign(property,{privateGarden:true,buildingFloors:4,isAttic:false,...house?{type:'Ház',lotArea:650}:{}});
+  const t=await setup({initialRaw:raw}),before=t.model.getState(),aside=t.document.getElementById('app').innerHTML.match(/<aside class="aside">([\s\S]*?)<\/aside>/)?.[1]||'';
+  const icons=Object.fromEntries([...aside.matchAll(/<div class="summary-row" data-summary-icon="([^"]+)">[\s\S]*?<div><p>(.*?)<\/p><strong class="districts">([\s\S]*?)<\/strong><\/div><\/div>/g)].map(row=>[row[2],{icon:row[1],value:row[3]}]));
+  for(const [label,name]of Object.entries({'Irányár':'wallet','Szigetelés az épületen':'insulation','Energetikai tanúsítvány':'leaf',Napelem:'sun','Parkolóhely típusa':'parking'}))assert.equal(icons[label]?.icon,name);
+  assert.equal(icons['Szigetelés az épületen'].value,'Nincs');assert.equal(icons.Napelem.value,'Van');assert.match(icons['Parkolóhely típusa'].value,/Udvari beálló, Garázs/);
+  if(house){assert.equal(icons.Telekméret.icon,'plot');assert.match(icons.Telekméret.value,/650/);for(const label of ['Emelet','Épület emeleteinek száma','Tetőtéri ingatlan','Erkély','Lift','Saját kert'])assert.equal(icons[label],undefined);}
+  else{for(const [label,name]of Object.entries({'Emelet':'stairs','Épület emeleteinek száma':'building','Tetőtéri ingatlan':'roof',Erkély:'balcony',Lift:'elevator','Saját kert':'garden'}))assert.equal(icons[label]?.icon,name);assert.equal(icons.Emelet.value,'Földszint');assert.equal(icons.Erkély.value,'Nincs');assert.equal(icons.Lift.value,'Van');}
+  assert.deepEqual(t.model.getState(),before);
+ }
+});
+
 function criteriaRow(t,key){
  const html=t.document.getElementById('modal-root').innerHTML,match=html.match(new RegExp('<div\\b(?=[^>]*\\bdata-summary-field="'+key+'")[^>]*>\\s*<dt\\b[^>]*>([\\s\\S]*?)<\\/dt>\\s*<dd\\b[^>]*>([\\s\\S]*?)<\\/dd>'));
  assert.ok(match,`The criteria summary must include the configured ${key} parameter`);
@@ -2273,6 +2306,40 @@ test('top and bottom wizard actions share validation, preserve manual type choic
   submitEditor(t,t.document.getElementById('editor-save-top'));await settle();
   if(guest){assert.equal(t.ctx.location.hash,'#register');assert.equal(storedOnboarding(t).phase,'awaiting-auth');assert.equal(storedOnboarding(t).id,draft.id);assert.equal(calls.length,0,'Guest final navigation prepares authentication without creating an entity');}
   else{assert.equal(calls.length,1);submitEditor(t,t.document.getElementById('editor-save'));await editorAction(t,'editor-back-top');assert.equal(calls.length,1);assert.equal(editorStep(t),5);release();await settle();assert.equal(calls.length,1);const rows=t.model.getState()[kind==='property'?'properties':'searches'];assert.equal(rows.filter(row=>row.id===calls[0][2]||row.title===calls[0][1].title).length,1,'The two submit buttons must share one pending save');}
+ }
+});
+
+test('existing profile top Save remains available on every topic and preserves hidden-topic values in one update',async()=>{
+ for(const kind of ['search','property']){
+  const initialRaw=accountFixture(raw=>{raw.searches.find(row=>row.id==='own-s1').financing='Saját megtakarítás';});
+  const t=await setup({initialRaw}),collection=kind==='property'?'properties':'searches',before=t.model.getState(),original=before[collection][0];
+  t.ui.openEditor(kind,original.id);const form=t.document.getElementById('entity-form'),calls=[],save=t.model.saveEntity;let release;
+  t.model.saveEntity=async(...args)=>{calls.push(args);await new Promise(resolve=>{release=resolve;});return save(...args);};
+  assert.equal(form.dataset.editing,'true');
+  for(let step=0;step<6;step++){
+   if(step)await editorAction(t,`editor-step-button-${step}`);
+   assert.equal(editorStep(t),step);assert.equal(t.document.getElementById('editor-next-top').hidden,true);assert.equal(t.document.getElementById('editor-save-top').hidden,false);assert.equal(t.document.getElementById('editor-save-top').type,'submit');
+   assert.equal(t.document.getElementById('editor-next').hidden,step===5);assert.equal(t.document.getElementById('editor-save').hidden,step!==5);
+  }
+  const description='Átdolgozott leírás, korábban megadott feltételek megtartásával.';setEditorValues(t,{description});await editorAction(t,'editor-step-button-3');
+  const pending=submitEditor(t,t.document.getElementById('editor-save-top'));await settle();assert.equal(calls.length,1);assert.equal(calls[0][0],kind);assert.equal(calls[0][2],original.id);assert.equal(calls[0][1].description,description);assert.equal(editorStep(t),3,'Saving does not force a tour through the remaining topics');
+  submitEditor(t,t.document.getElementById('editor-save-top'));await editorAction(t,'editor-next');assert.equal(calls.length,1,'Repeated Save and navigation cannot duplicate a pending write');assert.equal(editorStep(t),3);
+  release();await pending;await settle();const after=t.model.getState(),saved=after[collection].find(row=>row.id===original.id);
+  assert.equal(after[collection].length,before[collection].length);assert.equal(saved.description,description);assert.equal(saved.title,original.title);assert.equal(saved.type,original.type);assert.equal(after.credits,before.credits);
+  const retained=kind==='property'?['price','area','rooms','wholeRooms','halfRooms','condition','building','images','addressDetails']:['locationIds','maxPrice','minArea','minRooms','financing'];
+  for(const name of retained)assert.deepEqual(saved[name],original[name],`${kind} ${name} survives an update from another topic`);
+  assert.equal(t.document.getElementById('entity-form'),null);assert.doesNotMatch(t.document.getElementById('modal-root').innerHTML,/Elkészült a keresési igényed/,'An edit never opens the creation prompt');
+ }
+});
+
+test('existing profile early Save reveals an invalid hidden topic without writing or losing other edits',async()=>{
+ for(const kind of ['search','property']){
+  const t=await setup(),collection=kind==='property'?'properties':'searches',original=t.model.getState()[collection][0],calls=[];
+  t.ui.openEditor(kind,original.id);t.model.saveEntity=async(...args)=>{calls.push(args);throw new Error('Invalid form must not be posted');};
+  await editorAction(t,'editor-step-button-2');const required=t.document.getElementById(kind==='property'?'f-price':'f-maxPrice');required.value='';
+  setEditorValues(t,{description:'A megőrzendő, még el nem mentett leírás.'});await editorAction(t,'editor-step-button-0');assert.equal(editorStep(t),0);
+  await submitEditor(t,t.document.getElementById('editor-save-top'));await settle();
+  assert.equal(calls.length,0);assert.equal(editorStep(t),2);assert.equal(t.document.activeElement.id,required.id);assert.equal(t.document.getElementById('f-description').value,'A megőrzendő, még el nem mentett leírás.');assert.equal(t.document.getElementById('editor-save-top').hidden,false);
  }
 });
 

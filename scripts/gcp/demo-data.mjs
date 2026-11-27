@@ -359,8 +359,42 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
       description:fictional + 'A visszajelzés kipróbálására szolgáló nyaraló. A keresői tesztfiókban az első elutasítás után megjelenik a kérdés.'}},
     {key:searchKey,owner:buyer,kind:'search',input:{...copy(searchDefaults),title:'Visszajelzés-próba · Nyaralót keresek' + titleSuffix,
       city:'Abádszalók',locationIds:['city:Abádszalók'],type:'Nyaraló',maxPrice:50_000_000,minArea:50,maxArea:80,minRooms:2,maxRooms:4,
-      description:fictional + 'Az első Most nem gombbal azonnal kipróbálható a visszajelzési ablak.'}}
+      description:fictional + 'Az első Nem az igazi gombbal azonnal kipróbálható a visszajelzési ablak.'}}
   );
+  // Small named workspaces contain real test activity immediately after a
+  // startup seed. The optional API importer still imports these profiles only.
+  const activityUsers = [
+    {key:'activitybuyer',name:'Teszt Dóra',email:'aktivitas-kereso',accountType:'private',activeKind:'search'},
+    {key:'activityseller',name:'Teszt Áron',email:'aktivitas-elado',accountType:'private',activeKind:'property'},
+    {key:'activityagent',name:'Teszt Nóra',email:'aktivitas-ingatlanos',accountType:'agent',activeKind:'search'}
+  ];
+  const activityKey = key => key + keySuffix;
+  for (const [index, definition] of activityUsers.entries()) {
+    const owner=activityKey(definition.key);
+    users.push({key:owner,name:definition.name+titleSuffix,email:`${definition.email}${batch === DEFAULT_BATCH ? '' : `+${batch}`}@otthonra.local`,
+      phone:`+36 30 555 03${index+1}0`,accountType:definition.accountType,
+      active:{kind:definition.activeKind,key:activityKey(`${definition.key}-${definition.activeKind}-1`)}});
+    for (const number of [1,2]) {
+      fixtures.push({key:activityKey(`${definition.key}-property-${number}`),owner,kind:'property',input:{...copy(propertyDefaults),
+        title:`Aktivitás-próba · ${definition.name} ${number}. lakása${titleSuffix}`,city:'Budapest',district:'XIII.',locationId:'district:Budapest:13',
+        neighborhood:'Újlipótváros',price:68_000_000+(number-1)*4_000_000,area:62+(number-1)*6,rooms:3,wholeRooms:3,halfRooms:0,
+        floor:2,balcony:true,elevator:true,description:fictional+'Előkészített érdeklődésekkel és értesítésekkel kipróbálható lakás.'}});
+      fixtures.push({key:activityKey(`${definition.key}-search-${number}`),owner,kind:'search',input:{...copy(searchDefaults),
+        title:`Aktivitás-próba · ${definition.name} ${number}. keresése${titleSuffix}`,city:'Budapest',districts:['XIII.'],locationIds:['district:Budapest:13'],
+        maxPrice:100_000_000,minArea:40,minRooms:2,description:fictional+'Előkészített beérkező érdeklődésekhez és profilváltó értesítésekhez tartozó keresés.'}});
+    }
+  }
+  const activityScenarios = [
+    {key:'activity-buyer-incoming',property:'activityseller-property-1',search:'activitybuyer-search-1',actors:['property']},
+    {key:'activity-seller-incoming',property:'activityseller-property-1',search:'activityagent-search-1',actors:['search']},
+    {key:'activity-seller-inactive',property:'activitybuyer-property-1',search:'activityseller-search-1',actors:['property'],readIncoming:true},
+    {key:'activity-buyer-read',property:'activityagent-property-1',search:'activitybuyer-search-1',actors:['property'],readIncoming:true},
+    {key:'activity-agent-incoming',property:'activitybuyer-property-1',search:'activityagent-search-1',actors:['property'],readIncoming:true},
+    {key:'activity-buyer-seller-match',property:'activityseller-property-2',search:'activitybuyer-search-2',actors:['property','search'],
+      propertyMessage:'Szia Dóra! Szívesen egyeztetek egy időpontot a lakás megtekintésére.',searchMessage:'Szia Áron! Köszönöm, beszéljük meg a részleteket!'},
+    {key:'activity-buyer-agent-match',property:'activitybuyer-property-2',search:'activityagent-search-2',actors:['property','search'],
+      propertyMessage:'Szia Nóra! Az ingatlanom illik a keresésedhez, egyeztessünk!',searchMessage:'Szia Dóra! Köszönöm a megkeresést, érdekelnek a részletek.'}
+  ].map(item=>({...item,key:activityKey(item.key),property:activityKey(item.property),search:activityKey(item.search)}));
   // These fictional street/house identifiers never represent a real address.
   // Startup assigns explicitly synthetic catalogue points, then asks MySQL for
   // polygon membership; it never invokes Google to manufacture fixture data.
@@ -409,7 +443,7 @@ export function createDemoCatalog(batch = DEFAULT_BATCH) {
     locationIds:[DEMO_STREET_SCENARIO.firstId, 'city:Hajdúsámson'],
     description:fictional + 'A debreceni Böszörményi út vagy bármely hajdúsámsoni lakás megfelelő.'
   });
-  return {users, fixtures, feedbackScenarios:[{key:'feedback-first-pass' + keySuffix,seller,buyer,property:propertyKey,search:searchKey,size:10}]};
+  return {users, fixtures, feedbackScenarios:[{key:'feedback-first-pass' + keySuffix,seller,buyer,property:propertyKey,search:searchKey,size:10}], activityScenarios};
 }
 
 const defaultCatalog = createDemoCatalog();
@@ -418,3 +452,5 @@ export const DEMO_FIXTURES = defaultCatalog.fixtures;
 
 export const FEEDBACK_TEST_SCENARIO = Object.freeze(defaultCatalog.feedbackScenarios[0]);
 export const DEMO_FEEDBACK_SCENARIOS = defaultCatalog.feedbackScenarios;
+
+export const DEMO_ACTIVITY_SCENARIOS = defaultCatalog.activityScenarios;

@@ -205,7 +205,7 @@ A helyi, szerveroldali megfelelő a `Geocoding__Google__ApiKey` környezeti vál
 
 A telepítés az új Cloud Run API-t a Hosting módosítása előtt ellenőrzi. A Firebase közzétételének befejezése után a webes ellenőrzés legfeljebb 12 alkalommal, 5 másodperces várakozással kérdezi le újra az oldalt, a runtime-konfigurációt és az API állapotát. Minden kérés külön URL-paramétert kap, és tiltja a gyorsítótárazást. Átmenetileg még korábbi Hosting-útvonal válaszolhat; siker csak az aktuális beágyazott tesztadat-verzióval lehetséges. Tartós eltérésnél a napló kiírja a hibás útvonalat és feltételt, verzióeltérésnél a kapott és az elvárt verziót is. A 401/403 válasz azonnal megállítja az ellenőrzést. A „release complete” után kapott ellenőrzési hiba nem vonja vissza automatikusan a már közzétett kiadást.
 
-A backendbe beágyazott `20261125-test-fixtures-v9` tesztadatcsomag **14 felhasználót, 355 ingatlant és 433 keresést** hoz létre. Ebből 3 fiók ingatlanközvetítő, 11 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
+A backendbe beágyazott `20261126-test-fixtures-v10` tesztadatcsomag **17 felhasználót, 361 ingatlant és 439 keresést** hoz létre. Ebből 4 fiók ingatlanközvetítő, 13 magánszemély. A megosztott példafiókok közös jelszava **`OtthonraDemo2026!`**.
 
 | Fiók | Fióktípus | E-mail-cím |
 |---|---|---|
@@ -223,6 +223,9 @@ A backendbe beágyazott `20261125-test-fixtures-v9` tesztadatcsomag **14 felhasz
 | Kiss Balázs | Magánszemély | `balazs@otthonra.local` |
 | Teszt Anna | Visszajelzés-próba kereső | `visszajelzes-kereso@otthonra.local` |
 | Teszt Péter | Visszajelzés-próba eladó | `visszajelzes-elado@otthonra.local` |
+| Teszt Dóra | Magánszemély, aktivitás-próba kereső | `aktivitas-kereso@otthonra.local` |
+| Teszt Áron | Magánszemély, aktivitás-próba eladó | `aktivitas-elado@otthonra.local` |
+| Teszt Nóra | Ingatlanközvetítő, aktivitás-próba | `aktivitas-ingatlanos@otthonra.local` |
 
 A kibővített készlet kilenc felhasználójának egyenként 12 eladó ingatlanja és 12 keresési igénye van. A közvetítők aktív kereséssel és 100 ingyenes tesztkredittel indulnak, így azonnal próbálható az 1 kredites kedvelés. A magánszemély keresői kedvelése ingyenes, az eladói kedvelés mindkét fióktípusnál 2 kredit. A közvetítői jelzés másik fiókból látható, a jelentéshez pedig bármelyik másik magánszemély mintaprofil használható.
 
@@ -230,13 +233,24 @@ A készlet II./XIII. kerületi, debreceni és hajdúsámsoni lakásokat, solymá
 
 A regionális bővítés Budapesthez és mind a 19 vármegyéhez 12 új ingatlant és 12 hozzá illő keresést ad: hat lakást és hat házat, több településsel, eltérő árakkal, méretekkel és egész/fél szobaszámokkal. A keresési korlátok változatosak, köztük elhagyott minimumár, maximum alapterület és maximum szobaszám is szerepel. A landing oldal ezért az egyes vármegyéken belül is többféle élethelyzetből tud válogatni. A bejelentkezési adatok és az eredeti mintapárok változatlanok.
 
+### Előkészített kedvelések és értesítések
+
+A három `aktivitas-…` fiók a következő normál teszttelepítéssel jön létre. Mindegyiknek két eladó ingatlana és két keresési igénye van. A keresői magánfiók aktív kereséssel és 94 kredittel, az eladói magánfiók aktív ingatlannal és 96 kredittel, a közvetítő aktív kereséssel és 96 kredittel indul. A fizetős korábbi érdeklődéseket a kreditnapló is tartalmazza.
+
+1. Lépj be például az `aktivitas-kereso@otthonra.local` fiókkal, a közös `OtthonraDemo2026!` jelszóval.
+2. A **Téged kedveltek** menüben az aktív profilhoz már vannak beérkező, megválaszolható érdeklődések.
+3. Az **Értesítések** oldalon próbáld ki a beérkező kedvelés, az új párosítás és az új üzenet megnyitását. Olvasott és még nem látott események is szerepelnek; egyesek az inaktív profilokhoz tartoznak, ezért a megfelelő profilra váltás is kipróbálható.
+4. Az `aktivitas-elado@otthonra.local` és `aktivitas-ingatlanos@otthonra.local` fiókok ugyanezeket az eseménytípusokat kínálják eladói, illetve közvetítői nézőpontból.
+
+A minták összesen kilenc döntést, köztük öt függő érdeklődést és két kölcsönös párosítást, valamint négy üzenetet tartalmaznak. Ezeket a backend a beágyazott tesztadatokkal együtt hozza létre. Az azonos revízió újraindítása megőrzi az eseményeket és az olvasottságot; egy új tesztrevízió a mintákat is újra létrehozza.
+
 ### Automatikus alaphelyzetbe állítás telepítéskor
 
 A normál **Deploy Google Cloud test** workflow telepíti az új API-képet és a webet. A backend az indulásakor, az alkalmazás kiszolgálása előtt tölti fel a beágyazott adatokat; a telepítés után nincs külön API-s feltöltő lépés. Merge után elég **Actions → Deploy Google Cloud test → Run workflow**, a `main` ágon. Külön adatfeltöltő workflow-t vagy parancsot nem kell indítani.
 
 A teszttelepítés `Database__SeedTestFixtures=true` beállítást kap. Ez kizárólag `Deployment__Environment=test` környezetben engedélyezi az automatikus tesztadat-kezelést; a szokásos éles környezetben nem töröl és nem tölt fel adatokat. A szerver ASP.NET környezete a teszttelepítésben is lehet `Production`: a tesztjogosultságot a külön `Deployment__Environment=test` beállítás jelenti.
 
-Minden új Cloud Run-revízió (`K_REVISION`) első indulása alaphelyzetbe állítja a teszt alkalmazásadatait, majd létrehozza a 14 felhasználót, a 355 ingatlant, a 433 keresést, a kezdő krediteket és az aktív profilokat. Az előző tesztállapot összes felhasználója — a kézzel regisztrált fiókok is —, saját hirdetése, keresése, döntése, párosítása, üzenete, jelentése és kreditmozgása törlődik. Így az új telepítés után a korábban végighúzott minták helyett újra végigpróbálható alapállapot fogad.
+Minden új Cloud Run-revízió (`K_REVISION`) első indulása alaphelyzetbe állítja a teszt alkalmazásadatait, majd létrehozza a 17 felhasználót, a 361 ingatlant, a 439 keresést, a kezdő krediteket, az aktív profilokat és az előkészített érdeklődéseket, párosításokat, üzeneteket és értesítéseket. Az előző tesztállapot összes felhasználója — a kézzel regisztrált fiókok is —, saját hirdetése, keresése, döntése, párosítása, üzenete, jelentése és kreditmozgása törlődik. Így az új telepítés után a korábban végighúzott minták helyett újra végigpróbálható alapállapot fogad.
 
 Az adatbáziszár és a revíziók feltöltési előzménye gondoskodik arról, hogy több párhuzamosan induló példány is csak egyszer hajtsa végre ezt egy új revízióhoz. Az azonos revízió hidegindítása vagy újraindítása nem állítja vissza a tesztelés közbeni módosításokat. Egy korábban már feltöltött régi revízió újraindulása sem törli az újabb revízióval létrejött adatokat. A séma és a feltöltési előzmények megmaradnak; a folyamat az alkalmazás tesztadatait kezeli.
 
@@ -258,6 +272,8 @@ node scripts/gcp/seed-dev.mjs --batch proba-2 --config /abszolut/utvonal/dev-con
 ```
 
 Ez az eszköz a teszt API ellenőrzése és hitelesítés után dolgozik, nyugtával kerüli a duplikációt, és megőrzi a revízión belüli korábbi adatokat. A hitelesítési korlát miatt legfeljebb 10 belépési/regisztrációs kérést küld 61 másodperces ablakonként, látható várakozással. Az így hozzáadott adatok is törlődnek a következő új teszt Cloud Run-revízió indulásakor.
+
+Az opcionális API-s feltöltő a fiókokat és a profilokat hozza létre, fiókonként 100 tesztkredittel. Az előkészített érdeklődéseket, párosításokat, üzeneteket és értesítéseket nem importálja; ezekhez a normál, beágyazott tesztadatokat használó telepítés szükséges.
 
 A megosztott példafiókok kitalált tesztadatokhoz tartoznak. Saját fiókot az **„Új fiókot hozok létre”** gombbal, névvel, e-mail-címmel és legalább 10 karakteres jelszóval is regisztrálhatsz; a sikeres regisztráció azonnal beléptet. Az ilyen saját fiók nulla kredittel indul; a **Krediteim** oldalon ingyenesen adhatsz hozzá tesztkreditet.
 

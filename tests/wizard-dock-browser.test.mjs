@@ -159,9 +159,23 @@ async function createWizard(page,interact,kind,viewport){
  if(kind==='property'){assert.equal(saved.area,87.5);assert.equal(saved.lotArea,520.5);assert.equal(saved.rooms,3.5);assert.equal(saved.insulated,false);assert.equal(saved.airConditioning,true);assert.equal(saved.heatingType,'Hőszivattyú');assert.deepEqual(saved.parkingTypes,['Udvari beálló','Garázs']);}
  else{assert.equal(saved.minArea,87.5);assert.equal(saved.maxPrice,105.5);for(const field of ['minPrice','maxArea','maxRooms'])assert.equal(saved[field],null);assert.deepEqual(saved.locationIds,['city:Debrecen','city:Hajdúszoboszló']);assert.equal(saved.moveIn,'3 hónapon belül');}
  await interact(page.locator(`[data-action="edit"][data-kind="${kind}"][data-id="${saved.id}"]`));await page.locator('#entity-form').waitFor();await verifyProgress(page,kind,0);
- assert.equal(await page.locator('#f-title').inputValue(),saved.title);await editorStep(page,1,interact);await verifyProgress(page,kind,1);assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),1);await editorStep(page,5,interact);assert.equal(await page.locator('#f-description').inputValue(),description);
- await page.locator('#f-description').fill(description+' szerkesztve');await editorStep(page,0,interact);await editorStep(page,5,interact);await editorSave(page,interact);await page.locator('#entity-form').waitFor({state:'detached'});
- const edited=await state(page);assert.equal(edited[kind==='property'?'properties':'searches'].length,after[kind==='property'?'properties':'searches'].length);assert.equal(edited[kind==='property'?'properties':'searches'].find(item=>item.id===saved.id).description,description+' szerkesztve');assert.equal(await page.locator('.search-created-actions').count(),0,'Editing must not reopen the new-search activation prompt');
+ assert.equal(await page.locator('#entity-form').getAttribute('data-editing'),'true');assert.equal(await page.locator('#f-title').inputValue(),saved.title);
+ for(let step=0;step<6;step++){
+  await editorStep(page,step,interact);await verifyProgress(page,kind,step);
+  assert.equal(await page.locator('#editor-save-top').isVisible(),true);assert.equal(await page.locator('#editor-next-top').isVisible(),false);
+  assert.equal(await page.locator('#editor-next').isVisible(),step<5,'Existing profiles keep ordinary lower Next navigation');
+ }
+ assert.equal(await page.locator('#property-type-options [aria-pressed="true"]').count(),1);assert.equal(await page.locator('#f-description').inputValue(),description);
+ // A user may clear a required numeric field, navigate backwards, then Save.
+ // Saving from another topic must validate that hidden field without writing.
+ const priceField=kind==='property'?'#f-price':'#f-maxPrice';await editorStep(page,2,interact);const originalPrice=await page.locator(priceField).inputValue();await page.locator(priceField).fill('');
+ await editorStep(page,0,interact);await interact(page.locator('#editor-save-top'));await verifyProgress(page,kind,2);
+ assert.equal(await page.locator(priceField).evaluate(element=>element.validity.valueMissing),true);assert.deepEqual(coreState(await state(page)),coreState(after),'Top Save must not write while a required field in another topic is invalid');
+ await page.locator(priceField).fill(originalPrice);await editorStep(page,5,interact);await page.locator('#f-description').fill(description+' szerkesztve');
+ await editorStep(page,2,interact);await page.locator(kind==='property'?'#f-area':'#f-minArea').fill('88.5');await editorStep(page,3,interact);await interact(page.locator('#editor-save-top'));await page.locator('#entity-form').waitFor({state:'detached'});
+ const edited=await state(page),editedItem=edited[kind==='property'?'properties':'searches'].find(item=>item.id===saved.id);assert.equal(edited[kind==='property'?'properties':'searches'].length,after[kind==='property'?'properties':'searches'].length);assert.equal(editedItem.description,description+' szerkesztve');assert.equal(editedItem[kind==='property'?'area':'minArea'],88.5);
+ for(const field of kind==='property'?['title','price','lotArea','rooms','wholeRooms','halfRooms','condition','building','heatingType','insulated','airConditioning','images','parkingTypes']:['title','maxPrice','publicMaxPrice','maxArea','minRooms','maxRooms','conditions','buildings','floors','elevator','moveIn','locationIds'])assert.deepEqual(editedItem[field],saved[field],`Saving ${kind} from a middle topic retains ${field}`);
+ assert.equal(await page.locator('.search-created-actions').count(),0,'Editing must not reopen the new-search activation prompt');
 }
 
 

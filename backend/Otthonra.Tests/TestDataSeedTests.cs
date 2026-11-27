@@ -15,14 +15,24 @@ public class TestDataSeedTests
     [Fact]
     public void EmbeddedCatalogBuildsTheEntireReadyDatasetWithRolesCreditsAndStableIds()
     {
-        Assert.Equal("20261125-test-fixtures-v9", TestDataSeed.CatalogVersion);
-        Assert.Equal(14, Plan.Users.Length);
-        Assert.Equal(3, Plan.Users.Count(user => user.AccountType == AccountTypes.Agent));
-        Assert.Equal(355, Plan.Properties.Length);
-        Assert.Equal(433, Plan.Searches.Length);
-        Assert.Equal(15, Plan.Credits.Length);
+        Assert.Equal("20261126-test-fixtures-v10", TestDataSeed.CatalogVersion);
+        Assert.Equal(17, Plan.Users.Length);
+        Assert.Equal(4, Plan.Users.Count(user => user.AccountType == AccountTypes.Agent));
+        Assert.Equal(361, Plan.Properties.Length);
+        Assert.Equal(439, Plan.Searches.Length);
+        Assert.Equal(26, Plan.Credits.Length);
+        Assert.Equal(9, Plan.Decisions.Length);
+        Assert.Equal(2, Plan.Matches.Length);
+        Assert.Equal(4, Plan.Messages.Length);
+        Assert.Equal(17, Plan.Notifications.Length);
         Assert.All(Plan.Users, user => {
-            Assert.Equal(user.Email == "visszajelzes-elado@otthonra.local" ? 90 : 100, user.Credits);
+            var expectedCredits = user.Email switch {
+                "visszajelzes-elado@otthonra.local" => 90,
+                "aktivitas-kereso@otthonra.local" => 94,
+                "aktivitas-elado@otthonra.local" or "aktivitas-ingatlanos@otthonra.local" => 96,
+                _ => 100
+            };
+            Assert.Equal(expectedCredits, user.Credits);
             Assert.True(Passwords.Verify("OtthonraDemo2026!", user.PasswordHash));
             var entry = Assert.Single(Plan.Credits, credit => credit.UserId == user.Id && credit.Amount == 100 && credit.FeedbackPackageId == null);
             Assert.Equal(100, entry.Amount); Assert.Null(entry.DecisionId);
@@ -31,7 +41,9 @@ public class TestDataSeedTests
         });
         var ids = Plan.Users.Select(user => user.Id).Concat(Plan.Properties.Select(property => property.Id))
             .Concat(Plan.Searches.Select(search => search.Id)).Concat(Plan.Credits.Select(credit => credit.Id))
-            .Concat(Plan.FeedbackPackages.Select(package => package.Id)).ToArray();
+            .Concat(Plan.FeedbackPackages.Select(package => package.Id))
+            .Concat(Plan.Decisions.Select(decision => decision.Id)).Concat(Plan.Matches.Select(match => match.Id))
+            .Concat(Plan.Messages.Select(message => message.Id)).Concat(Plan.Notifications.Select(notification => notification.Id)).ToArray();
         Assert.Equal(ids.Length, ids.Distinct().Count());
         Assert.All(Plan.Properties, property => Assert.Contains(Plan.Users, user => user.Id == property.OwnerId));
         Assert.All(Plan.Searches, search => Assert.Contains(Plan.Users, user => user.Id == search.OwnerId));
@@ -222,7 +234,7 @@ public class TestDataSeedTests
     [Fact]
     public void DeploymentHistoryKeysDistinguishRevisionsAndLocalCatalogVersions()
     {
-        Assert.Equal("local:20261125-test-fixtures-v9", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
+        Assert.Equal("local:20261126-test-fixtures-v10", TestDataSeed.RevisionKey(null, TestDataSeed.CatalogVersion));
         Assert.Equal("ci-fixtures-a", TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey("ci-fixtures-a", TestDataSeed.CatalogVersion), TestDataSeed.RevisionKey("ci-fixtures-b", TestDataSeed.CatalogVersion));
         Assert.NotEqual(TestDataSeed.RevisionKey(null, "catalog-v1"), TestDataSeed.RevisionKey(null, "catalog-v2"));

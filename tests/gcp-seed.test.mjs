@@ -306,7 +306,7 @@ test('new accounts register once with their catalog type and use a paced authent
   assert.equal(auth.length, DEMO_USERS.length, 'Fresh accounts must not issue failed logins before registration');
   assert.ok(auth.every(call => call.path === '/api/auth/register'));
   assert.deepEqual(clock.waits, [61000]);
-  assert.equal([...mock.users.values()].filter(user => user.accountType === 'agent').length, 3);
+  assert.equal([...mock.users.values()].filter(user => user.accountType === 'agent').length, DEMO_USERS.filter(user => user.accountType === 'agent').length);
   for (const account of DEMO_USERS) assert.equal(mock.users.get(account.email).accountType, account.accountType ?? 'private');
 });
 

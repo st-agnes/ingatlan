@@ -86,6 +86,9 @@ test('signed-in detail pages show the authoritative active-profile score and ava
  assert.match(markup,/data-action="public-listing-profile-top"/);assert.doesNotMatch(markup,/href="#public-listing-profile"/,'A scroll control must not replace the SPA route');
  assert.doesNotMatch(markup,/data-action="onboarding-start"/,'A relevant active profile replaces the generic creation CTA');
  assert.match(markup,/Nem az igazi/);assert.match(markup,/data-part="phone"/);assert.match(markup,/data-part="message"/);
+ const ownProfile=markup.split('<div class="public-listing-active-profile">')[1]?.split('<section class="public-listing-target-response"')[0],target=markup.split('<section class="public-listing-target-response"')[1]?.split('</section>')[0];
+ assert.ok(ownProfile&&target);assert.match(ownProfile,/Kertre néző lakás &lt;jó&gt;/);assert.doesNotMatch(ownProfile,/data-action="public-listing-decision"/,'The active profile only owns its management controls');
+ assert.match(target,/Erről az ingatlanról döntesz/);assert.match(target,/<strong>Világos otthon<\/strong>/);assert.match(target,/data-action="public-listing-decision"/);assert.doesNotMatch(target,/Kertre néző lakás/,'Decision controls describe the viewed listing rather than the owner profile');
  assert.match(publicListingMarkup(property,{signedIn:true,context:{...activeContext,compatibilityScore:0}}),/0% <span>egyezés/);
  assert.doesNotMatch(publicListingMarkup(property,{context:activeContext}),/public-listing-context|public-listing-decision/);
  assert.equal(listingContextMarkup({...activeContext,active:{...activeContext.active,kind:'property'}},{kind:'property'}),'');
@@ -145,6 +148,7 @@ test('search detail replacement preserves the separate search-cloning action',()
  const context={...activeContext,active:{kind:'property',id:'own-property',title:'Saját házam',type:'Ház',locations:['Debrecen'],price:80}};
  const markup=publicListingMarkup(detail,{signedIn:true,context});
  assert.match(markup,/Aktív ingatlanod/);assert.match(markup,/Saját házam/);assert.match(markup,/data-action="public-listing-new-profile" data-kind="property"/);
+ assert.match(markup,/Erről a keresési igényről döntesz<strong>Házat keresek<\/strong>/);
  assert.doesNotMatch(markup,/data-action="onboarding-start"/);assert.equal((markup.match(/data-action="onboarding-copy-search"/g)||[]).length,1);
 });
 test('profile choices show only the expected owned kind with each score, active state and pagination',()=>{
